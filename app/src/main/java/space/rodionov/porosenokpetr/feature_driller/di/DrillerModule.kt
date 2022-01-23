@@ -9,13 +9,29 @@ import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import space.rodionov.porosenokpetr.feature_driller.Constants
+import space.rodionov.porosenokpetr.feature_driller.data.local.WordDao
 import space.rodionov.porosenokpetr.feature_driller.data.local.WordDatabase
+import space.rodionov.porosenokpetr.feature_driller.data.local.repository.WordRepoImpl
+import space.rodionov.porosenokpetr.feature_driller.domain.repository.WordRepo
+import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.GetTenWordsUseCase
 import javax.inject.Qualifier
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 object DrillerModule {
+
+    @Provides
+    @Singleton
+    fun provideGetTenWordsUseCase(repo: WordRepo): GetTenWordsUseCase {
+        return GetTenWordsUseCase(repo)
+    }
+
+    @Provides
+    @Singleton
+    fun provideRepo(db: WordDatabase): WordRepo {
+        return WordRepoImpl(db.dao)
+    }
 
     @Provides
     @Singleton
