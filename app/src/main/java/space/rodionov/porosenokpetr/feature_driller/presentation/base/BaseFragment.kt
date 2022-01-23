@@ -2,32 +2,19 @@ package space.rodionov.porosenokpetr.feature_driller.presentation.base
 
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
 import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.MainViewModel
-import space.rodionov.porosenokpetr.feature_driller.presentation.base.adapter.BaseAdapter
-import space.rodionov.porosenokpetr.feature_driller.presentation.base.adapter.BasePorosenokPetrAdapter
 
 abstract class BaseFragment: Fragment() {
 
     var isNightBaseMainFragment = false
     open val binding: ViewBinding? = null
     private val vmMain: MainViewModel by viewModels()
-
-    open val recyclerAdapter: BaseAdapter by lazy {
-        BasePorosenokPetrAdapter(
-            changeMode = {
-                updateMode(it)
-            }
-        )
-    }
-
     open fun updateMode(isNight: Boolean) {}
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

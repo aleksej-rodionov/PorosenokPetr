@@ -4,13 +4,17 @@ import android.annotation.SuppressLint
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import space.rodionov.porosenokpetr.feature_driller.Constants.DEFAULT_INT
+import space.rodionov.porosenokpetr.feature_driller.Constants
 import space.rodionov.porosenokpetr.feature_driller.domain.models.BaseModel
 
 abstract class BaseAdapter(
-    delegates: List<AdapterDelegate>,
-    switchMode: (Boolean) -> Unit = {}
-): ListAdapter<BaseModel, BaseViewHolder>(BaseDiffUtil()) {
+    delegates: List<AdapterDelegate>
+) : ListAdapter<BaseModel, BaseViewHolder>(BaseDiffUtil()) {
+
+    var isNightBaseAdapter = false
+    open fun updateMode(isNight: Boolean) {
+        isNightBaseAdapter = isNight
+    }
 
     private val delegateManager = AdapterDelegateManager()
     lateinit var recyclerView: RecyclerView
@@ -44,7 +48,7 @@ abstract class BaseAdapter(
     }
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
-
+        holder.setMode(isNightBaseAdapter)
         holder.bind(getItem(position), holder)
     }
 
@@ -52,7 +56,7 @@ abstract class BaseAdapter(
         delegateManager.getItemViewType(getItem(position))
 
     fun getItemByPosition(position: Int) =
-        if (position != DEFAULT_INT && position < currentList.size) getItem(position) else null
+        if (position != Constants.DEFAULT_INT && position < currentList.size) getItem(position) else null
 
     fun getItems() = currentList
 
@@ -79,8 +83,5 @@ abstract class BaseAdapter(
         super.onCurrentListChanged(previousList, currentList)
     }
 }
-
-
-
 
 

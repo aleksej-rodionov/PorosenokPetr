@@ -16,7 +16,6 @@ class DrillerFragment : BaseFragment(/*R.layout.fragment_driller*/) {
     private var _binding: FragmentDrillerBinding? = null
     override val binding get() = _binding
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentDrillerBinding.bind(view)
