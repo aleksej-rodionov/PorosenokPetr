@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/drillerFragment">
+
+    <fragment
+        android:id="@+id/drillerFragment"
+        android:name="space.rodionov.porosenokpetr.feature_driller.presentation.driller.DrillerFragment"
+        android:label="fragment_driller"
+        tools:layout="@layout/fragment_driller" />
+</navigation>

@@ -1,4 +1,4 @@
-package space.rodionov.porosenokpetr.feature_driller.presentation
+package space.rodionov.porosenokpetr.feature_driller.presentation.driller
 
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
