@@ -34,6 +34,6 @@ abstract class BaseViewHolder: RecyclerView.ViewHolder {
     open fun setMode(isNight: Boolean) {
         isNightBaseViewHolder = isNight
 
-        if (itemView is ViewGroup) itemView.redrawViewGroup(isNight, false)
+        if (itemView is ViewGroup) itemView.redrawViewGroup(isNight)
     }
 }

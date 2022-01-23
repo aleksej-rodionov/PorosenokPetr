@@ -16,6 +16,11 @@ abstract class BaseAdapter(
         isNightBaseAdapter = isNight
     }
 
+    var nativeToForeign = false
+    open fun updateTranslationDirection(toForeign: Boolean) {
+        nativeToForeign = toForeign
+    }
+
     private val delegateManager = AdapterDelegateManager()
     lateinit var recyclerView: RecyclerView
 

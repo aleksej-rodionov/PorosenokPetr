@@ -5,4 +5,4 @@ data class Word(
     val foreign: String,
     val categoryName: String,
     val isWordActive: Boolean
-)
+): BaseModel

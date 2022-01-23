@@ -7,15 +7,16 @@ import androidx.recyclerview.widget.RecyclerView
 import space.rodionov.porosenokpetr.databinding.ItemWordCardBinding
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
 import space.rodionov.porosenokpetr.feature_driller.presentation.WordDiff
+import space.rodionov.porosenokpetr.feature_driller.presentation.base.adapter.BaseAdapter
+import space.rodionov.porosenokpetr.util.redrawViewGroup
 
-class DrillerAdapter(
+class DrillerAdapter() : ListAdapter<Word, DrillerAdapter.DrillerViewHolder>(WordDiff()){
 
-) : ListAdapter<Word, DrillerAdapter.DrillerViewHolder>(WordDiff()){
+    private var mIsNight: Boolean = false
+    fun updateMode(isNight: Boolean) { mIsNight = isNight }
 
     private var mNativeToForeign: Boolean = false
-    private var mIsNight: Boolean = false
     fun updateTransDir(nativeToForeign: Boolean) { mNativeToForeign = nativeToForeign }
-    fun updateMode(isNight: Boolean) { mIsNight = isNight }
 
     inner class DrillerViewHolder(private val binding: ItemWordCardBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -24,7 +25,7 @@ class DrillerAdapter(
                 tvUpper.text = if(mNativeToForeign) word.nativ else word.foreign
                 tvDowner.text = if(mNativeToForeign) word.foreign else word.nativ
 
-
+                (binding.root as ViewGroup).redrawViewGroup(mIsNight)
             }
         }
     }
