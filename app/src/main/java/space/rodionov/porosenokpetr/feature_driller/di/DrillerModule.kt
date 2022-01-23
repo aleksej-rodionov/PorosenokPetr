@@ -12,6 +12,8 @@ import space.rodionov.porosenokpetr.feature_driller.Constants
 import space.rodionov.porosenokpetr.feature_driller.data.local.WordDao
 import space.rodionov.porosenokpetr.feature_driller.data.local.WordDatabase
 import space.rodionov.porosenokpetr.feature_driller.data.local.repository.WordRepoImpl
+import space.rodionov.porosenokpetr.feature_driller.data.storage.Storage
+import space.rodionov.porosenokpetr.feature_driller.data.storage.StorageImpl
 import space.rodionov.porosenokpetr.feature_driller.domain.repository.WordRepo
 import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.GetTenWordsUseCase
 import javax.inject.Qualifier
@@ -29,8 +31,14 @@ object DrillerModule {
 
     @Provides
     @Singleton
-    fun provideRepo(db: WordDatabase): WordRepo {
-        return WordRepoImpl(db.dao)
+    fun provideRepo(db: WordDatabase, storage: Storage): WordRepo {
+        return WordRepoImpl(db.dao, storage)
+    }
+
+    @Provides
+    @Singleton
+    fun provideStorage(app: Application): Storage {
+        return StorageImpl(app)
     }
 
     @Provides

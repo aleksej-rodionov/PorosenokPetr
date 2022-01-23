@@ -1,5 +1,12 @@
 package space.rodionov.porosenokpetr.feature_driller
 
 object Constants {
+
     const val WORD_DB = "word_db"
+
+    const val SHARED_PREF_STORE = "sharedPrefStore"
+    const val MODE = "mode"
+    const val DEFAULT_MODE = false
+
+    const val DEFAULT_INT = -1
 }

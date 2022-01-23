@@ -7,13 +7,14 @@ import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.databinding.FragmentDrillerBinding
+import space.rodionov.porosenokpetr.feature_driller.presentation.base.BaseFragment
 
 @AndroidEntryPoint
-class DrillerFragment : Fragment(R.layout.fragment_driller) {
+class DrillerFragment : BaseFragment(/*R.layout.fragment_driller*/) {
 
     private val vmDriller: DrillerViewModel by viewModels()
     private var _binding: FragmentDrillerBinding? = null
-    private val binding get() = _binding
+    override val binding get() = _binding
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
