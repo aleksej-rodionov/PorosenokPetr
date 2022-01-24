@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import space.rodionov.porosenokpetr.databinding.ItemWordCardBinding
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
 import space.rodionov.porosenokpetr.feature_driller.presentation.WordDiff
-import space.rodionov.porosenokpetr.feature_driller.presentation.base.adapter.BaseAdapter
 import space.rodionov.porosenokpetr.util.redrawViewGroup
 
 class DrillerAdapter() : ListAdapter<Word, DrillerAdapter.DrillerViewHolder>(WordDiff()){
