@@ -18,9 +18,25 @@
 <!--        <item name="android:windowTranslucentNavigation">true</item>-->
     </style>
 
+    <style name="Theme.NavBarDay" parent="@style/Theme.Design.BottomSheetDialog">
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:navigationBarColor">@color/gray200</item>
+        <item name="statusBarForeground">@color/black</item>
+    </style>
+
+    <style name="Theme.NavBarNight" parent="@style/Theme.Design.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:navigationBarColor">@color/gray900</item>
+        <item name="statusBarForeground">@color/white</item>
+    </style>
+
     <style name="ImageViewCorners4">
         <item name="cornerFamilyTopLeft">rounded</item>
         <item name="cornerFamilyTopRight">rounded</item>
         <item name="cornerSize">3%</item>
     </style>
+
+
 </resources>

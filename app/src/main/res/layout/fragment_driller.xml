@@ -129,26 +129,27 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_marginHorizontal="12dp"
+            app:tint="@color/gray800"
             android:id="@+id/ic_settings"
             android:src="@drawable/ic_settings_big"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
         <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginHorizontal="12dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="20dp"
             android:id="@+id/ic_bookshelf"
             android:src="@drawable/ic_bookstack"
             app:layout_constraintStart_toEndOf="@id/ic_settings"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
         <ImageView
-            android:layout_width="28dp"
-            android:layout_height="28dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_marginHorizontal="12dp"
             android:id="@+id/ic_filter"
             android:src="@drawable/ic_filter_settings"
