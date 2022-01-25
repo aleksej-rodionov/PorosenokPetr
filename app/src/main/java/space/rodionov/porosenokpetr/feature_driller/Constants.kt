@@ -11,4 +11,5 @@ object Constants {
     const val DEFAULT_MODE = false
 
     const val DEFAULT_INT = -1
+    const val MAX_STACK_SIZE = 50
 }

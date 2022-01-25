@@ -13,6 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.databinding.FragmentDrillerBinding
+import space.rodionov.porosenokpetr.feature_driller.Constants
 import space.rodionov.porosenokpetr.feature_driller.Constants.TAG_PETR
 
 @AndroidEntryPoint
@@ -98,7 +99,7 @@ class DrillerFragment : Fragment(R.layout.fragment_driller), CardStackListener {
 
     override fun onCardSwiped(direction: Direction?) {
         if (direction == Direction.Bottom) {
-            vmDriller.inactivateCurrentWord() // todo
+            vmDriller.inactivateCurrentWord()
         }
     }
 
@@ -113,7 +114,7 @@ class DrillerFragment : Fragment(R.layout.fragment_driller), CardStackListener {
     override fun onCardAppeared(view: View?, position: Int) {
         binding?.tvOnCardAppeared?.text = getString(R.string.on_card_appeared, position)
         vmDriller.updateCurrentPosition(position)
-        if (position == drillerAdapter.itemCount - 3) {
+        if (position == drillerAdapter.itemCount - 3 && position < Constants.MAX_STACK_SIZE - 10) {
              vmDriller.addTenWords()
         }
     }
