@@ -13,8 +13,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.databinding.FragmentDrillerBinding
+import space.rodionov.porosenokpetr.feature_driller.Constants.TAG_PETR
 
-private const val TAG = "DrillerFragment"
 @AndroidEntryPoint
 class DrillerFragment : Fragment(R.layout.fragment_driller), CardStackListener {
 
@@ -33,7 +33,7 @@ class DrillerFragment : Fragment(R.layout.fragment_driller), CardStackListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentDrillerBinding.bind(view)
-        Log.d(TAG, "onViewCreated: CALLED")
+        Log.d(TAG_PETR, "onViewCreated: CALLED")
         initViewModel()
 
         drillerLayoutManager.apply {
@@ -63,7 +63,7 @@ class DrillerFragment : Fragment(R.layout.fragment_driller), CardStackListener {
     }
 
     private fun initViewModel() {
-        Log.d(TAG, "initViewModel: CALLED")
+        Log.d(TAG_PETR, "initViewModel: CALLED")
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             vmDriller.wordsState.collectLatest { wordsState ->
                 binding?.apply {
@@ -75,13 +75,16 @@ class DrillerFragment : Fragment(R.layout.fragment_driller), CardStackListener {
                 val list = wordsState.words
                 drillerAdapter.submitList(list)
             }
+        }
 
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             vmDriller.currentPosition.collectLatest { pos ->
+                Log.d(TAG_PETR, "initViewModel: currentPos = $pos")
                 binding?.tvCurrentItem?.text = getString(R.string.current_position, pos)
             }
-
-            // other Observers
         }
+
+        // other Observers
     }
 
     override fun onDestroyView() {
@@ -95,7 +98,7 @@ class DrillerFragment : Fragment(R.layout.fragment_driller), CardStackListener {
 
     override fun onCardSwiped(direction: Direction?) {
         if (direction == Direction.Bottom) {
-            vmDriller.inactivateCurrentWord()
+            vmDriller.inactivateCurrentWord() // todo
         }
     }
 
@@ -108,14 +111,16 @@ class DrillerFragment : Fragment(R.layout.fragment_driller), CardStackListener {
     }
 
     override fun onCardAppeared(view: View?, position: Int) {
+        Log.d(TAG_PETR, "onCardAppeared: CALLED")
+        binding?.tvOnCardAppeared?.text = getString(R.string.on_card_appeared, position)
         vmDriller.updateCurrentPosition(position)
-        if (position > drillerAdapter.itemCount - 4) {
-            // vmDriller.addTenWords()
+        if (position == drillerAdapter.itemCount - 4) {
+             vmDriller.addTenWords()
         }
     }
 
     override fun onCardDisappeared(view: View?, position: Int) {
-        // empty
+        binding?.tvOnCardDisappeared?.text = getString(R.string.on_card_disappeared, position)
     }
 }
 

@@ -17,6 +17,30 @@
         tools:text="Текущая позиция: 6" />
 
     <TextView
+        android:id="@+id/tv_on_card_appeared"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:textSize="12sp"
+        android:textStyle="italic"
+        android:textColor="@color/teal_200"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_current_item"
+        tools:text="onCardAppeared(pos = 6)" />
+
+    <TextView
+        android:id="@+id/tv_on_card_disappeared"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:textSize="12sp"
+        android:textStyle="italic"
+        android:textColor="@color/teal_200"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_on_card_appeared"
+        tools:text="onCardDisappeared(pos = 6)" />
+
+    <TextView
         android:id="@+id/tv_item_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

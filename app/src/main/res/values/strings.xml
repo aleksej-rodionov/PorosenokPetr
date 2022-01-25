@@ -10,4 +10,6 @@
 
     <string name="item_count">В колоде %1$d слов</string>
     <string name="current_position">Текущая позиция: %1$d</string>
+    <string name="on_card_appeared">onCardAppeared(%1$d)</string>
+    <string name="on_card_disappeared">onCardDisappeared(%1$d)</string>
 </resources>

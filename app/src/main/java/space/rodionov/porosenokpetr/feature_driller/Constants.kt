@@ -2,6 +2,8 @@ package space.rodionov.porosenokpetr.feature_driller
 
 object Constants {
 
+    const val TAG_PETR = "tag_petr"
+
     const val WORD_DB = "word_db"
 
     const val SHARED_PREF_STORE = "sharedPrefStore"
