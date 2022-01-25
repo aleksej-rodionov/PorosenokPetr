@@ -9,9 +9,8 @@ import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import space.rodionov.porosenokpetr.feature_driller.Constants
-import space.rodionov.porosenokpetr.feature_driller.data.local.WordDao
 import space.rodionov.porosenokpetr.feature_driller.data.local.WordDatabase
-import space.rodionov.porosenokpetr.feature_driller.data.local.repository.WordRepoImpl
+import space.rodionov.porosenokpetr.feature_driller.data.repository.WordRepoImpl
 import space.rodionov.porosenokpetr.feature_driller.data.storage.Storage
 import space.rodionov.porosenokpetr.feature_driller.data.storage.StorageImpl
 import space.rodionov.porosenokpetr.feature_driller.domain.repository.WordRepo
