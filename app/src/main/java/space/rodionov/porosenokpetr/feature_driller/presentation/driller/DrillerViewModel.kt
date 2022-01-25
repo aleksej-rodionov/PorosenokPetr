@@ -63,6 +63,11 @@ class DrillerViewModel @Inject constructor(
         }.launchIn(this) // this относится к viewModelScope, в котором onEach этот завернут
     }
 
+    fun newRound() {
+        _wordsState.value = WordState()
+        addTenWords()
+    }
+
     fun updateCurrentPosition(pos: Int) {
         Log.d(TAG_PETR, "updateCurrentPosition: pos = $pos")
         _currentPosition.value = pos

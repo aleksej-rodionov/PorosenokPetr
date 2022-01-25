@@ -8,6 +8,24 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <color name="violet">#9876AA</color>
+    <color name="green">#6a8759</color>
+    <color name="yellow">#ffc66d</color>
+    <color name="deepYellow">#cc7832</color>
+    <color name="moonBlue">#a9b7c6</color>
+    <color name="nightFgGray">#808080</color>
+    <color name="nightBgDarkGray">#2B2B2B</color>
+    <color name="nightBgGray">#3C3F41</color>
+
+    <color name="colorBeta">#9CB8C1</color>
+    <color name="textGray">#A2ACB6</color>
+    <color name="gray100">#F6F7FB</color>
+    <color name="gray200">#EFF1F5</color>
+    <color name="gray400">#CDCFD4</color>
+    <color name="gray600">#A7A7AB</color>
+    <color name="gray800">#686868</color>
+    <color name="gray850">#3D3D3D</color>
+
     <color name="transparentGray15">#26858585</color>
-    <color name="grey600">#A7A7AB</color>
+
 </resources>

@@ -58,9 +58,15 @@ class DrillerFragment : Fragment(R.layout.fragment_driller), CardStackListener {
                 setHasFixedSize(false)
                 itemAnimator = null
             }
+
+            btnNewRound.setOnClickListener {
+                vmDriller.newRound()
+                tvComplete.visibility = View.GONE
+                btnNewRound.visibility = View.GONE
+            }
         }
 
-        vmDriller.addTenWords()
+        vmDriller.newRound()
     }
 
     private fun initViewModel() {
@@ -112,15 +118,17 @@ class DrillerFragment : Fragment(R.layout.fragment_driller), CardStackListener {
     }
 
     override fun onCardAppeared(view: View?, position: Int) {
-        binding?.tvOnCardAppeared?.text = getString(R.string.on_card_appeared, position)
+//        binding?.tvOnCardAppeared?.text = getString(R.string.on_card_appeared, position)
         vmDriller.updateCurrentPosition(position)
         if (position == drillerAdapter.itemCount - 3 && position < Constants.MAX_STACK_SIZE - 10) {
              vmDriller.addTenWords()
         }
+        if (position == drillerAdapter.itemCount - 1) binding?.tvComplete?.visibility = View.VISIBLE
     }
 
     override fun onCardDisappeared(view: View?, position: Int) {
-        binding?.tvOnCardDisappeared?.text = getString(R.string.on_card_disappeared, position)
+//        binding?.tvOnCardDisappeared?.text = getString(R.string.on_card_disappeared, position)
+        if (position == drillerAdapter.itemCount - 1) binding?.btnNewRound?.visibility = View.VISIBLE
     }
 }
 
