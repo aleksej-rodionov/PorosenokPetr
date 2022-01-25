@@ -38,6 +38,8 @@ class DrillerAdapter() : ListAdapter<Word, DrillerAdapter.DrillerViewHolder>(Wor
         val curItem = getItem(position)
         holder.bind(curItem)
     }
+
+    fun getWordAt(pos: Int) = getItem(pos)
 }
 
 

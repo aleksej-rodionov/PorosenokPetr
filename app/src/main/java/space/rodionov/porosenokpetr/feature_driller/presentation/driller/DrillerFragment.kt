@@ -59,7 +59,7 @@ class DrillerFragment : Fragment(R.layout.fragment_driller), CardStackListener {
             }
         }
 
-        vmDriller.loadTenWords()
+        vmDriller.addTenWords()
     }
 
     private fun initViewModel() {
@@ -75,9 +75,13 @@ class DrillerFragment : Fragment(R.layout.fragment_driller), CardStackListener {
                 val list = wordsState.words
                 drillerAdapter.submitList(list)
             }
-        }
 
-        // other Observers
+            vmDriller.currentPosition.collectLatest { pos ->
+                binding?.tvCurrentItem?.text = getString(R.string.current_position, pos)
+            }
+
+            // other Observers
+        }
     }
 
     override fun onDestroyView() {
@@ -86,27 +90,32 @@ class DrillerFragment : Fragment(R.layout.fragment_driller), CardStackListener {
     }
 
     override fun onCardDragging(direction: Direction?, ratio: Float) {
-        TODO("Not yet implemented")
+        // empty
     }
 
     override fun onCardSwiped(direction: Direction?) {
-        TODO("Not yet implemented")
+        if (direction == Direction.Bottom) {
+            vmDriller.inactivateCurrentWord()
+        }
     }
 
     override fun onCardRewound() {
-        TODO("Not yet implemented")
+        // empty
     }
 
     override fun onCardCanceled() {
-        TODO("Not yet implemented")
+        // empty
     }
 
     override fun onCardAppeared(view: View?, position: Int) {
-        TODO("Not yet implemented")
+        vmDriller.updateCurrentPosition(position)
+        if (position > drillerAdapter.itemCount - 4) {
+            // vmDriller.addTenWords()
+        }
     }
 
     override fun onCardDisappeared(view: View?, position: Int) {
-        TODO("Not yet implemented")
+        // empty
     }
 }
 

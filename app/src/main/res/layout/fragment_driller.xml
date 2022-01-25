@@ -7,6 +7,16 @@
     tools:context=".feature_driller.presentation.driller.DrillerFragment">
 
     <TextView
+        android:id="@+id/tv_current_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Текущая позиция: 6" />
+
+    <TextView
         android:id="@+id/tv_item_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

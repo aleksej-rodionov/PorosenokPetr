@@ -22,10 +22,13 @@ class DrillerViewModel @Inject constructor(
     private val getTenWordsUseCase: GetTenWordsUseCase
 ) : ViewModel() {
 
+    private val _currentPosition = MutableStateFlow(0)
+    val currentPosition = _currentPosition.asStateFlow()
+
     private val _wordsState = MutableStateFlow(WordState())
     val wordsState = _wordsState.asStateFlow()
 
-    fun loadTenWords() = viewModelScope.launch {
+    fun addTenWords() = viewModelScope.launch {
         Log.d(TAG, "ViewModel: CALLED")
         getTenWordsUseCase().onEach { result -> // onEach = on each emission of the flow
             when (result) {
@@ -52,6 +55,12 @@ class DrillerViewModel @Inject constructor(
         }.launchIn(this) // this относится к viewModelScope, в котором onEach этот завернут
     }
 
+    fun updateCurrentPosition(pos: Int) { _currentPosition.value = pos }
+
+    fun inactivateCurrentWord() = viewModelScope.launch {
+        Log.d(TAG, "inactivateCurrentWord: CALLED")
+        // todo write the method
+    }
 }
 
 data class WordState(
