@@ -17,6 +17,7 @@ class WordRepoImpl(
         emit(Resource.Loading())
         val words = dao.getTenWords().map { it.toWord() }
         emit(Resource.Success(words))
+        // todo обработать Resource.Error ??
     }
 
     override fun getMode(): Boolean {

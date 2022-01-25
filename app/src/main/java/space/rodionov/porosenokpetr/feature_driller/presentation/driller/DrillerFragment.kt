@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.animation.LinearInterpolator
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -12,7 +13,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.databinding.FragmentDrillerBinding
-import space.rodionov.porosenokpetr.feature_driller.presentation.base.BaseFragment
 
 private const val TAG = "DrillerFragment"
 @AndroidEntryPoint
@@ -34,6 +34,7 @@ class DrillerFragment : Fragment(R.layout.fragment_driller), CardStackListener {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentDrillerBinding.bind(view)
         Log.d(TAG, "onViewCreated: CALLED")
+        initViewModel()
 
         drillerLayoutManager.apply {
             setOverlayInterpolator(LinearInterpolator())
@@ -56,16 +57,27 @@ class DrillerFragment : Fragment(R.layout.fragment_driller), CardStackListener {
                 setHasFixedSize(false)
                 itemAnimator = null
             }
+        }
 
-            viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-                vmDriller.words.collectLatest { words ->
-                    Log.d(TAG, "onViewCreated: size = ${words.size}")
-                    drillerAdapter.submitList(words)
+        vmDriller.loadTenWords()
+    }
+
+    private fun initViewModel() {
+        Log.d(TAG, "initViewModel: CALLED")
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            vmDriller.wordsState.collectLatest { wordsState ->
+                binding?.apply {
+                    progressBar.isVisible = wordsState.isLoading
+                    ivCheck.isVisible = !wordsState.isLoading // а если ошибка то другой iv ?
+                    tvItemCount.text = wordsState.words.size.toString()
                 }
+
+                val list = wordsState.words
+                drillerAdapter.repl(wordsState)
             }
         }
 
-        vmDriller.launchShit()
+        // other Observers
     }
 
     override fun onDestroyView() {
