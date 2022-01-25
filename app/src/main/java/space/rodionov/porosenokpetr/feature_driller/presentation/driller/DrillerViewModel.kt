@@ -14,11 +14,13 @@ import space.rodionov.porosenokpetr.core.Resource
 import space.rodionov.porosenokpetr.feature_driller.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
 import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.GetTenWordsUseCase
+import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.UpdateWordIsActiveUseCase
 import javax.inject.Inject
 
 @HiltViewModel
 class DrillerViewModel @Inject constructor(
-    private val getTenWordsUseCase: GetTenWordsUseCase
+    private val getTenWordsUseCase: GetTenWordsUseCase,
+    private val updateWordIsActiveUseCase: UpdateWordIsActiveUseCase
 ) : ViewModel() {
 
     private val _currentPosition = MutableStateFlow(0)
@@ -68,7 +70,8 @@ class DrillerViewModel @Inject constructor(
 
     fun inactivateCurrentWord() = viewModelScope.launch {
         Log.d(TAG_PETR, "VM inactivateCurrentWord: CALLED")
-        // todo write the method
+        val word = wordsState.value.words[currentPosition.value]
+        updateWordIsActiveUseCase(word, false)
     }
 }
 

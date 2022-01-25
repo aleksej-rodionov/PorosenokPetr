@@ -111,10 +111,9 @@ class DrillerFragment : Fragment(R.layout.fragment_driller), CardStackListener {
     }
 
     override fun onCardAppeared(view: View?, position: Int) {
-        Log.d(TAG_PETR, "onCardAppeared: CALLED")
         binding?.tvOnCardAppeared?.text = getString(R.string.on_card_appeared, position)
         vmDriller.updateCurrentPosition(position)
-        if (position == drillerAdapter.itemCount - 4) {
+        if (position == drillerAdapter.itemCount - 3) {
              vmDriller.addTenWords()
         }
     }
