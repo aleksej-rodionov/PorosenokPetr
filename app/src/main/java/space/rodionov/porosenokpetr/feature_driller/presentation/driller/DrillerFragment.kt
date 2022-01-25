@@ -69,11 +69,11 @@ class DrillerFragment : Fragment(R.layout.fragment_driller), CardStackListener {
                 binding?.apply {
                     progressBar.isVisible = wordsState.isLoading
                     ivCheck.isVisible = !wordsState.isLoading // а если ошибка то другой iv ?
-                    tvItemCount.text = wordsState.words.size.toString()
+                    tvItemCount.text = getString(R.string.item_count, wordsState.words.size)
                 }
 
                 val list = wordsState.words
-                drillerAdapter.repl(wordsState)
+                drillerAdapter.submitList(list)
             }
         }
 

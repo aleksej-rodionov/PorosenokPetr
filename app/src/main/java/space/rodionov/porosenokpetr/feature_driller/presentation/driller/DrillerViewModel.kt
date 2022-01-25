@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
@@ -26,7 +27,6 @@ class DrillerViewModel @Inject constructor(
 
     fun loadTenWords() = viewModelScope.launch {
         Log.d(TAG, "ViewModel: CALLED")
-//        _wordsState.value = getTenWordsUseCase()
         getTenWordsUseCase().onEach { result -> // onEach = on each emission of the flow
             when (result) {
                 is Resource.Loading -> {

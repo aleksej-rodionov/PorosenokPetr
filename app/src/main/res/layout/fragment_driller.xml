@@ -12,7 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
         android:textSize="12sp"
-        app:layout_constraintEnd_toStartOf="@id/progress_bar"
+        android:paddingEnd="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="В списке 10 айтемов" />
 

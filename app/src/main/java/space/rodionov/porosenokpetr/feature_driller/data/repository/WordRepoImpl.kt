@@ -1,5 +1,6 @@
 package space.rodionov.porosenokpetr.feature_driller.data.repository
 
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import space.rodionov.porosenokpetr.core.Resource
@@ -15,6 +16,7 @@ class WordRepoImpl(
 
     override fun getTenWords(): Flow<Resource<List<Word>>> = flow {
         emit(Resource.Loading())
+        delay(500L) // для пробы
         val words = dao.getTenWords().map { it.toWord() }
         emit(Resource.Success(words))
         // todo обработать Resource.Error ??
