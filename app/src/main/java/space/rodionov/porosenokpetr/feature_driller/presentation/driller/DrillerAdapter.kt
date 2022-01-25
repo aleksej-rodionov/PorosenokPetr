@@ -1,7 +1,9 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation.driller
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import space.rodionov.porosenokpetr.databinding.ItemWordCardBinding
@@ -21,10 +23,18 @@ class DrillerAdapter() : ListAdapter<Word, DrillerAdapter.DrillerViewHolder>(Wor
         RecyclerView.ViewHolder(binding.root) {
         fun bind(word: Word) {
             binding.apply {
+                tvDowner.isVisible = false
+                btnSpeak.isVisible = !mNativeToForeign
+
                 tvUpper.text = if(mNativeToForeign) word.nativ else word.foreign
                 tvDowner.text = if(mNativeToForeign) word.foreign else word.nativ
 
-                (binding.root as ViewGroup).redrawViewGroup(mIsNight)
+                (root as ViewGroup).redrawViewGroup(mIsNight)
+
+                root.setOnClickListener {
+                    tvDowner.isVisible = true
+                    btnSpeak.isVisible = true
+                }
             }
         }
     }
