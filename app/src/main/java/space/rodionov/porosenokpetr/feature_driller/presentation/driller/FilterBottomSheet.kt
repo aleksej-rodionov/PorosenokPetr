@@ -1,6 +1,7 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation.driller
 
 import android.app.Dialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
@@ -20,7 +21,7 @@ class FilterBottomSheet: BaseBottomSheetDialogFragment() {
     private val binding: BottomsheetFilterBinding by lazy {
         BottomsheetFilterBinding.inflate(layoutInflater)
     }
-    private val behaviour: BottomSheetBehavior<View> by lazy {
+    private val behavior: BottomSheetBehavior<View> by lazy {
         BottomSheetBehavior.from(binding.root.parent as View)
     }
 
@@ -28,15 +29,19 @@ class FilterBottomSheet: BaseBottomSheetDialogFragment() {
         val bottomSheet = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
 
 
-        bottomSheet.setContentView(binding.root)
-        (binding.root.parent as View).setBackgroundResource(android.R.color.transparent) // todo проверить че это такое ваще
+//        bottomSheet.setContentView(binding.root)
+//        (binding.root.parent as View).setBackgroundResource(android.R.color.transparent) // todo проверить че это такое ваще
 
-        initModeObserver(binding.root, viewLifecycleOwner.lifecycleScope)
+//        initModeObserver(binding.root, viewLifecycleOwner.lifecycleScope)
 
         return bottomSheet
     }
 
-    // образец - AddBottomSheet
+    override fun onStart() {
+        super.onStart()
+        behavior.state = BottomSheetBehavior.STATE_EXPANDED
+        behavior.skipCollapsed = true
+    }
 }
 
 

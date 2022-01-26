@@ -31,6 +31,10 @@ class DrillerFragment : Fragment(R.layout.fragment_driller), CardStackListener {
         CardStackLayoutManager(requireContext(), this)
     }
 
+    private val filterBottomSheet by lazy {
+        FilterBottomSheet()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentDrillerBinding.bind(view)
@@ -63,6 +67,14 @@ class DrillerFragment : Fragment(R.layout.fragment_driller), CardStackListener {
                 vmDriller.newRound()
                 tvComplete.visibility = View.GONE
                 btnNewRound.visibility = View.GONE
+            }
+
+            btnFilter.setOnClickListener {
+                if (!filterBottomSheet.isAdded) {
+                    fragmentManager?.let {
+                        filterBottomSheet.show(it, "filter")
+                    }
+                }
             }
         }
 
@@ -121,14 +133,15 @@ class DrillerFragment : Fragment(R.layout.fragment_driller), CardStackListener {
         binding?.tvOnCardAppeared?.text = getString(R.string.on_card_appeared, position)
         vmDriller.updateCurrentPosition(position)
         if (position == drillerAdapter.itemCount - 3 && position < Constants.MAX_STACK_SIZE - 10) {
-             vmDriller.addTenWords()
+            vmDriller.addTenWords()
         }
         if (position == drillerAdapter.itemCount - 1) binding?.tvComplete?.visibility = View.VISIBLE
     }
 
     override fun onCardDisappeared(view: View?, position: Int) {
         binding?.tvOnCardDisappeared?.text = getString(R.string.on_card_disappeared, position)
-        if (position == drillerAdapter.itemCount - 1) binding?.btnNewRound?.visibility = View.VISIBLE
+        if (position == drillerAdapter.itemCount - 1) binding?.btnNewRound?.visibility =
+            View.VISIBLE
     }
 }
 

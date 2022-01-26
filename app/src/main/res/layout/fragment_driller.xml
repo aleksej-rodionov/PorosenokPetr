@@ -135,7 +135,7 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:clickable="true"
             android:focusable="true"
-            android:id="@+id/ic_settings"
+            android:id="@+id/btn_settings"
             android:src="@drawable/ic_settings_big"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
@@ -148,9 +148,9 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:clickable="true"
             android:focusable="true"
-            android:id="@+id/ic_bookshelf"
+            android:id="@+id/btn_collection"
             android:src="@drawable/ic_bookstack"
-            app:layout_constraintStart_toEndOf="@id/ic_settings"
+            app:layout_constraintStart_toEndOf="@id/btn_settings"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
         <ImageView
@@ -160,7 +160,7 @@
             android:clickable="true"
             android:focusable="true"
             android:layout_marginHorizontal="12dp"
-            android:id="@+id/ic_filter"
+            android:id="@+id/btn_filter"
             android:src="@drawable/ic_filter_settings"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>

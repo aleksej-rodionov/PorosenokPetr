@@ -25,20 +25,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <space.rodionov.porosenokpetr.feature_driller.presentation.base.MinHeightRecyclerView
-            android:id="@+id/rv_list"
+        <com.google.android.material.chip.ChipGroup
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toBottomOf="@+id/tv_title"
-            app:layout_goneMarginTop="@dimen/padding28" />
+            android:layout_height="wrap_content"
+            android:id="@+id/chip_group_categories"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            app:layout_goneMarginTop="28dp" />
 
         <TextView
             android:id="@+id/tv_title"
             style="@style/Bold26Black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/padding28"
+            android:layout_marginTop="28dp"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
