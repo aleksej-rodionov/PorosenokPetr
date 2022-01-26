@@ -5,6 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import space.rodionov.porosenokpetr.MainViewModel
 import space.rodionov.porosenokpetr.R
 import javax.inject.Inject
@@ -19,12 +22,15 @@ import javax.inject.Inject
             else R.style.Theme_NavBarDay
         } ?: R.style.Theme_NavBarDay
 
-        fun initModeObserver(rootView: View) {
-            vmMain.isNightMainViewModel.observe(this) {
-                rootView?.let { view ->
-                    view as ViewGroup
-                    view.redrawViewGroup(it, true)
-                    view.redrawAllRecyclerAdapters(it)
+        fun initModeObserver(rootView: View, scope: CoroutineScope) {
+            scope.launch {
+                vmMain.isNightMainViewModel.collectLatest {
+                    rootView?.let { view ->
+                        view as ViewGroup
+                        // todo create redrawing methods below:
+//                        view.redrawViewGroup(it, true)
+//                        view.redrawAllRecyclerAdapters(it)
+                    }
                 }
             }
         }

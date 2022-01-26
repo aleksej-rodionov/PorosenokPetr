@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="padding1">1dp</dimen>
+    <dimen name="padding2">2dp</dimen>
+    <dimen name="padding3">3dp</dimen>
+    <dimen name="padding4">4dp</dimen>
+    <dimen name="padding5">5dp</dimen>
+    <dimen name="padding6">6dp</dimen>
+    <dimen name="padding8">8dp</dimen>
+    <dimen name="padding10">10dp</dimen>
+    <dimen name="padding12">12dp</dimen>
+    <dimen name="padding14">14dp</dimen>
+    <dimen name="padding16">16dp</dimen>
+    <dimen name="padding18">18dp</dimen>
+    <dimen name="padding20">20dp</dimen>
+    <dimen name="padding21">21dp</dimen>
+    <dimen name="padding22">22dp</dimen>
+    <dimen name="padding24">24dp</dimen>
+    <dimen name="padding26">26dp</dimen>
+    <dimen name="padding28">28dp</dimen>
+    <dimen name="padding32">32dp</dimen>
+    <dimen name="padding36">36dp</dimen>
+    <dimen name="padding40">40dp</dimen>
+    <dimen name="padding42">42dp</dimen>
+    <dimen name="padding48">48dp</dimen>
+    <dimen name="padding50">50dp</dimen>
+    <dimen name="padding56">56dp</dimen>
+    <dimen name="padding60">60dp</dimen>
+    <dimen name="padding64">64dp</dimen>
+    <dimen name="padding80">80dp</dimen>
+    <dimen name="padding96">96dp</dimen>
+
+    //text size
+    <dimen name="size8">8sp</dimen>
+    <dimen name="size10">10sp</dimen>
+    <dimen name="size11">11sp</dimen>
+    <dimen name="size12">12sp</dimen>
+    <dimen name="size13">13sp</dimen>
+    <dimen name="size14">14sp</dimen>
+    <dimen name="size15">15sp</dimen>
+    <dimen name="size16">16sp</dimen>
+    <dimen name="size18">18sp</dimen>
+    <dimen name="size19">19sp</dimen>
+    <dimen name="size20">20sp</dimen>
+    <dimen name="size21">21sp</dimen>
+    <dimen name="size24">24sp</dimen>
+    <dimen name="size26">26sp</dimen>
+    <dimen name="size27">27sp</dimen>
+    <dimen name="size30">30sp</dimen>
+    <dimen name="size32">32sp</dimen>
+    <dimen name="size34">34sp</dimen>
+    <dimen name="size36">36sp</dimen>
+    <dimen name="size40">40sp</dimen>
+    <dimen name="size48">48sp</dimen>
+    <dimen name="size62">62sp</dimen>
+
+    <dimen name="authBtnTextSize">20sp</dimen>
+    <dimen name="numPadMargin">16dp</dimen>
+    <dimen name="authSpacing">24dp</dimen>
+    <dimen name="authTextPadding">10dp</dimen>
+    <dimen name="authTitleTextSize">16sp</dimen>
+
+    <dimen name="pageDoodleMargin">14dp</dimen>
+    <dimen name="doodleOffset">30dp</dimen>
+
+    <dimen name="ayp_8dp">8dp</dimen>
+    <dimen name="ayp_12sp">12sp</dimen>
+    <dimen name="ayp_menu_dialog_container_margin">8dp</dimen>
+    <dimen name="ayp_menu_item_padding">12dp</dimen>
+    <dimen name="ayp_menu_item_text_size">16sp</dimen>
+
+    <dimen name="search_cancel_text_size">16sp</dimen>
+
+
+</resources>
