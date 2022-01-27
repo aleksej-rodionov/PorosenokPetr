@@ -1,6 +1,7 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation.base
 
 import android.content.Context
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
@@ -10,6 +11,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import space.rodionov.porosenokpetr.MainViewModel
 import space.rodionov.porosenokpetr.R
+import space.rodionov.porosenokpetr.feature_driller.Constants.TAG_PETR
 import javax.inject.Inject
 
     abstract class BaseBottomSheetDialogFragment : BottomSheetDialogFragment() {
@@ -25,11 +27,12 @@ import javax.inject.Inject
         fun initModeObserver(rootView: View, scope: CoroutineScope) {
             scope.launch {
                 vmMain.isNightMainViewModel.collectLatest {
-                    rootView?.let { view ->
+                    Log.d(TAG_PETR, "initModeObserver: isNight = $it")
+                    rootView.let { view ->
                         view as ViewGroup
                         // todo create redrawing methods below:
-//                        view.redrawViewGroup(it, true)
-//                        view.redrawAllRecyclerAdapters(it)
+                //                        view.redrawViewGroup(it, true)
+                //                        view.redrawAllRecyclerAdapters(it)
                     }
                 }
             }

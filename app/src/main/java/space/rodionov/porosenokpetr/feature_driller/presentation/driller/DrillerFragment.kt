@@ -31,9 +31,9 @@ class DrillerFragment : Fragment(R.layout.fragment_driller), CardStackListener {
         CardStackLayoutManager(requireContext(), this)
     }
 
-    private val filterBottomSheet by lazy {
-        FilterBottomSheet()
-    }
+//    private val filterBottomSheet by lazy {
+//        FilterBottomSheet()
+//    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -70,11 +70,11 @@ class DrillerFragment : Fragment(R.layout.fragment_driller), CardStackListener {
             }
 
             btnFilter.setOnClickListener {
-                if (!filterBottomSheet.isAdded) {
-                    fragmentManager?.let {
-                        filterBottomSheet.show(it, "filter")
-                    }
-                }
+                FilterBottomSheet().show(
+                    childFragmentManager,
+                    FilterBottomSheet.FILTER_BOTTOM_SHEET
+                )
+                // todo pass it through the viewModel and SharedFLow
             }
         }
 

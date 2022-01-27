@@ -10,10 +10,12 @@ import androidx.viewbinding.ViewBinding
 import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.MainViewModel
 
-abstract class BaseFragment: Fragment() {
+abstract class BaseFragment(layoutId: Int): Fragment(layoutId) {
+
+
 
     var isNightBaseMainFragment = false
-    open val binding: ViewBinding? = null
+//    open val binding: ViewBinding? = null
     private val vmMain: MainViewModel by viewModels()
     open fun updateMode(isNight: Boolean) {}
 
@@ -22,9 +24,9 @@ abstract class BaseFragment: Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             vmMain.isNightMainViewModel.collectLatest {
-                binding?.apply {
-//                    (root as ViewGroup).redrawViewGroup(it)
-                }
+//                binding?.apply {
+////                    (root as ViewGroup).redrawViewGroup(it)
+//                }
 //                recyclerAdapter.updateMode(it)
 
 //                if (!vmMain.fullScreenVideo && ! vmMain.clipVideo) setDefaultBarsColors(it)
