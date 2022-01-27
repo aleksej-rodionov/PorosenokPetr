@@ -1,9 +1,12 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation.driller
 
 import android.os.Bundle
+import android.speech.tts.TextToSpeech
+import android.speech.tts.TextToSpeech.OnInitListener
 import android.util.Log
 import android.view.View
 import android.view.animation.LinearInterpolator
+import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -15,6 +18,8 @@ import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.databinding.FragmentDrillerBinding
 import space.rodionov.porosenokpetr.feature_driller.Constants
 import space.rodionov.porosenokpetr.feature_driller.Constants.TAG_PETR
+import java.lang.Exception
+import java.util.*
 
 @AndroidEntryPoint
 class DrillerFragment : Fragment(R.layout.fragment_driller), CardStackListener {
@@ -24,16 +29,31 @@ class DrillerFragment : Fragment(R.layout.fragment_driller), CardStackListener {
     private val binding get() = _binding
 
     private val drillerAdapter: DrillerAdapter by lazy {
-        DrillerAdapter()
+        DrillerAdapter(
+            onSpeakWord = { word ->
+                onSpeakWord(word)
+            }
+        )
     }
 
     private val drillerLayoutManager: CardStackLayoutManager by lazy {
         CardStackLayoutManager(requireContext(), this)
     }
 
-//    private val filterBottomSheet by lazy {
-//        FilterBottomSheet()
-//    }
+    private val textToSpeech: TextToSpeech by lazy {
+        TextToSpeech(requireContext()) { status ->
+            if (status == TextToSpeech.SUCCESS) {
+                try {
+                    textToSpeech.language = Locale.ENGLISH
+                    Log.d(TAG_PETR, "TTS: language initialized")
+                } catch (e: Exception) {
+                    Log.d(TAG_PETR, "TTS: Exception: ${e.localizedMessage}")
+                }
+            } else {
+                Log.d(TAG_PETR, "TTS Initialization failed")
+            }
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -104,6 +124,10 @@ class DrillerFragment : Fragment(R.layout.fragment_driller), CardStackListener {
         }
 
         // other Observers
+    }
+
+    private fun onSpeakWord(word: String) {
+        textToSpeech.speak(word, TextToSpeech.QUEUE_FLUSH, null)
     }
 
     override fun onDestroyView() {

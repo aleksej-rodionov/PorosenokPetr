@@ -1,7 +1,6 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation.driller
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.ListAdapter
@@ -11,7 +10,9 @@ import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
 import space.rodionov.porosenokpetr.feature_driller.presentation.WordDiff
 import space.rodionov.porosenokpetr.util.redrawViewGroup
 
-class DrillerAdapter() : ListAdapter<Word, DrillerAdapter.DrillerViewHolder>(WordDiff()){
+class DrillerAdapter(
+    private val onSpeakWord: (String) -> Unit = {}
+) : ListAdapter<Word, DrillerAdapter.DrillerViewHolder>(WordDiff()){
 
     private var mIsNight: Boolean = false
     fun updateMode(isNight: Boolean) { mIsNight = isNight }
@@ -19,8 +20,10 @@ class DrillerAdapter() : ListAdapter<Word, DrillerAdapter.DrillerViewHolder>(Wor
     private var mNativeToForeign: Boolean = false
     fun updateTransDir(nativeToForeign: Boolean) { mNativeToForeign = nativeToForeign }
 
-    inner class DrillerViewHolder(private val binding: ItemWordCardBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    inner class DrillerViewHolder(
+        private val binding: ItemWordCardBinding,
+        private val onSpeakItem: (Int) -> Unit = {}
+    ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(word: Word) {
             binding.apply {
                 tvDowner.isVisible = false
@@ -35,13 +38,24 @@ class DrillerAdapter() : ListAdapter<Word, DrillerAdapter.DrillerViewHolder>(Wor
                     tvDowner.isVisible = true
                     btnSpeak.isVisible = true
                 }
+
+                btnSpeak.setOnClickListener {
+                    val position = adapterPosition
+                    if (position != RecyclerView.NO_POSITION) onSpeakItem(position)
+                }
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DrillerViewHolder {
         val binding = ItemWordCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return DrillerViewHolder(binding)
+        return DrillerViewHolder(
+            binding,
+            onSpeakItem = { pos ->
+                val word = getItem(pos)
+                if (word != null) onSpeakWord(word.foreign)
+            }
+        )
     }
 
     override fun onBindViewHolder(holder: DrillerViewHolder, position: Int) {
