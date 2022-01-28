@@ -13,6 +13,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.MainViewModel
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.databinding.BottomsheetFilterBinding
@@ -30,7 +31,9 @@ class FilterBottomSheet: BaseBottomSheetDialogFragment() {
         BottomsheetFilterBinding.inflate(layoutInflater)
     }
 
-
+    private val vmDriller: DrillerViewModel by viewModels({
+        requireParentFragment()
+    })
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,7 +48,15 @@ class FilterBottomSheet: BaseBottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         Log.d(TAG_PETR, "onViewCreated: CALLED")
         initModeObserver(binding.root, viewLifecycleOwner.lifecycleScope)
+
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            vmDriller.categories.collectLatest {
+                // todo здесь заполнять ЧипГруп
+            }
+        }
     }
+
+
 
 
 

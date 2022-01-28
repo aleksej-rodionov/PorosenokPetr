@@ -1,7 +1,9 @@
 package space.rodionov.porosenokpetr.feature_driller.data.local
 
 import androidx.room.*
+import kotlinx.coroutines.flow.Flow
 import space.rodionov.porosenokpetr.feature_driller.data.local.entity.CategoryEntity
+import space.rodionov.porosenokpetr.feature_driller.data.local.entity.CategoryWithWords
 import space.rodionov.porosenokpetr.feature_driller.data.local.entity.WordEntity
 
 @Dao
@@ -12,6 +14,12 @@ interface WordDao {
 
     @Query("SELECT * FROM wordentity WHERE nativ = :nativ AND `foreign` = :foreign AND categoryName = :categoryName LIMIT 1")
     suspend fun getWord(nativ: String, foreign: String, categoryName: String): WordEntity
+
+    @Query("SELECT * FROM categoryentity")
+    fun observeAllCategories() : Flow<List<CategoryEntity>>
+
+    @Query("SELECT * FROM categoryentity")
+    fun observeAllCategoriesWithEntities() : Flow<List<CategoryWithWords>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCategory(category: CategoryEntity)

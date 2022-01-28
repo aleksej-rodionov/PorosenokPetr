@@ -15,6 +15,7 @@ import space.rodionov.porosenokpetr.feature_driller.data.storage.Storage
 import space.rodionov.porosenokpetr.feature_driller.data.storage.StorageImpl
 import space.rodionov.porosenokpetr.feature_driller.domain.repository.WordRepo
 import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.GetTenWordsUseCase
+import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.ObserveAllCategoriesUseCase
 import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.UpdateWordIsActiveUseCase
 import javax.inject.Qualifier
 import javax.inject.Singleton
@@ -22,6 +23,12 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object DrillerModule {
+
+    @Provides
+    @Singleton
+    fun provideObserveAllCategoriesUseCase(repo: WordRepo): ObserveAllCategoriesUseCase {
+        return ObserveAllCategoriesUseCase(repo)
+    }
 
     @Provides
     @Singleton

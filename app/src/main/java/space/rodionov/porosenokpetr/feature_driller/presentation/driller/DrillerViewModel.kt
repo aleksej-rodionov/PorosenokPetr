@@ -5,26 +5,28 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import space.rodionov.porosenokpetr.core.Resource
 import space.rodionov.porosenokpetr.feature_driller.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
 import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.GetTenWordsUseCase
+import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.ObserveAllCategoriesUseCase
 import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.UpdateWordIsActiveUseCase
 import javax.inject.Inject
 
 @HiltViewModel
 class DrillerViewModel @Inject constructor(
     private val getTenWordsUseCase: GetTenWordsUseCase,
-    private val updateWordIsActiveUseCase: UpdateWordIsActiveUseCase
+    private val updateWordIsActiveUseCase: UpdateWordIsActiveUseCase,
+    private val observeAllCategories: ObserveAllCategoriesUseCase
 ) : ViewModel() {
 
     private val _currentPosition = MutableStateFlow(0)
     val currentPosition = _currentPosition.asStateFlow()
+
+    private val _categories = observeAllCategories.invoke()
+    val categories = _categories.stateIn(viewModelScope, SharingStarted.Lazily, null)
 
     private val _wordsState = MutableStateFlow(WordState())
     val wordsState = _wordsState.asStateFlow()

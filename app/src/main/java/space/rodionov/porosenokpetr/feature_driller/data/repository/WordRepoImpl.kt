@@ -4,10 +4,13 @@ import android.util.Log
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.map
 import space.rodionov.porosenokpetr.core.Resource
 import space.rodionov.porosenokpetr.feature_driller.Constants
 import space.rodionov.porosenokpetr.feature_driller.data.local.WordDao
+import space.rodionov.porosenokpetr.feature_driller.data.local.entity.CategoryWithWords
 import space.rodionov.porosenokpetr.feature_driller.data.storage.Storage
+import space.rodionov.porosenokpetr.feature_driller.domain.models.Category
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
 import space.rodionov.porosenokpetr.feature_driller.domain.repository.WordRepo
 
@@ -29,6 +32,13 @@ class WordRepoImpl(
         Log.d(Constants.TAG_PETR, "updateWordActivity: wordEntity.foreign = ${wordEntity.foreign}, newActiveValue = $isActive")
         dao.updateWord(wordEntity.copy(isWordActive = isActive))
     }
+
+    override fun observeAllCategories(): Flow<List<Category>> =
+        dao.observeAllCategories().map { cats ->
+            cats.map { it.toCategory() }
+        }
+
+    override fun observeAllCategoriesWithWords(): Flow<List<CategoryWithWords>> = dao.observeAllCategoriesWithEntities() // todo и как это имплементировать между слоями? Надо ли CatWithWordsEntity делать?
 
     override fun getMode(): Boolean {
        return sharedPref.getMode()
