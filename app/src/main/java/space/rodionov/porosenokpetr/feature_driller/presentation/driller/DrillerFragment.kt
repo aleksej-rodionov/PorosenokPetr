@@ -45,12 +45,12 @@ class DrillerFragment : Fragment(R.layout.fragment_driller), CardStackListener {
             if (status == TextToSpeech.SUCCESS) {
                 try {
                     textToSpeech.language = Locale.ENGLISH
-                    Log.d(TAG_PETR, "TTS: language initialized")
+//                    Log.d(TAG_PETR, "TTS: language initialized")
                 } catch (e: Exception) {
-                    Log.d(TAG_PETR, "TTS: Exception: ${e.localizedMessage}")
+//                    Log.d(TAG_PETR, "TTS: Exception: ${e.localizedMessage}")
                 }
             } else {
-                Log.d(TAG_PETR, "TTS Initialization failed")
+//                Log.d(TAG_PETR, "TTS Initialization failed")
             }
         }
     }
@@ -58,7 +58,7 @@ class DrillerFragment : Fragment(R.layout.fragment_driller), CardStackListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentDrillerBinding.bind(view)
-        Log.d(TAG_PETR, "onViewCreated: CALLED")
+//        Log.d(TAG_PETR, "onViewCreated: CALLED")
         initViewModel()
 
         drillerLayoutManager.apply {
@@ -102,7 +102,7 @@ class DrillerFragment : Fragment(R.layout.fragment_driller), CardStackListener {
     }
 
     private fun initViewModel() {
-        Log.d(TAG_PETR, "initViewModel: CALLED")
+//        Log.d(TAG_PETR, "initViewModel: CALLED")
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             vmDriller.wordsState.collectLatest { wordsState ->
                 binding?.apply {
@@ -118,7 +118,7 @@ class DrillerFragment : Fragment(R.layout.fragment_driller), CardStackListener {
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             vmDriller.currentPosition.collectLatest { pos ->
-                Log.d(TAG_PETR, "initViewModel: currentPos = $pos")
+//                Log.d(TAG_PETR, "initViewModel: currentPos = $pos")
                 binding?.tvCurrentItem?.text = getString(R.string.current_position, pos)
             }
         }

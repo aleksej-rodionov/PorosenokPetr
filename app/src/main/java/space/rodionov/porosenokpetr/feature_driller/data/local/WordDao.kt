@@ -21,6 +21,18 @@ interface WordDao {
     @Query("SELECT * FROM categoryentity")
     fun observeAllCategoriesWithEntities() : Flow<List<CategoryWithWords>>
 
+    @Query("SELECT * FROM categoryentity WHERE name = :name")
+    suspend fun getCategoryByName(name: String): CategoryEntity
+
+    @Query("SELECT name FROM categoryentity WHERE isCategoryActive = 1")
+    suspend fun getALlActiveCatsNames() : List<String>
+
+    @Query("SELECT name FROM categoryentity")
+    suspend fun getAllCatNames() : List<String>
+
+
+    //===================STANDARD FUNCTIONS==============================
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCategory(category: CategoryEntity)
 

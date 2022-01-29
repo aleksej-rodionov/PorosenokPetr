@@ -7,58 +7,80 @@
     android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottom_sheet_top_line"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:tag="bs_bg"
-        android:id="@+id/bottom_sheet_top_line"
-        android:background="@drawable/bg_top_corners">
+        android:background="@drawable/bg_top_corners"
+        android:tag="bs_bg">
 
         <View
             android:id="@+id/view_line"
-            android:tag="bs_topline"
             android:layout_width="44dp"
             android:layout_height="6dp"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:background="@drawable/bg_grey_stroke"
+            android:tag="bs_topline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.chip.ChipGroup
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/chip_group_categories"
-            app:layout_constraintTop_toBottomOf="@id/tv_title"
-            app:layout_goneMarginTop="28dp"
-            android:padding="12dp">
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/chip1"
-                android:text="chip1"/>
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/chip2"
-                android:text="chip2"/>
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/chip3"
-                android:text="chip3"/>
-        </com.google.android.material.chip.ChipGroup>
         <TextView
             android:id="@+id/tv_title"
             style="@style/Bold26Black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
-            android:visibility="visible"
-            android:text="Zagolovok blyat!"
             android:padding="12dp"
+            android:text="@string/active_categories"
+            android:visibility="visible"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/divider_top"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="16dp"
+            android:background="@color/gray200"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chip_group_categories"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            app:chipSpacingHorizontal="12dp"
+            app:layout_constraintTop_toBottomOf="@id/divider_top"
+            app:layout_goneMarginTop="28dp" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="16dp"
+            android:background="@color/gray200"
+            app:layout_constraintTop_toBottomOf="@id/chip_group_categories"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <CheckBox
+            android:id="@+id/cb_activate_all"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:textColor="@color/gray900"
+            android:buttonTint="@color/violet"
+            android:layout_marginBottom="64dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/active_all_categories"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

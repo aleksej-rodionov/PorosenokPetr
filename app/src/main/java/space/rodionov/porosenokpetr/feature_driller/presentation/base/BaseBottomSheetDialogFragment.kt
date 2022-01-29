@@ -27,7 +27,7 @@ import javax.inject.Inject
         fun initModeObserver(rootView: View, scope: CoroutineScope) {
             scope.launch {
                 vmMain.isNightMainViewModel.collectLatest {
-                    Log.d(TAG_PETR, "initModeObserver: isNight = $it")
+//                    Log.d(TAG_PETR, "initModeObserver: isNight = $it")
                     rootView.let { view ->
                         view as ViewGroup
                         // todo create redrawing methods below:

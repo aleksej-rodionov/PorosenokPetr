@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import space.rodionov.porosenokpetr.core.Resource
 import space.rodionov.porosenokpetr.feature_driller.Constants
+import space.rodionov.porosenokpetr.feature_driller.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.feature_driller.data.local.WordDao
 import space.rodionov.porosenokpetr.feature_driller.data.local.entity.CategoryWithWords
 import space.rodionov.porosenokpetr.feature_driller.data.storage.Storage
@@ -39,6 +40,19 @@ class WordRepoImpl(
         }
 
     override fun observeAllCategoriesWithWords(): Flow<List<CategoryWithWords>> = dao.observeAllCategoriesWithEntities() // todo и как это имплементировать между слоями? Надо ли CatWithWordsEntity делать?
+
+    override suspend fun makeCategoryActive(catName: String, makeActive: Boolean) {
+        val categoryEntity = dao.getCategoryByName(catName)
+        dao.updateCategory(categoryEntity.copy(isCategoryActive = makeActive))
+    }
+
+    override suspend fun getAllActiveCatsNames() : List<String> {
+        return dao.getALlActiveCatsNames()
+    }
+
+    override suspend fun getAllCatsNames(): List<String> {
+        return dao.getAllCatNames()
+    }
 
     override fun getMode(): Boolean {
        return sharedPref.getMode()

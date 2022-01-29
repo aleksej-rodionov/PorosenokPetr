@@ -12,4 +12,8 @@
     <string name="current_position">Текущая позиция: %1$d</string>
     <string name="on_card_appeared">onCardAppeared(%1$d)</string>
     <string name="on_card_disappeared">onCardDisappeared(%1$d)</string>
+
+    <string name="active_categories">Изучаемые категории</string>
+    <string name="active_all_categories">Включить все категории</string>
+    <string name="cannot_turn_all_cats_off">Вы не можете выбрать менее 1 категории</string>
 </resources>

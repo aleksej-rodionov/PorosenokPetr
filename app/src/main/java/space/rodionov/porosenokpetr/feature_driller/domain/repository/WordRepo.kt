@@ -16,6 +16,13 @@ interface WordRepo {
 
     fun observeAllCategoriesWithWords() : Flow<List<CategoryWithWords>>
 
+    suspend fun makeCategoryActive(catName: String, makeActive: Boolean)
+
+    suspend fun getAllActiveCatsNames(): List<String>
+
+    suspend fun getAllCatsNames(): List<String>
+
     fun getMode(): Boolean
+
     fun setMode(isNight: Boolean)
 }

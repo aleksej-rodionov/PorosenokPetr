@@ -14,15 +14,31 @@ import space.rodionov.porosenokpetr.feature_driller.data.repository.WordRepoImpl
 import space.rodionov.porosenokpetr.feature_driller.data.storage.Storage
 import space.rodionov.porosenokpetr.feature_driller.data.storage.StorageImpl
 import space.rodionov.porosenokpetr.feature_driller.domain.repository.WordRepo
-import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.GetTenWordsUseCase
-import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.ObserveAllCategoriesUseCase
-import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.UpdateWordIsActiveUseCase
+import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.*
 import javax.inject.Qualifier
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 object DrillerModule {
+
+    @Provides
+    @Singleton
+    fun provideGetAllCatsNamesUseCase(repo: WordRepo): GetAllCatsNamesUseCase {
+        return GetAllCatsNamesUseCase(repo)
+    }
+
+    @Provides
+    @Singleton
+    fun provideGetAllActiveCatsNamesUseCase(repo: WordRepo): GetAllActiveCatsNamesUseCase {
+        return GetAllActiveCatsNamesUseCase(repo)
+    }
+
+    @Provides
+    @Singleton
+    fun provideMakeCategoryActiveUseCase(repo: WordRepo): MakeCategoryActiveUseCase {
+        return MakeCategoryActiveUseCase(repo)
+    }
 
     @Provides
     @Singleton
