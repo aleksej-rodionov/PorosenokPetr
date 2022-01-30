@@ -43,7 +43,7 @@ class WordRepoImpl(
         }
 
     override fun observeAllCategoriesWithWords(): Flow<List<CategoryWithWords>> =
-        dao.observeAllCategoriesWithEntities() // todo и как это имплементировать между слоями? Надо ли CatWithWordsEntity делать?
+        dao.observeAllCategoriesWithWords() // todo и как это имплементировать между слоями? Надо ли CatWithWordsEntity делать?
 
     override suspend fun makeCategoryActive(catName: String, makeActive: Boolean) {
         val categoryEntity = dao.getCategoryByName(catName)

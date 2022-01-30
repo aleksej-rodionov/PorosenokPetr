@@ -22,7 +22,7 @@ interface WordDao {
     fun observeAllCategories(): Flow<List<CategoryEntity>>
 
     @Query("SELECT * FROM categoryentity")
-    fun observeAllCategoriesWithEntities(): Flow<List<CategoryWithWords>>
+    fun observeAllCategoriesWithWords(): Flow<List<CategoryWithWords>>
 
     @Query("SELECT * FROM categoryentity WHERE name = :name")
     suspend fun getCategoryByName(name: String): CategoryEntity
