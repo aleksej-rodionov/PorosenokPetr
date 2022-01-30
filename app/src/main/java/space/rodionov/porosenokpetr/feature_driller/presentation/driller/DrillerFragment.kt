@@ -11,6 +11,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.google.android.material.snackbar.Snackbar
 import com.yuyakaido.android.cardstackview.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -45,12 +46,11 @@ class DrillerFragment : Fragment(R.layout.fragment_driller), CardStackListener {
             if (status == TextToSpeech.SUCCESS) {
                 try {
                     textToSpeech.language = Locale.ENGLISH
-//                    Log.d(TAG_PETR, "TTS: language initialized")
                 } catch (e: Exception) {
-//                    Log.d(TAG_PETR, "TTS: Exception: ${e.localizedMessage}")
+                    Log.d(TAG_PETR, "TTS: Exception: ${e.localizedMessage}")
                 }
             } else {
-//                Log.d(TAG_PETR, "TTS Initialization failed")
+                Log.d(TAG_PETR, "TTS Language initialization failed")
             }
         }
     }
@@ -58,7 +58,6 @@ class DrillerFragment : Fragment(R.layout.fragment_driller), CardStackListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentDrillerBinding.bind(view)
-//        Log.d(TAG_PETR, "onViewCreated: CALLED")
         initViewModel()
 
         drillerLayoutManager.apply {
@@ -102,7 +101,6 @@ class DrillerFragment : Fragment(R.layout.fragment_driller), CardStackListener {
     }
 
     private fun initViewModel() {
-//        Log.d(TAG_PETR, "initViewModel: CALLED")
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             vmDriller.wordsState.collectLatest { wordsState ->
                 binding?.apply {
@@ -113,17 +111,30 @@ class DrillerFragment : Fragment(R.layout.fragment_driller), CardStackListener {
 
                 val list = wordsState.words
                 drillerAdapter.submitList(list)
+//                vmDriller.scrollToCurPos()
             }
         }
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             vmDriller.currentPosition.collectLatest { pos ->
-//                Log.d(TAG_PETR, "initViewModel: currentPos = $pos")
                 binding?.tvCurrentItem?.text = getString(R.string.current_position, pos)
             }
         }
 
-        // other Observers
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            vmDriller.eventFlow.collectLatest { event ->
+                when (event) {
+                    is DrillerViewModel.DrillerEvent.ShowSnackbar -> {
+                        // пусто
+                    }
+                    is DrillerViewModel.DrillerEvent.ScrollToCurrentPosition -> {
+                        binding?.cardStackView?.scrollToPosition(vmDriller.currentPosition.value)
+                    }
+                }
+            }
+        }
+
+    // other Observers
     }
 
     private fun onSpeakWord(word: String) {
@@ -155,7 +166,13 @@ class DrillerFragment : Fragment(R.layout.fragment_driller), CardStackListener {
 
     override fun onCardAppeared(view: View?, position: Int) {
         binding?.tvOnCardAppeared?.text = getString(R.string.on_card_appeared, position)
-        vmDriller.updateCurrentPosition(position)
+        if (vmDriller.rememberPositionAfterChangingStack) {
+            vmDriller.scrollToCurPos()
+            vmDriller.updateCurrentPosition(vmDriller.currentPosition.value)
+            vmDriller.rememberPositionAfterChangingStack = false
+        } else {
+            vmDriller.updateCurrentPosition(position)
+        }
         if (position == drillerAdapter.itemCount - 3 && position < Constants.MAX_STACK_SIZE - 10) {
             vmDriller.addTenWords()
         }

@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import space.rodionov.porosenokpetr.core.Resource
@@ -19,11 +20,13 @@ class DrillerViewModel @Inject constructor(
     private val observeAllCategories: ObserveAllCategoriesUseCase,
     private val makeCategoryActiveUseCase: MakeCategoryActiveUseCase,
     private val getAllActiveCatsNamesUseCase: GetAllActiveCatsNamesUseCase,
-    private val getAllCatsNamesUseCase: GetAllCatsNamesUseCase
+    private val getAllCatsNamesUseCase: GetAllCatsNamesUseCase,
+    private val isCategoryActive: IsCategoryActiveUseCase,
+    private val getRandomWord: GetRandomWordUseCase
 ) : ViewModel() {
 
     private val snapshotCatsInCaseUncheckAll = mutableListOf<String>()
-    private var freezeSnapshot = false
+    var rememberPositionAfterChangingStack = false
 
     private val _currentPosition = MutableStateFlow(0)
     val currentPosition = _currentPosition.asStateFlow()
@@ -39,6 +42,7 @@ class DrillerViewModel @Inject constructor(
 
     sealed class DrillerEvent {
         data class ShowSnackbar(val msg: String) : DrillerEvent()
+        object ScrollToCurrentPosition : DrillerEvent()
     }
 
     init {
@@ -69,7 +73,7 @@ class DrillerViewModel @Inject constructor(
                 is Resource.Error -> {
                     // этот вариант (ошибка) никогда не приходит, т.к. в repo никогда не эмиттится
                     _wordsState.value = wordsState.value.copy(
-                        words = result.data ?: emptyList(),
+                        words = wordsState.value.words ?: mutableListOf(),
                         isLoading = false
                         // todo обработать ошибку?
                     )
@@ -137,14 +141,10 @@ class DrillerViewModel @Inject constructor(
     }
 
     private fun refulfillSnapshotByNewNames(newNames: List<String>) {
-//        if (!freezeSnapshot) {
-            snapshotCatsInCaseUncheckAll.clear()
-            newNames.forEach { name ->
-                addCatNameToSnapshot(name)
-            }
-//        } else {
-//            Log.d(TAG_PETR, "Cannot refulfillSnapshotByNewNames: snapshot is frozen")
-//        }
+        snapshotCatsInCaseUncheckAll.clear()
+        newNames.forEach { name ->
+            addCatNameToSnapshot(name)
+        }
     }
 
     private fun activateCategory(catName: String) = viewModelScope.launch {
@@ -170,9 +170,38 @@ class DrillerViewModel @Inject constructor(
         }
         Log.d(TAG_PETR, "snapshot created. Size = ${snapshotCatsInCaseUncheckAll.size}")
     }
+
+    fun scrollToCurPos() = viewModelScope.launch {
+        _eventFlow.emit(DrillerEvent.ScrollToCurrentPosition)
+        Log.d(TAG_PETR, "scrollToCurPos: CALLED, curPos = ${currentPosition.value}")
+    }
+
+    fun acceptCatListChange() = viewModelScope.launch {
+        val wholeList = mutableListOf<Word>()
+        wholeList.addAll(wordsState.value.words)
+        _wordsState.value = wordsState.value.copy(
+            words = wholeList,
+            isLoading = true
+        )
+        Log.d(TAG_PETR, "wholeList.size = ${wholeList.size}, curPos = ${currentPosition.value}, curPosWord = ${wholeList.elementAt(currentPosition.value)}")
+        delay(500L)
+        val newWholeList = mutableListOf<Word>()
+        newWholeList.addAll(wholeList.map { word ->
+            if (!isCategoryActive.invoke(word.categoryName)) {
+                val newWord = getRandomWord.invoke()
+                newWord
+            } else word
+        })
+        _wordsState.value = wordsState.value.copy(
+            words = newWholeList,
+            isLoading = false
+        )
+        rememberPositionAfterChangingStack = true
+        Log.d(TAG_PETR, "newWholeList.size = ${newWholeList.size}, curPos = ${currentPosition.value}, curPosWord = ${wholeList.elementAt(currentPosition.value)}")
+    }
 }
 
 data class WordState(
-    val words: List<Word> = emptyList(),
+    val words: MutableList<Word> = mutableListOf(),
     val isLoading: Boolean = false
 )

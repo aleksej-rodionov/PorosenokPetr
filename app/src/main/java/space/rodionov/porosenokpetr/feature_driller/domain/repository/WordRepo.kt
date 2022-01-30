@@ -12,6 +12,8 @@ interface WordRepo {
 
     suspend fun updateWordIsActive(word: Word, isActive: Boolean)
 
+    suspend fun getRandomWord() : Word
+
     fun observeAllCategories() : Flow<List<Category>>
 
     fun observeAllCategoriesWithWords() : Flow<List<CategoryWithWords>>
@@ -21,6 +23,8 @@ interface WordRepo {
     suspend fun getAllActiveCatsNames(): List<String>
 
     suspend fun getAllCatsNames(): List<String>
+
+    suspend fun isCatActive(name: String): Boolean
 
     fun getMode(): Boolean
 

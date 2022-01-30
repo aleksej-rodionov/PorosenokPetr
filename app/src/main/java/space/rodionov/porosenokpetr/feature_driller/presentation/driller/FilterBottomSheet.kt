@@ -54,7 +54,7 @@ class FilterBottomSheet : BaseBottomSheetDialogFragment(), CompoundButton.OnChec
                 vmDriller.categories.collectLatest { cats ->
                     val categories = cats ?: return@collectLatest
                     val activeCats = categories.filter { cat -> cat.isCategoryActive }
-                    Log.d(TAG_PETR, "OBSERVER: cats.size = ${cats.size}, activecats.size = ${activeCats.size}")
+//                    Log.d(TAG_PETR, "OBSERVER: cats.size = ${cats.size}, activecats.size = ${activeCats.size}")
 
                     cbActivateAll.setOnCheckedChangeListener(null)
 
@@ -89,6 +89,9 @@ class FilterBottomSheet : BaseBottomSheetDialogFragment(), CompoundButton.OnChec
                     when (event) {
                         is DrillerViewModel.DrillerEvent.ShowSnackbar -> {
                             Snackbar.make(binding.root, event.msg, Snackbar.LENGTH_LONG).show()
+                        }
+                        is DrillerViewModel.DrillerEvent.ScrollToCurrentPosition -> {
+                            // пусто
                         }
                     }
                 }
@@ -133,7 +136,7 @@ class FilterBottomSheet : BaseBottomSheetDialogFragment(), CompoundButton.OnChec
 
     override fun onDismiss(dialog: DialogInterface) {
         super.onDismiss(dialog)
-//        Log.d(TAG_PETR, "onDismiss: CALLED")
+        vmDriller.acceptCatListChange()
     }
 
     override fun onDestroy() {

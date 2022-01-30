@@ -15,20 +15,26 @@ interface WordDao {
     @Query("SELECT * FROM wordentity WHERE nativ = :nativ AND `foreign` = :foreign AND categoryName = :categoryName LIMIT 1")
     suspend fun getWord(nativ: String, foreign: String, categoryName: String): WordEntity
 
-    @Query("SELECT * FROM categoryentity")
-    fun observeAllCategories() : Flow<List<CategoryEntity>>
+    @Query("SELECT * FROM wordentity WHERE isWordActive = 1 ORDER BY RANDOM() LIMIT 1")
+    suspend fun getRandomWord() : WordEntity
 
     @Query("SELECT * FROM categoryentity")
-    fun observeAllCategoriesWithEntities() : Flow<List<CategoryWithWords>>
+    fun observeAllCategories(): Flow<List<CategoryEntity>>
+
+    @Query("SELECT * FROM categoryentity")
+    fun observeAllCategoriesWithEntities(): Flow<List<CategoryWithWords>>
 
     @Query("SELECT * FROM categoryentity WHERE name = :name")
     suspend fun getCategoryByName(name: String): CategoryEntity
 
     @Query("SELECT name FROM categoryentity WHERE isCategoryActive = 1")
-    suspend fun getALlActiveCatsNames() : List<String>
+    suspend fun getALlActiveCatsNames(): List<String>
 
     @Query("SELECT name FROM categoryentity")
-    suspend fun getAllCatNames() : List<String>
+    suspend fun getAllCatNames(): List<String>
+
+    @Query("SELECT isCategoryActive FROM categoryentity WHERE name = :catName")
+    suspend fun isCategoryActive(catName: String): Boolean
 
 
     //===================STANDARD FUNCTIONS==============================

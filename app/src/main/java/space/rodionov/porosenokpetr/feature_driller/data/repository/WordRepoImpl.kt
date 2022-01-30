@@ -34,6 +34,10 @@ class WordRepoImpl(
         dao.updateWord(wordEntity.copy(isWordActive = isActive))
     }
 
+    override suspend fun getRandomWord(): Word {
+        return dao.getRandomWord().toWord()
+    }
+
     override fun observeAllCategories(): Flow<List<Category>> =
         dao.observeAllCategories().map { cats ->
             cats.map { it.toCategory() }
@@ -52,6 +56,12 @@ class WordRepoImpl(
 
     override suspend fun getAllCatsNames(): List<String> {
         return dao.getAllCatNames()
+    }
+
+    override suspend fun isCatActive(name: String): Boolean {
+        val isActive = dao.isCategoryActive(name)
+//        Log.d(TAG_PETR, "REPOSITORY isCatActive(): cat = $name, isActive = $isActive")
+        return isActive
     }
 
     override fun getMode(): Boolean {
