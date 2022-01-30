@@ -17,7 +17,7 @@ import space.rodionov.porosenokpetr.feature_driller.domain.repository.WordRepo
 class WordRepoImpl(
     private val dao: WordDao,
     private val sharedPref: Storage
-):WordRepo {
+) : WordRepo {
 
     override fun getTenWords(): Flow<Resource<List<Word>>> = flow {
         emit(Resource.Loading())
@@ -33,8 +33,8 @@ class WordRepoImpl(
         dao.updateWord(wordEntity.copy(isWordActive = isActive))
     }
 
-    override suspend fun getRandomWord(): Word {
-        return dao.getRandomWord().toWord()
+    override suspend fun getRandomWordFromActiveCats(activeCatsNames: List<String>): Word {
+        return dao.getRandomWordFromActiveCats(activeCatsNames).toWord()
     }
 
     override fun observeAllCategories(): Flow<List<Category>> =
@@ -42,14 +42,15 @@ class WordRepoImpl(
             cats.map { it.toCategory() }
         }
 
-    override fun observeAllCategoriesWithWords(): Flow<List<CategoryWithWords>> = dao.observeAllCategoriesWithEntities() // todo и как это имплементировать между слоями? Надо ли CatWithWordsEntity делать?
+    override fun observeAllCategoriesWithWords(): Flow<List<CategoryWithWords>> =
+        dao.observeAllCategoriesWithEntities() // todo и как это имплементировать между слоями? Надо ли CatWithWordsEntity делать?
 
     override suspend fun makeCategoryActive(catName: String, makeActive: Boolean) {
         val categoryEntity = dao.getCategoryByName(catName)
         dao.updateCategory(categoryEntity.copy(isCategoryActive = makeActive))
     }
 
-    override suspend fun getAllActiveCatsNames() : List<String> {
+    override suspend fun getAllActiveCatsNames(): List<String> {
         return dao.getALlActiveCatsNames()
     }
 
@@ -64,7 +65,7 @@ class WordRepoImpl(
     }
 
     override fun getMode(): Boolean {
-       return sharedPref.getMode()
+        return sharedPref.getMode()
     }
 
     override fun setMode(isNight: Boolean) {

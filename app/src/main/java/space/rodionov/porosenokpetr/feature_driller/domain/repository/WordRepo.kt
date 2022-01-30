@@ -12,7 +12,7 @@ interface WordRepo {
 
     suspend fun updateWordIsActive(word: Word, isActive: Boolean)
 
-    suspend fun getRandomWord() : Word
+    suspend fun getRandomWordFromActiveCats(activeCatsNames: List<String>) : Word
 
     fun observeAllCategories() : Flow<List<Category>>
 

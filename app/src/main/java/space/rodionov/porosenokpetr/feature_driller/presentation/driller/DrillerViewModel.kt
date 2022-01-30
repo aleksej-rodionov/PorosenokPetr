@@ -186,12 +186,13 @@ class DrillerViewModel @Inject constructor(
         Log.d(TAG_PETR, "wholeList.size = ${wholeList.size}, curPos = ${currentPosition.value}, curPosWord = ${wholeList.elementAt(currentPosition.value)}")
         delay(500L)
         val newWholeList = mutableListOf<Word>()
+        val allActiveCatsNames = getAllActiveCatsNamesUseCase.invoke()
         newWholeList.addAll(wholeList.map { word ->
             if (!isCategoryActive.invoke(word.categoryName)) {
-                val newWord = getRandomWord.invoke()
+                val newWord = getRandomWord.invoke(allActiveCatsNames)
                 newWord
             } else word
-        })
+        })  // todo баг 1 возможно случается здесь - как-то остается часть слов из отключенных категорий в колоде, и кажется даже приходят новые
         _wordsState.value = wordsState.value.copy(
             words = newWholeList,
             isLoading = false

@@ -7,7 +7,7 @@ class GetRandomWordUseCase(
     private val repo: WordRepo
 ) {
 
-    suspend operator fun invoke() : Word {
-        return repo.getRandomWord()
+    suspend operator fun invoke(activeCatsNames: List<String>) : Word {
+        return repo.getRandomWordFromActiveCats(activeCatsNames)
     }
 }
