@@ -6,8 +6,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import space.rodionov.porosenokpetr.core.Resource
-import space.rodionov.porosenokpetr.feature_driller.Constants
-import space.rodionov.porosenokpetr.feature_driller.Constants.TAG_PETR
+import space.rodionov.porosenokpetr.Constants
 import space.rodionov.porosenokpetr.feature_driller.data.local.WordDao
 import space.rodionov.porosenokpetr.feature_driller.data.local.entity.CategoryWithWords
 import space.rodionov.porosenokpetr.feature_driller.data.storage.Storage

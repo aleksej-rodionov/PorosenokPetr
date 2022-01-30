@@ -1,4 +1,4 @@
-package space.rodionov.porosenokpetr.feature_driller
+package space.rodionov.porosenokpetr
 
 object Constants {
 

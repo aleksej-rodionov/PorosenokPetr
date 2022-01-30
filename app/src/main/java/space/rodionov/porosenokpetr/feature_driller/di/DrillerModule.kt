@@ -8,7 +8,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
-import space.rodionov.porosenokpetr.feature_driller.Constants
+import space.rodionov.porosenokpetr.Constants
 import space.rodionov.porosenokpetr.feature_driller.data.local.WordDatabase
 import space.rodionov.porosenokpetr.feature_driller.data.repository.WordRepoImpl
 import space.rodionov.porosenokpetr.feature_driller.data.storage.Storage

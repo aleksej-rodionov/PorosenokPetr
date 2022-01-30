@@ -3,7 +3,6 @@ package space.rodionov.porosenokpetr.feature_driller.presentation.driller
 import android.app.Dialog
 import android.content.DialogInterface
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +16,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.databinding.BottomsheetFilterBinding
-import space.rodionov.porosenokpetr.feature_driller.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.feature_driller.presentation.base.BaseBottomSheetDialogFragment
 
 @AndroidEntryPoint

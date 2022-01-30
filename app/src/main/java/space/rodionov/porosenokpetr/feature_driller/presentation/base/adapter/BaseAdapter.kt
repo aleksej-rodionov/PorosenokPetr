@@ -1,12 +1,5 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation.base.adapter
 
-import android.annotation.SuppressLint
-import android.view.ViewGroup
-import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
-import space.rodionov.porosenokpetr.feature_driller.Constants
-import space.rodionov.porosenokpetr.feature_driller.domain.models.BaseModel
-
 //abstract class BaseAdapter() : ListAdapter<BaseModel, BaseViewHolder>(BaseDiffUtil()) {
 //
 //    var isNightBaseAdapter = false

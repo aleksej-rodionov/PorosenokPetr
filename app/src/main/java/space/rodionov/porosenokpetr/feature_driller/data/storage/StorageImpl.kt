@@ -2,7 +2,7 @@ package space.rodionov.porosenokpetr.feature_driller.data.storage
 
 import android.app.Application
 import android.content.Context
-import space.rodionov.porosenokpetr.feature_driller.Constants
+import space.rodionov.porosenokpetr.Constants
 
 class StorageImpl(
     app: Application

@@ -2,28 +2,26 @@ package space.rodionov.porosenokpetr.feature_driller.presentation.driller
 
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
-import android.speech.tts.TextToSpeech.OnInitListener
 import android.util.Log
 import android.view.View
 import android.view.animation.LinearInterpolator
-import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.google.android.material.snackbar.Snackbar
 import com.yuyakaido.android.cardstackview.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.databinding.FragmentDrillerBinding
-import space.rodionov.porosenokpetr.feature_driller.Constants
-import space.rodionov.porosenokpetr.feature_driller.Constants.TAG_PETR
+import space.rodionov.porosenokpetr.Constants
+import space.rodionov.porosenokpetr.Constants.TAG_PETR
+import space.rodionov.porosenokpetr.feature_driller.presentation.base.BaseFragment
 import java.lang.Exception
 import java.util.*
 
 @AndroidEntryPoint
-class DrillerFragment : Fragment(R.layout.fragment_driller), CardStackListener {
+class DrillerFragment : BaseFragment(R.layout.fragment_driller), CardStackListener {
 
     private val vmDriller: DrillerViewModel by viewModels()
     private var _binding: FragmentDrillerBinding? = null
