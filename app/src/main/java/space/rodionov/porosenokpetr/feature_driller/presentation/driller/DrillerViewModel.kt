@@ -43,6 +43,7 @@ class DrillerViewModel @Inject constructor(
     sealed class DrillerEvent {
         data class ShowSnackbar(val msg: String) : DrillerEvent()
         object ScrollToCurrentPosition : DrillerEvent()
+        object NavigateToCollectionScreen : DrillerEvent()
     }
 
     init {
@@ -192,13 +193,17 @@ class DrillerViewModel @Inject constructor(
                 val newWord = getRandomWord.invoke(allActiveCatsNames)
                 newWord
             } else word
-        })  // todo баг 1 возможно случается здесь - как-то остается часть слов из отключенных категорий в колоде, и кажется даже приходят новые
+        })
         _wordsState.value = wordsState.value.copy(
             words = newWholeList,
             isLoading = false
         )
         rememberPositionAfterChangingStack = true
         Log.d(TAG_PETR, "newWholeList.size = ${newWholeList.size}, curPos = ${currentPosition.value}, curPosWord = ${wholeList.elementAt(currentPosition.value)}")
+    }
+
+    fun navigateToCollectionScreen() = viewModelScope.launch {
+        _eventFlow.emit(DrillerEvent.NavigateToCollectionScreen)
     }
 }
 

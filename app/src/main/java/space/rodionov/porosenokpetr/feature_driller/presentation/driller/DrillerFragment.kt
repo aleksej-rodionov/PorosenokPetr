@@ -9,6 +9,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.yuyakaido.android.cardstackview.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -93,6 +94,10 @@ class DrillerFragment : BaseFragment(R.layout.fragment_driller), CardStackListen
                 )
                 // todo pass it through the viewModel and SharedFLow
             }
+
+            btnCollection.setOnClickListener {
+                vmDriller.navigateToCollectionScreen()
+            }
         }
 
         vmDriller.newRound()
@@ -127,6 +132,10 @@ class DrillerFragment : BaseFragment(R.layout.fragment_driller), CardStackListen
                     }
                     is DrillerViewModel.DrillerEvent.ScrollToCurrentPosition -> {
                         binding?.cardStackView?.scrollToPosition(vmDriller.currentPosition.value)
+                    }
+                    is DrillerViewModel.DrillerEvent.NavigateToCollectionScreen -> {
+                        val navAction = DrillerFragmentDirections.actionDrillerFragmentToCollectionFragment()
+                        findNavController().navigate(navAction)
                     }
                 }
             }

@@ -9,5 +9,14 @@
         android:id="@+id/drillerFragment"
         android:name="space.rodionov.porosenokpetr.feature_driller.presentation.driller.DrillerFragment"
         android:label="fragment_driller"
-        tools:layout="@layout/fragment_driller" />
+        tools:layout="@layout/fragment_driller" >
+        <action
+            android:id="@+id/action_drillerFragment_to_collectionFragment"
+            app:destination="@id/collectionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/collectionFragment"
+        android:name="space.rodionov.porosenokpetr.feature_driller.presentation.collection.CollectionFragment"
+        android:label="fragment_collection"
+        tools:layout="@layout/fragment_collection" />
 </navigation>

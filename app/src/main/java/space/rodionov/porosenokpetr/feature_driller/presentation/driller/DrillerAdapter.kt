@@ -62,8 +62,6 @@ class DrillerAdapter(
         val curItem = getItem(position)
         holder.bind(curItem)
     }
-
-    fun getWordAt(pos: Int) = getItem(pos)
 }
 
 
