@@ -97,6 +97,7 @@
         app:layout_constraintTop_toBottomOf="@id/tv_complete"
         app:layout_constraintStart_toStartOf="parent" />
 
+<!--    <space.rodionov.porosenokpetr.feature_driller.presentation.base.adapter.StateCardStackView-->
     <com.yuyakaido.android.cardstackview.CardStackView
         android:id="@+id/card_stack_view"
         android:layout_width="match_parent"

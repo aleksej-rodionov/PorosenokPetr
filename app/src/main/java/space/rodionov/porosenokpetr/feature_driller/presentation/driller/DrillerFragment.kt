@@ -6,7 +6,6 @@ import android.util.Log
 import android.view.View
 import android.view.animation.LinearInterpolator
 import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -28,32 +27,6 @@ class DrillerFragment : BaseFragment(R.layout.fragment_driller), CardStackListen
     private var _binding: FragmentDrillerBinding? = null
     private val binding get() = _binding
 
-    private val drillerAdapter: DrillerAdapter by lazy {
-        DrillerAdapter(
-            onSpeakWord = { word ->
-                onSpeakWord(word)
-            }
-        )
-    }
-
-//    private val drillerLayoutManager: CardStackLayoutManager by lazy {
-//        CardStackLayoutManager(requireContext(), this)
-//    }
-
-    private val textToSpeech: TextToSpeech by lazy {
-        TextToSpeech(requireContext()) { status ->
-            if (status == TextToSpeech.SUCCESS) {
-                try {
-                    textToSpeech.language = Locale.ENGLISH
-                } catch (e: Exception) {
-                    Log.d(TAG_PETR, "TTS: Exception: ${e.localizedMessage}")
-                }
-            } else {
-                Log.d(TAG_PETR, "TTS Language initialization failed")
-            }
-        }
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentDrillerBinding.bind(view)
@@ -63,8 +36,6 @@ class DrillerFragment : BaseFragment(R.layout.fragment_driller), CardStackListen
             cardStackView.apply {
                 adapter = drillerAdapter
                 layoutManager = createLayoutManager()
-                setHasFixedSize(false)
-                itemAnimator = null
             }
 
             btnNewRound.setOnClickListener {
@@ -85,8 +56,6 @@ class DrillerFragment : BaseFragment(R.layout.fragment_driller), CardStackListen
                 vmDriller.navigateToCollectionScreen()
             }
         }
-
-        vmDriller.newRound()
     }
 
     private fun initViewModel() {
@@ -100,7 +69,6 @@ class DrillerFragment : BaseFragment(R.layout.fragment_driller), CardStackListen
 
                 val list = wordsState.words
                 drillerAdapter.submitList(list)
-//                vmDriller.scrollToCurPos()
             }
         }
 
@@ -119,7 +87,13 @@ class DrillerFragment : BaseFragment(R.layout.fragment_driller), CardStackListen
                     is DrillerViewModel.DrillerEvent.ScrollToCurrentPosition -> {
                         binding?.cardStackView?.scrollToPosition(vmDriller.currentPosition.value)
                     }
+                    is DrillerViewModel.DrillerEvent.ScrollToSavedPosition -> {
+                        binding?.cardStackView?.scrollToPosition(vmDriller.savedPosition)
+                        Log.d(TAG_PETR, "initViewModel: called scrolltoPosition ${vmDriller.savedPosition}") // todo этот блок не вызывается почемуто
+                        vmDriller.rememberPositionAfterSwitchingFragment = false
+                    }
                     is DrillerViewModel.DrillerEvent.NavigateToCollectionScreen -> {
+                        vmDriller.rememberPositionAfterSwitchFragment()
                         val navAction = DrillerFragmentDirections.actionDrillerFragmentToCollectionFragment()
                         findNavController().navigate(navAction)
                     }
@@ -127,9 +101,24 @@ class DrillerFragment : BaseFragment(R.layout.fragment_driller), CardStackListen
             }
         }
 
-    // other Observers
+        // other Observers
     }
 
+    override fun onResume() {
+        super.onResume()
+//        binding?.apply {
+//            if (cardStackView.mLayoutManagerSavedState != null) {
+//                cardStackView.mStateCardStackLayoutManager?.onRestoreInstanceState(cardStackView.mLayoutManagerSavedState)
+//            }
+//        }
+        vmDriller.scrollToSavedPosIfItIsSaved() // todo переделать это по варианту сверху (сохранять state ресайклера с помощью saveInstantState)
+    }
+
+    private val drillerAdapter = DrillerAdapter(
+        onSpeakWord = { word ->
+            onSpeakWord(word)
+        }
+    )
 
     fun createLayoutManager(): CardStackLayoutManager {
         val drillerLayoutManager = CardStackLayoutManager(requireContext(), this)
@@ -147,6 +136,20 @@ class DrillerFragment : BaseFragment(R.layout.fragment_driller), CardStackListen
             setSwipeableMethod(SwipeableMethod.AutomaticAndManual)
         }
         return drillerLayoutManager
+    }
+
+    private val textToSpeech: TextToSpeech by lazy {
+        TextToSpeech(requireContext()) { status ->
+            if (status == TextToSpeech.SUCCESS) {
+                try {
+                    textToSpeech.language = Locale.ENGLISH
+                } catch (e: Exception) {
+                    Log.d(TAG_PETR, "TTS: Exception: ${e.localizedMessage}")
+                }
+            } else {
+                Log.d(TAG_PETR, "TTS Language initialization failed")
+            }
+        }
     }
 
     private fun onSpeakWord(word: String) {

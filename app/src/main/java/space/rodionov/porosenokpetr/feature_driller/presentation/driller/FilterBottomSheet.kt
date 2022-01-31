@@ -91,6 +91,9 @@ class FilterBottomSheet : BaseBottomSheetDialogFragment(), CompoundButton.OnChec
                         is DrillerViewModel.DrillerEvent.ScrollToCurrentPosition -> {
                             // пусто
                         }
+                        is DrillerViewModel.DrillerEvent.ScrollToSavedPosition -> {
+                            //пусто
+                        }
                         is DrillerViewModel.DrillerEvent.NavigateToCollectionScreen -> {
                             // пусто
                         }

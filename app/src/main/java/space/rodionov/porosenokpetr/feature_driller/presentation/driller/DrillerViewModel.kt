@@ -1,6 +1,7 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation.driller
 
 import android.util.Log
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -22,14 +23,26 @@ class DrillerViewModel @Inject constructor(
     private val getAllActiveCatsNamesUseCase: GetAllActiveCatsNamesUseCase,
     private val getAllCatsNamesUseCase: GetAllCatsNamesUseCase,
     private val isCategoryActive: IsCategoryActiveUseCase,
-    private val getRandomWord: GetRandomWordUseCase
+    private val getRandomWord: GetRandomWordUseCase,
+    private val state: SavedStateHandle
 ) : ViewModel() {
+    var savedPosition = state.get<Int>("savedPos") ?: 0
+        set(value) {
+            field = value
+            state.set("savedPos", value)
+        }
+
+    var rememberPositionAfterSwitchingFragment = state.get<Boolean>("memorizePos") ?: false
+        set(value) {
+            field = value
+            state.set("memorizePos", value)
+        }
 
     private val snapshotCatsInCaseUncheckAll = mutableListOf<String>()
     var rememberPositionAfterChangingStack = false
 
     private val _currentPosition = MutableStateFlow(0)
-    val currentPosition = _currentPosition.asStateFlow()
+    val currentPosition = _currentPosition.asStateFlow() // todo сохранять currentPosition в savedStateHandle
 
     private val _categories = observeAllCategories.invoke()
     val categories = _categories.stateIn(viewModelScope, SharingStarted.Lazily, null)
@@ -43,10 +56,12 @@ class DrillerViewModel @Inject constructor(
     sealed class DrillerEvent {
         data class ShowSnackbar(val msg: String) : DrillerEvent()
         object ScrollToCurrentPosition : DrillerEvent()
+        object ScrollToSavedPosition : DrillerEvent()
         object NavigateToCollectionScreen : DrillerEvent()
     }
 
     init {
+        newRound()
         makeSnapshot()
     }
 
@@ -90,6 +105,11 @@ class DrillerViewModel @Inject constructor(
 
     fun updateCurrentPosition(pos: Int) {
         _currentPosition.value = pos
+//        updateSavedPosition(pos)
+    }
+
+    fun updateSavedPosition(pos: Int) {
+        savedPosition = pos
     }
 
     fun inactivateCurrentWord() = viewModelScope.launch {
@@ -116,8 +136,8 @@ class DrillerViewModel @Inject constructor(
         allCats.forEach { catName ->
             activateCategory(catName)
         }
-        Log.d(TAG_PETR, "onCheckBoxTurnedOn: allActive.size = ${getAllActiveCatsNamesUseCase.invoke().size}")
-        Log.d(TAG_PETR, "onCheckBoxTurnedOn: snapshot.size = ${snapshotCatsInCaseUncheckAll.size}")
+//        Log.d(TAG_PETR, "onCheckBoxTurnedOn: allActive.size = ${getAllActiveCatsNamesUseCase.invoke().size}")
+//        Log.d(TAG_PETR, "onCheckBoxTurnedOn: snapshot.size = ${snapshotCatsInCaseUncheckAll.size}")
     }
 
     fun onCheckBoxTurnedOff() = viewModelScope.launch {
@@ -169,12 +189,21 @@ class DrillerViewModel @Inject constructor(
         } else {
             refulfillSnapshotByNewNames(allActiveCats)
         }
-        Log.d(TAG_PETR, "snapshot created. Size = ${snapshotCatsInCaseUncheckAll.size}")
+//        Log.d(TAG_PETR, "snapshot created. Size = ${snapshotCatsInCaseUncheckAll.size}")
     }
 
     fun scrollToCurPos() = viewModelScope.launch {
         _eventFlow.emit(DrillerEvent.ScrollToCurrentPosition)
-        Log.d(TAG_PETR, "scrollToCurPos: CALLED, curPos = ${currentPosition.value}")
+//        Log.d(TAG_PETR, "scrollToCurPos: CALLED, curPos = ${currentPosition.value}")
+    }
+
+    fun scrollToSavedPosIfItIsSaved() = viewModelScope.launch {
+        if (rememberPositionAfterSwitchingFragment) {
+            _eventFlow.emit(DrillerEvent.ScrollToSavedPosition)
+//            Log.d(TAG_PETR, "scrollToSavedPos: CALLED, savedPos = $savedPosition")
+        } else {
+//            Log.d(TAG_PETR, "saved Position is not remembered")
+        }
     }
 
     fun acceptCatListChange() = viewModelScope.launch {
@@ -184,7 +213,7 @@ class DrillerViewModel @Inject constructor(
             words = wholeList,
             isLoading = true
         )
-        Log.d(TAG_PETR, "wholeList.size = ${wholeList.size}, curPos = ${currentPosition.value}, curPosWord = ${wholeList.elementAt(currentPosition.value)}")
+//        Log.d(TAG_PETR, "wholeList.size = ${wholeList.size}, curPos = ${currentPosition.value}, curPosWord = ${wholeList.elementAt(currentPosition.value)}")
         delay(500L)
         val newWholeList = mutableListOf<Word>()
         val allActiveCatsNames = getAllActiveCatsNamesUseCase.invoke()
@@ -199,11 +228,16 @@ class DrillerViewModel @Inject constructor(
             isLoading = false
         )
         rememberPositionAfterChangingStack = true
-        Log.d(TAG_PETR, "newWholeList.size = ${newWholeList.size}, curPos = ${currentPosition.value}, curPosWord = ${wholeList.elementAt(currentPosition.value)}")
+//        Log.d(TAG_PETR, "newWholeList.size = ${newWholeList.size}, curPos = ${currentPosition.value}, curPosWord = ${wholeList.elementAt(currentPosition.value)}")
     }
 
     fun navigateToCollectionScreen() = viewModelScope.launch {
         _eventFlow.emit(DrillerEvent.NavigateToCollectionScreen)
+    }
+
+    fun rememberPositionAfterSwitchFragment() {
+        updateSavedPosition(currentPosition.value)
+        rememberPositionAfterSwitchingFragment = true
     }
 }
 
