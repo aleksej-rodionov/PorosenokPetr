@@ -3,10 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/android04/AndroidStudioProjects/PorosenokPetr/app/src/main/res/drawable/bg_grey_stroke.xml" value="0.5703125" />
+        <entry key="..\:/Users/android04/AndroidStudioProjects/PorosenokPetr/app/src/main/res/drawable/bg_top_corners.xml" value="0.5703125" />
         <entry key="..\:/Users/android04/AndroidStudioProjects/PorosenokPetr/app/src/main/res/drawable/ic_check.xml" value="0.5703125" />
         <entry key="..\:/Users/android04/AndroidStudioProjects/PorosenokPetr/app/src/main/res/drawable/ic_filter_settings.xml" value="0.5703125" />
+        <entry key="..\:/Users/android04/AndroidStudioProjects/PorosenokPetr/app/src/main/res/layout/bottomsheet_filter.xml" value="0.5541666666666667" />
         <entry key="..\:/Users/android04/AndroidStudioProjects/PorosenokPetr/app/src/main/res/layout/fragment_driller.xml" value="0.5541666666666667" />
         <entry key="..\:/Users/android04/AndroidStudioProjects/PorosenokPetr/app/src/main/res/layout/item_word_card.xml" value="0.5541666666666667" />
+        <entry key="..\:/Users/android04/AndroidStudioProjects/PorosenokPetr/app/src/main/res/layout/item_word_horizontal.xml" value="0.5541666666666667" />
       </map>
     </option>
   </component>

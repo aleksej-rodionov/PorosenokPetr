@@ -36,9 +36,9 @@ class DrillerFragment : BaseFragment(R.layout.fragment_driller), CardStackListen
         )
     }
 
-    private val drillerLayoutManager: CardStackLayoutManager by lazy {
-        CardStackLayoutManager(requireContext(), this)
-    }
+//    private val drillerLayoutManager: CardStackLayoutManager by lazy {
+//        CardStackLayoutManager(requireContext(), this)
+//    }
 
     private val textToSpeech: TextToSpeech by lazy {
         TextToSpeech(requireContext()) { status ->
@@ -59,24 +59,10 @@ class DrillerFragment : BaseFragment(R.layout.fragment_driller), CardStackListen
         _binding = FragmentDrillerBinding.bind(view)
         initViewModel()
 
-        drillerLayoutManager.apply {
-            setOverlayInterpolator(LinearInterpolator())
-            setStackFrom(StackFrom.Top)
-            setVisibleCount(3)
-            setTranslationInterval(8.0f)
-            setScaleInterval(0.95f)
-            setMaxDegree(20.0f)
-            setDirections(Direction.FREEDOM)
-            setSwipeThreshold(0.3f)
-            setCanScrollHorizontal(true)
-            setCanScrollVertical(true)
-            setSwipeableMethod(SwipeableMethod.AutomaticAndManual)
-        }
-
         binding?.apply {
             cardStackView.apply {
                 adapter = drillerAdapter
-                layoutManager = drillerLayoutManager
+                layoutManager = createLayoutManager()
                 setHasFixedSize(false)
                 itemAnimator = null
             }
@@ -142,6 +128,25 @@ class DrillerFragment : BaseFragment(R.layout.fragment_driller), CardStackListen
         }
 
     // other Observers
+    }
+
+
+    fun createLayoutManager(): CardStackLayoutManager {
+        val drillerLayoutManager = CardStackLayoutManager(requireContext(), this)
+        drillerLayoutManager.apply {
+            setOverlayInterpolator(LinearInterpolator())
+            setStackFrom(StackFrom.Top)
+            setVisibleCount(3)
+            setTranslationInterval(8.0f)
+            setScaleInterval(0.95f)
+            setMaxDegree(20.0f)
+            setDirections(Direction.FREEDOM)
+            setSwipeThreshold(0.3f)
+            setCanScrollHorizontal(true)
+            setCanScrollVertical(true)
+            setSwipeableMethod(SwipeableMethod.AutomaticAndManual)
+        }
+        return drillerLayoutManager
     }
 
     private fun onSpeakWord(word: String) {
