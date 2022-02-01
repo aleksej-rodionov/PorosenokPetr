@@ -27,6 +27,12 @@ class DrillerFragment : BaseFragment(R.layout.fragment_driller), CardStackListen
     private var _binding: FragmentDrillerBinding? = null
     private val binding get() = _binding
 
+    private val drillerAdapter = DrillerAdapter(
+        onSpeakWord = { word ->
+            onSpeakWord(word)
+        }
+    )
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentDrillerBinding.bind(view)
@@ -91,6 +97,7 @@ class DrillerFragment : BaseFragment(R.layout.fragment_driller), CardStackListen
                         binding?.cardStackView?.scrollToPosition(vmDriller.savedPosition)
                         Log.d(TAG_PETR, "initViewModel: called scrolltoPosition ${vmDriller.savedPosition}") // todo этот блок не вызывается почемуто
                         vmDriller.rememberPositionAfterSwitchingFragment = false
+                        vmDriller.rememberPositionAfterDestroy = false
                     }
                     is DrillerViewModel.DrillerEvent.NavigateToCollectionScreen -> {
                         vmDriller.rememberPositionAfterSwitchFragment()
@@ -113,12 +120,6 @@ class DrillerFragment : BaseFragment(R.layout.fragment_driller), CardStackListen
 //        }
         vmDriller.scrollToSavedPosIfItIsSaved() // todo переделать это по варианту сверху (сохранять state ресайклера с помощью saveInstantState)
     }
-
-    private val drillerAdapter = DrillerAdapter(
-        onSpeakWord = { word ->
-            onSpeakWord(word)
-        }
-    )
 
     fun createLayoutManager(): CardStackLayoutManager {
         val drillerLayoutManager = CardStackLayoutManager(requireContext(), this)
@@ -159,6 +160,7 @@ class DrillerFragment : BaseFragment(R.layout.fragment_driller), CardStackListen
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        vmDriller.rememberPositionInCaseOfDestroy()
     }
 
     override fun onCardDragging(direction: Direction?, ratio: Float) {

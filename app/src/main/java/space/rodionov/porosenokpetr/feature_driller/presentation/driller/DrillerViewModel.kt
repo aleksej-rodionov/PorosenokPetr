@@ -32,10 +32,16 @@ class DrillerViewModel @Inject constructor(
             state.set("savedPos", value)
         }
 
-    var rememberPositionAfterSwitchingFragment = state.get<Boolean>("memorizePos") ?: false
+    var rememberPositionAfterSwitchingFragment = state.get<Boolean>("memorizePosInBackstack") ?: false
         set(value) {
             field = value
-            state.set("memorizePos", value)
+            state.set("memorizePosInBackstack", value)
+        }
+
+    var rememberPositionAfterDestroy = state.get<Boolean>("memorizePosOnDestroy") ?: false
+        set(value) {
+            field = value
+            state.set("memorizePosOnDestroy", value)
         }
 
     private val snapshotCatsInCaseUncheckAll = mutableListOf<String>()
@@ -198,7 +204,7 @@ class DrillerViewModel @Inject constructor(
     }
 
     fun scrollToSavedPosIfItIsSaved() = viewModelScope.launch {
-        if (rememberPositionAfterSwitchingFragment) {
+        if (rememberPositionAfterSwitchingFragment || rememberPositionAfterDestroy) {
             _eventFlow.emit(DrillerEvent.ScrollToSavedPosition)
 //            Log.d(TAG_PETR, "scrollToSavedPos: CALLED, savedPos = $savedPosition")
         } else {
@@ -238,6 +244,11 @@ class DrillerViewModel @Inject constructor(
     fun rememberPositionAfterSwitchFragment() {
         updateSavedPosition(currentPosition.value)
         rememberPositionAfterSwitchingFragment = true
+    }
+
+    fun rememberPositionInCaseOfDestroy() {
+        updateSavedPosition(currentPosition.value)
+        rememberPositionAfterDestroy = true
     }
 }
 
