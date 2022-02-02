@@ -18,5 +18,14 @@
         android:id="@+id/collectionFragment"
         android:name="space.rodionov.porosenokpetr.feature_driller.presentation.collection.CollectionFragment"
         android:label="fragment_collection"
-        tools:layout="@layout/fragment_collection" />
+        tools:layout="@layout/fragment_collection" >
+        <action
+            android:id="@+id/action_collectionFragment_to_wordlistFragment"
+            app:destination="@id/wordlistFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/wordlistFragment"
+        android:name="space.rodionov.porosenokpetr.feature_driller.presentation.wordlist.WordlistFragment"
+        android:label="fragment_wordlist"
+        tools:layout="@layout/fragment_wordlist" />
 </navigation>

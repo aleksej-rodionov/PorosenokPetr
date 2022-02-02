@@ -6,6 +6,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import space.rodionov.porosenokpetr.MainActivity
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.databinding.FragmentCollectionBinding
 import space.rodionov.porosenokpetr.feature_driller.presentation.base.BaseFragment
@@ -41,6 +42,9 @@ class CollectionFragment : BaseFragment(
             }
 
             // todo listeners
+            btnStudy.setOnClickListener {
+                (activity as MainActivity)?.onBackPressed()
+            }
         }
 
         initViewModel()

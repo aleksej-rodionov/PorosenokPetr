@@ -138,6 +138,7 @@
             android:focusable="true"
             android:id="@+id/btn_settings"
             android:src="@drawable/ic_settings_big"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
@@ -151,6 +152,7 @@
             android:focusable="true"
             android:id="@+id/btn_collection"
             android:src="@drawable/ic_bookstack"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@id/btn_settings"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
@@ -159,6 +161,7 @@
             android:layout_height="32dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:clickable="true"
+            app:layout_constraintTop_toTopOf="parent"
             android:focusable="true"
             android:layout_marginHorizontal="12dp"
             android:id="@+id/btn_filter"

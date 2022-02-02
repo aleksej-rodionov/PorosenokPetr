@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gray200"
-    tools:context=".feature_driller.presentation.collection.CollectionFragment">
+    tools:context=".feature_driller.presentation.wordlist.WordlistFragment">
 
     <View
         android:id="@+id/divider_top"
@@ -16,15 +16,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/btn_back"
+        android:layout_width="32dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="12dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="4dp"
+        android:src="@drawable/ic_back"
+        app:layout_constraintTop_toBottomOf="@id/divider_top"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/tv_title"
+        app:tint="@color/purple_700" />
+
     <TextView
         android:id="@+id/tv_title"
         style="@style/Bold26Black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="12dp"
-        android:text="@string/collection"
+        android:text="@string/search_among_all_words"
         android:visibility="visible"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btn_back"
         app:layout_constraintTop_toBottomOf="@id/divider_top" />
 
     <View
@@ -38,7 +53,7 @@
         app:layout_constraintTop_toBottomOf="@id/tv_title" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_cats"
+        android:id="@+id/rv_words"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:padding="12dp"
@@ -58,26 +73,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <ImageView
-            android:id="@+id/btn_study"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_marginStart="12dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:clickable="true"
-            android:focusable="true"
-            android:padding="4dp"
-            android:src="@drawable/ic_study"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:tint="@color/purple_700" />
-
         <TextView
             android:id="@+id/tv_search"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
             android:background="@drawable/bg_search"
             android:clickable="true"
             android:drawableStart="@drawable/ic_search"
@@ -93,7 +92,7 @@
             android:textStyle="italic"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/btn_study" />
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
