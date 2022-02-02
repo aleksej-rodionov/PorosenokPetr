@@ -27,5 +27,11 @@
         android:id="@+id/wordlistFragment"
         android:name="space.rodionov.porosenokpetr.feature_driller.presentation.wordlist.WordlistFragment"
         android:label="fragment_wordlist"
-        tools:layout="@layout/fragment_wordlist" />
+        tools:layout="@layout/fragment_wordlist" >
+        <argument
+            android:name="category"
+            app:argType="space.rodionov.porosenokpetr.feature_driller.domain.models.Category"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
 </navigation>

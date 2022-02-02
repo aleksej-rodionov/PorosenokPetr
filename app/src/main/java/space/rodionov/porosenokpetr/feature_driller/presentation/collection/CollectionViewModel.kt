@@ -20,7 +20,7 @@ class CollectionViewModel @Inject constructor(
     val eventFlow = _eventFlow.asSharedFlow()
 
     sealed class CollectionEvent {
-        data class NavigateToCategoryDetailScreen(val cat: Category) : CollectionEvent()
+        data class NavigateToWordlistScreen(val cat: Category?) : CollectionEvent()
     }
 }
 

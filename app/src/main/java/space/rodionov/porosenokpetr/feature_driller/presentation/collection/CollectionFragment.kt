@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.MainActivity
@@ -55,6 +56,18 @@ class CollectionFragment : BaseFragment(
             vmCollection.categories.collectLatest {
                 val cats = it?: return@collectLatest
                 collectAdapter.submitList(cats)
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            vmCollection.eventFlow.collectLatest { event ->
+                when (event) {
+                    is CollectionViewModel.CollectionEvent.NavigateToWordlistScreen -> {
+                        val action = CollectionFragmentDirections.actionCollectionFragmentToWordlistFragment()
+                        action.category = event.cat
+                        findNavController().navigate(action)
+                    }
+                }
             }
         }
     }

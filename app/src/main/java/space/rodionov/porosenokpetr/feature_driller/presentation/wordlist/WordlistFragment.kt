@@ -3,13 +3,16 @@ package space.rodionov.porosenokpetr.feature_driller.presentation.wordlist
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
+import space.rodionov.porosenokpetr.MainActivity
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.databinding.FragmentWordlistBinding
 
 @AndroidEntryPoint
 class WordlistFragment : Fragment(R.layout.fragment_wordlist) {
 
+    private val vmCollection: WordlistViewModel by viewModels()
     private var _binding: FragmentWordlistBinding? = null
     val binding get() = _binding
 
@@ -17,8 +20,12 @@ class WordlistFragment : Fragment(R.layout.fragment_wordlist) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentWordlistBinding.bind(view)
 
-        binding.apply {
+        binding?.apply {
 //            rvWords
+
+            btnBack.setOnClickListener {
+                (activity as MainActivity).onBackPressed()
+            }
         }
     }
 
