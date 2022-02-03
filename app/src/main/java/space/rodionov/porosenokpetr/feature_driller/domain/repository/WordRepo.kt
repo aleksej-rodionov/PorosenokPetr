@@ -3,6 +3,8 @@ package space.rodionov.porosenokpetr.feature_driller.domain.repository
 import kotlinx.coroutines.flow.Flow
 import space.rodionov.porosenokpetr.core.Resource
 import space.rodionov.porosenokpetr.feature_driller.data.local.entity.CategoryWithWords
+import space.rodionov.porosenokpetr.feature_driller.data.local.entity.WordEntity
+import space.rodionov.porosenokpetr.feature_driller.domain.models.CatWithWords
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Category
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
 
@@ -14,9 +16,13 @@ interface WordRepo {
 
     suspend fun getRandomWordFromActiveCats(activeCatsNames: List<String>) : Word
 
+//    fun observeActiveWordsByCat(catName: String) : Flow<List<WordEntity>>
+//
+//    fun observeAllWordsByCat(catName: String) : Flow<List<WordEntity>>
+
     fun observeAllCategories() : Flow<List<Category>>
 
-    fun observeAllCategoriesWithWords() : Flow<List<CategoryWithWords>>
+    fun observeAllCategoriesWithWords() : Flow<List<CatWithWords>>
 
     suspend fun makeCategoryActive(catName: String, makeActive: Boolean)
 

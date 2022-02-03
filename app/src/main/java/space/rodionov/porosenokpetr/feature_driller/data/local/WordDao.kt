@@ -18,6 +18,12 @@ interface WordDao {
     @Query("SELECT * FROM wordentity WHERE categoryName IN (:activeCatsNames) AND isWordActive = 1 ORDER BY RANDOM() LIMIT 1")
     suspend fun getRandomWordFromActiveCats(activeCatsNames: List<String>) : WordEntity
 
+    @Query("SELECT * FROM wordentity WHERE categoryName = :catName AND isWordActive = 1")
+    fun observeActiveWordsByCat(catName: String) : Flow<List<WordEntity>>
+
+    @Query("SELECT * FROM wordentity WHERE categoryName = :catName")
+    fun observeAllWordsByCat(catName: String) : Flow<List<WordEntity>>
+
     @Query("SELECT * FROM categoryentity")
     fun observeAllCategories(): Flow<List<CategoryEntity>>
 

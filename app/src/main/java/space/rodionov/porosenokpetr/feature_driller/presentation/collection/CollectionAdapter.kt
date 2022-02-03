@@ -22,6 +22,11 @@ class CollectionAdapter(
         }
     }
 
+    override fun submitList(list: MutableList<Category>?) {
+        super.submitList(list)
+        // todo добавить пробегание по процентам
+    }
+
     private fun findPosByName(catName: String): Int? {
         var pos: Int? = null
         for (i in 0 until currentList.size) {

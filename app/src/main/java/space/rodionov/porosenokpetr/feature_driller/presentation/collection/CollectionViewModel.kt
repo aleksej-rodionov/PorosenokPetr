@@ -10,11 +10,13 @@ import space.rodionov.porosenokpetr.feature_driller.domain.models.Category
 import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.MakeCategoryActiveUseCase
 import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.ObserveAllActiveCatsNamesUseCase
 import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.ObserveAllCategoriesUseCase
+import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.ObserveAllCatsWithWordsUseCase
 import javax.inject.Inject
 
 @HiltViewModel
 class CollectionViewModel @Inject constructor(
-    private val observeAllCategories: ObserveAllCategoriesUseCase,
+//    private val observeAllCategories: ObserveAllCategoriesUseCase,
+    private val observeAllCatsWithWordsUseCase: ObserveAllCatsWithWordsUseCase,
     private val makeCategoryActiveUseCase: MakeCategoryActiveUseCase,
     private val observeAllActiveCatsNamesUseCase: ObserveAllActiveCatsNamesUseCase,
     private val state: SavedStateHandle
@@ -25,7 +27,7 @@ class CollectionViewModel @Inject constructor(
             state.set("activeCatsAmount", value)
         }
 
-    private val _categories = observeAllCategories.invoke()
+    private val _categories = observeAllCatsWithWordsUseCase.invoke()
     val categories = _categories.stateIn(viewModelScope, SharingStarted.Lazily, null)
 
     private val _activeCatsFlow = observeAllActiveCatsNamesUseCase.invoke()

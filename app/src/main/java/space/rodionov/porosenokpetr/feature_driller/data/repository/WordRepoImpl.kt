@@ -9,7 +9,9 @@ import space.rodionov.porosenokpetr.core.Resource
 import space.rodionov.porosenokpetr.Constants
 import space.rodionov.porosenokpetr.feature_driller.data.local.WordDao
 import space.rodionov.porosenokpetr.feature_driller.data.local.entity.CategoryWithWords
+import space.rodionov.porosenokpetr.feature_driller.data.local.entity.WordEntity
 import space.rodionov.porosenokpetr.feature_driller.data.storage.Storage
+import space.rodionov.porosenokpetr.feature_driller.domain.models.CatWithWords
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Category
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
 import space.rodionov.porosenokpetr.feature_driller.domain.repository.WordRepo
@@ -29,7 +31,10 @@ class WordRepoImpl(
 
     override suspend fun updateWordIsActive(word: Word, isActive: Boolean) {
         val wordEntity = dao.getWord(word.nativ, word.foreign, word.categoryName)
-        Log.d(Constants.TAG_PETR, "updateWordActivity: wordEntity.foreign = ${wordEntity.foreign}, newActiveValue = $isActive")
+        Log.d(
+            Constants.TAG_PETR,
+            "updateWordActivity: wordEntity.foreign = ${wordEntity.foreign}, newActiveValue = $isActive"
+        )
         dao.updateWord(wordEntity.copy(isWordActive = isActive))
     }
 
@@ -37,13 +42,28 @@ class WordRepoImpl(
         return dao.getRandomWordFromActiveCats(activeCatsNames).toWord()
     }
 
+//    override fun observeActiveWordsByCat(catName: String): Flow<List<WordEntity>> {
+//        return dao.observeActiveWordsByCat(catName)
+//    }
+//
+//    override fun observeAllWordsByCat(catName: String): Flow<List<WordEntity>> {
+//        return dao.observeAllWordsByCat(catName)
+//    }
+
     override fun observeAllCategories(): Flow<List<Category>> =
         dao.observeAllCategories().map { cats ->
             cats.map { it.toCategory() }
         }
 
-    override fun observeAllCategoriesWithWords(): Flow<List<CategoryWithWords>> =
-        dao.observeAllCategoriesWithWords() // todo и как это имплементировать между слоями? Надо ли CatWithWordsEntity делать?
+    override fun observeAllCategoriesWithWords(): Flow<List<CatWithWords>> {
+       return dao.observeAllCategoriesWithWords().map { cwws ->
+            cwws.map {
+                val category = it.categoryEntity.toCategory()
+                val words = it.words.map { we -> we.toWord() }
+                CatWithWords(category, words)
+            }
+        }
+    }
 
     override suspend fun makeCategoryActive(catName: String, makeActive: Boolean) {
         val categoryEntity = dao.getCategoryByName(catName)

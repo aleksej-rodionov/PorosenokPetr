@@ -13,6 +13,10 @@ import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.databinding.FragmentCollectionBinding
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Category
 import space.rodionov.porosenokpetr.feature_driller.presentation.base.BaseFragment
+import androidx.recyclerview.widget.DividerItemDecoration
+
+
+
 
 @AndroidEntryPoint
 class CollectionFragment : BaseFragment(
@@ -46,6 +50,7 @@ class CollectionFragment : BaseFragment(
             rvCats.apply {
                 adapter = collectAdapter
                 setHasFixedSize(true)
+                addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
             }
 
             tvSearch.setOnClickListener {
@@ -63,8 +68,12 @@ class CollectionFragment : BaseFragment(
     private fun initViewModel() {
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             vmCollection.categories.collectLatest {
-                val cats = it ?: return@collectLatest
+                val cwws = it?.toMutableList() ?: return@collectLatest
+                val cats = cwws.map { cww ->
+                    cww.category
+                }.toMutableList()
                 collectAdapter.submitList(cats)
+                //todo лучше чтобы адаптер брал CWW а не просто Category
             }
         }
 
