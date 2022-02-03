@@ -50,7 +50,6 @@ class CollectionAdapter(
             binding.apply {
                 tvCatName.text = cww.category.name
                 switchCat.setOnCheckedChangeListener(null)
-//                switchCat.text = root.context.getString(R.string.percentage, cww.words.countPercentage().toString())
                 switchCat.text = "${cww.words.countPercentage().toString()} %"
                 switchCat.isChecked = cww.category.isCategoryActive
                 switchCat.setOnCheckedChangeListener { _, isChecked ->

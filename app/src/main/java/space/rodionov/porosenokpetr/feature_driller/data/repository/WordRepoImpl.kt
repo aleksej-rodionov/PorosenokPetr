@@ -53,7 +53,7 @@ class WordRepoImpl(
         }
 
     override fun observeAllCategoriesWithWords(): Flow<List<CatWithWords>> {
-       return dao.observeAllCategoriesWithWords().map { cwws ->
+        return dao.observeAllCategoriesWithWords().map { cwws ->
             cwws.map {
                 val category = it.categoryEntity.toCategory()
                 val words = it.words.map { we -> we.toWord() }
