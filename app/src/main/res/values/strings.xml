@@ -20,5 +20,6 @@
     <string name="collection">Коллекция</string>
     <string name="search_word">Искать слово ..</string>
     <string name="search_among_all_words">Все слова</string>
+    <string name="percentage">%1$s \%</string>
 
 </resources>

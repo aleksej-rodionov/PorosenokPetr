@@ -1,6 +1,8 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation
 
 import androidx.recyclerview.widget.DiffUtil
+import space.rodionov.porosenokpetr.core.countPercentage
+import space.rodionov.porosenokpetr.feature_driller.domain.models.CatWithWords
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Category
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
 
@@ -20,4 +22,14 @@ class CatDiff : DiffUtil.ItemCallback<Category>() {
 
     override fun areContentsTheSame(oldItem: Category, newItem: Category) =
         oldItem.isCategoryActive == newItem.isCategoryActive && oldItem.name == newItem.name
+}
+
+class CatWithWordsDiff : DiffUtil.ItemCallback<CatWithWords>() {
+    override fun areItemsTheSame(oldItem: CatWithWords, newItem: CatWithWords) =
+        oldItem == newItem
+
+    override fun areContentsTheSame(oldItem: CatWithWords, newItem: CatWithWords) =
+        oldItem.category.isCategoryActive == newItem.category.isCategoryActive &&
+                oldItem.category.name == newItem.category.name &&
+                oldItem.words.countPercentage() == newItem.words.countPercentage()
 }

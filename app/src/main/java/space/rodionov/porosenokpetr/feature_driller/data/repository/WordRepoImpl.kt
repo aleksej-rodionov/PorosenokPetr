@@ -31,10 +31,7 @@ class WordRepoImpl(
 
     override suspend fun updateWordIsActive(word: Word, isActive: Boolean) {
         val wordEntity = dao.getWord(word.nativ, word.foreign, word.categoryName)
-        Log.d(
-            Constants.TAG_PETR,
-            "updateWordActivity: wordEntity.foreign = ${wordEntity.foreign}, newActiveValue = $isActive"
-        )
+//        Log.d(Constants.TAG_PETR, "updateWordActivity: wordEntity.foreign = ${wordEntity.foreign}, newActiveValue = $isActive")
         dao.updateWord(wordEntity.copy(isWordActive = isActive))
     }
 

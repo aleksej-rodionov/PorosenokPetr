@@ -69,10 +69,10 @@ class CollectionFragment : BaseFragment(
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             vmCollection.categories.collectLatest {
                 val cwws = it?.toMutableList() ?: return@collectLatest
-                val cats = cwws.map { cww ->
-                    cww.category
-                }.toMutableList()
-                collectAdapter.submitList(cats)
+//                val cats = cwws.map { cww ->
+//                    cww.category
+//                }.toMutableList()
+                collectAdapter.submitList(cwws)
                 //todo лучше чтобы адаптер брал CWW а не просто Category
             }
         }
