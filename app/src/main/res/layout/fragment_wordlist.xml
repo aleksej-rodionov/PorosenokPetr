@@ -50,10 +50,10 @@
             android:layout_marginTop="8dp"
             android:gravity="center"
             android:paddingHorizontal="12dp"
-            android:text="@string/search_among_all_words"
+            tools:text="@string/search_among_all_words"
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/btn_back"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatAutoCompleteTextView

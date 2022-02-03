@@ -1,6 +1,7 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation.collection
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -14,8 +15,7 @@ import space.rodionov.porosenokpetr.databinding.FragmentCollectionBinding
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Category
 import space.rodionov.porosenokpetr.feature_driller.presentation.base.BaseFragment
 import androidx.recyclerview.widget.DividerItemDecoration
-
-
+import space.rodionov.porosenokpetr.Constants.TAG_PETR
 
 
 @AndroidEntryPoint
@@ -37,7 +37,7 @@ class CollectionFragment : BaseFragment(
                 onSwitchActive(cat, isChecked)
             },
             onClickCat = { cat ->
-
+                vmCollection.onCategoryClick(cat)
             }
         )
     }
@@ -95,6 +95,7 @@ class CollectionFragment : BaseFragment(
                         } else {
                             action.category = null
                         }
+                        Log.d(TAG_PETR, "NAVIGATOR: action.category = ${action.category?.name}")
                         findNavController().navigate(action)
                     }
                     is CollectionViewModel.CollectionEvent.RefreshCatSwitch -> {
