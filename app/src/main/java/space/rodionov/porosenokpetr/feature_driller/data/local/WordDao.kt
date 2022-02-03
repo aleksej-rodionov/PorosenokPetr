@@ -36,6 +36,9 @@ interface WordDao {
     @Query("SELECT isCategoryActive FROM categoryentity WHERE name = :catName")
     suspend fun isCategoryActive(catName: String): Boolean
 
+    @Query("SELECT name FROM categoryentity WHERE isCategoryActive = 1")
+    fun observeAllActiveCatsNames(): Flow<List<String>>
+
 
     //===================STANDARD FUNCTIONS==============================
 

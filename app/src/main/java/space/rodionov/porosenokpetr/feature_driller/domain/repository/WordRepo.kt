@@ -26,6 +26,8 @@ interface WordRepo {
 
     suspend fun isCatActive(name: String): Boolean
 
+    fun observeAllActiveCatsNames(): Flow<List<String>>
+
     fun getMode(): Boolean
 
     fun setMode(isNight: Boolean)

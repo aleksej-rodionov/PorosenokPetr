@@ -64,6 +64,8 @@ class WordRepoImpl(
         return isActive
     }
 
+    override fun observeAllActiveCatsNames(): Flow<List<String>> = dao.observeAllActiveCatsNames()
+
     override fun getMode(): Boolean {
         return sharedPref.getMode()
     }

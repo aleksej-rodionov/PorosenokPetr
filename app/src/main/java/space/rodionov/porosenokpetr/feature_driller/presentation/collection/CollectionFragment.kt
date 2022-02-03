@@ -5,11 +5,13 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.MainActivity
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.databinding.FragmentCollectionBinding
+import space.rodionov.porosenokpetr.feature_driller.domain.models.Category
 import space.rodionov.porosenokpetr.feature_driller.presentation.base.BaseFragment
 
 @AndroidEntryPoint
@@ -21,10 +23,14 @@ class CollectionFragment : BaseFragment(
     private var _binding: FragmentCollectionBinding? = null
     private val binding get() = _binding
 
-    val collectAdapter : CollectionAdapter by lazy {
+//    private val binding: FragmentCollectionBinding by lazy {
+//        FragmentCollectionBinding.inflate(layoutInflater)
+//    }
+
+    private val collectAdapter: CollectionAdapter by lazy {
         CollectionAdapter(
             onSwitchCatActive = { cat, isChecked ->
-
+                onSwitchActive(cat, isChecked)
             },
             onClickCat = { cat ->
 
@@ -42,7 +48,10 @@ class CollectionFragment : BaseFragment(
                 setHasFixedSize(true)
             }
 
-            // todo listeners
+            tvSearch.setOnClickListener {
+                vmCollection.onSearchClick()
+            }
+
             btnBack.setOnClickListener {
                 (activity as MainActivity)?.onBackPressed()
             }
@@ -54,8 +63,15 @@ class CollectionFragment : BaseFragment(
     private fun initViewModel() {
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             vmCollection.categories.collectLatest {
-                val cats = it?: return@collectLatest
+                val cats = it ?: return@collectLatest
                 collectAdapter.submitList(cats)
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            vmCollection.activeCatsFlow.collectLatest {
+                val activeCats = it?: return@collectLatest
+                vmCollection.refreshActiveCatsAmount(activeCats.size)
             }
         }
 
@@ -63,11 +79,37 @@ class CollectionFragment : BaseFragment(
             vmCollection.eventFlow.collectLatest { event ->
                 when (event) {
                     is CollectionViewModel.CollectionEvent.NavigateToWordlistScreen -> {
-                        val action = CollectionFragmentDirections.actionCollectionFragmentToWordlistFragment()
-                        action.category = event.cat
+                        val action =
+                            CollectionFragmentDirections.actionCollectionFragmentToWordlistFragment()
+                        if (event.cat != null) {
+                            action.category = event.cat
+                        } else {
+                            action.category = null
+                        }
                         findNavController().navigate(action)
                     }
+                    is CollectionViewModel.CollectionEvent.RefreshCatSwitch -> {
+                        collectAdapter.refreshCatSwitchState(event.cat)
+                    }
+                    is CollectionViewModel.CollectionEvent.ShowSnackbar -> {
+                        binding?.root?.let {
+                            Snackbar.make(it, event.msg, Snackbar.LENGTH_LONG).show()
+                        }
+                    }
                 }
+            }
+        }
+    }
+
+    private fun onSwitchActive(cat: Category, isChecked: Boolean) {
+        if (isChecked) {
+            vmCollection.activateCategory(cat.name)
+        } else {
+            if (vmCollection.howManyActiveCats() < 2) {
+                vmCollection.updateCatSwitchState(cat)
+                vmCollection.shoeSnackbar(getString(R.string.cannot_turn_all_cats_off))
+            } else {
+                vmCollection.inactivateCategory(cat.name)
             }
         }
     }

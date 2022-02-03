@@ -24,6 +24,12 @@ object DrillerModule {
 
     @Provides
     @Singleton
+    fun provideObserveAllActiveCatsNamesUseCase(repo: WordRepo): ObserveAllActiveCatsNamesUseCase {
+        return ObserveAllActiveCatsNamesUseCase(repo)
+    }
+
+    @Provides
+    @Singleton
     fun provideGetRandomWordUseCase(repo: WordRepo): GetRandomWordUseCase {
         return GetRandomWordUseCase(repo)
     }

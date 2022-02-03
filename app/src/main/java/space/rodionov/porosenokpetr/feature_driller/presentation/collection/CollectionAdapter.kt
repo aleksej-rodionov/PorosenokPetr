@@ -1,9 +1,11 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation.collection
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import space.rodionov.porosenokpetr.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.databinding.ItemCategoryBinding
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Category
 import space.rodionov.porosenokpetr.feature_driller.presentation.CatDiff
@@ -12,6 +14,24 @@ class CollectionAdapter(
     private val onSwitchCatActive: (Category, Boolean) -> Unit = { _, _ -> },
     private val onClickCat: (Category) -> Unit = { _ -> }
 ) : ListAdapter<Category, CollectionAdapter.CollectionViewHolder>(CatDiff()) {
+
+    fun refreshCatSwitchState(catToRefresh: Category) {
+        val pos = findPosByName(catToRefresh.name)
+        pos?.let {
+            notifyItemChanged(it)
+        }
+    }
+
+    private fun findPosByName(catName: String): Int? {
+        var pos: Int? = null
+        for (i in 0 until currentList.size) {
+            if (getItem(i).name == catName) {
+                pos = i
+            }
+        }
+        Log.d(TAG_PETR, "findPosByName: position to refresh = $pos")
+        return pos
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CollectionViewHolder {
         val binding =
