@@ -43,7 +43,7 @@ class CollectionFragment : BaseFragment(
             }
 
             // todo listeners
-            btnStudy.setOnClickListener {
+            btnBack.setOnClickListener {
                 (activity as MainActivity)?.onBackPressed()
             }
         }

@@ -27,6 +27,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:textColor="@color/gray600"
         tools:text="66%"
+        android:thumb="@drawable/switch_selector"
+        app:track="@drawable/switch_track"
         android:textSize="18sp"
         app:switchPadding="16dp"
         app:layout_constraintEnd_toEndOf="parent"

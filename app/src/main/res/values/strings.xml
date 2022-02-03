@@ -19,6 +19,6 @@
 
     <string name="collection">Коллекция</string>
     <string name="search_word">Искать слово ..</string>
-    <string name="search_among_all_words">Поиск среди всех слов</string>
+    <string name="search_among_all_words">Все слова</string>
 
 </resources>
