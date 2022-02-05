@@ -24,8 +24,18 @@ interface WordDao {
     @Query("SELECT * FROM wordentity WHERE categoryName = :catName")
     fun observeAllWordsByCat(catName: String) : Flow<List<WordEntity>>
 
+    fun observeWords(catName: String, searchQuery: String) : Flow<List<WordEntity>> =
+        if (catName.isBlank()) {
+            observeWordsByQuery(searchQuery)
+        } else {
+            observeWordsByCatAndQuery(catName, searchQuery)
+        }
+
     @Query("SELECT * FROM wordentity WHERE categoryName = :catName AND (nativ LIKE '%' || :searchQuery || '%' OR `foreign` LIKE '%' || :searchQuery || '%') ORDER BY `foreign` ASC")
-    fun getWordsByCatAndQuery(catName: String, searchQuery: String) : Flow<List<WordEntity>>
+    fun observeWordsByCatAndQuery(catName: String, searchQuery: String) : Flow<List<WordEntity>>
+
+    @Query("SELECT * FROM wordentity WHERE (nativ LIKE '%' || :searchQuery || '%' OR `foreign` LIKE '%' || :searchQuery || '%') ORDER BY `foreign` ASC")
+    fun observeWordsByQuery(searchQuery: String) : Flow<List<WordEntity>>
 
     @Query("SELECT * FROM categoryentity")
     fun observeAllCategories(): Flow<List<CategoryEntity>>

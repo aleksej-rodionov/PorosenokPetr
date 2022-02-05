@@ -1,11 +1,15 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation.wordlist
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import space.rodionov.porosenokpetr.Constants.EMPTY_STRING
+import space.rodionov.porosenokpetr.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.MainActivity
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.databinding.FragmentWordlistBinding
@@ -38,13 +42,18 @@ class WordlistFragment : Fragment(R.layout.fragment_wordlist) {
         vmWordlist.catToSearchIn.observe(viewLifecycleOwner) {
             binding?.apply {
                 if (it == null) tvTitle.text = getString(R.string.search_among_all_words)
+                vmWordlist.updateCatStorage(EMPTY_STRING)
                 val cat = it ?: return@observe
                 tvTitle.text = getString(R.string.search_in, cat.name)
+                vmWordlist.updateCatStorage(cat.name)
             }
         }
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            // OBSERVERS
+            vmWordlist.words.collectLatest {
+                val words = it ?: return@collectLatest
+                Log.d(TAG_PETR, "initViewModel: size = ${words.size} words")
+            }
         }
     }
 

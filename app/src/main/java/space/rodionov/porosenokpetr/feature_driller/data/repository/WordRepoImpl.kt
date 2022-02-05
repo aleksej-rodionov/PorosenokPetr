@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.map
 import space.rodionov.porosenokpetr.core.Resource
 import space.rodionov.porosenokpetr.feature_driller.data.local.WordDao
 import space.rodionov.porosenokpetr.feature_driller.data.local.entity.WordEntity
+import space.rodionov.porosenokpetr.feature_driller.data.storage.Datastore
 import space.rodionov.porosenokpetr.feature_driller.data.storage.Storage
 import space.rodionov.porosenokpetr.feature_driller.domain.models.CatWithWords
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Category
@@ -15,7 +16,8 @@ import space.rodionov.porosenokpetr.feature_driller.domain.repository.WordRepo
 
 class WordRepoImpl(
     private val dao: WordDao,
-    private val sharedPref: Storage
+    private val sharedPref: Storage,
+    private val datastore: Datastore
 ) : WordRepo {
 
     override fun getTenWords(): Flow<Resource<List<Word>>> = flow {
@@ -36,7 +38,12 @@ class WordRepoImpl(
         return dao.getRandomWordFromActiveCats(activeCatsNames).toWord()
     }
 
-    override fun wordsBySearchQuery(catName: String, searchQuery: String) = dao.getWordsByCatAndQuery(catName, searchQuery)
+    override fun wordsBySearchQuery(catName: String, searchQuery: String) =
+        dao.observeWords(catName, searchQuery).map { words ->
+            words.map {
+                it.toWord()
+            }
+        }
 
     override fun observeAllCategories(): Flow<List<Category>> =
         dao.observeAllCategories().map { cats ->
@@ -70,11 +77,9 @@ class WordRepoImpl(
 
     override fun observeAllActiveCatsNames(): Flow<List<String>> = dao.observeAllActiveCatsNames()
 
-    override fun getMode(): Boolean {
-        return sharedPref.getMode()
-    }
+    override fun getMode(): Boolean = sharedPref.getMode()
+    override fun setMode(isNight: Boolean) = sharedPref.setMode(isNight)
 
-    override fun setMode(isNight: Boolean) {
-        sharedPref.setMode(isNight)
-    }
+    override fun storageCatName(): Flow<String> = datastore.categoryFlow
+    override suspend fun updateStorageCat(catName: String) = datastore.updateCategoryChosen(catName)
 }
