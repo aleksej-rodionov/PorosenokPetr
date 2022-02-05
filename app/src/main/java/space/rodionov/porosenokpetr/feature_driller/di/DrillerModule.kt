@@ -24,6 +24,12 @@ object DrillerModule {
 
     @Provides
     @Singleton
+    fun provideObserveWordsSearchQueryUseCase(repo: WordRepo): ObserveWordsSearchQueryUseCase {
+        return ObserveWordsSearchQueryUseCase(repo)
+    }
+
+    @Provides
+    @Singleton
     fun provideObserveAllCatsWithWordsUseCase(repo: WordRepo): ObserveAllCatsWithWordsUseCase {
         return ObserveAllCatsWithWordsUseCase(repo)
     }

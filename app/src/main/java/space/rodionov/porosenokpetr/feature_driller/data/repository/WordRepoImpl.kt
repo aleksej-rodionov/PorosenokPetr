@@ -1,14 +1,11 @@
 package space.rodionov.porosenokpetr.feature_driller.data.repository
 
-import android.util.Log
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import space.rodionov.porosenokpetr.core.Resource
-import space.rodionov.porosenokpetr.Constants
 import space.rodionov.porosenokpetr.feature_driller.data.local.WordDao
-import space.rodionov.porosenokpetr.feature_driller.data.local.entity.CategoryWithWords
 import space.rodionov.porosenokpetr.feature_driller.data.local.entity.WordEntity
 import space.rodionov.porosenokpetr.feature_driller.data.storage.Storage
 import space.rodionov.porosenokpetr.feature_driller.domain.models.CatWithWords
@@ -39,13 +36,7 @@ class WordRepoImpl(
         return dao.getRandomWordFromActiveCats(activeCatsNames).toWord()
     }
 
-//    override fun observeActiveWordsByCat(catName: String): Flow<List<WordEntity>> {
-//        return dao.observeActiveWordsByCat(catName)
-//    }
-//
-//    override fun observeAllWordsByCat(catName: String): Flow<List<WordEntity>> {
-//        return dao.observeAllWordsByCat(catName)
-//    }
+    override fun wordsBySearchQuery(catName: String, searchQuery: String) = dao.getWordsByCatAndQuery(catName, searchQuery)
 
     override fun observeAllCategories(): Flow<List<Category>> =
         dao.observeAllCategories().map { cats ->
@@ -75,11 +66,7 @@ class WordRepoImpl(
         return dao.getAllCatNames()
     }
 
-    override suspend fun isCatActive(name: String): Boolean {
-        val isActive = dao.isCategoryActive(name)
-//        Log.d(TAG_PETR, "REPOSITORY isCatActive(): cat = $name, isActive = $isActive")
-        return isActive
-    }
+    override suspend fun isCatActive(name: String): Boolean = dao.isCategoryActive(name)
 
     override fun observeAllActiveCatsNames(): Flow<List<String>> = dao.observeAllActiveCatsNames()
 

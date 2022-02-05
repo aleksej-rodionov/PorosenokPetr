@@ -16,6 +16,8 @@ interface WordRepo {
 
     suspend fun getRandomWordFromActiveCats(activeCatsNames: List<String>) : Word
 
+    fun wordsBySearchQuery(catName: String, searchQuery: String) : Flow<List<WordEntity>>
+
 //    fun observeActiveWordsByCat(catName: String) : Flow<List<WordEntity>>
 //
 //    fun observeAllWordsByCat(catName: String) : Flow<List<WordEntity>>
