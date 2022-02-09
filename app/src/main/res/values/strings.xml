@@ -6,7 +6,7 @@
     <string name="usual_words">Обычные слова</string>
     <string name="usual_verbs">Обычные глаголы</string>
     <string name="phrasal_verbs">Фразовые глаголы</string>
-    <string name="phrases">Фразочки и речевые связки</string>
+    <string name="phrases">Речевые связки</string>
 
     <string name="item_count">В колоде %1$d слов</string>
     <string name="current_position">Текущая позиция: %1$d</string>

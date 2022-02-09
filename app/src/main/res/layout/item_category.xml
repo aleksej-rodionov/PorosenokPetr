@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:paddingVertical="8dp"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="wrap_content">
 
@@ -10,7 +11,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:padding="16dp"
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:maxLines="2"
         android:ellipsize="end"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -29,7 +30,7 @@
         tools:text="66%"
         android:thumb="@drawable/switch_selector"
         app:track="@drawable/switch_track"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:switchPadding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

@@ -1,6 +1,7 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation.wordlist
 
 import android.os.Bundle
+import android.speech.tts.TextToSpeech
 import android.util.Log
 import android.view.View
 import androidx.core.view.isVisible
@@ -16,6 +17,8 @@ import space.rodionov.porosenokpetr.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.MainActivity
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.databinding.FragmentWordlistBinding
+import java.lang.Exception
+import java.util.*
 
 @AndroidEntryPoint
 class WordlistFragment : Fragment(R.layout.fragment_wordlist) {
@@ -27,10 +30,10 @@ class WordlistFragment : Fragment(R.layout.fragment_wordlist) {
     private val wordlistAdapter: WordlistAdapter by lazy {
         WordlistAdapter(
             onClickLearned = {
-                // todo
+                // todo open bottomsheet
             },
             onSpeakWord = {
-                // todo
+                onSpeakWord(it)
             }
         )
     }
@@ -81,6 +84,24 @@ class WordlistFragment : Fragment(R.layout.fragment_wordlist) {
                 wordlistAdapter.submitList(words)
             }
         }
+    }
+
+    private val textToSpeech: TextToSpeech by lazy { // todo переменстить во вьюмодель надо?
+        TextToSpeech(requireContext()) { status ->
+            if (status == TextToSpeech.SUCCESS) {
+                try {
+                    textToSpeech.language = Locale.ENGLISH
+                } catch (e: Exception) {
+                    Log.d(TAG_PETR, "TTS: Exception: ${e.localizedMessage}")
+                }
+            } else {
+                Log.d(TAG_PETR, "TTS Language initialization failed")
+            }
+        }
+    }
+
+    private fun onSpeakWord(word: String) { // todo переменстить во вьюмодель надо?
+        textToSpeech.speak(word, TextToSpeech.QUEUE_FLUSH, null)
     }
 
     override fun onDestroyView() {
