@@ -17,6 +17,8 @@ import space.rodionov.porosenokpetr.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.MainActivity
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.databinding.FragmentWordlistBinding
+import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
+import space.rodionov.porosenokpetr.feature_driller.presentation.driller.FilterBottomSheet
 import java.lang.Exception
 import java.util.*
 
@@ -30,7 +32,7 @@ class WordlistFragment : Fragment(R.layout.fragment_wordlist) {
     private val wordlistAdapter: WordlistAdapter by lazy {
         WordlistAdapter(
             onClickLearned = {
-                // todo open bottomsheet
+                openWordBottomSheet(it)
             },
             onSpeakWord = {
                 onSpeakWord(it)
@@ -102,6 +104,18 @@ class WordlistFragment : Fragment(R.layout.fragment_wordlist) {
 
     private fun onSpeakWord(word: String) { // todo переменстить во вьюмодель надо?
         textToSpeech.speak(word, TextToSpeech.QUEUE_FLUSH, null)
+    }
+
+    private fun openWordBottomSheet(word: Word) {
+        vmWordlist.openWordBottomSheet(word)
+    }
+
+    private fun showWordBottomSheet() {
+        val wordBottomSheet = WordlistBottomSheet()
+        wordBottomSheet.show(
+            childFragmentManager,
+            WordlistBottomSheet.WORDLIST_BOTTOM_SHEET
+        )
     }
 
     override fun onDestroyView() {

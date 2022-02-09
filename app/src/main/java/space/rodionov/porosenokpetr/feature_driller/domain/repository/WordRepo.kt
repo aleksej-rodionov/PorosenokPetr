@@ -15,6 +15,7 @@ interface WordRepo {
 //    fun observeWords(query: String): Flow<Resource<List<Word>>>
 
     suspend fun updateWordIsActive(word: Word, isActive: Boolean)
+//    suspend fun updateIsWordActive(foreign: String, nativ: String, isActive: Boolean)
 
     suspend fun getRandomWordFromActiveCats(activeCatsNames: List<String>) : Word
 

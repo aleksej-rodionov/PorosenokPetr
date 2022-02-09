@@ -58,6 +58,8 @@ interface WordDao {
     @Query("SELECT name FROM categoryentity WHERE isCategoryActive = 1")
     fun observeAllActiveCatsNames(): Flow<List<String>>
 
+//    @Query("UPDATE wordentity SET isWordActive = :isActive WHERE `foreign` = :foreign AND (nativ = :nativ)")
+//    suspend fun updateIsWordActive(foreign: String, nativ: String, isActive: Boolean)
 
     //===================STANDARD FUNCTIONS==============================
 

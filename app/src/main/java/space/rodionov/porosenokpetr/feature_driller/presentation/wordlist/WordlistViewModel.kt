@@ -13,9 +13,12 @@ import kotlinx.coroutines.launch
 import space.rodionov.porosenokpetr.Constants.EMPTY_STRING
 import space.rodionov.porosenokpetr.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Category
+import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
 import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.CatNameFromStorageUseCase
 import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.ObserveWordsSearchQueryUseCase
 import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.UpdateCatNameStorageUseCase
+import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.UpdateWordIsActiveUseCase
+import space.rodionov.porosenokpetr.feature_driller.presentation.driller.DrillerViewModel
 import javax.inject.Inject
 
 @HiltViewModel
@@ -23,15 +26,25 @@ class WordlistViewModel @Inject constructor(
     private val catNameFromStorageUseCase: CatNameFromStorageUseCase,
     private val updateCatNameStorageUseCase: UpdateCatNameStorageUseCase,
     private val observeWordsSearchQueryUseCase: ObserveWordsSearchQueryUseCase,
+    private val updateWordIsActiveUseCase: UpdateWordIsActiveUseCase,
     private val state: SavedStateHandle
 ) : ViewModel() {
+    var wordInDialog = state.get<Word>("wordInDialog") ?: null
+        set(value) {
+            field = value
+            state.set("wordInDialog", value)
+        }
+
     var catToSearchIn = state.getLiveData<Category>("category", null)
     val catNameFlow = catNameFromStorageUseCase.invoke()
 
     val searchQuery = state.getLiveData("searchQuery", "")
-    fun triggerSearchQuery(): Flow<String> = flow {
-        val query = searchQuery.value ?: EMPTY_STRING
-        emit(query)
+
+    private val _eventFlow = MutableSharedFlow<WordlistViewModel.WordlistEvent>()
+    val eventFlow = _eventFlow.asSharedFlow()
+
+    sealed class WordlistEvent {
+        data class OpenWordBottomSheet(val word: Word) : WordlistEvent()
     }
 
     private val wordsFlow = combine(
@@ -58,6 +71,11 @@ class WordlistViewModel @Inject constructor(
 
     fun updateCatStorage(catName: String) = viewModelScope.launch {
         updateCatNameStorageUseCase.invoke(catName)
+    }
+
+    fun openWordBottomSheet(word: Word) = viewModelScope.launch {
+        _eventFlow.emit(WordlistEvent.OpenWordBottomSheet(word))
+        wordInDialog = word
     }
 }
 
