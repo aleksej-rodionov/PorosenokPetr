@@ -8,6 +8,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.DividerItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.Constants.EMPTY_STRING
@@ -23,13 +24,26 @@ class WordlistFragment : Fragment(R.layout.fragment_wordlist) {
     private var _binding: FragmentWordlistBinding? = null
     val binding get() = _binding
 
+    private val wordlistAdapter: WordlistAdapter by lazy {
+        WordlistAdapter(
+            onClickLearned = {
+                // todo
+            },
+            onSpeakWord = {
+                // todo
+            }
+        )
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentWordlistBinding.bind(view)
 
         binding?.apply {
             rvWords.apply {
-
+                adapter = wordlistAdapter
+                setHasFixedSize(true)
+                addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
             }
             ivClearText.setOnClickListener {
                 etSearch.text.clear()
@@ -64,6 +78,7 @@ class WordlistFragment : Fragment(R.layout.fragment_wordlist) {
             vmWordlist.words.collectLatest {
                 val words = it ?: return@collectLatest
                 Log.d(TAG_PETR, "initViewModel: size = ${words.size} words")
+                wordlistAdapter.submitList(words)
             }
         }
     }
