@@ -3,6 +3,7 @@ package space.rodionov.porosenokpetr.feature_driller.presentation.wordlist
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -27,6 +28,10 @@ class WordlistFragment : Fragment(R.layout.fragment_wordlist) {
 
         binding?.apply {
             rvWords.apply {
+
+            }
+
+            etSearch.addTextChangedListener {
 
             }
 
