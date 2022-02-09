@@ -3,6 +3,7 @@ package space.rodionov.porosenokpetr.feature_driller.presentation.wordlist
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -30,9 +31,14 @@ class WordlistFragment : Fragment(R.layout.fragment_wordlist) {
             rvWords.apply {
 
             }
-
+            ivClearText.setOnClickListener {
+                etSearch.text.clear()
+            }
+            etSearch.requestFocus()
             etSearch.addTextChangedListener {
+                ivClearText.isVisible = !it.toString().isEmpty()
 
+                vmWordlist.onSearch(it.toString())
             }
 
             btnBack.setOnClickListener {

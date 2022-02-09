@@ -12,6 +12,8 @@ interface WordRepo {
 
     fun getTenWords(): Flow<Resource<List<Word>>>
 
+//    fun observeWords(query: String): Flow<Resource<List<Word>>>
+
     suspend fun updateWordIsActive(word: Word, isActive: Boolean)
 
     suspend fun getRandomWordFromActiveCats(activeCatsNames: List<String>) : Word
