@@ -1,9 +1,11 @@
 package space.rodionov.porosenokpetr.feature_driller.data.repository
 
+import android.util.Log
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
+import space.rodionov.porosenokpetr.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.core.Resource
 import space.rodionov.porosenokpetr.feature_driller.data.local.WordDao
 import space.rodionov.porosenokpetr.feature_driller.data.local.entity.WordEntity
@@ -30,8 +32,30 @@ class WordRepoImpl(
 
     override suspend fun updateWordIsActive(word: Word, isActive: Boolean) {
         val wordEntity = dao.getWord(word.nativ, word.foreign, word.categoryName)
-//        Log.d(Constants.TAG_PETR, "updateWordActivity: wordEntity.foreign = ${wordEntity.foreign}, newActiveValue = $isActive")
-        dao.updateWord(wordEntity.copy(isWordActive = isActive))
+        wordEntity.let {
+            Log.d(TAG_PETR, "updateWordIsActive: word found and changed")
+            dao.updateWord(it.copy(isWordActive = isActive))
+        }
+    }
+
+    override suspend fun updateIsWordActive(nativ: String, foreign: String, catName: String, isActive: Boolean) {
+        val wordEntity = dao.getWord(nativ, foreign, catName)
+        wordEntity.let {
+            Log.d(TAG_PETR, "updateWordIsActive: word found and changed")
+            dao.updateWord(it.copy(isWordActive = isActive))
+        }
+    }
+
+    override fun observeWord(
+        nativ: String,
+        foreign: String,
+        categoryName: String
+    ): Flow<Word> {
+        return dao.observeWord(nativ, foreign, categoryName).map {
+            it.let {we->
+                we.toWord()
+            }
+        }
     }
 
     override suspend fun getRandomWordFromActiveCats(activeCatsNames: List<String>): Word {

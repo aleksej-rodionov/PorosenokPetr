@@ -86,6 +86,16 @@ class WordlistFragment : Fragment(R.layout.fragment_wordlist) {
                 wordlistAdapter.submitList(words)
             }
         }
+
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            vmWordlist.eventFlow.collectLatest { event ->
+                when (event) {
+                    is WordlistViewModel.WordlistEvent.OpenWordBottomSheet -> {
+                        showWordBottomSheet(event.word)
+                    }
+                }
+            }
+        }
     }
 
     private val textToSpeech: TextToSpeech by lazy { // todo переменстить во вьюмодель надо?
@@ -110,8 +120,14 @@ class WordlistFragment : Fragment(R.layout.fragment_wordlist) {
         vmWordlist.openWordBottomSheet(word)
     }
 
-    private fun showWordBottomSheet() {
+    private fun showWordBottomSheet(word: Word) {
+        val args = Bundle()
+        args.putString("nativ", word.nativ)
+        args.putString("foreign", word.foreign)
+        args.putString("categoryName", word.categoryName)
+        
         val wordBottomSheet = WordlistBottomSheet()
+        wordBottomSheet.arguments = args
         wordBottomSheet.show(
             childFragmentManager,
             WordlistBottomSheet.WORDLIST_BOTTOM_SHEET

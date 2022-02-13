@@ -14,10 +14,7 @@ import space.rodionov.porosenokpetr.Constants.EMPTY_STRING
 import space.rodionov.porosenokpetr.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Category
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
-import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.CatNameFromStorageUseCase
-import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.ObserveWordsSearchQueryUseCase
-import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.UpdateCatNameStorageUseCase
-import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.UpdateWordIsActiveUseCase
+import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.*
 import space.rodionov.porosenokpetr.feature_driller.presentation.driller.DrillerViewModel
 import javax.inject.Inject
 
@@ -26,21 +23,36 @@ class WordlistViewModel @Inject constructor(
     private val catNameFromStorageUseCase: CatNameFromStorageUseCase,
     private val updateCatNameStorageUseCase: UpdateCatNameStorageUseCase,
     private val observeWordsSearchQueryUseCase: ObserveWordsSearchQueryUseCase,
+    private val observeWordUseCase: ObserveWordUseCase,
     private val updateWordIsActiveUseCase: UpdateWordIsActiveUseCase,
+    private val updateIsWordActiveUseCase: UpdateIsWordActiveUseCase,
     private val state: SavedStateHandle
 ) : ViewModel() {
-    var wordInDialog = state.get<Word>("wordInDialog") ?: null
-        set(value) {
-            field = value
-            state.set("wordInDialog", value)
-        }
+//    var wordLivedata = state.getLiveData<Word?>("wordLivedata", null)
+    var nativLivedata = state.getLiveData<String>("nativLivedata", null)
+    var foreignLivedata = state.getLiveData<String>("foreignLivedata", null)
+    var catNameLivedata = state.getLiveData<String?>("catNameLivedata", null)
+
+    private val _word = combine(
+        nativLivedata.asFlow(),
+        foreignLivedata.asFlow(),
+        catNameLivedata.asFlow()
+    ) { nativ, foreign, catName ->
+        Triple(nativ, foreign, catName)
+    }.flatMapLatest { (nativ, foreign, catName) ->
+        observeWordUseCase.invoke(nativ, foreign, catName)
+    }
+    val word = _word.stateIn(viewModelScope, SharingStarted.Lazily, null)
+
+//    private val _word = observeWordUseCase.invoke(wordInDialog.value)
+//    val word = _word.stateIn(viewModelScope, SharingStarted.Lazily, null)
 
     var catToSearchIn = state.getLiveData<Category>("category", null)
     val catNameFlow = catNameFromStorageUseCase.invoke()
 
     val searchQuery = state.getLiveData("searchQuery", "")
 
-    private val _eventFlow = MutableSharedFlow<WordlistViewModel.WordlistEvent>()
+    private val _eventFlow = MutableSharedFlow<WordlistEvent>()
     val eventFlow = _eventFlow.asSharedFlow()
 
     sealed class WordlistEvent {
@@ -74,8 +86,28 @@ class WordlistViewModel @Inject constructor(
     }
 
     fun openWordBottomSheet(word: Word) = viewModelScope.launch {
+//        wordInDialog.value = word
         _eventFlow.emit(WordlistEvent.OpenWordBottomSheet(word))
-        wordInDialog = word
+    }
+
+    fun activateWord() = viewModelScope.launch {
+        nativLivedata.value?.let { nativ ->
+            foreignLivedata.value?.let { foreign ->
+                catNameLivedata.value?.let { catName ->
+                    updateIsWordActiveUseCase.invoke(nativ, foreign, catName, true)
+                }
+            }
+        }
+    }
+
+    fun inactivateWord() = viewModelScope.launch {
+        nativLivedata.value?.let { nativ ->
+            foreignLivedata.value?.let { foreign ->
+                catNameLivedata.value?.let { catName ->
+                    updateIsWordActiveUseCase.invoke(nativ, foreign, catName, false)
+                }
+            }
+        }
     }
 }
 

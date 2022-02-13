@@ -27,6 +27,6 @@
     <string name="word_in_dialog">%1$s - %2$s</string>
     <string name="word_learned">Слово выучено</string>
     <string name="word_not_learned">Слово не выучено</string>
-    <string name="word_description">Слово %1$s.\nВы можете пометить слово как выученное, и оно больше не будет встречаться в колоде.\nЕсли пометите слово как НЕвыученное, оно будет попадаться в колоде.</string>
+    <string name="word_description">%1$s.\nВы можете пометить слово как выученное, и оно больше не будет встречаться в колоде.\nЕсли пометите слово как НЕвыученное, оно будет попадаться в колоде.</string>
 
 </resources>

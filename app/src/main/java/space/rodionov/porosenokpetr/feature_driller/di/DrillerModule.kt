@@ -25,6 +25,18 @@ object DrillerModule {
 
     @Provides
     @Singleton
+    fun provideUpdateIsWordActiveUseCase(repo: WordRepo): UpdateIsWordActiveUseCase {
+        return UpdateIsWordActiveUseCase(repo)
+    }
+
+    @Provides
+    @Singleton
+    fun provideObserveWordUseCase(repo: WordRepo): ObserveWordUseCase {
+        return ObserveWordUseCase(repo)
+    }
+
+    @Provides
+    @Singleton
     fun provideUpdateCatNameStorageUseCase(repo: WordRepo): UpdateCatNameStorageUseCase {
         return UpdateCatNameStorageUseCase(repo)
     }
