@@ -1,9 +1,12 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation.wordlist
 
+import android.content.Context
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.util.Log
 import android.view.View
+import android.view.inputmethod.InputMethodManager
+import android.widget.AutoCompleteTextView
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
@@ -16,6 +19,7 @@ import space.rodionov.porosenokpetr.Constants.EMPTY_STRING
 import space.rodionov.porosenokpetr.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.MainActivity
 import space.rodionov.porosenokpetr.R
+import space.rodionov.porosenokpetr.core.showKeyboard
 import space.rodionov.porosenokpetr.databinding.FragmentWordlistBinding
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
 import space.rodionov.porosenokpetr.feature_driller.presentation.driller.FilterBottomSheet
@@ -53,7 +57,7 @@ class WordlistFragment : Fragment(R.layout.fragment_wordlist) {
             ivClearText.setOnClickListener {
                 etSearch.text.clear()
             }
-            etSearch.requestFocus()
+            etSearch.showKeyboard()
             etSearch.addTextChangedListener {
                 ivClearText.isVisible = !it.toString().isEmpty()
 

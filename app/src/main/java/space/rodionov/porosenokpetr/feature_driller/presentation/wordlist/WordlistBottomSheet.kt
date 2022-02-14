@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.Constants.TAG_PETR
@@ -57,6 +58,11 @@ class WordlistBottomSheet : BaseBottomSheetDialogFragment() {
         initModeObserver(binding.root, viewLifecycleOwner.lifecycleScope)
 
         binding.apply {
+
+//            val behavior = BottomSheetBehavior.from(bottomSheetTopLine)
+//            behavior.isFitToContents = false
+//            behavior.halfExpandedRatio = 0.6f
+
             this@WordlistBottomSheet.lifecycleScope.launchWhenStarted {
                 vmWordlist.word.collectLatest {
                     it?.let {w->
@@ -64,6 +70,7 @@ class WordlistBottomSheet : BaseBottomSheetDialogFragment() {
                     }
                     val word = it?: return@collectLatest
                     tvWord.text = resources.getString(R.string.word_in_dialog, word.foreign, word.nativ)
+                    tvCategory.text = word.categoryName
                     val learned =
                         if (word.isWordActive) getString(R.string.word_not_learned) else getString(R.string.word_learned)
                     tvDecription.text = resources.getString(R.string.word_description, learned)
@@ -74,6 +81,7 @@ class WordlistBottomSheet : BaseBottomSheetDialogFragment() {
                     }
                     switchLearned.setOnCheckedChangeListener(null)
                     switchLearned.isChecked = !word.isWordActive
+                    switchLearned.text = learned
                     switchLearned.setOnCheckedChangeListener { _, isChecked ->
                         if (isChecked) vmWordlist.inactivateWord() else vmWordlist.activateWord()
                     }

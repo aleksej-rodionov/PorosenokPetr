@@ -1,6 +1,9 @@
 package space.rodionov.porosenokpetr.core
 
+import android.content.Context
 import android.util.Log
+import android.view.inputmethod.InputMethodManager
+import android.widget.AutoCompleteTextView
 import space.rodionov.porosenokpetr.Constants
 import space.rodionov.porosenokpetr.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
@@ -27,4 +30,10 @@ fun List<Word>.countPercentage(): Int {
     val lch = learnedCount * 100.0f
     val percentage = (lch / totalCount).roundToInt()
     return percentage
+}
+
+fun AutoCompleteTextView.showKeyboard() {
+    this.requestFocus()
+    val inputMethodManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    inputMethodManager.showSoftInput(this, InputMethodManager.SHOW_IMPLICIT)
 }
