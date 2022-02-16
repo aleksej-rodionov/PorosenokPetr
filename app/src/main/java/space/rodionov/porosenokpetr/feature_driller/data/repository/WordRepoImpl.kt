@@ -101,8 +101,11 @@ class WordRepoImpl(
 
     override fun observeAllActiveCatsNames(): Flow<List<String>> = dao.observeAllActiveCatsNames()
 
-    override fun getMode(): Boolean = sharedPref.getMode()
-    override fun setMode(isNight: Boolean) = sharedPref.setMode(isNight)
+    override fun getMode(): Int = sharedPref.getMode()
+    override fun setMode(mode: Int) = sharedPref.setMode(mode)
+
+    override fun getFollowSystemMode(): Boolean = sharedPref.getFollowSystemMode()
+    override fun setFollowSystemMode(follow: Boolean) = sharedPref.setFollowSystemMode(follow)
 
     override fun storageCatName(): Flow<String> = datastore.categoryFlow
     override suspend fun updateStorageCat(catName: String) = datastore.updateCategoryChosen(catName)

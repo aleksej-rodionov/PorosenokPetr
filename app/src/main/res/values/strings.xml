@@ -28,5 +28,11 @@
     <string name="word_learned">Слово выучено</string>
     <string name="word_not_learned">Слово не выучено</string>
     <string name="word_description">%1$s.\nВы можете пометить слово как выученное, и оно больше не будет встречаться в колоде.\nЕсли пометите слово как НЕвыученное, оно будет попадаться в колоде.</string>
+    <string name="translation_direction">Направление перевода</string>
+    <string name="from_en_to_ru">С инглиша на русский</string>
+    <string name="from_ru_to_en">С русского на инглиш</string>
+    <string name="dark_mode">Тёмная тема</string>
+    <string name="follow_system_mode">Использовать тему телефона</string>
+    <string name="appearance">Внешний вид</string>
 
 </resources>

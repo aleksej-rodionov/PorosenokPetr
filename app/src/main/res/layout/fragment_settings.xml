@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="12dp"
+    tools:context=".feature_driller.presentation.settings.SettingsFragment">
+
+<TextView
+        android:id="@+id/tv_transdir"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="6dp"
+        android:textColor="@color/gray900"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/translation_direction" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switch_transdir"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="6dp"
+        android:textColor="@drawable/switch_text"
+        android:textSize="16sp"
+        android:thumb="@drawable/switch_selector"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_transdir"
+        app:switchPadding="16dp"
+        app:track="@drawable/switch_track"
+        tools:text="@string/from_en_to_ru" />
+
+    <View
+        android:id="@+id/divider_transdir"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray200"
+        app:layout_constraintTop_toBottomOf="@id/switch_transdir"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_mode"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="6dp"
+        android:textColor="@color/gray900"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/divider_transdir"
+        tools:text="@string/appearance" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switch_mode"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="6dp"
+        android:textColor="@drawable/switch_text"
+        android:textSize="16sp"
+        android:thumb="@drawable/switch_selector"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_mode"
+        app:switchPadding="16dp"
+        app:track="@drawable/switch_track"
+        tools:text="@string/dark_mode" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switch_follow_system_mode"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="6dp"
+        android:textColor="@drawable/switch_text"
+        android:textSize="16sp"
+        android:thumb="@drawable/switch_selector"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/switch_mode"
+        app:switchPadding="16dp"
+        app:track="@drawable/switch_track"
+        tools:text="@string/follow_system_mode" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

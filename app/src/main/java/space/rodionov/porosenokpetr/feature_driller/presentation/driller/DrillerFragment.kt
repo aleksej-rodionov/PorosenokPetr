@@ -16,6 +16,7 @@ import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.databinding.FragmentDrillerBinding
 import space.rodionov.porosenokpetr.Constants
 import space.rodionov.porosenokpetr.Constants.TAG_PETR
+import space.rodionov.porosenokpetr.MainViewModel
 import space.rodionov.porosenokpetr.feature_driller.presentation.base.BaseFragment
 import java.lang.Exception
 import java.util.*

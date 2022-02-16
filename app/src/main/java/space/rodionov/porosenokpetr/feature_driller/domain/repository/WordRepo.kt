@@ -41,8 +41,11 @@ interface WordRepo {
 
     fun observeAllActiveCatsNames(): Flow<List<String>>
 
-    fun getMode(): Boolean
-    fun setMode(isNight: Boolean)
+    fun getMode(): Int
+    fun setMode(mode: Int)
+
+    fun getFollowSystemMode(): Boolean
+    fun setFollowSystemMode(follow: Boolean)
 
     fun storageCatName() : Flow<String>
     suspend fun updateStorageCat(catName: String)

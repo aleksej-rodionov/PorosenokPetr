@@ -22,12 +22,13 @@ import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.showKeyboard
 import space.rodionov.porosenokpetr.databinding.FragmentWordlistBinding
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
+import space.rodionov.porosenokpetr.feature_driller.presentation.base.BaseFragment
 import space.rodionov.porosenokpetr.feature_driller.presentation.driller.FilterBottomSheet
 import java.lang.Exception
 import java.util.*
 
 @AndroidEntryPoint
-class WordlistFragment : Fragment(R.layout.fragment_wordlist) {
+class WordlistFragment : BaseFragment(R.layout.fragment_wordlist) {
 
     private val vmWordlist: WordlistViewModel by viewModels()
     private var _binding: FragmentWordlistBinding? = null

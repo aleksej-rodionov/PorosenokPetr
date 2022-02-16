@@ -3,6 +3,7 @@ package space.rodionov.porosenokpetr.feature_driller.data.storage
 import android.app.Application
 import android.content.Context
 import android.util.Log
+import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.stringPreferencesKey
@@ -26,6 +27,7 @@ class Datastore /*@Inject constructor*/(
 
     private object PrefKeys {
         val CATEGORY = stringPreferencesKey("catName")
+        val TRANSLATION_DIRECTION = booleanPreferencesKey(("transDir"))
     }
 
     val categoryFlow = datastore.data
@@ -46,6 +48,28 @@ class Datastore /*@Inject constructor*/(
         datastore.edit { preferences ->
             preferences[PrefKeys.CATEGORY] = category
             Log.d(TAG_PETR, "updateCategoryChosen: $category")
+        }
+    }
+
+    //==========================TRANSLATION DIRECTION============================================
+    val translationDirectionFlow = datastore.data
+        .catch {exception ->
+            if (exception is IOException) {
+                Log.e(TAG_PETR, "Error reading preferences", exception)
+                emit(emptyPreferences())
+            } else {
+                throw exception
+            }
+        }
+        .map { prefs ->
+            val nativeToForeign = prefs[PrefKeys.TRANSLATION_DIRECTION] ?: false
+            nativeToForeign
+        }
+
+    suspend fun updatetranslationDirection(nativeToForeign: Boolean) {
+        datastore.edit { preferences ->
+            preferences[PrefKeys.TRANSLATION_DIRECTION] = nativeToForeign
+            Log.d(TAG_PETR, "updateCategoryChosen: $nativeToForeign")
         }
     }
 }

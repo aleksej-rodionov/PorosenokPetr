@@ -2,6 +2,9 @@ package space.rodionov.porosenokpetr.feature_driller.data.storage
 
 interface Storage {
 
-    fun setMode(isNight: Boolean)
-    fun getMode(): Boolean
+    fun getMode(): Int
+    fun setMode(mode: Int)
+
+    fun getFollowSystemMode(): Boolean
+    fun setFollowSystemMode(follow: Boolean)
 }
