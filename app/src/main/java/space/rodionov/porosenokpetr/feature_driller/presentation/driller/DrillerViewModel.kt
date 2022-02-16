@@ -64,6 +64,8 @@ class DrillerViewModel @Inject constructor(
         object ScrollToCurrentPosition : DrillerEvent()
         object ScrollToSavedPosition : DrillerEvent()
         object NavigateToCollectionScreen : DrillerEvent()
+        object NavigateToSettings : DrillerEvent()
+        object OpenFilterBottomSheet : DrillerEvent()
     }
 
     init {
@@ -239,6 +241,14 @@ class DrillerViewModel @Inject constructor(
 
     fun navigateToCollectionScreen() = viewModelScope.launch {
         _eventFlow.emit(DrillerEvent.NavigateToCollectionScreen)
+    }
+
+    fun navigateToSettings() = viewModelScope.launch {
+        _eventFlow.emit(DrillerEvent.NavigateToSettings)
+    }
+
+    fun openFilterBottomSheet() = viewModelScope.launch {
+        _eventFlow.emit(DrillerEvent.OpenFilterBottomSheet)
     }
 
     fun rememberPositionAfterSwitchFragment() {

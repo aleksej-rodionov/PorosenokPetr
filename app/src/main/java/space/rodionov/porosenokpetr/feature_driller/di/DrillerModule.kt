@@ -25,6 +25,18 @@ object DrillerModule {
 
     @Provides
     @Singleton
+    fun provideSaveTranslationDirectionUseCase(repo: WordRepo): SaveTranslationDirectionUseCase {
+        return SaveTranslationDirectionUseCase(repo)
+    }
+
+    @Provides
+    @Singleton
+    fun provideObserveTranslationDirectionUseCase(repo: WordRepo): ObserveTranslationDirectionUseCase {
+        return ObserveTranslationDirectionUseCase(repo)
+    }
+
+    @Provides
+    @Singleton
     fun provideUpdateIsWordActiveUseCase(repo: WordRepo): UpdateIsWordActiveUseCase {
         return UpdateIsWordActiveUseCase(repo)
     }

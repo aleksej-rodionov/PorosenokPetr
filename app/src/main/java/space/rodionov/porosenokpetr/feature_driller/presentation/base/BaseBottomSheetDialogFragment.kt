@@ -7,6 +7,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import space.rodionov.porosenokpetr.Constants.MODE_DARK
+import space.rodionov.porosenokpetr.Constants.MODE_LIGHT
 import space.rodionov.porosenokpetr.MainViewModel
 import space.rodionov.porosenokpetr.R
 
@@ -15,14 +17,17 @@ abstract class BaseBottomSheetDialogFragment : BottomSheetDialogFragment() {
 
         val vmMain : MainViewModel by viewModels()
 
-        override fun getTheme(): Int = vmMain.isNightMainViewModel.value?.let {
-            if (it) R.style.Theme_NavBarNight
-            else R.style.Theme_NavBarDay
-        } ?: R.style.Theme_NavBarDay
+        override fun getTheme(): Int = vmMain.mode.value?.let {
+            when (it) {
+                MODE_LIGHT -> R.style.Theme_NavBarDay
+                MODE_DARK -> R.style.Theme_NavBarNight
+                else -> R.style.Theme_NavBarDay
+            }
+        }
 
         fun initModeObserver(rootView: View, scope: CoroutineScope) {
             scope.launch {
-                vmMain.isNightMainViewModel.collectLatest {
+                vmMain.mode.collectLatest {
 //                    Log.d(TAG_PETR, "initModeObserver: isNight = $it")
                     rootView.let { view ->
                         view as ViewGroup

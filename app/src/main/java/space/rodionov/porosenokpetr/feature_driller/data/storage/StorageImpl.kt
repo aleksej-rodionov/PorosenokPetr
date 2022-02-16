@@ -2,7 +2,9 @@ package space.rodionov.porosenokpetr.feature_driller.data.storage
 
 import android.app.Application
 import android.content.Context
+import android.util.Log
 import space.rodionov.porosenokpetr.Constants
+import space.rodionov.porosenokpetr.Constants.TAG_PETR
 
 //@Singleton
 class StorageImpl /*@Inject constructor*/(
@@ -22,7 +24,9 @@ class StorageImpl /*@Inject constructor*/(
 
     // follow system mode================================
     override fun getFollowSystemMode(): Boolean {
-        return sharedPref.getBoolean(Constants.FOLLOW_SYSTEM_MODE, Constants.DEFAULT_FOLLOW_SYSTEM_MODE)
+        val follow = sharedPref.getBoolean(Constants.FOLLOW_SYSTEM_MODE, Constants.DEFAULT_FOLLOW_SYSTEM_MODE)
+//        Log.d(TAG_PETR, "getFollowSystemMode: in storage = $follow")
+        return follow
     }
     override fun setFollowSystemMode(follow: Boolean) {
         sharedPref.edit().putBoolean(Constants.FOLLOW_SYSTEM_MODE, follow).apply()

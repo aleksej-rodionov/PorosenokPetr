@@ -52,15 +52,15 @@ class DrillerFragment : BaseFragment(R.layout.fragment_driller), CardStackListen
             }
 
             btnFilter.setOnClickListener {
-                FilterBottomSheet().show(
-                    childFragmentManager,
-                    FilterBottomSheet.FILTER_BOTTOM_SHEET
-                )
-                // todo pass it through the viewModel and SharedFLow
+                vmDriller.openFilterBottomSheet()
             }
 
             btnCollection.setOnClickListener {
                 vmDriller.navigateToCollectionScreen()
+            }
+
+            btnSettings.setOnClickListener {
+                vmDriller.navigateToSettings()
             }
         }
     }
@@ -104,6 +104,16 @@ class DrillerFragment : BaseFragment(R.layout.fragment_driller), CardStackListen
                         vmDriller.rememberPositionAfterSwitchFragment()
                         val navAction = DrillerFragmentDirections.actionDrillerFragmentToCollectionFragment()
                         findNavController().navigate(navAction)
+                    }
+                    is DrillerViewModel.DrillerEvent.NavigateToSettings -> {
+                        val navAction = DrillerFragmentDirections.actionDrillerFragmentToSettingsFragment()
+                        findNavController().navigate(navAction)
+                    }
+                    is DrillerViewModel.DrillerEvent.OpenFilterBottomSheet -> {
+                        FilterBottomSheet().show(
+                            childFragmentManager,
+                            FilterBottomSheet.FILTER_BOTTOM_SHEET
+                        )
                     }
                 }
             }

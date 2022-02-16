@@ -35,4 +35,6 @@
     <string name="follow_system_mode">Использовать тему телефона</string>
     <string name="appearance">Внешний вид</string>
 
+    <string name="settings">Настройки</string>
+
 </resources>

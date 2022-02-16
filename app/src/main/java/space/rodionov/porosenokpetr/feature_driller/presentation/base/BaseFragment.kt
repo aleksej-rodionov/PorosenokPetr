@@ -27,7 +27,7 @@ abstract class BaseFragment(
         super.onViewCreated(view, savedInstanceState)
         Log.d(TAG_PETR, "onViewCreated: BaseFragment layoutId = $layoutId")
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            vmMain.isNightMainViewModel.collectLatest {
+            vmMain.mode.collectLatest {
 //                binding?.apply {
 ////                    (root as ViewGroup).redrawViewGroup(it)
 //                }

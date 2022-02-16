@@ -11,13 +11,22 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.updatePadding
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupActionBarWithNavController
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.Constants.MODE_DARK
 import space.rodionov.porosenokpetr.Constants.MODE_LIGHT
+import space.rodionov.porosenokpetr.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.databinding.ActivityMainBinding
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+
+//    private lateinit var navController: NavController
 
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
@@ -29,7 +38,11 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-
+//        val navHostFragment =
+//            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+//        navController = navHostFragment.findNavController()
+//
+//        setupActionBarWithNavController(navController)
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.navHostFragment) { v, insets ->
             v.updatePadding(
@@ -41,15 +54,30 @@ class MainActivity : AppCompatActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, true)
 
         setDefaultBarsColors(false) // todo это надо будет воткнуть в Обсервер темы
+
+        this.lifecycleScope.launchWhenStarted {
+            vmMain.mode.collectLatest {
+                Log.d(TAG_PETR, "mode.collect (MainActivity) = $it")
+            }
+        }
+
+        this.lifecycleScope.launchWhenStarted {
+            vmMain.followSystemMode.collectLatest {
+                Log.d(TAG_PETR, "follow.collect (MainActivity) = $it")
+                if (it) vmMain.saveMode(getSystemTheme())
+            }
+        }
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
-        if (vmMain.getFollowSystemMode()) vmMain.saveMode(getSystemTheme())
+        if (vmMain.getFollowSystemMode()) {
+            vmMain.saveMode(getSystemTheme())
+        }
     }
 
     //=================NIGHT MODE=====================
-    private fun getSystemTheme() : Int {
+    private fun getSystemTheme(): Int {
         return when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_YES -> MODE_DARK
             Configuration.UI_MODE_NIGHT_NO -> MODE_LIGHT
@@ -78,6 +106,10 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+//    override fun onSupportNavigateUp(): Boolean {
+//        return navController.navigateUp() || super.onSupportNavigateUp()
+//    }
 }
 
 

@@ -47,6 +47,9 @@ interface WordRepo {
     fun getFollowSystemMode(): Boolean
     fun setFollowSystemMode(follow: Boolean)
 
+    fun getTransDir() : Flow<Boolean>
+    suspend fun setTransDir(nativeToForeign: Boolean)
+
     fun storageCatName() : Flow<String>
     suspend fun updateStorageCat(catName: String)
 }

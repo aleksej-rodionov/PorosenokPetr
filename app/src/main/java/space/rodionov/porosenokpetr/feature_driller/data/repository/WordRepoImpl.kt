@@ -38,7 +38,12 @@ class WordRepoImpl(
         }
     }
 
-    override suspend fun updateIsWordActive(nativ: String, foreign: String, catName: String, isActive: Boolean) {
+    override suspend fun updateIsWordActive(
+        nativ: String,
+        foreign: String,
+        catName: String,
+        isActive: Boolean
+    ) {
         val wordEntity = dao.getWord(nativ, foreign, catName)
         wordEntity.let {
             Log.d(TAG_PETR, "updateWordIsActive: word found and changed")
@@ -52,7 +57,7 @@ class WordRepoImpl(
         categoryName: String
     ): Flow<Word> {
         return dao.observeWord(nativ, foreign, categoryName).map {
-            it.let {we->
+            it.let { we ->
                 we.toWord()
             }
         }
@@ -102,10 +107,29 @@ class WordRepoImpl(
     override fun observeAllActiveCatsNames(): Flow<List<String>> = dao.observeAllActiveCatsNames()
 
     override fun getMode(): Int = sharedPref.getMode()
-    override fun setMode(mode: Int) = sharedPref.setMode(mode)
+    override fun setMode(mode: Int) {
+        Log.d(TAG_PETR, "setMode in repo mode = $mode")
+        sharedPref.setMode(mode)
+    }
 
-    override fun getFollowSystemMode(): Boolean = sharedPref.getFollowSystemMode()
-    override fun setFollowSystemMode(follow: Boolean) = sharedPref.setFollowSystemMode(follow)
+    override fun getFollowSystemMode(): Boolean {
+        val follow = sharedPref.getFollowSystemMode()
+        Log.d(TAG_PETR, "getFollowSystemMode: in repo set $follow")
+        return follow
+    }
+
+    override fun setFollowSystemMode(follow: Boolean) {
+        Log.d(TAG_PETR, "setFollowSystemMode: in repo set $follow")
+        sharedPref.setFollowSystemMode(follow)
+    }
+
+    override fun getTransDir(): Flow<Boolean> {
+        return datastore.translationDirectionFlow
+    }
+
+    override suspend fun setTransDir(nativeToForeign: Boolean) {
+        datastore.updatetranslationDirection(nativeToForeign)
+    }
 
     override fun storageCatName(): Flow<String> = datastore.categoryFlow
     override suspend fun updateStorageCat(catName: String) = datastore.updateCategoryChosen(catName)
