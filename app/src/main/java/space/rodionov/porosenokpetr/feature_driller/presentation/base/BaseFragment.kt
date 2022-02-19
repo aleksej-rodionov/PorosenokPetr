@@ -5,9 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.viewbinding.ViewBinding
 import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.MainViewModel
@@ -20,7 +19,7 @@ abstract class BaseFragment(
 
     var isNightBaseMainFragment = false
 //    open val binding: ViewBinding? = null
-    val vmMain: MainViewModel by viewModels()
+    val vmMain: MainViewModel by activityViewModels() // todo сделать всетаки для активити и для Фрагментов отдельные вьюмодели (Single Responsibility Principle)
     open fun updateMode(isNight: Boolean) {}
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

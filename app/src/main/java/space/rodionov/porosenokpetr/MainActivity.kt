@@ -26,23 +26,14 @@ import space.rodionov.porosenokpetr.databinding.ActivityMainBinding
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-//    private lateinit var navController: NavController
-
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
     private val vmMain: MainViewModel by viewModels()
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val view = binding.root
         setContentView(view)
-
-//        val navHostFragment =
-//            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-//        navController = navHostFragment.findNavController()
-//
-//        setupActionBarWithNavController(navController)
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.navHostFragment) { v, insets ->
             v.updatePadding(

@@ -34,6 +34,7 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
             viewLifecycleOwner.lifecycleScope.launchWhenStarted {
                 vmMain.transDir.collectLatest {
                     val nativeToForeign = it ?: return@collectLatest
+                    Log.d(TAG_PETR, "transDir.collect (SettingsFragment) = $it")
                     val transDirText =
                         if (nativeToForeign) resources.getString(R.string.from_ru_to_en)
                         else resources.getString(R.string.from_en_to_ru)
@@ -61,7 +62,7 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
             viewLifecycleOwner.lifecycleScope.launchWhenStarted {
                 vmMain.followSystemMode.collectLatest {
                     val follow = it ?: return@collectLatest
-                    Log.d(TAG_PETR, "follow.collect in settingsFragment follow = $follow")
+                    Log.d(TAG_PETR, "follow.collect (SettingsFragment) follow = $follow")
 
                     if (follow) {
                         switchMode.setTextColor(resources.getColor(R.color.gray600))
