@@ -8,9 +8,7 @@ import kotlinx.coroutines.flow.map
 import space.rodionov.porosenokpetr.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.core.Resource
 import space.rodionov.porosenokpetr.feature_driller.data.local.WordDao
-import space.rodionov.porosenokpetr.feature_driller.data.local.entity.WordEntity
 import space.rodionov.porosenokpetr.feature_driller.data.storage.Datastore
-import space.rodionov.porosenokpetr.feature_driller.data.storage.Storage
 import space.rodionov.porosenokpetr.feature_driller.domain.models.CatWithWords
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Category
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
@@ -18,7 +16,6 @@ import space.rodionov.porosenokpetr.feature_driller.domain.repository.WordRepo
 
 class WordRepoImpl(
     private val dao: WordDao,
-    private val sharedPref: Storage,
     private val datastore: Datastore
 ) : WordRepo {
 
@@ -106,27 +103,14 @@ class WordRepoImpl(
 
     override fun observeAllActiveCatsNames(): Flow<List<String>> = dao.observeAllActiveCatsNames()
 
-    override fun getMode(): Int = sharedPref.getMode()
-    override fun setMode(mode: Int) {
-        Log.d(TAG_PETR, "setMode in repo mode = $mode")
-        sharedPref.setMode(mode)
-    }
+    override fun getMode(): Flow<Int> = datastore.modeFlow
+    override suspend fun setMode(mode: Int) = datastore.updateMode(mode)
 
-    override fun getFollowSystemMode(): Boolean {
-        val follow = sharedPref.getFollowSystemMode()
-        Log.d(TAG_PETR, "getFollowSystemMode: in repo set $follow")
-        return follow
-    }
+    override fun getFollowSystemMode(): Flow<Boolean> = datastore.followSystemModeFlow
+    override suspend fun setFollowSystemMode(follow: Boolean) = datastore.updateFollowSystemMode(follow)
 
-    override fun setFollowSystemMode(follow: Boolean) {
-        Log.d(TAG_PETR, "setFollowSystemMode: in repo set $follow")
-        sharedPref.setFollowSystemMode(follow)
-    }
 
-    override fun getTransDir(): Flow<Boolean> {
-        return datastore.translationDirectionFlow
-    }
-
+    override fun getTransDir(): Flow<Boolean> = datastore.translationDirectionFlow
     override suspend fun setTransDir(nativeToForeign: Boolean) {
         datastore.updatetranslationDirection(nativeToForeign)
     }

@@ -32,7 +32,7 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
         binding?.apply {
 
             viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-                vmMain.transDir.collectLatest {
+                vmSettings.transDir.collectLatest {
                     val nativeToForeign = it ?: return@collectLatest
                     Log.d(TAG_PETR, "transDir.collect (SettingsFragment) = $it")
                     val transDirText =
@@ -42,25 +42,25 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
                     switchTransdir.setOnCheckedChangeListener(null)
                     switchTransdir.isChecked = nativeToForeign
                     switchTransdir.setOnCheckedChangeListener { _, isChecked ->
-                        vmMain.updateTransDir(isChecked)
+                        vmSettings.updateTransDir(isChecked)
                     }
                 }
             }
 
             viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-                vmMain.mode.collectLatest {
+                vmSettings.mode.collectLatest {
                     val mode = it ?: return@collectLatest
                     Log.d(Constants.TAG_PETR, "mode.collect (SettingsFragment) = $it")
                     switchMode.setOnCheckedChangeListener(null)
                     switchMode.isChecked = mode == MODE_DARK
                     switchMode.setOnCheckedChangeListener { _, isChecked ->
-                        if (!vmMain.followSystemMode.value) vmMain.saveMode(if (isChecked) MODE_DARK else MODE_LIGHT)
+                        if (!vmSettings.followSystemMode.value) vmSettings.updateMode(if (isChecked) MODE_DARK else MODE_LIGHT)
                     }
                 }
             }
 
             viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-                vmMain.followSystemMode.collectLatest {
+                vmSettings.followSystemMode.collectLatest {
                     val follow = it ?: return@collectLatest
                     Log.d(TAG_PETR, "follow.collect (SettingsFragment) follow = $follow")
 
@@ -78,7 +78,7 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
                     switchFollowSystemMode.setOnCheckedChangeListener(null)
                     switchFollowSystemMode.isChecked = follow
                     switchFollowSystemMode.setOnCheckedChangeListener { _, isChecked ->
-                        vmMain.saveFollowSystemMode(isChecked)
+                        vmSettings.updateFollowSystemMode(isChecked)
                     }
                 }
             }

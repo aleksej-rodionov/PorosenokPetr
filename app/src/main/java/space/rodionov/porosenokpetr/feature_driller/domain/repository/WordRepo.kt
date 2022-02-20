@@ -41,11 +41,11 @@ interface WordRepo {
 
     fun observeAllActiveCatsNames(): Flow<List<String>>
 
-    fun getMode(): Int
-    fun setMode(mode: Int)
+    fun getMode(): Flow<Int>
+    suspend fun setMode(mode: Int)
 
-    fun getFollowSystemMode(): Boolean
-    fun setFollowSystemMode(follow: Boolean)
+    fun getFollowSystemMode(): Flow<Boolean>
+    suspend fun setFollowSystemMode(follow: Boolean)
 
     fun getTransDir() : Flow<Boolean>
     suspend fun setTransDir(nativeToForeign: Boolean)

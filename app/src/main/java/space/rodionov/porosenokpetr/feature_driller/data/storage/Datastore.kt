@@ -3,10 +3,7 @@ package space.rodionov.porosenokpetr.feature_driller.data.storage
 import android.app.Application
 import android.content.Context
 import android.util.Log
-import androidx.datastore.preferences.core.booleanPreferencesKey
-import androidx.datastore.preferences.core.edit
-import androidx.datastore.preferences.core.emptyPreferences
-import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.datastore.preferences.core.*
 import androidx.datastore.preferences.preferencesDataStore
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.catch
@@ -27,9 +24,12 @@ class Datastore /*@Inject constructor*/(
 
     private object PrefKeys {
         val CATEGORY = stringPreferencesKey("catName")
-        val TRANSLATION_DIRECTION = booleanPreferencesKey(("transDir"))
+        val TRANSLATION_DIRECTION = booleanPreferencesKey("transDir")
+        val MODE = intPreferencesKey("mode")
+        val FOLLOW_SYSTEM_MODE = booleanPreferencesKey("followSystemMode")
     }
 
+    //==========================CATEGORY OPENED IN WORD COLLECTION============================================
     val categoryFlow = datastore.data
         .catch {exception ->
             if (exception is IOException) {
@@ -72,4 +72,63 @@ class Datastore /*@Inject constructor*/(
             Log.d(TAG_PETR, "updateCategoryChosen: $nativeToForeign")
         }
     }
+
+    //==========================MODE============================================
+    val modeFlow = datastore.data
+        .catch {exception ->
+            if (exception is IOException) {
+                Log.e(TAG_PETR, "Error reading preferences", exception)
+                emit(emptyPreferences())
+            } else {
+                throw exception
+            }
+        }
+        .map { prefs ->
+            val mode = prefs[PrefKeys.MODE] ?: 0
+            mode
+        }
+
+    suspend fun updateMode(mode: Int) {
+        datastore.edit { prefs ->
+            prefs[PrefKeys.MODE] = mode
+        }
+    }
+
+    //===============================IS FOLLOWING SYSTEM MODE=======================
+    val followSystemModeFlow = datastore.data
+        .catch {exception ->
+            if (exception is IOException) {
+                Log.e(TAG_PETR, "Error reading preferences", exception)
+                emit(emptyPreferences())
+            } else {
+                throw exception
+            }
+        }
+        .map { prefs ->
+            val follow = prefs[PrefKeys.FOLLOW_SYSTEM_MODE] ?: false
+            follow
+        }
+
+    suspend fun updateFollowSystemMode(follow: Boolean) {
+        datastore.edit { it[PrefKeys.FOLLOW_SYSTEM_MODE] = follow }
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

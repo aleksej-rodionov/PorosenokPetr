@@ -55,15 +55,15 @@ class MainActivity : AppCompatActivity() {
         this.lifecycleScope.launchWhenStarted {
             vmMain.followSystemMode.collectLatest {
                 Log.d(TAG_PETR, "follow.collect (MainActivity) = $it")
-                if (it) vmMain.saveMode(getSystemTheme())
+                if (it) vmMain.updateMode(getSystemTheme())
             }
         }
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
-        if (vmMain.getFollowSystemMode()) {
-            vmMain.saveMode(getSystemTheme())
+        if (vmMain.followSystemMode.value) {
+            vmMain.updateMode(getSystemTheme())
         }
     }
 

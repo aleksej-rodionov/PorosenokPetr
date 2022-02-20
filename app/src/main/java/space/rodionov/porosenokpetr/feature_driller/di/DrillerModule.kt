@@ -12,8 +12,6 @@ import space.rodionov.porosenokpetr.Constants
 import space.rodionov.porosenokpetr.feature_driller.data.local.WordDatabase
 import space.rodionov.porosenokpetr.feature_driller.data.repository.WordRepoImpl
 import space.rodionov.porosenokpetr.feature_driller.data.storage.Datastore
-import space.rodionov.porosenokpetr.feature_driller.data.storage.Storage
-import space.rodionov.porosenokpetr.feature_driller.data.storage.StorageImpl
 import space.rodionov.porosenokpetr.feature_driller.domain.repository.WordRepo
 import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.*
 import javax.inject.Qualifier
@@ -22,6 +20,30 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object DrillerModule {
+
+    @Provides
+    @Singleton
+    fun provideGetModeUseCase(repo: WordRepo): ObserveModeUseCase {
+        return ObserveModeUseCase(repo)
+    }
+
+    @Provides
+    @Singleton
+    fun provideGetFollowSystemModeUseCase(repo: WordRepo): ObserveFollowSystemModeUseCase {
+        return ObserveFollowSystemModeUseCase(repo)
+    }
+
+    @Provides
+    @Singleton
+    fun provideSetModeUseCase(repo: WordRepo): SetModeUseCase {
+        return SetModeUseCase(repo)
+    }
+
+    @Provides
+    @Singleton
+    fun provideSetFollowSystemModeUseCase(repo: WordRepo): SetFollowSystemModeUseCase {
+        return SetFollowSystemModeUseCase(repo)
+    }
 
     @Provides
     @Singleton
@@ -133,20 +155,14 @@ object DrillerModule {
 
     @Provides
     @Singleton
-    fun provideRepo(db: WordDatabase, storage: Storage, datastore: Datastore): WordRepo {
-        return WordRepoImpl(db.dao, storage, datastore)
+    fun provideRepo(db: WordDatabase, datastore: Datastore): WordRepo {
+        return WordRepoImpl(db.dao, datastore)
     }
 
     @Provides
     @Singleton
     fun provideDatastore(app: Application): Datastore {
         return Datastore(app)
-    }
-
-    @Provides
-    @Singleton
-    fun provideStorage(app: Application): Storage {
-        return StorageImpl(app)
     }
 
     @Provides

@@ -2,6 +2,7 @@ package space.rodionov.porosenokpetr.feature_driller.presentation.base
 
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.coroutines.CoroutineScope
@@ -15,7 +16,7 @@ import space.rodionov.porosenokpetr.R
 abstract class BaseBottomSheetDialogFragment : BottomSheetDialogFragment() {
 
 
-        val vmMain : MainViewModel by viewModels()
+        private val vmMain : MainViewModel by viewModels()
 
         override fun getTheme(): Int = vmMain.mode.value?.let {
             when (it) {
@@ -23,7 +24,7 @@ abstract class BaseBottomSheetDialogFragment : BottomSheetDialogFragment() {
                 MODE_DARK -> R.style.Theme_NavBarNight
                 else -> R.style.Theme_NavBarDay
             }
-        }
+        } ?: R.style.Theme_NavBarDay
 
         fun initModeObserver(rootView: View, scope: CoroutineScope) {
             scope.launch {
