@@ -13,6 +13,7 @@ import space.rodionov.porosenokpetr.Constants
 import space.rodionov.porosenokpetr.Constants.MODE_DARK
 import space.rodionov.porosenokpetr.Constants.MODE_LIGHT
 import space.rodionov.porosenokpetr.Constants.TAG_PETR
+import space.rodionov.porosenokpetr.MainActivity
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.databinding.FragmentSettingsBinding
 import space.rodionov.porosenokpetr.feature_driller.presentation.base.BaseFragment
@@ -31,10 +32,13 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
 
         binding?.apply {
 
+            btnBack.setOnClickListener {
+                (activity as MainActivity).onBackPressed()
+            }
+
             viewLifecycleOwner.lifecycleScope.launchWhenStarted {
                 vmSettings.transDir.collectLatest {
                     val nativeToForeign = it ?: return@collectLatest
-                    Log.d(TAG_PETR, "transDir.collect (SettingsFragment) = $it")
                     val transDirText =
                         if (nativeToForeign) resources.getString(R.string.from_ru_to_en)
                         else resources.getString(R.string.from_en_to_ru)
@@ -50,7 +54,6 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
             viewLifecycleOwner.lifecycleScope.launchWhenStarted {
                 vmSettings.mode.collectLatest {
                     val mode = it ?: return@collectLatest
-                    Log.d(Constants.TAG_PETR, "mode.collect (SettingsFragment) = $it")
                     switchMode.setOnCheckedChangeListener(null)
                     switchMode.isChecked = mode == MODE_DARK
                     switchMode.setOnCheckedChangeListener { _, isChecked ->
@@ -62,7 +65,6 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
             viewLifecycleOwner.lifecycleScope.launchWhenStarted {
                 vmSettings.followSystemMode.collectLatest {
                     val follow = it ?: return@collectLatest
-                    Log.d(TAG_PETR, "follow.collect (SettingsFragment) follow = $follow")
 
                     if (follow) {
                         switchMode.setTextColor(resources.getColor(R.color.gray600))
@@ -70,7 +72,6 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
                         switchMode.isEnabled = false
                     } else {
                         switchMode.setTextColor(resources.getColor(R.color.gray600))
-//                        switchMode.setTextColor(colors[2]))
                         switchMode.thumbTintList = ColorStateList.valueOf(resources.getColor(R.color.white))
                         switchMode.isEnabled = true
                     }

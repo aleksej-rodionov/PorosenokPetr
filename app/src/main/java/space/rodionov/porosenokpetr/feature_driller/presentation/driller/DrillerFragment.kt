@@ -22,15 +22,16 @@ import java.lang.Exception
 import java.util.*
 
 @AndroidEntryPoint
-class DrillerFragment : BaseFragment(R.layout.fragment_driller), CardStackListener {
+class DrillerFragment : BaseFragment(R.layout.fragment_driller), CardStackListener, TextToSpeech.OnInitListener {
 
     private val vmDriller: DrillerViewModel by viewModels()
     private var _binding: FragmentDrillerBinding? = null
     private val binding get() = _binding
+    private var textToSpeech: TextToSpeech? = null
 
     private val drillerAdapter = DrillerAdapter(
         onSpeakWord = { word ->
-            onSpeakWord(word)
+            vmDriller.speakWord(word)
         }
     )
 
@@ -38,6 +39,8 @@ class DrillerFragment : BaseFragment(R.layout.fragment_driller), CardStackListen
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentDrillerBinding.bind(view)
         initViewModel()
+
+        textToSpeech = TextToSpeech(requireContext(), this)
 
         binding?.apply {
             cardStackView.apply {
@@ -86,6 +89,14 @@ class DrillerFragment : BaseFragment(R.layout.fragment_driller), CardStackListen
         }
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            vmDriller.transDir.collectLatest {
+                val transDir = it ?: return@collectLatest
+
+                drillerAdapter.updateTransDir(transDir)
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             vmDriller.eventFlow.collectLatest { event ->
                 when (event) {
                     is DrillerViewModel.DrillerEvent.ShowSnackbar -> {
@@ -114,6 +125,9 @@ class DrillerFragment : BaseFragment(R.layout.fragment_driller), CardStackListen
                             childFragmentManager,
                             FilterBottomSheet.FILTER_BOTTOM_SHEET
                         )
+                    }
+                    is DrillerViewModel.DrillerEvent.SpeakWord -> {
+                        onSpeakWord(event.word)
                     }
                 }
             }
@@ -150,28 +164,20 @@ class DrillerFragment : BaseFragment(R.layout.fragment_driller), CardStackListen
         return drillerLayoutManager
     }
 
-    private val textToSpeech: TextToSpeech by lazy {
-        TextToSpeech(requireContext()) { status ->
-            if (status == TextToSpeech.SUCCESS) {
-                try {
-                    textToSpeech.language = Locale.ENGLISH
-                } catch (e: Exception) {
-                    Log.d(TAG_PETR, "TTS: Exception: ${e.localizedMessage}")
-                }
-            } else {
-                Log.d(TAG_PETR, "TTS Language initialization failed")
+    override fun onInit(status: Int) {
+        if (status == TextToSpeech.SUCCESS) {
+            try {
+                textToSpeech?.language = Locale.ENGLISH
+            } catch (e: Exception) {
+                Log.d(TAG_PETR, "TTS: Exception: ${e.localizedMessage}")
             }
+        } else {
+            Log.d(TAG_PETR, "TTS: Language initialization failed")
         }
     }
 
     private fun onSpeakWord(word: String) {
-        textToSpeech.speak(word, TextToSpeech.QUEUE_FLUSH, null)
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-        vmDriller.rememberPositionInCaseOfDestroy()
+        textToSpeech?.speak(word, TextToSpeech.QUEUE_FLUSH, null)
     }
 
     override fun onCardDragging(direction: Direction?, ratio: Float) {
@@ -211,6 +217,18 @@ class DrillerFragment : BaseFragment(R.layout.fragment_driller), CardStackListen
         binding?.tvOnCardDisappeared?.text = getString(R.string.on_card_disappeared, position)
         if (position == drillerAdapter.itemCount - 1) binding?.btnNewRound?.visibility =
             View.VISIBLE
+    }
+
+
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+        vmDriller.rememberPositionInCaseOfDestroy()
+        textToSpeech?.let {
+            it.stop()
+            it.shutdown()
+        }
     }
 }
 

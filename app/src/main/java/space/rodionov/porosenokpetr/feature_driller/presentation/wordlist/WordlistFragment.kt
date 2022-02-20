@@ -28,11 +28,12 @@ import java.lang.Exception
 import java.util.*
 
 @AndroidEntryPoint
-class WordlistFragment : BaseFragment(R.layout.fragment_wordlist) {
+class WordlistFragment : BaseFragment(R.layout.fragment_wordlist), TextToSpeech.OnInitListener {
 
     private val vmWordlist: WordlistViewModel by viewModels()
     private var _binding: FragmentWordlistBinding? = null
     val binding get() = _binding
+    private var textToSpeech: TextToSpeech? = null
 
     private val wordlistAdapter: WordlistAdapter by lazy {
         WordlistAdapter(
@@ -40,7 +41,7 @@ class WordlistFragment : BaseFragment(R.layout.fragment_wordlist) {
                 openWordBottomSheet(it)
             },
             onSpeakWord = {
-                onSpeakWord(it)
+                vmWordlist.speakWord(it)
             }
         )
     }
@@ -48,6 +49,8 @@ class WordlistFragment : BaseFragment(R.layout.fragment_wordlist) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentWordlistBinding.bind(view)
+
+        textToSpeech = TextToSpeech(requireContext(), this)
 
         binding?.apply {
             rvWords.apply {
@@ -98,27 +101,28 @@ class WordlistFragment : BaseFragment(R.layout.fragment_wordlist) {
                     is WordlistViewModel.WordlistEvent.OpenWordBottomSheet -> {
                         showWordBottomSheet(event.word)
                     }
+                    is WordlistViewModel.WordlistEvent.SpeakWord -> {
+                        onSpeakWord(event.word)
+                    }
                 }
             }
         }
     }
 
-    private val textToSpeech: TextToSpeech by lazy { // todo переменстить во вьюмодель надо?
-        TextToSpeech(requireContext()) { status ->
-            if (status == TextToSpeech.SUCCESS) {
-                try {
-                    textToSpeech.language = Locale.ENGLISH
-                } catch (e: Exception) {
-                    Log.d(TAG_PETR, "TTS: Exception: ${e.localizedMessage}")
-                }
-            } else {
-                Log.d(TAG_PETR, "TTS Language initialization failed")
+    override fun onInit(status: Int) {
+        if (status == TextToSpeech.SUCCESS) {
+            try {
+                textToSpeech?.language = Locale.ENGLISH
+            } catch (e: Exception) {
+                Log.d(TAG_PETR, "TTS: Exception: ${e.localizedMessage}")
             }
+        } else {
+            Log.d(TAG_PETR, "TTS Language initialization failed")
         }
     }
 
     private fun onSpeakWord(word: String) { // todo переменстить во вьюмодель надо?
-        textToSpeech.speak(word, TextToSpeech.QUEUE_FLUSH, null)
+        textToSpeech?.speak(word, TextToSpeech.QUEUE_FLUSH, null)
     }
 
     private fun openWordBottomSheet(word: Word) {
@@ -142,5 +146,9 @@ class WordlistFragment : BaseFragment(R.layout.fragment_wordlist) {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        textToSpeech?.let {
+            it.stop()
+            it.shutdown()
+        }
     }
 }

@@ -1,10 +1,12 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation.driller
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import space.rodionov.porosenokpetr.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.databinding.ItemWordCardBinding
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
 import space.rodionov.porosenokpetr.feature_driller.presentation.WordDiff
@@ -41,7 +43,9 @@ class DrillerAdapter(
 
                 btnSpeak.setOnClickListener {
                     val position = adapterPosition
-                    if (position != RecyclerView.NO_POSITION) onSpeakItem(position)
+                    if (position != RecyclerView.NO_POSITION) {
+                        onSpeakItem(position)
+                    }
                 }
             }
         }

@@ -57,6 +57,7 @@ class WordlistViewModel @Inject constructor(
 
     sealed class WordlistEvent {
         data class OpenWordBottomSheet(val word: Word) : WordlistEvent()
+        data class SpeakWord(val word: String) :WordlistEvent()
     }
 
     private val wordsFlow = combine(
@@ -108,6 +109,10 @@ class WordlistViewModel @Inject constructor(
                 }
             }
         }
+    }
+
+    fun speakWord(word: String) = viewModelScope.launch {
+        _eventFlow.emit(WordlistEvent.SpeakWord(word))
     }
 }
 

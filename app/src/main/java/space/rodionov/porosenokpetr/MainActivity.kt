@@ -44,17 +44,18 @@ class MainActivity : AppCompatActivity() {
         }
         WindowCompat.setDecorFitsSystemWindows(window, true)
 
-        setDefaultBarsColors(false) // todo это надо будет воткнуть в Обсервер темы
+
 
         this.lifecycleScope.launchWhenStarted {
             vmMain.mode.collectLatest {
-                Log.d(TAG_PETR, "mode.collect (MainActivity) = $it")
+
+//                setDefaultBarsColors(false) // todo это надо будет воткнуть в Обсервер темы
+
             }
         }
 
         this.lifecycleScope.launchWhenStarted {
             vmMain.followSystemMode.collectLatest {
-                Log.d(TAG_PETR, "follow.collect (MainActivity) = $it")
                 if (it) vmMain.updateMode(getSystemTheme())
             }
         }
@@ -97,10 +98,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
-//    override fun onSupportNavigateUp(): Boolean {
-//        return navController.navigateUp() || super.onSupportNavigateUp()
-//    }
 }
 
 

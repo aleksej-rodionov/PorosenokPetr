@@ -24,6 +24,7 @@ class DrillerViewModel @Inject constructor(
     private val getAllCatsNamesUseCase: GetAllCatsNamesUseCase,
     private val isCategoryActive: IsCategoryActiveUseCase,
     private val getRandomWord: GetRandomWordUseCase,
+    private val observeTranslationDirectionUseCase: ObserveTranslationDirectionUseCase,
     private val state: SavedStateHandle
 ) : ViewModel() {
     var savedPosition = state.get<Int>("savedPos") ?: 0
@@ -43,6 +44,9 @@ class DrillerViewModel @Inject constructor(
             field = value
             state.set("memorizePosOnDestroy", value)
         }
+
+    private val _transDir = observeTranslationDirectionUseCase.invoke()
+    val transDir = _transDir.stateIn(viewModelScope, SharingStarted.Lazily, null)
 
     private val snapshotCatsInCaseUncheckAll = mutableListOf<String>()
     var rememberPositionAfterChangingStack = false
@@ -66,6 +70,7 @@ class DrillerViewModel @Inject constructor(
         object NavigateToCollectionScreen : DrillerEvent()
         object NavigateToSettings : DrillerEvent()
         object OpenFilterBottomSheet : DrillerEvent()
+        data class SpeakWord(val word: String) : DrillerEvent()
     }
 
     init {
@@ -259,6 +264,10 @@ class DrillerViewModel @Inject constructor(
     fun rememberPositionInCaseOfDestroy() {
         updateSavedPosition(currentPosition.value)
         rememberPositionAfterDestroy = true
+    }
+
+    fun speakWord(word: String) = viewModelScope.launch {
+        _eventFlow.emit(DrillerEvent.SpeakWord(word))
     }
 }
 
