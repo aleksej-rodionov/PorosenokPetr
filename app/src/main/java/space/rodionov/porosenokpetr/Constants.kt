@@ -3,6 +3,7 @@ package space.rodionov.porosenokpetr
 object Constants {
 
     const val TAG_PETR = "tag_petr"
+    const val TAG_MODE = "tag_mode"
 
     const val WORD_DB = "word_db"
 

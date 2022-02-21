@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.util.Log
 import android.view.View
+import android.view.ViewGroup
 import android.view.animation.LinearInterpolator
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
@@ -18,6 +19,7 @@ import space.rodionov.porosenokpetr.Constants
 import space.rodionov.porosenokpetr.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.MainViewModel
 import space.rodionov.porosenokpetr.feature_driller.presentation.base.BaseFragment
+import space.rodionov.porosenokpetr.util.redrawViewGroup
 import java.lang.Exception
 import java.util.*
 
@@ -130,6 +132,15 @@ class DrillerFragment : BaseFragment(R.layout.fragment_driller), CardStackListen
                         onSpeakWord(event.word)
                     }
                 }
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            vmDriller.mode.collectLatest {
+                val mode = it ?: return@collectLatest
+
+                (binding?.root as ViewGroup).redrawViewGroup(mode)
+                drillerAdapter.updateMode(mode)
             }
         }
 

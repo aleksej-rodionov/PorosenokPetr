@@ -4,12 +4,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import space.rodionov.porosenokpetr.Constants.MODE_LIGHT
 import space.rodionov.porosenokpetr.feature_driller.domain.models.BaseModel
 import space.rodionov.porosenokpetr.util.redrawViewGroup
 
 abstract class BaseViewHolder: RecyclerView.ViewHolder {
 
-    var isNightBaseViewHolder = false
+    var isNightBaseViewHolder = MODE_LIGHT
         set(value) {
             field = value
 //            theme = fetchTheme(value, itemView.resources)
@@ -31,9 +32,9 @@ abstract class BaseViewHolder: RecyclerView.ViewHolder {
         payloads: MutableList<Any>
     ) {}
 
-    open fun setMode(isNight: Boolean) {
-        isNightBaseViewHolder = isNight
+    open fun setMode(mode: Int) {
+        isNightBaseViewHolder = mode
 
-        if (itemView is ViewGroup) itemView.redrawViewGroup(isNight)
+        if (itemView is ViewGroup) itemView.redrawViewGroup(mode)
     }
 }

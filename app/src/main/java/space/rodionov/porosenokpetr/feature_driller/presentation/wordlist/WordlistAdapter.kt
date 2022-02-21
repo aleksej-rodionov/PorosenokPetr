@@ -8,11 +8,21 @@ import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.databinding.ItemWordHorizontalBinding
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
 import space.rodionov.porosenokpetr.feature_driller.presentation.WordDiff
+import space.rodionov.porosenokpetr.util.ModeForAdapter
 
 class WordlistAdapter(
     private val onClickLearned: (Word)-> Unit = {},
     private val onSpeakWord: (String) -> Unit = {}
-) : ListAdapter<Word, WordlistAdapter.WordlistViewHolder>(WordDiff()) {
+) : ListAdapter<Word, WordlistAdapter.WordlistViewHolder>(WordDiff()),
+ModeForAdapter {
+
+    companion object {
+        const val TAG_WORDLIST_ADAPTER = "wordListAdapter"
+    }
+
+    private var mode: Int = 0
+    override fun updateMode(newMode: Int) { mode = newMode }
+    override fun getTag(): String = TAG_WORDLIST_ADAPTER
 
     inner class WordlistViewHolder(
         private val binding: ItemWordHorizontalBinding,

@@ -4,6 +4,7 @@ import android.content.res.ColorStateList
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -17,6 +18,7 @@ import space.rodionov.porosenokpetr.MainActivity
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.databinding.FragmentSettingsBinding
 import space.rodionov.porosenokpetr.feature_driller.presentation.base.BaseFragment
+import space.rodionov.porosenokpetr.util.redrawViewGroup
 
 @AndroidEntryPoint
 class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
@@ -59,6 +61,8 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
                     switchMode.setOnCheckedChangeListener { _, isChecked ->
                         if (!vmSettings.followSystemMode.value) vmSettings.updateMode(if (isChecked) MODE_DARK else MODE_LIGHT)
                     }
+
+                    (root as ViewGroup).redrawViewGroup(mode)
                 }
             }
 

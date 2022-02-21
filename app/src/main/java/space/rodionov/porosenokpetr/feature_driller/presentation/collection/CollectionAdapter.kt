@@ -14,12 +14,24 @@ import space.rodionov.porosenokpetr.feature_driller.domain.models.CatWithWords
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Category
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
 import space.rodionov.porosenokpetr.feature_driller.presentation.CatWithWordsDiff
+import space.rodionov.porosenokpetr.util.ModeForAdapter
 import java.math.BigDecimal
 
 class CollectionAdapter(
     private val onSwitchCatActive: (Category, Boolean) -> Unit = { _, _ -> },
     private val onClickCat: (Category) -> Unit = { _ -> }
-) : ListAdapter<CatWithWords, CollectionAdapter.CollectionViewHolder>(CatWithWordsDiff()) {
+) : ListAdapter<CatWithWords, CollectionAdapter.CollectionViewHolder>(CatWithWordsDiff()),
+ModeForAdapter {
+
+    companion object {
+        const val TAG_COLLECTION_ADAPTER = "collectionAdapter"
+    }
+
+    private var mode: Int = 0
+    override fun updateMode(newMode: Int) {
+        mode = newMode
+    }
+    override fun getTag(): String = TAG_COLLECTION_ADAPTER
 
     fun refreshCatSwitchState(catToRefresh: Category) {
         val pos = findPosByName(catToRefresh.name)

@@ -25,6 +25,7 @@ class DrillerViewModel @Inject constructor(
     private val isCategoryActive: IsCategoryActiveUseCase,
     private val getRandomWord: GetRandomWordUseCase,
     private val observeTranslationDirectionUseCase: ObserveTranslationDirectionUseCase,
+    private val observeMode: ObserveModeUseCase,
     private val state: SavedStateHandle
 ) : ViewModel() {
     var savedPosition = state.get<Int>("savedPos") ?: 0
@@ -47,6 +48,9 @@ class DrillerViewModel @Inject constructor(
 
     private val _transDir = observeTranslationDirectionUseCase.invoke()
     val transDir = _transDir.stateIn(viewModelScope, SharingStarted.Lazily, null)
+
+    private val _mode = observeMode.invoke()
+    val mode = _mode.stateIn(viewModelScope, SharingStarted.Lazily, 0)
 
     private val snapshotCatsInCaseUncheckAll = mutableListOf<String>()
     var rememberPositionAfterChangingStack = false
