@@ -10,7 +10,6 @@
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Customize your theme here. -->
-        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
 
         <item name="chipGroupStyle">@style/ChipStyleViolet</item>
@@ -28,7 +27,7 @@
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
         <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
         <item name="android:windowIsFloating">false</item>
-        <item name="android:navigationBarColor">@color/gray200</item>
+        <item name="android:navigationBarColor">@color/white</item>
         <item name="statusBarForeground">@color/black</item>
     </style>
 
@@ -69,29 +68,29 @@
         <item name="android:divider">@drawable/bg_divider</item>
         <item name="android:dividerHeight">1dp</item>
     </style>
-    
-    <style name="ModeDark">
+
+    <style name="ModeLight">
         <item name="bg_main">@color/gray200</item>
         <item name="bg_beta">@color/white</item>
         <item name="bg_contrast">@color/gray400</item>
         <item name="text_main">@color/gray900</item>
         <item name="text_beta">@color/gray600</item>
-        <item name="bg_accent_alpha">@color/yellow</item>
-        <item name="bg_accent_bravo">@color/moonBlue</item>
-        <item name="bg_accent_charlie">@color/violet</item>
-        <item name="bg_accent_delta">@color/moonBlue</item>
+        <item name="bg_accent_alpha">@color/violet</item>
+        <item name="bg_accent_bravo">@color/gray800</item>
+        <item name="bg_accent_charlie">@color/blueDull</item>
+        <item name="bg_accent_delta">@color/purple_700</item>
     </style>
-
-    <style name="ModeLight">
+    
+    <style name="ModeDark">
         <item name="bg_main">@color/gray900</item>
         <item name="bg_beta">@color/gray850</item>
         <item name="bg_contrast">@color/gray800</item>
         <item name="text_main">@color/gray100</item>
         <item name="text_beta">@color/gray600</item>
-        <item name="bg_accent_alpha">@color/violet</item>
-        <item name="bg_accent_bravo">@color/gray800</item>
-        <item name="bg_accent_charlie">@color/blueDull</item>
-        <item name="bg_accent_delta">@color/purple_700</item>
+        <item name="bg_accent_alpha">@color/yellow</item>
+        <item name="bg_accent_bravo">@color/violet</item>
+        <item name="bg_accent_charlie">@color/yellow</item>
+        <item name="bg_accent_delta">@color/moonBlue</item>
     </style>
 </resources>
 

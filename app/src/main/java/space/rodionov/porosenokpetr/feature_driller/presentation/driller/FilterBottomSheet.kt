@@ -10,16 +10,19 @@ import android.widget.CompoundButton
 import androidx.core.view.children
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.chip.Chip
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import space.rodionov.porosenokpetr.Constants
 import space.rodionov.porosenokpetr.R
+import space.rodionov.porosenokpetr.core.redrawViewGroup
 import space.rodionov.porosenokpetr.databinding.BottomsheetFilterBinding
 import space.rodionov.porosenokpetr.feature_driller.presentation.base.BaseBottomSheetDialogFragment
 
 @AndroidEntryPoint
-class FilterBottomSheet : BaseBottomSheetDialogFragment(), CompoundButton.OnCheckedChangeListener {
+class FilterBottomSheet : BottomSheetDialogFragment(), CompoundButton.OnCheckedChangeListener {
 
     companion object {
         const val FILTER_BOTTOM_SHEET = "filterBottomSheet"
@@ -42,13 +45,21 @@ class FilterBottomSheet : BaseBottomSheetDialogFragment(), CompoundButton.OnChec
         return binding.root
     }
 
+    override fun getTheme(): Int = vmDriller.mode.value?.let {
+        when (it) {
+            Constants.MODE_LIGHT -> R.style.Theme_NavBarDay
+            Constants.MODE_DARK -> R.style.Theme_NavBarNight
+            else -> R.style.Theme_NavBarDay
+        }
+    } ?: R.style.Theme_NavBarDay
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 //        Log.d(TAG_PETR, "onViewCreated: CALLED")
-        initModeObserver(binding.root, viewLifecycleOwner.lifecycleScope)
+//        initModeObserver(binding.root, viewLifecycleOwner.lifecycleScope)
 
         binding.apply {
-            viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            this@FilterBottomSheet.lifecycleScope.launchWhenStarted {
                 vmDriller.categories.collectLatest { cats ->
                     val categories = cats ?: return@collectLatest
                     val activeCats = categories.filter { cat -> cat.isCategoryActive }
@@ -82,7 +93,7 @@ class FilterBottomSheet : BaseBottomSheetDialogFragment(), CompoundButton.OnChec
                 }
             }
 
-            viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            this@FilterBottomSheet.lifecycleScope.launchWhenStarted {
                 vmDriller.eventFlow.collectLatest { event ->
                     when (event) {
                         is DrillerViewModel.DrillerEvent.ShowSnackbar -> {
@@ -98,6 +109,13 @@ class FilterBottomSheet : BaseBottomSheetDialogFragment(), CompoundButton.OnChec
                             // пусто
                         }
                     }
+                }
+            }
+
+            this@FilterBottomSheet.lifecycleScope.launchWhenStarted {
+                vmDriller.mode.collectLatest {
+                    val mode = it ?: return@collectLatest
+                    (root as ViewGroup).redrawViewGroup(mode)
                 }
             }
         }

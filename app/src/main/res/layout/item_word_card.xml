@@ -3,10 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:tag="dont_redraw"
+    android:background="@color/transparent"
     android:paddingVertical="64dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
+        android:tag="bg_beta"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="20dp"
@@ -14,6 +17,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/rl"
+            android:tag="dont_redraw"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -51,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="8dp"
                 android:paddingHorizontal="12dp"
-                android:tag="text_beta"
+                android:tag="tv_beta"
                 android:text="downer text"
                 android:gravity="center"
                 android:textAlignment="center"
@@ -77,6 +81,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
+                    android:tag="iv_accent_alpha"
                     android:layout_margin="8dp"
                     android:src="@drawable/ic_speak" />
             </androidx.cardview.widget.CardView>
@@ -95,7 +100,8 @@
             <ImageView
                     android:id="@+id/iv_left"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                android:tag="dont_redraw"
+                android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:src="@drawable/repeat_practice_ru" />
             </FrameLayout>
@@ -111,10 +117,10 @@
                 <ImageView
                     android:id="@+id/iv_right"
                     android:layout_width="wrap_content"
+                    android:tag="dont_redraw"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:src="@drawable/repeat_practice_ru" />
-
 
             </FrameLayout>
 
@@ -129,6 +135,7 @@
                 <ImageView
                     android:id="@+id/iv_top"
                     android:layout_width="wrap_content"
+                    android:tag="dont_redraw"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:src="@drawable/repeat_practice_ru" />
@@ -145,6 +152,7 @@
                 <ImageView
                     android:id="@+id/iv_bottom"
                     android:layout_width="wrap_content"
+                    android:tag="dont_redraw"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:src="@drawable/learned_ru" />

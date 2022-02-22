@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import space.rodionov.porosenokpetr.Constants.MODE_LIGHT
 import space.rodionov.porosenokpetr.feature_driller.domain.models.BaseModel
-import space.rodionov.porosenokpetr.util.redrawViewGroup
+import space.rodionov.porosenokpetr.core.redrawViewGroup
 
 abstract class BaseViewHolder: RecyclerView.ViewHolder {
 

@@ -9,15 +9,18 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import space.rodionov.porosenokpetr.Constants
 import space.rodionov.porosenokpetr.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.R
+import space.rodionov.porosenokpetr.core.redrawViewGroup
 import space.rodionov.porosenokpetr.databinding.BottomsheetWordlistBinding
 import space.rodionov.porosenokpetr.feature_driller.presentation.base.BaseBottomSheetDialogFragment
 
 @AndroidEntryPoint
-class WordlistBottomSheet : BaseBottomSheetDialogFragment() {
+class WordlistBottomSheet : BottomSheetDialogFragment() {
 
     companion object {
         const val WORDLIST_BOTTOM_SHEET = "wordlistBottomSheet"
@@ -29,6 +32,14 @@ class WordlistBottomSheet : BaseBottomSheetDialogFragment() {
     private val vmWordlist: WordlistViewModel by viewModels({
         requireParentFragment()
     })
+
+    override fun getTheme(): Int = vmWordlist.mode.value?.let {
+        when (it) {
+            Constants.MODE_LIGHT -> R.style.Theme_NavBarDay
+            Constants.MODE_DARK -> R.style.Theme_NavBarNight
+            else -> R.style.Theme_NavBarDay
+        }
+    } ?: R.style.Theme_NavBarDay
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,7 +66,7 @@ class WordlistBottomSheet : BaseBottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initModeObserver(binding.root, viewLifecycleOwner.lifecycleScope)
+//        initModeObserver(binding.root, viewLifecycleOwner.lifecycleScope)
 
         binding.apply {
 
@@ -85,6 +96,13 @@ class WordlistBottomSheet : BaseBottomSheetDialogFragment() {
                     switchLearned.setOnCheckedChangeListener { _, isChecked ->
                         if (isChecked) vmWordlist.inactivateWord() else vmWordlist.activateWord()
                     }
+                }
+            }
+
+            this@WordlistBottomSheet.lifecycleScope.launchWhenStarted {
+                vmWordlist.mode.collectLatest {
+                    val mode = it ?: return@collectLatest
+                    (root as ViewGroup).redrawViewGroup(mode)
                 }
             }
         }

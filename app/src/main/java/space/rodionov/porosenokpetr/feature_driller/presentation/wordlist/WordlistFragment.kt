@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.util.Log
 import android.view.View
+import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.AutoCompleteTextView
 import androidx.core.view.isVisible
@@ -19,6 +20,7 @@ import space.rodionov.porosenokpetr.Constants.EMPTY_STRING
 import space.rodionov.porosenokpetr.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.MainActivity
 import space.rodionov.porosenokpetr.R
+import space.rodionov.porosenokpetr.core.redrawViewGroup
 import space.rodionov.porosenokpetr.core.showKeyboard
 import space.rodionov.porosenokpetr.databinding.FragmentWordlistBinding
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
@@ -105,6 +107,14 @@ class WordlistFragment : BaseFragment(R.layout.fragment_wordlist), TextToSpeech.
                         onSpeakWord(event.word)
                     }
                 }
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            vmWordlist.mode.collectLatest {
+                val mode = it ?: return@collectLatest
+                (binding?.root as ViewGroup).redrawViewGroup(mode)
+                wordlistAdapter.updateMode(mode)
             }
         }
     }

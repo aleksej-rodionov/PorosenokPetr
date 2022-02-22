@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import space.rodionov.porosenokpetr.databinding.ItemWordCardBinding
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
 import space.rodionov.porosenokpetr.feature_driller.presentation.WordDiff
-import space.rodionov.porosenokpetr.util.ModeForAdapter
-import space.rodionov.porosenokpetr.util.redrawViewGroup
+import space.rodionov.porosenokpetr.core.ModeForAdapter
+import space.rodionov.porosenokpetr.core.redrawViewGroup
 
 class DrillerAdapter(
     private val onSpeakWord: (String) -> Unit = {}

@@ -105,7 +105,7 @@
             android:dropDownHeight="200dp"
             android:popupBackground="@drawable/bg_suggestion"
             android:popupElevation="5dp"
-            android:tag="text_beta"
+            android:tag="tv_beta"
             android:hint="@string/search_word"
             android:textColor="@color/gray600"
             android:textSize="16sp"

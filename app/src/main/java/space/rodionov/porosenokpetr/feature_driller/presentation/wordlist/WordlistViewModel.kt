@@ -11,6 +11,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import space.rodionov.porosenokpetr.Constants.EMPTY_STRING
+import space.rodionov.porosenokpetr.Constants.MODE_LIGHT
 import space.rodionov.porosenokpetr.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Category
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
@@ -26,6 +27,7 @@ class WordlistViewModel @Inject constructor(
     private val observeWordUseCase: ObserveWordUseCase,
     private val updateWordIsActiveUseCase: UpdateWordIsActiveUseCase,
     private val updateIsWordActiveUseCase: UpdateIsWordActiveUseCase,
+    private val observeModeUseCase: ObserveModeUseCase,
     private val state: SavedStateHandle
 ) : ViewModel() {
 //    var wordLivedata = state.getLiveData<Word?>("wordLivedata", null)
@@ -51,6 +53,9 @@ class WordlistViewModel @Inject constructor(
     val catNameFlow = catNameFromStorageUseCase.invoke()
 
     val searchQuery = state.getLiveData("searchQuery", "")
+
+    private val _mode = observeModeUseCase.invoke()
+    val mode = _mode.stateIn(viewModelScope, SharingStarted.Lazily, MODE_LIGHT)
 
     private val _eventFlow = MutableSharedFlow<WordlistEvent>()
     val eventFlow = _eventFlow.asSharedFlow()

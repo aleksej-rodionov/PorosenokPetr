@@ -3,6 +3,7 @@ package space.rodionov.porosenokpetr.feature_driller.presentation.collection
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -16,6 +17,7 @@ import space.rodionov.porosenokpetr.feature_driller.domain.models.Category
 import space.rodionov.porosenokpetr.feature_driller.presentation.base.BaseFragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import space.rodionov.porosenokpetr.Constants.TAG_PETR
+import space.rodionov.porosenokpetr.core.redrawViewGroup
 
 
 @AndroidEntryPoint
@@ -31,7 +33,7 @@ class CollectionFragment : BaseFragment(
 //        FragmentCollectionBinding.inflate(layoutInflater)
 //    }
 
-    private val collectAdapter: CollectionAdapter by lazy {
+    private val collectionAdapter: CollectionAdapter by lazy {
         CollectionAdapter(
             onSwitchCatActive = { cat, isChecked ->
                 onSwitchActive(cat, isChecked)
@@ -48,7 +50,7 @@ class CollectionFragment : BaseFragment(
 
         binding?.apply {
             rvCats.apply {
-                adapter = collectAdapter
+                adapter = collectionAdapter
                 setHasFixedSize(true)
                 addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
             }
@@ -72,7 +74,7 @@ class CollectionFragment : BaseFragment(
 //                val cats = cwws.map { cww ->
 //                    cww.category
 //                }.toMutableList()
-                collectAdapter.submitList(cwws)
+                collectionAdapter.submitList(cwws)
                 //todo лучше чтобы адаптер брал CWW а не просто Category
             }
         }
@@ -99,7 +101,7 @@ class CollectionFragment : BaseFragment(
                         findNavController().navigate(action)
                     }
                     is CollectionViewModel.CollectionEvent.RefreshCatSwitch -> {
-                        collectAdapter.refreshCatSwitchState(event.cat)
+                        collectionAdapter.refreshCatSwitchState(event.cat)
                     }
                     is CollectionViewModel.CollectionEvent.ShowSnackbar -> {
                         binding?.root?.let {
@@ -107,6 +109,14 @@ class CollectionFragment : BaseFragment(
                         }
                     }
                 }
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            vmCollection.mode.collectLatest {
+                val mode = it ?: return@collectLatest
+                (binding?.root as ViewGroup).redrawViewGroup(mode)
+                collectionAdapter.updateMode(mode)
             }
         }
     }

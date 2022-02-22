@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/coordinator"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bottom_sheet_top_line"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -41,6 +36,7 @@
             android:id="@+id/divider_top"
             android:layout_width="match_parent"
             android:layout_height="1dp"
+            android:tag="divider"
             android:layout_marginHorizontal="16dp"
             android:background="@color/gray200"
             app:layout_constraintTop_toBottomOf="@id/tv_title"
@@ -59,6 +55,7 @@
         <View
             android:id="@+id/divider"
             android:layout_width="match_parent"
+            android:tag="divider"
             android:layout_height="1dp"
             android:layout_marginHorizontal="16dp"
             android:background="@color/gray200"
@@ -83,4 +80,3 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.coordinatorlayout.widget.CoordinatorLayout>

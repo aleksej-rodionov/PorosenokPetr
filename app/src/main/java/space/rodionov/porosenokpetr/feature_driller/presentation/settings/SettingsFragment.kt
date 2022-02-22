@@ -2,23 +2,19 @@ package space.rodionov.porosenokpetr.feature_driller.presentation.settings
 
 import android.content.res.ColorStateList
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
-import space.rodionov.porosenokpetr.Constants
 import space.rodionov.porosenokpetr.Constants.MODE_DARK
 import space.rodionov.porosenokpetr.Constants.MODE_LIGHT
-import space.rodionov.porosenokpetr.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.MainActivity
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.databinding.FragmentSettingsBinding
 import space.rodionov.porosenokpetr.feature_driller.presentation.base.BaseFragment
-import space.rodionov.porosenokpetr.util.redrawViewGroup
+import space.rodionov.porosenokpetr.core.redrawViewGroup
 
 @AndroidEntryPoint
 class SettingsFragment : BaseFragment(R.layout.fragment_settings) {

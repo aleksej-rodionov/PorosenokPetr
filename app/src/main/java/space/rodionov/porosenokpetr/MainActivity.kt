@@ -1,29 +1,20 @@
 package space.rodionov.porosenokpetr
 
 import android.content.res.Configuration
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.view.ViewGroup
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.updatePadding
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.NavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.setupActionBarWithNavController
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.Constants.MODE_DARK
 import space.rodionov.porosenokpetr.Constants.MODE_LIGHT
-import space.rodionov.porosenokpetr.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.databinding.ActivityMainBinding
-import space.rodionov.porosenokpetr.util.redrawViewGroup
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {

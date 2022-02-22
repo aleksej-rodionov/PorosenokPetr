@@ -6,22 +6,20 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import space.rodionov.porosenokpetr.Constants.TAG_PETR
-import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.countPercentage
-import space.rodionov.porosenokpetr.core.roundToTwoDecimals
 import space.rodionov.porosenokpetr.databinding.ItemCategoryBinding
 import space.rodionov.porosenokpetr.feature_driller.domain.models.CatWithWords
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Category
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
 import space.rodionov.porosenokpetr.feature_driller.presentation.CatWithWordsDiff
-import space.rodionov.porosenokpetr.util.ModeForAdapter
+import space.rodionov.porosenokpetr.core.ModeForAdapter
 import java.math.BigDecimal
 
 class CollectionAdapter(
     private val onSwitchCatActive: (Category, Boolean) -> Unit = { _, _ -> },
     private val onClickCat: (Category) -> Unit = { _ -> }
 ) : ListAdapter<CatWithWords, CollectionAdapter.CollectionViewHolder>(CatWithWordsDiff()),
-ModeForAdapter {
+    ModeForAdapter {
 
     companion object {
         const val TAG_COLLECTION_ADAPTER = "collectionAdapter"

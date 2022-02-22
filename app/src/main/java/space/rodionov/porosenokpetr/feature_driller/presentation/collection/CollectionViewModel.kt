@@ -6,11 +6,9 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import space.rodionov.porosenokpetr.Constants.MODE_LIGHT
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Category
-import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.MakeCategoryActiveUseCase
-import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.ObserveAllActiveCatsNamesUseCase
-import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.ObserveAllCategoriesUseCase
-import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.ObserveAllCatsWithWordsUseCase
+import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -19,6 +17,7 @@ class CollectionViewModel @Inject constructor(
     private val observeAllCatsWithWordsUseCase: ObserveAllCatsWithWordsUseCase,
     private val makeCategoryActiveUseCase: MakeCategoryActiveUseCase,
     private val observeAllActiveCatsNamesUseCase: ObserveAllActiveCatsNamesUseCase,
+    private val observeMode: ObserveModeUseCase,
     private val state: SavedStateHandle
 ) : ViewModel() {
     private var activeCatsAmount = state.get<Int>("activeCatsAmount") ?: 0
@@ -26,6 +25,9 @@ class CollectionViewModel @Inject constructor(
             field = value
             state.set("activeCatsAmount", value)
         }
+
+    private val _mode = observeMode.invoke()
+    val mode = _mode.stateIn(viewModelScope, SharingStarted.Lazily, MODE_LIGHT)
 
     private val _categories = observeAllCatsWithWordsUseCase.invoke()
     val categories = _categories.stateIn(viewModelScope, SharingStarted.Lazily, null)
