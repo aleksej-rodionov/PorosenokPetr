@@ -29,10 +29,6 @@ class CollectionFragment : BaseFragment(
     private var _binding: FragmentCollectionBinding? = null
     private val binding get() = _binding
 
-//    private val binding: FragmentCollectionBinding by lazy {
-//        FragmentCollectionBinding.inflate(layoutInflater)
-//    }
-
     private val collectionAdapter: CollectionAdapter by lazy {
         CollectionAdapter(
             onSwitchCatActive = { cat, isChecked ->

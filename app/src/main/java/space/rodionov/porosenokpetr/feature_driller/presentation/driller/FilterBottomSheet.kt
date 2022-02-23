@@ -2,6 +2,7 @@ package space.rodionov.porosenokpetr.feature_driller.presentation.driller
 
 import android.app.Dialog
 import android.content.DialogInterface
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +18,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.Constants
 import space.rodionov.porosenokpetr.R
+import space.rodionov.porosenokpetr.core.fetchColors
+import space.rodionov.porosenokpetr.core.redrawChips
 import space.rodionov.porosenokpetr.core.redrawViewGroup
 import space.rodionov.porosenokpetr.databinding.BottomsheetFilterBinding
 import space.rodionov.porosenokpetr.feature_driller.presentation.base.BaseBottomSheetDialogFragment
@@ -36,6 +39,14 @@ class FilterBottomSheet : BottomSheetDialogFragment(), CompoundButton.OnCheckedC
         requireParentFragment()
     })
 
+    override fun getTheme(): Int = vmDriller.mode.value?.let {
+        when (it) {
+            Constants.MODE_LIGHT -> R.style.Theme_NavBarDay
+            Constants.MODE_DARK -> R.style.Theme_NavBarNight
+            else -> R.style.Theme_NavBarDay
+        }
+    } ?: R.style.Theme_NavBarDay
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -45,25 +56,16 @@ class FilterBottomSheet : BottomSheetDialogFragment(), CompoundButton.OnCheckedC
         return binding.root
     }
 
-    override fun getTheme(): Int = vmDriller.mode.value?.let {
-        when (it) {
-            Constants.MODE_LIGHT -> R.style.Theme_NavBarDay
-            Constants.MODE_DARK -> R.style.Theme_NavBarNight
-            else -> R.style.Theme_NavBarDay
-        }
-    } ?: R.style.Theme_NavBarDay
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 //        Log.d(TAG_PETR, "onViewCreated: CALLED")
-//        initModeObserver(binding.root, viewLifecycleOwner.lifecycleScope)
+        (view.parent as View).setBackgroundColor(Color.TRANSPARENT)
 
         binding.apply {
             this@FilterBottomSheet.lifecycleScope.launchWhenStarted {
                 vmDriller.categories.collectLatest { cats ->
                     val categories = cats ?: return@collectLatest
                     val activeCats = categories.filter { cat -> cat.isCategoryActive }
-//                    Log.d(TAG_PETR, "OBSERVER: cats.size = ${cats.size}, activecats.size = ${activeCats.size}")
 
                     cbActivateAll.setOnCheckedChangeListener(null)
 
@@ -74,6 +76,7 @@ class FilterBottomSheet : BottomSheetDialogFragment(), CompoundButton.OnCheckedC
                         newChip.isChecked = cat.isCategoryActive
                         chipGroupCategories.addView(newChip)
                     }
+                    chipGroupCategories.redrawChips(fetchColors(vmDriller.mode.value, resources)) // todo нахуй отсюда
                     chipGroupCategories.children.forEach { chip ->
                         (chip as Chip).setOnCheckedChangeListener(null)
                     }
@@ -138,6 +141,7 @@ class FilterBottomSheet : BottomSheetDialogFragment(), CompoundButton.OnCheckedC
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+//        (view!!.parent as View).setBackgroundColor(Color.TRANSPARENT)
 //        Log.d(TAG_PETR, "onCreate: CALLED")
     }
 

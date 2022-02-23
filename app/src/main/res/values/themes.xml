@@ -15,12 +15,6 @@
         <item name="chipGroupStyle">@style/ChipStyleViolet</item>
         <item name="chipStyle">@style/ChipStyleViolet</item>
         <item name="chipStandaloneStyle">@style/ChipStyleViolet</item>
-
-        <!--        <item name="android:windowDrawsSystemBarBackgrounds">true</item>-->
-        <!--        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>-->
-
-        <!--        <item name="android:windowTranslucentStatus">true</item>-->
-        <!--        <item name="android:windowTranslucentNavigation">true</item>-->
     </style>
 
     <style name="Theme.NavBarDay" parent="@style/Theme.Design.BottomSheetDialog">
@@ -29,11 +23,12 @@
         <item name="android:windowIsFloating">false</item>
         <item name="android:navigationBarColor">@color/white</item>
         <item name="statusBarForeground">@color/black</item>
+
     </style>
 
     <style name="Theme.NavBarNight" parent="@style/Theme.Design.BottomSheetDialog">
         <item name="android:windowIsFloating">false</item>
-        <item name="android:navigationBarColor">@color/gray900</item>
+        <item name="android:navigationBarColor">@color/gray850</item>
         <item name="statusBarForeground">@color/white</item>
     </style>
 

@@ -1,6 +1,7 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation.wordlist
 
 import android.content.DialogInterface
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -55,7 +56,6 @@ class WordlistBottomSheet : BottomSheetDialogFragment() {
         }
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -66,14 +66,9 @@ class WordlistBottomSheet : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        initModeObserver(binding.root, viewLifecycleOwner.lifecycleScope)
+        (view.parent as View).setBackgroundColor(Color.TRANSPARENT)
 
         binding.apply {
-
-//            val behavior = BottomSheetBehavior.from(bottomSheetTopLine)
-//            behavior.isFitToContents = false
-//            behavior.halfExpandedRatio = 0.6f
-
             this@WordlistBottomSheet.lifecycleScope.launchWhenStarted {
                 vmWordlist.word.collectLatest {
                     it?.let {w->
@@ -110,7 +105,6 @@ class WordlistBottomSheet : BottomSheetDialogFragment() {
 
     override fun onDismiss(dialog: DialogInterface) {
         super.onDismiss(dialog)
-//        vmWordlist.wordInDialog.value = null
         vmWordlist.nativLivedata.value = null
         vmWordlist.foreignLivedata.value = null
         vmWordlist.catNameLivedata.value = null

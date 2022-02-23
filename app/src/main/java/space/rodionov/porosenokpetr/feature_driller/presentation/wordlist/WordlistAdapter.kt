@@ -1,5 +1,6 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation.wordlist
 
+import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
@@ -9,6 +10,8 @@ import space.rodionov.porosenokpetr.databinding.ItemWordHorizontalBinding
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
 import space.rodionov.porosenokpetr.feature_driller.presentation.WordDiff
 import space.rodionov.porosenokpetr.core.ModeForAdapter
+import space.rodionov.porosenokpetr.core.fetchColors
+import space.rodionov.porosenokpetr.core.redrawViewGroup
 
 class WordlistAdapter(
     private val onClickLearned: (Word)-> Unit = {},
@@ -37,9 +40,13 @@ class WordlistAdapter(
 
                 if (word.isWordActive) {
                     ivLearned.setImageDrawable(root.context.getDrawable(R.drawable.ic_new_round))
+                    ivLearned.imageTintList = null
+                    ivLearned.imageTintList = ColorStateList.valueOf(fetchColors(mode, itemView.resources)[3])
                 } else {
                     ivLearned.setImageDrawable(root.context.getDrawable(R.drawable.ic_learned))
                 }
+
+                (root as ViewGroup).redrawViewGroup(mode)
 
                 ivLearned.setOnClickListener {
                     val pos = adapterPosition

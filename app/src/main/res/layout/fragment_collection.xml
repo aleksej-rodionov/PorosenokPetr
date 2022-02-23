@@ -10,6 +10,7 @@
     <View
         android:id="@+id/divider_top"
         android:layout_width="match_parent"
+        android:tag="divider_contrast"
         android:layout_height="1dp"
         android:background="@color/gray400"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,6 +21,7 @@
         android:id="@+id/cl_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:tag="bg_beta"
         android:background="@color/white"
         android:paddingHorizontal="12dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -100,6 +102,7 @@
         android:id="@+id/divider_title"
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:tag="divider_contrast"
         android:layout_marginHorizontal="16dp"
         android:background="@color/gray200"
         app:layout_constraintEnd_toEndOf="parent"
@@ -120,6 +123,7 @@
     <View
         android:id="@+id/divider_bottom"
         android:layout_width="match_parent"
+        android:tag="divider_contrast"
         android:layout_height="1dp"
         android:background="@color/gray200"
         app:layout_constraintBottom_toBottomOf="parent"

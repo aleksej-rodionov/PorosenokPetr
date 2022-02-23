@@ -68,6 +68,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/btn_speak"
                 android:layout_width="wrap_content"
+                android:tag="bg_contrast"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginVertical="8dp"

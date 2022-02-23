@@ -29,6 +29,7 @@
     <color name="blueDull">#13657E</color>
 
     <color name="transparentGray15">#26858585</color>
+    <color name="transparentGray30">#4D858585</color>
     <color name="transparent">#00000000</color>
 
 </resources>

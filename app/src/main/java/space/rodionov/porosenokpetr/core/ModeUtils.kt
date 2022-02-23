@@ -11,12 +11,15 @@ import androidx.appcompat.widget.SwitchCompat
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.toDrawable
 import androidx.core.view.children
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.yuyakaido.android.cardstackview.CardStackView
+import space.rodionov.porosenokpetr.Constants.MODE_LIGHT
 import space.rodionov.porosenokpetr.Constants.TAG_MODE
 import space.rodionov.porosenokpetr.R
 
@@ -102,24 +105,18 @@ fun CoordinatorLayout.redrawCoord(colors: Array<Int>) {
 }
 
 fun ConstraintLayout.redrawConstraint(colors: Array<Int>) {
-    if (this.tag?.toString() != "dont_redraw") {
-        if (this.tag?.toString() == "bs_bg") {
-            this.redrawBottomSheetBG(colors)
-        } else {
-            if (this.tag?.toString() == "bg_beta")  this.setBackgroundColor(colors[1])
-                else this.setBackgroundColor(colors[0])
-        }
+    if (this.tag?.toString() != "dont_redraw" && this.tag?.toString() != "bs_bg") {
+        if (this.tag?.toString() == "bg_beta")  this.setBackgroundColor(colors[1])
+        else this.setBackgroundColor(colors[0])
     }
 }
 
-fun ConstraintLayout.redrawBottomSheetBG(colors: Array<Int>) {
-    this.backgroundTintList = null
-    this.backgroundTintList = ColorStateList.valueOf(colors[1])
-}
-
 fun CardView.redrawCardView(colors: Array<Int>) {
-    Log.d(TAG_MODE, "redrawCardView: CALLED")
-    this.setCardBackgroundColor(colors[1])
+    if (this.tag?.toString() == "bg_contrast") {
+        this.setCardBackgroundColor(colors[2])
+    } else {
+        this.setCardBackgroundColor(colors[1])
+    }
 }
 
 fun EditText.redrawET(colors: Array<Int>) {
@@ -137,18 +134,8 @@ fun TextView.redrawTextView(colors: Array<Int>) {
             this.setTextColor(colors[3])
         }
     }
-
-    this.redrawCompoundDrawables(colors[3])
-}
-
-fun TextView.redrawCompoundDrawables(newColor: Int) {
-    for (drawable in this.compoundDrawables) {
-        if (drawable != null) {
-            drawable.colorFilter = null
-            drawable.setTint(newColor)
-            Log.d(TAG_MODE, "redrawCompoundDrawables: CALLED")
-        }
-    }
+    this.compoundDrawableTintList = null
+    this.compoundDrawableTintList = ColorStateList.valueOf(colors[3])
 }
 
 fun ImageView.redrawImageView(colors: Array<Int>) {
@@ -185,31 +172,42 @@ fun ImageView.redrawImageView(colors: Array<Int>) {
 fun ChipGroup.redrawChips(colors: Array<Int>) {
     this.children.forEach {
         if (it is Chip) {
-            val csl = ColorStateList(
+            val cslBg = ColorStateList(
                 arrayOf(
-                    intArrayOf(-android.R.attr.state_checked),  // Disabled
-                    intArrayOf(android.R.attr.state_checked)    // Enabled
+                    intArrayOf(-android.R.attr.state_checked),
+                    intArrayOf(android.R.attr.state_checked)
                 ),
                 intArrayOf(
-                    resources.getColor(R.color.gray600),     // The color for the Disabled state
-                    colors[5]        // The color for the Enabled state
+                    resources.getColor(R.color.gray200),
+                    colors[5]
                 )
             )
-            it.chipBackgroundColor = csl
+            it.chipBackgroundColor = cslBg
+            val cslText = ColorStateList(
+                arrayOf(
+                    intArrayOf(-android.R.attr.state_checked),
+                    intArrayOf(android.R.attr.state_checked)
+                ),
+                intArrayOf(
+                    resources.getColor(R.color.gray600),
+                    resources.getColor(R.color.white)
+                )
+            )
+            it.setTextColor(cslText)
         }
     }
 }
 
 fun SwitchCompat.redrawSwitch(colors: Array<Int>) {
-    this.setTextColor(colors[2])
+    this.setTextColor(colors[3])
     val csl = ColorStateList(
         arrayOf(
-            intArrayOf(-android.R.attr.state_checked),  // Unchecked
-            intArrayOf(android.R.attr.state_checked)    // Checked
+            intArrayOf(-android.R.attr.state_checked),
+            intArrayOf(android.R.attr.state_checked)
         ),
         intArrayOf(
-            resources.getColor(R.color.gray600),     // The color for the Disabled state
-            colors[5]        // The color for the Enabled state
+            resources.getColor(R.color.gray600),
+            colors[5]
         )
     )
     this.trackTintList = null
@@ -237,7 +235,7 @@ fun View.redrawBottomSheetTopLine(colors: Array<Int>) {
 }
 fun View.redrawBgEditText(colors: Array<Int>) {
     this.backgroundTintList = null
-    this.backgroundTintList = ColorStateList.valueOf(colors[1])
+    this.backgroundTintList = ColorStateList.valueOf(colors[2])
 }
 
 //================================REDRAW RECYCLER ADAPTERS=========================================
@@ -269,6 +267,7 @@ fun ViewGroup.redrawViewGroup(mode: Int) {
 
     this.redrawAllRecyclerAdapters(mode)
 
+    val theme = fetchTheme(mode, resources)
     val colors = fetchColors(mode, resources)
 
     // Redraw backgrounds
@@ -276,7 +275,7 @@ fun ViewGroup.redrawViewGroup(mode: Int) {
         this.redrawCoord(colors)
     }
     if (this is ConstraintLayout) {
-        this.redrawConstraint(colors)
+            this.redrawConstraint(colors)
     }
     if (this is CardView) {
         this.redrawCardView(colors)
@@ -295,7 +294,7 @@ fun ViewGroup.redrawViewGroup(mode: Int) {
         if (it.tag?.toString() == "divider") it.redrawDivider(colors)
         if (it.tag?.toString() == "divider_contrast") it.redrawDividerContrast(colors)
         if (it.tag?.toString() == "bs_topline") it.redrawBottomSheetTopLine(colors)
-        if (it.tag?.toString() == "bg_et") it.redrawBgEditText(colors)
+//        if (it.tag?.toString() == "bg_et") it.redrawBgEditText(colors)
 
         if (it is CardView) {
             it.redrawCardView(colors)
@@ -314,6 +313,20 @@ fun ViewGroup.redrawViewGroup(mode: Int) {
         if (it is CardView) {
             it.redrawCardView(colors)
             (it as ViewGroup).redrawViewGroup(mode)
+        }
+
+        //====FOR BOTTOMSHEETS============
+        if (this.tag?.toString() == "bs_bg") {
+            this.background = ResourcesCompat.getDrawable(
+                resources,
+                R.drawable.bg_top_corners,
+                theme
+            )
+        }
+        if (it.tag?.toString() == "bs_topline") {
+            it.backgroundTintList = null
+            it.backgroundTintList =
+                ColorStateList.valueOf(ContextCompat.getColor(context, R.color.gray600))
         }
     }
 }

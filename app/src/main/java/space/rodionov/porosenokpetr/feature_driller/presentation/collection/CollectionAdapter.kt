@@ -13,6 +13,7 @@ import space.rodionov.porosenokpetr.feature_driller.domain.models.Category
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
 import space.rodionov.porosenokpetr.feature_driller.presentation.CatWithWordsDiff
 import space.rodionov.porosenokpetr.core.ModeForAdapter
+import space.rodionov.porosenokpetr.core.redrawViewGroup
 import java.math.BigDecimal
 
 class CollectionAdapter(
@@ -59,6 +60,9 @@ class CollectionAdapter(
         fun bind(cww: CatWithWords) {
             binding.apply {
                 tvCatName.text = cww.category.name
+
+                (root as ViewGroup).redrawViewGroup(mode)
+
                 switchCat.setOnCheckedChangeListener(null)
                 switchCat.text = "${cww.words.countPercentage().toString()} %"
                 switchCat.isChecked = cww.category.isCategoryActive
