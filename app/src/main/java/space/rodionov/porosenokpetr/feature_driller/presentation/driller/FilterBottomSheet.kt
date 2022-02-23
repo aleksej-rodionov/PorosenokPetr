@@ -16,13 +16,12 @@ import com.google.android.material.chip.Chip
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
-import space.rodionov.porosenokpetr.Constants
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.fetchColors
 import space.rodionov.porosenokpetr.core.redrawChips
 import space.rodionov.porosenokpetr.core.redrawViewGroup
 import space.rodionov.porosenokpetr.databinding.BottomsheetFilterBinding
-import space.rodionov.porosenokpetr.feature_driller.presentation.base.BaseBottomSheetDialogFragment
 
 @AndroidEntryPoint
 class FilterBottomSheet : BottomSheetDialogFragment(), CompoundButton.OnCheckedChangeListener {

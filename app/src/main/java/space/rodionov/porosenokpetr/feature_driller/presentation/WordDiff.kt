@@ -1,10 +1,10 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation
 
 import androidx.recyclerview.widget.DiffUtil
-import space.rodionov.porosenokpetr.core.countPercentage
 import space.rodionov.porosenokpetr.feature_driller.domain.models.CatWithWords
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Category
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
+import space.rodionov.porosenokpetr.feature_driller.utils.countPercentage
 
 class WordDiff : DiffUtil.ItemCallback<Word>() {
     override fun areItemsTheSame(oldItem: Word, newItem: Word) =

@@ -13,14 +13,12 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
-import androidx.core.graphics.drawable.toDrawable
 import androidx.core.view.children
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.yuyakaido.android.cardstackview.CardStackView
-import space.rodionov.porosenokpetr.Constants.MODE_LIGHT
-import space.rodionov.porosenokpetr.Constants.TAG_MODE
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_MODE
 import space.rodionov.porosenokpetr.R
 
 fun fetchTheme(mode: Int, res: Resources): Resources.Theme {

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.LinearInterpolator
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -14,16 +15,14 @@ import com.yuyakaido.android.cardstackview.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.R
-import space.rodionov.porosenokpetr.databinding.FragmentDrillerBinding
-import space.rodionov.porosenokpetr.Constants
-import space.rodionov.porosenokpetr.Constants.TAG_PETR
-import space.rodionov.porosenokpetr.feature_driller.presentation.base.BaseFragment
 import space.rodionov.porosenokpetr.core.redrawViewGroup
-import java.lang.Exception
+import space.rodionov.porosenokpetr.databinding.FragmentDrillerBinding
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
 import java.util.*
 
 @AndroidEntryPoint
-class DrillerFragment : BaseFragment(R.layout.fragment_driller), CardStackListener, TextToSpeech.OnInitListener {
+class DrillerFragment : Fragment(R.layout.fragment_driller), CardStackListener, TextToSpeech.OnInitListener {
 
     private val vmDriller: DrillerViewModel by viewModels()
     private var _binding: FragmentDrillerBinding? = null

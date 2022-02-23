@@ -4,24 +4,24 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.MainActivity
 import space.rodionov.porosenokpetr.R
+import space.rodionov.porosenokpetr.core.redrawViewGroup
 import space.rodionov.porosenokpetr.databinding.FragmentCollectionBinding
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Category
-import space.rodionov.porosenokpetr.feature_driller.presentation.base.BaseFragment
-import androidx.recyclerview.widget.DividerItemDecoration
-import space.rodionov.porosenokpetr.Constants.TAG_PETR
-import space.rodionov.porosenokpetr.core.redrawViewGroup
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
 
 
 @AndroidEntryPoint
-class CollectionFragment : BaseFragment(
+class CollectionFragment : Fragment(
     R.layout.fragment_collection
 ) {
 

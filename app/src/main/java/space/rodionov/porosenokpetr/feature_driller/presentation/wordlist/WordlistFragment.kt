@@ -1,13 +1,10 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation.wordlist
 
-import android.content.Context
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
-import android.widget.AutoCompleteTextView
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
@@ -16,21 +13,18 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
-import space.rodionov.porosenokpetr.Constants.EMPTY_STRING
-import space.rodionov.porosenokpetr.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.MainActivity
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.redrawViewGroup
 import space.rodionov.porosenokpetr.core.showKeyboard
 import space.rodionov.porosenokpetr.databinding.FragmentWordlistBinding
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
-import space.rodionov.porosenokpetr.feature_driller.presentation.base.BaseFragment
-import space.rodionov.porosenokpetr.feature_driller.presentation.driller.FilterBottomSheet
-import java.lang.Exception
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.EMPTY_STRING
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
 import java.util.*
 
 @AndroidEntryPoint
-class WordlistFragment : BaseFragment(R.layout.fragment_wordlist), TextToSpeech.OnInitListener {
+class WordlistFragment : Fragment(R.layout.fragment_wordlist), TextToSpeech.OnInitListener {
 
     private val vmWordlist: WordlistViewModel by viewModels()
     private var _binding: FragmentWordlistBinding? = null

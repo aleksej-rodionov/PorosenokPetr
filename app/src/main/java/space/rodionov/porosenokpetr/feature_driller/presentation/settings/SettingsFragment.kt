@@ -4,21 +4,21 @@ import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
-import space.rodionov.porosenokpetr.Constants.MODE_DARK
-import space.rodionov.porosenokpetr.Constants.MODE_LIGHT
 import space.rodionov.porosenokpetr.MainActivity
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.fetchColors
-import space.rodionov.porosenokpetr.databinding.FragmentSettingsBinding
-import space.rodionov.porosenokpetr.feature_driller.presentation.base.BaseFragment
 import space.rodionov.porosenokpetr.core.redrawViewGroup
+import space.rodionov.porosenokpetr.databinding.FragmentSettingsBinding
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_DARK
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_LIGHT
 
 @AndroidEntryPoint
-class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
+class SettingsFragment : Fragment(R.layout.fragment_settings) {
 
     private var _binding: FragmentSettingsBinding? = null
     private val binding get() = _binding

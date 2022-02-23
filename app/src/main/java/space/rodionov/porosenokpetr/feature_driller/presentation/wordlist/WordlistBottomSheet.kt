@@ -9,16 +9,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
-import space.rodionov.porosenokpetr.Constants
-import space.rodionov.porosenokpetr.Constants.TAG_PETR
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.redrawViewGroup
 import space.rodionov.porosenokpetr.databinding.BottomsheetWordlistBinding
-import space.rodionov.porosenokpetr.feature_driller.presentation.base.BaseBottomSheetDialogFragment
 
 @AndroidEntryPoint
 class WordlistBottomSheet : BottomSheetDialogFragment() {

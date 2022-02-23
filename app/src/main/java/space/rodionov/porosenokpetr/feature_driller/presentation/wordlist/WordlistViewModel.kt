@@ -10,13 +10,11 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import space.rodionov.porosenokpetr.Constants.EMPTY_STRING
-import space.rodionov.porosenokpetr.Constants.MODE_LIGHT
-import space.rodionov.porosenokpetr.Constants.TAG_PETR
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_LIGHT
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Category
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
 import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.*
-import space.rodionov.porosenokpetr.feature_driller.presentation.driller.DrillerViewModel
 import javax.inject.Inject
 
 @HiltViewModel

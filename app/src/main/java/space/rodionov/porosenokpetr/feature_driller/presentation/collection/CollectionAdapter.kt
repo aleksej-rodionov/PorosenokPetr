@@ -5,16 +5,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import space.rodionov.porosenokpetr.Constants.TAG_PETR
-import space.rodionov.porosenokpetr.core.countPercentage
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.databinding.ItemCategoryBinding
 import space.rodionov.porosenokpetr.feature_driller.domain.models.CatWithWords
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Category
-import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
 import space.rodionov.porosenokpetr.feature_driller.presentation.CatWithWordsDiff
 import space.rodionov.porosenokpetr.core.ModeForAdapter
 import space.rodionov.porosenokpetr.core.redrawViewGroup
-import java.math.BigDecimal
+import space.rodionov.porosenokpetr.feature_driller.utils.countPercentage
 
 class CollectionAdapter(
     private val onSwitchCatActive: (Category, Boolean) -> Unit = { _, _ -> },

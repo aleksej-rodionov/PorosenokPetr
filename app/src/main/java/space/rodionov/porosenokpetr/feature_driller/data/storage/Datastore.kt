@@ -5,13 +5,10 @@ import android.content.Context
 import android.util.Log
 import androidx.datastore.preferences.core.*
 import androidx.datastore.preferences.preferencesDataStore
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
-import space.rodionov.porosenokpetr.Constants.TAG_PETR
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
 import java.io.IOException
-import javax.inject.Inject
-import javax.inject.Singleton
 
 private val Context.datastore by preferencesDataStore("datastore")
 

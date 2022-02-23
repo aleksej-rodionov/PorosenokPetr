@@ -67,7 +67,7 @@
         android:layout_height="1dp"
         android:layout_marginHorizontal="16dp"
         android:background="@color/gray200"
-        android:tag="divider"
+        android:tag="divider_contrast"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_category" />
@@ -91,7 +91,7 @@
         android:layout_height="1dp"
         android:layout_marginHorizontal="16dp"
         android:background="@color/gray200"
-        android:tag="divider"
+        android:tag="divider_contrast"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_decription" />
@@ -117,7 +117,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.75"/>
+        app:layout_constraintGuide_percent="0.75" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

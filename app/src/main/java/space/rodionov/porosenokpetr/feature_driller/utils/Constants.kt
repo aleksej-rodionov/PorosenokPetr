@@ -1,4 +1,4 @@
-package space.rodionov.porosenokpetr
+package space.rodionov.porosenokpetr.feature_driller.utils
 
 object Constants {
 
@@ -7,7 +7,6 @@ object Constants {
 
     const val WORD_DB = "word_db"
 
-    const val SHARED_PREF_STORE = "sharedPrefStore"
     const val MODE = "mode"
     const val FOLLOW_SYSTEM_MODE = "followSystemMode"
     const val MODE_LIGHT = 0
