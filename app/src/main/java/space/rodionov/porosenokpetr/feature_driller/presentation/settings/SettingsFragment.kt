@@ -12,6 +12,7 @@ import space.rodionov.porosenokpetr.Constants.MODE_DARK
 import space.rodionov.porosenokpetr.Constants.MODE_LIGHT
 import space.rodionov.porosenokpetr.MainActivity
 import space.rodionov.porosenokpetr.R
+import space.rodionov.porosenokpetr.core.fetchColors
 import space.rodionov.porosenokpetr.databinding.FragmentSettingsBinding
 import space.rodionov.porosenokpetr.feature_driller.presentation.base.BaseFragment
 import space.rodionov.porosenokpetr.core.redrawViewGroup
@@ -71,7 +72,7 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
                         switchMode.thumbTintList = ColorStateList.valueOf(resources.getColor(R.color.gray600))
                         switchMode.isEnabled = false
                     } else {
-                        switchMode.setTextColor(resources.getColor(R.color.gray600))
+                        switchMode.setTextColor(fetchColors(vmSettings.mode.value, resources)[3])
                         switchMode.thumbTintList = ColorStateList.valueOf(resources.getColor(R.color.white))
                         switchMode.isEnabled = true
                     }
