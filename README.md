@@ -1,2 +1,5 @@
 # PorosenokPetr
-черновик для обновлений, внедряемых в EnglishDriller 
+
+
+Приложение для заучивания английского словаря (карточки)
+English vocabulary learning app (swipe cards)
