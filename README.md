@@ -2,4 +2,4 @@
 
 
 Приложение для заучивания английского словаря (карточки).
-English vocabulary learning app (swipe cards).
+\nEnglish vocabulary learning app (swipe cards).
