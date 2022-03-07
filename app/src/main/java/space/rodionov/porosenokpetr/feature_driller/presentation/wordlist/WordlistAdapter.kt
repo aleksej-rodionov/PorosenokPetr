@@ -44,6 +44,8 @@ class WordlistAdapter(
                     ivLearned.imageTintList = ColorStateList.valueOf(fetchColors(mode, itemView.resources)[3])
                 } else {
                     ivLearned.setImageDrawable(root.context.getDrawable(R.drawable.ic_learned))
+                    ivLearned.imageTintList = null
+                    ivLearned.imageTintList = ColorStateList.valueOf(itemView.resources.getColor(R.color.green))
                 }
 
                 (root as ViewGroup).redrawViewGroup(mode)

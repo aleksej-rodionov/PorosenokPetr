@@ -112,6 +112,8 @@ fun ConstraintLayout.redrawConstraint(colors: Array<Int>) {
 fun CardView.redrawCardView(colors: Array<Int>) {
     if (this.tag?.toString() == "bg_contrast") {
         this.setCardBackgroundColor(colors[2])
+    } else if (this.tag?.toString() == "iv_accent_alpha") {
+        this.setCardBackgroundColor(colors[5])
     } else {
         this.setCardBackgroundColor(colors[1])
     }

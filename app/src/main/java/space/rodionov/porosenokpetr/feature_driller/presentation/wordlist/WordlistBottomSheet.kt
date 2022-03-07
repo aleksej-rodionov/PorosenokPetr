@@ -1,6 +1,7 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation.wordlist
 
 import android.content.DialogInterface
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -15,6 +16,7 @@ import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.R
+import space.rodionov.porosenokpetr.core.fetchColors
 import space.rodionov.porosenokpetr.core.redrawViewGroup
 import space.rodionov.porosenokpetr.databinding.BottomsheetWordlistBinding
 
@@ -80,8 +82,12 @@ class WordlistBottomSheet : BottomSheetDialogFragment() {
                     tvDecription.text = resources.getString(R.string.word_description, learned)
                     if (word.isWordActive) {
                         ivLearned.setImageDrawable(resources.getDrawable(R.drawable.ic_new_round))
+                        ivLearned.imageTintList = null
+                        ivLearned.imageTintList = ColorStateList.valueOf(fetchColors(vmWordlist.mode.value, resources)[3])
                     } else {
                         ivLearned.setImageDrawable(resources.getDrawable(R.drawable.ic_learned))
+                        ivLearned.imageTintList = null
+                        ivLearned.imageTintList = ColorStateList.valueOf(resources.getColor(R.color.green))
                     }
                     switchLearned.setOnCheckedChangeListener(null)
                     switchLearned.isChecked = !word.isWordActive
