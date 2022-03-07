@@ -19,3 +19,5 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+-keep class space.rodionov.porosenokpetr.feature_driller.data.local.entity.CategoryEntity
