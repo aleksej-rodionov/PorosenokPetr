@@ -47,6 +47,9 @@ interface WordRepo {
     fun getFollowSystemMode(): Flow<Boolean>
     suspend fun setFollowSystemMode(follow: Boolean)
 
+    fun getRemind(): Flow<Boolean>
+    suspend fun setRemind(remind: Boolean)
+
     fun getTransDir() : Flow<Boolean>
     suspend fun setTransDir(nativeToForeign: Boolean)
 

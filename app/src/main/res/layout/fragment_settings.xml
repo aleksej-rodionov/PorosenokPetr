@@ -182,6 +182,36 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/switch_follow_system_mode" />
 
+        <TextView
+            android:id="@+id/tv_reminder"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="6dp"
+            android:textColor="@color/gray900"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider_mode"
+            android:text="@string/reminder" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switch_reminder"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="6dp"
+            android:textColor="@color/gray600"
+            android:textSize="16sp"
+            android:thumb="@drawable/switch_selector"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_reminder"
+            app:switchPadding="16dp"
+            app:track="@drawable/switch_track"
+            android:text="@string/remind" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

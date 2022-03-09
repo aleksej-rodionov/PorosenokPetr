@@ -109,6 +109,8 @@ class WordRepoImpl(
     override fun getFollowSystemMode(): Flow<Boolean> = datastore.followSystemModeFlow
     override suspend fun setFollowSystemMode(follow: Boolean) = datastore.updateFollowSystemMode(follow)
 
+    override fun getRemind(): Flow<Boolean> = datastore.remindFlow
+    override suspend fun setRemind(remind: Boolean)  = datastore.updateRemind(remind)
 
     override fun getTransDir(): Flow<Boolean> = datastore.translationDirectionFlow
     override suspend fun setTransDir(nativeToForeign: Boolean) {

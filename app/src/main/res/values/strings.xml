@@ -39,5 +39,7 @@
 
     <string name="notification_title">English Driller напоминалочка</string>
     <string name="notification_subtitle">Не забыли уделить пару минут английскому? =)</string>
+    <string name="remind">Напоминать по вечерам</string>
+    <string name="reminder">Напоминание</string>
 
 </resources>

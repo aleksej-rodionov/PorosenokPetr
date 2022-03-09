@@ -24,6 +24,7 @@ class Datastore /*@Inject constructor*/(
         val TRANSLATION_DIRECTION = booleanPreferencesKey("transDir")
         val MODE = intPreferencesKey("mode")
         val FOLLOW_SYSTEM_MODE = booleanPreferencesKey("followSystemMode")
+        val REMINDER = booleanPreferencesKey("remind")
     }
 
     //==========================CATEGORY OPENED IN WORD COLLECTION============================================
@@ -108,6 +109,25 @@ class Datastore /*@Inject constructor*/(
 
     suspend fun updateFollowSystemMode(follow: Boolean) {
         datastore.edit { it[PrefKeys.FOLLOW_SYSTEM_MODE] = follow }
+    }
+
+    //===============================REMINDER=======================
+    val remindFlow = datastore.data
+        .catch {exception ->
+            if (exception is IOException) {
+                Log.e(TAG_PETR, "Error reading preferences", exception)
+                emit(emptyPreferences())
+            } else {
+                throw exception
+            }
+        }
+        .map { prefs ->
+            val remind = prefs[PrefKeys.REMINDER] ?: false
+            remind
+        }
+
+    suspend fun updateRemind(remind: Boolean) {
+        datastore.edit { it[PrefKeys.REMINDER] = remind }
     }
 }
 

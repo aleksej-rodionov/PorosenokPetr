@@ -14,7 +14,7 @@ class MainViewModel @Inject constructor(
     private val observeModeUseCase: ObserveModeUseCase,
     private val setModeUseCase: SetModeUseCase,
     private val observeFollowSystemModeUseCase: ObserveFollowSystemModeUseCase,
-    private val setFollowSystemModeUseCase: SetFollowSystemModeUseCase
+    private val observeReminderUseCase: ObserveReminderUseCase
 ): ViewModel() {
 
     //==========================MODE=========================================
@@ -28,4 +28,8 @@ class MainViewModel @Inject constructor(
     //==========================FOLLOW SYSTEM MODE=========================================
     private val _followSystemMode = observeFollowSystemModeUseCase.invoke()
     val followSystemMode = _followSystemMode.stateIn(viewModelScope, SharingStarted.Lazily, false)
+
+    //==========================REMINDER=========================================
+    private val _reminder = observeReminderUseCase.invoke()
+    val reminder = _reminder.stateIn(viewModelScope, SharingStarted.Lazily, false)
 }

@@ -84,6 +84,17 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
                     }
                 }
             }
+
+            viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+                vmSettings.remind.collectLatest {
+                    val remind = it ?: return@collectLatest
+                    switchReminder.setOnCheckedChangeListener(null)
+                    switchReminder.isChecked = remind
+                    switchMode.setOnCheckedChangeListener { _, isChecked ->
+                        vmSettings.updateRemind(isChecked)
+                    }
+                }
+            }
         }
     }
 

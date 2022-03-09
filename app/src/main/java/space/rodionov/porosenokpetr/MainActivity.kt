@@ -52,6 +52,12 @@ class MainActivity : AppCompatActivity() {
                 if (it) vmMain.updateMode(getSystemTheme())
             }
         }
+
+        this.lifecycleScope.launchWhenStarted {
+            vmMain.reminder.collectLatest {
+                // todo turn notifications on / off
+            }
+        }
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
@@ -95,6 +101,8 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+    fun findTomorrowNotificationTime()
 }
 
 
