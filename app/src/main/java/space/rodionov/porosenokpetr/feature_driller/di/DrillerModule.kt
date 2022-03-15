@@ -2,6 +2,7 @@ package space.rodionov.porosenokpetr.feature_driller.di
 
 import android.app.Application
 import androidx.room.Room
+import androidx.work.WorkerParameters
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,6 +21,18 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object DrillerModule {
+
+    @Provides
+    @Singleton
+    fun provideObserveReminderUseCase(repo: WordRepo): ObserveReminderUseCase {
+        return ObserveReminderUseCase(repo)
+    }
+
+    @Provides
+    @Singleton
+    fun provideSetReminderUseCase(repo: WordRepo): SetReminderUseCase {
+        return SetReminderUseCase(repo)
+    }
 
     @Provides
     @Singleton
@@ -152,6 +165,10 @@ object DrillerModule {
     fun provideGetTenWordsUseCase(repo: WordRepo): GetTenWordsUseCase {
         return GetTenWordsUseCase(repo)
     }
+
+//    @Provides
+//    @Singleton
+//    fun provideWorkerParameters() = WorkerParameters
 
     @Provides
     @Singleton

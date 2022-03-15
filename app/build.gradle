@@ -101,7 +101,7 @@ dependencies {
     // CardView
     implementation 'androidx.cardview:cardview:1.0.0'
 
-    // WorkManager WITHOUT COROUTINES
-    implementation 'androidx.work:work-runtime:2.1.0-alpha02'
-
+    // WorkManager
+    implementation 'androidx.work:work-runtime-ktx:2.3.4'
+    implementation 'androidx.hilt:hilt-work:1.0.0-alpha01'
 }

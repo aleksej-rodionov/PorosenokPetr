@@ -90,7 +90,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
                     val remind = it ?: return@collectLatest
                     switchReminder.setOnCheckedChangeListener(null)
                     switchReminder.isChecked = remind
-                    switchMode.setOnCheckedChangeListener { _, isChecked ->
+                    switchReminder.setOnCheckedChangeListener { _, isChecked ->
                         vmSettings.updateRemind(isChecked)
                     }
                 }

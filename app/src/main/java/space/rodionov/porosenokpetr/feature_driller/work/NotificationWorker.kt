@@ -10,16 +10,21 @@ import android.media.AudioAttributes
 import android.media.RingtoneManager
 import android.os.Build
 import androidx.core.app.NotificationCompat
+import androidx.hilt.work.HiltWorker
 import androidx.work.ListenableWorker.Result.success
 import androidx.work.Worker
 import androidx.work.WorkerParameters
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedInject
 import space.rodionov.porosenokpetr.MainActivity
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.vectorToBitmap
+import javax.inject.Inject
 
-class NotifyWork(
-    context: Context,
-    params: WorkerParameters
+@HiltWorker
+class NotificationWorker @AssistedInject constructor (
+    @Assisted context: Context,
+    @Assisted params: WorkerParameters,
 ) : Worker(context, params) {
 
     override fun doWork(): Result {

@@ -3,6 +3,7 @@ package space.rodionov.porosenokpetr
 import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
@@ -10,11 +11,24 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.updatePadding
 import androidx.lifecycle.lifecycleScope
+import androidx.work.Data
+import androidx.work.ExistingWorkPolicy
+import androidx.work.OneTimeWorkRequest
+import androidx.work.WorkManager
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_DARK
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_LIGHT
 import space.rodionov.porosenokpetr.databinding.ActivityMainBinding
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
+import space.rodionov.porosenokpetr.feature_driller.work.NotificationWorker
+import space.rodionov.porosenokpetr.feature_driller.work.NotificationWorker.Companion.NOTIFICATION_ID
+import space.rodionov.porosenokpetr.feature_driller.work.NotificationWorker.Companion.NOTIFICATION_WORK
+import java.lang.System.currentTimeMillis
+import java.text.SimpleDateFormat
+import java.util.*
+import java.util.concurrent.TimeUnit
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -27,6 +41,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val view = binding.root
         setContentView(view)
+
+        vmMain.findUpcomingNotificationTime()
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.navHostFragment) { v, insets ->
             v.updatePadding(
@@ -55,7 +71,8 @@ class MainActivity : AppCompatActivity() {
 
         this.lifecycleScope.launchWhenStarted {
             vmMain.reminder.collectLatest {
-                // todo turn notifications on / off
+                Log.d(TAG_PETR, "onCreate: reminder = $it")
+                if (it) buildNotification()
             }
         }
     }
@@ -102,7 +119,44 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun findTomorrowNotificationTime()
+    // todo потом перенести функции ниже во вьюмодель?
+    private fun buildNotification() {
+        val notificationTime = vmMain.findUpcomingNotificationTime()
+        val currentTime = currentTimeMillis()
+        if (notificationTime > currentTime) {
+            val data = Data.Builder().putInt(NOTIFICATION_ID, 0).build()
+            val delay = notificationTime - currentTime
+            scheduleNotification(delay, data)
+
+            val titleNotificationSchedule = getString(R.string.notification_schedule_title)
+            val patternNotificationSchedule = getString(R.string.notification_schedule_pattern)
+            Snackbar.make(
+                binding.root,
+                titleNotificationSchedule + SimpleDateFormat(
+                    patternNotificationSchedule, Locale.getDefault()
+                ).format(notificationTime).toString(),
+                Snackbar.LENGTH_LONG
+            ).show()
+        } else {
+            val errorNotificationSchedule = getString(R.string.notification_schedule_error)
+            Snackbar.make(binding.root, errorNotificationSchedule, Snackbar.LENGTH_LONG).show()
+        }
+    }
+
+    private fun scheduleNotification(delay: Long, data: Data) {
+        val notificationWork = OneTimeWorkRequest.Builder(NotificationWorker::class.java)
+            .setInitialDelay(delay, TimeUnit.MILLISECONDS).setInputData(data).build()
+
+        val instanceWorkManager = WorkManager.getInstance(this)
+        instanceWorkManager.beginUniqueWork(NOTIFICATION_WORK,
+            ExistingWorkPolicy.REPLACE, notificationWork).enqueue()
+    }
+
+    private fun getDateFromTimestamp(timestamp: Long) : Date {
+        val cal = Calendar.getInstance()
+        cal.timeInMillis = timestamp
+        return cal.time
+    }
 }
 
 

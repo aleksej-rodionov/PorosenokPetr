@@ -45,7 +45,6 @@ class Datastore /*@Inject constructor*/(
     suspend fun updateCategoryChosen(category: String) {
         datastore.edit { preferences ->
             preferences[PrefKeys.CATEGORY] = category
-            Log.d(TAG_PETR, "updateCategoryChosen: $category")
         }
     }
 
@@ -67,7 +66,6 @@ class Datastore /*@Inject constructor*/(
     suspend fun updatetranslationDirection(nativeToForeign: Boolean) {
         datastore.edit { preferences ->
             preferences[PrefKeys.TRANSLATION_DIRECTION] = nativeToForeign
-            Log.d(TAG_PETR, "updateCategoryChosen: $nativeToForeign")
         }
     }
 
