@@ -59,7 +59,7 @@ class MainViewModel @Inject constructor(
         val tomorrowString = sdf.format(cal.timeInMillis)
         val tomorrowStartTimeStamp = Calendar.getInstance()
             .apply { this.time = sdf.parse(tomorrowString) }.timeInMillis // tomorrow start
-        val tomorrowPlusTwentyOneTimeStamp = tomorrowStartTimeStamp + 3600000 * 21 // tomorrow 21:00
+        val tomorrowPlusTwentyOneTimeStamp = tomorrowStartTimeStamp + 3600000 * 21 + 2700000 // tomorrow 21:00
         logNotificationTime(tomorrowPlusTwentyOneTimeStamp)
         return tomorrowPlusTwentyOneTimeStamp
     }
