@@ -113,7 +113,7 @@ class NotificationWorker @AssistedInject constructor (
             .setInputData(data)
             .build()
 
-        val instanceWorkManager = WorkManager.getInstance(this)
+        val instanceWorkManager = WorkManager.getInstance(applicationContext) // хз, тот ли контекст сюда запустил?
         instanceWorkManager.beginUniqueWork(
             NOTIFICATION_WORK,
             ExistingWorkPolicy.REPLACE,
