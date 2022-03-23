@@ -9,6 +9,7 @@ import androidx.work.WorkManager
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.findUpcomingNotificationTime
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.ONE_MIN_IN_MILLIS
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -23,8 +24,8 @@ class NotificationHelper(
 
         if (notificationTime > currentTime) {
             val data = Data.Builder().putInt(NotificationWorker.NOTIFICATION_ID, 0).build()
-            val delay = notificationTime - currentTime
-//            val delay = ONE_MIN_IN_MILLIS
+//            val delay = notificationTime - currentTime
+            val delay = ONE_MIN_IN_MILLIS
             scheduleNotification(delay, data)
 
             logNotificationScheduled(notificationTime)
