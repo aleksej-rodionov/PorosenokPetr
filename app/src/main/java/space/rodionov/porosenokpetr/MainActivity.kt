@@ -18,6 +18,7 @@ import androidx.work.WorkManager
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import space.rodionov.porosenokpetr.core.findUpcomingNotificationTime
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_DARK
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_LIGHT
 import space.rodionov.porosenokpetr.databinding.ActivityMainBinding
@@ -41,8 +42,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val view = binding.root
         setContentView(view)
-
-        vmMain.findUpcomingNotificationTime()
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.navHostFragment) { v, insets ->
             v.updatePadding(
@@ -72,7 +71,11 @@ class MainActivity : AppCompatActivity() {
         this.lifecycleScope.launchWhenStarted {
             vmMain.reminder.collectLatest {
                 Log.d(TAG_PETR, "onCreate: reminder = $it")
-                if (it) buildNotification()
+                if (it) {
+                    buildNotification()
+                } else {
+//                    cancelNotification() // todo cancel notification
+                }
             }
         }
     }
@@ -119,10 +122,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // todo потом перенести функции ниже во вьюмодель?
     private fun buildNotification() {
-        val notificationTime = vmMain.findUpcomingNotificationTime()
-        val currentTime = currentTimeMillis()
+        val notificationTime = findUpcomingNotificationTime() // notification timestamp
+        val currentTime = currentTimeMillis() // current timestamp
+
         if (notificationTime > currentTime) {
             val data = Data.Builder().putInt(NOTIFICATION_ID, 0).build()
             val delay = notificationTime - currentTime
@@ -145,18 +148,23 @@ class MainActivity : AppCompatActivity() {
 
     private fun scheduleNotification(delay: Long, data: Data) {
         val notificationWork = OneTimeWorkRequest.Builder(NotificationWorker::class.java)
-            .setInitialDelay(delay, TimeUnit.MILLISECONDS).setInputData(data).build()
+            .setInitialDelay(delay, TimeUnit.MILLISECONDS)
+            .setInputData(data)
+            .build()
 
         val instanceWorkManager = WorkManager.getInstance(this)
-        instanceWorkManager.beginUniqueWork(NOTIFICATION_WORK,
-            ExistingWorkPolicy.REPLACE, notificationWork).enqueue()
+        instanceWorkManager.beginUniqueWork(
+            NOTIFICATION_WORK,
+            ExistingWorkPolicy.REPLACE,
+            notificationWork
+        ).enqueue()
     }
 
-    private fun getDateFromTimestamp(timestamp: Long) : Date {
-        val cal = Calendar.getInstance()
-        cal.timeInMillis = timestamp
-        return cal.time
-    }
+//    private fun getDateFromTimestamp(timestamp: Long) : Date {
+//        val cal = Calendar.getInstance()
+//        cal.timeInMillis = timestamp
+//        return cal.time
+//    }
 }
 
 

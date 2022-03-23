@@ -37,8 +37,8 @@
 
     <string name="settings">Настройки</string>
 
-    <string name="notification_title">English Driller напоминалочка</string>
-    <string name="notification_subtitle">Не забыли уделить пару минут английскому? =)</string>
+    <string name="notification_title">English: напоминалочка</string>
+    <string name="notification_subtitle">Не забыли уделить пару минут инглишу? =)</string>
     <string name="remind">Напоминать по вечерам</string>
     <string name="reminder">Напоминание</string>
     <string name="notification_schedule_title">Установлено уведомление:\u00a0</string>
