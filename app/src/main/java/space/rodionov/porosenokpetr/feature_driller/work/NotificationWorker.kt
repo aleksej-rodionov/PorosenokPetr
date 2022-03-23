@@ -12,16 +12,21 @@ import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.hilt.work.HiltWorker
+import androidx.lifecycle.viewModelScope
 import androidx.work.*
 import androidx.work.ListenableWorker.Result.success
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.stateIn
 import space.rodionov.porosenokpetr.MainActivity
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.findUpcomingNotificationTime
 import space.rodionov.porosenokpetr.core.sdf
 import space.rodionov.porosenokpetr.core.vectorToBitmap
+import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.ObserveReminderUseCase
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.ONE_MIN_IN_MILLIS
 import java.lang.System.currentTimeMillis
 import java.text.SimpleDateFormat
 import java.util.*
@@ -32,6 +37,7 @@ import javax.inject.Inject
 class NotificationWorker @AssistedInject constructor (
     @Assisted context: Context,
     @Assisted params: WorkerParameters,
+    private val notificationHelper: NotificationHelper
 ) : Worker(context, params) {
 
     override fun doWork(): Result {
@@ -68,11 +74,16 @@ class NotificationWorker @AssistedInject constructor (
             notification.setChannelId(NOTIFICATION_CHANNEL)
 
             val ringtoneManager = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
-            val audioAttributes = AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_NOTIFICATION_RINGTONE)
-                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION).build()
+            val audioAttributes = AudioAttributes.Builder()
+                .setUsage(AudioAttributes.USAGE_NOTIFICATION_RINGTONE)
+                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                .build()
 
-            val channel =
-                NotificationChannel(NOTIFICATION_CHANNEL, NOTIFICATION_NAME, NotificationManager.IMPORTANCE_HIGH)
+            val channel = NotificationChannel(
+                NOTIFICATION_CHANNEL,
+                NOTIFICATION_NAME,
+                NotificationManager.IMPORTANCE_HIGH
+            )
 
             channel.enableLights(true)
             channel.lightColor = Color.RED
@@ -84,42 +95,10 @@ class NotificationWorker @AssistedInject constructor (
 
         notificationManager.notify(id, notification.build())
 
-        buildNotification()
+        notificationHelper.buildNotification()
     }
 
-    private fun buildNotification() {
-        val notificationTime = findUpcomingNotificationTime() // notification timestamp
-        val currentTime = currentTimeMillis() // current timestamp
 
-        if (notificationTime > currentTime) {
-            val data = Data.Builder().putInt(NOTIFICATION_ID, 0).build()
-            val delay = notificationTime - currentTime
-            scheduleNotification(delay, data)
-
-            val titleNotificationSchedule = applicationContext.resources.getString(R.string.notification_schedule_title)
-            val patternNotificationSchedule = applicationContext.resources.getString(R.string.notification_schedule_pattern)
-            Log.d(Constants.TAG_NOTIFY, "buildNotification: ${titleNotificationSchedule + SimpleDateFormat(
-                    patternNotificationSchedule, Locale.getDefault()
-                ).format(notificationTime).toString()}")
-        } else {
-            val errorNotificationSchedule = applicationContext.resources.getString(R.string.notification_schedule_error)
-            Log.d(Constants.TAG_NOTIFY, "buildNotification: $errorNotificationSchedule")
-        }
-    }
-
-    private fun scheduleNotification(delay: Long, data: Data) {
-        val notificationWork = OneTimeWorkRequest.Builder(NotificationWorker::class.java)
-            .setInitialDelay(delay, TimeUnit.MILLISECONDS)
-            .setInputData(data)
-            .build()
-
-        val instanceWorkManager = WorkManager.getInstance(applicationContext) // хз, тот ли контекст сюда запустил?
-        instanceWorkManager.beginUniqueWork(
-            NOTIFICATION_WORK,
-            ExistingWorkPolicy.REPLACE,
-            notificationWork
-        ).enqueue()
-    }
 
     companion object {
         const val NOTIFICATION_ID = "porosenok_petr_notification_id"

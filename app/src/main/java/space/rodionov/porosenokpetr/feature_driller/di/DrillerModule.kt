@@ -15,6 +15,7 @@ import space.rodionov.porosenokpetr.feature_driller.data.repository.WordRepoImpl
 import space.rodionov.porosenokpetr.feature_driller.data.storage.Datastore
 import space.rodionov.porosenokpetr.feature_driller.domain.repository.WordRepo
 import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.*
+import space.rodionov.porosenokpetr.feature_driller.work.NotificationHelper
 import javax.inject.Qualifier
 import javax.inject.Singleton
 
@@ -169,6 +170,11 @@ object DrillerModule {
 //    @Provides
 //    @Singleton
 //    fun provideWorkerParameters() = WorkerParameters
+
+    @Provides
+    @Singleton
+    fun provideNotificationHelper(app: Application): NotificationHelper =
+        NotificationHelper(app)
 
     @Provides
     @Singleton

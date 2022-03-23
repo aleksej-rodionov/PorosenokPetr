@@ -9,12 +9,14 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.*
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
+import space.rodionov.porosenokpetr.feature_driller.work.NotificationHelper
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
+    private val notificationHelper: NotificationHelper,
     private val observeModeUseCase: ObserveModeUseCase,
     private val setModeUseCase: SetModeUseCase,
     private val observeFollowSystemModeUseCase: ObserveFollowSystemModeUseCase,
@@ -40,4 +42,6 @@ class MainViewModel @Inject constructor(
 
     //=============================METHODS======================================
 
+    fun buildAndScheduleNotification() = notificationHelper.buildNotification()
+    fun cancelNotification() = notificationHelper.cancelNotification()
 }

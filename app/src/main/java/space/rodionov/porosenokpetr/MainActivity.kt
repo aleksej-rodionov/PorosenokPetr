@@ -11,25 +11,16 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.updatePadding
 import androidx.lifecycle.lifecycleScope
-import androidx.work.Data
-import androidx.work.ExistingWorkPolicy
-import androidx.work.OneTimeWorkRequest
-import androidx.work.WorkManager
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
-import space.rodionov.porosenokpetr.core.findUpcomingNotificationTime
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_DARK
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_LIGHT
 import space.rodionov.porosenokpetr.databinding.ActivityMainBinding
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
-import space.rodionov.porosenokpetr.feature_driller.work.NotificationWorker
-import space.rodionov.porosenokpetr.feature_driller.work.NotificationWorker.Companion.NOTIFICATION_ID
-import space.rodionov.porosenokpetr.feature_driller.work.NotificationWorker.Companion.NOTIFICATION_WORK
-import java.lang.System.currentTimeMillis
+import space.rodionov.porosenokpetr.feature_driller.work.NotificationHelper
 import java.text.SimpleDateFormat
 import java.util.*
-import java.util.concurrent.TimeUnit
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -72,9 +63,13 @@ class MainActivity : AppCompatActivity() {
             vmMain.reminder.collectLatest {
                 Log.d(TAG_PETR, "onCreate: reminder = $it")
                 if (it) {
-                    buildNotification()
+                    vmMain.buildAndScheduleNotification().apply {
+                        this?.let { timestamp->
+                            scheduleSuccessSnackBar(timestamp)
+                        } ?: scheduleErrornackbar()
+                    }
                 } else {
-//                    cancelNotification() // todo cancel notification
+                    vmMain.cancelNotification()
                 }
             }
         }
@@ -122,27 +117,19 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun buildNotification() {
+    /*private fun buildNotification() {
         val notificationTime = findUpcomingNotificationTime() // notification timestamp
         val currentTime = currentTimeMillis() // current timestamp
 
         if (notificationTime > currentTime) {
             val data = Data.Builder().putInt(NOTIFICATION_ID, 0).build()
             val delay = notificationTime - currentTime
+//            val delay = ONE_MIN_IN_MILLIS
             scheduleNotification(delay, data)
 
-            val titleNotificationSchedule = getString(R.string.notification_schedule_title)
-            val patternNotificationSchedule = getString(R.string.notification_schedule_pattern)
-            Snackbar.make(
-                binding.root,
-                titleNotificationSchedule + SimpleDateFormat(
-                    patternNotificationSchedule, Locale.getDefault()
-                ).format(notificationTime).toString(),
-                Snackbar.LENGTH_LONG
-            ).show()
+//            notificationScheduledSnackBar(notificationTime)
         } else {
-            val errorNotificationSchedule = getString(R.string.notification_schedule_error)
-            Snackbar.make(binding.root, errorNotificationSchedule, Snackbar.LENGTH_LONG).show()
+//            incorrectTimeSnackbar()
         }
     }
 
@@ -153,18 +140,30 @@ class MainActivity : AppCompatActivity() {
             .build()
 
         val instanceWorkManager = WorkManager.getInstance(this)
+        Log.d(TAG_NOTIFY, "scheduleNotification: instanceWorkManager.hashcode = ${instanceWorkManager.hashCode()}")
         instanceWorkManager.beginUniqueWork(
             NOTIFICATION_WORK,
             ExistingWorkPolicy.REPLACE,
             notificationWork
         ).enqueue()
+    }*/
+
+    fun scheduleSuccessSnackBar(notificationTime: Long) {
+        val titleNotificationSchedule = getString(R.string.notification_schedule_title)
+        val patternNotificationSchedule = getString(R.string.notification_schedule_pattern)
+        Snackbar.make(
+            binding.root,
+            titleNotificationSchedule + SimpleDateFormat(
+                patternNotificationSchedule, Locale.getDefault()
+            ).format(notificationTime).toString(),
+            Snackbar.LENGTH_LONG
+        ).show()
     }
 
-//    private fun getDateFromTimestamp(timestamp: Long) : Date {
-//        val cal = Calendar.getInstance()
-//        cal.timeInMillis = timestamp
-//        return cal.time
-//    }
+    fun scheduleErrornackbar() {
+        val errorNotificationSchedule = getString(R.string.notification_schedule_error)
+        Snackbar.make(binding.root, errorNotificationSchedule, Snackbar.LENGTH_LONG).show()
+    }
 }
 
 

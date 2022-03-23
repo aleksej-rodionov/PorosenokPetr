@@ -21,5 +21,6 @@ object Constants {
     const val EMPTY_STRING = ""
     const val MAX_STACK_SIZE = 50
 
+    const val ONE_MIN_IN_MILLIS = 60000
 
 }
