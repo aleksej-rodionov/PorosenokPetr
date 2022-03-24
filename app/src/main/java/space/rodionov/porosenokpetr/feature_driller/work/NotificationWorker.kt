@@ -65,7 +65,7 @@ class NotificationWorker @AssistedInject constructor (
             .setContentTitle(titleNotification)
             .setContentText(subtitleNotification)
             .setDefaults(NotificationCompat.DEFAULT_ALL)
-            .setContentIntent(pendingIntent)
+            .setContentIntent(pendingIntent) // направляет по тапу на MainActivity, где startDest is DrillerFragment
             .setAutoCancel(true)
 
         notification.priority = NotificationCompat.PRIORITY_MAX
