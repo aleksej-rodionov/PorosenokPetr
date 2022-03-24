@@ -43,6 +43,7 @@ class NotificationHelper(
             .build()
 
         val instanceWorkManager = WorkManager.getInstance(context) // хз, тот ли контекст сюда запустил?
+        Log.d(Constants.TAG_NOTIFY, "scheduleNotification: instanceWorkManager.hashcode = ${instanceWorkManager.hashCode()}")
         instanceWorkManager.beginUniqueWork(
             NotificationWorker.NOTIFICATION_WORK,
             ExistingWorkPolicy.REPLACE,
