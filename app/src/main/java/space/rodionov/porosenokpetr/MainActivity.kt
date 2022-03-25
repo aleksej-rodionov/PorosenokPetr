@@ -123,21 +123,12 @@ class MainActivity : AppCompatActivity() {
     private fun scheduleSuccessSnackBar(notificationTime: Long) {
         val titleNotificationSchedule = getString(R.string.notification_schedule_title)
         val patternNotificationSchedule = getString(R.string.notification_schedule_pattern)
-//        Snackbar.make(
-//            binding.root,
-//            titleNotificationSchedule + SimpleDateFormat(
-//                patternNotificationSchedule, Locale.getDefault()
-//            ).format(notificationTime).toString(),
-//            Snackbar.LENGTH_LONG
-//        ).show()
         showSnackBar(DEFAULT_INT, titleNotificationSchedule + SimpleDateFormat(
                 patternNotificationSchedule, Locale.getDefault()
             ).format(notificationTime).toString())
     }
 
     private fun scheduleErrornackbar() {
-//        val errorNotificationSchedule = getString(R.string.notification_schedule_error)
-//        Snackbar.make(binding.root, errorNotificationSchedule, Snackbar.LENGTH_LONG).show()
         showSnackBar(R.string.notification_schedule_error, "")
     }
 
