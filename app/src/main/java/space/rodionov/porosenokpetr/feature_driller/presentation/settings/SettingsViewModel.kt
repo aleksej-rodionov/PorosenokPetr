@@ -16,7 +16,9 @@ class SettingsViewModel @Inject constructor(
     private val observeModeUseCase: ObserveModeUseCase,
     private val setModeUseCase: SetModeUseCase,
     private val observeFollowSystemModeUseCase: ObserveFollowSystemModeUseCase,
-    private val setFollowSystemModeUseCase: SetFollowSystemModeUseCase
+    private val setFollowSystemModeUseCase: SetFollowSystemModeUseCase,
+    private val observeReminderUseCase: ObserveReminderUseCase,
+    private val setReminderUseCase: SetReminderUseCase
 ) : ViewModel() {
 
     //==========================TRANSLATION DIRECTION=========================================
@@ -41,5 +43,13 @@ class SettingsViewModel @Inject constructor(
 
     fun updateFollowSystemMode(follow: Boolean) = viewModelScope.launch {
         setFollowSystemModeUseCase.invoke(follow)
+    }
+
+    //==========================FOLLOW SYSTEM MODE=========================================
+    private val _remind = observeReminderUseCase.invoke()
+    val remind = _remind.stateIn(viewModelScope, SharingStarted.Lazily, false)
+
+    fun updateRemind(follow: Boolean) = viewModelScope.launch {
+        setReminderUseCase.invoke(follow)
     }
 }

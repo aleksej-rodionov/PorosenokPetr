@@ -2,6 +2,7 @@ package space.rodionov.porosenokpetr.feature_driller.di
 
 import android.app.Application
 import androidx.room.Room
+import androidx.work.WorkerParameters
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,12 +15,25 @@ import space.rodionov.porosenokpetr.feature_driller.data.repository.WordRepoImpl
 import space.rodionov.porosenokpetr.feature_driller.data.storage.Datastore
 import space.rodionov.porosenokpetr.feature_driller.domain.repository.WordRepo
 import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.*
+import space.rodionov.porosenokpetr.feature_driller.work.NotificationHelper
 import javax.inject.Qualifier
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 object DrillerModule {
+
+    @Provides
+    @Singleton
+    fun provideObserveReminderUseCase(repo: WordRepo): ObserveReminderUseCase {
+        return ObserveReminderUseCase(repo)
+    }
+
+    @Provides
+    @Singleton
+    fun provideSetReminderUseCase(repo: WordRepo): SetReminderUseCase {
+        return SetReminderUseCase(repo)
+    }
 
     @Provides
     @Singleton
@@ -152,6 +166,15 @@ object DrillerModule {
     fun provideGetTenWordsUseCase(repo: WordRepo): GetTenWordsUseCase {
         return GetTenWordsUseCase(repo)
     }
+
+//    @Provides
+//    @Singleton
+//    fun provideWorkerParameters() = WorkerParameters
+
+    @Provides
+    @Singleton
+    fun provideNotificationHelper(app: Application): NotificationHelper =
+        NotificationHelper(app)
 
     @Provides
     @Singleton

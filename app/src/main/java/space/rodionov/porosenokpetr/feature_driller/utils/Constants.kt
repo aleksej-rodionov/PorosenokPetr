@@ -1,9 +1,13 @@
 package space.rodionov.porosenokpetr.feature_driller.utils
 
+import java.text.SimpleDateFormat
+import java.util.*
+
 object Constants {
 
     const val TAG_PETR = "tag_petr"
     const val TAG_MODE = "tag_mode"
+    const val TAG_NOTIFY = "tag_mode"
 
     const val WORD_DB = "word_db"
 
@@ -16,4 +20,7 @@ object Constants {
     const val DEFAULT_INT = -1
     const val EMPTY_STRING = ""
     const val MAX_STACK_SIZE = 50
+
+    const val ONE_MIN_IN_MILLIS = 60000L
+
 }

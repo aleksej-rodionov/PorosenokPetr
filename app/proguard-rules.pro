@@ -20,4 +20,5 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
-#-keep class space.rodionov.porosenokpetr.feature_driller.data.local.entity.CategoryEntity
+-keepnames class * extends android.os.Parcelable
+-keepnames class * extends java.io.Serializable
