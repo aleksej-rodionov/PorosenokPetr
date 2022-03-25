@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.updatePadding
@@ -17,6 +18,8 @@ import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_DARK
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_LIGHT
 import space.rodionov.porosenokpetr.databinding.ActivityMainBinding
+import space.rodionov.porosenokpetr.databinding.SnackbarLayoutBinding
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.DEFAULT_INT
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.feature_driller.work.NotificationHelper
 import java.text.SimpleDateFormat
@@ -117,52 +120,49 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    /*private fun buildNotification() {
-        val notificationTime = findUpcomingNotificationTime() // notification timestamp
-        val currentTime = currentTimeMillis() // current timestamp
-
-        if (notificationTime > currentTime) {
-            val data = Data.Builder().putInt(NOTIFICATION_ID, 0).build()
-            val delay = notificationTime - currentTime
-//            val delay = ONE_MIN_IN_MILLIS
-            scheduleNotification(delay, data)
-
-//            notificationScheduledSnackBar(notificationTime)
-        } else {
-//            incorrectTimeSnackbar()
-        }
-    }
-
-    private fun scheduleNotification(delay: Long, data: Data) {
-        val notificationWork = OneTimeWorkRequest.Builder(NotificationWorker::class.java)
-            .setInitialDelay(delay, TimeUnit.MILLISECONDS)
-            .setInputData(data)
-            .build()
-
-        val instanceWorkManager = WorkManager.getInstance(this)
-        Log.d(TAG_NOTIFY, "scheduleNotification: instanceWorkManager.hashcode = ${instanceWorkManager.hashCode()}")
-        instanceWorkManager.beginUniqueWork(
-            NOTIFICATION_WORK,
-            ExistingWorkPolicy.REPLACE,
-            notificationWork
-        ).enqueue()
-    }*/
-
-    fun scheduleSuccessSnackBar(notificationTime: Long) {
+    private fun scheduleSuccessSnackBar(notificationTime: Long) {
         val titleNotificationSchedule = getString(R.string.notification_schedule_title)
         val patternNotificationSchedule = getString(R.string.notification_schedule_pattern)
-        Snackbar.make(
-            binding.root,
-            titleNotificationSchedule + SimpleDateFormat(
+//        Snackbar.make(
+//            binding.root,
+//            titleNotificationSchedule + SimpleDateFormat(
+//                patternNotificationSchedule, Locale.getDefault()
+//            ).format(notificationTime).toString(),
+//            Snackbar.LENGTH_LONG
+//        ).show()
+        showSnackBar(DEFAULT_INT, titleNotificationSchedule + SimpleDateFormat(
                 patternNotificationSchedule, Locale.getDefault()
-            ).format(notificationTime).toString(),
-            Snackbar.LENGTH_LONG
-        ).show()
+            ).format(notificationTime).toString())
     }
 
-    fun scheduleErrornackbar() {
-        val errorNotificationSchedule = getString(R.string.notification_schedule_error)
-        Snackbar.make(binding.root, errorNotificationSchedule, Snackbar.LENGTH_LONG).show()
+    private fun scheduleErrornackbar() {
+//        val errorNotificationSchedule = getString(R.string.notification_schedule_error)
+//        Snackbar.make(binding.root, errorNotificationSchedule, Snackbar.LENGTH_LONG).show()
+        showSnackBar(R.string.notification_schedule_error, "")
+    }
+
+    private fun showSnackBar(resId: Int, text: String) {
+        val snackBar = Snackbar.make(binding.root, "", Snackbar.LENGTH_SHORT)
+        val snackBarLayout =
+            SnackbarLayoutBinding.bind(layoutInflater.inflate(R.layout.snackbar_layout, null))
+        if (resId != DEFAULT_INT) {
+            snackBarLayout.tvText.setText(resId)
+        } else {
+            snackBarLayout.tvText.text = text
+        }
+        val snackBarView = snackBar.view
+        snackBarView.setBackgroundColor(
+            ResourcesCompat.getColor(
+                resources,
+                R.color.transparent,
+                null
+            )
+        )
+        val params = snackBarView.layoutParams
+        snackBarView.layoutParams = params
+        (snackBarView as Snackbar.SnackbarLayout).addView(snackBarLayout.root, 0)
+        snackBar.anchorView = binding.frameBottom
+        snackBar.show()
     }
 }
 
