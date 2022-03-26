@@ -29,9 +29,9 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
             checkSwitch = { type, isChecked ->
                 checkSwitch(type, isChecked)
             },
-            checkSwitchWithTime = { millis, isChecked ->
-                // todo а надо ли это?
-            },
+//            checkSwitchWithTime = { millis, isChecked ->
+//                // todo а надо ли это?
+//            },
             openTimePicker = { openTimePicker() }
         )
     }
@@ -44,7 +44,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
             recyclerView.adapter = settingsAdapter
             settingsAdapter.submitList(SettingsHelper.getSettingsMenu())
             recyclerView.setHasFixedSize(true)
-            recyclerView.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+//            recyclerView.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
             Log.d(TAG_SETTINGS, "settings adapter: ${settingsAdapter.itemCount}")
 
             btnBack.setOnClickListener {
@@ -82,16 +82,16 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         }
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-
+            // todo collect ui events
         }
     }
 
     private fun checkSwitch(type: SettingsSwitchType, isChecked: Boolean) {
-        //todo
+        Log.d(TAG_SETTINGS, "checkSwitch: ${type.name}, $isChecked")
     }
 
     private fun openTimePicker() {
-        //todo
+        Log.d(TAG_SETTINGS, "openTimePicker: CALLED")
     }
 
     override fun onDestroyView() {

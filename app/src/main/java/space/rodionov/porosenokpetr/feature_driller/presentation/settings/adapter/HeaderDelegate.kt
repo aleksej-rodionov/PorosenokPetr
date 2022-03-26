@@ -14,9 +14,10 @@ import java.util.*
 class HeaderViewHolder(parent: ViewGroup) : BaseViewHolder(parent, R.layout.item_header) {
     lateinit var binding: ItemHeaderBinding
     override fun bind(model: BaseModel, holder: BaseViewHolder) {
+        binding = ItemHeaderBinding.bind(itemView)
         with(binding) {
             model as Header
-            tvTitle.updateHorizontalMargin(model.padding)
+//            tvTitle.updateHorizontalMargin(model.padding)
             model.resId?.let {
                 tvTitle.setText(it)
             } ?: tvTitle.setText(model.header?.let {

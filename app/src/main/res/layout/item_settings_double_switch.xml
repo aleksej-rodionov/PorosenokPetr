@@ -35,7 +35,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_header"
-        tools:text="Тёмная тема" />
+        android:text="Тёмная тема" />
 
     <TextView
         android:id="@+id/tv_description_first"
@@ -65,7 +65,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_description_first"
-        tools:text="Тёмная тема" />
+        android:text="Тема устройства" />
 
     <TextView
         android:id="@+id/tv_description_second"

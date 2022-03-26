@@ -28,5 +28,5 @@ data class MenuSwitchWithTimePicker(
     val type: SettingsSwitchType,
     val titleId: Int,
     val switchState: Boolean,
-    val timestamp: Long
+    val millisSinceDayBeginning: Long
 ): BaseModel

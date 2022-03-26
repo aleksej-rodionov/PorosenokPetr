@@ -1,5 +1,6 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation.settings.adapter
 
+import android.content.res.ColorStateList
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SwitchCompat
@@ -9,6 +10,7 @@ import space.rodionov.porosenokpetr.feature_driller.domain.models.BaseModel
 import space.rodionov.porosenokpetr.feature_driller.domain.models.MenuSwitch
 import space.rodionov.porosenokpetr.feature_driller.presentation.base.AdapterDelegate
 import space.rodionov.porosenokpetr.feature_driller.presentation.base.BaseViewHolder
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 import space.rodionov.porosenokpetr.feature_driller.utils.SettingsSwitchType
 
 
@@ -38,11 +40,29 @@ class SwitchViewHolder(
     fun bindSwitchState(type: SettingsSwitchType, switch: SwitchCompat) {
         when(type) {
             SettingsSwitchType.TRANSLATION_DIRECTION -> {
-                switch.isChecked = translationDirectionBVH
+                switch.isChecked = nativeToForeignBVH
+                var transDirText = if (nativeToForeignBVH) res.getString(R.string.from_ru_to_en)
+                    else res.getString(R.string.from_en_to_ru)
+                switch.text = transDirText
             }
-            SettingsSwitchType.NIGHT_MODE -> {}
-            SettingsSwitchType.SYSTEM_MODE -> {}
-            SettingsSwitchType.NOTIFICATIONS -> {}
+            SettingsSwitchType.NIGHT_MODE -> {
+                switch.isChecked = modeBVH == Constants.MODE_DARK
+                if (followSystemModeBVH) {
+                    switch.setTextColor(res.getColor(R.color.gray600))
+                    switch.thumbTintList = ColorStateList.valueOf(res.getColor(R.color.gray600))
+                    switch.isEnabled = false
+                } else {
+                    switch.setTextColor(colors[3])
+                    switch.thumbTintList = ColorStateList.valueOf(res.getColor(R.color.white))
+                    switch.isEnabled = true
+                }
+                switch.text = res.getString(R.string.dark_mode)
+            }
+            SettingsSwitchType.SYSTEM_MODE -> {
+                switch.isChecked = followSystemModeBVH
+                switch.text = res.getString(R.string.follow_system_mode)
+            }
+//            SettingsSwitchType.NOTIFICATIONS -> {}
         }
     }
 }

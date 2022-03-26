@@ -8,7 +8,7 @@
     android:clickable="true"
     android:focusable="true">
 
-    <TextView
+    <!--<TextView
         android:id="@+id/tv_header"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -20,11 +20,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:text="@string/translation_direction" />
+        android:text="@string/translation_direction" />-->
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/switch_view"
-        style="@style/Regular18Black"
+        style="@style/Regular16Black"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:paddingHorizontal="12dp"
@@ -34,8 +34,8 @@
         android:tag="switch_ios"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_header"
-        tools:text="Тёмная тема" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Пункт настроек" />
 
     <TextView
         android:id="@+id/tv_description"
@@ -49,7 +49,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/switch_view"
-        tools:text="Когда же узнал Иисус о дошедшем до фарисеев слухе, что Он более приобретает учеников и крестит, нежели Иоанн, хотя Сам Иисус не крестил, а ученики Его, - то оставил Иудею и пошел опять в Галилею. Надлежало же Ему проходить через Самарию."
-        />
+        tools:text="Когда же узнал Иисус о дошедшем до фарисеев слухе, что Он более приобретает учеников и крестит, нежели Иоанн, хотя Сам Иисус не крестил, а ученики Его, - то оставил Иудею и пошел опять в Галилею. Надлежало же Ему проходить через Самарию." />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

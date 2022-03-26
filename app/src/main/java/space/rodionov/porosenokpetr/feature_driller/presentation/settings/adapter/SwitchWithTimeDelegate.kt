@@ -14,7 +14,8 @@ import space.rodionov.porosenokpetr.feature_driller.utils.SettingsSwitchType
 
 class SwitchWithTimeViewHolder(
     val parent: ViewGroup,
-    val checkSwitch: (millisFromDayBeginning: Long, state: Boolean) -> Unit = { _, _ -> },
+//    val checkSwitch: (millisFromDayBeginning: Long, state: Boolean) -> Unit = { _, _ -> },
+    val checkSwitch: (type: SettingsSwitchType, state: Boolean) -> Unit = { _, _ -> },
     val openTimePicker: () -> Unit = {}
 ): BaseViewHolder(parent, R.layout.item_settings_switch_with_time) {
     lateinit var binding: ItemSettingsSwitchWithTimeBinding
@@ -27,13 +28,23 @@ class SwitchWithTimeViewHolder(
             switchView.isChecked = notifyBVH
             timeSelectionView.visibility = if (notifyBVH) View.VISIBLE else View.GONE
 
-            switchView
+            switchView.text = res.getString(R.string.remind)
+
+            tvTime.text = model.millisSinceDayBeginning.toString()
+
+            switchView.setOnCheckedChangeListener { _, isChecked ->
+                checkSwitch(model.type, isChecked)
+            }
+            ivCalendar.setOnClickListener {
+                openTimePicker()
+            }
         }
     }
 }
 
 class SwitchWithTimeDelegate(
-    private val checkSwitch: (millisFromDayBeginning: Long, state: Boolean) -> Unit = { _, _ -> },
+//    private val checkSwitch: (millisFromDayBeginning: Long, state: Boolean) -> Unit = { _, _ -> },
+    private val checkSwitch: (type: SettingsSwitchType, state: Boolean) -> Unit = { _, _ -> },
     private val openTimePicker: () -> Unit = {}
 ): AdapterDelegate {
 
