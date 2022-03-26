@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import space.rodionov.porosenokpetr.feature_driller.domain.models.BaseModel
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.DEFAULT_INT
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MILLIS_IN_NINE_HOURS
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_LIGHT
 
 abstract class BaseAdapter(
     delegates: List<AdapterDelegate>,
@@ -16,7 +17,10 @@ abstract class BaseAdapter(
     var transDirBA = false
     open fun setTransDir(nativeToForeign: Boolean) { transDirBA = nativeToForeign }
 
-    //todo night mode
+    var modeBA = MODE_LIGHT
+    open fun updateMode(mode: Int) {modeBA = mode}
+    var followSystemModeBA = false
+    open fun updateFollowSystemModeBA(follow: Boolean) {followSystemModeBA = follow}
 
     var notifyBA = false
     open fun updateNotify(notify: Boolean) { notifyBA = notify }
@@ -59,6 +63,8 @@ abstract class BaseAdapter(
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
         holder.setTranslationDirection(transDirBA)
+        holder.setMode(modeBA)
+        holder.setFollowSystemMode(followSystemModeBA)
         holder.setNotify(notifyBA)
         holder.setNotificationTime(notificationTimeBA)
 

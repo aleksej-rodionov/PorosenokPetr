@@ -8,20 +8,33 @@
     android:clickable="true"
     android:focusable="true">
 
+    <TextView
+        android:id="@+id/tv_header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="6dp"
+        android:textColor="@color/gray900"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="@string/translation_direction" />
+
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/switch_view"
         style="@style/Regular18Black"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:paddingVertical="20dp"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="16dp"
         android:thumb="@drawable/switch_selector"
         app:track="@drawable/switch_track"
         android:tag="switch_ios"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_header"
         tools:text="Тёмная тема" />
 
     <TextView

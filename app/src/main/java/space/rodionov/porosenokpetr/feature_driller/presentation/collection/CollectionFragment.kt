@@ -21,7 +21,7 @@ import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
 
 
 @AndroidEntryPoint
-class CollectionFragment : Fragment(
+class   CollectionFragment : Fragment(
     R.layout.fragment_collection
 ) {
 

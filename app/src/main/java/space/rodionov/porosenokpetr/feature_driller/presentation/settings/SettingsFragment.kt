@@ -1,101 +1,97 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation.settings
 
-import android.content.res.ColorStateList
 import android.os.Bundle
+import android.util.Log
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.DividerItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.MainActivity
 import space.rodionov.porosenokpetr.R
-import space.rodionov.porosenokpetr.core.fetchColors
-import space.rodionov.porosenokpetr.core.redrawViewGroup
 import space.rodionov.porosenokpetr.databinding.FragmentSettingsBinding
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_DARK
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_LIGHT
+import space.rodionov.porosenokpetr.feature_driller.presentation.settings.adapter.SettingsAdapter
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_SETTINGS
+import space.rodionov.porosenokpetr.feature_driller.utils.SettingsSwitchType
 
 @AndroidEntryPoint
 class SettingsFragment : Fragment(R.layout.fragment_settings) {
 
     private var _binding: FragmentSettingsBinding? = null
-    private val binding get() = _binding
+    private val binding get() = _binding!!
 
     private val vmSettings: SettingsViewModel by viewModels()
+
+    private val settingsAdapter: SettingsAdapter by lazy {
+        SettingsAdapter(
+            checkSwitch = { type, isChecked ->
+                checkSwitch(type, isChecked)
+            },
+            checkSwitchWithTime = { millis, isChecked ->
+                // todo а надо ли это?
+            },
+            openTimePicker = { openTimePicker() }
+        )
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentSettingsBinding.bind(view)
 
-        binding?.apply {
+        binding.apply {
+            recyclerView.adapter = settingsAdapter
+            settingsAdapter.submitList(SettingsHelper.getSettingsMenu())
+            recyclerView.setHasFixedSize(true)
+            recyclerView.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+            Log.d(TAG_SETTINGS, "settings adapter: ${settingsAdapter.itemCount}")
 
             btnBack.setOnClickListener {
                 (activity as MainActivity).onBackPressed()
             }
+            initViewModel()
+        }
+    }
 
-            viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-                vmSettings.transDir.collectLatest {
-                    val nativeToForeign = it ?: return@collectLatest
-                    val transDirText =
-                        if (nativeToForeign) resources.getString(R.string.from_ru_to_en)
-                        else resources.getString(R.string.from_en_to_ru)
-                    switchTransdir.text = transDirText
-                    switchTransdir.setOnCheckedChangeListener(null)
-                    switchTransdir.isChecked = nativeToForeign
-                    switchTransdir.setOnCheckedChangeListener { _, isChecked ->
-                        vmSettings.updateTransDir(isChecked)
-                    }
-                }
-            }
-
-            viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-                vmSettings.mode.collectLatest {
-                    val mode = it ?: return@collectLatest
-                    switchMode.setOnCheckedChangeListener(null)
-                    switchMode.isChecked = mode == MODE_DARK
-                    switchMode.setOnCheckedChangeListener { _, isChecked ->
-                        if (!vmSettings.followSystemMode.value) vmSettings.updateMode(if (isChecked) MODE_DARK else MODE_LIGHT)
-                    }
-
-                    (root as ViewGroup).redrawViewGroup(mode)
-                }
-            }
-
-            viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-                vmSettings.followSystemMode.collectLatest {
-                    val follow = it ?: return@collectLatest
-
-                    if (follow) {
-                        switchMode.setTextColor(resources.getColor(R.color.gray600))
-                        switchMode.thumbTintList = ColorStateList.valueOf(resources.getColor(R.color.gray600))
-                        switchMode.isEnabled = false
-                    } else {
-                        switchMode.setTextColor(fetchColors(vmSettings.mode.value, resources)[3])
-                        switchMode.thumbTintList = ColorStateList.valueOf(resources.getColor(R.color.white))
-                        switchMode.isEnabled = true
-                    }
-
-                    switchFollowSystemMode.setOnCheckedChangeListener(null)
-                    switchFollowSystemMode.isChecked = follow
-                    switchFollowSystemMode.setOnCheckedChangeListener { _, isChecked ->
-                        vmSettings.updateFollowSystemMode(isChecked)
-                    }
-                }
-            }
-
-            viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-                vmSettings.remind.collectLatest {
-                    val remind = it ?: return@collectLatest
-                    switchReminder.setOnCheckedChangeListener(null)
-                    switchReminder.isChecked = remind
-                    switchReminder.setOnCheckedChangeListener { _, isChecked ->
-                        vmSettings.updateRemind(isChecked)
-                    }
-                }
+    private fun initViewModel() {
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            vmSettings.transDir.collectLatest {
+                settingsAdapter.setTransDir(it)
             }
         }
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            vmSettings.mode.collectLatest {
+                settingsAdapter.updateMode(it)
+            }
+        }
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            vmSettings.followSystemMode.collectLatest {
+                settingsAdapter.updateFollowSystemModeBA(it)
+            }
+        }
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            vmSettings.remind.collectLatest {
+                settingsAdapter.updateNotify(it)
+            }
+        }
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            vmSettings.notificationTime.collectLatest {
+                settingsAdapter.updateNotificationTime(it)
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+
+        }
+    }
+
+    private fun checkSwitch(type: SettingsSwitchType, isChecked: Boolean) {
+        //todo
+    }
+
+    private fun openTimePicker() {
+        //todo
     }
 
     override fun onDestroyView() {

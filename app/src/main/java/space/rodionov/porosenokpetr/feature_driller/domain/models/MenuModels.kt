@@ -3,6 +3,7 @@ package space.rodionov.porosenokpetr.feature_driller.domain.models
 import space.rodionov.porosenokpetr.feature_driller.utils.SettingsSwitchType
 
 data class MenuSwitch(
+    val headerId: Int,
     val descriptionId: Int?,
     val type: SettingsSwitchType,
     val titleId: Int,
@@ -10,16 +11,19 @@ data class MenuSwitch(
 ): BaseModel
 
 data class MenuDoubleSwitch(
+    val headerId: Int,
     val descriptionFirstId: Int?,
     val descriptionSecondId: Int?,
     val typeFirst: SettingsSwitchType,
     val typeSecond: SettingsSwitchType,
-    val titleId: Int,
+    val titleFirstId: Int,
+    val titleSecondId: Int,
     val switchStateFirst: Boolean,
     val switchStateSecond: Boolean
 ): BaseModel
 
 data class MenuSwitchWithTimePicker(
+    val headerId: Int,
     val descriptionId: Int?,
     val type: SettingsSwitchType,
     val titleId: Int,

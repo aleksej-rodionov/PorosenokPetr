@@ -26,7 +26,7 @@ class DrillerFragment : Fragment(R.layout.fragment_driller), CardStackListener, 
 
     private val vmDriller: DrillerViewModel by viewModels()
     private var _binding: FragmentDrillerBinding? = null
-    private val binding get() = _binding
+    private val binding get() = _binding!!
     private var textToSpeech: TextToSpeech? = null
 
     private val drillerAdapter = DrillerAdapter(
