@@ -7,6 +7,7 @@ import androidx.datastore.preferences.core.*
 import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MILLIS_IN_NINE_HOURS
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
 import java.io.IOException
 
@@ -25,6 +26,7 @@ class Datastore /*@Inject constructor*/(
         val MODE = intPreferencesKey("mode")
         val FOLLOW_SYSTEM_MODE = booleanPreferencesKey("followSystemMode")
         val REMINDER = booleanPreferencesKey("remind")
+        val MILLIS_FROM_DAY_BEGINNING = longPreferencesKey("millis")
     }
 
     //==========================CATEGORY OPENED IN WORD COLLECTION============================================
@@ -126,6 +128,24 @@ class Datastore /*@Inject constructor*/(
 
     suspend fun updateRemind(remind: Boolean) {
         datastore.edit { it[PrefKeys.REMINDER] = remind }
+    }
+
+    val millisFlow = datastore.data
+        .catch {exception ->
+            if (exception is IOException) {
+                Log.e(TAG_PETR, "Error reading preferences", exception)
+                emit(emptyPreferences())
+            } else {
+                throw exception
+            }
+        }
+        .map { prefs ->
+            val millis = prefs[PrefKeys.MILLIS_FROM_DAY_BEGINNING] ?: MILLIS_IN_NINE_HOURS
+            millis
+        }
+
+    suspend fun updateMillis(millis: Long) {
+        datastore.edit { it[PrefKeys.MILLIS_FROM_DAY_BEGINNING] = millis }
     }
 }
 

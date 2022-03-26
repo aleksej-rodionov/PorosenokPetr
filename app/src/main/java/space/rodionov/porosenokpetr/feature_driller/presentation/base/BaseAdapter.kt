@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import space.rodionov.porosenokpetr.feature_driller.domain.models.BaseModel
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.DEFAULT_INT
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MILLIS_IN_NINE_HOURS
 
 abstract class BaseAdapter(
     delegates: List<AdapterDelegate>,
@@ -13,9 +14,14 @@ abstract class BaseAdapter(
 ): ListAdapter<BaseModel, BaseViewHolder>(BaseComparator()) {
 
     var transDirBA = false
-    open fun setTransDir(nativeToForeign: Boolean) {
-        transDirBA = nativeToForeign
-    }
+    open fun setTransDir(nativeToForeign: Boolean) { transDirBA = nativeToForeign }
+
+    //todo night mode
+
+    var notifyBA = false
+    open fun updateNotify(notify: Boolean) { notifyBA = notify }
+    var notificationTimeBA = MILLIS_IN_NINE_HOURS
+    open fun updateNotificationTime(millisFromDayBeginning: Long) { notificationTimeBA = millisFromDayBeginning }
 
 
 //=========================MAIN BOILERPLATE==================
@@ -53,6 +59,8 @@ abstract class BaseAdapter(
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
         holder.setTranslationDirection(transDirBA)
+        holder.setNotify(notifyBA)
+        holder.setNotificationTime(notificationTimeBA)
 
         holder.bind(getItem(position), holder)
     }

@@ -5,10 +5,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import space.rodionov.porosenokpetr.feature_driller.domain.models.BaseModel
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 
 abstract class BaseViewHolder: RecyclerView.ViewHolder {
 
     var translationDirectionBVH = false
+    //todo night mode
+    var notifyBVH: Boolean = false
+    var notificationTimeBVH: Long = Constants.MILLIS_IN_NINE_HOURS
 
 
     constructor(parent: ViewGroup, layoutId: Int):
@@ -30,5 +34,11 @@ abstract class BaseViewHolder: RecyclerView.ViewHolder {
     fun setTranslationDirection(nativeToForeign: Boolean) {
         translationDirectionBVH = nativeToForeign
     }
-
+    //todo mode switch fuctionality
+    fun setNotify(notify: Boolean) {
+        notifyBVH = notify
+    }
+    fun setNotificationTime(millis: Long) {
+        notificationTimeBVH = millis
+    }
 }

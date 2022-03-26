@@ -1,5 +1,7 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation.settings.adapter
 
+import android.opengl.Visibility
+import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SwitchCompat
 import space.rodionov.porosenokpetr.R
@@ -11,8 +13,9 @@ import space.rodionov.porosenokpetr.feature_driller.presentation.base.BaseViewHo
 import space.rodionov.porosenokpetr.feature_driller.utils.SettingsSwitchType
 
 class SwitchWithTimeViewHolder(
-    parent: ViewGroup,
-    val checkSwitch: (type: SettingsSwitchType, state: Boolean) -> Unit = { _, _ -> }
+    val parent: ViewGroup,
+    val checkSwitch: (millisFromDayBeginning: Long, state: Boolean) -> Unit = { _, _ -> },
+    val openTimePicker: () -> Unit = {}
 ): BaseViewHolder(parent, R.layout.item_settings_switch_with_time) {
     lateinit var binding: ItemSettingsSwitchWithTimeBinding
     override fun bind(model: BaseModel, holder: BaseViewHolder) {
@@ -21,30 +24,21 @@ class SwitchWithTimeViewHolder(
             model as MenuSwitchWithTimePicker
             switchView.setOnCheckedChangeListener(null)
 
-            bindSwitchState(model.type, switchView)
+            switchView.isChecked = notifyBVH
+            timeSelectionView.visibility = if (notifyBVH) View.VISIBLE else View.GONE
 
             switchView
-        }
-    }
-
-    fun bindSwitchState(type: SettingsSwitchType, switch: SwitchCompat) {
-        when(type) {
-            SettingsSwitchType.TRANSLATION_DIRECTION -> {
-                switch.isChecked = translationDirectionBVH
-            }
-            SettingsSwitchType.NIGHT_MODE -> {}
-            SettingsSwitchType.SYSTEM_MODE -> {}
-            SettingsSwitchType.NOTIFICATIONS -> {}
         }
     }
 }
 
 class SwitchWithTimeDelegate(
-    private val checkSwitch: (type: SettingsSwitchType, state: Boolean) -> Unit = { _, _ -> }
+    private val checkSwitch: (millisFromDayBeginning: Long, state: Boolean) -> Unit = { _, _ -> },
+    private val openTimePicker: () -> Unit = {}
 ): AdapterDelegate {
 
     override fun onCreateViewHolder(parent: ViewGroup): BaseViewHolder {
-        return SwitchWithTimeViewHolder(parent, checkSwitch)
+        return SwitchWithTimeViewHolder(parent, checkSwitch, openTimePicker)
     }
 
     override fun isValidType(model: BaseModel): Boolean {

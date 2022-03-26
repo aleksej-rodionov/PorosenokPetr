@@ -25,6 +25,18 @@ object DrillerModule {
 
     @Provides
     @Singleton
+    fun provideObserveNotificationMillisUseCase(repo: WordRepo): ObserveNotificationMillisUseCase {
+        return ObserveNotificationMillisUseCase(repo)
+    }
+
+    @Provides
+    @Singleton
+    fun provideSetNotificationMillisUseCase(repo: WordRepo): SetNotificationMillisUseCase {
+        return SetNotificationMillisUseCase(repo)
+    }
+
+    @Provides
+    @Singleton
     fun provideObserveReminderUseCase(repo: WordRepo): ObserveReminderUseCase {
         return ObserveReminderUseCase(repo)
     }

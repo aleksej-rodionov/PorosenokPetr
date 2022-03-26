@@ -22,21 +22,42 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Тёмная тема" />
+        tools:text="Ежедневное напоминание" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        android:id="@+id/time_selection_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/switch_view"
+        app:layout_constraintStart_toStartOf="parent">
 
     <TextView
-        android:id="@+id/tv_description"
+        android:id="@+id/tv_time"
         style="@style/Regular16Gray"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:paddingBottom="16dp"
         android:tag="text_beta"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingVertical="20dp"
+        app:layout_constraintEnd_toStartOf="@id/iv_calendar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/switch_view"
-        tools:text="Когда же узнал Иисус о дошедшем до фарисеев слухе, что Он более приобретает учеников и крестит, нежели Иоанн, хотя Сам Иисус не крестил, а ученики Его, - то оставил Иудею и пошел опять в Галилею. Надлежало же Ему проходить через Самарию."
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Время: 21:00"
         />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/iv_calendar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/ic_calendar"
+        android:paddingVertical="20dp"
+        android:layout_marginHorizontal="28dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
