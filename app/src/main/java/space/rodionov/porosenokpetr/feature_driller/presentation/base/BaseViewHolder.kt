@@ -1,5 +1,6 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation.base
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import space.rodionov.porosenokpetr.core.fetchTheme
 import space.rodionov.porosenokpetr.feature_driller.domain.models.BaseModel
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_LIGHT
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_SETTINGS
 
 abstract class BaseViewHolder: RecyclerView.ViewHolder {
 
@@ -46,6 +48,7 @@ abstract class BaseViewHolder: RecyclerView.ViewHolder {
     }
 
     fun setMode(mode: Int) {
+        Log.d(TAG_SETTINGS, "setMode: $mode")
         modeBVH = mode
     }
 

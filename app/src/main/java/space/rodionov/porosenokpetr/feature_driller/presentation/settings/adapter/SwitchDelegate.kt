@@ -1,6 +1,7 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation.settings.adapter
 
 import android.content.res.ColorStateList
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SwitchCompat
@@ -11,6 +12,7 @@ import space.rodionov.porosenokpetr.feature_driller.domain.models.MenuSwitch
 import space.rodionov.porosenokpetr.feature_driller.presentation.base.AdapterDelegate
 import space.rodionov.porosenokpetr.feature_driller.presentation.base.BaseViewHolder
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_SETTINGS
 import space.rodionov.porosenokpetr.feature_driller.utils.SettingsSwitchType
 
 
@@ -37,7 +39,7 @@ class SwitchViewHolder(
         }
     }
 
-    fun bindSwitchState(type: SettingsSwitchType, switch: SwitchCompat) {
+    private fun bindSwitchState(type: SettingsSwitchType, switch: SwitchCompat) {
         when(type) {
             SettingsSwitchType.TRANSLATION_DIRECTION -> {
                 switch.isChecked = nativeToForeignBVH
@@ -46,7 +48,9 @@ class SwitchViewHolder(
                 switch.text = transDirText
             }
             SettingsSwitchType.NIGHT_MODE -> {
+                Log.d(TAG_SETTINGS, "bindSwitchState: $modeBVH")
                 switch.isChecked = modeBVH == Constants.MODE_DARK
+                switch.text = res.getString(R.string.dark_mode)
                 if (followSystemModeBVH) {
                     switch.setTextColor(res.getColor(R.color.gray600))
                     switch.thumbTintList = ColorStateList.valueOf(res.getColor(R.color.gray600))
@@ -56,7 +60,6 @@ class SwitchViewHolder(
                     switch.thumbTintList = ColorStateList.valueOf(res.getColor(R.color.white))
                     switch.isEnabled = true
                 }
-                switch.text = res.getString(R.string.dark_mode)
             }
             SettingsSwitchType.SYSTEM_MODE -> {
                 switch.isChecked = followSystemModeBVH

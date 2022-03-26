@@ -1,6 +1,7 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation.base
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -8,6 +9,7 @@ import space.rodionov.porosenokpetr.feature_driller.domain.models.BaseModel
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.DEFAULT_INT
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MILLIS_IN_NINE_HOURS
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_LIGHT
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_SETTINGS
 
 abstract class BaseAdapter(
     delegates: List<AdapterDelegate>,
@@ -17,31 +19,31 @@ abstract class BaseAdapter(
     var transDirBA = false
     open fun setTransDir(nativeToForeign: Boolean) {
         transDirBA = nativeToForeign
-        notifyDataSetChanged()
+//        notifyDataSetChanged()
     }
 
     var modeBA = MODE_LIGHT
     open fun updateMode(mode: Int) {
         modeBA = mode
-        notifyDataSetChanged()
+//        notifyDataSetChanged()
     }
 
     var followSystemModeBA = false
     open fun updateFollowSystemModeBA(follow: Boolean) {
         followSystemModeBA = follow
-        notifyDataSetChanged()
+//        notifyDataSetChanged()
     }
 
     var notifyBA = false
     open fun updateNotify(notify: Boolean) {
         notifyBA = notify
-        notifyDataSetChanged()
+//        notifyDataSetChanged()
     }
 
     var notificationTimeBA = MILLIS_IN_NINE_HOURS
     open fun updateNotificationTime(millisFromDayBeginning: Long) {
         notificationTimeBA = millisFromDayBeginning
-        notifyDataSetChanged()
+//        notifyDataSetChanged()
     }
 
 
@@ -71,9 +73,17 @@ abstract class BaseAdapter(
         position: Int,
         payloads: MutableList<Any>
     ) {
+        Log.d(TAG_SETTINGS, "onBindViewHolder: with payloads CALLED")
+
         if (payloads.isEmpty()) {
             super.onBindViewHolder(holder, position, payloads)
         } else {
+            holder.setTranslationDirection(transDirBA)
+            holder.setMode(modeBA)
+            holder.setFollowSystemMode(followSystemModeBA)
+            holder.setNotify(notifyBA)
+            holder.setNotificationTime(notificationTimeBA)
+
             holder.bindPayload(getItem(position), holder, payloads[0] as MutableList<Any>)
         }
     }

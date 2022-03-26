@@ -29,9 +29,6 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
             checkSwitch = { type, isChecked ->
                 checkSwitch(type, isChecked)
             },
-//            checkSwitchWithTime = { millis, isChecked ->
-//                // todo а надо ли это?
-//            },
             onTimePickerClick = { onTimePickerClick() }
         )
     }
