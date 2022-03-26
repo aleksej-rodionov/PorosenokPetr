@@ -46,7 +46,7 @@ object SettingsHelper {
         add(MenuSwitchWithTimePicker(
             R.string.reminder, //todo remove parameter
             null,
-            SettingsSwitchType.NOTIFICATIONS,
+            SettingsSwitchType.REMINDER,
             R.string.remind,
             false,
             Constants.MILLIS_IN_NINE_HOURS

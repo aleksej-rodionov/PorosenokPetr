@@ -1,9 +1,7 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation.settings.adapter
 
-import android.opengl.Visibility
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.SwitchCompat
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.databinding.ItemSettingsSwitchWithTimeBinding
 import space.rodionov.porosenokpetr.feature_driller.domain.models.BaseModel
@@ -16,7 +14,7 @@ class SwitchWithTimeViewHolder(
     val parent: ViewGroup,
 //    val checkSwitch: (millisFromDayBeginning: Long, state: Boolean) -> Unit = { _, _ -> },
     val checkSwitch: (type: SettingsSwitchType, state: Boolean) -> Unit = { _, _ -> },
-    val openTimePicker: () -> Unit = {}
+    val onTimePickerClick: () -> Unit = {}
 ): BaseViewHolder(parent, R.layout.item_settings_switch_with_time) {
     lateinit var binding: ItemSettingsSwitchWithTimeBinding
     override fun bind(model: BaseModel, holder: BaseViewHolder) {
@@ -36,7 +34,7 @@ class SwitchWithTimeViewHolder(
                 checkSwitch(model.type, isChecked)
             }
             ivCalendar.setOnClickListener {
-                openTimePicker()
+                onTimePickerClick()
             }
         }
     }
@@ -45,11 +43,11 @@ class SwitchWithTimeViewHolder(
 class SwitchWithTimeDelegate(
 //    private val checkSwitch: (millisFromDayBeginning: Long, state: Boolean) -> Unit = { _, _ -> },
     private val checkSwitch: (type: SettingsSwitchType, state: Boolean) -> Unit = { _, _ -> },
-    private val openTimePicker: () -> Unit = {}
+    private val onTimePickerClick: () -> Unit = {}
 ): AdapterDelegate {
 
     override fun onCreateViewHolder(parent: ViewGroup): BaseViewHolder {
-        return SwitchWithTimeViewHolder(parent, checkSwitch, openTimePicker)
+        return SwitchWithTimeViewHolder(parent, checkSwitch, onTimePickerClick)
     }
 
     override fun isValidType(model: BaseModel): Boolean {

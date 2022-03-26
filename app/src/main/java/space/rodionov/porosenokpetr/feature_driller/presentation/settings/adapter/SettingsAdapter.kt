@@ -6,12 +6,12 @@ import space.rodionov.porosenokpetr.feature_driller.utils.SettingsSwitchType
 class SettingsAdapter(
     checkSwitch: (type: SettingsSwitchType, state: Boolean) -> Unit = { _, _ -> },
 //    checkSwitchWithTime: (millisFromDayBeginning: Long, state: Boolean) -> Unit = { _, _ -> }, // todo убрать?
-    openTimePicker: () -> Unit = {}
+    onTimePickerClick: () -> Unit = {}
 ): BaseAdapter(
     listOf(
         HeaderDelegate(),
         SwitchDelegate(checkSwitch),
 //        DoubleSwitchDelegate(checkSwitch),
-        SwitchWithTimeDelegate(checkSwitch, openTimePicker)
+        SwitchWithTimeDelegate(checkSwitch, onTimePickerClick)
     )
 )

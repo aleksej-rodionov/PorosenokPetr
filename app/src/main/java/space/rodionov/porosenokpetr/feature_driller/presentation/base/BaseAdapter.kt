@@ -12,23 +12,40 @@ import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_LIGHT
 abstract class BaseAdapter(
     delegates: List<AdapterDelegate>,
     clickToAction: () -> Unit = {}
-): ListAdapter<BaseModel, BaseViewHolder>(BaseComparator()) {
+) : ListAdapter<BaseModel, BaseViewHolder>(BaseComparator()) {
 
     var transDirBA = false
-    open fun setTransDir(nativeToForeign: Boolean) { transDirBA = nativeToForeign }
+    open fun setTransDir(nativeToForeign: Boolean) {
+        transDirBA = nativeToForeign
+        notifyDataSetChanged()
+    }
 
     var modeBA = MODE_LIGHT
-    open fun updateMode(mode: Int) {modeBA = mode}
+    open fun updateMode(mode: Int) {
+        modeBA = mode
+        notifyDataSetChanged()
+    }
+
     var followSystemModeBA = false
-    open fun updateFollowSystemModeBA(follow: Boolean) {followSystemModeBA = follow}
+    open fun updateFollowSystemModeBA(follow: Boolean) {
+        followSystemModeBA = follow
+        notifyDataSetChanged()
+    }
 
     var notifyBA = false
-    open fun updateNotify(notify: Boolean) { notifyBA = notify }
+    open fun updateNotify(notify: Boolean) {
+        notifyBA = notify
+        notifyDataSetChanged()
+    }
+
     var notificationTimeBA = MILLIS_IN_NINE_HOURS
-    open fun updateNotificationTime(millisFromDayBeginning: Long) { notificationTimeBA = millisFromDayBeginning }
+    open fun updateNotificationTime(millisFromDayBeginning: Long) {
+        notificationTimeBA = millisFromDayBeginning
+        notifyDataSetChanged()
+    }
 
 
-//=========================MAIN BOILERPLATE==================
+    //=========================MAIN BOILERPLATE==================
     private val delegateManager = AdapterDelegateManager()
     lateinit var recyclerView: RecyclerView
 

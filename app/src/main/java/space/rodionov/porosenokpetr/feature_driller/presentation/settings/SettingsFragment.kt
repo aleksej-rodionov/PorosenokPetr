@@ -6,13 +6,13 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.DividerItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.MainActivity
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.databinding.FragmentSettingsBinding
 import space.rodionov.porosenokpetr.feature_driller.presentation.settings.adapter.SettingsAdapter
+import space.rodionov.porosenokpetr.feature_driller.presentation.settings.adapter.TimePickerBottomSheet
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_SETTINGS
 import space.rodionov.porosenokpetr.feature_driller.utils.SettingsSwitchType
 
@@ -32,7 +32,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
 //            checkSwitchWithTime = { millis, isChecked ->
 //                // todo а надо ли это?
 //            },
-            openTimePicker = { openTimePicker() }
+            onTimePickerClick = { onTimePickerClick() }
         )
     }
 
@@ -44,7 +44,6 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
             recyclerView.adapter = settingsAdapter
             settingsAdapter.submitList(SettingsHelper.getSettingsMenu())
             recyclerView.setHasFixedSize(true)
-//            recyclerView.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
             Log.d(TAG_SETTINGS, "settings adapter: ${settingsAdapter.itemCount}")
 
             btnBack.setOnClickListener {
@@ -82,16 +81,27 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         }
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            // todo collect ui events
+            vmSettings.settingsEventFlow.collectLatest { event ->
+                when (event) {
+                    is SettingsViewModel.SettingsEvent.OpenTimePicker -> {
+                        TimePickerBottomSheet().show(
+                            childFragmentManager,
+                            TimePickerBottomSheet.TIME_PICKER_BOTTOM_SHEET
+                        )
+                    }
+                }
+            }
         }
     }
 
     private fun checkSwitch(type: SettingsSwitchType, isChecked: Boolean) {
         Log.d(TAG_SETTINGS, "checkSwitch: ${type.name}, $isChecked")
+        vmSettings.checkSwitch(type, isChecked)
     }
 
-    private fun openTimePicker() {
+    private fun onTimePickerClick() {
         Log.d(TAG_SETTINGS, "openTimePicker: CALLED")
+        vmSettings.openTimePicker()
     }
 
     override fun onDestroyView() {

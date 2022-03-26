@@ -41,9 +41,22 @@ abstract class BaseViewHolder: RecyclerView.ViewHolder {
     val res = itemView.context.resources
 
     //========================SETTER METHODS====================
-    fun setTranslationDirection(nativeToForeign: Boolean) { nativeToForeignBVH = nativeToForeign }
-    fun setMode(mode: Int) {modeBVH = mode}
-    fun setFollowSystemMode(follow: Boolean) {followSystemModeBVH = follow}
-    fun setNotify(notify: Boolean) { notifyBVH = notify }
-    fun setNotificationTime(millis: Long) { notificationTimeBVH = millis }
+    fun setTranslationDirection(nativeToForeign: Boolean) {
+        nativeToForeignBVH = nativeToForeign
+    }
+
+    fun setMode(mode: Int) {
+        modeBVH = mode
+    }
+
+    fun setFollowSystemMode(follow: Boolean) {
+        followSystemModeBVH = follow
+    }
+
+    fun setNotify(notify: Boolean) {
+        notifyBVH = notify
+    }
+
+    fun setNotificationTime(millis: Long) {
+        notificationTimeBVH = millis }
 }

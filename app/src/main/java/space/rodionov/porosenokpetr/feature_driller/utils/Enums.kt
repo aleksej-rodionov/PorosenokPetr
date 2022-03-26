@@ -4,5 +4,5 @@ enum class SettingsSwitchType {
     TRANSLATION_DIRECTION,
     NIGHT_MODE,
     SYSTEM_MODE,
-    NOTIFICATIONS
+    REMINDER
 }
