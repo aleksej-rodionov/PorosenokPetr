@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="false" android:state_enabled="true" android:drawable="@drawable/btn_sign_up_main_np"
+        android:color="@color/gray100" />
+    <item android:state_pressed="true" android:state_enabled="true" android:drawable="@drawable/btn_sign_up_main_p"
+        android:color="@color/gray100" />
+    <item android:state_enabled="false" android:drawable="@drawable/btn_calendar_select_disable"
+        android:color="@color/gray600" />
+</selector>

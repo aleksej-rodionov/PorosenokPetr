@@ -32,16 +32,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/iv_done"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/ic_check"
-        android:layout_marginTop="28dp"
-        android:layout_marginHorizontal="12dp"
-        android:padding="12dp"/>
+<!--    <ImageView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/iv_done"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        android:src="@drawable/ic_check"-->
+<!--        android:layout_marginTop="28dp"-->
+<!--        android:layout_marginHorizontal="12dp"-->
+<!--        android:padding="12dp"/>-->
 
     <View
         android:id="@+id/divider_top"
@@ -54,13 +54,51 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_title" />
 
-    <space.rodionov.porosenokpetr.core.view.CustomTimePicker
-        android:layout_width="0dp"
+    <LinearLayout
+        android:id="@+id/ll_time"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:timePickerMode="spinner"
-        android:id="@+id/time_picker"
+        android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@id/divider_top"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <NumberPicker
+            android:id="@+id/np_hours"
+            android:layout_width="80dp"
+            android:layout_height="128dp"
+            android:theme="@style/NumberPickerNight"
+            android:descendantFocusability="blocksDescendants"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+        <NumberPicker
+            android:id="@+id/np_minutes"
+            android:layout_width="80dp"
+            android:layout_height="128dp"
+            android:theme="@style/NumberPickerNight"
+            android:descendantFocusability="blocksDescendants"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/np_hours"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_select_calendar"
+        style="@style/Bold16Main"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:tag="dont_redraw"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/btn_calendar_select"
+        android:text="@string/btn_next_text"
+        android:textColor="@color/gray100"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_time" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -49,12 +49,13 @@ class TimePickerBottomSheet: BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (view.parent as ViewGroup).setBackgroundColor(Color.TRANSPARENT)
+
         val notificationTimestamp = findUpcomingNotificationTime()
         val notificationCalendar = Calendar.getInstance()
         notificationCalendar.timeInMillis = notificationTimestamp
 
         binding.apply {
-            timePicker.hour = notificationCalendar.
+            // todo set NumberPickers' states
 
             this@TimePickerBottomSheet.lifecycleScope.launchWhenStarted {
 //              todo  vmSettings.notify

@@ -31,5 +31,6 @@
     <color name="transparentGray15">#26858585</color>
     <color name="transparentGray30">#4D858585</color>
     <color name="transparent">#00000000</color>
+    <color name="transparentViolet50">#809876AA</color>
 
 </resources>
