@@ -34,8 +34,8 @@ class DoubleSwitchViewHolder(
                 tvDescriptionSecond.text = res.getString(descId)
             }
 
-            bindSwitchState(model.typeFirst, switchViewFirst)
-            bindSwitchState(model.typeSecond, switchViewSecond)
+//            bindSwitchState(model.typeFirst, switchViewFirst)
+//            bindSwitchState(model.typeSecond, switchViewSecond)
 
             switchViewFirst.setOnCheckedChangeListener { _, isChecked ->
                 checkSwitch(model.typeFirst, isChecked)
@@ -46,28 +46,28 @@ class DoubleSwitchViewHolder(
         }
     }
 
-    private fun bindSwitchState(
-        type: SettingsSwitchType,
-        switch: SwitchCompat,
-    ) {
-        when(type) {
-            SettingsSwitchType.NIGHT_MODE -> {
-                switch.isChecked = modeBVH == MODE_DARK
-                if (followSystemModeBVH) {
-                    switch.setTextColor(res.getColor(R.color.gray600))
-                    switch.thumbTintList = ColorStateList.valueOf(res.getColor(R.color.gray600))
-                    switch.isEnabled = false
-                } else {
-                    switch.setTextColor(colors[3])
-                    switch.thumbTintList = ColorStateList.valueOf(res.getColor(R.color.white))
-                    switch.isEnabled = true
-                }
-            }
-            SettingsSwitchType.SYSTEM_MODE -> {
-                switch.isChecked = followSystemModeBVH
-            }
-        }
-    }
+//    private fun bindSwitchState(
+//        type: SettingsSwitchType,
+//        switch: SwitchCompat,
+//    ) {
+//        when(type) {
+//            SettingsSwitchType.NIGHT_MODE -> {
+//                switch.isChecked = modeBVH == MODE_DARK
+//                if (followSystemModeBVH) {
+//                    switch.setTextColor(res.getColor(R.color.gray600))
+//                    switch.thumbTintList = ColorStateList.valueOf(res.getColor(R.color.gray600))
+//                    switch.isEnabled = false
+//                } else {
+//                    switch.setTextColor(colors[3])
+//                    switch.thumbTintList = ColorStateList.valueOf(res.getColor(R.color.white))
+//                    switch.isEnabled = true
+//                }
+//            }
+//            SettingsSwitchType.SYSTEM_MODE -> {
+//                switch.isChecked = followSystemModeBVH
+//            }
+//        }
+//    }
 }
 
 

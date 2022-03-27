@@ -13,6 +13,7 @@ import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.databinding.FragmentSettingsBinding
 import space.rodionov.porosenokpetr.feature_driller.presentation.settings.adapter.SettingsAdapter
 import space.rodionov.porosenokpetr.feature_driller.presentation.settings.adapter.TimePickerBottomSheet
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_DARK
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_SETTINGS
 import space.rodionov.porosenokpetr.feature_driller.utils.SettingsSwitchType
 
@@ -39,9 +40,9 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
 
         binding.apply {
             recyclerView.adapter = settingsAdapter
-            settingsAdapter.submitList(SettingsHelper.getSettingsMenu())
+//            settingsAdapter.submitList(SettingsHelper.getSettingsMenu())
             recyclerView.setHasFixedSize(true)
-            Log.d(TAG_SETTINGS, "settings adapter: ${settingsAdapter.itemCount}")
+//            recyclerView.itemAnimator = null
 
             btnBack.setOnClickListener {
                 (activity as MainActivity).onBackPressed()
@@ -52,28 +53,39 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
 
     private fun initViewModel() {
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            vmSettings.menuListFlow.collectLatest {
+                val list = it?: return@collectLatest
+                settingsAdapter.submitList(list)
+            }
+        }
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             vmSettings.transDir.collectLatest {
-                settingsAdapter.setTransDir(it)
+//                settingsAdapter.setTransDir(it)
+                vmSettings.updateMenuList(SettingsSwitchType.TRANSLATION_DIRECTION, it)
             }
         }
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             vmSettings.mode.collectLatest {
                 settingsAdapter.updateMode(it)
+                vmSettings.updateMenuList(SettingsSwitchType.NIGHT_MODE, it == MODE_DARK)
             }
         }
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             vmSettings.followSystemMode.collectLatest {
                 settingsAdapter.updateFollowSystemModeBA(it)
+                vmSettings.updateMenuList(SettingsSwitchType.SYSTEM_MODE, it)
             }
         }
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             vmSettings.remind.collectLatest {
-                settingsAdapter.updateNotify(it)
+//                settingsAdapter.updateNotify(it)
+                vmSettings.updateMenuList(SettingsSwitchType.REMINDER, it)
             }
         }
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             vmSettings.notificationTime.collectLatest {
-                settingsAdapter.updateNotificationTime(it)
+//                settingsAdapter.updateNotificationTime(it)
+                vmSettings.updateNotificationTimeInList(it)
             }
         }
 
@@ -92,12 +104,12 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
     }
 
     private fun checkSwitch(type: SettingsSwitchType, isChecked: Boolean) {
-        Log.d(TAG_SETTINGS, "checkSwitch: ${type.name}, $isChecked")
+//        Log.d(TAG_SETTINGS, "checkSwitch: ${type.name}, $isChecked")
         vmSettings.checkSwitch(type, isChecked)
     }
 
     private fun onTimePickerClick() {
-        Log.d(TAG_SETTINGS, "openTimePicker: CALLED")
+//        Log.d(TAG_SETTINGS, "openTimePicker: CALLED")
         vmSettings.openTimePicker()
     }
 

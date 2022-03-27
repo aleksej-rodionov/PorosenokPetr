@@ -16,11 +16,11 @@ abstract class BaseAdapter(
     clickToAction: () -> Unit = {}
 ) : ListAdapter<BaseModel, BaseViewHolder>(BaseComparator()) {
 
-    var transDirBA = false
-    open fun setTransDir(nativeToForeign: Boolean) {
-        transDirBA = nativeToForeign
-//        notifyDataSetChanged()
-    }
+//    var transDirBA = false
+//    open fun setTransDir(nativeToForeign: Boolean) {
+//        transDirBA = nativeToForeign
+////        notifyDataSetChanged()
+//    }
 
     var modeBA = MODE_LIGHT
     open fun updateMode(mode: Int) {
@@ -33,18 +33,18 @@ abstract class BaseAdapter(
         followSystemModeBA = follow
 //        notifyDataSetChanged()
     }
-
-    var notifyBA = false
-    open fun updateNotify(notify: Boolean) {
-        notifyBA = notify
-//        notifyDataSetChanged()
-    }
-
-    var notificationTimeBA = MILLIS_IN_NINE_HOURS
-    open fun updateNotificationTime(millisFromDayBeginning: Long) {
-        notificationTimeBA = millisFromDayBeginning
-//        notifyDataSetChanged()
-    }
+//
+//    var notifyBA = false
+//    open fun updateNotify(notify: Boolean) {
+//        notifyBA = notify
+////        notifyDataSetChanged()
+//    }
+//
+//    var notificationTimeBA = MILLIS_IN_NINE_HOURS
+//    open fun updateNotificationTime(millisFromDayBeginning: Long) {
+//        notificationTimeBA = millisFromDayBeginning
+////        notifyDataSetChanged()
+//    }
 
 
     //=========================MAIN BOILERPLATE==================
@@ -73,27 +73,27 @@ abstract class BaseAdapter(
         position: Int,
         payloads: MutableList<Any>
     ) {
-        Log.d(TAG_SETTINGS, "onBindViewHolder: with payloads CALLED")
+//        Log.d(TAG_SETTINGS, "onBindViewHolder: with payloads CALLED")
 
         if (payloads.isEmpty()) {
             super.onBindViewHolder(holder, position, payloads)
         } else {
-            holder.setTranslationDirection(transDirBA)
+//            holder.setTranslationDirection(transDirBA)
             holder.setMode(modeBA)
             holder.setFollowSystemMode(followSystemModeBA)
-            holder.setNotify(notifyBA)
-            holder.setNotificationTime(notificationTimeBA)
+//            holder.setNotify(notifyBA)
+//            holder.setNotificationTime(notificationTimeBA)
 
             holder.bindPayload(getItem(position), holder, payloads[0] as MutableList<Any>)
         }
     }
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
-        holder.setTranslationDirection(transDirBA)
+//        holder.setTranslationDirection(transDirBA)
         holder.setMode(modeBA)
         holder.setFollowSystemMode(followSystemModeBA)
-        holder.setNotify(notifyBA)
-        holder.setNotificationTime(notificationTimeBA)
+//        holder.setNotify(notifyBA)
+//        holder.setNotificationTime(notificationTimeBA)
 
         holder.bind(getItem(position), holder)
     }

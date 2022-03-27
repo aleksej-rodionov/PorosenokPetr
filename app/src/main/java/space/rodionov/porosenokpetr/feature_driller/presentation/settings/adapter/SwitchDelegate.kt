@@ -31,7 +31,7 @@ class SwitchViewHolder(
                 tvDescription.text = itemView.resources.getString(descId)
             }
 
-            bindSwitchState(model.type, switchView)
+            bindSwitchState(model/*.type*/, switchView)
 
             switchView.setOnCheckedChangeListener { _, isChecked ->
                 checkSwitch(model.type, isChecked)
@@ -39,19 +39,21 @@ class SwitchViewHolder(
         }
     }
 
-    private fun bindSwitchState(type: SettingsSwitchType, switch: SwitchCompat) {
-        when(type) {
+    private fun bindSwitchState(model: BaseModel, switch: SwitchCompat) {
+        model as MenuSwitch
+        when(model.type) {
             SettingsSwitchType.TRANSLATION_DIRECTION -> {
-                switch.isChecked = nativeToForeignBVH
-                var transDirText = if (nativeToForeignBVH) res.getString(R.string.from_ru_to_en)
+                switch.isChecked = model.switchState
+                var transDirText = if (model.switchState) res.getString(R.string.from_ru_to_en)
                     else res.getString(R.string.from_en_to_ru)
                 switch.text = transDirText
             }
             SettingsSwitchType.NIGHT_MODE -> {
-                Log.d(TAG_SETTINGS, "bindSwitchState: $modeBVH")
-                switch.isChecked = modeBVH == Constants.MODE_DARK
+                Log.d(TAG_SETTINGS, "$model")
+//                switch.isChecked = modeBVH == Constants.MODE_DARK
+                switch.isChecked = model.switchState
                 switch.text = res.getString(R.string.dark_mode)
-                if (followSystemModeBVH) {
+                if (model.isBlocked) {
                     switch.setTextColor(res.getColor(R.color.gray600))
                     switch.thumbTintList = ColorStateList.valueOf(res.getColor(R.color.gray600))
                     switch.isEnabled = false
@@ -62,7 +64,7 @@ class SwitchViewHolder(
                 }
             }
             SettingsSwitchType.SYSTEM_MODE -> {
-                switch.isChecked = followSystemModeBVH
+                switch.isChecked = model.switchState
                 switch.text = res.getString(R.string.follow_system_mode)
             }
 //            SettingsSwitchType.NOTIFICATIONS -> {}

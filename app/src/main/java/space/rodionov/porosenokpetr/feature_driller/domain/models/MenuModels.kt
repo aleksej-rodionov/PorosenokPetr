@@ -7,7 +7,8 @@ data class MenuSwitch(
     val descriptionId: Int?,
     val type: SettingsSwitchType,
     val titleId: Int,
-    val switchState: Boolean
+    val switchState: Boolean,
+    val isBlocked: Boolean = false
 ): BaseModel
 
 data class MenuDoubleSwitch(

@@ -23,8 +23,10 @@ class SwitchWithTimeViewHolder(
             model as MenuSwitchWithTimePicker
             switchView.setOnCheckedChangeListener(null)
 
-            switchView.isChecked = notifyBVH
-            timeSelectionView.visibility = if (notifyBVH) View.VISIBLE else View.GONE
+//            switchView.isChecked = notifyBVH
+//            timeSelectionView.visibility = if (notifyBVH) View.VISIBLE else View.GONE
+            switchView.isChecked = model.switchState
+            timeSelectionView.visibility = if (model.switchState) View.VISIBLE else View.GONE
 
             switchView.text = res.getString(R.string.remind)
 

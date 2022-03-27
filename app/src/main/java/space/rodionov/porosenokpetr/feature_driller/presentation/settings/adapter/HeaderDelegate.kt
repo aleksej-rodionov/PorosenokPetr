@@ -1,9 +1,7 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation.settings.adapter
 
 import android.view.ViewGroup
-import androidx.compose.ui.text.toUpperCase
 import space.rodionov.porosenokpetr.R
-import space.rodionov.porosenokpetr.core.updateHorizontalMargin
 import space.rodionov.porosenokpetr.databinding.ItemHeaderBinding
 import space.rodionov.porosenokpetr.feature_driller.domain.models.BaseModel
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Header

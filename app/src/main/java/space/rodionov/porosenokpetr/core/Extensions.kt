@@ -11,6 +11,10 @@ import android.widget.AutoCompleteTextView
 import androidx.core.content.ContextCompat
 import androidx.core.view.updateLayoutParams
 import androidx.recyclerview.widget.RecyclerView
+import space.rodionov.porosenokpetr.feature_driller.domain.models.BaseModel
+import space.rodionov.porosenokpetr.feature_driller.domain.models.MenuSwitch
+import space.rodionov.porosenokpetr.feature_driller.domain.models.MenuSwitchWithTimePicker
+import space.rodionov.porosenokpetr.feature_driller.utils.SettingsSwitchType
 import java.math.BigDecimal
 import java.text.SimpleDateFormat
 import java.util.*
@@ -46,11 +50,17 @@ fun dpToPx(sp: Float): Float {
     )
 }
 
-fun View.updateHorizontalMargin(margin: Int) {
-    updateLayoutParams {
-        this as RecyclerView.LayoutParams
-        leftMargin = margin
-        rightMargin = margin
+//fun List<BaseModel>.findMenuItem(type: SettingsSwitchType) : BaseModel? {
+//    return this.findLast {
+//        (it is MenuSwitch && it.type == type) || (it is MenuSwitchWithTimePicker && it.type == type)
+//    }
+//}
 
-    }
-}
+
+
+
+
+
+
+
+
