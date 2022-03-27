@@ -24,8 +24,8 @@ class NotificationHelper(
 
         if (notificationTime > currentTime) {
             val data = Data.Builder().putInt(NotificationWorker.NOTIFICATION_ID, 0).build()
-//            val delay = notificationTime - currentTime
-            val delay = ONE_MIN_IN_MILLIS
+            val delay = notificationTime - currentTime
+//            val delay = ONE_MIN_IN_MILLIS
             scheduleNotification(delay, data)
 
             logNotificationScheduled(notificationTime)
