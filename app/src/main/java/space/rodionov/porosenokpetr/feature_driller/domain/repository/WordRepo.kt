@@ -50,6 +50,9 @@ interface WordRepo {
     fun getRemind(): Flow<Boolean>
     suspend fun setRemind(remind: Boolean)
 
+    fun getNotifyMillis(): Flow<Long>
+    suspend fun setNotifyMillis(millis: Long)
+
     fun getTransDir() : Flow<Boolean>
     suspend fun setTransDir(nativeToForeign: Boolean)
 

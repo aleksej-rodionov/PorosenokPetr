@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true">
+
+    <TextView
+        android:id="@+id/tv_header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="6dp"
+        android:textColor="@color/gray900"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="@string/appearance" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switch_view_first"
+        style="@style/Regular18Black"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="16dp"
+        android:thumb="@drawable/switch_selector"
+        app:track="@drawable/switch_track"
+        android:tag="switch_ios"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_header"
+        android:text="Тёмная тема" />
+
+    <TextView
+        android:id="@+id/tv_description_first"
+        style="@style/Regular16Gray"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:paddingBottom="16dp"
+        android:tag="text_beta"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/switch_view_first"
+        tools:text="Когда же узнал Иисус о дошедшем до фарисеев слухе, что Он более приобретает учеников и крестит, нежели Иоанн, хотя Сам Иисус не крестил, а ученики Его, - то оставил Иудею и пошел опять в Галилею. Надлежало же Ему проходить через Самарию."
+        />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switch_view_second"
+        style="@style/Regular18Black"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="16dp"
+        android:thumb="@drawable/switch_selector"
+        app:track="@drawable/switch_track"
+        android:tag="switch_ios"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_description_first"
+        android:text="Тема устройства" />
+
+    <TextView
+        android:id="@+id/tv_description_second"
+        style="@style/Regular16Gray"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:paddingBottom="16dp"
+        android:tag="text_beta"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/switch_view_second"
+        tools:text="Когда же узнал Иисус о дошедшем до фарисеев слухе, что Он более приобретает учеников и крестит, нежели Иоанн, хотя Сам Иисус не крестил, а ученики Его, - то оставил Иудею и пошел опять в Галилею. Надлежало же Ему проходить через Самарию."
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

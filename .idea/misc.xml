@@ -18,14 +18,21 @@
         <entry key="..\:/Users/HomoSapiens/AppData/Local/GitHubDesktop/app-2.8.3/PorosenokPetr/app/src/main/res/drawable/switch_text.xml" value="0.18489583333333334" />
         <entry key="..\:/Users/HomoSapiens/AppData/Local/GitHubDesktop/app-2.8.3/PorosenokPetr/app/src/main/res/drawable/switch_track.xml" value="0.18489583333333334" />
         <entry key="..\:/Users/HomoSapiens/AppData/Local/GitHubDesktop/app-2.8.3/PorosenokPetr/app/src/main/res/drawable/word_switch_track.xml" value="0.37083333333333335" />
-        <entry key="..\:/Users/HomoSapiens/AppData/Local/GitHubDesktop/app-2.8.3/PorosenokPetr/app/src/main/res/layout/activity_main.xml" value="0.35520833333333335" />
+        <entry key="..\:/Users/HomoSapiens/AppData/Local/GitHubDesktop/app-2.8.3/PorosenokPetr/app/src/main/res/layout/activity_main.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/HomoSapiens/AppData/Local/GitHubDesktop/app-2.8.3/PorosenokPetr/app/src/main/res/layout/bottomsheet_filter.xml" value="0.3546875" />
+        <entry key="..\:/Users/HomoSapiens/AppData/Local/GitHubDesktop/app-2.8.3/PorosenokPetr/app/src/main/res/layout/bottomsheet_time_picker.xml" value="0.16770833333333332" />
         <entry key="..\:/Users/HomoSapiens/AppData/Local/GitHubDesktop/app-2.8.3/PorosenokPetr/app/src/main/res/layout/bottomsheet_wordlist.xml" value="0.3546875" />
         <entry key="..\:/Users/HomoSapiens/AppData/Local/GitHubDesktop/app-2.8.3/PorosenokPetr/app/src/main/res/layout/fragment_collection.xml" value="0.22" />
         <entry key="..\:/Users/HomoSapiens/AppData/Local/GitHubDesktop/app-2.8.3/PorosenokPetr/app/src/main/res/layout/fragment_driller.xml" value="0.22" />
-        <entry key="..\:/Users/HomoSapiens/AppData/Local/GitHubDesktop/app-2.8.3/PorosenokPetr/app/src/main/res/layout/fragment_settings.xml" value="0.3546875" />
+        <entry key="..\:/Users/HomoSapiens/AppData/Local/GitHubDesktop/app-2.8.3/PorosenokPetr/app/src/main/res/layout/fragment_settings.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/HomoSapiens/AppData/Local/GitHubDesktop/app-2.8.3/PorosenokPetr/app/src/main/res/layout/fragment_settings_new.xml" value="0.16770833333333332" />
+        <entry key="..\:/Users/HomoSapiens/AppData/Local/GitHubDesktop/app-2.8.3/PorosenokPetr/app/src/main/res/layout/fragment_settings_old.xml" value="0.22" />
         <entry key="..\:/Users/HomoSapiens/AppData/Local/GitHubDesktop/app-2.8.3/PorosenokPetr/app/src/main/res/layout/fragment_wordlist.xml" value="0.22" />
         <entry key="..\:/Users/HomoSapiens/AppData/Local/GitHubDesktop/app-2.8.3/PorosenokPetr/app/src/main/res/layout/item_category.xml" value="0.16875" />
+        <entry key="..\:/Users/HomoSapiens/AppData/Local/GitHubDesktop/app-2.8.3/PorosenokPetr/app/src/main/res/layout/item_header.xml" value="0.22" />
+        <entry key="..\:/Users/HomoSapiens/AppData/Local/GitHubDesktop/app-2.8.3/PorosenokPetr/app/src/main/res/layout/item_settings_double_switch.xml" value="0.16770833333333332" />
+        <entry key="..\:/Users/HomoSapiens/AppData/Local/GitHubDesktop/app-2.8.3/PorosenokPetr/app/src/main/res/layout/item_settings_switch.xml" value="0.22" />
+        <entry key="..\:/Users/HomoSapiens/AppData/Local/GitHubDesktop/app-2.8.3/PorosenokPetr/app/src/main/res/layout/item_settings_switch_with_time.xml" value="0.22" />
         <entry key="..\:/Users/HomoSapiens/AppData/Local/GitHubDesktop/app-2.8.3/PorosenokPetr/app/src/main/res/layout/item_word_card.xml" value="0.22" />
         <entry key="..\:/Users/HomoSapiens/AppData/Local/GitHubDesktop/app-2.8.3/PorosenokPetr/app/src/main/res/layout/item_word_horizontal.xml" value="0.35520833333333335" />
         <entry key="..\:/Users/HomoSapiens/AppData/Local/GitHubDesktop/app-2.8.3/PorosenokPetr/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.196875" />

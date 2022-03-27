@@ -1,11 +1,20 @@
 package space.rodionov.porosenokpetr.core
 
 import android.content.Context
+import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.Canvas
+import android.util.TypedValue
+import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.AutoCompleteTextView
 import androidx.core.content.ContextCompat
+import androidx.core.view.updateLayoutParams
+import androidx.recyclerview.widget.RecyclerView
+import space.rodionov.porosenokpetr.feature_driller.domain.models.BaseModel
+import space.rodionov.porosenokpetr.feature_driller.domain.models.MenuSwitch
+import space.rodionov.porosenokpetr.feature_driller.domain.models.MenuSwitchWithTimePicker
+import space.rodionov.porosenokpetr.feature_driller.utils.SettingsSwitchType
 import java.math.BigDecimal
 import java.text.SimpleDateFormat
 import java.util.*
@@ -32,3 +41,26 @@ fun Context.vectorToBitmap(drawableId: Int): Bitmap? {
     drawable.draw(canvas)
     return bitmap
 }
+
+fun dpToPx(sp: Float): Float {
+    return TypedValue.applyDimension(
+        TypedValue.COMPLEX_UNIT_DIP,
+        sp,
+        Resources.getSystem().displayMetrics
+    )
+}
+
+//fun List<BaseModel>.findMenuItem(type: SettingsSwitchType) : BaseModel? {
+//    return this.findLast {
+//        (it is MenuSwitch && it.type == type) || (it is MenuSwitchWithTimePicker && it.type == type)
+//    }
+//}
+
+
+
+
+
+
+
+
+

@@ -8,6 +8,7 @@ object Constants {
     const val TAG_PETR = "tag_petr"
     const val TAG_MODE = "tag_mode"
     const val TAG_NOTIFY = "tag_mode"
+    const val TAG_SETTINGS = "tag_settings"
 
     const val WORD_DB = "word_db"
 
@@ -22,5 +23,6 @@ object Constants {
     const val MAX_STACK_SIZE = 50
 
     const val ONE_MIN_IN_MILLIS = 60000L
+    const val MILLIS_IN_NINE_HOURS = 75600000L
 
 }

@@ -75,143 +75,22 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@color/gray200"
-        android:padding="12dp"
+        android:paddingHorizontal="12dp"
         android:tag="iv_accent_delta"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/divider_bar">
 
-
-        <TextView
-            android:id="@+id/tv_transdir"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="12dp"
-            android:paddingVertical="6dp"
-            android:textColor="@color/gray900"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/cl_bg"
-            android:text="@string/translation_direction" />
-
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/switch_transdir"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="16dp"
-            android:paddingVertical="6dp"
-            android:textColor="@color/gray600"
-            android:textSize="16sp"
-            android:thumb="@drawable/switch_selector"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_transdir"
-            app:switchPadding="16dp"
-            app:track="@drawable/switch_track"
-            tools:text="@string/from_en_to_ru" />
-
-        <View
-            android:id="@+id/divider_transdir"
+        <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:tag="divider_contrast"
-            android:layout_marginTop="8dp"
-            android:background="@color/gray400"
+            android:layout_height="match_parent"
+            android:id="@+id/recycler_view"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/switch_transdir" />
-
-        <TextView
-            android:id="@+id/tv_mode"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:paddingHorizontal="12dp"
-            android:paddingVertical="6dp"
-            android:textColor="@color/gray900"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/divider_transdir"
-            android:text="@string/appearance" />
-
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/switch_mode"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="16dp"
-            android:paddingVertical="6dp"
-            android:textColor="@color/gray600"
-            android:textSize="16sp"
-            android:thumb="@drawable/switch_selector"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_mode"
-            app:switchPadding="16dp"
-            app:track="@drawable/switch_track"
-            android:text="@string/dark_mode" />
-
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/switch_follow_system_mode"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="16dp"
-            android:paddingVertical="6dp"
-            android:textColor="@color/gray600"
-            android:textSize="16sp"
-            android:thumb="@drawable/switch_selector"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/switch_mode"
-            app:switchPadding="16dp"
-            app:track="@drawable/switch_track"
-            android:text="@string/follow_system_mode" />
-
-        <View
-            android:id="@+id/divider_mode"
-            android:layout_width="match_parent"
-            android:layout_marginTop="8dp"
-            android:tag="divider_contrast"
-            android:layout_height="1dp"
-            android:background="@color/gray400"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/switch_follow_system_mode" />
-
-        <TextView
-            android:id="@+id/tv_reminder"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:paddingHorizontal="12dp"
-            android:paddingVertical="6dp"
-            android:textColor="@color/gray900"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/divider_mode"
-            android:text="@string/reminder" />
-
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/switch_reminder"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="16dp"
-            android:paddingVertical="6dp"
-            android:textColor="@color/gray600"
-            android:textSize="16sp"
-            android:thumb="@drawable/switch_selector"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_reminder"
-            app:switchPadding="16dp"
-            app:track="@drawable/switch_track"
-            android:text="@string/remind" />
+            app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

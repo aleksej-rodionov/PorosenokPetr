@@ -112,6 +112,9 @@ class WordRepoImpl(
     override fun getRemind(): Flow<Boolean> = datastore.remindFlow
     override suspend fun setRemind(remind: Boolean)  = datastore.updateRemind(remind)
 
+    override fun getNotifyMillis(): Flow<Long> = datastore.millisFlow
+    override suspend fun setNotifyMillis(millis: Long) = datastore.updateMillis(millis)
+
     override fun getTransDir(): Flow<Boolean> = datastore.translationDirectionFlow
     override suspend fun setTransDir(nativeToForeign: Boolean) {
         datastore.updatetranslationDirection(nativeToForeign)
