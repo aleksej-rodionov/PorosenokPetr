@@ -16,7 +16,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val notificationHelper: NotificationHelper,
     private val observeModeUseCase: ObserveModeUseCase,
     private val setModeUseCase: SetModeUseCase,
     private val observeFollowSystemModeUseCase: ObserveFollowSystemModeUseCase,
@@ -41,7 +40,4 @@ class MainViewModel @Inject constructor(
     val reminder = _reminder.stateIn(viewModelScope, SharingStarted.Lazily, false)
 
     //=============================METHODS======================================
-
-    fun buildAndScheduleNotification() = notificationHelper.buildNotification()
-    fun cancelNotification() = notificationHelper.cancelNotification()
 }

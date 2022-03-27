@@ -17,8 +17,8 @@ class NotificationHelper(
    private val context: Context
 ) {
 
-    fun buildNotification(): Long? {
-        val notificationTime = findUpcomingNotificationTime() // notification timestamp
+    fun buildNotification(notificationTime: Long): Long? {
+//        val notificationTime = findUpcomingNotificationTime() // notification timestamp
         val currentTime = System.currentTimeMillis() // current timestamp
 
         if (notificationTime > currentTime) {

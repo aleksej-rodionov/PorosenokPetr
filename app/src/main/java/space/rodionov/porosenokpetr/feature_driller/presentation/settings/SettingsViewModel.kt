@@ -4,6 +4,8 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import space.rodionov.porosenokpetr.feature_driller.domain.models.BaseModel
@@ -15,10 +17,12 @@ import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_DARK
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_LIGHT
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_SETTINGS
 import space.rodionov.porosenokpetr.feature_driller.utils.SettingsSwitchType
+import space.rodionov.porosenokpetr.feature_driller.work.NotificationHelper
 import javax.inject.Inject
 
 @HiltViewModel
 class SettingsViewModel @Inject constructor(
+    private val notificationHelper: NotificationHelper,
     private val observeTransDirUseCase: ObserveTranslationDirectionUseCase,
     private val saveTransDirUseCase: SaveTranslationDirectionUseCase,
     private val observeModeUseCase: ObserveModeUseCase,
@@ -31,49 +35,11 @@ class SettingsViewModel @Inject constructor(
     private val setNotificationMillisUseCase: SetNotificationMillisUseCase
 ) : ViewModel() {
 
+    var justOpened = true
+
     val inititalMenuList: MutableList<BaseModel> = SettingsHelper.getSettingsMenu()
     private val _menuListFlow = MutableStateFlow(inititalMenuList)
     val menuListFlow = _menuListFlow.asStateFlow()
-
-    fun updateMenuList(type: SettingsSwitchType, state: Boolean) = viewModelScope.launch {
-        val newList = mutableListOf<BaseModel>()
-        menuListFlow.value.forEach { menuItem ->
-            if (menuItem is MenuSwitch && menuItem.type == type) {
-                val newItem = menuItem.copy(switchState = state)
-                newList.add(newItem)
-            } else if (menuItem is MenuSwitchWithTimePicker && menuItem.type == type) {
-                val newItem = menuItem.copy(switchState = state)
-                newList.add(newItem)
-            } else {
-                newList.add(menuItem)
-            }
-        }
-        _menuListFlow.value = newList.toMutableList()
-        if (type == SettingsSwitchType.SYSTEM_MODE) updateBlockedDarkModeItem(state)
-    }
-
-    private fun updateBlockedDarkModeItem(block: Boolean) = viewModelScope.launch {
-//        Log.d(TAG_SETTINGS, "updateBlockedDarkModeItem: block = $block")
-        val newList = mutableListOf<BaseModel>()
-        menuListFlow.value.forEach { menuItem ->
-            if (menuItem is MenuSwitch && menuItem.type == SettingsSwitchType.NIGHT_MODE) {
-                val newItem = menuItem.copy(isBlocked = block)
-                newList.add(newItem)
-            } else newList.add(menuItem)
-        }
-        _menuListFlow.value = newList.toMutableList()
-    }
-
-    fun updateNotificationTimeInList(millis: Long) = viewModelScope.launch {
-        val newList = mutableListOf<BaseModel>()
-        menuListFlow.value.forEach { menuItem ->
-            if (menuItem is MenuSwitchWithTimePicker) {
-                val newItem = menuItem.copy(millisSinceDayBeginning = millis)
-                newList.add(newItem)
-            } else newList.add(menuItem)
-        }
-        _menuListFlow.value = newList.toMutableList()
-    }
 
     //==========================TRANSLATION DIRECTION=========================================
     private val _transDir = observeTransDirUseCase.invoke()
@@ -123,6 +89,51 @@ class SettingsViewModel @Inject constructor(
     }
 
     //==============================METHODS==================================
+
+    init {
+        notJustOpened()
+    }
+
+    fun updateMenuList(type: SettingsSwitchType, state: Boolean) = viewModelScope.launch {
+        val newList = mutableListOf<BaseModel>()
+        menuListFlow.value.forEach { menuItem ->
+            if (menuItem is MenuSwitch && menuItem.type == type) {
+                val newItem = menuItem.copy(switchState = state)
+                newList.add(newItem)
+            } else if (menuItem is MenuSwitchWithTimePicker && menuItem.type == type) {
+                val newItem = menuItem.copy(switchState = state)
+                newList.add(newItem)
+            } else {
+                newList.add(menuItem)
+            }
+        }
+        _menuListFlow.value = newList.toMutableList()
+        if (type == SettingsSwitchType.SYSTEM_MODE) updateBlockedDarkModeItem(state)
+    }
+
+    private fun updateBlockedDarkModeItem(block: Boolean) = viewModelScope.launch {
+//        Log.d(TAG_SETTINGS, "updateBlockedDarkModeItem: block = $block")
+        val newList = mutableListOf<BaseModel>()
+        menuListFlow.value.forEach { menuItem ->
+            if (menuItem is MenuSwitch && menuItem.type == SettingsSwitchType.NIGHT_MODE) {
+                val newItem = menuItem.copy(isBlocked = block)
+                newList.add(newItem)
+            } else newList.add(menuItem)
+        }
+        _menuListFlow.value = newList.toMutableList()
+    }
+
+    fun updateNotificationTimeInList(millis: Long) = viewModelScope.launch {
+        val newList = mutableListOf<BaseModel>()
+        menuListFlow.value.forEach { menuItem ->
+            if (menuItem is MenuSwitchWithTimePicker) {
+                val newItem = menuItem.copy(millisSinceDayBeginning = millis)
+                newList.add(newItem)
+            } else newList.add(menuItem)
+        }
+        _menuListFlow.value = newList.toMutableList()
+    }
+
     fun checkSwitch(type: SettingsSwitchType, isChecked: Boolean) = viewModelScope.launch {
         when (type) {
             SettingsSwitchType.TRANSLATION_DIRECTION -> updateTransDir(isChecked)
@@ -138,5 +149,11 @@ class SettingsViewModel @Inject constructor(
         _settingsEventFlow.emit(SettingsEvent.OpenTimePicker)
     }
 
+    fun buildAndScheduleNotification() = notificationHelper.buildNotification(notificationTime.value)
+    fun cancelNotification() = notificationHelper.cancelNotification()
 
+    fun notJustOpened() = viewModelScope.launch { // его величество костыль
+        delay(500L)
+        justOpened = false
+    }
 }

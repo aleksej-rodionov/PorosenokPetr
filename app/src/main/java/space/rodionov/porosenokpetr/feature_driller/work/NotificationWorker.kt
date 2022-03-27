@@ -19,6 +19,7 @@ import dagger.assisted.AssistedInject
 import space.rodionov.porosenokpetr.MainActivity
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.vectorToBitmap
+import space.rodionov.porosenokpetr.feature_driller.data.storage.Datastore
 
 @HiltWorker
 class NotificationWorker @AssistedInject constructor (
@@ -82,7 +83,7 @@ class NotificationWorker @AssistedInject constructor (
 
         notificationManager.notify(id, notification.build())
 
-        notificationHelper.buildNotification()
+        notificationHelper.buildNotification() // todo pass the millis from Datastore
     }
 
 

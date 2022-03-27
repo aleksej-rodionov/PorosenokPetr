@@ -3,19 +3,25 @@ package space.rodionov.porosenokpetr.feature_driller.presentation.settings
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.MainActivity
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.databinding.FragmentSettingsBinding
+import space.rodionov.porosenokpetr.databinding.SnackbarLayoutBinding
 import space.rodionov.porosenokpetr.feature_driller.presentation.settings.adapter.SettingsAdapter
 import space.rodionov.porosenokpetr.feature_driller.presentation.settings.adapter.TimePickerBottomSheet
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_DARK
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_SETTINGS
 import space.rodionov.porosenokpetr.feature_driller.utils.SettingsSwitchType
+import java.text.SimpleDateFormat
+import java.util.*
 
 @AndroidEntryPoint
 class SettingsFragment : Fragment(R.layout.fragment_settings) {
@@ -85,6 +91,19 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
             vmSettings.remind.collectLatest {
 //                settingsAdapter.updateNotify(it)
                 vmSettings.updateMenuList(SettingsSwitchType.REMINDER, it)
+
+                Log.d(Constants.TAG_PETR, "remind.collect: justopened = ${vmSettings.justOpened}")
+                if (it) {
+                    vmSettings.buildAndScheduleNotification().apply {
+                        if (!vmSettings.justOpened) {
+                            this?.let { timestamp ->
+                                scheduleSuccessSnackBar(timestamp)
+                            } ?: scheduleErrorSnackbar()
+                        }
+                    }
+                } else {
+                    vmSettings.cancelNotification()
+                }
             }
         }
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
@@ -106,6 +125,43 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
                 }
             }
         }
+    }
+
+    private fun scheduleSuccessSnackBar(notificationTime: Long) {
+        val titleNotificationSchedule = getString(R.string.notification_schedule_title)
+        val patternNotificationSchedule = getString(R.string.notification_schedule_pattern)
+        showSnackBar(
+            Constants.DEFAULT_INT, titleNotificationSchedule + SimpleDateFormat(
+            patternNotificationSchedule, Locale.getDefault()
+        ).format(notificationTime).toString())
+    }
+
+    private fun scheduleErrorSnackbar() {
+        showSnackBar(R.string.notification_schedule_error, "")
+    }
+
+    private fun showSnackBar(resId: Int, text: String) {
+        val snackBar = Snackbar.make(binding.root, "", Snackbar.LENGTH_SHORT)
+        val snackBarLayout =
+            SnackbarLayoutBinding.bind(layoutInflater.inflate(R.layout.snackbar_layout, null))
+        if (resId != Constants.DEFAULT_INT) {
+            snackBarLayout.tvText.setText(resId)
+        } else {
+            snackBarLayout.tvText.text = text
+        }
+        val snackBarView = snackBar.view
+        snackBarView.setBackgroundColor(
+            ResourcesCompat.getColor(
+                resources,
+                R.color.transparent,
+                null
+            )
+        )
+        val params = snackBarView.layoutParams
+        snackBarView.layoutParams = params
+        (snackBarView as Snackbar.SnackbarLayout).addView(snackBarLayout.root, 0)
+        snackBar.anchorView = binding.frameBottom
+        snackBar.show()
     }
 
     private fun checkSwitch(type: SettingsSwitchType, isChecked: Boolean) {

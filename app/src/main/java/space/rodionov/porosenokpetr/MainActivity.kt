@@ -21,7 +21,6 @@ import space.rodionov.porosenokpetr.databinding.ActivityMainBinding
 import space.rodionov.porosenokpetr.databinding.SnackbarLayoutBinding
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.DEFAULT_INT
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
-import space.rodionov.porosenokpetr.feature_driller.work.NotificationHelper
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -31,6 +30,8 @@ class MainActivity : AppCompatActivity() {
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
     private val vmMain: MainViewModel by viewModels()
+
+//    private var systemNavBarHeight = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +43,8 @@ class MainActivity : AppCompatActivity() {
                 top = insets.systemWindowInsetTop,
                 bottom = insets.systemWindowInsetBottom
             )
+//            systemNavBarHeight = insets.systemWindowInsetBottom
+//            Log.d(TAG_PETR, "onCreate: snbh = $systemNavBarHeight")
             insets
         }
         WindowCompat.setDecorFitsSystemWindows(window, true)
@@ -64,16 +67,7 @@ class MainActivity : AppCompatActivity() {
 
         this.lifecycleScope.launchWhenStarted {
             vmMain.reminder.collectLatest {
-                Log.d(TAG_PETR, "onCreate: reminder = $it")
-                if (it) {
-                    vmMain.buildAndScheduleNotification().apply {
-                        this?.let { timestamp->
-                            scheduleSuccessSnackBar(timestamp)
-                        } ?: scheduleErrornackbar()
-                    }
-                } else {
-                    vmMain.cancelNotification()
-                }
+
             }
         }
     }
@@ -118,42 +112,6 @@ class MainActivity : AppCompatActivity() {
                         View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
             }
         }
-    }
-
-    private fun scheduleSuccessSnackBar(notificationTime: Long) {
-        val titleNotificationSchedule = getString(R.string.notification_schedule_title)
-        val patternNotificationSchedule = getString(R.string.notification_schedule_pattern)
-        showSnackBar(DEFAULT_INT, titleNotificationSchedule + SimpleDateFormat(
-                patternNotificationSchedule, Locale.getDefault()
-            ).format(notificationTime).toString())
-    }
-
-    private fun scheduleErrornackbar() {
-        showSnackBar(R.string.notification_schedule_error, "")
-    }
-
-    private fun showSnackBar(resId: Int, text: String) {
-        val snackBar = Snackbar.make(binding.root, "", Snackbar.LENGTH_SHORT)
-        val snackBarLayout =
-            SnackbarLayoutBinding.bind(layoutInflater.inflate(R.layout.snackbar_layout, null))
-        if (resId != DEFAULT_INT) {
-            snackBarLayout.tvText.setText(resId)
-        } else {
-            snackBarLayout.tvText.text = text
-        }
-        val snackBarView = snackBar.view
-        snackBarView.setBackgroundColor(
-            ResourcesCompat.getColor(
-                resources,
-                R.color.transparent,
-                null
-            )
-        )
-        val params = snackBarView.layoutParams
-        snackBarView.layoutParams = params
-        (snackBarView as Snackbar.SnackbarLayout).addView(snackBarLayout.root, 0)
-        snackBar.anchorView = binding.frameBottom
-        snackBar.show()
     }
 }
 
