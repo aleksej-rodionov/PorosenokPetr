@@ -9,29 +9,16 @@ import android.graphics.Color
 import android.media.AudioAttributes
 import android.media.RingtoneManager
 import android.os.Build
-import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.hilt.work.HiltWorker
-import androidx.lifecycle.viewModelScope
-import androidx.work.*
 import androidx.work.ListenableWorker.Result.success
+import androidx.work.Worker
+import androidx.work.WorkerParameters
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.stateIn
 import space.rodionov.porosenokpetr.MainActivity
 import space.rodionov.porosenokpetr.R
-import space.rodionov.porosenokpetr.core.findUpcomingNotificationTime
-import space.rodionov.porosenokpetr.core.sdf
 import space.rodionov.porosenokpetr.core.vectorToBitmap
-import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.ObserveReminderUseCase
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.ONE_MIN_IN_MILLIS
-import java.lang.System.currentTimeMillis
-import java.text.SimpleDateFormat
-import java.util.*
-import java.util.concurrent.TimeUnit
-import javax.inject.Inject
 
 @HiltWorker
 class NotificationWorker @AssistedInject constructor (

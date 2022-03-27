@@ -11,10 +11,12 @@ import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.R
+import space.rodionov.porosenokpetr.core.findUpcomingNotificationTime
 import space.rodionov.porosenokpetr.core.redrawViewGroup
 import space.rodionov.porosenokpetr.databinding.BottomsheetTimePickerBinding
 import space.rodionov.porosenokpetr.feature_driller.presentation.settings.SettingsViewModel
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants
+import java.util.*
 
 class TimePickerBottomSheet: BottomSheetDialogFragment() {
 
@@ -47,7 +49,13 @@ class TimePickerBottomSheet: BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (view.parent as ViewGroup).setBackgroundColor(Color.TRANSPARENT)
+        val notificationTimestamp = findUpcomingNotificationTime()
+        val notificationCalendar = Calendar.getInstance()
+        notificationCalendar.timeInMillis = notificationTimestamp
+
         binding.apply {
+            timePicker.hour = notificationCalendar.
+
             this@TimePickerBottomSheet.lifecycleScope.launchWhenStarted {
 //              todo  vmSettings.notify
             }
