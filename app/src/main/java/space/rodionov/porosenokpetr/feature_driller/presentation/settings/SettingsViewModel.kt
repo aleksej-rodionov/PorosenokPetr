@@ -53,7 +53,7 @@ class SettingsViewModel @Inject constructor(
     }
 
     private fun updateBlockedDarkModeItem(block: Boolean) = viewModelScope.launch {
-        Log.d(TAG_SETTINGS, "updateBlockedDarkModeItem: block = $block")
+//        Log.d(TAG_SETTINGS, "updateBlockedDarkModeItem: block = $block")
         val newList = mutableListOf<BaseModel>()
         menuListFlow.value.forEach { menuItem ->
             if (menuItem is MenuSwitch && menuItem.type == SettingsSwitchType.NIGHT_MODE) {

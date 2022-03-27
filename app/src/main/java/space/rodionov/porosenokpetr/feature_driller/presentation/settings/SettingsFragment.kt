@@ -55,6 +55,11 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             vmSettings.menuListFlow.collectLatest {
                 val list = it?: return@collectLatest
+                Log.d(
+                    TAG_SETTINGS, "//============================================================")
+                list.forEach { model ->
+                    Log.d(TAG_SETTINGS, "$model")
+                }
                 settingsAdapter.submitList(list)
             }
         }

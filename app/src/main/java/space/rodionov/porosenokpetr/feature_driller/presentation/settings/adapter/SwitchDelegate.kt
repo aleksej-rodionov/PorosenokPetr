@@ -49,7 +49,7 @@ class SwitchViewHolder(
                 switch.text = transDirText
             }
             SettingsSwitchType.NIGHT_MODE -> {
-                Log.d(TAG_SETTINGS, "$model")
+//                Log.d(TAG_SETTINGS, "NIGHT_MODE: $model")
 //                switch.isChecked = modeBVH == Constants.MODE_DARK
                 switch.isChecked = model.switchState
                 switch.text = res.getString(R.string.dark_mode)
@@ -64,8 +64,12 @@ class SwitchViewHolder(
                 }
             }
             SettingsSwitchType.SYSTEM_MODE -> {
+//                Log.d(TAG_SETTINGS, "SYSTEM_MODE: $model")
                 switch.isChecked = model.switchState
                 switch.text = res.getString(R.string.follow_system_mode)
+                switch.setTextColor(colors[3])//todo костыль (почемуто иногда блокируется этот switch, хотя isBlocked приходит false ВСЕГДА)
+                switch.thumbTintList = ColorStateList.valueOf(res.getColor(R.color.white))//todo костыль (и только костыль пока-что помог)
+                switch.isEnabled = true //todo костыль
             }
 //            SettingsSwitchType.NOTIFICATIONS -> {}
         }
