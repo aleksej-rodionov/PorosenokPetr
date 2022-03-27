@@ -8,6 +8,7 @@ import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MILLIS_IN_NINE_HOURS
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_NOTIFY
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
 import java.io.IOException
 
@@ -141,10 +142,12 @@ class Datastore /*@Inject constructor*/(
         }
         .map { prefs ->
             val millis = prefs[PrefKeys.MILLIS_FROM_DAY_BEGINNING] ?: MILLIS_IN_NINE_HOURS
+            Log.d(TAG_NOTIFY, "Datastore.getMillisFlow: $millis")
             millis
         }
 
     suspend fun updateMillis(millis: Long) {
+        Log.d(TAG_NOTIFY, "Datastore.updateMillis: $millis")
         datastore.edit { it[PrefKeys.MILLIS_FROM_DAY_BEGINNING] = millis }
     }
 }

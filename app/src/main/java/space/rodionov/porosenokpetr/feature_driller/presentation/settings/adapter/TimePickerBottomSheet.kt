@@ -11,8 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.R
-import space.rodionov.porosenokpetr.core.findUpcomingNotificationTime
-import space.rodionov.porosenokpetr.core.redrawViewGroup
+import space.rodionov.porosenokpetr.core.*
 import space.rodionov.porosenokpetr.databinding.BottomsheetTimePickerBinding
 import space.rodionov.porosenokpetr.feature_driller.presentation.settings.SettingsViewModel
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants
@@ -23,6 +22,9 @@ class TimePickerBottomSheet: BottomSheetDialogFragment() {
     companion object {
         const val TIME_PICKER_BOTTOM_SHEET = "timePickerBottomSheet"
     }
+
+    private val hourList = getHours()
+    private val minuteList = getMinutes()
 
     private val binding: BottomsheetTimePickerBinding by lazy {
         BottomsheetTimePickerBinding.inflate(layoutInflater)
@@ -50,22 +52,29 @@ class TimePickerBottomSheet: BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         (view.parent as ViewGroup).setBackgroundColor(Color.TRANSPARENT)
 
-        val notificationTimestamp = findUpcomingNotificationTime()
-        val notificationCalendar = Calendar.getInstance()
-        notificationCalendar.timeInMillis = notificationTimestamp
-
         binding.apply {
-            // todo set NumberPickers' states
+            npMinutes.displayedValues = minuteList
+            npMinutes.wrapSelectorWheel = false
+            npMinutes.minValue = 0
+            npMinutes.maxValue = minuteList.size - 1
+
+            npHours.displayedValues = hourList
+            npHours.wrapSelectorWheel = false
+            npHours.minValue = 0
+            npHours.maxValue = hourList.size - 1
 
             this@TimePickerBottomSheet.lifecycleScope.launchWhenStarted {
-//              todo  vmSettings.notify
-            }
-            this@TimePickerBottomSheet.lifecycleScope.launchWhenStarted {
-//          todo      vmSettings.notificationTime
-            }
-
-            this@TimePickerBottomSheet.lifecycleScope.launchWhenStarted {
-                //todo vmSettings.eventFlow -> collect events
+                vmSettings.notificationTime.collectLatest {
+                    val hoursAndMinutes = parseLongToHoursAndMinutes(it)
+                    val hours = hoursAndMinutes.first
+                    val minutes = hoursAndMinutes.second.roundMinutesToFiveMinutes()
+                    hourList.forEachIndexed { index, s ->
+                        if (s == hours) npHours.value = index
+                    }
+                    minuteList.forEachIndexed { index, s ->
+                        if (s == minutes) npMinutes.value = index
+                    }
+                }
             }
 
             this@TimePickerBottomSheet.lifecycleScope.launchWhenStarted {
@@ -74,14 +83,15 @@ class TimePickerBottomSheet: BottomSheetDialogFragment() {
                     (root as ViewGroup).redrawViewGroup(mode)
                 }
             }
+
+            btnSelectCalendar.setOnClickListener {
+                val h = hourList[npHours.value]
+                val m = minuteList[npMinutes.value]
+                val millis = hoursAndMinutesToMillis(h, m)
+                vmSettings.updateNotificationTime(millis)
+                dismiss()
+            }
         }
-    }
-
-    // todo fun onTimeChanged()
-
-    override fun onDismiss(dialog: DialogInterface) {
-        super.onDismiss(dialog)
-        // todo vmSettings.acceptTimeChange()
     }
 }
 

@@ -22,7 +22,8 @@ object Constants {
     const val EMPTY_STRING = ""
     const val MAX_STACK_SIZE = 50
 
-    const val ONE_MIN_IN_MILLIS = 60000L
+    const val MILLIS_IN_ONE_MINUTE = 60000L
+    const val MILLIS_IN_ONE_HOUR = 3600000L
     const val MILLIS_IN_NINE_HOURS = 75600000L
 
 }

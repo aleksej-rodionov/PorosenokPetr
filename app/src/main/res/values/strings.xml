@@ -41,7 +41,7 @@
 
     <string name="notification_title">English: напоминалочка</string>
     <string name="notification_subtitle">Не забыли уделить пару минут инглишу? =)</string>
-    <string name="remind">Напоминать по вечерам</string>
+    <string name="remind">Напоминать о занятиях</string>
     <string name="reminder">Напоминание</string>
     <string name="notification_schedule_title">Установлено уведомление:\u00a0</string>
     <string name="notification_schedule_pattern">dd.MM.yy  HH:mm</string>

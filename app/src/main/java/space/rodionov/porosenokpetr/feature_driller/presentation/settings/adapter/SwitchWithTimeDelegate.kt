@@ -3,6 +3,7 @@ package space.rodionov.porosenokpetr.feature_driller.presentation.settings.adapt
 import android.view.View
 import android.view.ViewGroup
 import space.rodionov.porosenokpetr.R
+import space.rodionov.porosenokpetr.core.parseLongToHoursAndMinutes
 import space.rodionov.porosenokpetr.databinding.ItemSettingsSwitchWithTimeBinding
 import space.rodionov.porosenokpetr.feature_driller.domain.models.BaseModel
 import space.rodionov.porosenokpetr.feature_driller.domain.models.MenuSwitchWithTimePicker
@@ -23,14 +24,13 @@ class SwitchWithTimeViewHolder(
             model as MenuSwitchWithTimePicker
             switchView.setOnCheckedChangeListener(null)
 
-//            switchView.isChecked = notifyBVH
-//            timeSelectionView.visibility = if (notifyBVH) View.VISIBLE else View.GONE
             switchView.isChecked = model.switchState
             timeSelectionView.visibility = if (model.switchState) View.VISIBLE else View.GONE
 
             switchView.text = res.getString(R.string.remind)
 
-            tvTime.text = model.millisSinceDayBeginning.toString()
+            val time = parseLongToHoursAndMinutes(model.millisSinceDayBeginning)
+            tvTime.text = "Ежедневно в ${time.first}:${time.second}"
 
             switchView.setOnCheckedChangeListener { _, isChecked ->
                 checkSwitch(model.type, isChecked)
