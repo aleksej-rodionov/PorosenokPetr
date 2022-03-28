@@ -8,6 +8,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.feature_driller.domain.models.BaseModel
 import space.rodionov.porosenokpetr.feature_driller.domain.models.MenuSwitch
 import space.rodionov.porosenokpetr.feature_driller.domain.models.MenuSwitchWithTimePicker
@@ -18,6 +19,8 @@ import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_LIGHT
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_SETTINGS
 import space.rodionov.porosenokpetr.feature_driller.utils.SettingsSwitchType
 import space.rodionov.porosenokpetr.feature_driller.work.NotificationHelper
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -86,6 +89,7 @@ class SettingsViewModel @Inject constructor(
 
     sealed class SettingsEvent {
         object OpenTimePicker : SettingsEvent()
+        data class ShowSnackbar(val text: String) : SettingsEvent()
     }
 
     //==============================METHODS==================================
@@ -149,8 +153,28 @@ class SettingsViewModel @Inject constructor(
         _settingsEventFlow.emit(SettingsEvent.OpenTimePicker)
     }
 
+    fun showSnackbar(text: String) = viewModelScope.launch {
+        _settingsEventFlow.emit(SettingsEvent.ShowSnackbar(text))
+    }
+
     fun buildAndScheduleNotification() = notificationHelper.buildNotification(notificationTime.value)
+    fun buildAndScheduleNotification(millisFromDayStart: Long) = notificationHelper.buildNotification(millisFromDayStart)
     fun cancelNotification() = notificationHelper.cancelNotification()
+
+    fun scheduleSuccessSnackBar(notificationTime: Long, titleNotificationSchedule: String, patternNotificationSchedule: String) {
+        showSnackbar(titleNotificationSchedule + SimpleDateFormat(
+            patternNotificationSchedule, Locale.getDefault()
+        ).format(notificationTime).toString())
+//        showSnackBar(
+//            Constants.DEFAULT_INT, titleNotificationSchedule + SimpleDateFormat(
+//            patternNotificationSchedule, Locale.getDefault()
+//        ).format(notificationTime).toString())
+    }
+
+    fun scheduleErrorSnackbar(text: String) {
+        showSnackbar(text)
+//        showSnackBar(R.string.notification_schedule_error, "")
+    }
 
     fun notJustOpened() = viewModelScope.launch { // его величество костыль
         delay(500L)

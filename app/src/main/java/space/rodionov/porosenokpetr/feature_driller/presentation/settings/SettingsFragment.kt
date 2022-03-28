@@ -15,7 +15,6 @@ import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.databinding.FragmentSettingsBinding
 import space.rodionov.porosenokpetr.databinding.SnackbarLayoutBinding
 import space.rodionov.porosenokpetr.feature_driller.presentation.settings.adapter.SettingsAdapter
-import space.rodionov.porosenokpetr.feature_driller.presentation.settings.adapter.TimePickerBottomSheet
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_DARK
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_SETTINGS
@@ -97,8 +96,8 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
                     vmSettings.buildAndScheduleNotification().apply {
                         if (!vmSettings.justOpened) {
                             this?.let { timestamp ->
-                                scheduleSuccessSnackBar(timestamp)
-                            } ?: scheduleErrorSnackbar()
+                                vmSettings.scheduleSuccessSnackBar(timestamp, getString(R.string.notification_schedule_title), getString(R.string.notification_schedule_pattern))
+                            } ?: vmSettings.scheduleErrorSnackbar(resources.getString(R.string.notification_schedule_error))
                         }
                     }
                 } else {
@@ -122,23 +121,31 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
                             TimePickerBottomSheet.TIME_PICKER_BOTTOM_SHEET
                         )
                     }
+                    is SettingsViewModel.SettingsEvent.ShowSnackbar -> {
+                        showSnackBar(Constants.DEFAULT_INT, event.text)
+                    }
                 }
             }
         }
     }
 
-    private fun scheduleSuccessSnackBar(notificationTime: Long) {
-        val titleNotificationSchedule = getString(R.string.notification_schedule_title)
-        val patternNotificationSchedule = getString(R.string.notification_schedule_pattern)
-        showSnackBar(
-            Constants.DEFAULT_INT, titleNotificationSchedule + SimpleDateFormat(
-            patternNotificationSchedule, Locale.getDefault()
-        ).format(notificationTime).toString())
-    }
-
-    private fun scheduleErrorSnackbar() {
-        showSnackBar(R.string.notification_schedule_error, "")
-    }
+//    private fun scheduleSuccessSnackBar(notificationTime: Long) {
+//        val titleNotificationSchedule = getString(R.string.notification_schedule_title)
+//        val patternNotificationSchedule = getString(R.string.notification_schedule_pattern)
+//
+//        vmSettings.showSnackbar(titleNotificationSchedule + SimpleDateFormat(
+//            patternNotificationSchedule, Locale.getDefault()
+//        ).format(notificationTime).toString())
+////        showSnackBar(
+////            Constants.DEFAULT_INT, titleNotificationSchedule + SimpleDateFormat(
+////            patternNotificationSchedule, Locale.getDefault()
+////        ).format(notificationTime).toString())
+//    }
+//
+//    private fun scheduleErrorSnackbar() {
+//        vmSettings.showSnackbar(resources.getString(R.string.notification_schedule_error))
+////        showSnackBar(R.string.notification_schedule_error, "")
+//    }
 
     private fun showSnackBar(resId: Int, text: String) {
         val snackBar = Snackbar.make(binding.root, "", Snackbar.LENGTH_SHORT)

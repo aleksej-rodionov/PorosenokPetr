@@ -8,7 +8,9 @@ import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.findUpcomingNotificationTime
+import space.rodionov.porosenokpetr.core.parseLongToHoursAndMinutes
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_NOTIFY
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -17,12 +19,16 @@ class NotificationHelper(
    private val context: Context
 ) {
 
-    fun buildNotification(notificationTime: Long): Long? {
-//        val notificationTime = findUpcomingNotificationTime() // notification timestamp
+    fun buildNotification(millisSinceDayStart: Long): Long? {
+        val notificationTime = findUpcomingNotificationTime(millisSinceDayStart) // notification timestamp
         val currentTime = System.currentTimeMillis() // current timestamp
+        Log.d(TAG_NOTIFY, "buildNotification: timeSinceDayStart = ${parseLongToHoursAndMinutes(millisSinceDayStart)}")
 
         if (notificationTime > currentTime) {
-            val data = Data.Builder().putInt(NotificationWorker.NOTIFICATION_ID, 0).build()
+            val data = Data.Builder()
+                .putInt(NotificationWorker.NOTIFICATION_ID, 0)
+                .putLong(NotificationWorker.MILLIS_SINCE_DAY_START, millisSinceDayStart)
+                .build()
             val delay = notificationTime - currentTime
 //            val delay = ONE_MIN_IN_MILLIS
             scheduleNotification(delay, data)
@@ -43,6 +49,7 @@ class NotificationHelper(
 
         val instanceWorkManager = WorkManager.getInstance(context) // хз, тот ли контекст сюда запустил?
         Log.d(Constants.TAG_NOTIFY, "scheduleNotification: instanceWorkManager.hashcode = ${instanceWorkManager.hashCode()}")
+        Log.d(Constants.TAG_NOTIFY, "scheduleNotification: delay = ${delay}")
         instanceWorkManager.beginUniqueWork(
             NotificationWorker.NOTIFICATION_WORK,
             ExistingWorkPolicy.REPLACE,

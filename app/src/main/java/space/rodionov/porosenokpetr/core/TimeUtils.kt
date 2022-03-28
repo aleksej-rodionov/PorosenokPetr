@@ -5,7 +5,6 @@ import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_NOTIFY
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.math.min
 
 val sdf = SimpleDateFormat("dd.MM.yy", Locale.getDefault())
 
@@ -46,28 +45,28 @@ fun hoursAndMinutesToMillis(hours: String, minutes: String) : Long {
     return millis
 }
 
-fun findUpcomingNotificationTime(): Long {
+fun findUpcomingNotificationTime(millisSinceDayStart: Long): Long {
     val curTimeStamp: Long = System.currentTimeMillis() // today current millis
     val todayString = sdf.format(curTimeStamp)
     val todayStartTimeStamp = Calendar.getInstance().apply { this.time = sdf.parse(todayString) }.timeInMillis // today start
-    val todayPlusTwentyOneTimeStamp = todayStartTimeStamp + 3600000 * 21 // today 21:00
-    return if (curTimeStamp < todayPlusTwentyOneTimeStamp) {
-        logNotificationTime(todayPlusTwentyOneTimeStamp)
-        todayPlusTwentyOneTimeStamp
+    val todayPlusMillisSinceDayStart = todayStartTimeStamp + millisSinceDayStart // today + notifyTimeMillis
+    return if (curTimeStamp < todayPlusMillisSinceDayStart) {
+        logNotificationTime(todayPlusMillisSinceDayStart)
+        todayPlusMillisSinceDayStart
     } else {
-        tomorrowPlusTwentyOneTimeStamp()
+        tomorrowPlusMillisSinceDayStart(millisSinceDayStart)
     }
 }
 
-private fun tomorrowPlusTwentyOneTimeStamp(): Long {
+private fun tomorrowPlusMillisSinceDayStart(millisSinceDayStart: Long): Long {
     val cal = Calendar.getInstance()
     cal.add(Calendar.DATE, 1)
     val tomorrowString = sdf.format(cal.timeInMillis)
     val tomorrowStartTimeStamp = Calendar.getInstance()
         .apply { this.time = sdf.parse(tomorrowString) }.timeInMillis // tomorrow start
-    val tomorrowPlusTwentyOneTimeStamp = tomorrowStartTimeStamp + 3600000 * 21 + 2700000 // tomorrow 21:00
-    logNotificationTime(tomorrowPlusTwentyOneTimeStamp)
-    return tomorrowPlusTwentyOneTimeStamp
+    val tomorrowPlusMillisSinceDayStart = tomorrowStartTimeStamp + millisSinceDayStart // tomorrow + notifyTimeMillis
+    logNotificationTime(tomorrowPlusMillisSinceDayStart)
+    return tomorrowPlusMillisSinceDayStart
 }
 
 private fun logNotificationTime(timestamp: Long) {

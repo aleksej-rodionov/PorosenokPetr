@@ -11,6 +11,7 @@ import android.media.RingtoneManager
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.hilt.work.HiltWorker
+import androidx.work.CoroutineWorker
 import androidx.work.ListenableWorker.Result.success
 import androidx.work.Worker
 import androidx.work.WorkerParameters
@@ -20,22 +21,25 @@ import space.rodionov.porosenokpetr.MainActivity
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.vectorToBitmap
 import space.rodionov.porosenokpetr.feature_driller.data.storage.Datastore
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 
 @HiltWorker
 class NotificationWorker @AssistedInject constructor (
     @Assisted context: Context,
     @Assisted params: WorkerParameters,
-    private val notificationHelper: NotificationHelper
-) : Worker(context, params) {
+    private val notificationHelper: NotificationHelper,
+    private val datastore: Datastore
+) : CoroutineWorker(context, params) {
 
-    override fun doWork(): Result {
+    override suspend fun doWork(): Result {
         val id = inputData.getLong(NOTIFICATION_ID, 0).toInt()
-        sendNotification(id)
+        val millisSinceDayStart = inputData.getLong(MILLIS_SINCE_DAY_START, Constants.MILLIS_IN_NINE_HOURS)
+        sendNotification(id, millisSinceDayStart)
 
         return success()
     }
 
-    private fun sendNotification(id: Int) {
+    private fun sendNotification(id: Int, millisSinceDayStart: Long) {
         val intent = Intent(applicationContext, MainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         intent.putExtra(NOTIFICATION_ID, id)
@@ -83,7 +87,7 @@ class NotificationWorker @AssistedInject constructor (
 
         notificationManager.notify(id, notification.build())
 
-        notificationHelper.buildNotification() // todo pass the millis from Datastore
+        notificationHelper.buildNotification(millisSinceDayStart)
     }
 
 
@@ -93,5 +97,6 @@ class NotificationWorker @AssistedInject constructor (
         const val NOTIFICATION_NAME = "porosenok_petr"
         const val NOTIFICATION_CHANNEL = "porosenok_petr_channel_01"
         const val NOTIFICATION_WORK = "porosenok_petr_notification_work"
+        const val MILLIS_SINCE_DAY_START = "millis_since_day_start"
     }
 }

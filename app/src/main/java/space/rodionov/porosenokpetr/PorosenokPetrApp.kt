@@ -14,4 +14,8 @@ class PorosenokPetrApp: Application(), Configuration.Provider {
     override fun getWorkManagerConfiguration() = Configuration.Builder()
         .setWorkerFactory(workerFactory)
         .build()
+
+    override fun onCreate() {
+        super.onCreate() // todo move creating notificationChannel and notificationManager here
+    }
 }

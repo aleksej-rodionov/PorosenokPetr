@@ -1,6 +1,5 @@
-package space.rodionov.porosenokpetr.feature_driller.presentation.settings.adapter
+package space.rodionov.porosenokpetr.feature_driller.presentation.settings
 
-import android.content.DialogInterface
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,7 +12,6 @@ import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.*
 import space.rodionov.porosenokpetr.databinding.BottomsheetTimePickerBinding
-import space.rodionov.porosenokpetr.feature_driller.presentation.settings.SettingsViewModel
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 import java.util.*
 
@@ -89,6 +87,12 @@ class TimePickerBottomSheet: BottomSheetDialogFragment() {
                 val m = minuteList[npMinutes.value]
                 val millis = hoursAndMinutesToMillis(h, m)
                 vmSettings.updateNotificationTime(millis)
+                vmSettings.cancelNotification()
+                vmSettings.buildAndScheduleNotification(millis).apply {
+                    this?.let { timestamp ->
+                        vmSettings.scheduleSuccessSnackBar(timestamp, getString(R.string.notification_schedule_title), getString(R.string.notification_schedule_pattern))
+                    } ?: vmSettings.scheduleErrorSnackbar(resources.getString(R.string.notification_schedule_error))
+                }
                 dismiss()
             }
         }
