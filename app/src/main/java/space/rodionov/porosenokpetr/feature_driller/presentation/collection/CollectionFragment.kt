@@ -87,7 +87,7 @@ class   CollectionFragment : Fragment(
                 when (event) {
                     is CollectionViewModel.CollectionEvent.NavigateToWordlistScreen -> {
                         val action =
-                            CollectionFragmentDirections.actionCollectionFragmentToWordlistFragment()
+                            space.rodionov.porosenokpetr.feature_driller.presentation.collection.CollectionFragmentDirections.actionCollectionFragmentToWordlistFragment()
                         if (event.cat != null) {
                             action.category = event.cat
                         } else {

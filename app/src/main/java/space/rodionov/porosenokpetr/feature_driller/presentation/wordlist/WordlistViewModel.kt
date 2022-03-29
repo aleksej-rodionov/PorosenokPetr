@@ -29,8 +29,8 @@ class WordlistViewModel @Inject constructor(
     private val state: SavedStateHandle
 ) : ViewModel() {
 //    var wordLivedata = state.getLiveData<Word?>("wordLivedata", null)
-    var nativLivedata = state.getLiveData<String>("nativLivedata", null)
-    var foreignLivedata = state.getLiveData<String>("foreignLivedata", null)
+    var nativLivedata = state.getLiveData<String?>("nativLivedata", null)
+    var foreignLivedata = state.getLiveData<String?>("foreignLivedata", null)
     var catNameLivedata = state.getLiveData<String?>("catNameLivedata", null)
 
     private val _word = combine(
@@ -47,7 +47,7 @@ class WordlistViewModel @Inject constructor(
 //    private val _word = observeWordUseCase.invoke(wordInDialog.value)
 //    val word = _word.stateIn(viewModelScope, SharingStarted.Lazily, null)
 
-    var catToSearchIn = state.getLiveData<Category>("category", null)
+    var catToSearchIn = state.getLiveData<Category?>("category", null)
     val catNameFlow = catNameFromStorageUseCase.invoke()
 
     val searchQuery = state.getLiveData("searchQuery", "")

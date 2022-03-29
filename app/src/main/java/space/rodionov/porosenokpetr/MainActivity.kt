@@ -1,28 +1,30 @@
 package space.rodionov.porosenokpetr
 
 import android.content.res.Configuration
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
 import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.updatePadding
 import androidx.lifecycle.lifecycleScope
-import com.google.android.material.snackbar.Snackbar
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import space.rodionov.porosenokpetr.databinding.ActivityMainBinding
+import space.rodionov.porosenokpetr.feature_driller.presentation.collection.CollectionScreen
+import space.rodionov.porosenokpetr.feature_driller.presentation.util.Screen
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_DARK
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_LIGHT
-import space.rodionov.porosenokpetr.databinding.ActivityMainBinding
-import space.rodionov.porosenokpetr.databinding.SnackbarLayoutBinding
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.DEFAULT_INT
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_COMPOSABLE
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
-import java.text.SimpleDateFormat
+import space.rodionov.porosenokpetr.ui_compose.theme.PorosenokPetrTheme
 import java.util.*
 
 @AndroidEntryPoint
@@ -32,6 +34,7 @@ class MainActivity : AppCompatActivity() {
 
     private val vmMain: MainViewModel by viewModels()
 
+//    @ExperimentalAnimationApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val view = binding.root
@@ -66,8 +69,29 @@ class MainActivity : AppCompatActivity() {
 
         this.lifecycleScope.launchWhenStarted {
             vmMain.showFragments.collectLatest {
-                if (it) binding.navHostFragment.visibility = View.VISIBLE
-                else binding.navHostFragment.visibility = View.GONE
+                if (it) {
+                    // todo destroy all composables
+                    binding.navHostFragment.visibility = View.VISIBLE
+                } else {
+                    binding.navHostFragment.visibility = View.GONE
+                    setContent {
+                        PorosenokPetrTheme {
+                            Surface(
+                                color = MaterialTheme.colors.background
+                            ) {
+                                val navController = rememberNavController()
+                                NavHost(
+                                    navController = navController,
+                                    startDestination = Screen.CollectionScreen.route
+                                ) {
+                                    composable(route = Screen.CollectionScreen.route) {
+                                        CollectionScreen(navController = navController)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }
