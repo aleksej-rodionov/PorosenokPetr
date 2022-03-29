@@ -70,6 +70,10 @@ class MainActivity : AppCompatActivity() {
 
             }
         }
+
+        binding.fab.setOnClickListener {
+            // todo switch between composables and fragments
+        }
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
