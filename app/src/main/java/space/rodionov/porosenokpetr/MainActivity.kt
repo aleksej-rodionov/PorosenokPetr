@@ -20,6 +20,7 @@ import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_LIGHT
 import space.rodionov.porosenokpetr.databinding.ActivityMainBinding
 import space.rodionov.porosenokpetr.databinding.SnackbarLayoutBinding
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.DEFAULT_INT
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_COMPOSABLE
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
 import java.text.SimpleDateFormat
 import java.util.*
@@ -72,7 +73,15 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.fab.setOnClickListener {
-            // todo switch between composables and fragments
+            vmMain.switchUiShit()
+        }
+
+        this.lifecycleScope.launchWhenStarted {
+            vmMain.showFragments.collectLatest {
+                Log.d(TAG_COMPOSABLE, "onCreate: ")
+                if (it) binding.navHostFragment.visibility = View.VISIBLE
+                else binding.navHostFragment.visibility = View.GONE
+            }
         }
     }
 

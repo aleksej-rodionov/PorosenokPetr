@@ -4,7 +4,9 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.*
@@ -22,6 +24,13 @@ class MainViewModel @Inject constructor(
     private val observeReminderUseCase: ObserveReminderUseCase
 ): ViewModel() {
 //    private val sdf = SimpleDateFormat("dd.MM.yy", Locale.getDefault())
+
+    private val _showFragments = MutableStateFlow<Boolean>(true)
+    val showFragments = _showFragments.asStateFlow()
+
+    fun switchUiShit() = viewModelScope.launch {
+        _showFragments.value = !showFragments.value
+    }
 
     //==========================MODE=========================================
     private val _mode = observeModeUseCase.invoke()
