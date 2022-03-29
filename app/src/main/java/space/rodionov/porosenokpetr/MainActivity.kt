@@ -32,8 +32,6 @@ class MainActivity : AppCompatActivity() {
 
     private val vmMain: MainViewModel by viewModels()
 
-//    private var systemNavBarHeight = 0
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val view = binding.root
@@ -44,13 +42,9 @@ class MainActivity : AppCompatActivity() {
                 top = insets.systemWindowInsetTop,
                 bottom = insets.systemWindowInsetBottom
             )
-//            systemNavBarHeight = insets.systemWindowInsetBottom
-//            Log.d(TAG_PETR, "onCreate: snbh = $systemNavBarHeight")
             insets
         }
         WindowCompat.setDecorFitsSystemWindows(window, true)
-
-
 
         this.lifecycleScope.launchWhenStarted {
             vmMain.mode.collectLatest {
@@ -66,19 +60,12 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        this.lifecycleScope.launchWhenStarted {
-            vmMain.reminder.collectLatest {
-
-            }
-        }
-
         binding.fab.setOnClickListener {
             vmMain.switchUiShit()
         }
 
         this.lifecycleScope.launchWhenStarted {
             vmMain.showFragments.collectLatest {
-                Log.d(TAG_COMPOSABLE, "onCreate: ")
                 if (it) binding.navHostFragment.visibility = View.VISIBLE
                 else binding.navHostFragment.visibility = View.GONE
             }
