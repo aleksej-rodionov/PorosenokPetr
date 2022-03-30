@@ -16,6 +16,8 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import space.rodionov.porosenokpetr.MainViewModel
+import space.rodionov.porosenokpetr.R
+import space.rodionov.porosenokpetr.feature_driller.domain.models.Category
 
 //@Composable
 //fun CollectionScreen(openOtherScreen: () -> Unit) {
@@ -27,7 +29,7 @@ fun CollectionScreen(
     vmCollection: CollectionViewModelNew = hiltViewModel(),
     vmMain: MainViewModel = hiltViewModel()
 ) {
-//    val state = viewModel.state.value
+    val state = vmCollection.state.value
     val scaffoldState = rememberScaffoldState()
     val scope = rememberCoroutineScope()
 
@@ -80,7 +82,23 @@ fun CollectionScreen(
             }
             Divider()
             LazyColumn(modifier = Modifier.fillMaxSize()) {
-//                items(state //todo)
+                items(state.catsWithWords) { cww ->
+                    CollectionItem(
+                        catWithWords = cww,
+                        onChecked = {
+                            if (it) {
+                                vmCollection.activateCategory(cww.category.name)
+                            } else {
+                                if (vmCollection.howManyActiveCats() < 2) {
+                                    vmCollection.updateCatSwitchState(cww.category)
+                                    vmCollection.shoeSnackbar("Нельзя отключить все категории"/*getString(R.string.cannot_turn_all_cats_off)*/)
+                                } else {
+                                    vmCollection.inactivateCategory(cww.category.name)
+                                }
+                            }
+                        }
+                    )
+                }
             }
         }
     }
