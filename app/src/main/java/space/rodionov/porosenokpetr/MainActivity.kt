@@ -71,11 +71,12 @@ class MainActivity : AppCompatActivity() {
         this.lifecycleScope.launchWhenStarted {
             vmMain.showFragments.collectLatest {
                 if (it) {
+                    WindowCompat.setDecorFitsSystemWindows(window, false)
                     binding.composeView.visibility = View.GONE
                     binding.navHostFragment.visibility = View.VISIBLE
                 } else {
+                    WindowCompat.setDecorFitsSystemWindows(window, false)
                     binding.navHostFragment.visibility = View.GONE
-
                     binding.composeView.visibility = View.VISIBLE
                     binding.composeView.apply {
                         setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
