@@ -1,13 +1,17 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation.collection
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -55,13 +59,29 @@ fun CollectionScreen(
                     style = MaterialTheme.typography.h6,
                 )
             }
-            TextField(
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                IconButton(onClick = {
+//                    navController.navigateToWordlistScreen() // todo navigate
+                }) {
+                    Icon(imageVector = Icons.Default.Search, contentDescription = "Search")
+                }
+                Text(
 //                value = viewModel.searchQuery.value,
 //                onValueChange = viewModel::onSearch,
-                modifier = Modifier.fillMaxWidth(),
-                placeholder = { Text(text = "Search...") }
-            )
+                    modifier = Modifier.fillMaxWidth(),
+                    text = "Искать слово ..",
+                    fontStyle = FontStyle.Italic,
+                    style = MaterialTheme.typography.body1
+                )
+            }
             Divider()
+            LazyColumn(modifier = Modifier.fillMaxSize()) {
+//                items(state //todo)
+            }
         }
     }
 }
