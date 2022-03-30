@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
+import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
@@ -70,22 +71,27 @@ class MainActivity : AppCompatActivity() {
         this.lifecycleScope.launchWhenStarted {
             vmMain.showFragments.collectLatest {
                 if (it) {
-                    // todo destroy all composables
+                    binding.composeView.visibility = View.GONE
                     binding.navHostFragment.visibility = View.VISIBLE
                 } else {
                     binding.navHostFragment.visibility = View.GONE
-                    setContent {
-                        PorosenokPetrTheme {
-                            Surface(
-                                color = MaterialTheme.colors.background
-                            ) {
-                                val navController = rememberNavController()
-                                NavHost(
-                                    navController = navController,
-                                    startDestination = Screen.CollectionScreen.route
+
+                    binding.composeView.visibility = View.VISIBLE
+                    binding.composeView.apply {
+                        setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
+                        setContent {
+                            PorosenokPetrTheme {
+                                Surface(
+                                    color = MaterialTheme.colors.background
                                 ) {
-                                    composable(route = Screen.CollectionScreen.route) {
-                                        CollectionScreen(navController = navController)
+                                    val navController = rememberNavController()
+                                    NavHost(
+                                        navController = navController,
+                                        startDestination = Screen.CollectionScreen.route
+                                    ) {
+                                        composable(route = Screen.CollectionScreen.route) {
+                                            CollectionScreen(navController = navController)
+                                        }
                                     }
                                 }
                             }
