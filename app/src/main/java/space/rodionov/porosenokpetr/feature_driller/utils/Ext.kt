@@ -10,6 +10,6 @@ fun List<Word>.countPercentage(): Int {
     }.size
     val totalCount = this.size
     val lch = learnedCount * 100.0f
-    val percentage = (lch / totalCount).roundToInt()
+    val percentage = if (!(lch / totalCount).isNaN()) (lch / totalCount).roundToInt() else 0
     return percentage
 }

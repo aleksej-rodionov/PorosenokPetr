@@ -53,9 +53,11 @@ android {
     productFlavors {
         englishdriller {
             applicationIdSuffix ".englishdriller"
+            manifestPlaceholders variant: 'English Driller'
         }
         swedishdriller {
             applicationIdSuffix ".swedishdriller"
+            manifestPlaceholders variant: 'Swedish Driller'
         }
     }
 }

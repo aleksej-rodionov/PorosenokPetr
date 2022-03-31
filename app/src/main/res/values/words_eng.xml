@@ -2,8 +2,41 @@
 <resources>
 
 
-
-    <string-array name="eng1">	<item>i lived with this money for a month</item>
+    <string-array name="eng5">	<item>from then on</item>
+        <item>and here superhero comes into the picture</item>
+        <item>it\'ll pay off so much</item>
+        <item>my inclination is to ...</item>
+        <item>I\'m leaning towards going home</item>
+        <item>to get really ingrained that ...</item>
+        <item>vehement reaction</item>
+        <item>not everybody approaches the language of recovery from the same perspective</item>
+        <item>bottom line is my brain lies to me</item>
+        <item>I think I got over procrastination when I learned to sit back. This freed up a lot of time.</item>
+        <item>trust that I extend to ...</item>
+        <item>I don\'t have to be specific about what I experienced</item>
+        <item>this works across the board</item>
+        <item>the text was interspersed with doodles</item>
+        <item>he was only doodling in the margin</item>
+        <item>a rough drawing made absentmindedly</item>
+        <item>thoughts precede behaviors</item>
+        <item>overthinking kills your happiness</item>
+        <item>out of blue</item>
+        <item>it takes more work</item>
+        <item>in a nutshell</item>
+        <item>I\'ve been sharing more than I normally would</item>
+        <item>I\'m trying to grapple how ..</item>
+        <item>I drew this chart</item>
+        <item>I am piled high with my irrational core beliefs</item>
+        <item>held accountable for</item>
+        <item>for right reason</item>
+        <item>find as kick ass therapist as you can afford</item>
+        <item>it all comes down to a misunderstanding of terms</item>
+        <item>I have no subordinates, no children.</item>
+        <item>something you do overnight</item>
+        <item>that\'s a testament to the quality</item>
+        <item>I think I got over procrastination when I learned to sit back. This freed up a lot of time.</item>
+        <item>it will take me a little time to...</item>
+        <item>I lived with this money for a month</item>
         <item>no wonder</item>
         <item>grammar rules are needed only in jurisprudence and lawmaking</item>
         <item>empowerment statements</item>
@@ -51,12 +84,6 @@
         <item>territory accession</item>
         <item>during processing</item>
         <item>in one sitting</item>
-
-
-
-
-
-
         <item>it keeps me up</item>
         <item>Full steam ahead (for ...)</item>
         <item>we intuitively learn how to handle things that used to baffle us</item>
@@ -606,7 +633,7 @@
         <item>oh shit, we\'re getting through that again now</item>
         <item>everything\'ll be ok afterwards</item>
         <item>it exhausts my soul</item>	</string-array>
-    <string-array name="eng2">	<item>to lay off, to dismiss, to fire</item>
+    <string-array name="eng4">	<item>to lay off, to dismiss, to fire</item>
         <item>work is being carried out</item>
         <item>to run out of (fuel)</item>
         <item>to come up with (the answer)</item>
@@ -647,6 +674,7 @@
         <item>to end up (V-ing)</item>
         <item>to get on (with ...)</item>
         <item>to fall out</item>
+        <item>to kick things off</item>
         <item>to get stood up</item>
         <item>to blast out</item>
         <item>to rub out</item>
@@ -791,6 +819,16 @@
         <item>(to) query</item>
         <item>(to) release</item>
         <item>(to) slit</item>
+        <item>to reflect upon ...</item>
+        <item>to flitter</item>
+        <item>to yield to pedestrian</item>
+        <item>to weather that storm</item>
+        <item>to balance competing priorities</item>
+        <item>it stems from ...</item>
+        <item>to fill to the brim</item>
+        <item>to revert</item>
+        <item>to bounce ideas</item>
+
         <item>(to) thud</item>
         <item>to  focus on …</item>
         <item>to abandon (smth)</item>
@@ -1172,7 +1210,7 @@
         <item>to tidy up</item>
         <item>to avoid</item>
         <item>to startlify</item>	</string-array>
-    <string-array name="eng4">	<item>null / zero</item>
+    <string-array name="eng2">	<item>null / zero</item>
         <item>a wig</item>
         <item>aboard</item>
         <item>abundance</item>
@@ -2253,7 +2291,7 @@
         <item>steadfast</item>
         <item>lumberjack shirt</item>
         <item>deterrence of ...</item>	</string-array>
-    <string-array name="eng5">	<item>to act</item>
+    <string-array name="eng1">	<item>to act</item>
         <item>to add</item>
         <item>to agree</item>
         <item>to answer</item>
@@ -2417,7 +2455,7 @@
         <item>to work</item>
         <item>to worry</item>
         <item>to write (wrote – written)</item>	</string-array>
-    <string-array name="eng6">	<item>about</item>
+    <string-array name="eng0">	<item>about</item>
         <item>above</item>
         <item>accountant</item>
         <item>actor/actress</item>
@@ -3240,6 +3278,21 @@ to dress</item>"
         <item>afterwards</item>
         <item>intermediaries</item>
         <item>sharp</item>
-        <item>rabbit</item>	</string-array>
+        <item>rabbit</item>
+        <item>prepped to</item>
+        <item>pelvis</item>
+        <item>parental bullying</item>
+        <item>immature</item>
+        <item>exhaustion</item>
+        <item>defiance</item>
+        <item>clueless</item>
+        <item>generosity</item>
+        <item>doodle</item>
+        <item>in jeopardy</item>
+        <item>civilian casualties</item>
+        <item>skewed</item>
+        <item>regimented</item>
+        <item>stumbling block</item>
+        <item>ancient</item>	</string-array>
 
 </resources>
