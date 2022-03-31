@@ -21,6 +21,11 @@ android {
     }
 
     buildTypes {
+//        debug {
+//            minifyEnabled true
+//            shrinkResources true
+//            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+//        }
         release {
             minifyEnabled true
             shrinkResources true
@@ -41,6 +46,16 @@ android {
     packagingOptions {
         resources {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+    // Specifies one flavor dimension.
+    flavorDimensions "default"
+    productFlavors {
+        englishDriller {
+            applicationIdSuffix ".englishDriller"
+        }
+        swedishDriller {
+            applicationIdSuffix ".swedishDriller"
         }
     }
 }
