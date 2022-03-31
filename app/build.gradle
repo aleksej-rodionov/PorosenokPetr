@@ -51,11 +51,11 @@ android {
     // Specifies one flavor dimension.
     flavorDimensions "default"
     productFlavors {
-        englishDriller {
-            applicationIdSuffix ".englishDriller"
+        englishdriller {
+            applicationIdSuffix ".englishdriller"
         }
-        swedishDriller {
-            applicationIdSuffix ".swedishDriller"
+        swedishdriller {
+            applicationIdSuffix ".swedishdriller"
         }
     }
 }
