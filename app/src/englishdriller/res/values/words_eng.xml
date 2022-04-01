@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-<!--    <string-array name="categories_en">-->
-<!--        <item>R.array.eng0</item>-->
-<!--        <item>R.array.eng1</item>-->
-<!--        <item>R.array.eng2</item>-->
-<!--        <item>R.array.eng3</item>-->
-<!--        <item>R.array.eng4</item>-->
-<!--        <item>R.array.eng5</item>-->
+<!--    <string-array name="categories">-->
+<!--        <item>top 800 words</item>-->
+<!--        <item>top 200 verbs</item>-->
+<!--        <item>just words</item>-->
+<!--        <item>just verbs</item>-->
+<!--        <item>phrasal verbs</item>-->
+<!--        <item>phrases</item>-->
 <!--    </string-array>-->
 
     <string-array name="eng5">	<item>from then on</item>

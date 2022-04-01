@@ -32,26 +32,26 @@ abstract class WordDatabase : RoomDatabase() {
             val dao = database.get().dao
 
             appScope.launch {
-                val categories = app.resources.getStringArray(R.array.categories).toList()
+                val categories = app.resources.getStringArray(R.array.categories_ru).toList()
                 categories.forEach {
                     dao.insertCategory(CategoryEntity(it))
                 }
 
                 categories.forEachIndexed { index, s ->
 
-//                    val sweResId = app.resources.getIdentifier(
-//                        "eng$index",
-//                        "array",
-//                        app.packageName
-//                    )
-//                    val sweWords = app.resources.getStringArray(sweResId).toList()
-//
-//                    val ukrResId = app.resources.getIdentifier(
-//                        "rus$index",
-//                        "array",
-//                        app.packageName
-//                    )
-//                    val ukrWords = app.resources.getStringArray(ukrResId).toList()
+    /*                val sweResId = app.resources.getIdentifier(
+                        "eng$index",
+                        "array",
+                        app.packageName
+                    )
+                    val sweWords = app.resources.getStringArray(sweResId).toList()
+
+                    val ukrResId = app.resources.getIdentifier(
+                        "rus$index",
+                        "array",
+                        app.packageName
+                    )
+                    val ukrWords = app.resources.getStringArray(ukrResId).toList()*/
 
                     val engResId = app.resources.getIdentifier(
                         "eng$index",

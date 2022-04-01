@@ -24,7 +24,7 @@ class WordRepoImpl(
         delay(500L) // для пробы
         val words = dao.getTenWords().map { it.toWord() }
         emit(Resource.Success(words))
-        // todo обработать Resource.Error ??
+        // todo обработать Resource.Error ?? (когда будет API)
     }
 
     override suspend fun updateWordIsActive(word: Word, isActive: Boolean) {
@@ -119,6 +119,9 @@ class WordRepoImpl(
     override suspend fun setTransDir(nativeToForeign: Boolean) {
         datastore.updatetranslationDirection(nativeToForeign)
     }
+
+    override fun observeNativeLanguage(): Flow<Int> = datastore.nativeLanguageFlow
+    override suspend fun updateNativeLanguage(newLanguage: Int) = datastore.updateNativeLanguage(newLanguage)
 
     override fun storageCatName(): Flow<String> = datastore.categoryFlow
     override suspend fun updateStorageCat(catName: String) = datastore.updateCategoryChosen(catName)

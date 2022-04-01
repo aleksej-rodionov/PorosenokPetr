@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-<!--    <string-array name="categories_ru">-->
-<!--        <item>R.array.rus0</item>-->
-<!--        <item>R.array.rus1</item>-->
-<!--        <item>R.array.rus2</item>-->
-<!--        <item>R.array.rus3</item>-->
-<!--        <item>R.array.rus4</item>-->
-<!--        <item>R.array.rus5</item>-->
-<!--    </string-array>-->
+    <string-array name="categories_ru">
+        <item>Топ 800 слов</item>
+        <item>Топ 200 глаголов</item>
+        <item>Обычные слова</item>
+        <item>Обычные глаголы</item>
+        <item>Фразовые глаголы</item>
+        <item>Фразы</item>
+    </string-array>
 
     <string-array name="rus5">	<item>с тех пор</item>
         <item>и здесь появляется супергерой</item>

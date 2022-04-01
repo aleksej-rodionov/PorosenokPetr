@@ -27,8 +27,7 @@ import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 class NotificationWorker @AssistedInject constructor (
     @Assisted context: Context,
     @Assisted params: WorkerParameters,
-    private val notificationHelper: NotificationHelper,
-    private val datastore: Datastore
+    private val notificationHelper: NotificationHelper
 ) : CoroutineWorker(context, params) {
 
     override suspend fun doWork(): Result {

@@ -15,7 +15,7 @@ import java.io.IOException
 private val Context.datastore by preferencesDataStore("datastore")
 
 //@Singleton
-class Datastore /*@Inject constructor*/(
+class Datastore /*@Inject constructor*/( // todo сделать интерфейс, чтобы можно было менять storageImpl
    /* @ApplicationContext*/ app: Application
 ) {
 
@@ -28,6 +28,7 @@ class Datastore /*@Inject constructor*/(
         val FOLLOW_SYSTEM_MODE = booleanPreferencesKey("followSystemMode")
         val REMINDER = booleanPreferencesKey("remind")
         val MILLIS_FROM_DAY_BEGINNING = longPreferencesKey("millis")
+        val NATIVE_LANGUAGE = intPreferencesKey("nativeLanguage")
     }
 
     //==========================CATEGORY OPENED IN WORD COLLECTION============================================
@@ -149,6 +150,27 @@ class Datastore /*@Inject constructor*/(
     suspend fun updateMillis(millis: Long) {
         Log.d(TAG_NOTIFY, "Datastore.updateMillis: $millis")
         datastore.edit { it[PrefKeys.MILLIS_FROM_DAY_BEGINNING] = millis }
+    }
+
+    //==========================NATIVE LANGUAGE============================================
+    val nativeLanguageFlow = datastore.data
+        .catch {exception ->
+            if (exception is IOException) {
+                Log.e(TAG_PETR, "Error reading preferences", exception)
+                emit(emptyPreferences())
+            } else {
+                throw exception
+            }
+        }
+        .map { prefs ->
+            val language = prefs[PrefKeys.NATIVE_LANGUAGE] ?: 0
+            language
+        }
+
+    suspend fun updateNativeLanguage(language: Int) {
+        datastore.edit { prefs ->
+            prefs[PrefKeys.NATIVE_LANGUAGE] = language
+        }
     }
 }
 

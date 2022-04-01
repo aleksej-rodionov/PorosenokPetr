@@ -56,6 +56,18 @@ interface WordRepo {
     fun getTransDir() : Flow<Boolean>
     suspend fun setTransDir(nativeToForeign: Boolean)
 
+    fun observeNativeLanguage() : Flow<Int>
+    suspend fun updateNativeLanguage(newLanguage: Int)
+
     fun storageCatName() : Flow<String>
     suspend fun updateStorageCat(catName: String)
 }
+
+
+
+
+
+
+
+
+
