@@ -20,6 +20,7 @@ import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_LIGHT
 import space.rodionov.porosenokpetr.databinding.ActivityMainBinding
 import space.rodionov.porosenokpetr.databinding.SnackbarLayoutBinding
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.DEFAULT_INT
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_NATIVE_LANG
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
 import java.text.SimpleDateFormat
 import java.util.*
@@ -74,8 +75,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
+        Log.d(TAG_NATIVE_LANG, "onConfigurationChanged: CALLED")
         if (vmMain.followSystemMode.value) {
             vmMain.updateMode(getSystemTheme())
+        }
+        if (vmMain.followSystemLocale.value) {
+//            vmMain.updateLocale() // todo а как в датасторе обновить?
+            updateLocale() // todo не пойму оно работает нет?
+            Log.d(TAG_NATIVE_LANG, "onConfigurationChanged: update locale!")
         }
     }
 
@@ -88,6 +95,18 @@ class MainActivity : AppCompatActivity() {
         }
     }
     //=================NIGHT MODE=====================
+
+    private fun updateLocale() {
+        val locale = when (resources.configuration.locale.language) {
+            "uk" -> "uk"
+            else -> "ru"
+        }
+        val config = resources.configuration
+        val newLocale = Locale(locale)
+        Locale.setDefault(newLocale)
+        config.locale = newLocale
+        resources.updateConfiguration(config, resources.displayMetrics)
+    }
 
     private fun setDefaultBarsColors(mode: Int) {
         when (mode) {

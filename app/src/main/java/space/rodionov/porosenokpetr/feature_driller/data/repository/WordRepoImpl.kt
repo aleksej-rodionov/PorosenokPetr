@@ -123,6 +123,9 @@ class WordRepoImpl(
     override fun observeNativeLanguage(): Flow<Int> = datastore.nativeLanguageFlow
     override suspend fun updateNativeLanguage(newLanguage: Int) = datastore.updateNativeLanguage(newLanguage)
 
+    override fun getFollowSystemLocale(): Flow<Boolean> = datastore.followSystemLocaleFlow
+    override suspend fun setFollowSystemLocale(follow: Boolean) = datastore.updateFollowSystemLocale(follow)
+
     override fun storageCatName(): Flow<String> = datastore.categoryFlow
     override suspend fun updateStorageCat(catName: String) = datastore.updateCategoryChosen(catName)
 }

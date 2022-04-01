@@ -9,6 +9,7 @@ object Constants {
     const val TAG_MODE = "tag_mode"
     const val TAG_NOTIFY = "tag_mode"
     const val TAG_SETTINGS = "tag_settings"
+    const val TAG_NATIVE_LANG = "tag_native_lang"
 
     const val WORD_DB = "word_db"
 

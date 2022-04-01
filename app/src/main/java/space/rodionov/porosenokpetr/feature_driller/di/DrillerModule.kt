@@ -25,6 +25,18 @@ object DrillerModule {
 
     @Provides
     @Singleton
+    fun provideGetFollowSystemLocaleUseCase(repo: WordRepo): ObserveFollowSystemLocaleUseCase {
+        return ObserveFollowSystemLocaleUseCase(repo)
+    }
+
+    @Provides
+    @Singleton
+    fun provideSetFollowSystemLocaleUseCase(repo: WordRepo): SetFollowSystemLocaleUseCase {
+        return SetFollowSystemLocaleUseCase(repo)
+    }
+
+    @Provides
+    @Singleton
     fun provideObserveNativeLangUseCase(repo: WordRepo): ObserveNativeLangUseCase {
         return ObserveNativeLangUseCase(repo)
     }

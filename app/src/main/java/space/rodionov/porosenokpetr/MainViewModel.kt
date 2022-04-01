@@ -19,6 +19,7 @@ class MainViewModel @Inject constructor(
     private val observeModeUseCase: ObserveModeUseCase,
     private val setModeUseCase: SetModeUseCase,
     private val observeFollowSystemModeUseCase: ObserveFollowSystemModeUseCase,
+    private val observeFollowSystemLocaleUseCase: ObserveFollowSystemLocaleUseCase,
     private val observeReminderUseCase: ObserveReminderUseCase
 ): ViewModel() {
 //    private val sdf = SimpleDateFormat("dd.MM.yy", Locale.getDefault())
@@ -34,6 +35,10 @@ class MainViewModel @Inject constructor(
     //==========================FOLLOW SYSTEM MODE=========================================
     private val _followSystemMode = observeFollowSystemModeUseCase.invoke()
     val followSystemMode = _followSystemMode.stateIn(viewModelScope, SharingStarted.Lazily, false)
+
+    //==========================FOLLOW SYSTEM LOCALE=========================================
+    private val _followSystemLocale = observeFollowSystemLocaleUseCase.invoke()
+    val followSystemLocale = _followSystemLocale.stateIn(viewModelScope, SharingStarted.Lazily, false)
 
     //==========================REMINDER=========================================
     private val _reminder = observeReminderUseCase.invoke()

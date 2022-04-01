@@ -1,4 +1,3 @@
-<!--r-->
 <resources>
     <string name="app_name">EnglishDriller</string>
 
@@ -49,53 +48,5 @@
     <string name="notification_schedule_error">Schedule notification: Incorrect Date and Time</string>
     <string name="btn_next_text">Продолжить</string>
 
-    <!--u-->
-    <string name="app_name_u">EnglishDriller</string>
 
-    <string name="top_800_words_u">Топ 800 слов</string>
-    <string name="top_200_verbs_u">Топ 200 глаголов</string>
-    <string name="usual_words_u">Обычные слова</string>
-    <string name="usual_verbs_u">Обычные глаголы</string>
-    <string name="phrasal_verbs_u">Фразовые глаголы</string>
-    <string name="phrases_u">Речевые связки</string>
-
-    <string name="item_count_u">В колоде %1$d слов</string>
-    <string name="current_position_u">Текущая позиция: %1$d</string>
-    <string name="on_card_appeared_u">onCardAppeared(%1$d)</string>
-    <string name="on_card_disappeared_u">onCardDisappeared(%1$d)</string>
-
-    <string name="active_categories_u">Изучаемые категории</string>
-    <string name="active_all_categories_u">Включить все категории</string>
-    <string name="cannot_turn_all_cats_off_u">Вы не можете выбрать менее 1 категории</string>
-
-    <string name="choose_time_u">Выберите время</string>
-
-    <string name="collection_u">Коллекция</string>
-    <string name="search_word_u">Искать слово ..</string>
-    <string name="search_among_all_words_u">Поиск среди всех слов</string>
-    <string name="search_in_u">Поиск в: %1$s</string>
-    <string name="percentage_u">%1$s \%</string>
-
-    <string name="category_u">Категория</string>
-    <string name="word_in_dialog_u">%1$s - %2$s</string>
-    <string name="word_learned_u">Слово выучено</string>
-    <string name="word_not_learned_u">Слово не выучено</string>
-    <string name="word_description_u">%1$s.\nВы можете пометить слово как выученное, и оно больше не будет встречаться в колоде.\nЕсли пометите слово как НЕвыученное, оно будет попадаться в колоде.</string>
-    <string name="translation_direction_u">Направление перевода</string>
-    <string name="from_en_to_ru_u">С инглиша на русский</string>
-    <string name="from_ru_to_en_u">С русского на инглиш</string>
-    <string name="dark_mode_u">Тёмная тема</string>
-    <string name="follow_system_mode_u">Использовать тему телефона</string>
-    <string name="appearance_u">Внешний вид</string>
-
-    <string name="settings_u">Настройки</string>
-
-    <string name="notification_title_u">English: напоминалочка</string>
-    <string name="notification_subtitle_u">Не забыли уделить пару минут инглишу? =)</string>
-    <string name="remind_u">Напоминать о занятиях</string>
-    <string name="reminder_u">Напоминание</string>
-    <string name="notification_schedule_title_u">Установлено уведомление:\u00a0</string>
-    <string name="notification_schedule_pattern_u">dd.MM.yy  HH:mm</string>
-    <string name="notification_schedule_error_u">Schedule notification: Incorrect Date and Time</string>
-    <string name="btn_next_text_u">Продолжить</string>
 </resources>
