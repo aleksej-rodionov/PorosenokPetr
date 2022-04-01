@@ -3,6 +3,7 @@
 Features
 
 - buildVariants for SwedishDriller + add u native voc (in progress)
+- AddEditWord bottomSheet
 - audio player service for listening
 - back-end with vocabularies, audio and authorization (before implementing backend u can use firebase)
 

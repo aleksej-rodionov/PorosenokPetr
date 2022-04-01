@@ -13,4 +13,8 @@
         <attr name="bg_accent_delta" format="color"/>
     </declare-styleable>
 
+    <declare-styleable name="NativeLanguageStylable">
+        <attr name="collection" format="string" />
+    </declare-styleable>
+
 </resources>

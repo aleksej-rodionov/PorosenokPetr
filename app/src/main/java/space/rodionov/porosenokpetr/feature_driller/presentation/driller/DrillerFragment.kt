@@ -223,9 +223,12 @@ class DrillerFragment : Fragment(R.layout.fragment_driller), CardStackListener, 
     }
 
     override fun onCardDisappeared(view: View?, position: Int) {
-        binding?.tvOnCardDisappeared?.text = getString(R.string.on_card_disappeared, position)
-        if (position == drillerAdapter.itemCount - 1) binding?.btnNewRound?.visibility =
-            View.VISIBLE
+        binding.tvOnCardDisappeared?.text = getString(R.string.on_card_disappeared, position)
+        if (position == drillerAdapter.itemCount - 1) {
+            binding.btnNewRound.visibility = View.VISIBLE
+        } else {
+            binding.btnNewRound.visibility = View.GONE // todo bug сделать нормально чтоб было чтоб кнопка исчезала вовремя или вообще не появлялась
+        }
     }
 
 
