@@ -1,5 +1,6 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation.driller
 
+import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,6 +11,7 @@ import kotlinx.coroutines.launch
 import space.rodionov.porosenokpetr.core.Resource
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
 import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.*
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
 import javax.inject.Inject
 
 @HiltViewModel
@@ -116,10 +118,12 @@ class DrillerViewModel @Inject constructor(
     fun newRound() {
         _wordsState.value = WordState()
         addTenWords()
+        updateCurrentPosition(0)
     }
 
     fun updateCurrentPosition(pos: Int) {
-        _currentPosition.value = pos
+        Log.d(TAG_PETR, "updateCurrentPosition: $pos")
+        _currentPosition.value = pos // костыль
 //        updateSavedPosition(pos)
     }
 
