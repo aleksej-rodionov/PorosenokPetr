@@ -28,5 +28,5 @@ object Constants {
     const val NATIVE_LANGUAGE_UA = 1
 
     val LANG_POSTFIX_RU = "_ru"
-    val LANG_POSTFIX_EN = "_en"
+    val LANG_POSTFIX_UA = "_ua"
 }
