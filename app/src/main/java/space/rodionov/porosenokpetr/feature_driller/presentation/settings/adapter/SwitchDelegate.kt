@@ -71,7 +71,28 @@ class SwitchViewHolder(
                 switch.thumbTintList = ColorStateList.valueOf(res.getColor(R.color.white))//todo костыль (и только костыль пока-что помог)
                 switch.isEnabled = true //todo костыль
             }
-//            SettingsSwitchType.NOTIFICATIONS -> {}
+            SettingsSwitchType.NATIVE_LANG -> {
+                switch.isChecked = model.switchState
+                switch.text = if (model.switchState) res.getString(R.string.ukrainian)
+                    else res.getString(R.string.russian)
+                if (model.isBlocked) {
+                    switch.setTextColor(res.getColor(R.color.gray600))
+                    switch.thumbTintList = ColorStateList.valueOf(res.getColor(R.color.gray600))
+                    switch.isEnabled = false
+                } else {
+                    switch.setTextColor(colors[3])
+                    switch.thumbTintList = ColorStateList.valueOf(res.getColor(R.color.white))
+                    switch.isEnabled = true
+                }
+            }
+            SettingsSwitchType.SYSTEM_LANG -> {
+//                Log.d(TAG_SETTINGS, "SYSTEM_MODE: $model")
+                switch.isChecked = model.switchState
+                switch.text = res.getString(R.string.follow_system_locale)
+                switch.setTextColor(colors[3])//todo костыль (почемуто иногда блокируется этот switch, хотя isBlocked приходит false ВСЕГДА)
+                switch.thumbTintList = ColorStateList.valueOf(res.getColor(R.color.white))//todo костыль (и только костыль пока-что помог)
+                switch.isEnabled = true //todo костыль
+            }
         }
     }
 }

@@ -23,6 +23,7 @@ abstract class BaseViewHolder: RecyclerView.ViewHolder {
     var followSystemModeBVH: Boolean = false
 //    var notifyBVH: Boolean = false
 //    var notificationTimeBVH: Long = Constants.MILLIS_IN_NINE_HOURS
+    var followSystemLangBVH: Boolean = false
 
     var mode = fetchTheme(modeBVH, itemView.resources)
     var colors = mode.fetchColors()
@@ -54,6 +55,10 @@ abstract class BaseViewHolder: RecyclerView.ViewHolder {
 
     fun setFollowSystemMode(follow: Boolean) {
         followSystemModeBVH = follow
+    }
+
+    fun setFollowSystemLang(follow: Boolean) {
+        followSystemLangBVH = follow
     }
 //
 //    fun setNotify(notify: Boolean) {

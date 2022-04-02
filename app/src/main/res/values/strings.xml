@@ -48,5 +48,8 @@
     <string name="notification_schedule_error">Schedule notification: Incorrect Date and Time</string>
     <string name="btn_next_text">Продолжить</string>
 
-
+    <string name="native_language">Родной язык</string>
+    <string name="russian">Русский</string>
+    <string name="ukrainian">Украинский</string>
+    <string name="follow_system_locale">Использовать локализацию устройства</string>
 </resources>

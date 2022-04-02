@@ -9,6 +9,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
+import space.rodionov.porosenokpetr.core.LangUtils
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 import space.rodionov.porosenokpetr.feature_driller.data.local.WordDatabase
 import space.rodionov.porosenokpetr.feature_driller.data.repository.WordRepoImpl
@@ -211,6 +212,10 @@ object DrillerModule {
     @Singleton
     fun provideNotificationHelper(app: Application): NotificationHelper =
         NotificationHelper(app)
+
+    @Provides
+    @Singleton
+    fun provideLantUtils(app: Application): LangUtils = LangUtils(app)
 
     @Provides
     @Singleton

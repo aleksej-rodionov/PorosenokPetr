@@ -17,9 +17,9 @@ import space.rodionov.porosenokpetr.databinding.SnackbarLayoutBinding
 import space.rodionov.porosenokpetr.feature_driller.presentation.settings.adapter.SettingsAdapter
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_DARK
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_UA
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_SETTINGS
 import space.rodionov.porosenokpetr.feature_driller.utils.SettingsSwitchType
-import java.text.SimpleDateFormat
 import java.util.*
 
 @AndroidEntryPoint
@@ -82,7 +82,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         }
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             vmSettings.followSystemMode.collectLatest {
-                settingsAdapter.updateFollowSystemModeBA(it)
+//                settingsAdapter.updateFollowSystemModeBA(it)
                 vmSettings.updateMenuList(SettingsSwitchType.SYSTEM_MODE, it)
             }
         }
@@ -109,6 +109,18 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
             vmSettings.notificationTime.collectLatest {
 //                settingsAdapter.updateNotificationTime(it)
                 vmSettings.updateNotificationTimeInList(it)
+            }
+        }
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            vmSettings.nativeLanguage.collectLatest {
+//                settingsAdapter.updateNativeLang(it)
+                vmSettings.updateMenuList(SettingsSwitchType.NATIVE_LANG, it == NATIVE_LANGUAGE_UA)
+            }
+        }
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            vmSettings.followSystemLocale.collectLatest {
+//                settingsAdapter.updateFollowSystemLangBA(it)
+                vmSettings.updateMenuList(SettingsSwitchType.SYSTEM_LANG, it)
             }
         }
 

@@ -8,6 +8,7 @@ import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MILLIS_IN_NINE_HOURS
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_NATIVE_LANG
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_NOTIFY
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
 import java.io.IOException
@@ -169,12 +170,13 @@ class Datastore /*@Inject constructor*/( // todo сделать интерфей
         }
 
     suspend fun updateNativeLanguage(language: Int) {
+        Log.d(TAG_NATIVE_LANG, "updateNativeLanguage: $language")
         datastore.edit { prefs ->
             prefs[PrefKeys.NATIVE_LANGUAGE] = language
         }
     }
 
-    //===============================IS FOLLOWING SYSTEM MODE=======================
+    //===============================IS FOLLOWING SYSTEM LANGUAGE=======================
     val followSystemLocaleFlow = datastore.data
         .catch {exception ->
             if (exception is IOException) {
@@ -185,11 +187,12 @@ class Datastore /*@Inject constructor*/( // todo сделать интерфей
             }
         }
         .map { prefs ->
-            val follow = prefs[PrefKeys.FOLLOW_SYSTEM_LOCALE] ?: true
+            val follow = prefs[PrefKeys.FOLLOW_SYSTEM_LOCALE] ?: false
             follow
         }
 
     suspend fun updateFollowSystemLocale(follow: Boolean) {
+        Log.d(TAG_NATIVE_LANG, "datastore updateFollowSystemLocale: $follow")
         datastore.edit { it[PrefKeys.FOLLOW_SYSTEM_LOCALE] = follow }
     }
 }

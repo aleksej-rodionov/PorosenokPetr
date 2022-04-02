@@ -7,22 +7,18 @@ import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.updatePadding
 import androidx.lifecycle.lifecycleScope
-import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_DARK
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_LIGHT
 import space.rodionov.porosenokpetr.databinding.ActivityMainBinding
-import space.rodionov.porosenokpetr.databinding.SnackbarLayoutBinding
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.DEFAULT_INT
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_RU
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_UA
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_NATIVE_LANG
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
-import java.text.SimpleDateFormat
 import java.util.*
 
 @AndroidEntryPoint
@@ -67,8 +63,22 @@ class MainActivity : AppCompatActivity() {
         }
 
         this.lifecycleScope.launchWhenStarted {
-            vmMain.reminder.collectLatest {
+            vmMain.nativeLanguage.collectLatest {
+                if (!vmMain.followSystemLocale.value) {
+                    updateLocale(when (it) {
+                        NATIVE_LANGUAGE_UA -> "uk"
+                        else -> "ru"
+                    })
+                }
+            }
+        }
 
+        this.lifecycleScope.launchWhenStarted {
+            vmMain.followSystemLocale.collectLatest {
+                if (it) {
+                    vmMain.updateNativeLanguage(getSystemLang()) // хз зачем. Обновляет lang в datastore
+                    updateLocale(getSystemLocale())
+                }
             }
         }
     }
@@ -77,13 +87,50 @@ class MainActivity : AppCompatActivity() {
         super.onConfigurationChanged(newConfig)
         Log.d(TAG_NATIVE_LANG, "onConfigurationChanged: CALLED")
         if (vmMain.followSystemMode.value) {
+            Log.d(TAG_NATIVE_LANG, "onConfigurationChanged: followSysMode = true")
             vmMain.updateMode(getSystemTheme())
         }
         if (vmMain.followSystemLocale.value) {
-//            vmMain.updateLocale() // todo а как в датасторе обновить?
-            updateLocale() // todo не пойму оно работает нет?
+
+            vmMain.updateNativeLanguage(getSystemLang()) // хз работает ли. Обновляет according to system locale
+            updateLocale(getSystemLocale()) // todo не пойму оно работает нет?
             Log.d(TAG_NATIVE_LANG, "onConfigurationChanged: update locale!")
         }
+    }
+
+    private fun getSystemLang() : Int {
+        return when (resources.configuration.locale.language) {
+            "uk" -> {
+                Log.d(TAG_NATIVE_LANG, "getSystemLang: ${resources.configuration.locale.language}")
+                NATIVE_LANGUAGE_UA
+            }
+            else -> {
+                Log.d(TAG_NATIVE_LANG, "getSystemLang: ${resources.configuration.locale.language}")
+                NATIVE_LANGUAGE_RU
+            }
+        }
+    }
+
+    private fun getSystemLocale() : String {
+        return when (resources.configuration.locale.language) {
+            "uk" -> {
+                Log.d(TAG_NATIVE_LANG, "getSystemLocale: ${resources.configuration.locale.language}")
+                "uk"
+            }
+            else -> {
+                Log.d(TAG_NATIVE_LANG, "getSystemLocale: ${resources.configuration.locale.language}")
+                "ru"
+            }
+        }
+    }
+
+    private fun updateLocale(locale: String) {
+        Log.d(TAG_NATIVE_LANG, "updateLocale: $locale")
+        val config = resources.configuration
+        val newLocale = Locale(locale)
+        Locale.setDefault(newLocale)
+        config.locale = newLocale
+        resources.updateConfiguration(config, resources.displayMetrics)
     }
 
     //=================NIGHT MODE=====================
@@ -95,18 +142,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
     //=================NIGHT MODE=====================
-
-    private fun updateLocale() {
-        val locale = when (resources.configuration.locale.language) {
-            "uk" -> "uk"
-            else -> "ru"
-        }
-        val config = resources.configuration
-        val newLocale = Locale(locale)
-        Locale.setDefault(newLocale)
-        config.locale = newLocale
-        resources.updateConfiguration(config, resources.displayMetrics)
-    }
 
     private fun setDefaultBarsColors(mode: Int) {
         when (mode) {

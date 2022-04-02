@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.*
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_RU
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.feature_driller.work.NotificationHelper
 import java.text.SimpleDateFormat
@@ -18,11 +19,12 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     private val observeModeUseCase: ObserveModeUseCase,
     private val setModeUseCase: SetModeUseCase,
+    private val observeNativeLangUseCase: ObserveNativeLangUseCase,
+    private val updateNativeLangUseCase: UpdateNativeLangUseCase,
     private val observeFollowSystemModeUseCase: ObserveFollowSystemModeUseCase,
     private val observeFollowSystemLocaleUseCase: ObserveFollowSystemLocaleUseCase,
     private val observeReminderUseCase: ObserveReminderUseCase
 ): ViewModel() {
-//    private val sdf = SimpleDateFormat("dd.MM.yy", Locale.getDefault())
 
     //==========================MODE=========================================
     private val _mode = observeModeUseCase.invoke()
@@ -36,7 +38,15 @@ class MainViewModel @Inject constructor(
     private val _followSystemMode = observeFollowSystemModeUseCase.invoke()
     val followSystemMode = _followSystemMode.stateIn(viewModelScope, SharingStarted.Lazily, false)
 
-    //==========================FOLLOW SYSTEM LOCALE=========================================
+    //==========================LANGUAGE=========================================
+    private val _nativeLanguage = observeNativeLangUseCase.invoke()
+    val nativeLanguage = _nativeLanguage.stateIn(viewModelScope, SharingStarted.Lazily, NATIVE_LANGUAGE_RU)
+
+    fun updateNativeLanguage(lang: Int) = viewModelScope.launch {
+        updateNativeLangUseCase.invoke(lang)
+    }
+
+    //==========================FOLLOW SYSTEM LANGUAGE=========================================
     private val _followSystemLocale = observeFollowSystemLocaleUseCase.invoke()
     val followSystemLocale = _followSystemLocale.stateIn(viewModelScope, SharingStarted.Lazily, false)
 

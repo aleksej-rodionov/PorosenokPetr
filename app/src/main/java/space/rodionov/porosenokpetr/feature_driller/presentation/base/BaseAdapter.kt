@@ -33,6 +33,12 @@ abstract class BaseAdapter(
         followSystemModeBA = follow
 //        notifyDataSetChanged()
     }
+
+    var followSystemLangBA = false
+    open fun updateFollowSystemLangBA(follow: Boolean) {
+        followSystemLangBA = follow
+//        notifyDataSetChanged()
+    }
 //
 //    var notifyBA = false
 //    open fun updateNotify(notify: Boolean) {
@@ -94,6 +100,7 @@ abstract class BaseAdapter(
         holder.setFollowSystemMode(followSystemModeBA)
 //        holder.setNotify(notifyBA)
 //        holder.setNotificationTime(notificationTimeBA)
+        holder.setFollowSystemLang(followSystemLangBA)
 
         holder.bind(getItem(position), holder)
     }

@@ -13,11 +13,8 @@ object Constants {
 
     const val WORD_DB = "word_db"
 
-    const val MODE = "mode"
-    const val FOLLOW_SYSTEM_MODE = "followSystemMode"
     const val MODE_LIGHT = 0
     const val MODE_DARK = 1
-    const val DEFAULT_FOLLOW_SYSTEM_MODE = false
 
     const val DEFAULT_INT = -1
     const val EMPTY_STRING = ""
@@ -27,4 +24,9 @@ object Constants {
     const val MILLIS_IN_ONE_HOUR = 3600000L
     const val MILLIS_IN_NINE_HOURS = 75600000L
 
+    const val NATIVE_LANGUAGE_RU = 0
+    const val NATIVE_LANGUAGE_UA = 1
+
+    val LANG_POSTFIX_RU = "_ru"
+    val LANG_POSTFIX_EN = "_en"
 }

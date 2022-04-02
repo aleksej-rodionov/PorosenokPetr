@@ -48,4 +48,9 @@
     <string name="notification_schedule_pattern">dd.MM.yy  HH:mm</string>
     <string name="notification_schedule_error">Schedule notification: Incorrect Date and Time</string>
     <string name="btn_next_text">Продовжити</string>
+
+    <string name="native_language">Рідна мова</string>
+    <string name="russian">Російська</string>
+    <string name="ukrainian">Українська</string>
+    <string name="follow_system_locale">Використати локалізацію телефону</string>
 </resources>
