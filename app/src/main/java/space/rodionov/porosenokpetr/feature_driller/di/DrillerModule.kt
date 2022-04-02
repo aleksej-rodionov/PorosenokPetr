@@ -9,7 +9,6 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
-import space.rodionov.porosenokpetr.core.LangUtils
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 import space.rodionov.porosenokpetr.feature_driller.data.local.WordDatabase
 import space.rodionov.porosenokpetr.feature_driller.data.repository.WordRepoImpl
@@ -23,18 +22,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object DrillerModule {
-
-    @Provides
-    @Singleton
-    fun provideGetFollowSystemLocaleUseCase(repo: WordRepo): ObserveFollowSystemLocaleUseCase {
-        return ObserveFollowSystemLocaleUseCase(repo)
-    }
-
-    @Provides
-    @Singleton
-    fun provideSetFollowSystemLocaleUseCase(repo: WordRepo): SetFollowSystemLocaleUseCase {
-        return SetFollowSystemLocaleUseCase(repo)
-    }
 
     @Provides
     @Singleton
@@ -212,10 +199,6 @@ object DrillerModule {
     @Singleton
     fun provideNotificationHelper(app: Application): NotificationHelper =
         NotificationHelper(app)
-
-    @Provides
-    @Singleton
-    fun provideLantUtils(app: Application): LangUtils = LangUtils(app)
 
     @Provides
     @Singleton

@@ -4,6 +4,7 @@ import space.rodionov.porosenokpetr.feature_driller.utils.SettingsSwitchType
 
 data class MenuSwitch(
 //    val headerId: Int,
+    val tag: String,
     val descriptionId: Int?,
     val type: SettingsSwitchType,
     val titleId: Int,
@@ -11,23 +12,13 @@ data class MenuSwitch(
     val isBlocked: Boolean = false
 ): BaseModel
 
-//data class MenuDoubleSwitch(
-//    val headerId: Int,
-//    val descriptionFirstId: Int?,
-//    val descriptionSecondId: Int?,
-//    val typeFirst: SettingsSwitchType,
-//    val typeSecond: SettingsSwitchType,
-//    val titleFirstId: Int,
-//    val titleSecondId: Int,
-//    val switchStateFirst: Boolean,
-//    val switchStateSecond: Boolean
-//): BaseModel
-
 data class MenuSwitchWithTimePicker(
 //    val headerId: Int,
+    val tag: String,
     val descriptionId: Int?,
     val type: SettingsSwitchType,
-    val titleId: Int,
+//    val titleId: Int,
+    val titleTag: String,
     val switchState: Boolean,
     val millisSinceDayBeginning: Long
 ): BaseModel

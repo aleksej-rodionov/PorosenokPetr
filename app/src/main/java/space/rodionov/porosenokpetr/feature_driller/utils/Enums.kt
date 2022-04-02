@@ -5,6 +5,5 @@ enum class SettingsSwitchType {
     NIGHT_MODE,
     SYSTEM_MODE,
     REMINDER,
-    NATIVE_LANG,
-    SYSTEM_LANG
+    NATIVE_LANG
 }

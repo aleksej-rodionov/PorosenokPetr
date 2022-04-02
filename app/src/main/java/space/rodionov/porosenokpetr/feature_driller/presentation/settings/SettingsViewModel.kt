@@ -36,8 +36,6 @@ class SettingsViewModel @Inject constructor(
     private val setFollowSystemModeUseCase: SetFollowSystemModeUseCase,
     private val observeNativeLangUseCase: ObserveNativeLangUseCase,
     private val updateNativeLangUseCase: UpdateNativeLangUseCase,
-    private val observeFollowSystemLocaleUseCase: ObserveFollowSystemLocaleUseCase,
-    private val updateFollowSystemLocaleUseCase: SetFollowSystemLocaleUseCase,
     private val observeReminderUseCase: ObserveReminderUseCase,
     private val setReminderUseCase: SetReminderUseCase,
     private val observeNotificationMillisUseCase: ObserveNotificationMillisUseCase,
@@ -82,14 +80,6 @@ class SettingsViewModel @Inject constructor(
 
     private fun updateNativeLanguage(lang: Int) = viewModelScope.launch {
         updateNativeLangUseCase.invoke(lang)
-    }
-
-    //==========================FOLLOW SYSTEM LANGUAGE=========================================
-    private val _followSystemLocale = observeFollowSystemLocaleUseCase.invoke()
-    val followSystemLocale = _followSystemLocale.stateIn(viewModelScope, SharingStarted.Lazily, false)
-
-    private fun updateFollowSystemLocale(follow: Boolean) = viewModelScope.launch {
-        updateFollowSystemLocaleUseCase.invoke(follow)
     }
 
     //==========================NOTIFICATION=========================================
@@ -137,26 +127,12 @@ class SettingsViewModel @Inject constructor(
         }
         _menuListFlow.value = newList.toMutableList()
         if (type == SettingsSwitchType.SYSTEM_MODE) updateBlockedDarkModeItem(state)
-        if (type == SettingsSwitchType.SYSTEM_LANG) updateBlockedNativeLangItem(state)
     }
 
     private fun updateBlockedDarkModeItem(block: Boolean) = viewModelScope.launch {
-//        Log.d(TAG_SETTINGS, "updateBlockedDarkModeItem: block = $block")
         val newList = mutableListOf<BaseModel>()
         menuListFlow.value.forEach { menuItem ->
             if (menuItem is MenuSwitch && menuItem.type == SettingsSwitchType.NIGHT_MODE) {
-                val newItem = menuItem.copy(isBlocked = block)
-                newList.add(newItem)
-            } else newList.add(menuItem)
-        }
-        _menuListFlow.value = newList.toMutableList()
-    }
-
-    private fun updateBlockedNativeLangItem(block: Boolean) = viewModelScope.launch {
-//        Log.d(TAG_SETTINGS, "updateBlockedDarkModeItem: block = $block")
-        val newList = mutableListOf<BaseModel>()
-        menuListFlow.value.forEach { menuItem ->
-            if (menuItem is MenuSwitch && menuItem.type == SettingsSwitchType.NATIVE_LANG) {
                 val newItem = menuItem.copy(isBlocked = block)
                 newList.add(newItem)
             } else newList.add(menuItem)
@@ -185,9 +161,6 @@ class SettingsViewModel @Inject constructor(
             SettingsSwitchType.REMINDER -> updateRemind(isChecked)
             SettingsSwitchType.NATIVE_LANG -> {
                 updateNativeLanguage(if (isChecked) NATIVE_LANGUAGE_UA else NATIVE_LANGUAGE_RU)
-            }
-            SettingsSwitchType.SYSTEM_LANG -> {
-                updateFollowSystemLocale(isChecked)
             }
         }
     }

@@ -28,25 +28,21 @@ class MainActivity : AppCompatActivity() {
 
     private val vmMain: MainViewModel by viewModels()
 
-//    private var systemNavBarHeight = 0
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val view = binding.root
         setContentView(view)
+
+
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.navHostFragment) { v, insets ->
             v.updatePadding(
                 top = insets.systemWindowInsetTop,
                 bottom = insets.systemWindowInsetBottom
             )
-//            systemNavBarHeight = insets.systemWindowInsetBottom
-//            Log.d(TAG_PETR, "onCreate: snbh = $systemNavBarHeight")
             insets
         }
         WindowCompat.setDecorFitsSystemWindows(window, true)
-
-
 
         this.lifecycleScope.launchWhenStarted {
             vmMain.mode.collectLatest {
@@ -64,68 +60,26 @@ class MainActivity : AppCompatActivity() {
 
         this.lifecycleScope.launchWhenStarted {
             vmMain.nativeLanguage.collectLatest {
-                if (!vmMain.followSystemLocale.value) {
-                    updateLocale(when (it) {
-                        NATIVE_LANGUAGE_UA -> "uk"
-                        else -> "ru"
-                    })
-                }
-            }
-        }
-
-        this.lifecycleScope.launchWhenStarted {
-            vmMain.followSystemLocale.collectLatest {
-                if (it) {
-                    vmMain.updateNativeLanguage(getSystemLang()) // хз зачем. Обновляет lang в datastore
-                    updateLocale(getSystemLocale())
-                }
+                updateLocale(if (it == 1) "uk" else "ru")
             }
         }
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
-        Log.d(TAG_NATIVE_LANG, "onConfigurationChanged: CALLED")
         if (vmMain.followSystemMode.value) {
-            Log.d(TAG_NATIVE_LANG, "onConfigurationChanged: followSysMode = true")
             vmMain.updateMode(getSystemTheme())
         }
-        if (vmMain.followSystemLocale.value) {
 
-            vmMain.updateNativeLanguage(getSystemLang()) // хз работает ли. Обновляет according to system locale
-            updateLocale(getSystemLocale()) // todo не пойму оно работает нет?
-            Log.d(TAG_NATIVE_LANG, "onConfigurationChanged: update locale!")
-        }
-    }
-
-    private fun getSystemLang() : Int {
-        return when (resources.configuration.locale.language) {
-            "uk" -> {
-                Log.d(TAG_NATIVE_LANG, "getSystemLang: ${resources.configuration.locale.language}")
-                NATIVE_LANGUAGE_UA
-            }
-            else -> {
-                Log.d(TAG_NATIVE_LANG, "getSystemLang: ${resources.configuration.locale.language}")
-                NATIVE_LANGUAGE_RU
+        if (newConfig.locale != null) {
+            if (resources?.configuration?.locale != newConfig.locale) {
+                updateLocale(if (vmMain.nativeLanguage.value == 1) "uk" else "ru") // works
             }
         }
-    }
 
-    private fun getSystemLocale() : String {
-        return when (resources.configuration.locale.language) {
-            "uk" -> {
-                Log.d(TAG_NATIVE_LANG, "getSystemLocale: ${resources.configuration.locale.language}")
-                "uk"
-            }
-            else -> {
-                Log.d(TAG_NATIVE_LANG, "getSystemLocale: ${resources.configuration.locale.language}")
-                "ru"
-            }
-        }
     }
 
     private fun updateLocale(locale: String) {
-        Log.d(TAG_NATIVE_LANG, "updateLocale: $locale")
         val config = resources.configuration
         val newLocale = Locale(locale)
         Locale.setDefault(newLocale)

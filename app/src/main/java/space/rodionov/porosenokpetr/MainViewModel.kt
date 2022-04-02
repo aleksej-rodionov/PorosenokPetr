@@ -19,10 +19,8 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     private val observeModeUseCase: ObserveModeUseCase,
     private val setModeUseCase: SetModeUseCase,
-    private val observeNativeLangUseCase: ObserveNativeLangUseCase,
-    private val updateNativeLangUseCase: UpdateNativeLangUseCase,
     private val observeFollowSystemModeUseCase: ObserveFollowSystemModeUseCase,
-    private val observeFollowSystemLocaleUseCase: ObserveFollowSystemLocaleUseCase,
+    private val observeNativeLangUseCase: ObserveNativeLangUseCase,
     private val observeReminderUseCase: ObserveReminderUseCase
 ): ViewModel() {
 
@@ -41,14 +39,6 @@ class MainViewModel @Inject constructor(
     //==========================LANGUAGE=========================================
     private val _nativeLanguage = observeNativeLangUseCase.invoke()
     val nativeLanguage = _nativeLanguage.stateIn(viewModelScope, SharingStarted.Lazily, NATIVE_LANGUAGE_RU)
-
-    fun updateNativeLanguage(lang: Int) = viewModelScope.launch {
-        updateNativeLangUseCase.invoke(lang)
-    }
-
-    //==========================FOLLOW SYSTEM LANGUAGE=========================================
-    private val _followSystemLocale = observeFollowSystemLocaleUseCase.invoke()
-    val followSystemLocale = _followSystemLocale.stateIn(viewModelScope, SharingStarted.Lazily, false)
 
     //==========================REMINDER=========================================
     private val _reminder = observeReminderUseCase.invoke()

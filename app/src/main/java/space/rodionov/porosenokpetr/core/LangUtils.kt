@@ -9,12 +9,12 @@ import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANG_POSTFIX
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_NATIVE_LANG
 
 
-fun TextView.setStringByArg(arg: String, lang: Int, res: Resources) {
+fun TextView.setTextByArg(arg: String, lang: Int, res: Resources) {
     val langPostfix = if (lang == 1) LANG_POSTFIX_UA else LANG_POSTFIX_RU
     this.text = resources.getString(arg.getStringIdByLangPostfix(langPostfix, this.context))
 }
 
-fun TextView.setStringByTag(lang: Int, res: Resources) {
+fun TextView.setTextByTag(lang: Int, res: Resources) {
     val tag = this.tag?.toString()
     val langPostfix = if (lang == 1) LANG_POSTFIX_UA else LANG_POSTFIX_RU
 

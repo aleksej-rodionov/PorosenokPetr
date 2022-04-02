@@ -9,6 +9,7 @@ import space.rodionov.porosenokpetr.feature_driller.domain.models.BaseModel
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.DEFAULT_INT
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MILLIS_IN_NINE_HOURS
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_LIGHT
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_RU
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_SETTINGS
 
 abstract class BaseAdapter(
@@ -16,41 +17,17 @@ abstract class BaseAdapter(
     clickToAction: () -> Unit = {}
 ) : ListAdapter<BaseModel, BaseViewHolder>(BaseComparator()) {
 
-//    var transDirBA = false
-//    open fun setTransDir(nativeToForeign: Boolean) {
-//        transDirBA = nativeToForeign
-////        notifyDataSetChanged()
-//    }
-
     var modeBA = MODE_LIGHT
     open fun updateMode(mode: Int) {
         modeBA = mode
-//        notifyDataSetChanged()
+        notifyDataSetChanged() // then try to comment this out
     }
 
-    var followSystemModeBA = false
-    open fun updateFollowSystemModeBA(follow: Boolean) {
-        followSystemModeBA = follow
-//        notifyDataSetChanged()
+    var nativeLangBA = NATIVE_LANGUAGE_RU
+    open fun updateNativeLang(lang: Int) {
+        nativeLangBA = lang
+        notifyDataSetChanged() // then try to comment this out
     }
-
-    var followSystemLangBA = false
-    open fun updateFollowSystemLangBA(follow: Boolean) {
-        followSystemLangBA = follow
-//        notifyDataSetChanged()
-    }
-//
-//    var notifyBA = false
-//    open fun updateNotify(notify: Boolean) {
-//        notifyBA = notify
-////        notifyDataSetChanged()
-//    }
-//
-//    var notificationTimeBA = MILLIS_IN_NINE_HOURS
-//    open fun updateNotificationTime(millisFromDayBeginning: Long) {
-//        notificationTimeBA = millisFromDayBeginning
-////        notifyDataSetChanged()
-//    }
 
 
     //=========================MAIN BOILERPLATE==================
@@ -79,28 +56,20 @@ abstract class BaseAdapter(
         position: Int,
         payloads: MutableList<Any>
     ) {
-//        Log.d(TAG_SETTINGS, "onBindViewHolder: with payloads CALLED")
 
         if (payloads.isEmpty()) {
             super.onBindViewHolder(holder, position, payloads)
         } else {
-//            holder.setTranslationDirection(transDirBA)
             holder.setMode(modeBA)
-            holder.setFollowSystemMode(followSystemModeBA)
-//            holder.setNotify(notifyBA)
-//            holder.setNotificationTime(notificationTimeBA)
+            holder.setNativeLang(nativeLangBA)
 
             holder.bindPayload(getItem(position), holder, payloads[0] as MutableList<Any>)
         }
     }
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
-//        holder.setTranslationDirection(transDirBA)
         holder.setMode(modeBA)
-        holder.setFollowSystemMode(followSystemModeBA)
-//        holder.setNotify(notifyBA)
-//        holder.setNotificationTime(notificationTimeBA)
-        holder.setFollowSystemLang(followSystemLangBA)
+        holder.setNativeLang(nativeLangBA)
 
         holder.bind(getItem(position), holder)
     }

@@ -30,7 +30,7 @@ class Datastore /*@Inject constructor*/( // todo сделать интерфей
         val REMINDER = booleanPreferencesKey("remind")
         val MILLIS_FROM_DAY_BEGINNING = longPreferencesKey("millis")
         val NATIVE_LANGUAGE = intPreferencesKey("nativeLanguage")
-        val FOLLOW_SYSTEM_LOCALE = booleanPreferencesKey("followSystemLocale")
+//        val FOLLOW_SYSTEM_LOCALE = booleanPreferencesKey("followSystemLocale")
     }
 
     //==========================CATEGORY OPENED IN WORD COLLECTION============================================
@@ -174,26 +174,6 @@ class Datastore /*@Inject constructor*/( // todo сделать интерфей
         datastore.edit { prefs ->
             prefs[PrefKeys.NATIVE_LANGUAGE] = language
         }
-    }
-
-    //===============================IS FOLLOWING SYSTEM LANGUAGE=======================
-    val followSystemLocaleFlow = datastore.data
-        .catch {exception ->
-            if (exception is IOException) {
-                Log.e(TAG_PETR, "Error reading preferences", exception)
-                emit(emptyPreferences())
-            } else {
-                throw exception
-            }
-        }
-        .map { prefs ->
-            val follow = prefs[PrefKeys.FOLLOW_SYSTEM_LOCALE] ?: false
-            follow
-        }
-
-    suspend fun updateFollowSystemLocale(follow: Boolean) {
-        Log.d(TAG_NATIVE_LANG, "datastore updateFollowSystemLocale: $follow")
-        datastore.edit { it[PrefKeys.FOLLOW_SYSTEM_LOCALE] = follow }
     }
 }
 

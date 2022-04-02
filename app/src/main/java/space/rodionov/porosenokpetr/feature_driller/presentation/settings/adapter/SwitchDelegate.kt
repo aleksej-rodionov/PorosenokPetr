@@ -1,18 +1,16 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation.settings.adapter
 
 import android.content.res.ColorStateList
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SwitchCompat
 import space.rodionov.porosenokpetr.R
+import space.rodionov.porosenokpetr.core.setTextByArg
 import space.rodionov.porosenokpetr.databinding.ItemSettingsSwitchBinding
 import space.rodionov.porosenokpetr.feature_driller.domain.models.BaseModel
 import space.rodionov.porosenokpetr.feature_driller.domain.models.MenuSwitch
 import space.rodionov.porosenokpetr.feature_driller.presentation.base.AdapterDelegate
 import space.rodionov.porosenokpetr.feature_driller.presentation.base.BaseViewHolder
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_SETTINGS
 import space.rodionov.porosenokpetr.feature_driller.utils.SettingsSwitchType
 
 
@@ -31,7 +29,7 @@ class SwitchViewHolder(
                 tvDescription.text = itemView.resources.getString(descId)
             }
 
-            bindSwitchState(model/*.type*/, switchView)
+            bindSwitchState(model, switchView)
 
             switchView.setOnCheckedChangeListener { _, isChecked ->
                 checkSwitch(model.type, isChecked)
@@ -49,8 +47,6 @@ class SwitchViewHolder(
                 switch.text = transDirText
             }
             SettingsSwitchType.NIGHT_MODE -> {
-//                Log.d(TAG_SETTINGS, "NIGHT_MODE: $model")
-//                switch.isChecked = modeBVH == Constants.MODE_DARK
                 switch.isChecked = model.switchState
                 switch.text = res.getString(R.string.dark_mode)
                 if (model.isBlocked) {
@@ -64,7 +60,6 @@ class SwitchViewHolder(
                 }
             }
             SettingsSwitchType.SYSTEM_MODE -> {
-//                Log.d(TAG_SETTINGS, "SYSTEM_MODE: $model")
                 switch.isChecked = model.switchState
                 switch.text = res.getString(R.string.follow_system_mode)
                 switch.setTextColor(colors[3])//todo костыль (почемуто иногда блокируется этот switch, хотя isBlocked приходит false ВСЕГДА)
@@ -73,25 +68,8 @@ class SwitchViewHolder(
             }
             SettingsSwitchType.NATIVE_LANG -> {
                 switch.isChecked = model.switchState
-                switch.text = if (model.switchState) res.getString(R.string.ukrainian)
-                    else res.getString(R.string.russian)
-                if (model.isBlocked) {
-                    switch.setTextColor(res.getColor(R.color.gray600))
-                    switch.thumbTintList = ColorStateList.valueOf(res.getColor(R.color.gray600))
-                    switch.isEnabled = false
-                } else {
-                    switch.setTextColor(colors[3])
-                    switch.thumbTintList = ColorStateList.valueOf(res.getColor(R.color.white))
-                    switch.isEnabled = true
-                }
-            }
-            SettingsSwitchType.SYSTEM_LANG -> {
-//                Log.d(TAG_SETTINGS, "SYSTEM_MODE: $model")
-                switch.isChecked = model.switchState
-                switch.text = res.getString(R.string.follow_system_locale)
-                switch.setTextColor(colors[3])//todo костыль (почемуто иногда блокируется этот switch, хотя isBlocked приходит false ВСЕГДА)
-                switch.thumbTintList = ColorStateList.valueOf(res.getColor(R.color.white))//todo костыль (и только костыль пока-что помог)
-                switch.isEnabled = true //todo костыль
+                switch.text = "huy"
+                switch.setTextByArg(model.tag, nativeLangBVH, res)
             }
         }
     }

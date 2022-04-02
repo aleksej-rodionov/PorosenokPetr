@@ -45,9 +45,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
 
         binding.apply {
             recyclerView.adapter = settingsAdapter
-//            settingsAdapter.submitList(SettingsHelper.getSettingsMenu())
             recyclerView.setHasFixedSize(true)
-//            recyclerView.itemAnimator = null
 
             btnBack.setOnClickListener {
                 (activity as MainActivity).onBackPressed()
@@ -60,17 +58,11 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             vmSettings.menuListFlow.collectLatest {
                 val list = it?: return@collectLatest
-                Log.d(
-                    TAG_SETTINGS, "//============================================================")
-                list.forEach { model ->
-                    Log.d(TAG_SETTINGS, "$model")
-                }
                 settingsAdapter.submitList(list)
             }
         }
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             vmSettings.transDir.collectLatest {
-//                settingsAdapter.setTransDir(it)
                 vmSettings.updateMenuList(SettingsSwitchType.TRANSLATION_DIRECTION, it)
             }
         }
@@ -82,13 +74,11 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         }
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             vmSettings.followSystemMode.collectLatest {
-//                settingsAdapter.updateFollowSystemModeBA(it)
                 vmSettings.updateMenuList(SettingsSwitchType.SYSTEM_MODE, it)
             }
         }
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             vmSettings.remind.collectLatest {
-//                settingsAdapter.updateNotify(it)
                 vmSettings.updateMenuList(SettingsSwitchType.REMINDER, it)
 
                 Log.d(Constants.TAG_PETR, "remind.collect: justopened = ${vmSettings.justOpened}")
@@ -107,20 +97,13 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         }
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             vmSettings.notificationTime.collectLatest {
-//                settingsAdapter.updateNotificationTime(it)
                 vmSettings.updateNotificationTimeInList(it)
             }
         }
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             vmSettings.nativeLanguage.collectLatest {
-//                settingsAdapter.updateNativeLang(it)
+                settingsAdapter.updateNativeLang(it)
                 vmSettings.updateMenuList(SettingsSwitchType.NATIVE_LANG, it == NATIVE_LANGUAGE_UA)
-            }
-        }
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            vmSettings.followSystemLocale.collectLatest {
-//                settingsAdapter.updateFollowSystemLangBA(it)
-                vmSettings.updateMenuList(SettingsSwitchType.SYSTEM_LANG, it)
             }
         }
 
@@ -140,24 +123,6 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
             }
         }
     }
-
-//    private fun scheduleSuccessSnackBar(notificationTime: Long) {
-//        val titleNotificationSchedule = getString(R.string.notification_schedule_title)
-//        val patternNotificationSchedule = getString(R.string.notification_schedule_pattern)
-//
-//        vmSettings.showSnackbar(titleNotificationSchedule + SimpleDateFormat(
-//            patternNotificationSchedule, Locale.getDefault()
-//        ).format(notificationTime).toString())
-////        showSnackBar(
-////            Constants.DEFAULT_INT, titleNotificationSchedule + SimpleDateFormat(
-////            patternNotificationSchedule, Locale.getDefault()
-////        ).format(notificationTime).toString())
-//    }
-//
-//    private fun scheduleErrorSnackbar() {
-//        vmSettings.showSnackbar(resources.getString(R.string.notification_schedule_error))
-////        showSnackBar(R.string.notification_schedule_error, "")
-//    }
 
     private fun showSnackBar(resId: Int, text: String) {
         val snackBar = Snackbar.make(binding.root, "", Snackbar.LENGTH_SHORT)
@@ -184,12 +149,10 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
     }
 
     private fun checkSwitch(type: SettingsSwitchType, isChecked: Boolean) {
-//        Log.d(TAG_SETTINGS, "checkSwitch: ${type.name}, $isChecked")
         vmSettings.checkSwitch(type, isChecked)
     }
 
     private fun onTimePickerClick() {
-//        Log.d(TAG_SETTINGS, "openTimePicker: CALLED")
         vmSettings.openTimePicker()
     }
 
