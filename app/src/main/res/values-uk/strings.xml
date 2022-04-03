@@ -53,8 +53,4 @@
     <string name="russian">Російська</string>
     <string name="ukrainian">Українська</string>
     <string name="follow_system_locale">Використати локалізацію телефону</string>
-
-    <string name="native_language_ru">Родной язык</string>
-    <string name="native_language_ua">Рiдна мова</string>
-    <string name="native_language_id">native_language</string>
 </resources>

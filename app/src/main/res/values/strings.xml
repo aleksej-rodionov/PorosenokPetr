@@ -53,8 +53,4 @@
     <string name="ukrainian">Украинский</string>
     <string name="follow_system_locale">Использовать локализацию устройства</string>
 
-    <string name="native_language_ru">Родной язык</string>
-    <string name="native_language_ua">Рiдна мова</string>
-    <string name="native_language_id">native_language</string>
-
 </resources>

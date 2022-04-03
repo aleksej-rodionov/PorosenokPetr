@@ -16,9 +16,6 @@ import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_DARK
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_LIGHT
 import space.rodionov.porosenokpetr.databinding.ActivityMainBinding
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_RU
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_UA
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_NATIVE_LANG
 import java.util.*
 
 @AndroidEntryPoint
@@ -57,12 +54,6 @@ class MainActivity : AppCompatActivity() {
                 if (it) vmMain.updateMode(getSystemTheme())
             }
         }
-
-        this.lifecycleScope.launchWhenStarted {
-            vmMain.nativeLanguage.collectLatest {
-                updateLocale(if (it == 1) "uk" else "ru")
-            }
-        }
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
@@ -70,21 +61,6 @@ class MainActivity : AppCompatActivity() {
         if (vmMain.followSystemMode.value) {
             vmMain.updateMode(getSystemTheme())
         }
-
-        if (newConfig.locale != null) {
-            if (resources?.configuration?.locale != newConfig.locale) {
-                updateLocale(if (vmMain.nativeLanguage.value == 1) "uk" else "ru") // works
-            }
-        }
-
-    }
-
-    private fun updateLocale(locale: String) {
-        val config = resources.configuration
-        val newLocale = Locale(locale)
-        Locale.setDefault(newLocale)
-        config.locale = newLocale
-        resources.updateConfiguration(config, resources.displayMetrics)
     }
 
     //=================NIGHT MODE=====================

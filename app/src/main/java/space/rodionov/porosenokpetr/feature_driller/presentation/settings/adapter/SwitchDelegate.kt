@@ -1,17 +1,23 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation.settings.adapter
 
+import android.content.Context
 import android.content.res.ColorStateList
+import android.content.res.Configuration
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SwitchCompat
 import space.rodionov.porosenokpetr.R
-import space.rodionov.porosenokpetr.core.setTextByArg
+import space.rodionov.porosenokpetr.core.getLocaleStringResource
 import space.rodionov.porosenokpetr.databinding.ItemSettingsSwitchBinding
 import space.rodionov.porosenokpetr.feature_driller.domain.models.BaseModel
 import space.rodionov.porosenokpetr.feature_driller.domain.models.MenuSwitch
 import space.rodionov.porosenokpetr.feature_driller.presentation.base.AdapterDelegate
 import space.rodionov.porosenokpetr.feature_driller.presentation.base.BaseViewHolder
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_UA
 import space.rodionov.porosenokpetr.feature_driller.utils.SettingsSwitchType
+import java.util.*
 
 
 class SwitchViewHolder(
@@ -68,8 +74,16 @@ class SwitchViewHolder(
             }
             SettingsSwitchType.NATIVE_LANG -> {
                 switch.isChecked = model.switchState
-                switch.text = "huy"
-                switch.setTextByArg(model.tag, nativeLangBVH, res)
+                val resId = if (model.switchState) R.string.ukrainian else R.string.russian
+                val requestedLang = if (nativeLangBVH == 1) "uk" else "ru"
+                switch.text = getLocaleStringResource(
+                    Locale(requestedLang),
+                    resId,
+                    itemView.context
+                )
+                switch.setTextColor(colors[3])//todo костыль (почемуто иногда блокируется этот switch, хотя isBlocked приходит false ВСЕГДА)
+                switch.thumbTintList = ColorStateList.valueOf(res.getColor(R.color.white))//todo костыль (и только костыль пока-что помог)
+                switch.isEnabled = true //todo костыль
             }
         }
     }

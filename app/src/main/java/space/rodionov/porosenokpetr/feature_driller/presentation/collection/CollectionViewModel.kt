@@ -9,6 +9,7 @@ import kotlinx.coroutines.launch
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_LIGHT
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Category
 import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.*
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 import javax.inject.Inject
 
 @HiltViewModel
@@ -16,6 +17,7 @@ class CollectionViewModel @Inject constructor(
 //    private val observeAllCategories: ObserveAllCategoriesUseCase,
     private val observeAllCatsWithWordsUseCase: ObserveAllCatsWithWordsUseCase,
     private val makeCategoryActiveUseCase: MakeCategoryActiveUseCase,
+    private val observeNativeLangUseCase: ObserveNativeLangUseCase,
     private val observeAllActiveCatsNamesUseCase: ObserveAllActiveCatsNamesUseCase,
     private val observeMode: ObserveModeUseCase,
     private val state: SavedStateHandle
@@ -38,6 +40,10 @@ class CollectionViewModel @Inject constructor(
     private val _eventFlow = MutableSharedFlow<CollectionEvent>()
     val eventFlow = _eventFlow.asSharedFlow()
 
+    private val _nativeLanguage = observeNativeLangUseCase.invoke()
+    val nativeLanguage = _nativeLanguage.stateIn(viewModelScope, SharingStarted.Lazily,
+        Constants.NATIVE_LANGUAGE_RU
+    )
     sealed class CollectionEvent {
         data class NavigateToWordlistScreen(val cat: Category?) : CollectionEvent()
         data class RefreshCatSwitch(val cat: Category) : CollectionEvent()

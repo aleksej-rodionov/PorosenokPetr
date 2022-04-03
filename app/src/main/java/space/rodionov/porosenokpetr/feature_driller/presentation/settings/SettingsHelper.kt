@@ -18,7 +18,7 @@ object SettingsHelper {
         add(Header(null, R.string.translation_direction))
         add(MenuSwitch(
 //            R.string.translation_direction,
-            TRANSLATION_DIRECTION,
+//            TRANSLATION_DIRECTION,
             null,
             SettingsSwitchType.TRANSLATION_DIRECTION,
             R.string.from_en_to_ru,
@@ -27,7 +27,7 @@ object SettingsHelper {
         add(Header(null, R.string.appearance))
         add(MenuSwitch(
 //            R.string.dark_mode,
-            DARK_MODE,
+//            DARK_MODE,
             null,
             SettingsSwitchType.NIGHT_MODE,
             R.string.dark_mode,
@@ -35,7 +35,7 @@ object SettingsHelper {
         ))
         add(MenuSwitch(
 //            R.string.follow_system_mode,
-            FOLLOW_SYSTEM_MODE,
+//            FOLLOW_SYSTEM_MODE,
             null,
             SettingsSwitchType.SYSTEM_MODE,
             R.string.follow_system_mode,
@@ -44,18 +44,18 @@ object SettingsHelper {
         add(Header(null, R.string.reminder))
         add(MenuSwitchWithTimePicker(
 //            R.string.reminder,
-            REMINDER,
+//            REMINDER,
             null,
             SettingsSwitchType.REMINDER,
-//            R.string.remind,
-            REMIND,
+            R.string.remind,
+//            REMIND,
             false,
             Constants.MILLIS_IN_NINE_HOURS
         ))
         add(Header(null, R.string.native_language))
         add(MenuSwitch(
 //            R.string.native_language,
-            NATIVE_LANGUAGE,
+//            NATIVE_LANGUAGE,
             null,
             SettingsSwitchType.NATIVE_LANG,
             R.string.russian,

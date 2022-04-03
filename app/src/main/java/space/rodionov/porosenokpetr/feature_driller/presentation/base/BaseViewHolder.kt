@@ -12,6 +12,7 @@ import space.rodionov.porosenokpetr.feature_driller.domain.models.BaseModel
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_LIGHT
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_RU
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_NATIVE_LANG
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_SETTINGS
 
 abstract class BaseViewHolder: RecyclerView.ViewHolder {
@@ -50,5 +51,6 @@ abstract class BaseViewHolder: RecyclerView.ViewHolder {
 
     fun setNativeLang(lang: Int) {
         nativeLangBVH = lang
+//        Log.d(TAG_NATIVE_LANG, "setNativeLang in BVH: $lang")
     }
 }
