@@ -14,7 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.MainActivity
 import space.rodionov.porosenokpetr.R
-import space.rodionov.porosenokpetr.core.getLocaleStringResource
+import space.rodionov.porosenokpetr.core.getLocalizedString
 import space.rodionov.porosenokpetr.core.redrawViewGroup
 import space.rodionov.porosenokpetr.databinding.FragmentCollectionBinding
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Category
@@ -87,7 +87,7 @@ class   CollectionFragment : Fragment(
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             vmCollection.nativeLanguage.collectLatest {
                 val locale = Locale(if (it == 1) "uk" else "ru")
-                binding?.tvTitle?.text = getLocaleStringResource(locale, R.string.collection, requireContext())
+                binding?.tvTitle?.text = getLocalizedString(locale, R.string.collection, requireContext())
             }
         }
 
