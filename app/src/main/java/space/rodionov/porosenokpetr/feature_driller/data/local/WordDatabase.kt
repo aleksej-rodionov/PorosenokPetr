@@ -7,10 +7,12 @@ import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import space.rodionov.porosenokpetr.BuildConfig
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.feature_driller.data.local.entity.CategoryEntity
 import space.rodionov.porosenokpetr.feature_driller.data.local.entity.WordEntity
 import space.rodionov.porosenokpetr.feature_driller.di.ApplicationScope
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_NATIVE_LANG
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
 import javax.inject.Inject
 import javax.inject.Provider
@@ -31,8 +33,15 @@ abstract class WordDatabase : RoomDatabase() {
 
             val dao = database.get().dao
 
+            if (BuildConfig.FLAVOR == "englishdriller") {
+                Log.d(TAG_NATIVE_LANG, "onCreate: flavor = englishdriller")
+            }
+            if (BuildConfig.FLAVOR == "swedishdriller") {
+                Log.d(TAG_NATIVE_LANG, "onCreate: flavor = swedishdriller")
+            }
+
             appScope.launch {
-                val categories = app.resources.getStringArray(R.array.categories_ru).toList()
+                val categories = app.resources.getStringArray(R.array.categories).toList()
                 categories.forEach {
                     dao.insertCategory(CategoryEntity(it))
                 }
