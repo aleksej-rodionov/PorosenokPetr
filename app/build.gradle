@@ -53,11 +53,19 @@ android {
     productFlavors {
         englishdriller {
             applicationIdSuffix ".englishdriller"
-            manifestPlaceholders variant: 'English Driller'
+            manifestPlaceholders = [
+                    variant: 'English Driller',
+                    appIcon: "@mipmap/ic_launcher",
+                    appIconRound: "@mipmap/ic_launcher_round"
+            ]
         }
         swedishdriller {
             applicationIdSuffix ".swedishdriller"
-            manifestPlaceholders variant: 'Swedish Driller'
+            manifestPlaceholders = [
+                    variant: 'Swedish Driller',
+                    appIcon: "@mipmap/ic_launcher_swedish_driller",
+                    appIconRound: "@mipmap/ic_launcher_swedish_driller_round"
+            ]
         }
     }
 }

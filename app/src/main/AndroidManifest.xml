@@ -11,9 +11,9 @@
     <application
         android:name=".PorosenokPetrApp"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="${appIcon}"
         android:label="${variant}"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="${appIconRound}"
         android:supportsRtl="true"
         android:theme="@style/Theme.PorosenokPetr">
         <activity
