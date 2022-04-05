@@ -1,0 +1,2568 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+
+    <string-array name="ukr1">	<item>поріг</item>
+        <item>ванна кімната</item>
+        <item>ліжка</item>
+        <item>спальня</item>
+        <item>кафедра</item>
+        <item>їдальня</item>
+        <item>двері</item>
+        <item>хата</item>
+        <item>кухня</item>
+        <item>сад</item>
+        <item>сусід</item>
+        <item>офіс</item>
+        <item>духовка</item>
+        <item>холодильник</item>
+        <item>таблиця</item>
+        <item>відро для сміття</item>
+        <item>дошка для нарізання</item>
+        <item>Пательня</item>
+        <item>гриль</item>
+        <item>горщик</item>
+        <item>чайник</item>
+        <item>кришка</item>
+        <item>Очищення для картоплі</item>
+        <item>тарілка</item>
+        <item>горщик</item>
+        <item>жерстяна банка</item>
+        <item>раковина</item>
+        <item>тарілка</item>
+        <item>плоский</item>
+        <item>котедж</item>
+        <item>сарай</item>
+        <item>фортеця</item>
+        <item>будинок</item>
+        <item>хата</item>
+        <item>Маяк</item>
+        <item>Дерев'яний будинок</item>
+        <item>Особняк</item>
+        <item>Замку</item>
+        <item>намет</item>
+        <item>будинок на колесах</item>
+        <item>журнал</item>
+        <item>вілла</item>
+        <item>вітряк</item>
+        <item>рюкзак</item>
+        <item>діжка</item>
+        <item>коробка</item>
+        <item>портфель</item>
+        <item>відро</item>
+        <item>комод</item>
+        <item>пляшка</item>
+        <item>папка</item>
+        <item>мішок</item>
+        <item>поліетиленовий пакет</item>
+        <item>валіза</item>
+        <item>ваза</item>
+        <item>поясна сумка</item>
+        <item>крісло</item>
+        <item>книжкова полиця</item>
+        <item>килимок</item>
+        <item>посудомийна машина</item>
+        <item>дверна ручка</item>
+        <item>Замку</item>
+        <item>перемикач</item>
+        <item>люстерко</item>
+        <item>офісний стілець</item>
+        <item>подушка</item>
+        <item>батарея опалення</item>
+        <item>диван</item>
+        <item>стіна</item>
+        <item>гардероб</item>
+        <item>пральна машина</item>
+        <item>банний халат</item>
+        <item>вікно</item>
+        <item>кухонний комбайн</item>
+        <item>Фен</item>
+        <item>Підводний блендер</item>
+        <item>залізо</item>
+        <item>прасувальна дошка</item>
+        <item>косарка</item>
+        <item>лампа</item>
+        <item>мікрохвильова піч</item>
+        <item>Капот</item>
+        <item>голка</item>
+        <item>швейна машина</item>
+        <item>дріт</item>
+        <item>порохотяг</item>
+        <item>сигналізація</item>
+        <item>рушник</item>
+        <item>книга</item>
+        <item>клітина</item>
+        <item>куля</item>
+        <item>лампа</item>
+        <item>плюшевий ведмедик</item>
+        <item>ключ</item>
+        <item>Ручка / олівець</item>
+        <item>ложка</item>
+        <item>живопис</item>
+        <item>склянка</item>
+        <item>читання</item>
+        <item>легкий</item>
+        <item>візерунок</item>
+        <item>Гардероб / Чулад</item>
+        <item>дах</item>
+        <item>Настінний полк</item>
+        <item>карниз для штор</item>
+        <item>антер</item>
+        <item>кухонні рушники</item>
+        <item>Сальйон</item>
+        <item>корзина для білизни</item>
+        <item>миючий засіб</item>
+        <item>совок для сміття</item>
+        <item>підсвічування</item>
+        <item>дверний дзвінок</item>
+        <item>склоочисник</item>
+        <item>відро для сміття</item>
+        <item>гумові рукавички</item>
+        <item>ганчірка</item>
+        <item>Кран / змішувач</item>
+        <item>кулінарна книга</item>
+        <item>штопор</item>
+        <item>тертя</item>
+        <item>соковижималка</item>
+        <item>Приготування</item>
+        <item>Електричний змішувач / кнут</item>
+        <item>Чаша</item>
+        <item>ходьба</item>
+        <item>Млинок для перцю</item>
+        <item>губка</item>
+        <item>сито</item>
+        <item>термометр</item>
+        <item>таймер</item>
+        <item>тостер</item>
+        <item>Кріплення</item>
+        <item>манія</item>
+        <item>дриль</item>
+        <item>клей</item>
+        <item>молоток</item>
+        <item>сходи</item>
+        <item>цвях</item>
+        <item>гвинт</item>
+        <item>плоскогубці</item>
+        <item>граблі</item>
+        <item>бачив</item>
+        <item>гвинт</item>
+        <item>викрутка</item>
+        <item>лопати</item>
+        <item>стрічка</item>
+        <item>ящик для інструментів</item>
+        <item>Помірно, \ 'лагоном \'</item>
+        <item>окрема, самотність (норми)</item>
+        <item>Згода (з іншими)</item>
+        <item>затишний</item>
+        <item>інструмент</item>
+        <item>перемикач</item>
+        <item>макіяж</item>
+        <item>туалет</item>
+        <item>Зубна щітка</item>
+        <item>Зубна паста</item>
+        <item>мило</item>
+        <item>гребінь</item>
+        <item>затримка</item>	</string-array>
+    <string-array name="ukr2">	<item>слива</item>
+        <item>ківі</item>
+        <item>чорниця</item>
+        <item>диня</item>
+        <item>персик</item>
+        <item>Вишневий</item>
+        <item>чорниця</item>
+        <item>яблуко</item>
+        <item>маслини</item>
+        <item>ананас</item>
+        <item>Полуниця</item>
+        <item>малина</item>
+        <item>виноград</item>
+        <item>кавун</item>
+        <item>груша</item>
+        <item>банан</item>
+        <item>авокадо</item>
+        <item>бобовий</item>
+        <item>брокколі</item>
+        <item>капуста</item>
+        <item>Морква</item>
+        <item>кольорова капуста</item>
+        <item>кукурудзяний</item>
+        <item>огірок</item>
+        <item>часник</item>
+        <item>салат</item>
+        <item>цибуля</item>
+        <item>петрушка</item>
+        <item>солоний</item>
+        <item>картопля</item>
+        <item>гарбуз</item>
+        <item>редька</item>
+        <item>Рис</item>
+        <item>помідор</item>
+        <item>кава</item>
+        <item>Кола</item>
+        <item>гарячий шоколад</item>
+        <item>пити</item>
+        <item>молочний</item>
+        <item>мінеральна вода</item>
+        <item>апельсиновий сік</item>
+        <item>Вишуканий</item>
+        <item>чай</item>
+        <item>вода</item>
+        <item>хліб</item>
+        <item>сніданок</item>
+        <item>фрукти</item>
+        <item>сир</item>
+        <item>яйце</item>
+        <item>риб</item>
+        <item>виделка</item>
+        <item>суп</item>
+        <item>гриб</item>
+        <item>нож</item>
+        <item>лимон</item>
+        <item>м'ясо</item>
+        <item>цукор</item>
+        <item>морозиво</item>
+        <item>Печиво, кекс</item>
+        <item>кислий</item>
+        <item>солодкий</item>	</string-array>
+    <string-array name="ukr3">	<item>ремінь</item>
+        <item>чоботи</item>
+        <item>бюстгальтер</item>
+        <item>Пальто</item>
+        <item>Сукня</item>
+        <item>окуляри</item>
+        <item>рукавички</item>
+        <item>шкарпетки</item>
+        <item>Спідня білизна</item>
+        <item>шорти</item>
+        <item>шарф</item>
+        <item>Сорочка</item>
+        <item>взуття</item>
+        <item>Футболка</item>
+        <item>штани</item>
+        <item>сережки</item>
+        <item>капелюх</item>
+        <item>намисто</item>
+        <item>труси</item>
+        <item>кишеньковий</item>
+        <item>гудзик</item>
+        <item>спідниця</item>
+        <item>домашні капці</item>
+        <item>панчохи</item>
+        <item>костюм</item>
+        <item>темні окуляри</item>
+        <item>краватка</item>
+        <item>годинник</item>
+        <item>краватка метелик</item>
+        <item>вішалка</item>
+        <item>комір</item>
+        <item>туалетний столик</item>
+        <item>бритва</item>
+        <item>брова</item>
+        <item>жир</item>
+        <item>туфлі на високих підборах</item>
+        <item>джинси</item>
+        <item>пластична хірургія</item>
+        <item>лезо бритви</item>
+        <item>крем для гоління</item>
+        <item>тонкий</item>
+        <item>Кросівки</item>
+        <item>жилет</item>
+        <item>плащ</item>
+        <item>халат</item>
+        <item>Боксер</item>
+        <item>труси</item>
+        <item>піжами</item>
+        <item>спецодяг</item>
+        <item>домашній одяг</item>
+        <item>куртка</item>
+        <item>пончо</item>
+        <item>пуловер</item>
+        <item>кардиган</item>
+        <item>рукав</item>
+        <item>одяг</item>
+        <item>парасолька</item>
+        <item>чорний</item>
+        <item>синій</item>
+        <item>Коричневий</item>
+        <item>Золотий (колір)</item>
+        <item>зелений</item>
+        <item>Сірий</item>
+        <item>Помаранчевий</item>
+        <item>рожевий</item>
+        <item>бузковий</item>
+        <item>Носити (зношені)</item>
+        <item>червоний</item>
+        <item>Срібло (колір)</item>
+        <item>Білий</item>
+        <item>жовтий</item>	</string-array>
+    <string-array name="ukr4">	<item>готель</item>
+        <item>прибирання жінки</item>
+        <item>Проживання, розміщення</item>
+        <item>Проживання, розміщення</item>
+        <item>Ключова карта.</item>
+        <item>обслуга номерів</item>
+        <item>сейф</item>
+        <item>душ</item>
+        <item>кімната</item>
+        <item>кондиціонер</item>
+        <item>гостьовий</item>
+        <item>ключ</item>
+        <item>ліфт</item>
+        <item>Прийом</item>
+        <item>Ресепшн</item>
+        <item>Тролейбус</item>
+        <item>вантажна машина</item>
+        <item>ван</item>
+        <item>трамвай</item>
+        <item>підземний</item>
+        <item>мопед</item>
+        <item>судно</item>
+        <item>мотоцикл</item>
+        <item>гвинтокрил</item>
+        <item>автобус</item>
+        <item>авто</item>
+        <item>велосипед</item>
+        <item>Човен</item>
+        <item>Пробка</item>
+        <item>Банкомат</item>
+        <item>грошова купюра</item>
+        <item>монета</item>
+        <item>купон</item>
+        <item>кредитна карта</item>
+        <item>валюта</item>
+        <item>клієнт</item>
+        <item>Торговий візок / кошик</item>
+        <item>касир</item>
+        <item>гаманець</item>
+        <item>долар</item>
+        <item>Євро</item>
+        <item>Бутік-клерк</item>
+        <item>бізнес</item>
+        <item>банк</item>
+        <item>бар</item>
+        <item>міст</item>
+        <item>автобусна зупинка</item>
+        <item>Замку</item>
+        <item>цвинтар</item>
+        <item>Перехрестя</item>
+        <item>пральня</item>
+        <item>парк</item>
+        <item>світлофор</item>
+        <item>залізнична станція</item>
+        <item>фонтан</item>
+        <item>Заповнення</item>
+        <item>бібліотека</item>
+        <item>завод</item>
+        <item>Музей</item>
+        <item>хмарочос</item>
+        <item>театр</item>
+        <item>кафе</item>
+        <item>пошта</item>
+        <item>лікарня</item>
+        <item>аптека</item>
+        <item>поліцейський відділок</item>
+        <item>парк розваг</item>
+        <item>школу</item>
+        <item>м'ясна лавка</item>
+        <item>турнікет</item>
+        <item>площа</item>
+        <item>Місто</item>
+        <item>Замку</item>
+        <item>дитяча коляска</item>
+        <item>пором</item>
+        <item>фунікулер</item>
+        <item>гараж</item>
+        <item>ескалатор</item>
+        <item>стоянка для машин</item>
+        <item>Пасажирське сидіння</item>
+        <item>Залізна дорога</item>
+        <item>Штрафний скутер</item>
+        <item>Ремінь боротьби</item>
+        <item>Таксі</item>
+        <item>проїзний квиток</item>
+        <item>дорожній знак</item>
+        <item>стовбур</item>
+        <item>колесо</item>
+        <item>інвалідна коляска</item>
+        <item>ін'єкція</item>
+        <item>напрям</item>
+        <item>відстань</item>
+        <item>зовні</item>
+        <item>авіаквиток</item>
+        <item>швидкість</item>
+        <item>прогулянка</item>
+        <item>ресторан</item>
+        <item>Бігун Чувак</item>
+        <item>станція</item>
+        <item>дорога</item>
+        <item>буква</item>
+        <item>Марка.</item>
+        <item>поїзд</item>
+        <item>башта</item>
+        <item>вага</item>
+        <item>пішохідний перехід</item>
+        <item>Знак зупинки</item>
+        <item>не входити</item>
+        <item>біологічна небезпека</item>
+        <item>заборонена зона</item>
+        <item>слизька підлога</item>
+        <item>дорожні роботи</item>
+        <item>Крутий схил</item>
+        <item>Тварини на дорозі</item>
+        <item>Падаючі камені</item>
+        <item>Діти на дорозі</item>
+        <item>небезпека</item>
+        <item>громадянин</item>
+        <item>Небезпечні речовини</item>
+        <item>висока напруга</item>
+        <item>Моніторинг</item>	</string-array>
+    <string-array name="ukr5">	<item>шеф повар</item>
+        <item>журналіст</item>
+        <item>адвокат</item>
+        <item>доктор</item>
+        <item>механічний</item>
+        <item>Священик</item>
+        <item>дослідник</item>
+        <item>Секретар</item>
+        <item>викладач</item>
+        <item>офісний працівник</item>
+        <item>музикант</item>
+        <item>програміст</item>
+        <item>студент</item>
+        <item>Офіціант</item>
+        <item>аудитор</item>
+        <item>архітектор</item>
+        <item>коваля</item>
+        <item>механічний</item>
+        <item>Столовий</item>
+        <item>хімік</item>
+        <item>П'ятниця</item>
+        <item>Субота</item>
+        <item>Середа</item>
+        <item>Четвер</item>
+        <item>Понеділок</item>
+        <item>Кукурудзяний</item>
+        <item>пожежник</item>
+        <item>рибалка</item>
+        <item>садівник</item>
+        <item>медсестра</item>
+        <item>живопис</item>
+        <item>сантехніка</item>
+        <item>офіцер поліції</item>
+        <item>психолог</item>
+        <item>таксист</item>
+        <item>ветеринар</item>
+        <item>Письменник</item>
+        <item>космонавт</item>
+        <item>капітан</item>
+        <item>тренер</item>
+        <item>командувач</item>
+        <item>виробник</item>
+        <item>Короля</item>
+        <item>Лицарський</item>
+        <item>Орендодавець</item>
+        <item>політик</item>
+        <item>Папа Римський</item>
+        <item>Президент</item>
+        <item>князь</item>
+        <item>принцеса</item>
+        <item>Королева</item>
+        <item>Повстанець</item>
+        <item>шериф</item>
+        <item>Підтримка клієнтів</item>
+        <item>співробітник</item>
+        <item>підприємець</item>
+        <item>факс</item>
+        <item>керівник</item>
+        <item>зустріч</item>
+        <item>Неділя</item>
+        <item>організація</item>
+        <item>презентація</item>
+        <item>прибуток</item>
+        <item>підвищення</item>
+        <item>підвищення зарплати</item>
+        <item>зарплата</item>
+        <item>степлер</item>
+        <item>канцелярські товари</item>
+        <item>Дозатор клейкої стрічки</item>
+        <item>робочий час</item>
+        <item>Галузь / філія</item>
+        <item>письмовий стіл</item>
+        <item>Кабінет для документів</item>
+        <item>копіювальник</item>
+        <item>конференція</item>
+        <item>кулер</item>
+        <item>Антистороння</item>
+        <item>Кабінк.</item>
+        <item>текстовий редактор</item>
+        <item>хмара зберігання</item>
+        <item>нічна зміна</item>
+        <item>співробітники</item>
+        <item>Робота</item>
+        <item>Робота</item>
+        <item>офіс</item>
+        <item>професія</item>
+        <item>Він проводить інтелект</item>
+        <item>охоронець</item>
+        <item>робоче місце</item>
+        <item>Пілот цивільної авіації</item>
+        <item>Зручним</item>
+        <item>Орієнтований</item>
+        <item>завдань</item>
+        <item>ясність</item>
+        <item>у робочий час</item>	</string-array>
+    <string-array name="ukr6">	<item>батарея</item>
+        <item>стільниковий телефон</item>
+        <item>комп'ютер</item>
+        <item>управляти</item>
+        <item>навушники</item>
+        <item>клавіатура</item>
+        <item>миша</item>
+        <item>мережа</item>
+        <item>пароль</item>
+        <item>контакт</item>
+        <item>принтер</item>
+        <item>екран</item>
+        <item>вкладення</item>
+        <item>шнурок</item>
+        <item>зарядний пристрій</item>
+        <item>навушник</item>
+        <item>Електронна пошта</item>
+        <item>навушники з мікрофоном)</item>
+        <item>гравець</item>
+        <item>смартфон</item>
+        <item>Розетка</item>
+        <item>таблетка</item>
+        <item>Завантажити, завантаження (у хмарі)</item>
+        <item>інтернет сайт</item>
+        <item>книга</item>
+        <item>калькулятор</item>
+        <item>класна кімната</item>
+        <item>диплом</item>
+        <item>гумка</item>
+        <item>Завершення UNI (випускник)</item>
+        <item>чорнила</item>
+        <item>лекція</item>
+        <item>ноутбук</item>
+        <item>кліп</item>
+        <item>ручка</item>
+        <item>олівець</item>
+        <item>лінійка</item>
+        <item>студентський квиток</item>
+        <item>дошка</item>
+        <item>дужка</item>
+        <item>коло</item>
+        <item>конус</item>
+        <item>кубічний</item>
+        <item>циліндр</item>
+        <item>восьмикутник</item>
+        <item>овальний</item>
+        <item>п'ятикутник</item>
+        <item>піраміда</item>
+        <item>прямокутник</item>
+        <item>шестикутник</item>
+        <item>кільце</item>
+        <item>М'яч, глобус</item>
+        <item>Майдан</item>
+        <item>трикутник</item>
+        <item>клин</item>
+        <item>атом</item>
+        <item>бактерія</item>
+        <item>клітина</item>
+        <item>хімія</item>
+        <item>травна система</item>
+        <item>піпетка</item>
+        <item>еволюція</item>
+        <item>експеримент</item>
+        <item>мікроскоп</item>
+        <item>молекула</item>
+        <item>додавання</item>
+        <item>ін'єкція</item>
+        <item>підрозділ</item>
+        <item>дорівнювати</item>
+        <item>Рівняння</item>
+        <item>функція</item>
+        <item>нескінченний</item>
+        <item>множення</item>
+        <item>круглі дужки</item>
+        <item>відсоток</item>
+        <item>корінь</item>
+        <item>3 до ступеня 2</item>
+        <item>віднімання</item>
+        <item>Кнопка увімкнення</item>
+        <item>Читач карт пам'яті</item>
+        <item>кабель живлення</item>
+        <item>таблиця</item>
+        <item>адаптер</item>
+        <item>USB-кабель</item>
+        <item>зовнішній жорсткий диск</item>
+        <item>Сенсорна панель</item>
+        <item>Колонка, гучномовець</item>
+        <item>зовнішній акумулятор</item>
+        <item>Комфортно і приємно використовувати, зручним для користувачів</item>
+        <item>чохол для ноутбука</item>
+        <item>Захисний фільм</item>
+        <item>Відеоконференція</item>
+        <item>викладач</item>
+        <item>вправи</item>
+        <item>Читання чувацька</item>
+        <item>завдання</item>
+        <item>лекція</item>
+        <item>можливість</item>
+        <item>школу</item>
+        <item>писати чувак</item>
+        <item>метр</item>
+        <item>Процес обробки</item>
+        <item>мова</item>
+        <item>причина</item>
+        <item>підмет і присудок</item>
+        <item>квартал</item>
+        <item>швидкість</item>
+        <item>швидкий</item>
+        <item>помилка</item>
+        <item>Дослідницька лабораторія</item>
+        <item>Фармацевтична компанія</item>
+        <item>частина</item>
+        <item>подуманий</item>
+        <item>швидше</item>
+        <item>швидше</item>
+        <item>Віддалений (далекий)</item>
+        <item>на колесах</item>
+        <item>Маленька / багато (ОСЧ, наприклад, сигарети)</item>
+        <item>Мало / багато (Неш., Наприклад, пиво)</item>	</string-array>
+    <string-array name="ukr7">	<item>жіночий</item>
+        <item>хлопчик</item>
+        <item>батьки</item>
+        <item>сім'я</item>
+        <item>батько</item>
+        <item>Подруга</item>
+        <item>драндад</item>
+        <item>бабуся</item>
+        <item>мати</item>
+        <item>хлопчик</item>
+        <item>Канадський</item>
+        <item>Китайський</item>
+        <item>Фінляндія</item>
+        <item>Франція</item>
+        <item>Німеччина</item>
+        <item>Великобританія</item>
+        <item>Італія</item>
+        <item>Японія</item>
+        <item>Мексика</item>
+        <item>Норвегія</item>
+        <item>Росія</item>
+        <item>Швеція</item>
+        <item>Нідерланди</item>
+        <item>Американський</item>
+        <item>Австралійський</item>
+        <item>Британець</item>
+        <item>Канадський</item>
+        <item>Китайський</item>
+        <item>Голландський</item>
+        <item>Фін</item>
+        <item>Француз</item>
+        <item>Німецький</item>
+        <item>Італійський</item>
+        <item>Японський</item>
+        <item>Норвезький</item>
+        <item>російський</item>
+        <item>Швед</item>
+        <item>день народження</item>
+        <item>Різдвяний</item>
+        <item>Різдвяна ялинка</item>
+        <item>похорон</item>
+        <item>дар</item>
+        <item>шлюб</item>
+        <item>день матері</item>
+        <item>Новорічна ніч</item>
+        <item>Дід Мороз</item>
+        <item>сніговик</item>
+        <item>День Святого Валентина</item>
+        <item>весілля</item>
+        <item>вогню</item>
+        <item>Крадіжка велосипедів</item>
+        <item>хабар</item>
+        <item>Камера спостереження</item>
+        <item>шахрайство з кредитною карткою</item>
+        <item>місце злочину</item>
+        <item>детектив</item>
+        <item>хакер</item>
+        <item>розслідування</item>
+        <item>вбивство</item>
+        <item>Перцевий балончик</item>
+        <item>розбійник</item>
+        <item>сирена</item>
+        <item>крадіжка</item>
+        <item>злодій</item>
+        <item>букет</item>
+        <item>наречена</item>
+        <item>розірвання шлюбу</item>
+        <item>наречений</item>
+        <item>Медовий місяць</item>
+        <item>закор</item>
+        <item>Не одружений / не одружений</item>
+        <item>весільний торт</item>
+        <item>шлюбний контракт</item>
+        <item>річниця весілля</item>
+        <item>Весільна сукня</item>
+        <item>запрошення на весілля</item>
+        <item>обручку</item>
+        <item>виборчий бюлетень</item>
+        <item>барикада</item>
+        <item>корупція</item>
+        <item>Розворот</item>
+        <item>дебати</item>
+        <item>демонстрація</item>
+        <item>Посольство</item>
+        <item>Релігійний жах</item>
+        <item>рідко</item>
+        <item>Орієнтований</item>
+        <item>Відсутність совісті та співчуття до інших</item>
+        <item>Здоров'я</item>
+        <item>ясність</item>
+        <item>м'який</item>
+        <item>неймовірний</item>
+        <item>Гадел</item>
+        <item>уряд</item>
+        <item>парламент</item>
+        <item>петиція</item>
+        <item>заколот</item>
+        <item>Поліцейський лічильник бунт</item>
+        <item>оподаткування</item>
+        <item>янгол</item>
+        <item>Буддизм</item>
+        <item>Християнство</item>
+        <item>Диявол</item>
+        <item>Бог</item>
+        <item>небеса</item>
+        <item>Іслам</item>
+        <item>Іудаїзм</item>
+        <item>монах</item>
+        <item>мечеть</item>
+        <item>чернець</item>
+        <item>пророка</item>
+        <item>Святий</item>
+        <item>любов</item>
+        <item>презерватив</item>
+        <item>Павло (м / г)</item>
+        <item>Я був заарештований</item>
+        <item>Дубінка</item>
+        <item>Поліція погоні</item>
+        <item>відбиток пальця</item>
+        <item>Бандити</item>
+        <item>наручники</item>
+        <item>Відмивання грошей</item>
+        <item>судити</item>
+        <item>Я повинен платити податки?</item>
+        <item>Що робити з податками?</item>
+        <item>хто завгодно</item>
+        <item>Конституційне право на ...</item>
+        <item>журі</item>
+        <item>закон</item>
+        <item>перерва в'язниці</item>
+        <item>камеру</item>
+        <item>Укійний персонал</item>
+        <item>ув'язнений</item>
+        <item>Підозрюваних</item>
+        <item>терорист</item>
+        <item>Розшукуваний</item>
+        <item>сила</item>
+        <item>Гени.</item>
+        <item>генеалогічне дерево</item>
+        <item>племінник</item>
+        <item>Шурин</item>
+        <item>мати</item>
+        <item>Ми тримаємося на руках</item>
+        <item>Тринашкі</item>
+        <item>вівтар</item>
+        <item>аргумент</item>
+        <item>хрещений батько</item>
+        <item>дядько</item>
+        <item>Розмова, розмова</item>
+        <item>рукостискання</item>
+        <item>особистий простір</item>
+        <item>поцілунок</item>
+        <item>дрес-код</item>
+        <item>Ірландський</item>
+        <item>Валлійський</item>
+        <item>Шотландія</item>
+        <item>Хорват</item>
+        <item>Швейцарський</item>
+        <item>українець</item>
+        <item>Бельгійський</item>
+        <item>Австрійський</item>
+        <item>Ірландія</item>
+        <item>Уорс</item>
+        <item>Шотландія</item>
+        <item>Португалія</item>
+        <item>Греція</item>
+        <item>Хорватія</item>
+        <item>постійно</item>
+        <item>зовнішній вигляд</item>
+        <item>Швейцарія</item>
+        <item>Україна</item>
+        <item>Південна Корея</item>
+        <item>Бельгія</item>
+        <item>Австрія</item>
+        <item>шахрайство</item>
+        <item>розчарований (c)</item>
+        <item>дівчина</item>
+        <item>Подія (подія)</item>
+        <item>труна</item>
+        <item>людина людини</item>
+        <item>сестра</item>
+        <item>досвід</item>
+        <item>дитина</item>
+        <item>Країна, земля</item>
+        <item>зустріч</item>
+        <item>терпіння</item>
+        <item>ми розійшлися</item>
+        <item>Необмежені можливості</item>
+        <item>кращий друг</item>
+        <item>увага</item>
+        <item>помилковий</item>
+        <item>справжній</item>
+        <item>вирішальний</item>
+        <item>впевнений у собі</item>
+        <item>ревнивий</item>
+        <item>огидний</item>
+        <item>дивний</item>
+        <item>в захваті</item>
+        <item>радий</item>
+        <item>закоханий</item>
+        <item>нервовий</item>
+        <item>Розслаблений</item>
+        <item>Добре відпочивали</item>
+        <item>сумний</item>
+        <item>Здивований</item>
+        <item>втомлений</item>
+        <item>Виявлений</item>
+        <item>розчарований</item>
+        <item>шліфувати</item>
+        <item>божевільний</item>
+        <item>злий</item>
+        <item>короткий</item>
+        <item>мало</item>
+        <item>Багато (обчислити.)</item>
+        <item>Багато (багато - Неш)</item>
+        <item>новий</item>
+        <item>Ну</item>
+        <item>потворний</item>
+        <item>повний / п'яний</item>
+        <item>старий</item>
+        <item>вільний</item>
+        <item>Одружений (для)</item>
+        <item>поганий</item>
+        <item>кращий</item>
+        <item>щасливий</item>
+        <item>Люди</item>
+        <item>хоробрий</item>
+        <item>Задоволені (c)</item>
+        <item>хворий</item>
+        <item>гроші</item>
+        <item>звичайний</item>
+        <item>зайнято</item>
+        <item>вільний</item>
+        <item>Демократично обраний</item>
+        <item>Спільнота (громада)</item>
+        <item>Березень на підтримку культури Clanbis</item>
+        <item>незаконний</item>
+        <item>тимчасовий</item>
+        <item>Строк</item>
+        <item>користувач</item>
+        <item>кислота</item>
+        <item>Відчутний (відчутний)</item>
+        <item>Очевидний (очевидний)</item>
+        <item>старшинство</item>
+        <item>Потужність (сила)</item>
+        <item>права людини</item>
+        <item>Бачення, вид (на ...) (Вид ...)</item>
+        <item>Тема (тема, тема)</item>
+        <item>порядок</item>
+        <item>обставини</item>
+        <item>Вибір (вибір)</item>
+        <item>поведінка</item>
+        <item>гаразд</item>
+        <item>регулярно</item>
+        <item>Рішення</item>
+        <item>жахливий</item>
+        <item>жахливий</item>
+        <item>сейф</item>
+        <item>легко</item>
+        <item>не справжні</item>
+        <item>незаконний</item>
+        <item>неприйнятний</item>
+        <item>правда</item>
+        <item>Можливість</item>
+        <item>Самодостатність</item>
+        <item>Почуття сорому</item>
+        <item>дія</item>
+        <item>самоочевидність</item>
+        <item>результат</item>
+        <item>Красивий, красивий</item>
+        <item>Обіцянка</item>
+        <item>із задоволенням</item>
+        <item>самотній</item>
+        <item>зляканий</item>
+        <item>Поведінкові моделі</item>
+        <item>чорний ринок</item>
+        <item>тяжка вага)</item>
+        <item>молодий</item>
+        <item>легко</item>
+        <item>жорсткий</item>
+        <item>незабаром</item>
+        <item>гарний</item>
+        <item>сильний</item>
+        <item>Підтримка ... (Підтримка ...)</item>
+        <item>Очевидно, очевидний</item>
+        <item>гол</item>
+        <item>виключно</item>
+        <item>Свобода самовираження</item>
+        <item>вихідні</item>
+        <item>найближчий</item>
+        <item>нещодавно</item>
+        <item>занадто мало / занадто малий</item>	</string-array>
+    <string-array name="ukr8">	<item>0.</item>
+        <item>один</item>
+        <item>2.</item>
+        <item>3.</item>
+        <item>4</item>
+        <item>п'ять</item>
+        <item>6.</item>
+        <item>7.</item>
+        <item>8</item>
+        <item>дев'ять</item>
+        <item>10</item>
+        <item>одинадцять</item>
+        <item>12</item>
+        <item>13</item>
+        <item>чотирнадцять</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17.</item>
+        <item>вісімнадцять</item>
+        <item>19</item>
+        <item>двадцять</item>
+        <item>21.</item>
+        <item>22.</item>
+        <item>25.</item>
+        <item>тридцять</item>
+        <item>40.</item>
+        <item>п'ятдесят</item>
+        <item>60.</item>
+        <item>70.</item>
+        <item>75.</item>
+        <item>80.</item>
+        <item>90.</item>
+        <item>сто</item>
+        <item>150.</item>
+        <item>200.</item>
+        <item>300.</item>
+        <item>400.</item>
+        <item>500.</item>
+        <item>1000.</item>
+        <item>2000.</item>
+        <item>3000.</item>
+        <item>4000.</item>
+        <item>5000.</item>
+        <item>10000.</item>
+        <item>50000.</item>
+        <item>100000.</item>
+        <item>1000000.</item>
+        <item>спочатку</item>
+        <item>другий</item>
+        <item>третій</item>
+        <item>четвертий</item>
+        <item>п'ятий</item>
+        <item>шостий</item>
+        <item>сьомий</item>
+        <item>восьмий</item>
+        <item>дев'ятий</item>
+        <item>десятий</item>
+        <item>одинадцятий</item>
+        <item>дванадцятий</item>
+        <item>тринадцятий</item>
+        <item>чотирнадцятий</item>
+        <item>п'ятнадцятий</item>
+        <item>шістнадцятий</item>
+        <item>сімнадцятий</item>
+        <item>вісімнадцятий</item>
+        <item>дев'ятнадцятий</item>
+        <item>двадцятий</item>
+        <item>двадцять перший</item>
+        <item>Двадцять другий</item>
+        <item>п'ятдесятий</item>
+        <item>сотий</item>
+        <item>п'ятсот</item>
+        <item>тисяча</item>
+        <item>мільйонний</item>	</string-array>
+    <string-array name="ukr9">	<item>швидка допомога</item>
+        <item>лейкопластика</item>
+        <item>запаморочення</item>
+        <item>кашель</item>
+        <item>висока температура</item>
+        <item>головний біль</item>
+        <item>ліки</item>
+        <item>зубний біль</item>
+        <item>тіло</item>
+        <item>голова</item>
+        <item>волосся</item>
+        <item>особа</item>
+        <item>вухо</item>
+        <item>око</item>
+        <item>нос</item>
+        <item>зубний</item>
+        <item>губи</item>
+        <item>ручний</item>
+        <item>Палець</item>
+        <item>підозрілий</item>
+        <item>ручний</item>
+        <item>борода</item>
+        <item>кістка</item>
+        <item>головний мозок</item>
+        <item>лікоть</item>
+        <item>каблук</item>
+        <item>коліна</item>
+        <item>нога</item>
+        <item>вуса</item>
+        <item>м'яз</item>
+        <item>скелет</item>
+        <item>шкіра</item>
+        <item>хребет</item>
+        <item>кров</item>
+        <item>милиця</item>
+        <item>Обстеження</item>
+        <item>серцебиття</item>
+        <item>Я лежу під крапель</item>
+        <item>Сервісний рахунок</item>
+        <item>Журнал</item>
+        <item>хворий</item>
+        <item>реєстрація</item>
+        <item>пульс</item>
+        <item>шприц</item>
+        <item>стетоскоп</item>
+        <item>Колесо</item>
+        <item>рентгенівський знімок</item>
+        <item>анестезія</item>
+        <item>зубний протез</item>
+        <item>ясен</item>
+        <item>підборіддя</item>
+        <item>вугри</item>
+        <item>мова</item>
+        <item>бутон</item>
+        <item>шлунок</item>
+        <item>Лишак</item>
+        <item>рідке мило</item>
+        <item>вбиральня, гардеробна</item>
+        <item>масаж</item>
+        <item>втрата ваги</item>
+        <item>століття</item>
+        <item>малі спини</item>
+        <item>талія</item>
+        <item>цвях</item>
+        <item>плече</item>
+        <item>груди</item>
+        <item>Щиколотки.</item>
+        <item>щоки</item>
+        <item>Кадик</item>
+        <item>ніг</item>
+        <item>пахнути</item>
+        <item>щелепа</item>
+        <item>пупка</item>
+        <item>вушний біль</item>
+        <item>біль в животі</item>
+        <item>біль у спині</item>
+        <item>синяк</item>
+        <item>Затуманений зір</item>
+        <item>Сухі губи</item>
+        <item>ковзани</item>
+        <item>нудота</item>
+        <item>укус комахи</item>
+        <item>біль</item>
+        <item>зламана кістка</item>
+        <item>Напруга м'язів)</item>
+        <item>спазм</item>
+        <item>Боляче</item>
+        <item>алергія</item>
+        <item>нежить</item>
+        <item>астма</item>
+        <item>Нагрітий артеріальний тиск</item>
+        <item>грип</item>
+        <item>цукровий діабет</item>
+        <item>кардіолог</item>
+        <item>педіатр</item>
+        <item>дерматолог</item>
+        <item>анастезіолог</item>
+        <item>хірург</item>
+        <item>Таблетка з горла</item>
+        <item>Басейн</item>
+        <item>Вітаміни</item>
+        <item>вакцина</item>
+        <item>біль в голові</item>
+        <item>захворювання</item>
+        <item>лікування</item>
+        <item>рот</item>
+        <item>серце</item>
+        <item>маса тіла</item>
+        <item>Стан (стан)</item>
+        <item>Як інкусування лікарських засобів зменшується</item>
+        <item>Психоделічний стан</item>
+        <item>Абстинентний синдром</item>
+        <item>тривога</item>
+        <item>тривога</item>
+        <item>у дорослих</item>
+        <item>Лікування повинно тривати кілька місяців.</item>
+        <item>10 мг один раз на день</item>
+        <item>хронічне захворювання</item>
+        <item>Когнітивна поведінкова терапія</item>
+        <item>запор</item>
+        <item>Діарея</item>
+        <item>блювота</item>
+        <item>Зменшений лібідо</item>
+        <item>Ангазмія</item>
+        <item>тривога</item>
+        <item>Підвищена вага</item>
+        <item>Під час лікування</item>
+        <item>Обсесивно-компульсивний розлад</item>
+        <item>Панічний синдром з агорафобією або без нього</item>
+        <item>Страх перед суспільством</item>
+        <item>Узагальнене тривожне розлад</item>
+        <item>дорочий</item>
+        <item>катання на лижах</item>	</string-array>
+    <string-array name="ukr10">	<item>туман</item>
+        <item>дощ</item>
+        <item>сніг</item>
+        <item>Сонце</item>
+        <item>температура</item>
+        <item>прогноз погоди</item>
+        <item>вітер</item>
+        <item>зима</item>
+        <item>літній</item>
+        <item>осінь</item>
+        <item>Весна</item>
+        <item>лід</item>
+        <item>штурм</item>
+        <item>табір</item>
+        <item>сітка від комарів</item>
+        <item>Ліхтар</item>
+        <item>консервований</item>
+        <item>компас</item>
+        <item>мотузка</item>
+        <item>спальний мішок</item>
+        <item>багаття</item>
+        <item>ножиці</item>
+        <item>Відкривач</item>
+        <item>кишеньковий ніж</item>
+        <item>матч</item>
+        <item>Колбу.</item>
+        <item>бик</item>
+        <item>кішка</item>
+        <item>курятина</item>
+        <item>корова</item>
+        <item>віслюк</item>
+        <item>качка</item>
+        <item>козячий</item>
+        <item>кінь</item>
+        <item>миша</item>
+        <item>свиня</item>
+        <item>голуб</item>
+        <item>кролик</item>
+        <item>овець</item>
+        <item>індичка</item>
+        <item>бамбук</item>
+        <item>філія</item>
+        <item>Кактус</item>
+        <item>квітка</item>
+        <item>трава</item>
+        <item>Трава</item>
+        <item>аркуш</item>
+        <item>пальма</item>
+        <item>Сосна</item>
+        <item>корінь</item>
+        <item>насіння</item>
+        <item>Палиця (паличка)</item>
+        <item>дерево</item>
+        <item>деревина</item>
+        <item>капітал</item>
+        <item>скеля</item>
+        <item>пустеля</item>
+        <item>дюн</item>
+        <item>потік</item>
+        <item>земну кулю</item>
+        <item>вершина</item>
+        <item>камінь</item>
+        <item>море</item>
+        <item>Лижний схил</item>
+        <item>торнадо</item>
+        <item>тунель</item>
+        <item>вулкан</item>
+        <item>водоспад</item>
+        <item>хвиля</item>
+        <item>летюча миша</item>
+        <item>ведмідь</item>
+        <item>бджола</item>
+        <item>метелик</item>
+        <item>верблюда</item>
+        <item>тарган</item>
+        <item>слон</item>
+        <item>жаба</item>
+        <item>мавпа</item>
+        <item>пацюк</item>
+        <item>акула</item>
+        <item>равлик</item>
+        <item>змія</item>
+        <item>Павук</item>
+        <item>Вовка</item>
+        <item>Африка</item>
+        <item>Америка</item>
+        <item>Азія</item>
+        <item>комета</item>
+        <item>Земля</item>
+        <item>Східний</item>
+        <item>Європа</item>
+        <item>галактика</item>
+        <item>північний</item>
+        <item>планета</item>
+        <item>південний</item>
+        <item>Простір, простір</item>
+        <item>зірка</item>
+        <item>телескоп</item>
+        <item>часовий пояс</item>
+        <item>західний</item>
+        <item>буйвол</item>
+        <item>хамелеон</item>
+        <item>кобра</item>
+        <item>крокодил</item>
+        <item>динозавр</item>
+        <item>жираф</item>
+        <item>горила</item>
+        <item>кенгуру</item>
+        <item>ящірка</item>
+        <item>панте</item>
+        <item>носоріг</item>
+        <item>Тигр</item>
+        <item>зебра</item>
+        <item>запліднення</item>
+        <item>Спальня</item>
+        <item>Холібр</item>
+        <item>Ворона</item>
+        <item>сокола</item>
+        <item>перо</item>
+        <item>гусак</item>
+        <item>страус</item>
+        <item>сова</item>
+        <item>папуга</item>
+        <item>пелікан</item>
+        <item>пінгвін</item>
+        <item>півень</item>
+        <item>Чайка</item>
+        <item>Фламінго.</item>
+        <item>Марлін</item>
+        <item>Лебідь</item>
+        <item>Орел</item>
+        <item>сміття</item>
+        <item>глобальне потепління</item>
+        <item>звалище</item>
+        <item>ядерна установка</item>
+        <item>нафтова платформа</item>
+        <item>розлив нафти</item>
+        <item>електростанція</item>
+        <item>Відновлювальна енергія</item>
+        <item>сонячні панелі</item>
+        <item>ріг</item>
+        <item>оленя</item>
+        <item>Гачок / гачок</item>
+        <item>мисливець</item>
+        <item>лисиця</item>
+        <item>гол</item>
+        <item>горщик для квітів</item>
+        <item>вилки</item>
+        <item>тачка</item>
+        <item>чужий</item>
+        <item>краб</item>
+        <item>Дельфін</item>
+        <item>кит</item>
+        <item>місяць</item>
+        <item>Ліс</item>
+        <item>вода</item>
+        <item>Пожежа</item>
+        <item>собака</item>
+        <item>комаха</item>
+        <item>Пагорб</item>
+        <item>великий</item>
+        <item>поле</item>
+        <item>зсув</item>
+        <item>Град.</item>
+        <item>цунамі</item>
+        <item>тайфон</item>
+        <item>землетрус</item>
+        <item>лавина</item>
+        <item>виверження вулкана</item>
+        <item>хуртовина</item>
+        <item>гроза</item>
+        <item>Ураган</item>
+        <item>падіння метеориту</item>
+        <item>біженець</item>
+        <item>Сильне тепло, тепло</item>
+        <item>Голод (голод)</item>
+        <item>корал</item>
+        <item>черепаха</item>
+        <item>морський їжак</item>
+        <item>ущільнювати</item>
+        <item>морж</item>
+        <item>вугри</item>
+        <item>креветки</item>
+        <item>Колток</item>
+        <item>тунець</item>
+        <item>морська корова</item>
+        <item>коріння</item>
+        <item>розсада</item>
+        <item>Садовий шланг</item>
+        <item>Глечик для води</item>
+        <item>садові ножиці</item>
+        <item>Спринклери</item>
+        <item>мотика</item>
+        <item>жасмин</item>
+        <item>Квіти на дереві</item>
+        <item>Elk</item>
+        <item>Березове дерево</item>
+        <item>день</item>
+        <item>птах</item>
+        <item>риба</item>
+        <item>Ant (Ant)</item>
+        <item>час</item>
+        <item>годину</item>
+        <item>мир</item>
+        <item>тиждень</item>
+        <item>рік</item>
+        <item>тварина</item>
+        <item>клімат</item>
+        <item>століття</item>
+        <item>забруднення навколишнього середовища</item>
+        <item>відкритий космос</item>
+        <item>Веселка</item>
+        <item>Йде дощ</item>
+        <item>Йде сніг</item>
+        <item>сила</item>
+        <item>грунт</item>	</string-array>
+    <string-array name="ukr11">	<item>мені подобається</item>
+        <item>я зустрічаю</item>
+        <item>я п'ю</item>
+        <item>мені не подобається</item>
+        <item>я думаю</item>
+        <item>Я думаю, щоб розраховувати)</item>
+        <item>я подорожую</item>
+        <item>Я приземляюся</item>
+        <item>я їм</item>
+        <item>я готую</item>
+        <item>я сиджу</item>
+        <item>Я їду на великому</item>
+        <item>Я поклав (на підлозі)</item>
+        <item>я виграв</item>
+        <item>я виходжу</item>
+        <item>я купую</item>
+        <item>Я плюю</item>
+        <item>Я розрізаю (ножиці)</item>
+        <item>я йду</item>
+        <item>Я тягну (тягнути)</item>
+        <item>Я натискаю</item>
+        <item>Я заперечую</item>
+        <item>я читаю</item>
+        <item>я слухаю</item>
+        <item>я приймаю ванну</item>
+        <item>я чищу зуби</item>
+        <item>я приймаю душ</item>
+        <item>я співаю</item>
+        <item>я танцюю</item>
+        <item>я дивлюся телевізор</item>
+        <item>Я борюся, бореться</item>
+        <item>я стрибаю</item>
+        <item>я бігу</item>
+        <item>я одягаюся</item>
+        <item>я роздягаюсь</item>
+        <item>я випив</item>
+        <item>Я прасувала (одяг)</item>
+        <item>я мию посуд</item>
+        <item>Я відбулася</item>
+        <item>я плаваю</item>
+        <item>Я ігнорую</item>
+        <item>я працюю</item>
+        <item>Я йду вперед</item>
+        <item>Я задаю питання</item>
+        <item>Я peepy</item>
+        <item>Це буде скоро</item>
+        <item>Я звертаю увагу на ...</item>
+        <item>Я страждаю від ...</item>
+        <item>Це тягне за собою</item>
+        <item>Я створюю діагноз</item>
+        <item>Я свинку</item>
+        <item>Він страждає від ...</item>
+        <item>Я стріляю</item>
+        <item>Я скреб</item>
+        <item>я граю</item>
+        <item>я малюю</item>
+        <item>я дзвоню</item>
+        <item>Я присутній</item>
+        <item>я говорю</item>
+        <item>Я піднімаюся по сходах</item>
+        <item>я слідкую</item>
+        <item>Я ламаю</item>
+        <item>я плачу</item>
+        <item>Я lew</item>
+        <item>Я служив</item>
+        <item>Я годую</item>
+        <item>Це кровотеча</item>
+        <item>я кричу</item>
+        <item>я відкриваю</item>
+        <item>Я стріляю</item>
+        <item>я кидаю</item>
+        <item>Я вирізаю</item>
+        <item>Я змішую</item>
+        <item>я обираю</item>
+        <item>Я суші</item>
+        <item>я граю</item>
+        <item>Я ssu</item>
+        <item>Я сер</item>
+        <item>Я примусую</item>
+        <item>Я піднімаюся</item>
+        <item>У мене скана</item>
+        <item>я плачу</item>
+        <item>Я ногами</item>
+        <item>Я веду машину</item>
+        <item>Я ремонтую</item>
+        <item>я миюся</item>
+        <item>я прокидаюсь</item>
+        <item>Я - війна</item>
+        <item>Я каркас</item>
+        <item>Я горіння</item>
+        <item>я кладу</item>
+        <item>я кашляю</item>
+        <item>я чекаю</item>
+        <item>я ловлю</item>
+        <item>я падаю</item>
+        <item>я шукаю</item>
+        <item>я питаю</item>
+        <item>я даю</item>
+        <item>Я заповнюю</item>
+        <item>Я цент</item>
+        <item>Я торкаюся</item>
+        <item>Я голосую</item>
+        <item>я благаю</item>
+        <item>Я впав</item>
+        <item>Я відчуваю запах вина</item>
+        <item>Я flirty</item>
+        <item>Я збираю врожайність</item>
+        <item>Я посадку рослина</item>
+        <item>я дихаю</item>
+        <item>я задихаюсь</item>
+        <item>I gladai</item>
+        <item>мене нудить</item>
+        <item>Я чортів</item>
+        <item>Я вода</item>
+        <item>я чую</item>
+        <item>Я зменшую</item>
+        <item>Я збільшую</item>
+        <item>Я обіймаю</item>
+        <item>я гуляю з собакою</item>
+        <item>Я намагаюся спробувати</item>
+        <item>я вмираю</item>
+        <item>я здаюсь</item>
+        <item>я розслабляюсь</item>
+        <item>Я хропіть</item>
+        <item>я прокидаюсь</item>
+        <item>Я піднімаю Стульчак</item>
+        <item>Я Нижня Стульчак</item>
+        <item>Я змиваю імпульс</item>
+        <item>Я скреб</item>
+        <item>Я поразка Наноча</item>
+        <item>Я нано макіяж</item>
+        <item>Я злітаю (макіяж)</item>
+        <item>Я перемикаю</item>
+        <item>Я вентиляюся</item>
+        <item>Я роду</item>
+        <item>я слухаю музику</item>
+        <item>Я бризок</item>
+        <item>Я зберігаю на плаву</item>
+        <item>Я занурююся</item>
+        <item>Я затримую дихання</item>
+        <item>У мене є потік / як / факел</item>
+        <item>я чищу</item>
+        <item>Я слабкий</item>
+        <item>Я шукаю притулок</item>
+        <item>Я заощаджую</item>
+        <item>Я складаю комплімент</item>
+        <item>I masha рука</item>
+        <item>я вибачаюся</item>
+        <item>Я тримаю двері</item>
+        <item>Я знімаю капелюх</item>
+        <item>Я входжу ...</item>
+        <item>Я втирав</item>
+        <item>Я загорнутий</item>
+        <item>Я згоден з ...</item>
+        <item>Я додаю (аркуш)</item>
+        <item>Я висячий</item>
+        <item>я пишу</item>
+        <item>Я залишаю відгук / рейтинг</item>
+        <item>я з</item>
+        <item>я відвідую</item>
+        <item>я живу в ...</item>
+        <item>Я дивлюся на пам'ятки</item>
+        <item>Я виконую (виконувати)</item>
+        <item>Я будую</item>
+        <item>Я наполягаю (чай заповнити)</item>
+        <item>Я замовка</item>
+        <item>Я готую / кип'ятити</item>
+        <item>Я смач</item>
+        <item>Я чистий (овочі)</item>
+        <item>Я вирізаю</item>
+        <item>Я brenchu</item>
+        <item>Я складаю музику</item>
+        <item>Я читав голосно</item>
+        <item>Я поступаюся дорозі</item>
+        <item>Я газ</item>
+        <item>я торможу</item>
+        <item>Я штовхаю</item>
+        <item>Я Сколія</item>
+        <item>Я забиваю мету</item>
+        <item>Я охороня</item>
+        <item>Я прибираю</item>
+        <item>Я прикидаюся</item>
+        <item>Я розчісую</item>
+        <item>Я встановлюю будильник</item>
+        <item>я прокидаюся</item>
+        <item>я йду спати</item>
+        <item>я вмиваюся</item>
+        <item>я йду на роботу</item>
+        <item>я їм ланч</item>
+        <item>Я приходжу додому</item>
+        <item>Я приходжу до фінішу</item>
+        <item>Я отримую сміття</item>
+        <item>я сушу волосся</item>
+        <item>Я sorpled в Інтернеті</item>
+        <item>Я їду на роботу (щоб перейти)</item>
+        <item>Я пиваю каву</item>
+        <item>Я гоління</item>
+        <item>Я зламав (будинок)</item>
+        <item>Я мазок (масло)</item>
+        <item>Я піднімаю</item>
+        <item>Я був</item>
+        <item>I мої вікна</item>
+        <item>Я рибалка</item>
+        <item>Він піднімається / повертається (піднятися)</item>
+        <item>я ділюсь</item>
+        <item>Я rone</item>
+        <item>Я пошкоджую / перерву</item>
+        <item>Я ризикую</item>
+        <item>Я лестовано</item>
+        <item>Я доставляю</item>
+        <item>Я дбаю (лікувати + я оскарження, я літаю)</item>
+        <item>Я відрізав (рослина)</item>
+        <item>я починаю</item>
+        <item>Я хотів би ...</item>
+        <item>Я передає</item>
+        <item>Я дбаю про ...</item>
+        <item>Я наймаю роботу</item>
+        <item>Я поданий</item>
+        <item>Я друк (на принтері)</item>
+        <item>Я копію</item>
+        <item>Я сканую</item>
+        <item>я тремчу</item>
+        <item>Я змащую</item>
+        <item>Я загорнутий (обернути)</item>
+        <item>Я чув</item>
+        <item>я не хочу</item>
+        <item>Я отримую дивіденди</item>
+        <item>Мені потрібна вода</item>
+        <item>Це ковзає</item>
+        <item>Він рухається</item>
+        <item>мені потрібно ...</item>
+        <item>я сумую за тобою</item>
+        <item>Я годую кридію</item>
+        <item>ми розлучаємося</item>
+        <item>Ми обіймаємо (більше)</item>
+        <item>Ми обіймаємо</item>
+        <item>Я зазвичай (я щось роблю.) / У мене є звичай (зробити щось)</item>
+        <item>Я позбутися ... (щоб позбутися ...)</item>
+        <item>Вони поміщають</item>
+        <item>Ми скинемо (лінійка)</item>
+        <item>ми розлучаємося</item>
+        <item>Ми ловимо</item>
+        <item>Я шепочу</item>
+        <item>Миламо</item>
+        <item>це відповідає</item>
+        <item>Я вирішу проблеми</item>
+        <item>Це Тет.</item>
+        <item>Ми захищаємо</item>
+        <item>я сподіваюся</item>
+        <item>Ми оточуємо</item>
+        <item>Це належить ... (це належить ...)</item>
+        <item>Я лаю</item>
+        <item>Ви перериваєте</item>
+        <item>Він застосовується до ...</item>
+        <item>Вона виробляється</item>
+        <item>ми продовжуємо ...</item>
+        <item>Я дізнаюся</item>
+        <item>Я зміцнювався / зміцнюю</item>
+        <item>Я тримаю</item>
+        <item>Він зберігається</item>
+        <item>я готуюся</item>
+        <item>я розумію</item>
+        <item>Я передбачаю</item>
+        <item>Я більше не можу (нести цю сумку)</item>
+        <item>Я більше не можу (понаднормовий понаднормовий)</item>
+        <item>Я був призначений ...</item>
+        <item>Я чув</item>
+        <item>знайти</item>
+        <item>Я змушую його ...</item>
+        <item>Я правильно (вище)</item>
+        <item>я захворів</item>
+        <item>Мені довелося ...</item>
+        <item>Ми кажемо до побачення</item>
+        <item>Я роблю все, що можу</item>
+        <item>Я веде себе як гей</item>
+        <item>Я вибираю у своєму носі</item>	</string-array>
+    <string-array name="ukr12">	<item>я можу</item>
+        <item>Я отримую</item>
+        <item>я стаю</item>
+        <item>Я благаю</item>
+        <item>я брешу</item>
+        <item>я несу</item>
+        <item>Він росте</item>
+        <item>я кидаю</item>
+        <item>я обираю</item>
+        <item>я приходжу</item>
+        <item>я плачу</item>
+        <item>Я вирізаю</item>
+        <item>я вмираю</item>
+        <item>я зникаю</item>
+        <item>я п'ю</item>
+        <item>Я керую тачку</item>
+        <item>я їм</item>
+        <item>я знаходжусь</item>
+        <item>я падаю</item>
+        <item>Ми стверджуємо, ми боремося</item>
+        <item>я знаходжу</item>
+        <item>я літаю</item>
+        <item>я даю</item>
+        <item>я їду</item>
+        <item>я йду</item>
+        <item>Я захочу</item>
+        <item>я маю</item>
+        <item>Я був</item>
+        <item>я тримаю</item>
+        <item>я запрошую</item>
+        <item>я знаю</item>
+        <item>Я дозволяю</item>
+        <item>я лежу</item>
+        <item>я брешу</item>
+        <item>я живу</item>
+        <item>Я сажа</item>
+        <item>Я тягну</item>
+        <item>я кладу</item>
+        <item>Я кажу (сказати)</item>
+        <item>я кричу</item>
+        <item>Я дивлюся / я бачу</item>
+        <item>я співаю</item>
+        <item>я сиджу</item>
+        <item>я сплю</item>
+        <item>я посміхаюсь</item>
+        <item>Я поширюю</item>
+        <item>я стою</item>
+        <item>Я вербуваю</item>
+        <item>Я клянуся / я блукаю</item>
+        <item>я беру</item>
+        <item>Я кричу / scratch / зламав</item>
+        <item>я хочу</item>
+        <item>я переміг</item>
+        <item>я пишу</item>
+        <item>я буду</item>
+        <item>Я впораюся (з ...)</item>
+        <item>я сідаю</item>
+        <item>я підіймаюсь</item>
+        <item>я одягаюся</item>
+        <item>я роздягаюсь</item>
+        <item>Я дотримуюся ...</item>
+        <item>Я гірший</item>
+        <item>я готую</item>
+        <item>я миюся</item>
+        <item>я проспав</item>
+        <item>я поспішаю</item>
+        <item>Я вирішив</item>
+        <item>я лягаю</item>
+        <item>Я вчуся</item>
+        <item>я розслабляюсь</item>
+        <item>Я дивлюся telik</item>
+        <item>я повинен</item>
+        <item>Я високий, витягніть</item>
+        <item>я закриваю</item>
+        <item>я вимикаю</item>
+        <item>я вмикаю</item>
+        <item>я мию</item>
+        <item>я мрію</item>
+        <item>я ношу</item>
+        <item>я дізнаюся</item>
+        <item>Я скасую</item>
+        <item>я повертаюся</item>
+        <item>Я отримую</item>
+        <item>я пам'ятаю</item>
+        <item>я згадую</item>
+        <item>я чищу</item>
+        <item>я шукаю</item>
+        <item>Я повинен (я повинен)</item>
+        <item>Я повинен / мені потрібно (щось зробити)</item>	</string-array>
+    <string-array name="ukr13">	<item>я люблю</item>
+        <item>я починаю</item>
+        <item>я слухаю</item>
+        <item>я вчуся</item>
+        <item>я їду в ...</item>
+        <item>що відбувається?</item>
+        <item>я відчуваю</item>
+        <item>Я закоханий (c)</item>
+        <item>я закриваю</item>
+        <item>я думаю</item>
+        <item>мені подобається ...</item>
+        <item>Мені шкода ...</item>
+        <item>я згоден</item>
+        <item>Я орендую</item>
+        <item>Я йду (водіння, рульове колесо)</item>
+        <item>я вчу</item>
+        <item>Він вказує на ... (зазначив ...)</item>
+        <item>Я заважаю (хтось)</item>
+        <item>Я залежний (від ...)</item>
+        <item>це залежить від ...)</item>
+        <item>Я відчуваю себе ...</item>
+        <item>Я шию</item>
+        <item>Я думаю, що я вважаю</item>
+        <item>я літаю</item>
+        <item>я приходжу</item>
+        <item>я сплю</item>
+        <item>я стаю</item>
+        <item>Я отримую</item>
+        <item>Я отримую</item>
+        <item>я розумію</item>
+        <item>Я відмовляюся ... (зробити щось)</item>
+        <item>Це є ...</item>
+        <item>я говорю</item>
+        <item>я продаю</item>
+        <item>я стою</item>
+        <item>я беру</item>
+        <item>я знаю</item>
+        <item>Мені потрібно ...</item>
+        <item>Я знайомий з ...</item>
+        <item>Я знаю це ...</item>
+        <item>Я знаю це ...</item>
+        <item>я хочу</item>
+        <item>Я йду / йду</item>
+        <item>Я змінюю (змінюю, змінювати, змінити)</item>
+        <item>Я кусаю</item>
+        <item>Вона починається</item>
+        <item>Я змінюю (я замінюю, змінюю, щоб поміняти, змінити)</item>
+        <item>Я залишаюся / я зупиняюся</item>
+        <item>Я набуваю</item>
+        <item>я святкую</item>
+        <item>Я слідую ...</item>
+        <item>я ховаюся</item>
+        <item>Я відвідую</item>
+        <item>у мене все добре</item>
+        <item>ми веселимося</item>
+        <item>у мене температура</item>
+        <item>я не проти</item>
+        <item>У мене є бажання</item>
+        <item>у мене болить живіт</item>
+        <item>я впевнений в цьому)</item>
+        <item>Я можу собі дозволити</item>
+        <item>я правий</item>
+        <item>У мене труднощі</item>
+        <item>мені щастить</item>
+        <item>я допомагаю</item>
+        <item>Я впораюся з ... (керувати, щоб поєднуватися, щоб справитися з)</item>
+        <item>я вожу машину</item>
+        <item>я виглядаю як</item>
+        <item>Я підкоряюся (підкорятися)</item>
+        <item>Це світить</item>
+        <item>Я вимірюю</item>
+        <item>я сумую за ...</item>
+        <item>Я доторкнувся, Тайда на Бічев (буксирувати)</item>
+        <item>Я відпускаю (я відпускаю)</item>
+        <item>Я виходжую куріння</item>
+        <item>я шукаю роботу</item>
+        <item>я граю</item>
+        <item>я кладу</item>
+        <item>я підтримую ...</item>
+        <item>мені можна ...</item>
+        <item>я маю право</item>
+        <item>я тренуюсь</item>
+        <item>Я (я)</item>
+        <item>Я нерв</item>
+        <item>Я буду / я буду</item>
+        <item>Це виглядає так само (виглядає так само)</item>
+        <item>Я боюся (щось)</item>
+        <item>Я зроблений з ...</item>
+        <item>я продовжую</item>
+        <item>я довіряю тобі</item>
+        <item>вона мені набридла</item>
+        <item>я вмикаю</item>
+        <item>вона побачила</item>
+        <item>I nano deodorant на пахви</item>
+        <item>я заробляю</item>
+        <item>Я роблю поправки / я правильний</item>
+        <item>Вона запитала, що відбувається</item>
+        <item>Я перебуваю в процесі ... (роблячи щось) (я в процесі ...)</item>
+        <item>я приймаю участь</item>
+        <item>я повертаюся</item>
+        <item>я розглядаю</item>
+        <item>Я б ... (я б ...)</item>
+        <item>Я розраховую / вважаю (розраховувати)</item>
+        <item>я втрачаю</item>
+        <item>Я вилікую / зцілюю</item>
+        <item>я показую</item>
+        <item>Я курю траву</item>
+        <item>я обіцяю</item>
+        <item>Ми відновлюємо</item>
+        <item>Я вважаю, що ... (я вважаю, що ...)</item>
+        <item>Я добре ...</item>
+        <item>Я звик до ...</item>
+        <item>Ми боремося з ...</item>
+        <item>Ми торгуємо ...</item>
+        <item>Я вирішу ... (Я вирішу на ...)</item>
+        <item>Я буду зберігати проект</item>
+        <item>Я завантажую</item>
+        <item>Я клацніть лівою кнопкою миші</item>
+        <item>Це сприяє ... (щось)</item>
+        <item>Це впливає ...</item>
+        <item>я йду</item>
+        <item>Я орендую</item>
+        <item>я перевіряю</item>
+        <item>я перевіряю</item>
+        <item>Я позбутися ... (щоб позбутися ...)</item>
+        <item>Я put / post</item>
+        <item>Ми встановлюємо (встановити)</item>
+        <item>мені нудно</item>
+        <item>Я поясню</item>
+        <item>Я вчу</item>
+        <item>Ми легалізуємо</item>
+        <item>Ми конкуруємо</item>
+        <item>Я відвідую</item>
+        <item>Ми стрибаємо</item>
+        <item>Ми беремо дію</item>
+        <item>Я повертаюся</item>
+        <item>я перекладаю</item>
+        <item>це означає ...</item>
+        <item>я забуваю</item>
+        <item>Це частина ..</item>
+        <item>Очікується, що ...</item>
+        <item>Це відбувається (триває) ...</item>
+        <item>Я дізнаюся ...</item>
+        <item>Я боюся, що ...</item>
+        <item>Я поповнюю запаси</item>
+        <item>Ми покриваємо витрати</item>
+        <item>Ми досліджуємо</item>
+        <item>Я досягаю</item>
+        <item>Я досягаю</item>
+        <item>Я збільшую дозу</item>
+        <item>Ми захищаємо</item>
+        <item>я побачив</item>
+        <item>я відпочиваю</item>
+        <item>Я впораюся з цими труднощами</item>
+        <item>Я справляюся з завданнями</item>
+        <item>Ми оцінюємо</item>
+        <item>Ми цінуємо / ми цінуємо</item>
+        <item>Ми цінуємо / ми цінуємо</item>
+        <item>ми гарантуємо</item>
+        <item>ми гарантуємо</item>
+        <item>Ми судимо</item>
+        <item>я помітив</item>
+        <item>Я намагаюся</item>
+        <item>я ховаюся</item>
+        <item>Я прошу допомоги</item>
+        <item>я приймаю</item>
+        <item>Ми використовуємо</item>
+        <item>Я сприймаю</item>
+        <item>Ми зосереджені на</item>
+        <item>Я звертаюся до ...</item>
+        <item>ми створюємо</item>
+        <item>я створюю</item>
+        <item>Ми заохочуємо</item>
+        <item>Ми поділяємо (щось)</item>
+        <item>Ми обмежені</item>
+        <item>я поважаю</item>
+        <item>Я нагадую вам, що ...</item>
+        <item>Ми не беремо участь ... (ми не займаємося ...)</item>
+        <item>Я перериваю</item>
+        <item>Я посилаюся</item>
+        <item>Я коментую</item>
+        <item>Ми прагнемо до ...</item>
+        <item>Я даю вам пораду</item>
+        <item>Я відхиляю</item>
+        <item>Ми робимо ваш внесок (в ...)</item>
+        <item>Вона закохана в ...</item>
+        <item>Я створюю стіл</item>
+        <item>я збираюся додому</item>
+        <item>Я утримуюсь від ...</item>
+        <item>Ми розслабляємося</item>
+        <item>Я почну з ...</item>
+        <item>це включає) ...</item>
+        <item>Вона дає тести</item>
+        <item>Я comkah</item>	</string-array>
+    <string-array name="ukr14">	<item>як під час і після ...</item>
+        <item>Я маю алергію до кішок</item>
+        <item>я заблукав</item>
+        <item>я хворію</item>
+        <item>Величезна різниця</item>
+        <item>я теж</item>
+        <item>Чи можу я платити карту?</item>
+        <item>Я втратив гаманець</item>
+        <item>Чи можу я позичити ваш мобільний телефон?</item>
+        <item>Я зроблю фотографію, добре?</item>
+        <item>Я був тут протягом п'яти днів.</item>
+        <item>Так</item>
+        <item>Ні</item>
+        <item>гаразд</item>
+        <item>вітання</item>
+        <item>спасибі</item>
+        <item>Бувай</item>
+        <item>будь ласка</item>
+        <item>Я</item>
+        <item>Вибач</item>
+        <item>Ти говориш англійською?</item>
+        <item>зачинено</item>
+        <item>відчинено</item>
+        <item>Допомога!</item>
+        <item>Чекати</item>
+        <item>Господи (туалет)</item>
+        <item>Пані (туалет)</item>
+        <item>Чи можемо ми платити?</item>
+        <item>Де знаходиться продуктовий магазин?</item>
+        <item>Прошу вибачення! (При обробці)</item>
+        <item>Як? (з Нечем.)</item>
+        <item>Tot, ta (that)</item>
+        <item>Меню, будь ласка</item>
+        <item>Це було весело</item>
+        <item>Зрозуміти?</item>
+        <item>Як? (розрахований)</item>
+        <item>ще один</item>
+        <item>1 менше</item>
+        <item>надто дорого</item>
+        <item>Що небудь ще?</item>
+        <item>ні це все</item>
+        <item>Лише готівка</item>
+        <item>залишати</item>
+        <item>Залишайся тут</item>
+        <item>Звідки ти?</item>
+        <item>як тебе звати?</item>
+        <item>прошу вибачення</item>
+        <item>без проблем</item>
+        <item>радий зустрічі</item>
+        <item>Ви можете мені допомогти?</item>
+        <item>доброго ранку</item>
+        <item>Доброго дня</item>
+        <item>добрий вечір</item>
+        <item>Надобраніч</item>
+        <item>Як воно?</item>
+        <item>Добре спасибі.</item>
+        <item>А ти? (А у тебе?)</item>
+        <item>Яка погода там?</item>
+        <item>це добре</item>
+        <item>це погано</item>
+        <item>гарячий</item>
+        <item>холодний</item>
+        <item>немає ні одного</item>
+        <item>трохи дешевше</item>
+        <item>половина</item>
+        <item>Ціле ціле (ціле)</item>
+        <item>У вас є квитки?</item>
+        <item>ось це</item>
+        <item>Напишіть це</item>
+        <item>Не входити</item>
+        <item>не чіпати</item>
+        <item>Будьте обережні!</item>
+        <item>Будьте обережні!</item>
+        <item>будь обережний</item>
+        <item>Як це називається?</item>
+        <item>Як далеко?</item>
+        <item>це близько?</item>
+        <item>Скільки часу потрібно, щоб дістатися до аеропорту?</item>
+        <item>наліво</item>
+        <item>правий</item>
+        <item>Уповільнювати</item>
+        <item>У скільки?</item>
+        <item>сьогодні</item>
+        <item>завтра</item>
+        <item>вчора</item>
+        <item>зараз</item>
+        <item>Потім</item>
+        <item>Котра година?</item>
+        <item>Зараз три години.</item>
+        <item>До аеропорту, дякую!</item>
+        <item>Чи можете ви sfotkat? (Зробіть фотографію)</item>
+        <item>Що ви порадите?</item>
+        <item>добре</item>
+        <item>Смачного</item>
+        <item>Ура! (Здружився!)</item>
+        <item>Ким ти працюєш?</item>
+        <item>Ви місцеві?</item>
+        <item>трішки</item>
+        <item>Скільки тобі років?</item>
+        <item>ВООЗ</item>
+        <item>котрий</item>
+        <item>коли</item>
+        <item>де</item>
+        <item>чому</item>
+        <item>як</item>
+        <item>Там)</item>
+        <item>не правильний</item>
+        <item>правий</item>
+        <item>Повторіть (скажіть мені знову)</item>
+        <item>говори повільно</item>
+        <item>повільно</item>
+        <item>Скажіть мені, що запам'ятовується</item>
+        <item>Давати дорогу</item>
+        <item>між</item>
+        <item>середина</item>
+        <item>тут</item>
+        <item>проти</item>
+        <item>прямо вперед</item>
+        <item>там</item>
+        <item>Усе</item>
+        <item>Його (залучення для свого чоловіка.)</item>
+        <item>це (це)</item>
+        <item>Ні-ні-ні</item>
+        <item>їх (залучення. Для mn.ch.)</item>
+        <item>Вони</item>
+        <item>ми</item>
+        <item>ти</item>
+        <item>Ваш</item>
+        <item>І</item>
+        <item>або</item>
+        <item>це</item>	</string-array>
+    <string-array name="ukr15">	<item>завжди</item>
+        <item>Але ... / ще ... (тим не менше, навіть зараз, навіть так, як і раніше, ще)</item>
+        <item>Причина, чому ... (Причина, чому ...)</item>
+        <item>інший</item>
+        <item>Використовується нами</item>
+        <item>Ми використовуємо це</item>
+        <item>їй 30 років</item>
+        <item>як справи нормально?</item>
+        <item>як справи нормально?</item>
+        <item>У ХХ столітті</item>
+        <item>Позаду, для (позаду)</item>
+        <item>тільки</item>
+        <item>тільки</item>
+        <item>Просто / точно</item>
+        <item>Просто / точно</item>
+        <item>Добре-добре</item>
+        <item>поряд з)</item>
+        <item>також</item>
+        <item>також</item>
+        <item>до цього</item>
+        <item>раніше</item>
+        <item>Власний (власний)</item>
+        <item>один раз</item>
+        <item>здебільшого ...</item>
+        <item>здебільшого ...</item>
+        <item>Було оголошено, що ...</item>
+        <item>як належне</item>
+        <item>Назовні</item>
+        <item>в межах ...</item>
+        <item>принаймні один принаймні один</item>
+        <item>На мінімум ... / Принаймні ...</item>
+        <item>У мене багато плачу</item>
+        <item>Поки ви чекаєте</item>
+        <item>Під час очікування</item>
+        <item>Не лише а також ...</item>
+        <item>з одного боку з іншого боку ...</item>
+        <item>в майбутньому</item>
+        <item>Чи повинен я слухати її повідомлення?</item>
+        <item>Чи я повинен ...?</item>
+        <item>Чи повинен я прийняти це?</item>
+        <item>Чи повинен я це витримати?</item>
+        <item>не поспішай!</item>
+        <item>Більшість ...</item>
+        <item>безсумнівно</item>
+        <item>чесно кажучи, ...</item>
+        <item>по бажанню</item>
+        <item>Це також виглядає</item>
+        <item>Може бути, краще самотність?</item>
+        <item>Звичайно.</item>
+        <item>Чи повинен я ... ?</item>
+        <item>не поспішай</item>
+        <item>Скільки це триває?</item>
+        <item>Вона тривала з 13:00 до 15:00</item>
+        <item>безсумнівно</item>
+        <item>Що-небудь країна</item>
+        <item>два рази</item>
+        <item>Вона стоїть біля дверей. \ N (вона стоїть біля дверей.)</item>
+        <item>Ми йдемо по дорозі. \ N (ми гуляємо по дорозі.)</item>
+        <item>Я сиджу на комп'ютері. \ N (я сиджу на комп'ютері.)</item>
+        <item>Вони живуть у місті біля узбережжя. \ N (вони в місті на узбережжі.)</item>
+        <item>Ви бачили, що замк біля парку?</item>
+        <item>Ви навчаєте у великому університеті? \ N (ви навчаєте у великому університеті?)</item>
+        <item>Чи можемо ми зустрітися в області обіду? \ N (ми повинні зустрітися навколо обіду?)</item>
+        <item>Вона приходить у сферу сім. \ N (вона приходить до 7:00.)</item>
+        <item>Я зазвичай лежись навколо півночі. \ N (я зазвичай лягаю спати близько півночі.)</item>
+        <item>Він покинув будинок у віці 18 років. \ N (він відійшов від дому у віці 18 років.)</item>
+        <item>Йокка було 80 років, коли він помер.</item>
+        <item>Ви (mn.ch.)</item>
+        <item>я, я</item>
+        <item>ви, ви</item>
+        <item>Його, його</item>
+        <item>Її, вона</item>
+        <item>нас, США</item>
+        <item>ви, ви</item>
+        <item>їх, я.</item>
+        <item>Мій / мій / мій</item>
+        <item>Ваш / Ваш / Ваш</item>
+        <item>Його (приналежність до нього)</item>
+        <item>її (приналежність до неї)</item>
+        <item>це (приналежність до цього)</item>
+        <item>Наш / наш / наш</item>
+        <item>Ваш / Ваш / Ваш</item>
+        <item>їх / їх / їх / їх</item>
+        <item>Ваш / його / масло (тільки з суб'єктами у 3-му обличчі)</item>
+        <item>не можу точно сказати</item>
+        <item>Коли справа доходить до одягу, ...</item>
+        <item>Коли справа доходить до лікування захворювань, ...</item>
+        <item>Два кавалерійських полках слідують за ними</item>
+        <item>Вони йдуть за мною</item>
+        <item>Те ж саме (те ж саме)</item>
+        <item>Також (також)</item>
+        <item>предмет</item>
+        <item>до того як</item>
+        <item>раніше</item>
+        <item>до цього</item>
+        <item>це близько?</item>
+        <item>це далеко?</item>
+        <item>Мені огидно</item>
+        <item>Це сталося о 18:08 місцевий час</item>
+        <item>навіть більше</item>
+        <item>П'ятий серпень.</item>
+        <item>ті, хто</item>
+        <item>в перший раз</item>
+        <item>Це залежить від психічного стану людини</item>
+        <item>так званий</item>
+        <item>це стало загальним</item>
+        <item>Відповідно до ... / відповідно до ...</item>
+        <item>Російське походження</item>
+        <item>над рівнем моря</item>
+        <item>Раніше ... (поки ...)</item>
+        <item>на жаль</item>
+        <item>у довгостроковій перспективі</item>
+        <item>Це призводить до ...</item>
+        <item>Під час вагітності</item>
+        <item>іноді</item>
+        <item>Це залежить від контексту</item>
+        <item>Для рекреаційного використання</item>
+        <item>У розважальних цілях</item>
+        <item>про</item>
+        <item>знову</item>
+        <item>при 23.</item>
+        <item>в той же час</item>
+        <item>в цілому</item>
+        <item>нижче</item>
+        <item>Що, чорт візьми, тут? (Що це відбувається?)</item>
+        <item>завдяки ...</item>
+        <item>в деяких випадках</item>
+        <item>Поточний ... (Поточний ...)</item>
+        <item>від випадку до випадку</item>
+        <item>майже</item>
+        <item>кілька різних груп</item>
+        <item>справді</item>
+        <item>по перше</item>
+        <item>понад усе</item>
+        <item>Це не заважає ...</item>
+        <item>Неможливо ...</item>
+        <item>Слухайте свою інтуїцію</item>
+        <item>Що мається на увазі?</item>
+        <item>зазвичай</item>
+        <item>Активна евтаназія вважається випадками, коли ...</item>
+        <item>іншими словами, ...</item>
+        <item>Проте, ...</item>
+        <item>таким чином, що ...</item>
+        <item>далеко ні</item>
+        <item>Хлопчик взагалі не згадується</item>
+        <item>Останнім часом</item>
+        <item>Щотижнева їжа</item>
+        <item>Це не так (це не так)</item>
+        <item>що ще...</item>
+        <item>Дворічна заборона на в'їзд</item>
+        <item>З міркувань безпеки</item>
+        <item>Значний вплив</item>
+        <item>Деякі з ...</item>
+        <item>Один з них (про inadevel.)</item>
+        <item>Марія попросила нас нікому не розповісти.</item>
+        <item>Наступна глава присвячена решті населення в Нідерландах.</item>
+        <item>Наступного тижня ми збираємося Роттердам.</item>
+        <item>Суп майже готовий.</item>
+        <item>Тепер Алвін розуміє майже все, що сказали шведи.</item>
+        <item>порядок денний</item>
+        <item>іншим способом</item>
+        <item>це вірно</item>
+        <item>Вимкнено</item>
+        <item>Ви не повинні бути здивовані</item>
+        <item>Ми вітаємо вас дуже тепло</item>
+        <item>відповідальний за</item>
+        <item>До / раніше</item>
+        <item>в ці вихідні</item>
+        <item>за допомогою</item>
+        <item>Це час (для) ...</item>
+        <item>Потрібно ...</item>	</string-array>
+    <string-array name="ukr16">	<item>Існує ...</item>
+        <item>Тому.</item>
+        <item>тому що</item>
+        <item>Вони</item>
+        <item>більшість людей) …</item>
+        <item>Більшість ...</item>
+        <item>минулого тижня</item>
+        <item>на цьому тижні</item>
+        <item>Це / це</item>
+        <item>їх</item>
+        <item>Не проти уваги (беруть легко)</item>
+        <item>як мило</item>
+        <item>Хоча ... / Тим не менш ...</item>
+        <item>тому що</item>
+        <item>проти</item>
+        <item>відповідно до …</item>
+        <item>наприклад, …</item>
+        <item>насправді, …</item>
+        <item>Це було (було місце бути)</item>
+        <item>хоча й ...</item>
+        <item>Хоча / незважаючи на те, що ... (хоча, незважаючи)</item>
+        <item>Відмінно (приємно)</item>
+        <item>декілька</item>
+        <item>за</item>
+        <item>Тому що / тому, що (для / тому)</item>
+        <item>місяць тому</item>
+        <item>тиждень тому / тиждень тому</item>
+        <item>10 тижнів тому</item>
+        <item>2 роки тому / 2 роки тому</item>
+        <item>4 роки тому</item>
+        <item>5 місяців тому</item>
+        <item>до</item>
+        <item>Пізно (занадто пізно)</item>
+        <item>Останній, минулий (останній)</item>
+        <item>в минулому році</item>
+        <item>минулого місяця</item>
+        <item>минулого тижня</item>
+        <item>Ще</item>
+        <item>раніше</item>
+        <item>крім / додатково</item>
+        <item>перед</item>
+        <item>Від, з</item>
+        <item>Відтепер)</item>
+        <item>Протягом ... (у всьому ...)</item>
+        <item>зроблений з …</item>
+        <item>Вітаємо!</item>
+        <item>грубий</item>
+        <item>Всього найкращого</item>
+        <item>Чи він</item>
+        <item>У мене труднощі</item>
+        <item>Повністю (повністю, цілком)</item>
+        <item>Будинки</item>
+        <item>вона</item>
+        <item>як справи?</item>
+        <item>як справи?</item>
+        <item>в</item>
+        <item>сьогодні</item>
+        <item>позавчора</item>
+        <item>вчора</item>
+        <item>Минулої осені</item>
+        <item>ввечері</item>
+        <item>У минулому понеділок</item>
+        <item>вранці</item>
+        <item>В даний час (наразі)</item>
+        <item>насправді, …</item>
+        <item>Минуле літо</item>
+        <item>У минулому вівторок</item>
+        <item>Остання весна</item>
+        <item>Остання зима</item>
+        <item>Через (через)</item>
+        <item>ніякий</item>
+        <item>Відсутність страшного!</item>
+        <item>ніщо</item>
+        <item>без проблем</item>
+        <item>Раніше</item>
+        <item>не</item>
+        <item>не тільки але й …</item>
+        <item>Я те ж саме красиві, як ви</item>
+        <item>Мені потрібно перевірити, чи працює кіоск</item>
+        <item>Я можу (травень)</item>
+        <item>я попросив ...</item>
+        <item>Я продав свого батька за $ 110</item>
+        <item>Я можу (може)</item>
+        <item>Я буду ... (робити щось) (бутон. Ver.) (Я збираюся ...)</item>
+        <item>Я з Білорусі</item>
+        <item>Я прочитав цю книгу.</item>
+        <item>Мені подобається це яблуко.</item>
+        <item>Я знаю що …</item>
+        <item>прямо зараз</item>
+        <item>Не могли б ви відкрити вікно?</item>
+        <item>Можливо, можливо, може бути)</item>
+        <item>Я буду ... (Will)</item>
+        <item>короткий</item>
+        <item>вільний від ...)</item>
+        <item>Те ж саме ...</item>
+        <item>Так само, як ... (як і ...)</item>
+        <item>від</item>
+        <item>В той час, як поки, в той час як)</item>
+        <item>але</item>
+        <item>більше</item>
+        <item>Деякі m ** ak</item>
+        <item>Деякі соми</item>
+        <item>наступний</item>
+        <item>необхідний</item>
+        <item>Вже ... (вже)</item>
+        <item>якщо</item>
+        <item>Вище вище (вище)</item>
+        <item>Через (над)</item>
+        <item>Через ... / спасибі ... (через / через)</item>
+        <item>на</item>
+        <item>вранці</item>
+        <item>щойно</item>
+        <item>Готовий (k, для)</item>
+        <item>Чистий (чистий)</item>
+        <item>радий бачити</item>
+        <item>Радий зустрітися</item>
+        <item>Навколо ... (навколо, весь круглий ...)</item>
+        <item>Світової)</item>
+        <item>Так</item>
+        <item>Такі</item>
+        <item>Той же (той же)</item>
+        <item>В той же день (той же день)</item>
+        <item>Оскільки ... (з ...)</item>
+        <item>Потім</item>
+        <item>Хочете сісти?</item>
+        <item>хотів би</item>
+        <item>під</item>
+        <item>Зазделегідь дякую!</item>
+        <item>Зазделегідь дякую!</item>
+        <item>Дякую, всі нормулу.</item>
+        <item>K, бути</item>
+        <item>достатньо</item>
+        <item>Чудово, чудово)</item>
+        <item>Незалежно від того, що ... (незалежно від ...)</item>
+        <item>Незалежно від того, що (незалежно від того, що)</item>
+        <item>Хоча ... (хоча)</item>
+        <item>втомився від)</item>
+        <item>зайнято</item>
+        <item>без</item>
+        <item>але</item>
+        <item>що</item>
+        <item>Як тебе звати?</item>
+        <item>Що я можу зробити з моїм великим англійським словником?</item>
+        <item>Добре (ну)</item>
+        <item>друзі</item>
+        <item>один одного</item>
+        <item>чому</item>
+        <item>Ти звідки?</item>
+        <item>Кожен</item>
+        <item>кожна людина</item>
+        <item>Ні ..., ні ... (ні ..., ні)</item>
+        <item>будь ласка! (Будь ласка!)</item>
+        <item>Дійсно / echeded)</item>
+        <item>Почути</item>
+        <item>Побачимось</item>
+        <item>y, поблизу (at)</item>
+        <item>який курча?</item>
+        <item>Котрий</item>
+        <item>З якої ти країни?</item>
+        <item>Я хочу запитати тебе</item>
+        <item>Я хотів би запитати вас ...</item>
+        <item>ніколи</item>
+        <item>ти виглядаєш як ...</item>
+        <item>Навіть якщо ... / Хоча ...</item>
+        <item>схоже що ...</item>
+        <item>Змінити активність</item>
+        <item>Я впевнений у своїх здібностях</item>
+        <item>Коли ви відчуваєте біль, це боляче</item>
+        <item>У нозі боляче</item>	</string-array>
+    <string-array name="ukr17">	<item>Я в Лені вдома</item>
+        <item>і так далі</item>
+        <item>обидва</item>
+        <item>Щось погане пахне</item>
+        <item>Хтось йде</item>
+        <item>Хтось голосно кричить (mn.ch.)</item>
+        <item>Я бачу когось</item>
+        <item>Вона помітила щось у кущах</item>
+        <item>Він бачить якийсь автомобіль</item>
+        <item>Вона чує дитину</item>
+        <item>У мене є книги вдома</item>
+        <item>Вона розповідає щось смішне</item>
+        <item>Я ніколи не був у Стокгольм</item>
+        <item>Ніхто не прийде</item>
+        <item>Зовні, нічого не можна побачити</item>
+        <item>далеко</item>
+        <item>Ніхто не залишає</item>
+        <item>Сьогодні вночі я не зустрічаюся з ким-небудь</item>
+        <item>Вона нічого не їсть на сніданок</item>
+        <item>Ми не бачимо нікого за межами</item>
+        <item>у мене немає машини</item>
+        <item>у мене немає машини</item>
+        <item>Вона не знає іноземної мови</item>
+        <item>Вона не знає іноземної мови</item>
+        <item>У мене немає бажання працювати.</item>
+        <item>без поняття</item>
+        <item>Я не бачу нічого особливого.</item>
+        <item>Ви не маєте шансів проти мене</item>
+        <item>Вона не підготує нічого особливого.</item>
+        <item>Вони чують деякий дивний звук на вулиці.</item>
+        <item>я нічого не знаю</item>
+        <item>Вона не знаходить документи</item>
+        <item>Я бачу щось цікаве.</item>
+        <item>Ніхто не може зупинити мене!</item>
+        <item>Calle - добріше, ніж Міккі.</item>
+        <item>Ви є найприємнішим.</item>
+        <item>Вона - це дівчина.</item>
+        <item>Вона має намір розпочати бізнес.</item>
+        <item>Сьогодні ввечері літаки.</item>
+        <item>Влітку я літаю до Стокгольма.</item>
+        <item>Вони виростуть.</item>
+        <item>Я зняв шкарпетки і кинув їх там</item>
+        <item>Я звик до ...</item>
+        <item>Зазвичай траплялося ... (це було ...)</item>
+        <item>Щодня (щодня)</item>
+        <item>Отже</item>
+        <item>незабаром після цього ...</item>
+        <item>з</item>
+        <item>Отже</item>
+        <item>Я в Лені</item>
+        <item>Я приносять це (я даю їй їздити)</item>
+        <item>... як обробляти гроші (як обробляти гроші)</item>
+        <item>це не твоя справа</item>
+        <item>Чи є хто-небудь там?</item>
+        <item>Це там. (Там.)</item>
+        <item>для чого це?</item>
+        <item>Хтось пояснив би, коли використовувати привід "Åt" ??</item>
+        <item>Це в цьому напрямку</item>
+        <item>Чи можете ви це зробити для мене?</item>
+        <item>Я готуюся до своїх дітей.</item>
+        <item>через рік</item>
+        <item>через тиждень</item>
+        <item>через 5 хвилин</item>
+        <item>5 хвилин назад</item>
+        <item>рік тому</item>
+        <item>тиждень тому</item>
+        <item>Я вивчав шведський протягом 2 років</item>
+        <item>Я збираюся залишатися в Греції 2 тижні</item>
+        <item>Я не був у тренажерному залі протягом 2 тижнів</item>
+        <item>Я не буду мати відпустку протягом 2 місяців</item>
+        <item>раз у рік</item>
+        <item>двічі на день</item>
+        <item>двічі на секунду</item>
+        <item>Один раз на хвилину</item>
+        <item>три рази на годину</item>
+        <item>чотири рази на місяць</item>
+        <item>Один раз на квартал</item>
+        <item>якщо ви хочете</item>
+        <item>Ми говоримо про почуття</item>
+        <item>Я дбаю про мою дитину</item>
+        <item>що ти хочеш?</item>
+        <item>Дати йому Лену</item>
+        <item>навіть</item>
+        <item>Позбутися від неї. (Позбутися її.)</item>
+        <item>Зроби це!</item>
+        <item>весь день</item>
+        <item>роздратований (щось) (роздратований у ...)</item>
+        <item>Ocksome (щось) (сердиться на ...)</item>
+        <item>Я дивлюся Євробачення</item>
+        <item>Спробуйте бутерброд, це добре?</item>
+        <item>Слухай мене!</item>
+        <item>Малий ці духи</item>
+        <item>Ми говоримо про погоду</item>
+        <item>В кінці (зрештою)</item>
+        <item>єдиний власник</item>
+        <item>Що нам робити?</item>
+        <item>Загалом (взагалі)</item>
+        <item>... (так що ...)</item>
+        <item>виявилося що ...</item>
+        <item>Поліпшити мій шведський</item>
+        <item>Він пише фотографії</item>
+        <item>Я сподіваюся, що ви розумієте, що я сказав</item>
+        <item>Скажіть, будь ласка, у коментарях</item>
+        <item>Який кінь повинен бути поставлений?</item>
+        <item>Я нікому не довіряю</item>
+        <item>Я підтримую Росію!</item>
+        <item>Я голосую за Алвіна Мальвіна</item>
+        <item>поки що ні ...</item>
+        <item>одне з моїх відео</item>
+        <item>Привіт всім!</item>
+        <item>Я беру на себе відповідальність за</item>
+        <item>я ненавиджу тебе</item>
+        <item>дуже добре</item>
+        <item>Я не правий</item>
+        <item>неважливо</item>
+        <item>Так Так саме так!</item>
+        <item>Часто</item>
+        <item>Тут, м'яко, нічого не сміятися</item>
+        <item>Я, м'яко кажучи, не здивований</item>
+        <item>так, саме так!</item>
+        <item>саме так! (Абсолютно!)</item>
+        <item>Ми не були впевнені, але тоді ми гуляли, і в надусь - це правда.</item>
+        <item>Через ... (щось)</item>
+        <item>Надзвичайно ...</item>
+        <item>цілковито ...</item>
+        <item>Повністю звичайна сім'я</item>
+        <item>Дуже ...</item>
+        <item>Дуже важко не їсти солодощі ввечері</item>
+        <item>Фантастичний ...</item>
+        <item>це було фантастично весело</item>
+        <item>Нечуваний ...</item>
+        <item>Вона співає нечувано красиво</item>
+        <item>Виявляється, що це так</item>
+        <item>Виявляється, ви m ** ak</item>
+        <item>Damn ... (префікс)</item>
+        <item>Сьогодні проклятий холод</item>
+        <item>Шалено ... (розмова)</item>
+        <item>Дякуємо за безумно крутий вечір!</item>
+        <item>Я люблю ходити в кіно</item>
+        <item>Я люблю ходити в кіно</item>
+        <item>Людина засмучений, коли друзі не називають його</item>
+        <item>Вона навіть не вибачалася</item>
+        <item>навіть не ...</item>
+        <item>нарешті</item>
+        <item>За останні роки ...</item>
+        <item>в більшості випадків ...</item>
+        <item>нічого крім ...</item>
+        <item>Я просто зарезервую до середини січня</item>
+        <item>цілодобово</item>
+        <item>ніякий</item>
+        <item>Я хотів би ... (+ дієслово)</item>
+        <item>Такі як ... (наприклад, ...)</item>
+        <item>Він складається з ...</item>
+        <item>Ми прийшли до висновку, що ...</item>
+        <item>Точно рік тому</item>
+        <item>Прямо</item>
+        <item>ще гірше</item>
+        <item>час від часу</item>
+        <item>вперед</item>
+        <item>Це пройшло</item>
+        <item>Чекаю з нетерпінням ...</item>
+        <item>Чим більше дим, тим раніше ви помрете</item>
+        <item>Для того, щоб ..., потрібно ...</item>
+        <item>більш-менш</item>
+        <item>у робочий час</item>
+        <item>Пізно / пізніше / пізно</item>
+        <item>Jacob закінчив 16, потім поїхав додому.</item>
+        <item>Стиль прокидається, а потім приймає душ</item>
+        <item>Вчора, Lars приїхав додому пізніше, ніж зазвичай</item>
+        <item>Марка досліджень шведська з 2019 року.</item>
+        <item>Готувати протягом 10 хвилин, потім додати спеції</item>
+        <item>сьогодні мій день народження</item>
+        <item>від самого початку</item>
+        <item>достатньо</item>
+        <item>З часом / в кінці</item>
+        <item>Ця сторінка допоможе вам?</item>
+        <item>Він пошкодив ліву ногу, коли він впав</item>
+        <item>Це може бути корисним</item>
+        <item>Марія прокидається і приймає душ</item>
+        <item>тоді коли ...</item>
+        <item>Ларс дізнається гірше, ніж Катерина</item>
+        <item>У сфері видимості</item>
+        <item>як тільки ...</item>
+        <item>щонайменше</item>
+        <item>точно так</item>
+        <item>Як би ... (як би ...)</item>
+        <item>Спочатку</item>
+        <item>Проте</item>	</string-array>
+
+</resources>

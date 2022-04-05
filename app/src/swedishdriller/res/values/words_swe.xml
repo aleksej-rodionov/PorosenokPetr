@@ -1,0 +1,2568 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+
+    <string-array name="foreign1">	<item>en tröskel</item>
+        <item>ett badrum</item>
+        <item>en säng</item>
+        <item>ett sovrum</item>
+        <item>en stol</item>
+        <item>en matsal</item>
+        <item>en dörr</item>
+        <item>ett hus</item>
+        <item>ett kök</item>
+        <item>en trädgård</item>
+        <item>en granne</item>
+        <item>ett kontor</item>
+        <item>en ugn</item>
+        <item>ett kylskåp</item>
+        <item>ett bord</item>
+        <item>ett avfallshink</item>
+        <item>en skärbräda</item>
+        <item>en stekpanna</item>
+        <item>en grill</item>
+        <item>en kanna</item>
+        <item>en vattenkokare</item>
+        <item>ett lock</item>
+        <item>en potatisskalare</item>
+        <item>en tallrik</item>
+        <item>en kastrull</item>
+        <item>en burk</item>
+        <item>en diskho</item>
+        <item>en spis</item>
+        <item>en lägenhet</item>
+        <item>en stuga</item>
+        <item>en ladugård</item>
+        <item>en fästning</item>
+        <item>en husbåt</item>
+        <item>en hydda</item>
+        <item>en fyr</item>
+        <item>en timmerstuga</item>
+        <item>en herrgård</item>
+        <item>ett palats</item>
+        <item>ett tält</item>
+        <item>en husvagn</item>
+        <item>en träkoja</item>
+        <item>en villa</item>
+        <item>en väderkvarn</item>
+        <item>en ryggsäck</item>
+        <item>en pipa</item>
+        <item>en låda</item>
+        <item>en portfölj</item>
+        <item>en hink</item>
+        <item>en byrå</item>
+        <item>en flaska</item>
+        <item>en mapp</item>
+        <item>en handväska</item>
+        <item>en plastpåse</item>
+        <item>en resväska</item>
+        <item>en vas</item>
+        <item>en midjeväska</item>
+        <item>en fåtölj</item>
+        <item>en bokhylla</item>
+        <item>en matta</item>
+        <item>en diskmaskin</item>
+        <item>ett dörrhandtag</item>
+        <item>ett dörrlås</item>
+        <item>en omkopplare</item>
+        <item>en spegel</item>
+        <item>en kontorsstol</item>
+        <item>en kudde</item>
+        <item>en element</item>
+        <item>en soffa</item>
+        <item>en vägg</item>
+        <item>en garderob</item>
+        <item>en tvättmaskin</item>
+        <item>en badrock</item>
+        <item>ett fönster</item>
+        <item>en matberedare</item>
+        <item>en hårtork</item>
+        <item>en stavmixer</item>
+        <item>en strykjärn</item>
+        <item>en strykbräda</item>
+        <item>en gräsklippare</item>
+        <item>en glödlampa</item>
+        <item>en mikrovågsugn</item>
+        <item>ett köksfläkt</item>
+        <item>en nål</item>
+        <item>en symaskin</item>
+        <item>en tråd</item>
+        <item>en dammsugare</item>
+        <item>en väckarklocka</item>
+        <item>en handduk</item>
+        <item>en bok</item>
+        <item>en bur</item>
+        <item>en kula</item>
+        <item>en lampa</item>
+        <item>en nalle</item>
+        <item>en nykel</item>
+        <item>en penna</item>
+        <item>en sked</item>
+        <item>en tavla</item>
+        <item>ett glas</item>
+        <item>ett läsande</item>
+        <item>ett ljus</item>
+        <item>ett mönster</item>
+        <item>ett skåp</item>
+        <item>ett tak</item>
+        <item>en vägghylla</item>
+        <item>en gardinstång</item>
+        <item>en duster</item>
+        <item>hushållspapper</item>
+        <item>en servetthållare</item>
+        <item>en tvättkorg</item>
+        <item>ett tvättmedel</item>
+        <item>en sopskyffel</item>
+        <item>en ljusstake</item>
+        <item>en dörrklocka</item>
+        <item>en fönsterskrapa</item>
+        <item>ett sophink</item>
+        <item>gummihandskar</item>
+        <item>en trasa</item>
+        <item>en kran</item>
+        <item>en kokbok</item>
+        <item>en korkskruv</item>
+        <item>ett rivjärn</item>
+        <item>en juicepress</item>
+        <item>en slev</item>
+        <item>en elvisp</item>
+        <item>en bunke</item>
+        <item>en nötknäckare</item>
+        <item>en pepparkvarn</item>
+        <item>en svamp</item>
+        <item>en sil</item>
+        <item>en termometer</item>
+        <item>en timer</item>
+        <item>en brödrost</item>
+        <item>en visp</item>
+        <item>en yxa</item>
+        <item>en borr</item>
+        <item>ett lim</item>
+        <item>en hammare</item>
+        <item>en stege</item>
+        <item>en spik</item>
+        <item>en skruvmutter</item>
+        <item>en tång</item>
+        <item>en räfsa</item>
+        <item>en såg</item>
+        <item>en skruv</item>
+        <item>en skruvdragare</item>
+        <item>en spade</item>
+        <item>en tejp</item>
+        <item>en verktygslåda</item>
+        <item>lagom</item>
+        <item>ensamhet</item>
+        <item>enighet</item>
+        <item>mysigt</item>
+        <item>verktyg</item>
+        <item>en strömbrytare</item>
+        <item>ett smink</item>
+        <item>en toalett</item>
+        <item>en tandborste</item>
+        <item>en tandkräm</item>
+        <item>en tvål</item>
+        <item>en hårkam</item>
+        <item>ett lås</item>	</string-array>
+    <string-array name="foreign2">	<item>ett plommon</item>
+        <item>en Kiwi</item>
+        <item>ett björnbär</item>
+        <item>en honungsmelon</item>
+        <item>en persika</item>
+        <item>ett körsbär</item>
+        <item>ett blåbär</item>
+        <item>ett äpple</item>
+        <item>oliv</item>
+        <item>en ananas</item>
+        <item>en jordgubbe</item>
+        <item>ett hallon</item>
+        <item>en vindruva</item>
+        <item>en vattenmelon</item>
+        <item>ett päron</item>
+        <item>en banan</item>
+        <item>en avokado</item>
+        <item>en böna</item>
+        <item>en broccoli</item>
+        <item>en kål</item>
+        <item>en morot</item>
+        <item>en blomkål</item>
+        <item>en majs</item>
+        <item>en gurka</item>
+        <item>en vitlök</item>
+        <item>en sallad</item>
+        <item>en lök</item>
+        <item>en persilja</item>
+        <item>salt</item>
+        <item>en potatis</item>
+        <item>en pumpa</item>
+        <item>en rädisa</item>
+        <item>ett ris</item>
+        <item>en tomat</item>
+        <item>en kaffe</item>
+        <item>en cola</item>
+        <item>en varm choklad</item>
+        <item>en drink</item>
+        <item>en mjölk</item>
+        <item>ett mineralvatten</item>
+        <item>en apelsinjuice</item>
+        <item>en läsk</item>
+        <item>ett te</item>
+        <item>ett vatten</item>
+        <item>ett bröd</item>
+        <item>en frukost</item>
+        <item>en frukt</item>
+        <item>en ost</item>
+        <item>ett ägg</item>
+        <item>en fisk</item>
+        <item>en gaffel</item>
+        <item>en soppa</item>
+        <item>en svamp</item>
+        <item>en kniv</item>
+        <item>en citron</item>
+        <item>en kött</item>
+        <item>ett socker</item>
+        <item>en glass</item>
+        <item>en kaka</item>
+        <item>sur</item>
+        <item>söt</item>	</string-array>
+    <string-array name="foreign3">	<item>ett bälte</item>
+        <item>stövlar (en stövel)</item>
+        <item>en behå</item>
+        <item>en kappa</item>
+        <item>en klänning</item>
+        <item>glasögon</item>
+        <item>handskar (en handske)</item>
+        <item>strumpor (en strumpa)</item>
+        <item>underkläder</item>
+        <item>shorts</item>
+        <item>en halsduk</item>
+        <item>en skjorta</item>
+        <item>en sko</item>
+        <item>en t-shirt</item>
+        <item>byxor</item>
+        <item>örhängen</item>
+        <item>en hatt</item>
+        <item>ett halsband</item>
+        <item>trosor</item>
+        <item>en ficka</item>
+        <item>en knapp</item>
+        <item>en kjol</item>
+        <item>tofflor</item>
+        <item>strumpor (en strumpa)</item>
+        <item>en kostym</item>
+        <item>solglasögon</item>
+        <item>en slips</item>
+        <item>en klocka</item>
+        <item>en fluga</item>
+        <item>en galge</item>
+        <item>en krage</item>
+        <item>ett sminkbord</item>
+        <item>en rakapparat</item>
+        <item>ett ögonbryn</item>
+        <item>tjock</item>
+        <item>högklackade skor</item>
+        <item>jeans</item>
+        <item>en plastikkirurgi</item>
+        <item>ett rakblad</item>
+        <item>en rakkräm</item>
+        <item>smal</item>
+        <item>en gymnastiksko</item>
+        <item>en väst</item>
+        <item>en regnjacka</item>
+        <item>en morgonrock</item>
+        <item>en boxershorts</item>
+        <item>kalsonger</item>
+        <item>pyjamas</item>
+        <item>overaller</item>
+        <item>myskläder</item>
+        <item>en jacka</item>
+        <item>en poncho</item>
+        <item>en tröja</item>
+        <item>en kofta</item>
+        <item>en arm</item>
+        <item>kläder</item>
+        <item>ett paraply</item>
+        <item>svart</item>
+        <item>blå</item>
+        <item>brun</item>
+        <item>guldfärgad</item>
+        <item>grön</item>
+        <item>grå</item>
+        <item>orange</item>
+        <item>rosa</item>
+        <item>lila</item>
+        <item>sliten ut</item>
+        <item>röd</item>
+        <item>silverfärgad</item>
+        <item>vit</item>
+        <item>gul</item>	</string-array>
+    <string-array name="foreign4">	<item>ett hotell</item>
+        <item>en städerska</item>
+        <item>en logi</item>
+        <item>ett boende</item>
+        <item>ett nyckelkort</item>
+        <item>en rumsservice</item>
+        <item>ett kassaskåp</item>
+        <item>en dusch</item>
+        <item>ett rum</item>
+        <item>en luftkonditionering</item>
+        <item>en gäst</item>
+        <item>en nyckel</item>
+        <item>en hiss</item>
+        <item>en reception</item>
+        <item>en receptionist</item>
+        <item>en trådbuss</item>
+        <item>en lastbil</item>
+        <item>en skåpbil</item>
+        <item>en spårvagn</item>
+        <item>en tunnelbana</item>
+        <item>en moped</item>
+        <item>ett fartyg</item>
+        <item>en motorcykel</item>
+        <item>en helikopter</item>
+        <item>en buss</item>
+        <item>en bil</item>
+        <item>en cykel</item>
+        <item>en båt</item>
+        <item>en trafikstockning</item>
+        <item>en uttagsautomat</item>
+        <item>en sedel</item>
+        <item>ett mynt</item>
+        <item>en kupong</item>
+        <item>ett kreditkort</item>
+        <item>en valuta</item>
+        <item>en kund</item>
+        <item>en varukorg</item>
+        <item>en kassör</item>
+        <item>en plånbok</item>
+        <item>en dollar</item>
+        <item>euro</item>
+        <item>en butiksbiträde</item>
+        <item>en affär</item>
+        <item>en bank</item>
+        <item>en bar</item>
+        <item>en bro</item>
+        <item>en busshållplats</item>
+        <item>ett slott</item>
+        <item>en kyrkogård</item>
+        <item>en korsning</item>
+        <item>en tvätt</item>
+        <item>en park</item>
+        <item>ett trafikljus</item>
+        <item>en tågstation</item>
+        <item>en fontän</item>
+        <item>en bensinstation</item>
+        <item>ett bibliotek</item>
+        <item>en fabrik</item>
+        <item>ett museum</item>
+        <item>en skyskrapa</item>
+        <item>en teater</item>
+        <item>ett kafé</item>
+        <item>ett postkontor</item>
+        <item>ett sjukhus</item>
+        <item>ett apotek</item>
+        <item>en polisstation</item>
+        <item>ett nöjesfält</item>
+        <item>en skola</item>
+        <item>en köttaffär</item>
+        <item>en spärr</item>
+        <item>ett torg</item>
+        <item>en stad</item>
+        <item>ett lås</item>
+        <item>en barnvagn</item>
+        <item>en färja</item>
+        <item>en linbana</item>
+        <item>ett garage</item>
+        <item>en rulltrappa</item>
+        <item>en parkeringsplats</item>
+        <item>ett passagerarsäte</item>
+        <item>en järnväg</item>
+        <item>en sparkcykel</item>
+        <item>ett säkerhetsbälte</item>
+        <item>en taxi</item>
+        <item>en biljett</item>
+        <item>ett trafikskylt</item>
+        <item>ett bagageutrymme</item>
+        <item>ett hjul</item>
+        <item>en rullstol</item>
+        <item>ett hörn</item>
+        <item>en riktning</item>
+        <item>ett avstånd</item>
+        <item>en gata</item>
+        <item>en flygbiljett</item>
+        <item>en fart</item>
+        <item>en promenad</item>
+        <item>en restaurang</item>
+        <item>en springande</item>
+        <item>en station</item>
+        <item>en väg</item>
+        <item>ett brev</item>
+        <item>ett frimärke</item>
+        <item>ett tåg</item>
+        <item>ett torn</item>
+        <item>en vikt</item>
+        <item>ett övergångsställe</item>
+        <item>ett stoppskylt</item>
+        <item>förbjudet att beträda</item>
+        <item>biologisk risk</item>
+        <item>förbjudet område</item>
+        <item>halt golv</item>
+        <item>vägarbete</item>
+        <item>brant lutning</item>
+        <item>viltövergång</item>
+        <item>rasrisk</item>
+        <item>övergångsställe för barn</item>
+        <item>fara</item>
+        <item>en invånare</item>
+        <item>farliga ämnen</item>
+        <item>hög spänning</item>
+        <item>en övervakning</item>	</string-array>
+    <string-array name="foreign5">	<item>en kock</item>
+        <item>en journalist</item>
+        <item>en advokat</item>
+        <item>en läkare</item>
+        <item>en mekaniker</item>
+        <item>en präst</item>
+        <item>en forskare</item>
+        <item>en sekreterare</item>
+        <item>en lärare</item>
+        <item>en kontorsarbetare</item>
+        <item>en musiker</item>
+        <item>en programmerare</item>
+        <item>en student</item>
+        <item>en servitör</item>
+        <item>en revisor</item>
+        <item>en arkitekt</item>
+        <item>en smed</item>
+        <item>en bilmekaniker</item>
+        <item>en snickare</item>
+        <item>en kemist</item>
+        <item>fredag</item>
+        <item>lördag</item>
+        <item>onsdag</item>
+        <item>torsdag</item>
+        <item>måndag</item>
+        <item>tisdag</item>
+        <item>en brandman</item>
+        <item>en fiskare</item>
+        <item>en trädgårdsmästare</item>
+        <item>en sjuksköterska</item>
+        <item>en målare</item>
+        <item>en rörmokare</item>
+        <item>en polis</item>
+        <item>en psykolog</item>
+        <item>en taxichaufför</item>
+        <item>en veterinär</item>
+        <item>en skribent</item>
+        <item>en astronaut</item>
+        <item>en kapten</item>
+        <item>en tränare</item>
+        <item>en befälhavare</item>
+        <item>en regissör</item>
+        <item>en kung</item>
+        <item>En riddare</item>
+        <item>en hyresvärd</item>
+        <item>en politiker</item>
+        <item>en påve</item>
+        <item>en president</item>
+        <item>en prins</item>
+        <item>en prinsessa</item>
+        <item>en drottning</item>
+        <item>en rebell</item>
+        <item>en sheriff</item>
+        <item>en kundtjänst</item>
+        <item>anställda</item>
+        <item>en entreprenör</item>
+        <item>ett fax</item>
+        <item>en chef</item>
+        <item>ett möte</item>
+        <item>söndag</item>
+        <item>en organisation</item>
+        <item>en presentation</item>
+        <item>en vinst</item>
+        <item>en befodran</item>
+        <item>löneförhöjning</item>
+        <item>en lön</item>
+        <item>en häftapparat</item>
+        <item>brevpapper</item>
+        <item>en tejphållare</item>
+        <item>en arbetstid</item>
+        <item>en gren</item>
+        <item>ett skrivbord</item>
+        <item>ett arkivskåp</item>
+        <item>en kopiator</item>
+        <item>en konferens</item>
+        <item>en vattenmaskin</item>
+        <item>en häftklammerborttagare</item>
+        <item>ett bås</item>
+        <item>en ordbehandlare</item>
+        <item>en molnlagring</item>
+        <item>ett nattskift</item>
+        <item>en arbetare</item>
+        <item>ett arbete</item>
+        <item>ett jobb</item>
+        <item>ett kontor</item>
+        <item>ett yrke</item>
+        <item>det bedriver underrättelsetjänst</item>
+        <item>en vakt</item>
+        <item>en arbetsplats</item>
+        <item>en civil pilot</item>
+        <item>användarvänlig</item>
+        <item>människocentrerad</item>
+        <item>uppgifter</item>
+        <item>tydlighet</item>
+        <item>under arbetstid</item>	</string-array>
+    <string-array name="foreign6">	<item>ett batteri</item>
+        <item>en mobiltelefon</item>
+        <item>en dator</item>
+        <item>en fil</item>
+        <item>hörlurar</item>
+        <item>ett tangentbord</item>
+        <item>en mus</item>
+        <item>ett nätverk</item>
+        <item>ett lösenord</item>
+        <item>en kontakt</item>
+        <item>en skrivare</item>
+        <item>en skärm</item>
+        <item>en bifogad fil</item>
+        <item>en sladd</item>
+        <item>en laddare</item>
+        <item>en hörlur</item>
+        <item>ett e-post meddelande</item>
+        <item>ett headset</item>
+        <item>en musikspelare</item>
+        <item>en smartphone</item>
+        <item>ett uttag</item>
+        <item>en surfplatta</item>
+        <item>en uppladdning</item>
+        <item>en hemsida</item>
+        <item>en bok</item>
+        <item>en miniräknare</item>
+        <item>ett klassrum</item>
+        <item>ett examensbevis</item>
+        <item>ett suddgummi</item>
+        <item>en promovering</item>
+        <item>en bläck</item>
+        <item>en föreläsning</item>
+        <item>bärbar dator</item>
+        <item>ett gem</item>
+        <item>en penna</item>
+        <item>en penna</item>
+        <item>en linjal</item>
+        <item>en studentlegitimation</item>
+        <item>en whiteboard</item>
+        <item>ett valv</item>
+        <item>en cirkel</item>
+        <item>en kon</item>
+        <item>en kub</item>
+        <item>en cylinder</item>
+        <item>en åttahörning</item>
+        <item>en oval</item>
+        <item>en pentagon</item>
+        <item>en pyramid</item>
+        <item>en rektangel</item>
+        <item>en sexhörning</item>
+        <item>en ring</item>
+        <item>en klot</item>
+        <item>en fyrkant</item>
+        <item>en triangel</item>
+        <item>en kil</item>
+        <item>en atom</item>
+        <item>en bakterie</item>
+        <item>en cell</item>
+        <item>en kemi</item>
+        <item>ett matsmältningssystem</item>
+        <item>en pipett</item>
+        <item>en evolution</item>
+        <item>ett experiment</item>
+        <item>ett mikroskop</item>
+        <item>en molekyl</item>
+        <item>en addition</item>
+        <item>en vinkel</item>
+        <item>en division</item>
+        <item>lika med ...</item>
+        <item>en ekvation</item>
+        <item>en funktion</item>
+        <item>oändlig</item>
+        <item>en multiplikation</item>
+        <item>en parentes</item>
+        <item>procent</item>
+        <item>en rot</item>
+        <item> tre upphöjt till två</item>
+        <item>en subtraktion</item>
+        <item>en strömknapp</item>
+        <item>en minneskortläsare</item>
+        <item>en strömkabel</item>
+        <item>ett kalkylblad</item>
+        <item>en adapter</item>
+        <item>en USB-kabel</item>
+        <item>en extern hårddisk</item>
+        <item>en musplatta</item>
+        <item>en högtalare</item>
+        <item>en powerbank</item>
+        <item>användarvänlig</item>
+        <item>en laptopfodral</item>
+        <item>en skyddsskärm</item>
+        <item>en videokonferens</item>
+        <item>en lärare</item>
+        <item>övningar</item>
+        <item>en läsande</item>
+        <item>en läxa</item>
+        <item>en lektion</item>
+        <item>en möjlighet</item>
+        <item>en skola</item>
+        <item>en skrivande</item>
+        <item>ett meter</item>
+        <item>ett skrivande</item>
+        <item>ett språk</item>
+        <item>en anledning</item>
+        <item>ämne och predikat</item>
+        <item>en fjärdedel</item>
+        <item>en fart</item>
+        <item>snabbt</item>
+        <item>ett misstag</item>
+        <item>ett forskningslabb</item>
+        <item>ett läkemedelsföretag</item>
+        <item>en del</item>
+        <item>en tanke</item>
+        <item>fortare</item>
+        <item>snabbare</item>
+        <item>avlägsen</item>
+        <item>på hjul</item>
+        <item>få / många</item>
+        <item>lite / mycket</item>	</string-array>
+    <string-array name="foreign7">	<item>en kvinna</item>
+        <item>en pojke</item>
+        <item>föräldrar</item>
+        <item>en familj</item>
+        <item>en far</item>
+        <item>en flickvän</item>
+        <item>en farfar</item>
+        <item>en mormor</item>
+        <item>en mor</item>
+        <item>en pojkvän</item>
+        <item>Canada</item>
+        <item>Kina</item>
+        <item>Finland</item>
+        <item>Frankrike</item>
+        <item>Tyskland</item>
+        <item>Storbritannien</item>
+        <item>Italien</item>
+        <item>Japan</item>
+        <item>Mexiko</item>
+        <item>Norge</item>
+        <item>Ryssland</item>
+        <item>Sverige</item>
+        <item>Nederländerna</item>
+        <item>en amerikan</item>
+        <item>en australier</item>
+        <item>en britt</item>
+        <item>en kanadensare</item>
+        <item>en kines</item>
+        <item>en holländare</item>
+        <item>en finnländare</item>
+        <item>en fransman</item>
+        <item>en tysk</item>
+        <item>en italienare</item>
+        <item>en japan</item>
+        <item>en norrman</item>
+        <item>en rysk</item>
+        <item>en svensk</item>
+        <item>en födelsedag</item>
+        <item>en jul</item>
+        <item>en julgran</item>
+        <item>en begravning</item>
+        <item>en present</item>
+        <item>ett äktenskap</item>
+        <item>en mors dag</item>
+        <item>en nyårsafton</item>
+        <item>Jultomten</item>
+        <item>en snögubbe</item>
+        <item>en Alla hjärtans dag</item>
+        <item>ett bröllop</item>
+        <item>en pyroman</item>
+        <item>en cykelstöld</item>
+        <item>en muta</item>
+        <item>en övervakningskamera</item>
+        <item>ett kreditkortsbedrägeri</item>
+        <item>en brottsplats</item>
+        <item>en detektiv</item>
+        <item>en hackare</item>
+        <item>en utredning</item>
+        <item>ett mord</item>
+        <item>en pepparspray</item>
+        <item>en rånare</item>
+        <item>en siren</item>
+        <item>en stöld</item>
+        <item>en tjuv</item>
+        <item>en bukett</item>
+        <item>en brud</item>
+        <item>en skilsmässa</item>
+        <item>en brudgum</item>
+        <item>en smekmånad</item>
+        <item>ett frieri</item>
+        <item>singel</item>
+        <item>en bröllopstårta</item>
+        <item>ett bröllopskontrakt</item>
+        <item>en bröllopsdag</item>
+        <item>en bröllopsklänning</item>
+        <item>en bröllopsinbjudan</item>
+        <item>en bröllopsring</item>
+        <item>en valsedel</item>
+        <item>en barrikad</item>
+        <item>en korruption</item>
+        <item>en kopp</item>
+        <item>en debatt</item>
+        <item>en demonstration</item>
+        <item>en ambassad</item>
+        <item>religiös skräck</item>
+        <item>sällan</item>
+        <item>människocentrerad</item>
+        <item>en brist på samvete och medkänsla för andra</item>
+        <item>en sjukvård</item>
+        <item>en tydlighet</item>
+        <item>mjuk</item>
+        <item>otroligt</item>
+        <item>en spådam</item>
+        <item>en regering</item>
+        <item>ett parlament</item>
+        <item>en framställning</item>
+        <item>ett upplopp</item>
+        <item>en kravallpolis</item>
+        <item>en skatt</item>
+        <item>en ängel</item>
+        <item>en buddhism</item>
+        <item>en kristendom</item>
+        <item>en djävul</item>
+        <item>en gud</item>
+        <item>en himmel</item>
+        <item>en islam</item>
+        <item>en judendom</item>
+        <item>en munk</item>
+        <item>en moske</item>
+        <item>en nunna</item>
+        <item>en profet</item>
+        <item>en helgon</item>
+        <item>en kärlek</item>
+        <item>en kondom</item>
+        <item>en sex</item>
+        <item>jag blev tagen av polisen</item>
+        <item>en batong</item>
+        <item>en polisjakt</item>
+        <item>ett fingeravtryck</item>
+        <item>bovar</item>
+        <item>handbojor</item>
+        <item>en pengatvätt</item>
+        <item>en domare</item>
+        <item>Måste jag betala skatt?</item>
+        <item>vad ska jag göra med skatter?</item>
+        <item>vem som helst</item>
+        <item>grundlagsstadgade rätt till ...</item>
+        <item>en jury</item>
+        <item>en lag</item>
+        <item>en flykt från fängelse</item>
+        <item>en fängelsecell</item>
+        <item>en kriminalvårdare</item>
+        <item>en fånge</item>
+        <item>misstänkta</item>
+        <item>en terrorist</item>
+        <item>en efterlyst</item>
+        <item>en kraft</item>
+        <item>gener</item>
+        <item>ett släktträd</item>
+        <item>en brorson</item>
+        <item>en svåger</item>
+        <item>en mamma</item>
+        <item>vi håller händerna</item>
+        <item>trillingar</item>
+        <item>ett altare</item>
+        <item>en gräl</item>
+        <item>en gudfar</item>
+        <item>en morbror</item>
+        <item>ett samtal</item>
+        <item>ett handslag</item>
+        <item>ett personligt utrymme</item>
+        <item>en kyss</item>
+        <item>en klädkod</item>
+        <item>en irländare</item>
+        <item>en walesare</item>
+        <item>en skott</item>
+        <item>en croat</item>
+        <item>en schweizare</item>
+        <item>en ukrainare</item>
+        <item>en belgare</item>
+        <item>en österrikare</item>
+        <item>Irland</item>
+        <item>Wales</item>
+        <item>Skottland</item>
+        <item>Portugal</item>
+        <item>Grekland</item>
+        <item>Kroatien</item>
+        <item>ideligen</item>
+        <item>ett utseende</item>
+        <item>Schweiz</item>
+        <item>Ukraina</item>
+        <item>Sydkorea</item>
+        <item>Belgien</item>
+        <item>Österrike</item>
+        <item>ett bedrägeri</item>
+        <item>besviken (på)</item>
+        <item>en flicka</item>
+        <item>en händelse</item>
+        <item>en kista</item>
+        <item>en man</item>
+        <item>en syster</item>
+        <item>erfarenheter</item>
+        <item>ett barn</item>
+        <item>ett land</item>
+        <item>ett möte</item>
+        <item>ett tålamod</item>
+        <item>vi skilde oss</item>
+        <item>obegränsade möjligheter</item>
+        <item>bästa kompis</item>
+        <item>en uppmärksamhet</item>
+        <item>falsk</item>
+        <item>sann</item>
+        <item>grymt</item>
+        <item>självförtroende</item>
+        <item>svartsjuk</item>
+        <item>äckligt</item>
+        <item>konstig</item>
+        <item>uppspelt</item>
+        <item>glad</item>
+        <item>förälskad</item>
+        <item>nervös</item>
+        <item>avslappnad</item>
+        <item>utvilad</item>
+        <item>ledsen</item>
+        <item>överraskad</item>
+        <item>trött</item>
+        <item>uttråkad</item>
+        <item>besviken</item>
+        <item>lugn</item>
+        <item>en galen</item>
+        <item>arg</item>
+        <item>låg</item>
+        <item>liten</item>
+        <item>många</item>
+        <item>mycket</item>
+        <item>ny</item>
+        <item>frisk</item>
+        <item>ful</item>
+        <item>full</item>
+        <item>gammal</item>
+        <item>gratis</item>
+        <item>gift (med)</item>
+        <item>dålig</item>
+        <item>Det bästa</item>
+        <item>lycklig</item>
+        <item>människor</item>
+        <item>modig</item>
+        <item>nöjd (med)</item>
+        <item>sjuk</item>
+        <item>pengar</item>
+        <item>vanlig</item>
+        <item>upptagen</item>
+        <item>ledig</item>
+        <item>demokratiskt vald</item>
+        <item>ett samhälle</item>
+        <item>en marsch till stöd för cannabiskulturen</item>
+        <item>olagligt</item>
+        <item>tillfällig</item>
+        <item>ett slanguttryck</item>
+        <item>en användare</item>
+        <item>en syra</item>
+        <item>påtaglig</item>
+        <item>uppenbar</item>
+        <item>företräde</item>
+        <item>en makt</item>
+        <item>mänskliga rättigheter</item>
+        <item>en åskådning (av)</item>
+        <item>ett ämne</item>
+        <item>en ordning</item>
+        <item>omständigheter</item>
+        <item>en valmöjlighet</item>
+        <item>ett beteende</item>
+        <item>vanligen</item>
+        <item>regelbundet</item>
+        <item>en lösning</item>
+        <item>förfärlig</item>
+        <item>hemskt</item>
+        <item>trygg</item>
+        <item>lätt</item>
+        <item>falsk</item>
+        <item>felaktiga</item>
+        <item>oacceptabel</item>
+        <item>en sanning</item>
+        <item>en förmåga</item>
+        <item>ett självförsörjande</item>
+        <item>skamkänslor</item>
+        <item>en handling</item>
+        <item>självklar</item>
+        <item>ett resultat</item>
+        <item>vacker</item>
+        <item>ett löfte</item>
+        <item>gärna</item>
+        <item>ensam</item>
+        <item>rädd</item>
+        <item>beteendemönster</item>
+        <item>svarta marknaden</item>
+        <item>tung</item>
+        <item>ung</item>
+        <item>lätt</item>
+        <item>svårt</item>
+        <item>snart</item>
+        <item>snygg</item>
+        <item>stark</item>
+        <item>ett stöd till</item>
+        <item>tydligt</item>
+        <item>ett syfte</item>
+        <item>enbart</item>
+        <item>yttrandefriheten</item>
+        <item>helg</item>
+        <item>närmaste</item>
+        <item>nyligen</item>
+        <item>för liten</item>	</string-array>
+    <string-array name="foreign8">	<item>noll</item>
+        <item>en / ett</item>
+        <item>två</item>
+        <item>tre</item>
+        <item>fyra</item>
+        <item>fem</item>
+        <item>sex</item>
+        <item>sju</item>
+        <item>åtta</item>
+        <item>nio</item>
+        <item>tio</item>
+        <item>elva</item>
+        <item>tolv</item>
+        <item>tretton</item>
+        <item>fjorton</item>
+        <item>femton</item>
+        <item>sexton</item>
+        <item>sjutton</item>
+        <item>arton</item>
+        <item>nitton</item>
+        <item>tjugo</item>
+        <item>tjugoett</item>
+        <item>tjugotvå</item>
+        <item>tjugofem</item>
+        <item>trettio</item>
+        <item>fyrtio</item>
+        <item>femtio</item>
+        <item>sextio</item>
+        <item>sjuttio</item>
+        <item>sjuttifem</item>
+        <item>åttio</item>
+        <item>nittio</item>
+        <item>hundra</item>
+        <item>etthundrafemtio</item>
+        <item>tvåhundra</item>
+        <item>trehundra</item>
+        <item>fyrahundra</item>
+        <item>femhundra</item>
+        <item>tusen</item>
+        <item>tvåtusen</item>
+        <item>tretusen</item>
+        <item>fyratusen</item>
+        <item>femtusen</item>
+        <item>tiotusen</item>
+        <item>femtiotusen</item>
+        <item>etthundratusen</item>
+        <item>en miljon</item>
+        <item>den första</item>
+        <item>andra</item>
+        <item>tredje</item>
+        <item>fjärde</item>
+        <item>femte</item>
+        <item>sjätte</item>
+        <item>sjunde</item>
+        <item>åttonde</item>
+        <item>nionde</item>
+        <item>tionde</item>
+        <item>elfte</item>
+        <item>tolfte</item>
+        <item>trettonde</item>
+        <item>fjortonde</item>
+        <item>femtonde</item>
+        <item>sextonde</item>
+        <item>sjuttonde</item>
+        <item>artonde</item>
+        <item>nittonde</item>
+        <item>tjugonde</item>
+        <item>tjugoförsta</item>
+        <item>tjugoandra</item>
+        <item>femtionde</item>
+        <item>hundrade</item>
+        <item>femhundrade</item>
+        <item>tusende</item>
+        <item>miljonte</item>	</string-array>
+    <string-array name="foreign9">	<item>en ambulans</item>
+        <item>ett plåster</item>
+        <item>en yrsel</item>
+        <item>en hostning</item>
+        <item>en feber</item>
+        <item>en huvudvärk</item>
+        <item>en medicin</item>
+        <item>en tandvärk</item>
+        <item>en kropp</item>
+        <item>ett huvud</item>
+        <item>ett hår</item>
+        <item>ett ansikte</item>
+        <item>ett öra</item>
+        <item>ett öga</item>
+        <item>en näsa</item>
+        <item>en tand</item>
+        <item>läppar</item>
+        <item>en hand</item>
+        <item>ett finger</item>
+        <item>en fot</item>
+        <item>en arm</item>
+        <item>ett skägg</item>
+        <item>ett ben</item>
+        <item>en hjärna</item>
+        <item>en armbåge</item>
+        <item>en häl</item>
+        <item>ett knä</item>
+        <item>ett ben</item>
+        <item>en mustasch</item>
+        <item>en muskel</item>
+        <item>ett skelett</item>
+        <item>en hud</item>
+        <item>en ryggrad</item>
+        <item>en blod</item>
+        <item>en krycka</item>
+        <item>en undersökning</item>
+        <item>ett hjärtslag</item>
+        <item>jag ligger under en dropper</item>
+        <item>en vårdräkning</item>
+        <item>en tidskrift</item>
+        <item>en patient</item>
+        <item>en inskrivning</item>
+        <item>en puls</item>
+        <item>en spruta</item>
+        <item>ett stetoskop</item>
+        <item>en bår</item>
+        <item>en röntgen (bild)</item>
+        <item>ett bedövningsmedel</item>
+        <item>en tandprotes</item>
+        <item>en tandkött</item>
+        <item>en haka</item>
+        <item>finnar</item>
+        <item>en tunga</item>
+        <item>en njure</item>
+        <item>en mage</item>
+        <item>en solsäng</item>
+        <item>en flytande tvål</item>
+        <item>ett omklädningsrum</item>
+        <item>en massage</item>
+        <item>en viktförlust</item>
+        <item>ögonlock</item>
+        <item>en ländrygg</item>
+        <item>en midja</item>
+        <item>en nagel</item>
+        <item>en axel</item>
+        <item>ett bröst</item>
+        <item>en vrist</item>
+        <item>kinder</item>
+        <item>en adamsäpple</item>
+        <item>en tånagel</item>
+        <item>en armhåla</item>
+        <item>en käke</item>
+        <item>en navel</item>
+        <item>en öronvärk</item>
+        <item>magont</item>
+        <item>ett ryggont</item>
+        <item>ett blåmärke</item>
+        <item>en suddig syn</item>
+        <item>torra läppar</item>
+        <item>skridskor</item>
+        <item>ett illamående</item>
+        <item>en insektsbett</item>
+        <item>en smärta</item>
+        <item>ett brutet ben</item>
+        <item>en sträckning</item>
+        <item>en kramp</item>
+        <item>det gör ont</item>
+        <item>en allergi</item>
+        <item>en rinnande näsa</item>
+        <item>en astma</item>
+        <item>ett högt blodtryck</item>
+        <item>en influensa</item>
+        <item>en diabetes</item>
+        <item>en kardiolog</item>
+        <item>en barnläkare</item>
+        <item>en hudläkare</item>
+        <item>en narkosläkare</item>
+        <item>en kirurg</item>
+        <item>en halstablett</item>
+        <item>en värktablett</item>
+        <item>vitaminer</item>
+        <item>ett vaccin</item>
+        <item>ont i huvudet</item>
+        <item>en sjukdom</item>
+        <item>en terapi</item>
+        <item>en mun</item>
+        <item>ett hjärta</item>
+        <item>en kroppsvikt</item>
+        <item>ett tillstånd</item>
+        <item>i takt med att drogruset avtar</item>
+        <item>ett psykedeliskt tillstånd</item>
+        <item>Utsättningssymtom</item>
+        <item>en oro</item>
+        <item>en ångest</item>
+        <item>hos vuxna</item>
+        <item>Behandlingen ska pågå i flera månade</item>
+        <item>10 mg en gång dagligen</item>
+        <item>kroniskt sjukdom</item>
+        <item>kognitiv beteendeterapi</item>
+        <item>förstoppning</item>
+        <item>Diarré</item>
+        <item>kräkning</item>
+        <item>minskad libido</item>
+        <item>ett anorgasmi</item>
+        <item>rastlöshet</item>
+        <item>viktökning</item>
+        <item>under behandlingen</item>
+        <item>Tvångssyndrom</item>
+        <item>Paniksyndrom med eller utan agorafobi</item>
+        <item>Social fobi</item>
+        <item>Generaliserade ångesttillstånd</item>
+        <item>dyrt</item>
+        <item>skidor</item>	</string-array>
+    <string-array name="foreign10">	<item>en dimma</item>
+        <item>ett regn</item>
+        <item>en snö</item>
+        <item>en sol</item>
+        <item>en temperatur</item>
+        <item>en väderprognos</item>
+        <item>en vind</item>
+        <item>en vinter</item>
+        <item>en sommar</item>
+        <item>en höst</item>
+        <item>en vår</item>
+        <item>en is</item>
+        <item>en storm</item>
+        <item>ett läger</item>
+        <item>ett myggnät</item>
+        <item>en ficklampa</item>
+        <item>en burkmat</item>
+        <item>en kompass</item>
+        <item>ett rep</item>
+        <item>en sovsäck</item>
+        <item>en lägereld</item>
+        <item>en sax</item>
+        <item>en konservöppnare</item>
+        <item>en fickkniv</item>
+        <item>tändstickor (en tändsticka)</item>
+        <item>en vattenflaska</item>
+        <item>en tjur</item>
+        <item>en katt</item>
+        <item>en kyckling</item>
+        <item>en ko</item>
+        <item>en åsna</item>
+        <item>en anka</item>
+        <item>en get</item>
+        <item>en häst</item>
+        <item>en mus</item>
+        <item>en gris</item>
+        <item>en duva</item>
+        <item>en kanin</item>
+        <item>en får</item>
+        <item>en kalkon</item>
+        <item>en bambu</item>
+        <item>en gren</item>
+        <item>en kaktus</item>
+        <item>en blomma</item>
+        <item>en gräs</item>
+        <item>örter</item>
+        <item>ett löv</item>
+        <item>en palm</item>
+        <item>en tall</item>
+        <item>en rot</item>
+        <item>ett frö</item>
+        <item>en pinne</item>
+        <item>ett träd</item>
+        <item>en trä</item>
+        <item>en huvudstad</item>
+        <item>en klippa</item>
+        <item>en öken</item>
+        <item>sanddyner</item>
+        <item>en översvämning</item>
+        <item>ett jordklot</item>
+        <item>en topp</item>
+        <item>en sten</item>
+        <item>ett hav</item>
+        <item>en skidbacke</item>
+        <item>en tornado</item>
+        <item>en tunnel</item>
+        <item>en vulkan</item>
+        <item>ett vattenfall</item>
+        <item>en våg</item>
+        <item>en fladdermus</item>
+        <item>en björn</item>
+        <item>ett bi</item>
+        <item>en fjäril</item>
+        <item>en kamel</item>
+        <item>en kackerlacka</item>
+        <item>en elefant</item>
+        <item>en groda</item>
+        <item>en apa</item>
+        <item>en råtta</item>
+        <item>en haj</item>
+        <item>en snigel</item>
+        <item>en orm</item>
+        <item>en spindel</item>
+        <item>en varg</item>
+        <item>Afrika</item>
+        <item>America</item>
+        <item>Asien</item>
+        <item>en komet</item>
+        <item>jorden</item>
+        <item>en öst</item>
+        <item>Europa</item>
+        <item>en galax</item>
+        <item>en nord</item>
+        <item>en planet</item>
+        <item>en söder</item>
+        <item>en rymd</item>
+        <item>en stjärna</item>
+        <item>ett teleskop</item>
+        <item>en tidszon</item>
+        <item>en väst</item>
+        <item>en bisonoxe</item>
+        <item>en kameleont</item>
+        <item>en kobra</item>
+        <item>en krokodil</item>
+        <item>en dinosaurie</item>
+        <item>en giraff</item>
+        <item>en gorilla</item>
+        <item>en känguru</item>
+        <item>en ödla</item>
+        <item>en panther</item>
+        <item>en noshörning</item>
+        <item>en tiger</item>
+        <item>en zebra</item>
+        <item>en befruktning</item>
+        <item>en fågelholk</item>
+        <item>en kolibri</item>
+        <item>en kråka</item>
+        <item>en falcon</item>
+        <item>en fjäder</item>
+        <item>en gås</item>
+        <item>en struts</item>
+        <item>en uggla</item>
+        <item>en papegoja</item>
+        <item>en pelikan</item>
+        <item>en pingvin</item>
+        <item>en tupp</item>
+        <item>en fiskmås</item>
+        <item>en flamingo</item>
+        <item>en svala</item>
+        <item>en svan</item>
+        <item>en örn</item>
+        <item>en sopbil</item>
+        <item>en global uppvärmning</item>
+        <item>en soptipp</item>
+        <item>ett kärnkraftverk</item>
+        <item>en oljeplattform</item>
+        <item>en oljeläckage</item>
+        <item>ett kraftverk</item>
+        <item>en förnybar energi</item>
+        <item>solpaneller</item>
+        <item>ett horn</item>
+        <item>en rådjur, en hjort</item>
+        <item>en krok</item>
+        <item>en jägare</item>
+        <item>en räv</item>
+        <item>en sikte</item>
+        <item>en blomkruka</item>
+        <item>en grep</item>
+        <item>en skottkärra</item>
+        <item>en utomjording</item>
+        <item>en krabba</item>
+        <item>en delfin</item>
+        <item>en val</item>
+        <item>en måne</item>
+        <item>en skog</item>
+        <item>ett vatten</item>
+        <item>en eld</item>
+        <item>en hund</item>
+        <item>en insekt</item>
+        <item>en kulle</item>
+        <item>stor</item>
+        <item>ett fält</item>
+        <item>ett jordskred</item>
+        <item>en hagelstorm</item>
+        <item>en tsunami</item>
+        <item>en tyfon</item>
+        <item>en jordbävning</item>
+        <item>en lavin</item>
+        <item>ett vulkanutbrott</item>
+        <item>en snöstorm</item>
+        <item>ett åskoväder</item>
+        <item>en orkan</item>
+        <item>en meteornedslag</item>
+        <item>en flykting</item>
+        <item>en värmebölja</item>
+        <item>en svält</item>
+        <item>en korall</item>
+        <item>en sköldpadda</item>
+        <item>en sjöborre</item>
+        <item>en säl</item>
+        <item>en valross</item>
+        <item>en ål</item>
+        <item>en räka</item>
+        <item>en späckhuggare</item>
+        <item>en tonfisk</item>
+        <item>en sjöko</item>
+        <item>rötter</item>
+        <item>en planta</item>
+        <item>en trädgårdsslang</item>
+        <item>en vattenkanna</item>
+        <item>en trädgårdssax</item>
+        <item>en vattenspridare</item>
+        <item>en hacka</item>
+        <item>en jasmin</item>
+        <item>träd blommor</item>
+        <item>en älg</item>
+        <item>en bjork</item>
+        <item>en dag</item>
+        <item>en fågel</item>
+        <item>en fisk</item>
+        <item>en myra</item>
+        <item>en tid</item>
+        <item>en timma</item>
+        <item>en värld</item>
+        <item>en vecka</item>
+        <item>ett år</item>
+        <item>ett djur</item>
+        <item>ett klimat</item>
+        <item>ett sekel</item>
+        <item>miljöförorening</item>
+        <item>yttre rymden</item>
+        <item>en regnbåge</item>
+        <item>det regnar</item>
+        <item>det snöar</item>
+        <item>en kraft</item>
+        <item>en jord</item>	</string-array>
+    <string-array name="foreign11">	<item>jag gillar</item>
+        <item>jag träffar</item>
+        <item>jag dricker</item>
+        <item>Jag gillar inte</item>
+        <item>jag tycker</item>
+        <item>jag räknar</item>
+        <item>jag reser</item>
+        <item>jag landar</item>
+        <item>jag äter</item>
+        <item>jag lagar mat</item>
+        <item>jag sitter</item>
+        <item>jag cyklar</item>
+        <item>jag ställer ned</item>
+        <item>jag vinner</item>
+        <item>jag går ut</item>
+        <item>jag köper</item>
+        <item>jag spottar</item>
+        <item>jag klipper</item>
+        <item>jag går</item>
+        <item>jag drar</item>
+        <item>jag trycker</item>
+        <item>jag förnekar</item>
+        <item>jag läser</item>
+        <item>jag lyssnar</item>
+        <item>jag badar</item>
+        <item>jag borstar tänderna</item>
+        <item>jag duschar</item>
+        <item>jag sjunger</item>
+        <item>jag dansar</item>
+        <item>jag tittar på tv</item>
+        <item>jag bråkar</item>
+        <item>jag hoppar</item>
+        <item>jag springer</item>
+        <item>jag klär på mig</item>
+        <item>jag klär av mig</item>
+        <item>jag dammsuger</item>
+        <item>jag stryker</item>
+        <item>jag diskar</item>
+        <item>jag blåser</item>
+        <item>jag simmar</item>
+        <item>jag ignorerar</item>
+        <item>jag jobbar</item>
+        <item>jag tar mig fram</item>
+        <item>jag ställer frågor</item>
+        <item>jag kikar</item>
+        <item>den kommer upp inom kort</item>
+        <item>jag ger akt på ...</item>
+        <item>jag lider av ...</item>
+        <item>den medför ...</item>
+        <item>jag ställer diagnosen</item>
+        <item>jag skräpar ner</item>
+        <item>han lider av ...</item>
+        <item>jag skjuter</item>
+        <item>jag klättrar</item>
+        <item>jag leker</item>
+        <item>jag målar</item>
+        <item>jag ringer</item>
+        <item>jag presenterar</item>
+        <item>jag talar</item>
+        <item>jag går upp för trappan</item>
+        <item>jag tittar (på)</item>
+        <item>jag plockar</item>
+        <item>jag betalar</item>
+        <item>jag häller</item>
+        <item>jag serverar</item>
+        <item>jag matar</item>
+        <item>det blöder</item>
+        <item>jag skriker</item>
+        <item>jag öppnar</item>
+        <item>jag sparkar</item>
+        <item>jag kastar</item>
+        <item>jag skär</item>
+        <item>jag blandar</item>
+        <item>jag väljer</item>
+        <item>jag torkar</item>
+        <item>jag fiser</item>
+        <item>jag kissar</item>
+        <item>jag bajsar</item>
+        <item>jag packar</item>
+        <item>jag halkar</item>
+        <item>jag kryper</item>
+        <item>jag gråter</item>
+        <item>jag sparkar</item>
+        <item>jag kör</item>
+        <item>jag reparerar</item>
+        <item>jag tvättar mig</item>
+        <item>jag gör inbrott</item>
+        <item>jag stjäl</item>
+        <item>jag släcker</item>
+        <item>jag tänder</item>
+        <item>jag lägger</item>
+        <item>jag hostar</item>
+        <item>jag väntar</item>
+        <item>jag fångar</item>
+        <item>jag ramlar</item>
+        <item>jag söker</item>
+        <item>jag frågar</item>
+        <item>jag ger</item>
+        <item>jag fyller</item>
+        <item>jag bakar</item>
+        <item>jag rör</item>
+        <item>jag röstar</item>
+        <item>jag ber</item>
+        <item>jag ramlade</item>
+        <item>jag luktar på vinet</item>
+        <item>jag flörtar</item>
+        <item>jag skördar</item>
+        <item>jag planterar</item>
+        <item>jag andas</item>
+        <item>jag kvävs</item>
+        <item>jag sväljer</item>
+        <item>jag kräks</item>
+        <item>jag jagar</item>
+        <item>jag vattnar</item>
+        <item>jag hör</item>
+        <item>jag minskar</item>
+        <item>jag ökar</item>
+        <item>jag kelar</item>
+        <item>jag går ut med hunden</item>
+        <item>jag smakar</item>
+        <item>jag dör</item>
+        <item>jag ger upp</item>
+        <item>jag slappnar av</item>
+        <item>jag snarkar</item>
+        <item>jag försover mig</item>
+        <item>jag lämnar sitsen uppe</item>
+        <item>jag fäller ner sitsen</item>
+        <item>jag spolar</item>
+        <item>jag skrubbar</item>
+        <item>jag besegrar</item>
+        <item>jag sminkar mig</item>
+        <item>jag tar bort</item>
+        <item>jag växlar</item>
+        <item>jag vädrar / jag ventilerar</item>
+        <item>jag sorterar</item>
+        <item>jag lyssnar på musik</item>
+        <item>jag stänker</item>
+        <item>jag flyter</item>
+        <item>jag dyker</item>
+        <item>jag håller andan</item>
+        <item>jag trimmar</item>
+        <item>jag borstar</item>
+        <item>jag svimmar</item>
+        <item>jag söker skydd</item>
+        <item>jag räddar</item>
+        <item>jag ger en komplimang</item>
+        <item>jag vinkar</item>
+        <item>jag ber om ursäkt</item>
+        <item>jag håller upp dörren</item>
+        <item>jag lyfter på hatten</item>
+        <item>jag går in i</item>
+        <item>jag river</item>
+        <item>jag vänder mig om</item>
+        <item>jag håller med / för ...</item>
+        <item>jag viker</item>
+        <item>jag hänger upp</item>
+        <item>jag skriver</item>
+        <item>jag recenserar</item>
+        <item>jag kommer från</item>
+        <item>jag besöker</item>
+        <item>jag bor i ...</item>
+        <item>jag är på sightseeing</item>
+        <item>jag utför</item>
+        <item>jag bygger</item>
+        <item>jag smaksätter</item>
+        <item>jag blötlägger</item>
+        <item>jag kokar</item>
+        <item>jag steker</item>
+        <item>jag skalar (grönsaker)</item>
+        <item>jag tärnar</item>
+        <item>jag knäpper</item>
+        <item>jag komponerar</item>
+        <item>jag läser högt</item>
+        <item>jag lämnar företräde</item>
+        <item>jag gasar</item>
+        <item>jag bromsar</item>
+        <item>jag pressar</item>
+        <item>jag glider</item>
+        <item>jag gör mål</item>
+        <item>jag vaktar</item>
+        <item>jag plockar undan</item>
+        <item>jag låtsas</item>
+        <item>jag borstar håret</item>
+        <item>jag ställer klockan</item>
+        <item>jag vaknar</item>
+        <item>jag går och lägger mig</item>
+        <item>jag tvättar mitt ansikte</item>
+        <item>jag går till jobbet</item>
+        <item>jag äter lunch</item>
+        <item>jag kommer hem igen</item>
+        <item>jag går i mål</item>
+        <item>jag tar ut soporna</item>
+        <item>jag blåser håret</item>
+        <item>jag surfar på internet</item>
+        <item>jag pendlar</item>
+        <item>jag brygger kaffe</item>
+        <item>jag rakar mig</item>
+        <item>jag river (huset)</item>
+        <item>jag brer (smör)</item>
+        <item>jag lyfter</item>
+        <item>jag slår</item>
+        <item>jag putsar fönstren</item>
+        <item>jag fiskar</item>
+        <item>den stiger</item>
+        <item>jag delar</item>
+        <item>jag tappar</item>
+        <item>jag slår sönder</item>
+        <item>jag tar en risk</item>
+        <item>jag bunkrar upp</item>
+        <item>jag levererar</item>
+        <item>jag behandlar</item>
+        <item>jag beskär</item>
+        <item>jag startar</item>
+        <item>jag önskar ...</item>
+        <item>jag lämnar över</item>
+        <item>jag tar hand om ...</item>
+        <item>jag anställer</item>
+        <item>jag förbättrar</item>
+        <item>jag skriver ut</item>
+        <item>jag kopierar</item>
+        <item>jag skannar</item>
+        <item>jag skakar</item>
+        <item>jag smörjer</item>
+        <item>jag slår in</item>
+        <item>jag ärver</item>
+        <item>jag vill inte</item>
+        <item>jag får utdelning</item>
+        <item>jag skulle behöva lite vatten</item>
+        <item>den kanar</item>
+        <item>den rullar</item>
+        <item>Jag behöver ...</item>
+        <item>jag saknar dig</item>
+        <item>jag ammar</item>
+        <item>vi gör slut</item>
+        <item>vi myser</item>
+        <item>vi kramar</item>
+        <item>jag brukar (+ inf.)</item>
+        <item>jag gör mig av med ...</item>
+        <item>de parar sig</item>
+        <item>vi avsätter</item>
+        <item>vi bryter upp</item>
+        <item>vi fångar</item>
+        <item>jag viskar</item>
+        <item>vi pladdrar</item>
+        <item>det matchar</item>
+        <item>Jag löser problemen</item>
+        <item>det smälter</item>
+        <item>vi skyddar</item>
+        <item>jag hoppas</item>
+        <item>vi omringar</item>
+        <item>den tillhör ...</item>
+        <item>jag parkerar</item>
+        <item>du avbryter</item>
+        <item>det sträcker sig över ...</item>
+        <item>det framställas</item>
+        <item>vi förtsätter att ...</item>
+        <item>jag upptäcker</item>
+        <item>jag stärker</item>
+        <item>jag lagrar</item>
+        <item>det lagras</item>
+        <item>jag förbereder</item>
+        <item>jag begriper</item>
+        <item>jag förutser</item>
+        <item>jag orkar inte (bära väskan längre)</item>
+        <item>jag orkar inte med att (jobba övertid)</item>
+        <item>jag är utnämnd till ...</item>
+        <item>jag ärver</item>
+        <item>att få veta</item>
+        <item>jag tvingar honom att ...</item>
+        <item>jag härskar (över)</item>
+        <item>jag slapp ifrån det</item>
+        <item>jag blev tvungen att ...</item>
+        <item>vi säger farväl</item>
+        <item>jag försöker så hårt jag kan</item>
+        <item>Jag beter sig som en gay</item>
+        <item>Jag plockar näsan</item>	</string-array>
+    <string-array name="foreign12">	<item>Jag kan \n(kunde, kunnat)</item>
+        <item>Jag får \n(fick, fått)</item>
+        <item>Jag blir (bliver) \n(blev, blivit)</item>
+        <item>Jag ber \n(bad, bett)</item>
+        <item>Jag bryter \n(bröt, brutit)</item>
+        <item>Jag bär \n(bar, burit)</item>
+        <item>det växer \n(växte, vuxit)</item>
+        <item>Jag gjuter \n(göt, gjutit)</item>
+        <item>Jag väljer \n(valde, valt)</item>
+        <item>Jag kommer \n(kom, kommit)</item>
+        <item>Jag gråter \n(grät, gråtit)</item>
+        <item>Jag skär \n(skar, skurit)</item>
+        <item>Jag dör \n(dog, dött)</item>
+        <item>Jag försvinner \n(försvann, försvunnit)</item>
+        <item>Jag dricker \n(drack, druckit)</item>
+        <item>Jag driver \n(drev, drivit)</item>
+        <item>Jag äter \n(åt, ätit)</item>
+        <item>Det finns \n(det fanns, ... funnits)</item>
+        <item>Jag faller \n(föll, fallit)</item>
+        <item>vi strider \n(stred, stridit)</item>
+        <item>Jag finner \n(fann, funnit)</item>
+        <item>Jag flyger \n(flög, flugit)</item>
+        <item>Jag ger \n(gav, gett)</item>
+        <item>Jag far \n(for, farit)</item>
+        <item>Jag går \n(gick, gått)</item>
+        <item>Jag griper \n(grep, gripit)</item>
+        <item>Jag har \n(hade, haft)</item>
+        <item>Jag slår \n( slog,  slagit)</item>
+        <item>Jag håller \n(höll, hållit)</item>
+        <item>Jag bjuder \n(bjöd, bjudit)</item>
+        <item>Jag vet \n(visste, vetat)</item>
+        <item>Jag låter \n(lät, låtit)</item>
+        <item>Jag ligger \n(låg, legat)</item>
+        <item>Jag ljuger \n(ljög, ljugit)</item>
+        <item>Jag lever \n(levde, levat/ levt)</item>
+        <item>Jag sätter \n(satte, satt)</item>
+        <item>Jag drar \n(drog, dragit)</item>
+        <item>Jag lägger \n(lade, lagt)</item>
+        <item>Jag säger \n(sade, sagt)</item>
+        <item>Jag skriker \n(skrek, skrikit)</item>
+        <item>Jag ser \n(såg, sett)</item>
+        <item>Jag sjunger \n(sjöng, sjungit)</item>
+        <item>Jag sitter \n(satt, suttit/setat)</item>
+        <item>Jag sover \n(sov, sovit)</item>
+        <item>Jag ler \n(log, lett)</item>
+        <item>Jag sprider \n(spred/spridde, spridit/spritt)</item>
+        <item>Jag står \n(stod, stått)</item>
+        <item>Jag stjäl \n(stal, stulit)</item>
+        <item>Jag svär (svärjer) \n(svor, svurit)</item>
+        <item>Jag tar \n(tog, tagit)</item>
+        <item>Jag river \n(rev, rivit)</item>
+        <item>Jag vill \n(ville, velat)</item>
+        <item>Jag vinner \n(vann, vunnit)</item>
+        <item>Jag skriver \n(skrev, skrivit)</item>
+        <item>Jag ska \n(skulle, skolat)</item>
+        <item>Jag klarar mig (av ...)\n(klarade mig, klarat mig)</item>
+        <item>Jag sätter mig \n(satte mig, satt mig)</item>
+        <item>Jag reser mig \n(reste mig, rest mig)</item>
+        <item>Jag klär på mig \n(klädde på mig, klätt på mig)</item>
+        <item>Jag klär av mig \n(klädde av mig, klätt av mig)</item>
+        <item>Jag sticker i ... \n(stack, stuckit)</item>
+        <item>Jag aktar mig (för) \n(aktade mig (för), aktat mig (för))</item>
+        <item>Jag lagar mat \n(lagade mat, lagat mat)</item>
+        <item>Jag tvättar mig \n(tvättade mig, tvättat mig)</item>
+        <item>Jag försover mig \n(försov mig, försovit mig)</item>
+        <item>Jag skyndar mig \n(skyndade mig, skyndat mig)</item>
+        <item>Jag bestämmer mig \n(bestämde mig, bestämt mig)</item>
+        <item>Jag lägger mig \n(lade mig, lagt mig)</item>
+        <item>Jag lär mig \n(lärde mig, lärt mig)</item>
+        <item>Jag kopplar av \n(kopplade av, kopplat av)</item>
+        <item>Jag tittar på TV \n(tittade på TV, tittat på TV)</item>
+        <item>Jag måster \n(måste, måst)</item>
+        <item>Jag drar (ut) \n(drog, dragit)</item>
+        <item>Jag stänger \n(stängde, stängt)</item>
+        <item>Jag stänger av \n (stängde av, stängt av)</item>
+        <item>Jag slår på \n (slog på,  slagit på)</item>
+        <item>Jag tvättar \n(tvättade, tvättat)</item>
+        <item>Jag drömmar \n(drömde, drömt)</item>
+        <item>Jag har på mig \n(hade på mig, haft på mig)</item>
+        <item>Jag lär känna \n(lärde känna, lärt känna)</item>
+        <item>Jag avbokar \n(avbokade, avbokat)</item>
+        <item>Jag kommer tillbaka \n(kom tillbaka, kommit tillbaka)</item>
+        <item>Jag tar emot \n(tog emot, tagit emot)</item>
+        <item>Jag kommer ihåg \n(kom ihåg, kommit ihåg)</item>
+        <item>Jag minns \n(mindes, mints)</item>
+        <item>Jag borstar \n(borstade, borstat)</item>
+        <item>Jag letar \n(letade, letat)</item>
+        <item>jag borde</item>
+        <item>jag måste</item>	</string-array>
+    <string-array name="foreign13">	<item>jag älskar</item>
+        <item>jag börjar</item>
+        <item>jag lyssnar på</item>
+        <item>jag studerar</item>
+        <item>jag åkar till ...</item>
+        <item>vad händer?</item>
+        <item>jag känner</item>
+        <item>jag kär (i)</item>
+        <item>jag stänger</item>
+        <item>jag tänker</item>
+        <item>jag tycker om ...</item>
+        <item>jag tycker synd om ...</item>
+        <item>jag gör</item>
+        <item>jag hyr</item>
+        <item>jag kör</item>
+        <item>jag lär mig</item>
+        <item>han pekar ut …</item>
+        <item>jag stör</item>
+        <item>jag är beroende (av ...)</item>
+        <item>det beror (av ...)</item>
+        <item>jag mår ...</item>
+        <item>jag syr</item>
+        <item>jag tror</item>
+        <item>jag flyger</item>
+        <item>jag kommer</item>
+        <item>jag sover</item>
+        <item>jag blir</item>
+        <item>jag tar emot</item>
+        <item>jag får</item>
+        <item>jag förstår</item>
+        <item>jag vägrar att ...</item>
+        <item>det ligger ...</item>
+        <item>jag säger</item>
+        <item>jag säljer</item>
+        <item>jag står</item>
+        <item>jag tar</item>
+        <item>jag vet</item>
+        <item>jag behöver ...</item>
+        <item>jag känner</item>
+        <item>jag känner till ...</item>
+        <item>jag vet att ...</item>
+        <item>jag vill</item>
+        <item>jag åkar</item>
+        <item>jag ändrar</item>
+        <item>jag biter</item>
+        <item>det börjar</item>
+        <item>jag byter</item>
+        <item>jag stannar</item>
+        <item>jag erhåller</item>
+        <item>jag firar</item>
+        <item>jag följer</item>
+        <item>jag gömmer mig</item>
+        <item>jag tar ett besök</item>
+        <item>jag har det bra</item>
+        <item>vi har det roligt</item>
+        <item>jag har feber</item>
+        <item>jag har inget emot</item>
+        <item>jag har lust (att)</item>
+        <item>jag har ont i magen</item>
+        <item>jag är säker på (det)</item>
+        <item>jag har råd</item>
+        <item>jag har rätt</item>
+        <item>jag har svårt</item>
+        <item>jag har tur</item>
+        <item>jag hjälper</item>
+        <item>jag klar mig (av) ...</item>
+        <item>jag kör en bil</item>
+        <item>jag liknar</item>
+        <item>jag lyder</item>
+        <item>det lysar</item>
+        <item>jag mäter</item>
+        <item>jag saknar</item>
+        <item>jag släpar</item>
+        <item>jag släpper taget</item>
+        <item>jag slutar röka</item>
+        <item>jag söker jobb</item>
+        <item>jag spelar</item>
+        <item>jag lägger</item>
+        <item>jag stödjer …</item>
+        <item>jag får ...</item>
+        <item>jag tillåtas</item>
+        <item>jag tränar</item>
+        <item>jag är</item>
+        <item>jag är nervös</item>
+        <item>jag ska</item>
+        <item>det ser likadant ut</item>
+        <item>jag är rädd för ...</item>
+        <item>jag är gjört av ...</item>
+        <item>jag fortsätter</item>
+        <item>jag litar på dig</item>
+        <item>jag är trött på henne</item>
+        <item>jag slår på</item>
+        <item>hon fick se</item>
+        <item>jag applicerar en deodorant på armhålorna</item>
+        <item>jag tjänar</item>
+        <item>jag gottgör</item>
+        <item>hon sporde vad som stod på</item>
+        <item>jag håller på att …</item>
+        <item>jag deltar</item>
+        <item>jag återvänder</item>
+        <item>jag överväger</item>
+        <item>jag skulle ...</item>
+        <item>jag beräknar</item>
+        <item>jag tappar</item>
+        <item>jag läkar</item>
+        <item>jag visar</item>
+        <item>jag röker gräs</item>
+        <item>jag utlovar</item>
+        <item>vi tillfrisknar</item>
+        <item>jag antar att ...</item>
+        <item>jag är duktig på ...</item>
+        <item>jag är van vid ...</item>
+        <item>vi krigar med ...</item>
+        <item>vi handlar med ...</item>
+        <item>jag beslutar om ...</item>
+        <item>jag sparar projektet</item>
+        <item>jag laddar ner</item>
+        <item>jag vänsterklickar</item>
+        <item>det bidrar till ...</item>
+        <item>han påverkar ...</item>
+        <item>jag ger mig av</item>
+        <item>jag hyr ut</item>
+        <item>jag kontrollerar</item>
+        <item>jag kollar</item>
+        <item>jag blir av med ...</item>
+        <item>jag sätter</item>
+        <item>vi upprättar</item>
+        <item>jag är uttråkad</item>
+        <item>jag förklarar</item>
+        <item>jag undervisar</item>
+        <item>vi legaliserar</item>
+        <item>vi tävlar</item>
+        <item>jag bosätter mig</item>
+        <item>vi hoppar av</item>
+        <item>vi vidtar åtgärder</item>
+        <item>jag svänger</item>
+        <item>jag översätter</item>
+        <item>det betyder ...</item>
+        <item>jag glömmer</item>
+        <item>det utgör en del av ..</item>
+        <item>det är förväntat att ...</item>
+        <item>det pågår ...</item>
+        <item>jag tar reda på ...</item>
+        <item>jag befarar att ...</item>
+        <item>jag fyller upp på matvarorna</item>
+        <item>vi täcker kostnaderna</item>
+        <item>vi undersöker saken</item>
+        <item>jag uppnår</item>
+        <item>jag når</item>
+        <item>jag höjer dosen</item>
+        <item>vi försvarar</item>
+        <item>Jag fick se</item>
+        <item>jag vilar</item>
+        <item>Jag hanterar dessa svårigheter</item>
+        <item>Jag klarar av uppgifter</item>
+        <item>vi utvärder</item>
+        <item>vi uppskattar</item>
+        <item>vi värdesätter</item>
+        <item>vi säkerställer</item>
+        <item>vi garanterar</item>
+        <item>vi bedömer</item>
+        <item>jag märker</item>
+        <item>jag försöker</item>
+        <item>jag döljer</item>
+        <item>jag ber om hjälp</item>
+        <item>jag accepterar</item>
+        <item>vi tillämpar</item>
+        <item>jag uppfattar</item>
+        <item>vi fokuserar på</item>
+        <item>jag hanterar ...</item>
+        <item>vi skapar</item>
+        <item>jag skapar</item>
+        <item>vi uppmuntrar</item>
+        <item>vi delar med oss av ...</item>
+        <item>vi begränsar</item>
+        <item>jag respekterar</item>
+        <item>jag påminner om att ...</item>
+        <item>vi inte ägnar oss åt</item>
+        <item>jag avbryter</item>
+        <item>jag hänvisar till</item>
+        <item>jag kommenterar</item>
+        <item>vi strävar efter ...</item>
+        <item>jag ger råd till dig</item>
+        <item>jag avböjer</item>
+        <item>vi bidrar (till ...)</item>
+        <item>hon är kär i ...</item>
+        <item>jag dukar upp</item>
+        <item>jag går hem</item>
+        <item>Jag avstår från ...</item>
+        <item>vi släppnar av</item>
+        <item>jag inleder med...</item>
+        <item>det innefattar ... / det inkluderar ...</item>
+        <item>hon tar tester</item>
+        <item>jag skrynklar</item>	</string-array>
+    <string-array name="foreign14">	<item>som under, och efter ...</item>
+        <item>Jag är allergisk mot katter</item>
+        <item>jag har gått vilse</item>
+        <item>jag är sjuk</item>
+        <item>jätte skillnad</item>
+        <item>jag också</item>
+        <item>Kan jag betala med kort?</item>
+        <item>jag har tappat plånboken.</item>
+        <item>Får jag låna din mobil?</item>
+        <item>Kan jag ta en bild?</item>
+        <item>Jag har varit här i fem dagar.</item>
+        <item>ja</item>
+        <item>nej</item>
+        <item>ok</item>
+        <item>hej</item>
+        <item>tack</item>
+        <item>hej då</item>
+        <item>snälla</item>
+        <item>jag</item>
+        <item>förlåt</item>
+        <item>Kan du engelska?</item>
+        <item>stängt</item>
+        <item>öppet</item>
+        <item>Hjälp!</item>
+        <item>vänta</item>
+        <item>herrar</item>
+        <item>damer</item>
+        <item>får vi betala?</item>
+        <item>Var ligger mataffären?</item>
+        <item>ursäkta mig!</item>
+        <item>Hur mycket?</item>
+        <item>den där</item>
+        <item>menyn, tack</item>
+        <item>Det var kul</item>
+        <item>Förstår du?</item>
+        <item>Hur många?</item>
+        <item>en till</item>
+        <item>en mindre</item>
+        <item>för dyrt</item>
+        <item>Något mer?</item>
+        <item>nej, det är bra</item>
+        <item>endast kontanter</item>
+        <item>gå härifrån</item>
+        <item>stanna här</item>
+        <item>Var är du ifrån?</item>
+        <item>Vad heter du?</item>
+        <item>Ursäkta mig</item>
+        <item>ingen orsak</item>
+        <item>trevligt att träffas</item>
+        <item>Kan du hjälpa mig?</item>
+        <item>god morgon</item>
+        <item>god eftermiddag</item>
+        <item>god kväll</item>
+        <item>god natt</item>
+        <item>Hur är det?</item>
+        <item>Bra, tack.</item>
+        <item>Själv då?</item>
+        <item>Vad är det för väder?</item>
+        <item>det är bra</item>
+        <item>det är dåligt</item>
+        <item>det är varmt</item>
+        <item>det är kallt</item>
+        <item>det finns inga</item>
+        <item>något billigare</item>
+        <item>hälften</item>
+        <item>hela</item>
+        <item>Har ni biljetter?</item>
+        <item>den här</item>
+        <item>skriva det</item>
+        <item>beträd ej</item>
+        <item>rör ej</item>
+        <item>akta</item>
+        <item>se upp</item>
+        <item>var försiktig</item>
+        <item>Vad heter det?</item>
+        <item>Hur långt?</item>
+        <item>Ligger det nära?</item>
+        <item>Hur lång tid tar det att åka till flygplatsen?</item>
+        <item>vänster</item>
+        <item>höger</item>
+        <item>sakta farten</item>
+        <item>Vilken tid?</item>
+        <item>idag</item>
+        <item>imorgon</item>
+        <item>igår</item>
+        <item>nu</item>
+        <item>senare</item>
+        <item>Vad är klockan?</item>
+        <item>Klockan är tre.</item>
+        <item>Till flygplatsen, tack!</item>
+        <item>Kan du ta en bild?</item>
+        <item>Vad rekommenderar du?</item>
+        <item>god</item>
+        <item>Smaklig måltid</item>
+        <item>skål!</item>
+        <item>Vad jobbar du med?</item>
+        <item>Är du härifrån?</item>
+        <item>lite</item>
+        <item>Hur gammal är du?</item>
+        <item>vem</item>
+        <item>vad</item>
+        <item>när</item>
+        <item>var</item>
+        <item>varför</item>
+        <item>hur</item>
+        <item>där borta</item>
+        <item>fel</item>
+        <item>rätt</item>
+        <item>säga det en gång till</item>
+        <item>tala sakta</item>
+        <item>långsamt</item>
+        <item>säga det långsammare</item>
+        <item>Lämna företräde</item>
+        <item>mellan</item>
+        <item>mitten</item>
+        <item>här</item>
+        <item>mittemot</item>
+        <item>rakt fram</item>
+        <item>där</item>
+        <item>alla</item>
+        <item>hans</item>
+        <item>den, det</item>
+        <item>ingen/inget/inga</item>
+        <item>deras</item>
+        <item>de</item>
+        <item>vi</item>
+        <item>du</item>
+        <item>din / ditt</item>
+        <item>och</item>
+        <item>eller</item>
+        <item>denna / detta</item>	</string-array>
+    <string-array name="foreign15">	<item>alltid</item>
+        <item>ändå</item>
+        <item>anledningen till …</item>
+        <item>annat, annan</item>
+        <item>det används av oss</item>
+        <item>vi använder det här</item>
+        <item>hon är 30 år gammal</item>
+        <item>Är allt bra?</item>
+        <item>Är det bra? </item>
+        <item>på 1900-talet</item>
+        <item>bakom</item>
+        <item>bara</item>
+        <item>endast</item>
+        <item>bara</item>
+        <item>precis</item>
+        <item>bra</item>
+        <item>bredvid</item>
+        <item>även</item>
+        <item>också</item>
+        <item>innan dess</item>
+        <item>tidigare</item>
+        <item>egen</item>
+        <item>en gång</item>
+        <item>främst ...</item>
+        <item>till största del</item>
+        <item>meddelades det att...</item>
+        <item>för givet</item>
+        <item>utanför</item>
+        <item>inom ...</item>
+        <item>minst en ...</item>
+        <item>minst ...</item>
+        <item>jag grät mycket</item>
+        <item>medan du väntar</item>
+        <item>under loppet av väntandet</item>
+        <item>icke blott ... , utan även</item>
+        <item>å ena sidan ... , å andra sidan ...</item>
+        <item>i fortsättningen</item>
+        <item>borde jag lyssna på hennes meddelanden?</item>
+        <item>ska jag ... ?</item>
+        <item>Burde jag stå ut med det?</item>
+        <item>Ska jag tåla det?</item>
+        <item>ta din tid!</item>
+        <item>de flesta av ...</item>
+        <item>bestämt</item>
+        <item>ärligt, ...</item>
+        <item>valfri</item>
+        <item>det ser samma ut</item>
+        <item>kanske ensamheten är bättre?</item>
+        <item>Säker.</item>
+        <item>borde jag ... ?</item>
+        <item>stressa inte</item>
+        <item>hur länge varar det?</item>
+        <item>det varade från 13:00 till 15:00</item>
+        <item>säkert</item>
+        <item>vilket land som helst</item>
+        <item>två gånger</item>
+        <item>Hon står vid dörren. </item>
+        <item>Vi går vid vägen. </item>
+        <item>Jag sitter vid datorn. </item>
+        <item>De bor i en stad vid kusten. </item>
+        <item>Har ni sett slottet vid parken? </item>
+        <item>Undervisar du vid ett stort universitet? </item>
+        <item>Ska vi träffas vid lunchdags? </item>
+        <item>Hon kommer vid sjutiden. </item>
+        <item>Jag brukar lägga mig vid midnatt. </item>
+        <item>Han flyttade hemifrån vid 18 år. </item>
+        <item>Jocke var 80 år vid sin död. </item>
+        <item>ni</item>
+        <item>mig</item>
+        <item>dig</item>
+        <item>honom</item>
+        <item>henne</item>
+        <item>oss</item>
+        <item>er</item>
+        <item>dem</item>
+        <item>min / mitt / mina</item>
+        <item>din / ditt / dina</item>
+        <item>hans / hans / hans</item>
+        <item>hennes / hennes / hennes</item>
+        <item>dess / dess / dess</item>
+        <item>vår / vårt / våra</item>
+        <item>er / ert / era</item>
+        <item>deras / deras / deras</item>
+        <item>sin / sitt / sina</item>
+        <item>jag kan inte säga säkert</item>
+        <item>när det gäller kläder, ...</item>
+        <item>när det gäller att bota sjukdomar, ...</item>
+        <item>de följs av de två kavalleriregementet</item>
+        <item>jag följas av de</item>
+        <item>detsamma</item>
+        <item>likaså, också</item>
+        <item>föremålet som man sitter på</item>
+        <item>fram tills</item>
+        <item>innan</item>
+        <item>innan det</item>
+        <item>är det nära?</item>
+        <item>är det långt?</item>
+        <item>Jag känner mig äcklad</item>
+        <item>det inträffade klockan 18:08 lokal tid</item>
+        <item>ännu fler</item>
+        <item>den 5 augusti</item>
+        <item>de som</item>
+        <item>för första gången</item>
+        <item>det beror på personens sinnestillstånd</item>
+        <item>så kallat</item>
+        <item>det blev vanligt</item>
+        <item>enligt ...</item>
+        <item>av rysk härkomst</item>
+        <item>över havet</item>
+        <item>fram till</item>
+        <item>tyvärr</item>
+        <item>på längre sikt</item>
+        <item>det leder till ...</item>
+        <item>under graviditeten</item>
+        <item>ibland</item>
+        <item>det beror på sammanhanget</item>
+        <item>för rekreativ användning</item>
+        <item>i rekreationssyfte</item>
+        <item>ungefär</item>
+        <item>igen</item>
+        <item>vid 23 års ålder</item>
+        <item>samtidigt</item>
+        <item>på det hela taget</item>
+        <item>nedan</item>
+        <item>vad fan är det som händer?</item>
+        <item>tack vare ...</item>
+        <item>i vissa fall</item>
+        <item>den nuvarande ...</item>
+        <item>från fall till fall</item>
+        <item>nästan</item>
+        <item>flera olika grupper</item>
+        <item>egentligen</item>
+        <item>för det första</item>
+        <item>framför allt</item>
+        <item>Det hindrar inte att ...</item>
+        <item>det inte går att ...</item>
+        <item>lyssna på dina tarmar</item>
+        <item>vad innebär det?</item>
+        <item>vanligen</item>
+        <item>Såsom aktiv dödshjälp räknas fall när ...</item>
+        <item>alltså, ...</item>
+        <item>däremot, ...</item>
+        <item>på ett sådant sätt att ...</item>
+        <item>långt ifrån</item>
+        <item>nämns pojken inte alls</item>
+        <item>På senare tid</item>
+        <item>veckolager med mat</item>
+        <item>det är inte fallet</item>
+        <item>vad annars...</item>
+        <item>ett tvåårigt inreseförbud</item>
+        <item>av säkerhetsskäl</item>
+        <item>ett betydande inflytande på</item>
+        <item>Vissa av ...</item>
+        <item>en av dessa</item>
+        <item>Maria bad oss att inte berätta om det till någon.</item>
+        <item>Nästa kapitel handlar om Lovisas semester i Nederländerna.</item>
+        <item>Vi åker till Rotterdam nästa veckan.</item>
+        <item>Soppan är nästan färdig.</item>
+        <item>Nu förstår Alvin nästan allt svenskar säger.</item>
+        <item>dagordning</item>
+        <item>på annat sätt</item>
+        <item>det stämmer</item>
+        <item>det är avstängd</item>
+        <item>ni borde inte bli överraskad</item>
+        <item>vi hälsar dig extra varmt välkommen</item>
+        <item>ansvarig för</item>
+        <item>förut</item>
+        <item>i helgen</item>
+        <item>genom</item>
+        <item>det är dags för ...</item>
+        <item>ett behov av ...</item>	</string-array>
+    <string-array name="foreign16">	<item>det finns ...</item>
+        <item>därför</item>
+        <item>därför att</item>
+        <item>de (dem)</item>
+        <item>de flesta</item>
+        <item>den mest …</item>
+        <item>den senaste veckan</item>
+        <item>denna vecka</item>
+        <item>denna/detta</item>
+        <item>dessa</item>
+        <item>ta det lugnt</item>
+        <item>det är snäll</item>
+        <item>dock</item>
+        <item>eftersom</item>
+        <item>emot</item>
+        <item>enligt …</item>
+        <item>exempelvis, …</item>
+        <item>faktiskt, …</item>
+        <item>fanns</item>
+        <item>fast</item>
+        <item>fastän</item>
+        <item>fin</item>
+        <item>flera</item>
+        <item>för</item>
+        <item>för</item>
+        <item>för 1 månad sedan</item>
+        <item>för 1 vecka sedan</item>
+        <item>för 10 veckor sedan</item>
+        <item>för 2 år sedan</item>
+        <item>för 4 år sedan</item>
+        <item>för 5 månaden sedan</item>
+        <item>för att</item>
+        <item>för sent</item>
+        <item>förra</item>
+        <item>förra året</item>
+        <item>förra månaden</item>
+        <item>förra veckan</item>
+        <item>fortfarande</item>
+        <item>förut</item>
+        <item>förutom </item>
+        <item>framför</item>
+        <item>från</item>
+        <item>från och med nu</item>
+        <item>genom hela ...</item>
+        <item>gjört av …</item>
+        <item>Grattis!</item>
+        <item>grov</item>
+        <item>Ha det så bra!</item>
+        <item>han</item>
+        <item>jag har det jobbigt</item>
+        <item>helt</item>
+        <item>hemma</item>
+        <item>hon</item>
+        <item>Hur är läget?</item>
+        <item>Hur mår du?</item>
+        <item>i</item>
+        <item>i dag</item>
+        <item>i förgår</item>
+        <item>i går</item>
+        <item>i höstas</item>
+        <item>i kväll</item>
+        <item>i måndags</item>
+        <item>i morse</item>
+        <item>i nuläget</item>
+        <item>i själva verket ...</item>
+        <item>i somras</item>
+        <item>i tisdags</item>
+        <item>i våras</item>
+        <item>i vintras</item>
+        <item>igenom</item>
+        <item>ingen</item>
+        <item>ingen fara!</item>
+        <item>inget</item>
+        <item>inga problem</item>
+        <item>innan</item>
+        <item>inte</item>
+        <item>inte bara … , utan också …</item>
+        <item>jag är lika fin som du.</item>
+        <item>jag behöver att kolla om den kiosken är oppen</item>
+        <item>jag får (få)</item>
+        <item>jag har bett ...</item>
+        <item>jag har sålt min fars dator för 110$</item>
+        <item>jag kan (kunna)</item>
+        <item>jag kommer att …</item>
+        <item>Jag kommer från Vitryssland.</item>
+        <item>Jag läser den här boken</item>
+        <item>Jag tycker om det här äpplet.</item>
+        <item>jag vet att …</item>
+        <item>just nu</item>
+        <item>Kan du öppna fönstret?</item>
+        <item>kanske</item>
+        <item>kommer att</item>
+        <item>kort</item>
+        <item>ledig (från ...)</item>
+        <item>lika … som …</item>
+        <item>liksom ...</item>
+        <item>med</item>
+        <item>medan</item>
+        <item>men</item>
+        <item>mer</item>
+        <item>någon rövhål</item>
+        <item>någon/något/några</item>
+        <item>nästa</item>
+        <item>nödvändig</item>
+        <item>redan ...</item>
+        <item>om</item>
+        <item>ovan</item>
+        <item>över</item>
+        <item>p.g.a. ... (på grund av ...)</item>
+        <item>på</item>
+        <item>på morgonen</item>
+        <item>precis</item>
+        <item>redo (för)</item>
+        <item>ren</item>
+        <item>roligt att ses!</item>
+        <item>roligt att träffas!</item>
+        <item>runt om i ...</item>
+        <item>runt om i världen</item>
+        <item>så</item>
+        <item>sådan</item>
+        <item>samma</item>
+        <item>samma dag</item>
+        <item>sedan ...</item>
+        <item>senare</item>
+        <item>Skulle du vilja sätta dig?</item>
+        <item>skulle vilja</item>
+        <item>under</item>
+        <item>Tack i förväg!</item>
+        <item>Tack på förhand!</item>
+        <item>Tack! (Det är) bra.</item>
+        <item>till</item>
+        <item>tillräckligt</item>
+        <item>trevlig</item>
+        <item>oavsett ...</item>
+        <item>oavsett vad</item>
+        <item>trots att ...</item>
+        <item>trött (på)</item>
+        <item>upptagen</item>
+        <item>utan</item>
+        <item>utan</item>
+        <item>vad</item>
+        <item>Vad är ditt namn?</item>
+        <item>Vad kan jag göra med mitt stora engelska ordförråd?</item>
+        <item>väl</item>
+        <item>vänner</item>
+        <item>varandra</item>
+        <item>varför</item>
+        <item>Varifrån kommer du?</item>
+        <item>varje</item>
+        <item>varje människa</item>
+        <item>varken … eller ...</item>
+        <item>varsågod</item>
+        <item>verkligen</item>
+        <item>Vi hörs!</item>
+        <item>Vi ses!</item>
+        <item>vid</item>
+        <item>vilken flicka?</item>
+        <item>vilken/vilket/vilka</item>
+        <item>Vilket land kommer du ifrån?</item>
+        <item>vill jag be er</item>
+        <item>jag skulle vilja fråga dig</item>
+        <item>aldrig</item>
+        <item>du ser ut som ...</item>
+        <item>även om ...</item>
+        <item>det verkar som ...</item>
+        <item>att ändra aktivitet</item>
+        <item>jag är säker på mina förmågor</item>
+        <item>när du känner smärta gör det ont</item>
+        <item>det gör ont i foten</item>	</string-array>
+    <string-array name="foreign17">	<item>Jag är hos Lenas hus</item>
+        <item>och så vidare</item>
+        <item>både</item>
+        <item>något luktar illa</item>
+        <item>någon kommer</item>
+        <item>några skriker högt</item>
+        <item>jag ser någon</item>
+        <item>hon märkte något i buskar</item>
+        <item>han ser någon bil</item>
+        <item>hon hör något barn</item>
+        <item>jag har några böcker hemma</item>
+        <item>hon berättar något roligt</item>
+        <item>jag har aldrig varit i Stockholm</item>
+        <item>ingen kommer</item>
+        <item>inget syns ute</item>
+        <item>iväg</item>
+        <item>inga åker iväg</item>
+        <item>jag träffar ingen ikväll</item>
+        <item>hon äter inget till frukost</item>
+        <item>vi ser inga ute</item>
+        <item>jag har inte en bil</item>
+        <item>jag har ingen bil</item>
+        <item>hon kan inget främmande språk</item>
+        <item>hon kan inte ett främmande språk</item>
+        <item>jag har ingen lust att jobba.</item>
+        <item>ingen aning</item>
+        <item>jag ser inget särskilt.</item>
+        <item>du har ingen chans mot mig.</item>
+        <item>hon lagar inget speciellt.</item>
+        <item>de hör något konstigt ljud ute.</item>
+        <item>jag vet inget</item>
+        <item>hon hittar inga papper</item>
+        <item>jag ser något intressant.</item>
+        <item>Ingen kan stoppa mig!</item>
+        <item>Kalle är snällare än Micke.</item>
+        <item>Du är snällast av alla.</item>
+        <item>Hon är den finnaste flickan.</item>
+        <item>Hon tänker starta ett företag.</item>
+        <item>Flygplanet landar ikväll.</item>
+        <item>Jag ska flyga till Stockholm på sommaren.</item>
+        <item>De kommer att bli vuxna.</item>
+        <item>Jag tog av mig strumporna och kastade dem där borta</item>
+        <item>jag är van vid ...</item>
+        <item>det brukade vara ...</item>
+        <item>dagligen</item>
+        <item>följaktligen</item>
+        <item>kort därefter ...</item>
+        <item>ute</item>
+        <item>därmed</item>
+        <item>Jag är hos Lena</item>
+        <item>jag ger henne en tur</item>
+        <item>... hur man hanterar pengar</item>
+        <item>det är inte upp till dig</item>
+        <item>är det någon där?</item>
+        <item>Den är där.</item>
+        <item>vad är den här till?</item>
+        <item>Skulle någon förklara när man använder "åt" prepositionen?</item>
+        <item>Det ligger åt det hållet</item>
+        <item>Kan du göra det åt mig?</item>
+        <item>Jag lagar mat åt mina barn.</item>
+        <item>om ett år</item>
+        <item>om en vecka</item>
+        <item>om 5 minuter</item>
+        <item>för 5 minuter sedan</item>
+        <item>för ett år sedan</item>
+        <item>för en vecka sedan</item>
+        <item>Jag har studerat svenska i 2 år</item>
+        <item>Jag ska vara i Grekland i 2 veckor</item>
+        <item>Jag har inte gått på gymmet på 2 veckor</item>
+        <item>Jag ska inte ha semester på 2 månader</item>
+        <item>en gång om året</item>
+        <item>två gånger om dagen</item>
+        <item>två gånger i sekunden</item>
+        <item>en gång i minuten</item>
+        <item>tre gånger i timmen</item>
+        <item>fyra gånger i månaden</item>
+        <item>en gång i kvartalet</item>
+        <item>om du vill</item>
+        <item>vi pratar om känslor</item>
+        <item>jag tar hand om mitt barn</item>
+        <item>vad vill du?</item>
+        <item>ge den åt Lena</item>
+        <item>till och med</item>
+        <item>Gör dig av med henne.</item>
+        <item>gör det!</item>
+        <item>hela dagen</item>
+        <item>irriterad på ...</item>
+        <item>arg på ...</item>
+        <item>Jag tittar på Eurovision Song Contest</item>
+        <item>Smaka på sandwich, är den god?</item>
+        <item>Lyssna på mig!</item>
+        <item>Lukta på denna parfym</item>
+        <item>vi pratar om vädret</item>
+        <item>så småningom</item>
+        <item>ensam ägare</item>
+        <item>Vad ska vi göra?</item>
+        <item>över huvud taget</item>
+        <item>så att ...</item>
+        <item>det visade sig att ...</item>
+        <item>att förbättra min svenska</item>
+        <item>han målar tavlor</item>
+        <item>jag hoppas att ni har förstått det jag har sagt</item>
+        <item>snälla, berätta i kommentarerna</item>
+        <item>Vilken häst ska vi satsa på?</item>
+        <item>Jag litar inte på någon</item>
+        <item>Jag hejar på Ryssland!</item>
+        <item>jag röster på Alvin Melvin</item>
+        <item>förran ...</item>
+        <item>en av mina videor</item>
+        <item>hej allesammans!</item>
+        <item>jag tar ansvar för</item>
+        <item>jag hatar dig</item>
+        <item>väldig bra</item>
+        <item>jag har fel</item>
+        <item>det spelar ingen roll</item>
+        <item>jajamensan!</item>
+        <item>Ofta</item>
+        <item>det är minsann inget att skratta åt</item>
+        <item>Jag är minsann inte förvånad </item>
+        <item>ja, precis!</item>
+        <item>absolut!</item>
+        <item>Vi var inte säkra, men sen googlade vi och jajamensan, det stämmer.</item>
+        <item>till följd av ...</item>
+        <item>jätte ...</item>
+        <item>alldeles ...</item>
+        <item>en aldelles vanlig familj</item>
+        <item>väldigt ...</item>
+        <item>det är väldigt svårt att inte äta godis på kvällen</item>
+        <item>fantastiskt ...</item>
+        <item>det var fantastiskt roligt</item>
+        <item>oerhört ...</item>
+        <item>hon sjunger oerhört vackert</item>
+        <item>det visar sig att detta är så</item>
+        <item>det visar sig att du är en rövhål</item>
+        <item>svin-</item>
+        <item>idag är det svinkallt</item>
+        <item>vansinnigt ...</item>
+        <item>Tack för en vansinnigt kul kväll!</item>
+        <item>på bio går jag gärna</item>
+        <item>jag går gärna på bio</item>
+        <item>man blir ledsen när ens vänner inte ringer till en</item>
+        <item>hon fick inte ens en ursäkt</item>
+        <item>inte ens ...</item>
+        <item>avslutningsvis</item>
+        <item>På senare år ...</item>
+        <item>i de flesta fall ...</item>
+        <item>ingenting annat än ...</item>
+        <item>Jag bara bunkrar upp fram till mitten av januari</item>
+        <item>dygnet runt</item>
+        <item>inte alls</item>
+        <item>jag skulle gärna ...</item>
+        <item>så som ...</item>
+        <item>det består av ...</item>
+        <item>vi har kommit fram till att ...</item>
+        <item>för exakt ett år sedan</item>
+        <item>rakt</item>
+        <item>ännu värre</item>
+        <item>då och då</item>
+        <item>fram</item>
+        <item>den är borta</item>
+        <item>jag ser mycket fram emot ...</item>
+        <item>ju mer du röker, desto tidigare du dör</item>
+        <item>för att ... , krävs att ...</item>
+        <item>mer eller mindre</item>
+        <item>under arbetstid</item>
+        <item>sen / sent / sena</item>
+        <item>Jakob slutade kl 16, sedan gick han hem</item>
+        <item>Stina vaknar och sedan duschar hon</item>
+        <item>Lars kom hem senare än vanligt igår</item>
+        <item>Mark har studerat svenska sedan 2019</item>
+        <item>Vi kokar ris i 10 minuter, sedan tillsätter vi kryddorna</item>
+        <item>jag fyller år idag</item>
+        <item>ursprungligen</item>
+        <item>nog</item>
+        <item>så småningom</item>
+        <item>Blev du hjälpt av denna sida?</item>
+        <item>han skadade sin vänstra fot då han föll</item>
+        <item>det kan komma till nytta</item>
+        <item>Maria vaknar och sedan duschar hon</item>
+        <item>då ...</item>
+        <item>Lars studerar sämre än Katerina</item>
+        <item>i synhåll</item>
+        <item>så snart som ...</item>
+        <item>åtminstone</item>
+        <item>just det</item>
+        <item>som om ...</item>
+        <item>till en början</item>
+        <item>emellertid</item>	</string-array>
+
+</resources>
