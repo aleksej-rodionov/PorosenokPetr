@@ -74,7 +74,6 @@
     <string name="active_all_categories_ua">Включити всі категорії</string>
     <string name="cannot_turn_all_cats_off_ua">Ви не можете вибрати менше 1 категорії</string>
 
-    <string name="choose_time_ua">Виберіть час</string>
 
     <string name="collection_ua">Колекція</string>
     <string name="search_word_ua">Шукати слово ..</string>
@@ -96,6 +95,7 @@
 
     <string name="settings_ua">Налаштування</string>
 
+    <string name="choose_time_ua">Виберіть час</string>
     <string name="notification_title_ua">English: нагадування</string>
     <string name="notification_subtitle_ua">Чи не забули приділити пару хвилин інглишу? =)</string>
     <string name="remind_ua">Нагадувати про заняття</string>

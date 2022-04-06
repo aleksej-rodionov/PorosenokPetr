@@ -22,6 +22,7 @@ import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANG_POSTFIX
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_DARK
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_UA
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_NATIVE_LANG
+import space.rodionov.porosenokpetr.feature_driller.utils.LocalizationHelper
 import space.rodionov.porosenokpetr.feature_driller.utils.SettingsSwitchType
 import java.util.*
 
@@ -106,9 +107,8 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         }
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             vmSettings.nativeLanguage.collectLatest {
-                val localeLang = if (it==1) LANG_POSTFIX_UA else LANG_POSTFIX_RU
-                Log.d(TAG_NATIVE_LANG, "initViewModel: lang = $localeLang")
-                binding.tvTitle.text = getLocalizedString(Locale(localeLang), R.string.settings, requireContext())
+                binding.tvTitle.text = resources.getString( if (it == 1) LocalizationHelper.settings.uaId
+                else LocalizationHelper.settings.ruId)
 
 
                 settingsAdapter.updateNativeLang(it)

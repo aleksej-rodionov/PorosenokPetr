@@ -19,7 +19,6 @@
     <string name="active_all_categories">Включить все категории</string>
     <string name="cannot_turn_all_cats_off">Вы не можете выбрать менее 1 категории</string>
 
-    <string name="choose_time">Выберите время</string>
 
     <string name="collection">Коллекция</string>
     <string name="search_word">Искать слово ..</string>
@@ -41,6 +40,7 @@
 
     <string name="settings">Настройки</string>
 
+    <string name="choose_time">Выберите время</string>
     <string name="notification_title">English: напоминалочка</string>
     <string name="notification_subtitle">Не забыли уделить пару минут инглишу? =)</string>
     <string name="remind">Напоминать о занятиях</string>

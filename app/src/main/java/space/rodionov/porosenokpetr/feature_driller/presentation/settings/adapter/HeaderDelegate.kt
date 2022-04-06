@@ -15,9 +15,8 @@ class HeaderViewHolder(parent: ViewGroup) : BaseViewHolder(parent, R.layout.item
         binding = ItemHeaderBinding.bind(itemView)
         with(binding) {
             model as Header
-//            tvTitle.updateHorizontalMargin(model.padding)
-            model.resId?.let {
-                tvTitle.setText(it)
+            model.text?.let {
+                tvTitle.text = res.getString(if (nativeLangBVH==1) it.uaId else it.ruId)
             } ?: tvTitle.setText(model.header?.let {
                 it.substring(0, 1).toUpperCase(Locale.getDefault()) + it.substring(1)
             })
