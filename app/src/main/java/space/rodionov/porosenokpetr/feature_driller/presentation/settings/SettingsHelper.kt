@@ -9,7 +9,6 @@ import space.rodionov.porosenokpetr.feature_driller.utils.StringTags.DARK_MODE
 import space.rodionov.porosenokpetr.feature_driller.utils.StringTags.FOLLOW_SYSTEM_MODE
 import space.rodionov.porosenokpetr.feature_driller.utils.StringTags.NATIVE_LANGUAGE
 import space.rodionov.porosenokpetr.feature_driller.utils.StringTags.REMIND
-import space.rodionov.porosenokpetr.feature_driller.utils.StringTags.REMINDER
 import space.rodionov.porosenokpetr.feature_driller.utils.StringTags.TRANSLATION_DIRECTION
 
 object SettingsHelper {

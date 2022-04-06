@@ -32,7 +32,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
     private val binding get() = _binding!!
 
     private val vmSettings: SettingsViewModel by viewModels()
-    private val applicationContext = (activity as MainActivity).applicationContext
+//    private val applicationContext = (activity as MainActivity).applicationContext
 
     private val settingsAdapter: SettingsAdapter by lazy {
         SettingsAdapter(
