@@ -4,12 +4,6 @@ import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.feature_driller.domain.models.*
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 import space.rodionov.porosenokpetr.feature_driller.utils.SettingsSwitchType
-import space.rodionov.porosenokpetr.feature_driller.utils.StringTags
-import space.rodionov.porosenokpetr.feature_driller.utils.StringTags.DARK_MODE
-import space.rodionov.porosenokpetr.feature_driller.utils.StringTags.FOLLOW_SYSTEM_MODE
-import space.rodionov.porosenokpetr.feature_driller.utils.StringTags.NATIVE_LANGUAGE
-import space.rodionov.porosenokpetr.feature_driller.utils.StringTags.REMIND
-import space.rodionov.porosenokpetr.feature_driller.utils.StringTags.TRANSLATION_DIRECTION
 
 object SettingsHelper {
 
