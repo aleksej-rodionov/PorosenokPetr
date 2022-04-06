@@ -17,8 +17,11 @@ import space.rodionov.porosenokpetr.databinding.FragmentSettingsBinding
 import space.rodionov.porosenokpetr.databinding.SnackbarLayoutBinding
 import space.rodionov.porosenokpetr.feature_driller.presentation.settings.adapter.SettingsAdapter
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANG_POSTFIX_RU
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANG_POSTFIX_UA
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_DARK
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_UA
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_NATIVE_LANG
 import space.rodionov.porosenokpetr.feature_driller.utils.SettingsSwitchType
 import java.util.*
 
@@ -29,6 +32,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
     private val binding get() = _binding!!
 
     private val vmSettings: SettingsViewModel by viewModels()
+    private val applicationContext = (activity as MainActivity).applicationContext
 
     private val settingsAdapter: SettingsAdapter by lazy {
         SettingsAdapter(
@@ -102,7 +106,8 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         }
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             vmSettings.nativeLanguage.collectLatest {
-                val localeLang = if (it==1) "uk" else "ru"
+                val localeLang = if (it==1) LANG_POSTFIX_UA else LANG_POSTFIX_RU
+                Log.d(TAG_NATIVE_LANG, "initViewModel: lang = $localeLang")
                 binding.tvTitle.text = getLocalizedString(Locale(localeLang), R.string.settings, requireContext())
 
 

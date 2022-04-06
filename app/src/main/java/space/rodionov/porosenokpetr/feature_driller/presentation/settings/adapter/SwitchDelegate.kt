@@ -1,6 +1,7 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation.settings.adapter
 
 import android.content.res.ColorStateList
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SwitchCompat
@@ -11,6 +12,9 @@ import space.rodionov.porosenokpetr.feature_driller.domain.models.BaseModel
 import space.rodionov.porosenokpetr.feature_driller.domain.models.MenuSwitch
 import space.rodionov.porosenokpetr.feature_driller.presentation.base.AdapterDelegate
 import space.rodionov.porosenokpetr.feature_driller.presentation.base.BaseViewHolder
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANG_POSTFIX_RU
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANG_POSTFIX_UA
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_NATIVE_LANG
 import space.rodionov.porosenokpetr.feature_driller.utils.SettingsSwitchType
 import java.util.*
 
@@ -40,16 +44,19 @@ class SwitchViewHolder(
 
     private fun bindSwitchState(model: BaseModel, switch: SwitchCompat) {
         model as MenuSwitch
+        val requestedLang = if (nativeLangBVH == 1) LANG_POSTFIX_UA else LANG_POSTFIX_RU
+        Log.d(TAG_NATIVE_LANG, "bindSwitchState: lang = $requestedLang")
+
         when(model.type) {
             SettingsSwitchType.TRANSLATION_DIRECTION -> {
                 switch.isChecked = model.switchState
-                var transDirText = if (model.switchState) res.getString(R.string.from_ru_to_en)
-                    else res.getString(R.string.from_en_to_ru)
-                switch.text = transDirText
+                var resId = if (model.switchState) R.string.from_ru_to_en
+                    else R.string.from_en_to_ru
+                switch.text = getLocalizedString(Locale(requestedLang), resId, itemView.context)
             }
             SettingsSwitchType.NIGHT_MODE -> {
                 switch.isChecked = model.switchState
-                switch.text = res.getString(R.string.dark_mode)
+                switch.text = getLocalizedString(Locale(requestedLang), R.string.dark_mode, itemView.context)
                 if (model.isBlocked) {
                     switch.setTextColor(res.getColor(R.color.gray600))
                     switch.thumbTintList = ColorStateList.valueOf(res.getColor(R.color.gray600))
@@ -62,7 +69,7 @@ class SwitchViewHolder(
             }
             SettingsSwitchType.SYSTEM_MODE -> {
                 switch.isChecked = model.switchState
-                switch.text = res.getString(R.string.follow_system_mode)
+                switch.text = getLocalizedString(Locale(requestedLang), R.string.follow_system_mode, itemView.context)
                 switch.setTextColor(colors[3])//todo костыль (почемуто иногда блокируется этот switch, хотя isBlocked приходит false ВСЕГДА)
                 switch.thumbTintList = ColorStateList.valueOf(res.getColor(R.color.white))//todo костыль (и только костыль пока-что помог)
                 switch.isEnabled = true //todo костыль
@@ -70,7 +77,6 @@ class SwitchViewHolder(
             SettingsSwitchType.NATIVE_LANG -> {
                 switch.isChecked = model.switchState
                 val resId = if (model.switchState) R.string.ukrainian else R.string.russian
-                val requestedLang = if (nativeLangBVH == 1) "uk" else "ru"
                 switch.text = getLocalizedString(
                     Locale(requestedLang),
                     resId,

@@ -10,6 +10,7 @@ import space.rodionov.porosenokpetr.feature_driller.utils.Constants.DEFAULT_INT
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MILLIS_IN_NINE_HOURS
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_LIGHT
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_RU
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_NATIVE_LANG
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_SETTINGS
 
 abstract class BaseAdapter(
@@ -26,6 +27,7 @@ abstract class BaseAdapter(
     var nativeLangBA = NATIVE_LANGUAGE_RU
     open fun updateNativeLang(lang: Int) {
         nativeLangBA = lang
+        Log.d(TAG_NATIVE_LANG, "updateNativeLang: $lang")
         notifyDataSetChanged() // then try to comment this out
     }
 
