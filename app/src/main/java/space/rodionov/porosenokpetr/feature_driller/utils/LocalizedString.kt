@@ -7,7 +7,8 @@ import space.rodionov.porosenokpetr.feature_driller.domain.utils.StringTag
 data class LocalizedString(
     val stringTag: StringTag,
     val ruId: Int,
-    val uaId: Int
+    val uaId: Int,
+    val enId: Int? = null
 )
 
 object LocalizationHelper {
@@ -60,6 +61,7 @@ object LocalizationHelper {
 
     val nativeLanguage = LocalizedString(StringTag.NATIVE_LANGUAGE, R.string.russian, R.string.ukrainian_ua) // note here's a dif
     val currentNativeLanguage = LocalizedString(StringTag.CURRENT_NATIVE_LANGUAGE, R.string.russian, R.string.ukrainian_ua)
+
 
 }
 

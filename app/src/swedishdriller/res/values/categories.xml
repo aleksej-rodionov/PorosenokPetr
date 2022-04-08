@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string-array name="cat_name">
-        <item>Дом и хозйство</item>
+    <string-array name="cat_name_rus">
+        <item>Дом и хозяйство</item>
         <item>Жратва</item>
         <item>Шмотки</item>
         <item>Город и транспорт</item>
@@ -20,6 +20,49 @@
         <item>Фразочки 3</item>
         <item>Фразочки 4</item>
     </string-array>
+
+
+    <string-array name="cat_name_eng">
+        <item>At home</item>
+        <item>Food</item>
+        <item>Clothes</item>
+        <item>City</item>
+        <item>Work and business</item>
+        <item>Science and technology</item>
+        <item>Socium</item>
+        <item>Numbers</item>
+        <item>Health</item>
+        <item>Nature</item>
+        <item>Verbs 1</item>
+        <item>Verbs 2 (irregular)</item>
+        <item>Verbs 3</item>
+        <item>Phrases 1</item>
+        <item>Phrases 2</item>
+        <item>Phrases 3</item>
+        <item>Phrases 4</item>
+    </string-array>
+
+
+    <string-array name="cat_name_ukr">
+        <item>Вдома</item>
+        <item>Їжа</item>
+        <item>Одяг</item>
+        <item>Місто</item>
+        <item>Робота та бізнес</item>
+        <item>Наука і технології</item>
+        <item>Соціум</item>
+        <item>Номери</item>
+        <item>Здоров\'я</item>
+        <item>Природа</item>
+        <item>Дієслова 1</item>
+        <item>Дієслова 2 (нерегулярні)</item>
+        <item>Дієслова 3</item>
+        <item>Фрази 1</item>
+        <item>Фрази 2</item>
+        <item>Фрази 3</item>
+        <item>Фрази 4</item>
+    </string-array>
+
 
 <!--    <string-array name="cat_number">-->
 <!--        <item>1</item>-->
