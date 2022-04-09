@@ -59,6 +59,9 @@ interface WordRepo {
     fun observeNativeLanguage() : Flow<Int>
     suspend fun updateNativeLanguage(newLanguage: Int)
 
+    fun observeLearnedLanguage() : Flow<Int>
+    suspend fun updateLearnedLanguage(newLanguage: Int)
+
     fun storageCatName() : Flow<String>
     suspend fun updateStorageCat(catName: String)
 }

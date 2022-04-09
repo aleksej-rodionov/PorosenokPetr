@@ -9,13 +9,13 @@ import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_NATIVE_L
 import java.util.*
 
 
-fun getLocalizedString(requestedLocale: Locale, resourceId: Int, context: Context): String? {
-    val newConfig = Configuration(context.resources.configuration)
-    newConfig.setLocale(requestedLocale)
-    var newContext = context.createConfigurationContext(newConfig)
-    Log.d(TAG_NATIVE_LANG, "getLocaleStringResource: check new context: ${newContext.resources.configuration.locale}")
-    val newString = newContext.resources.getString(resourceId)
-    Log.d(TAG_NATIVE_LANG, "getLocaleStringResource: check new string = $newString")
-    newContext = null
-    return newString
-}
+//fun getLocalizedString(requestedLocale: Locale, resourceId: Int, context: Context): String? {
+//    val newConfig = Configuration(context.resources.configuration)
+//    newConfig.setLocale(requestedLocale)
+//    var newContext = context.createConfigurationContext(newConfig)
+//    Log.d(TAG_NATIVE_LANG, "getLocaleStringResource: check new context: ${newContext.resources.configuration.locale}")
+//    val newString = newContext.resources.getString(resourceId)
+//    Log.d(TAG_NATIVE_LANG, "getLocaleStringResource: check new string = $newString")
+//    newContext = null
+//    return newString
+//}

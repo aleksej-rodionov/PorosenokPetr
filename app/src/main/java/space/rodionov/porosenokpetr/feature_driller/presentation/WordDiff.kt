@@ -11,8 +11,8 @@ class WordDiff : DiffUtil.ItemCallback<Word>() {
         oldItem == newItem
 
     override fun areContentsTheSame(oldItem: Word, newItem: Word) =
-        oldItem.foreign == newItem.foreign && oldItem.nativ == newItem.nativ
-                && oldItem.categoryName == newItem.categoryName
+        oldItem.rus == newItem.rus && oldItem.ukr == newItem.ukr
+                && oldItem.eng == newItem.eng && oldItem.categoryName == newItem.categoryName
 }
 
 
@@ -22,6 +22,7 @@ class CatDiff : DiffUtil.ItemCallback<Category>() {
 
     override fun areContentsTheSame(oldItem: Category, newItem: Category) =
         oldItem.isCategoryActive == newItem.isCategoryActive && oldItem.resourceName == newItem.resourceName
+                && oldItem.nameRus == newItem.nameRus && oldItem.nameEng == newItem.nameEng
 }
 
 class CatWithWordsDiff : DiffUtil.ItemCallback<CatWithWords>() {

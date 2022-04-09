@@ -10,23 +10,44 @@ import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
 import space.rodionov.porosenokpetr.feature_driller.presentation.WordDiff
 import space.rodionov.porosenokpetr.core.ModeForAdapter
 import space.rodionov.porosenokpetr.core.redrawViewGroup
+import space.rodionov.porosenokpetr.feature_driller.utils.LearnedLangForAdapter
+import space.rodionov.porosenokpetr.feature_driller.utils.NativeLangForAdapter
 
 class DrillerAdapter(
     private val onSpeakWord: (String) -> Unit = {}
-) : ListAdapter<Word, DrillerAdapter.DrillerViewHolder>(WordDiff()), ModeForAdapter {
+) : ListAdapter<Word, DrillerAdapter.DrillerViewHolder>(WordDiff()), ModeForAdapter, NativeLangForAdapter, LearnedLangForAdapter {
 
     companion object {
         const val TAG_DRILLER_ADAPTER = "drillerAdapter"
     }
 
+    //===================DARK MODE===========================
     private var mode: Int = 0
     override fun updateMode(newMode: Int) {
         mode = newMode
     }
     override fun getTag(): String = TAG_DRILLER_ADAPTER
 
+    //===================NATIVE LANG===========================
+    private var nativeLang: Int = 0
+    override fun updateNativeLang(newLang: Int) {
+        nativeLang = newLang
+    }
+    override fun getTagForLang(): String = TAG_DRILLER_ADAPTER // todo попробовать просто getTag() назвать чтоб один на три интерфейса
+
+    //===================LEARNED LANG===========================
+    private var learnedLang: Int = 0
+    override fun updateLearnedLang(newLang: Int) {
+        learnedLang = newLang
+    }
+    override fun getTagForLangLearned(): String = TAG_DRILLER_ADAPTER // todo попробовать просто getTag() назвать чтоб один на три интерфейса
+
+
+    //=====================TRANSLATION DIR==========================
     private var mNativeToForeign: Boolean = false
     fun updateTransDir(nativeToForeign: Boolean) { mNativeToForeign = nativeToForeign }
+
+
 
     inner class DrillerViewHolder(
         private val binding: ItemWordCardBinding,
@@ -37,8 +58,8 @@ class DrillerAdapter(
                 tvDowner.isVisible = false
                 btnSpeak.isVisible = !mNativeToForeign
 
-                tvUpper.text = if(mNativeToForeign) word.nativ else word.foreign
-                tvDowner.text = if(mNativeToForeign) word.foreign else word.nativ
+                tvUpper.text = if(mNativeToForeign) word.getTranslation(nativeLang) else word.getTranslation(learnedLang)
+                tvDowner.text = if(mNativeToForeign) word.getTranslation(learnedLang) else word.getTranslation(nativeLang)
 
                 (root as ViewGroup).redrawViewGroup(mode)
 
@@ -63,7 +84,7 @@ class DrillerAdapter(
             binding,
             onSpeakItem = { pos ->
                 val word = getItem(pos)
-                if (word != null) onSpeakWord(word.foreign)
+                if (word != null) onSpeakWord(word.getTranslation(learnedLang))
             }
         )
     }

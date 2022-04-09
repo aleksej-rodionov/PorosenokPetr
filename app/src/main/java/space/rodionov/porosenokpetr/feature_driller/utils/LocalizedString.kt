@@ -3,13 +3,36 @@ package space.rodionov.porosenokpetr.feature_driller.utils
 import android.content.res.Resources
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.feature_driller.domain.utils.StringTag
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_EN
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_RU
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_SE
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_UA
 
 data class LocalizedString(
     val stringTag: StringTag,
     val ruId: Int,
     val uaId: Int,
     val enId: Int? = null
-)
+) {
+    fun getIdByLang(lang: Int) : Int {
+        return when(lang) {
+            NATIVE_LANGUAGE_RU -> ruId
+            NATIVE_LANGUAGE_UA -> uaId
+            NATIVE_LANGUAGE_EN -> enId?:ruId
+            else -> ruId
+        }
+    }
+}
+
+interface NativeLangForAdapter {
+    fun updateNativeLang(newLang: Int)
+    fun getTagForLang() : String
+}
+
+interface LearnedLangForAdapter {
+    fun updateLearnedLang(newLang: Int)
+    fun getTagForLangLearned() : String
+}
 
 object LocalizationHelper {
 

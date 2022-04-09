@@ -27,7 +27,8 @@ class SwitchWithTimeViewHolder(
             switchView.isChecked = model.switchState
             timeSelectionView.visibility = if (model.switchState) View.VISIBLE else View.GONE
 
-            switchView.text = res.getString(R.string.remind)
+            val resId = model.text.getIdByLang(nativeLangBVH)
+            switchView.text = res.getString(resId)
 
             val time = parseLongToHoursAndMinutes(model.millisSinceDayBeginning)
             tvTime.text = "Ежедневно в ${time.first}:${time.second}"

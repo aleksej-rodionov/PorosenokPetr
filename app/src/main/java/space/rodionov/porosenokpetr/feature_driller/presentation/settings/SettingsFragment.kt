@@ -12,7 +12,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.MainActivity
 import space.rodionov.porosenokpetr.R
-import space.rodionov.porosenokpetr.core.getLocalizedString
 import space.rodionov.porosenokpetr.databinding.FragmentSettingsBinding
 import space.rodionov.porosenokpetr.databinding.SnackbarLayoutBinding
 import space.rodionov.porosenokpetr.feature_driller.presentation.settings.adapter.SettingsAdapter
@@ -107,7 +106,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         }
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             vmSettings.nativeLanguage.collectLatest {
-                binding.tvTitle.text = resources.getString( if (it == 1) LocalizationHelper.settings.uaId
+                binding.tvTitle.text = resources.getString( if (it == NATIVE_LANGUAGE_UA) LocalizationHelper.settings.uaId
                 else LocalizationHelper.settings.ruId)
 
 

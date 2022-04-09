@@ -66,7 +66,7 @@ abstract class WordDatabase : RoomDatabase() {
                         Log.d(TAG_PETR, "ruswords size = ${rusWords.size}: ")
 
                         for (i in engWords.indices) {
-                            dao.insertWord(WordEntity(engWords[i], rusWords[i], null, null, categoryName = s))  // todo add ukrainian later
+                            dao.insertWord(WordEntity(rusWords[i], null, engWords[i], null, categoryName = s))  // todo add ukrainian later
                         }
                     }
 
@@ -174,7 +174,7 @@ abstract class WordDatabase : RoomDatabase() {
                         Log.d(TAG_PETR, "ruswords size = ${sweWords.size}: ")
 
                         for (i in engWords.indices) {
-                            dao.insertWord(WordEntity(engWords[i], rusWords[i], ukrWords[i], sweWords[i], s))
+                            dao.insertWord(WordEntity(rusWords[i], ukrWords[i], engWords[i], sweWords[i], s))
                         }
                     }
 

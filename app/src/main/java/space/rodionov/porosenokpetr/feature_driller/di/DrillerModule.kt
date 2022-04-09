@@ -25,6 +25,18 @@ object DrillerModule {
 
     @Provides
     @Singleton
+    fun provideObserveLearnedLangUseCase(repo: WordRepo): ObserveLearnedLangUseCase {
+        return ObserveLearnedLangUseCase(repo)
+    }
+
+    @Provides
+    @Singleton
+    fun provideUpdateLearnedLangUseCase(repo: WordRepo): UpdateLearnedLangUseCase {
+        return UpdateLearnedLangUseCase(repo)
+    }
+
+    @Provides
+    @Singleton
     fun provideObserveNativeLangUseCase(repo: WordRepo): ObserveNativeLangUseCase {
         return ObserveNativeLangUseCase(repo)
     }

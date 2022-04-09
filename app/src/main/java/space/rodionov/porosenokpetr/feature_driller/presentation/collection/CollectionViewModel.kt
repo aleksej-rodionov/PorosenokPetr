@@ -44,6 +44,7 @@ class CollectionViewModel @Inject constructor(
     val nativeLanguage = _nativeLanguage.stateIn(viewModelScope, SharingStarted.Lazily,
         Constants.NATIVE_LANGUAGE_RU
     )
+
     sealed class CollectionEvent {
         data class NavigateToWordlistScreen(val cat: Category?) : CollectionEvent()
         data class RefreshCatSwitch(val cat: Category) : CollectionEvent()

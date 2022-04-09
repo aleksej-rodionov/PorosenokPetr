@@ -21,6 +21,7 @@ import space.rodionov.porosenokpetr.databinding.FragmentWordlistBinding
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.EMPTY_STRING
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
+import space.rodionov.porosenokpetr.feature_driller.utils.LocalizationHelper
 import java.util.*
 
 @AndroidEntryPoint
@@ -75,7 +76,9 @@ class WordlistFragment : Fragment(R.layout.fragment_wordlist), TextToSpeech.OnIn
     private fun initViewModel() {
         vmWordlist.catToSearchIn.observe(viewLifecycleOwner) {
             binding?.apply {
-                if (it == null) tvTitle.text = getString(R.string.search_among_all_words)
+                if (it == null) {
+                    tvTitle.text = getString(LocalizationHelper.searchAmongAllWords.getIdByLang(vmWordlist.nativeLang.value))
+                }
                 vmWordlist.updateCatStorage(EMPTY_STRING)
                 val cat = it ?: return@observe
                 tvTitle.text = getString(R.string.search_in, cat.resourceName)
@@ -135,8 +138,8 @@ class WordlistFragment : Fragment(R.layout.fragment_wordlist), TextToSpeech.OnIn
 
     private fun showWordBottomSheet(word: Word) {
         val args = Bundle()
-        args.putString("nativ", word.nativ)
-        args.putString("foreign", word.foreign)
+        args.putString("nativ", word.getTranslation(vmWordlist.nativeLang.value))
+        args.putString("foreign", word.getTranslation(vmWordlist.learnedLang.value))//todo learnedLang
         args.putString("categoryName", word.categoryName)
         
         val wordBottomSheet = WordlistBottomSheet()

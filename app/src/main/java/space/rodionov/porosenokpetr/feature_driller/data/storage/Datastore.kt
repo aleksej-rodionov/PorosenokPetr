@@ -30,6 +30,7 @@ class Datastore /*@Inject constructor*/( // todo сделать интерфей
         val REMINDER = booleanPreferencesKey("remind")
         val MILLIS_FROM_DAY_BEGINNING = longPreferencesKey("millis")
         val NATIVE_LANGUAGE = intPreferencesKey("nativeLanguage")
+        val LEARNED_LANGUAGE = intPreferencesKey("nativeLanguage")
 //        val FOLLOW_SYSTEM_LOCALE = booleanPreferencesKey("followSystemLocale")
     }
 
@@ -173,6 +174,28 @@ class Datastore /*@Inject constructor*/( // todo сделать интерфей
         Log.d(TAG_NATIVE_LANG, "updateNativeLanguage: $language")
         datastore.edit { prefs ->
             prefs[PrefKeys.NATIVE_LANGUAGE] = language
+        }
+    }
+
+    //==========================LEARNED LANGUAGE============================================
+    val learnedLanguageFlow = datastore.data
+        .catch {exception ->
+            if (exception is IOException) {
+                Log.e(TAG_PETR, "Error reading preferences", exception)
+                emit(emptyPreferences())
+            } else {
+                throw exception
+            }
+        }
+        .map { prefs ->
+            val language = prefs[PrefKeys.LEARNED_LANGUAGE] ?: 0
+            language
+        }
+
+    suspend fun updateLearnedLanguage(language: Int) {
+        Log.d(TAG_NATIVE_LANG, "updateNativeLanguage: $language")
+        datastore.edit { prefs ->
+            prefs[PrefKeys.LEARNED_LANGUAGE] = language
         }
     }
 }

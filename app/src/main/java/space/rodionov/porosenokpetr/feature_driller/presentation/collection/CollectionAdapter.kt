@@ -12,23 +12,36 @@ import space.rodionov.porosenokpetr.feature_driller.domain.models.Category
 import space.rodionov.porosenokpetr.feature_driller.presentation.CatWithWordsDiff
 import space.rodionov.porosenokpetr.core.ModeForAdapter
 import space.rodionov.porosenokpetr.core.redrawViewGroup
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_RU
+import space.rodionov.porosenokpetr.feature_driller.utils.NativeLangForAdapter
 import space.rodionov.porosenokpetr.feature_driller.utils.countPercentage
 
 class CollectionAdapter(
     private val onSwitchCatActive: (Category, Boolean) -> Unit = { _, _ -> },
     private val onClickCat: (Category) -> Unit = { _ -> }
 ) : ListAdapter<CatWithWords, CollectionAdapter.CollectionViewHolder>(CatWithWordsDiff()),
-    ModeForAdapter {
+    ModeForAdapter, NativeLangForAdapter {
 
     companion object {
         const val TAG_COLLECTION_ADAPTER = "collectionAdapter"
     }
 
+    //==================DARK MODE=============
     private var mode: Int = 0
     override fun updateMode(newMode: Int) {
         mode = newMode
     }
     override fun getTag(): String = TAG_COLLECTION_ADAPTER
+
+    //================NATIVE LANG================
+    private var nativeLang: Int = NATIVE_LANGUAGE_RU
+    override fun updateNativeLang(newLang: Int) {
+        nativeLang = newLang
+    }
+    override fun getTagForLang(): String = TAG_COLLECTION_ADAPTER
+
+
+
 
     fun refreshCatSwitchState(catToRefresh: Category) {
         val pos = findPosByName(catToRefresh.resourceName)
@@ -57,7 +70,7 @@ class CollectionAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(cww: CatWithWords) {
             binding.apply {
-                tvCatName.text = cww.category.resourceName
+                tvCatName.text = cww.category.getLocalizedName(nativeLang)
 
                 (root as ViewGroup).redrawViewGroup(mode)
 

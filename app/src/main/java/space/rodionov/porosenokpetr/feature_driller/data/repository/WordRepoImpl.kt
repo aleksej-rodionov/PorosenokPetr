@@ -28,7 +28,7 @@ class WordRepoImpl(
     }
 
     override suspend fun updateWordIsActive(word: Word, isActive: Boolean) {
-        val wordEntity = dao.getWord(word.nativ, word.foreign, word.categoryName)
+        val wordEntity = dao.getWord(word.rus, word.eng, word.categoryName)
         wordEntity.let {
             Log.d(TAG_PETR, "updateWordIsActive: word found and changed")
             dao.updateWord(it.copy(isWordActive = isActive))
@@ -122,6 +122,9 @@ class WordRepoImpl(
 
     override fun observeNativeLanguage(): Flow<Int> = datastore.nativeLanguageFlow
     override suspend fun updateNativeLanguage(newLanguage: Int) = datastore.updateNativeLanguage(newLanguage)
+
+    override fun observeLearnedLanguage(): Flow<Int> = datastore.learnedLanguageFlow
+    override suspend fun updateLearnedLanguage(newLanguage: Int) = datastore.updateLearnedLanguage(newLanguage)
 
     override fun storageCatName(): Flow<String> = datastore.categoryFlow
     override suspend fun updateStorageCat(catName: String) = datastore.updateCategoryChosen(catName)

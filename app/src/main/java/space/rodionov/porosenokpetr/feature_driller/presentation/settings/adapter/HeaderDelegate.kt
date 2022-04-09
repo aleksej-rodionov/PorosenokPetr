@@ -16,7 +16,7 @@ class HeaderViewHolder(parent: ViewGroup) : BaseViewHolder(parent, R.layout.item
         with(binding) {
             model as Header
             model.text?.let {
-                tvTitle.text = res.getString(if (nativeLangBVH==1) it.uaId else it.ruId)
+                tvTitle.text = res.getString(it.getIdByLang(nativeLangBVH))
             } ?: tvTitle.setText(model.header?.let {
                 it.substring(0, 1).toUpperCase(Locale.getDefault()) + it.substring(1)
             })

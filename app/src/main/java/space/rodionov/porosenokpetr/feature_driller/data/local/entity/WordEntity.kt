@@ -6,9 +6,9 @@ import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
 
 @Entity
 data class WordEntity(
-    val eng: String,
     val rus: String,
     val ukr: String?,
+    val eng: String,
     val swe: String?,
     val categoryName: String,
     val isWordActive: Boolean = true,

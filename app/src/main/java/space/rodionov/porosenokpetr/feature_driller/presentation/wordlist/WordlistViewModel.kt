@@ -15,6 +15,8 @@ import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Category
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
 import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.*
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_EN
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_RU
 import javax.inject.Inject
 
 @HiltViewModel
@@ -26,9 +28,11 @@ class WordlistViewModel @Inject constructor(
     private val updateWordIsActiveUseCase: UpdateWordIsActiveUseCase,
     private val updateIsWordActiveUseCase: UpdateIsWordActiveUseCase,
     private val observeModeUseCase: ObserveModeUseCase,
+    private val observeNativeLangUseCase: ObserveNativeLangUseCase,
+    private val observeLearnedLangUseCase: ObserveLearnedLangUseCase,
     private val state: SavedStateHandle
 ) : ViewModel() {
-//    var wordLivedata = state.getLiveData<Word?>("wordLivedata", null)
+//    var nativeLangLiveData = state.getLiveData<Int?>("nativeLangLiveData", null)
     var nativLivedata = state.getLiveData<String>("nativLivedata", null)
     var foreignLivedata = state.getLiveData<String>("foreignLivedata", null)
     var catNameLivedata = state.getLiveData<String?>("catNameLivedata", null)
@@ -44,8 +48,11 @@ class WordlistViewModel @Inject constructor(
     }
     val word = _word.stateIn(viewModelScope, SharingStarted.Lazily, null)
 
-//    private val _word = observeWordUseCase.invoke(wordInDialog.value)
-//    val word = _word.stateIn(viewModelScope, SharingStarted.Lazily, null)
+    private val _nativeLang = observeNativeLangUseCase.invoke()
+    val nativeLang= _nativeLang.stateIn(viewModelScope, SharingStarted.Lazily, NATIVE_LANGUAGE_RU)
+
+    private val _learnedLang = observeLearnedLangUseCase.invoke()
+    val learnedLang= _learnedLang.stateIn(viewModelScope, SharingStarted.Lazily, NATIVE_LANGUAGE_EN)
 
     var catToSearchIn = state.getLiveData<Category>("category", null)
     val catNameFlow = catNameFromStorageUseCase.invoke()
