@@ -81,7 +81,7 @@ class WordlistBottomSheet : BottomSheetDialogFragment() {
 
                     tvWord.text = resources.getString(
                         R.string.word_in_dialog,
-                        word.getTranslation(natLang),
+                        word.getTranslation(vmWordlist.learnedLang.value),
                         word.getTranslation(natLang))
                     tvCategory.text = word.categoryName
                     val learned =
