@@ -18,7 +18,7 @@ data class Category(
     fun getLocalizedName(lang: Int) = when (lang) {
         NATIVE_LANGUAGE_RU -> nameRus
         NATIVE_LANGUAGE_UA -> nameUkr
-        NATIVE_LANGUAGE_EN -> nameEng
+        NATIVE_LANGUAGE_EN -> nameEng ?: nameRus
         else -> nameRus
     }
 }
