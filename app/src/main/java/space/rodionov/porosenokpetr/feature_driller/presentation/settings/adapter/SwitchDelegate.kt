@@ -54,7 +54,7 @@ class SwitchViewHolder(
         when(model.type) {
             SettingsSwitchType.TRANSLATION_DIRECTION -> {
                 switch.isChecked = model.switchState
-                val resId = model.text.getIdByLang(nativeLangBVH)
+                val resId = model.text.getIdByLang(nativeLangBVH) // todo get current transDir. take if from model.switchState or change it in vm.updMenuList()
                 switch.text =res.getString(resId)
             }
             SettingsSwitchType.NIGHT_MODE -> {

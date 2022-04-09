@@ -10,6 +10,8 @@ import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
 import space.rodionov.porosenokpetr.feature_driller.presentation.WordDiff
 import space.rodionov.porosenokpetr.core.ModeForAdapter
 import space.rodionov.porosenokpetr.core.redrawViewGroup
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_EN
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_RU
 import space.rodionov.porosenokpetr.feature_driller.utils.LangForAdapter
 
 class DrillerAdapter(
@@ -29,8 +31,8 @@ class DrillerAdapter(
     override fun getTag(): String = TAG_DRILLER_ADAPTER
 
     //===================LANG===========================
-    private var nativeLang: Int = 0
-    private var learnedLang: Int = 0
+    private var nativeLang: Int = NATIVE_LANGUAGE_RU
+    private var learnedLang: Int = NATIVE_LANGUAGE_EN
     override fun updateNativeLang(newLang: Int) {
         nativeLang = newLang
     }
