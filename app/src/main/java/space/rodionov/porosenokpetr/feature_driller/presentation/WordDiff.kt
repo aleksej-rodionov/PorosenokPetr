@@ -21,7 +21,7 @@ class CatDiff : DiffUtil.ItemCallback<Category>() {
         oldItem == newItem
 
     override fun areContentsTheSame(oldItem: Category, newItem: Category) =
-        oldItem.isCategoryActive == newItem.isCategoryActive && oldItem.name == newItem.name
+        oldItem.isCategoryActive == newItem.isCategoryActive && oldItem.resourceName == newItem.resourceName
 }
 
 class CatWithWordsDiff : DiffUtil.ItemCallback<CatWithWords>() {
@@ -30,6 +30,6 @@ class CatWithWordsDiff : DiffUtil.ItemCallback<CatWithWords>() {
 
     override fun areContentsTheSame(oldItem: CatWithWords, newItem: CatWithWords) =
         oldItem.category.isCategoryActive == newItem.category.isCategoryActive &&
-                oldItem.category.name == newItem.category.name &&
+                oldItem.category.resourceName == newItem.category.resourceName &&
                 oldItem.words.countPercentage() == newItem.words.countPercentage()
 }

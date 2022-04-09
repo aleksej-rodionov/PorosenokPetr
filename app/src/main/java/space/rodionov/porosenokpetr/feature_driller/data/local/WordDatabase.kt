@@ -12,6 +12,7 @@ import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.feature_driller.data.local.entity.CategoryEntity
 import space.rodionov.porosenokpetr.feature_driller.data.local.entity.WordEntity
 import space.rodionov.porosenokpetr.feature_driller.di.ApplicationScope
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_DB_REFACTOR
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_NATIVE_LANG
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
 import javax.inject.Inject
@@ -36,12 +37,17 @@ abstract class WordDatabase : RoomDatabase() {
             appScope.launch {
                 if (BuildConfig.FLAVOR == "englishdriller") {
                     Log.d(TAG_NATIVE_LANG, "onCreate: flavor = englishdriller")
-                    val categories = app.resources.getStringArray(R.array.categories).toList()
-                    categories.forEach {
-                        dao.insertCategory(CategoryEntity(it))
+                    val catNamesRus = app.resources.getStringArray(R.array.cat_name_rus).toList()
+                    val catNamesUkr = app.resources.getStringArray(R.array.cat_name_ukr).toList()
+                    catNamesRus.forEachIndexed { index, s ->
+                        dao.insertCategory(CategoryEntity(
+                            resourceName = s,
+                            nameRus = s,
+                            nameUkr = catNamesUkr[index]
+                        ))
                     }
 
-                    categories.forEachIndexed { index, s ->
+                    catNamesRus.forEachIndexed { index, s ->
 
                         val engResId = app.resources.getIdentifier(
                             "eng$index",
@@ -60,11 +66,11 @@ abstract class WordDatabase : RoomDatabase() {
                         Log.d(TAG_PETR, "ruswords size = ${rusWords.size}: ")
 
                         for (i in engWords.indices) {
-                            dao.insertWord(WordEntity(rusWords[i], engWords[i], s))
+                            dao.insertWord(WordEntity(engWords[i], rusWords[i], null, null, categoryName = s))  // todo add ukrainian later
                         }
                     }
 
-                    val rus0 = app.resources.getStringArray(R.array.rus0).toList()
+                /*    val rus0 = app.resources.getStringArray(R.array.rus0).toList()
                     val rus1 = app.resources.getStringArray(R.array.rus1).toList()
                     val rus2 = app.resources.getStringArray(R.array.rus2).toList()
                     val rus3 = app.resources.getStringArray(R.array.rus3).toList()
@@ -130,14 +136,49 @@ abstract class WordDatabase : RoomDatabase() {
                                 app.resources.getString(R.string.top_200_verbs)
                             )
                         )
-                    }
+                    }*/
                 }
-            }
 
-            if (BuildConfig.FLAVOR == "swedishdriller") {
-                Log.d(TAG_NATIVE_LANG, "onCreate: flavor = swedishdriller")
+                if (BuildConfig.FLAVOR == "swedishdriller") {
+                    Log.d(TAG_NATIVE_LANG, "onCreate: flavor = swedishdriller")
 
-                //todo здесь заполнять базу для swedishDriller-a.
+                    val catNamesRus = app.resources.getStringArray(R.array.cat_name_rus).toList()
+                    val catNamesUkr = app.resources.getStringArray(R.array.cat_name_ukr).toList()
+                    val catNamesEng = app.resources.getStringArray(R.array.cat_name_eng).toList()
+                    catNamesRus.forEachIndexed { index, s ->
+                        val cat = CategoryEntity(
+                            resourceName = s,
+                            nameRus = s,
+                            nameUkr = catNamesUkr[index],
+                            nameEng = catNamesEng[index]
+                        )
+                        Log.d(TAG_DB_REFACTOR, "insertCat: $cat")
+                        dao.insertCategory(cat)
+                    }
+
+                    catNamesRus.forEachIndexed { index, s ->
+                        val rusResId = app.resources.getIdentifier("rus$index", "array", app.packageName)
+                        val rusWords = app.resources.getStringArray(rusResId).toList()
+                        Log.d(TAG_PETR, "ruswords size = ${rusWords.size}: ")
+
+                        val ukrResId = app.resources.getIdentifier("ukr$index", "array", app.packageName)
+                        val ukrWords = app.resources.getStringArray(ukrResId).toList()
+                        Log.d(TAG_PETR, "ruswords size = ${ukrWords.size}: ")
+
+                        val engResId = app.resources.getIdentifier("eng$index", "array", app.packageName)
+                        val engWords = app.resources.getStringArray(engResId).toList()
+                        Log.d(TAG_PETR, "engwords size = ${engWords.size}: ")
+
+                        val sweResId = app.resources.getIdentifier("swe$index", "array", app.packageName)
+                        val sweWords = app.resources.getStringArray(sweResId).toList()
+                        Log.d(TAG_PETR, "ruswords size = ${sweWords.size}: ")
+
+                        for (i in engWords.indices) {
+                            dao.insertWord(WordEntity(engWords[i], rusWords[i], ukrWords[i], sweWords[i], s))
+                        }
+                    }
+
+                }
             }
         }
     }

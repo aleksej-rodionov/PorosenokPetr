@@ -71,7 +71,7 @@ class FilterBottomSheet : BottomSheetDialogFragment(), CompoundButton.OnCheckedC
                     chipGroupCategories.removeAllViews()
                     categories.forEach { cat ->
                         val newChip = Chip(requireContext())
-                        newChip.text = cat.name
+                        newChip.text = cat.resourceName
                         newChip.isChecked = cat.isCategoryActive
                         chipGroupCategories.addView(newChip)
                     }

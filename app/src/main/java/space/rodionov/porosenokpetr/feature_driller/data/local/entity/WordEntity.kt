@@ -6,16 +6,20 @@ import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
 
 @Entity
 data class WordEntity(
-    val nativ: String,
-    val foreign: String,
+    val eng: String,
+    val rus: String,
+    val ukr: String?,
+    val swe: String?,
     val categoryName: String,
     val isWordActive: Boolean = true,
     @PrimaryKey(autoGenerate = true) val id: Int = 0
 ) {
     fun toWord(): Word {
         return Word(
-            nativ = nativ,
-            foreign = foreign,
+            eng = eng,
+            rus = rus,
+            ukr = ukr,
+            swe = swe,
             categoryName = categoryName,
             isWordActive = isWordActive
         )

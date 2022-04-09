@@ -31,7 +31,7 @@ class CollectionAdapter(
     override fun getTag(): String = TAG_COLLECTION_ADAPTER
 
     fun refreshCatSwitchState(catToRefresh: Category) {
-        val pos = findPosByName(catToRefresh.name)
+        val pos = findPosByName(catToRefresh.resourceName)
         pos?.let {
             notifyItemChanged(it)
         }
@@ -40,7 +40,7 @@ class CollectionAdapter(
     private fun findPosByName(catName: String): Int? {
         var pos: Int? = null
         for (i in 0 until currentList.size) {
-            if (getItem(i).category.name == catName) {
+            if (getItem(i).category.resourceName == catName) {
                 pos = i
             }
         }
@@ -57,7 +57,7 @@ class CollectionAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(cww: CatWithWords) {
             binding.apply {
-                tvCatName.text = cww.category.name
+                tvCatName.text = cww.category.resourceName
 
                 (root as ViewGroup).redrawViewGroup(mode)
 

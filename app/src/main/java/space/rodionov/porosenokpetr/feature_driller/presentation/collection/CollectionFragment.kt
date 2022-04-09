@@ -102,7 +102,7 @@ class   CollectionFragment : Fragment(
                         } else {
                             action.category = null
                         }
-                        Log.d(TAG_PETR, "NAVIGATOR: action.category = ${action.category?.name}")
+                        Log.d(TAG_PETR, "NAVIGATOR: action.category = ${action.category?.resourceName}")
                         findNavController().navigate(action)
                     }
                     is CollectionViewModel.CollectionEvent.RefreshCatSwitch -> {
@@ -128,13 +128,13 @@ class   CollectionFragment : Fragment(
 
     private fun onSwitchActive(cat: Category, isChecked: Boolean) {
         if (isChecked) {
-            vmCollection.activateCategory(cat.name)
+            vmCollection.activateCategory(cat.resourceName)
         } else {
             if (vmCollection.howManyActiveCats() < 2) {
                 vmCollection.updateCatSwitchState(cat)
                 vmCollection.shoeSnackbar(getString(R.string.cannot_turn_all_cats_off))
             } else {
-                vmCollection.inactivateCategory(cat.name)
+                vmCollection.inactivateCategory(cat.resourceName)
             }
         }
     }

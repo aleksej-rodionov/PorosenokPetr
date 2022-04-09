@@ -78,8 +78,8 @@ class WordlistFragment : Fragment(R.layout.fragment_wordlist), TextToSpeech.OnIn
                 if (it == null) tvTitle.text = getString(R.string.search_among_all_words)
                 vmWordlist.updateCatStorage(EMPTY_STRING)
                 val cat = it ?: return@observe
-                tvTitle.text = getString(R.string.search_in, cat.name)
-                vmWordlist.updateCatStorage(cat.name)
+                tvTitle.text = getString(R.string.search_in, cat.resourceName)
+                vmWordlist.updateCatStorage(cat.resourceName)
             }
         }
 
