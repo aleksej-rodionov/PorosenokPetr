@@ -10,12 +10,12 @@ import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
 import space.rodionov.porosenokpetr.feature_driller.presentation.WordDiff
 import space.rodionov.porosenokpetr.core.ModeForAdapter
 import space.rodionov.porosenokpetr.core.redrawViewGroup
-import space.rodionov.porosenokpetr.feature_driller.utils.LearnedLangForAdapter
-import space.rodionov.porosenokpetr.feature_driller.utils.NativeLangForAdapter
+import space.rodionov.porosenokpetr.feature_driller.utils.LangForAdapter
 
 class DrillerAdapter(
     private val onSpeakWord: (String) -> Unit = {}
-) : ListAdapter<Word, DrillerAdapter.DrillerViewHolder>(WordDiff()), ModeForAdapter, NativeLangForAdapter, LearnedLangForAdapter {
+) : ListAdapter<Word, DrillerAdapter.DrillerViewHolder>(WordDiff()), ModeForAdapter,
+    LangForAdapter {
 
     companion object {
         const val TAG_DRILLER_ADAPTER = "drillerAdapter"
@@ -28,20 +28,16 @@ class DrillerAdapter(
     }
     override fun getTag(): String = TAG_DRILLER_ADAPTER
 
-    //===================NATIVE LANG===========================
+    //===================LANG===========================
     private var nativeLang: Int = 0
+    private var learnedLang: Int = 0
     override fun updateNativeLang(newLang: Int) {
         nativeLang = newLang
     }
-    override fun getTagForLang(): String = TAG_DRILLER_ADAPTER // todo попробовать просто getTag() назвать чтоб один на три интерфейса
-
-    //===================LEARNED LANG===========================
-    private var learnedLang: Int = 0
     override fun updateLearnedLang(newLang: Int) {
         learnedLang = newLang
     }
-    override fun getTagForLangLearned(): String = TAG_DRILLER_ADAPTER // todo попробовать просто getTag() назвать чтоб один на три интерфейса
-
+    override fun getTagForLang(): String = TAG_DRILLER_ADAPTER // todo попробовать просто getTag() назвать чтоб один на три интерфейса
 
     //=====================TRANSLATION DIR==========================
     private var mNativeToForeign: Boolean = false

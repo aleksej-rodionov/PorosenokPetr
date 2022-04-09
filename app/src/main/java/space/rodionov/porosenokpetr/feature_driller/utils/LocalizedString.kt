@@ -24,17 +24,13 @@ data class LocalizedString(
     }
 }
 
-interface NativeLangForAdapter {
+interface LangForAdapter {
     fun updateNativeLang(newLang: Int)
+    fun updateLearnedLang(newLang: Int)
     fun getTagForLang() : String
 }
 
-interface LearnedLangForAdapter {
-    fun updateLearnedLang(newLang: Int)
-    fun getTagForLangLearned() : String
-}
-
-object LocalizationHelper {
+object LocalizationHelper { // todo add english!
 
     val top800words = LocalizedString(StringTag.TOP_800_WORDS, R.string.top_800_words, R.string.top_800_words_ua)
     val top200verbs = LocalizedString(StringTag.TOP_200_VERBS, R.string.top_200_verbs, R.string.top_200_verbs_ua)
@@ -82,8 +78,8 @@ object LocalizationHelper {
     val notificationScheduleError = LocalizedString(StringTag.NOTIFICATION_SCHEDULE_ERROR, R.string.notification_schedule_error, R.string.notification_schedule_error_ua)
     val btnNextText = LocalizedString(StringTag.BTN_NEXT_TEXT, R.string.btn_next_text, R.string.btn_next_text_ua)
 
-    val nativeLanguage = LocalizedString(StringTag.NATIVE_LANGUAGE, R.string.russian, R.string.ukrainian_ua) // note here's a dif
-    val currentNativeLanguage = LocalizedString(StringTag.CURRENT_NATIVE_LANGUAGE, R.string.russian, R.string.ukrainian_ua)
+    val nativeLanguage = LocalizedString(StringTag.NATIVE_LANGUAGE, R.string.native_language, R.string.native_language)
+    val currentNativeLanguage = LocalizedString(StringTag.CURRENT_NATIVE_LANGUAGE, R.string.russian, R.string.ukrainian_ua)  // note here's a dif
 
 
 }

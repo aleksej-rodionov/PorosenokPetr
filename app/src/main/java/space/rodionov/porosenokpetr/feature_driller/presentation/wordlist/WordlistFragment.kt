@@ -138,8 +138,8 @@ class WordlistFragment : Fragment(R.layout.fragment_wordlist), TextToSpeech.OnIn
 
     private fun showWordBottomSheet(word: Word) {
         val args = Bundle()
-        args.putString("nativ", word.getTranslation(vmWordlist.nativeLang.value))
-        args.putString("foreign", word.getTranslation(vmWordlist.learnedLang.value))//todo learnedLang
+        args.putString("rus", word.getTranslation(vmWordlist.nativeLang.value))
+        args.putString("eng", word.getTranslation(vmWordlist.learnedLang.value))
         args.putString("categoryName", word.categoryName)
         
         val wordBottomSheet = WordlistBottomSheet()

@@ -13,14 +13,14 @@ import space.rodionov.porosenokpetr.feature_driller.presentation.CatWithWordsDif
 import space.rodionov.porosenokpetr.core.ModeForAdapter
 import space.rodionov.porosenokpetr.core.redrawViewGroup
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_RU
-import space.rodionov.porosenokpetr.feature_driller.utils.NativeLangForAdapter
+import space.rodionov.porosenokpetr.feature_driller.utils.LangForAdapter
 import space.rodionov.porosenokpetr.feature_driller.utils.countPercentage
 
 class CollectionAdapter(
     private val onSwitchCatActive: (Category, Boolean) -> Unit = { _, _ -> },
     private val onClickCat: (Category) -> Unit = { _ -> }
 ) : ListAdapter<CatWithWords, CollectionAdapter.CollectionViewHolder>(CatWithWordsDiff()),
-    ModeForAdapter, NativeLangForAdapter {
+    ModeForAdapter, LangForAdapter {
 
     companion object {
         const val TAG_COLLECTION_ADAPTER = "collectionAdapter"
@@ -37,6 +37,9 @@ class CollectionAdapter(
     private var nativeLang: Int = NATIVE_LANGUAGE_RU
     override fun updateNativeLang(newLang: Int) {
         nativeLang = newLang
+    }
+    override fun updateLearnedLang(newLang: Int) {
+        //empty
     }
     override fun getTagForLang(): String = TAG_COLLECTION_ADAPTER
 

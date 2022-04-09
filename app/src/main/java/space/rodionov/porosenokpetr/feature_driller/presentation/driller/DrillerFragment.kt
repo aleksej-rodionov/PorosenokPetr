@@ -97,6 +97,18 @@ class DrillerFragment : Fragment(R.layout.fragment_driller), CardStackListener, 
         }
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            vmDriller.nativeLang.collectLatest {
+                drillerAdapter.updateNativeLang(it)
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            vmDriller.learnedLang.collectLatest {
+                drillerAdapter.updateLearnedLang(it)
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             vmDriller.eventFlow.collectLatest { event ->
                 when (event) {
                     is DrillerViewModel.DrillerEvent.ShowSnackbar -> {

@@ -15,8 +15,8 @@ interface WordDao {
     @Query("SELECT * FROM wordentity WHERE categoryName IN (SELECT resourceName FROM categoryentity WHERE isCategoryActive = 1) AND isWordActive = 1 ORDER BY RANDOM() LIMIT 10")
     suspend fun getTenWords(): List<WordEntity>
 
-    @Query("SELECT * FROM wordentity WHERE nativ = :nativ AND `foreign` = :foreign AND categoryName = :categoryName LIMIT 1")
-    suspend fun getWord(nativ: String, foreign: String, categoryName: String): WordEntity
+    @Query("SELECT * FROM wordentity WHERE rus = :rus AND `eng` = :eng AND categoryName = :categoryName LIMIT 1")
+    suspend fun getWord(rus: String, eng: String, categoryName: String): WordEntity
 
     @Query("SELECT * FROM wordentity WHERE categoryName IN (:activeCatsNames) AND isWordActive = 1 ORDER BY RANDOM() LIMIT 1")
     suspend fun getRandomWordFromActiveCats(activeCatsNames: List<String>) : WordEntity
@@ -34,10 +34,10 @@ interface WordDao {
             observeWordsByCatAndQuery(catName, searchQuery)
         }
 
-    @Query("SELECT * FROM wordentity WHERE categoryName = :catName AND (nativ LIKE '%' || :searchQuery || '%' OR `foreign` LIKE '%' || :searchQuery || '%') ORDER BY `foreign` ASC")
+    @Query("SELECT * FROM wordentity WHERE categoryName = :catName AND (rus LIKE '%' || :searchQuery || '%' OR `ukr` LIKE '%' || :searchQuery || '%' OR `eng` LIKE '%' || :searchQuery || '%' OR `swe` LIKE '%' || :searchQuery || '%') ORDER BY `rus` ASC") // todo order by
     fun observeWordsByCatAndQuery(catName: String, searchQuery: String) : Flow<List<WordEntity>>
 
-    @Query("SELECT * FROM wordentity WHERE (nativ LIKE '%' || :searchQuery || '%' OR `foreign` LIKE '%' || :searchQuery || '%') ORDER BY `foreign` ASC")
+    @Query("SELECT * FROM wordentity WHERE (rus LIKE '%' || :searchQuery || '%' OR `ukr` LIKE '%' || :searchQuery || '%' OR `eng` LIKE '%' || :searchQuery || '%' OR `swe` LIKE '%' || :searchQuery || '%') ORDER BY `rus` ASC") // todo order by
     fun observeWordsByQuery(searchQuery: String) : Flow<List<WordEntity>>
 
     @Query("SELECT * FROM categoryentity")
@@ -61,8 +61,8 @@ interface WordDao {
     @Query("SELECT resourceName FROM categoryentity WHERE isCategoryActive = 1")
     fun observeAllActiveCatsNames(): Flow<List<String>>
 
-    @Query("SELECT * FROM wordentity WHERE nativ = :nativ AND `foreign` = :foreign AND categoryName = :categoryName LIMIT 1")
-    fun observeWord(nativ: String, foreign: String, categoryName: String) : Flow<WordEntity>
+    @Query("SELECT * FROM wordentity WHERE rus = :rus AND `eng` = :eng AND categoryName = :categoryName LIMIT 1")
+    fun observeWord(rus: String, eng: String, categoryName: String) : Flow<WordEntity> // todo ???pass chosen langs (all 4 with nulls) but not rus and eng???
 
 //    @Query("UPDATE wordentity SET isWordActive = :isActive WHERE `foreign` = :foreign AND (nativ = :nativ)")
 //    suspend fun updateIsWordActive(foreign: String, nativ: String, isActive: Boolean)

@@ -10,7 +10,14 @@
 <!--        <item>phrases</item>-->
 <!--    </string-array>-->
 
-    <string-array name="eng5">	<item>from then on</item>
+    <string-array name="eng5">	<item>utility function</item>
+        <item>in the middle of a probability distribution</item>
+        <item>I also stumbled over this issue</item>
+        <item>old adage</item>
+        <item>addiction is a trauma response</item>
+        <item>entrenched behavoir</item>
+        <item>does it enhance my life?</item>
+        <item>from then on</item>
         <item>and here superhero comes into the picture</item>
         <item>it\'ll pay off so much</item>
         <item>my inclination is to ...</item>
@@ -742,6 +749,7 @@
         <item>to show-off</item>
         <item>to be up to …</item>
         <item>to pop into</item>
+        <item>to shove in</item>
         <item>to come up with …</item>
         <item>to come up agaist …</item>
         <item>to cut down (on)</item>
@@ -913,6 +921,8 @@
         <item>to comprise …</item>
         <item>to compromise</item>
         <item>to concede</item>
+        <item>to eject them from ...</item>
+        <item>to repel them from ...</item>
         <item>to condemn</item>
         <item>to constitute</item>
         <item>to contradict</item>

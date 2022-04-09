@@ -12,20 +12,37 @@ import space.rodionov.porosenokpetr.feature_driller.presentation.WordDiff
 import space.rodionov.porosenokpetr.core.ModeForAdapter
 import space.rodionov.porosenokpetr.core.fetchColors
 import space.rodionov.porosenokpetr.core.redrawViewGroup
+import space.rodionov.porosenokpetr.feature_driller.presentation.driller.DrillerAdapter
+import space.rodionov.porosenokpetr.feature_driller.utils.LangForAdapter
 
 class WordlistAdapter(
     private val onClickLearned: (Word)-> Unit = {},
     private val onSpeakWord: (String) -> Unit = {}
 ) : ListAdapter<Word, WordlistAdapter.WordlistViewHolder>(WordDiff()),
-    ModeForAdapter {
+    ModeForAdapter, LangForAdapter {
 
     companion object {
         const val TAG_WORDLIST_ADAPTER = "wordListAdapter"
     }
 
+    //=====================MODE======================
     private var mode: Int = 0
     override fun updateMode(newMode: Int) { mode = newMode }
     override fun getTag(): String = TAG_WORDLIST_ADAPTER
+
+    //===================LANG===========================
+    private var nativeLang: Int = 0
+    private var learnedLang: Int = 0
+    override fun updateNativeLang(newLang: Int) {
+        nativeLang = newLang
+    }
+    override fun updateLearnedLang(newLang: Int) {
+        learnedLang = newLang
+    }
+    override fun getTagForLang(): String =
+        DrillerAdapter.TAG_DRILLER_ADAPTER // todo попробовать просто getTag() назвать чтоб один на три интерфейса
+
+
 
     inner class WordlistViewHolder(
         private val binding: ItemWordHorizontalBinding,
@@ -34,8 +51,8 @@ class WordlistAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(word: Word) {
             binding.apply {
-                tvUpper.text = word.foreign
-                tvDowner.text = word.nativ
+                tvUpper.text = word.getTranslation(learnedLang)
+                tvDowner.text = word.getTranslation(nativeLang)
                 tvCategory.text = word.categoryName
 
                 if (word.isWordActive) {
@@ -72,7 +89,7 @@ class WordlistAdapter(
             },
             onSpeakItem = { pos ->
                 val word = getItem(pos)
-                word?.let { onSpeakWord(it.foreign) }
+                word?.let { onSpeakWord(it.getTranslation(learnedLang)) }
             }
         )
     }

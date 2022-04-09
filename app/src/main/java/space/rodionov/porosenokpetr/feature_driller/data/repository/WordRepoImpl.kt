@@ -49,11 +49,11 @@ class WordRepoImpl(
     }
 
     override fun observeWord(
-        nativ: String,
-        foreign: String,
+        rus: String,
+        eng: String,
         categoryName: String
     ): Flow<Word> {
-        return dao.observeWord(nativ, foreign, categoryName).map {
+        return dao.observeWord(rus, eng, categoryName).map {
             it.let { we ->
                 we.toWord()
             }

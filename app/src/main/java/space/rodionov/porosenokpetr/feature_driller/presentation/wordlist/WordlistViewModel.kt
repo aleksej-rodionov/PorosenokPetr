@@ -41,10 +41,10 @@ class WordlistViewModel @Inject constructor(
         nativLivedata.asFlow(),
         foreignLivedata.asFlow(),
         catNameLivedata.asFlow()
-    ) { nativ, foreign, catName ->
-        Triple(nativ, foreign, catName)
-    }.flatMapLatest { (nativ, foreign, catName) ->
-        observeWordUseCase.invoke(nativ, foreign, catName)
+    ) { rus, eng, catName ->
+        Triple(rus, eng, catName)
+    }.flatMapLatest { (rus, eng, catName) ->
+        observeWordUseCase.invoke(rus, eng, catName)
     }
     val word = _word.stateIn(viewModelScope, SharingStarted.Lazily, null)
 

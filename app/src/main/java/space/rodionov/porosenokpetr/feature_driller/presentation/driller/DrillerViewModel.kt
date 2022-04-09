@@ -11,6 +11,7 @@ import kotlinx.coroutines.launch
 import space.rodionov.porosenokpetr.core.Resource
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
 import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.*
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
 import javax.inject.Inject
 
@@ -26,6 +27,8 @@ class DrillerViewModel @Inject constructor(
     private val getRandomWord: GetRandomWordUseCase,
     private val observeTranslationDirectionUseCase: ObserveTranslationDirectionUseCase,
     private val observeMode: ObserveModeUseCase,
+    private val observeNativeLangUseCase: ObserveNativeLangUseCase,
+    private val observeLearnedLangUseCase: ObserveLearnedLangUseCase,
     private val state: SavedStateHandle
 ) : ViewModel() {
     var savedPosition = state.get<Int>("savedPos") ?: 0
@@ -51,6 +54,12 @@ class DrillerViewModel @Inject constructor(
 
     private val _mode = observeMode.invoke()
     val mode = _mode.stateIn(viewModelScope, SharingStarted.Lazily, 0)
+
+    private val _nativeLang = observeNativeLangUseCase.invoke()
+    val nativeLang= _nativeLang.stateIn(viewModelScope, SharingStarted.Lazily, Constants.NATIVE_LANGUAGE_RU)
+
+    private val _learnedLang = observeLearnedLangUseCase.invoke()
+    val learnedLang= _learnedLang.stateIn(viewModelScope, SharingStarted.Lazily, Constants.NATIVE_LANGUAGE_EN)
 
     private val snapshotCatsInCaseUncheckAll = mutableListOf<String>()
     var rememberPositionAfterChangingStack = false

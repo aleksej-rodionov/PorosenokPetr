@@ -8,6 +8,8 @@ import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MILLIS_IN_NINE_HOURS
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_EN
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_RU
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_NATIVE_LANG
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_NOTIFY
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
@@ -166,7 +168,7 @@ class Datastore /*@Inject constructor*/( // todo сделать интерфей
             }
         }
         .map { prefs ->
-            val language = prefs[PrefKeys.NATIVE_LANGUAGE] ?: 0
+            val language = prefs[PrefKeys.NATIVE_LANGUAGE] ?: NATIVE_LANGUAGE_RU
             language
         }
 
@@ -188,7 +190,7 @@ class Datastore /*@Inject constructor*/( // todo сделать интерфей
             }
         }
         .map { prefs ->
-            val language = prefs[PrefKeys.LEARNED_LANGUAGE] ?: 0
+            val language = prefs[PrefKeys.LEARNED_LANGUAGE] ?: NATIVE_LANGUAGE_EN
             language
         }
 

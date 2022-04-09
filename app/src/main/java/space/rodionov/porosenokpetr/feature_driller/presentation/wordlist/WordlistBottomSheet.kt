@@ -19,6 +19,7 @@ import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.fetchColors
 import space.rodionov.porosenokpetr.core.redrawViewGroup
 import space.rodionov.porosenokpetr.databinding.BottomsheetWordlistBinding
+import space.rodionov.porosenokpetr.feature_driller.utils.LocalizationHelper
 
 @AndroidEntryPoint
 class WordlistBottomSheet : BottomSheetDialogFragment() {
@@ -47,11 +48,11 @@ class WordlistBottomSheet : BottomSheetDialogFragment() {
         val args = arguments
         args?.let {
             Log.d(TAG_PETR, "onCreate: args NOT null")
-            val nativ = it.getString("nativ")
-            val foreign = it.getString("foreign")
+            val rus = it.getString("rus")
+            val eng = it.getString("eng")
             val categoryName = it.getString("categoryName")
-            vmWordlist.nativLivedata.value = nativ
-            vmWordlist.foreignLivedata.value = foreign
+            vmWordlist.nativLivedata.value = rus
+            vmWordlist.foreignLivedata.value = eng
             vmWordlist.catNameLivedata.value = categoryName
         }
     }
@@ -75,11 +76,21 @@ class WordlistBottomSheet : BottomSheetDialogFragment() {
                         Log.d(TAG_PETR, "observeWord BottomSheet New value = $w")
                     }
                     val word = it?: return@collectLatest
-                    tvWord.text = resources.getString(R.string.word_in_dialog, word.foreign, word.nativ)
+
+                    val natLang = vmWordlist.nativeLang.value
+
+                    tvWord.text = resources.getString(
+                        R.string.word_in_dialog,
+                        word.getTranslation(natLang),
+                        word.getTranslation(natLang))
                     tvCategory.text = word.categoryName
                     val learned =
-                        if (word.isWordActive) getString(R.string.word_not_learned) else getString(R.string.word_learned)
-                    tvDecription.text = resources.getString(R.string.word_description, learned)
+                        if (word.isWordActive) getString(LocalizationHelper.wordLearned.getIdByLang(natLang))
+                        else getString(LocalizationHelper.wordNotLearned.getIdByLang(natLang))
+                    tvDecription.text = resources.getString(
+                        LocalizationHelper.wordDescription.getIdByLang(natLang),
+                        learned
+                    )
                     if (word.isWordActive) {
                         ivLearned.setImageDrawable(resources.getDrawable(R.drawable.ic_new_round))
                         ivLearned.imageTintList = null

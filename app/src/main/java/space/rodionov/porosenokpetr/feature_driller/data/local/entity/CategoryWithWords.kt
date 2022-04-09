@@ -7,7 +7,7 @@ import androidx.room.Relation
 data class CategoryWithWords(
     @Embedded val categoryEntity: CategoryEntity,
     @Relation(
-        parentColumn = "name",
+        parentColumn = "nameRus",
         entityColumn = "categoryName"
     )
     val words: List<WordEntity>
