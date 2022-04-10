@@ -43,27 +43,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_title" />
 
-    <RadioGroup
-        android:id="@+id/radio_group"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_language"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="12dp"
-        app:layout_constraintTop_toBottomOf="@id/divider_top"
-        app:layout_goneMarginTop="28dp">
-
-<!--        <RadioButton-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="huy"/>-->
-<!--        <RadioButton-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="pizda"/>-->
-<!--        <RadioButton-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="dzhigurda"/>-->
-
-    </RadioGroup>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/divider_top"
+        tools:listitem="@layout/item_language" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

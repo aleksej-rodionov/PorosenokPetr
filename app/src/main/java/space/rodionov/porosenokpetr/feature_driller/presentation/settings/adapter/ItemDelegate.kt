@@ -4,10 +4,10 @@ import android.view.ViewGroup
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.databinding.ItemSettingsItemBinding
 import space.rodionov.porosenokpetr.feature_driller.domain.models.BaseModel
-import space.rodionov.porosenokpetr.feature_driller.domain.models.MenuItem
-import space.rodionov.porosenokpetr.feature_driller.domain.models.MenuSwitch
+import space.rodionov.porosenokpetr.feature_driller.domain.models.MenuLanguage
 import space.rodionov.porosenokpetr.feature_driller.presentation.base.AdapterDelegate
 import space.rodionov.porosenokpetr.feature_driller.presentation.base.BaseViewHolder
+import space.rodionov.porosenokpetr.feature_driller.presentation.settings.language.LanguageHelper
 import space.rodionov.porosenokpetr.feature_driller.utils.SettingsItemType
 
 class ItemViewHolder(
@@ -18,10 +18,10 @@ class ItemViewHolder(
     override fun bind(model: BaseModel, holder: BaseViewHolder) {
         binding = ItemSettingsItemBinding.bind(itemView)
         with(binding) {
-            model as MenuItem
-            text.text = "${res.getString(model.text.getIdByLang(nativeLangBVH))}" + ""
-
-            text.setOnClickListener {
+            model as MenuLanguage
+            tvText.text = "${res.getString(model.text.getIdByLang(nativeLangBVH))}"
+            tvLangName.text = model.language.getLocalizedName(nativeLangBVH)
+            root.setOnClickListener {
                 clickItem(model.type)
             }
         }
@@ -37,6 +37,6 @@ class ItemDelegate(
     }
 
     override fun isValidType(model: BaseModel): Boolean {
-        return model is MenuItem
+        return model is MenuLanguage
     }
 }

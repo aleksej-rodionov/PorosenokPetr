@@ -4,7 +4,7 @@ import space.rodionov.porosenokpetr.feature_driller.presentation.settings.langua
 import space.rodionov.porosenokpetr.feature_driller.utils.LocalizedString
 import space.rodionov.porosenokpetr.feature_driller.utils.SettingsItemType
 
-data class MenuItem(
+data class MenuLanguage(
     val type: SettingsItemType,
     val text: LocalizedString,
     val language: LanguageItem

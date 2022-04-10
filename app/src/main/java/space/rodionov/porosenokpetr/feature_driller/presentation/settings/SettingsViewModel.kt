@@ -7,7 +7,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import space.rodionov.porosenokpetr.feature_driller.domain.models.BaseModel
-import space.rodionov.porosenokpetr.feature_driller.domain.models.MenuItem
+import space.rodionov.porosenokpetr.feature_driller.domain.models.MenuLanguage
 import space.rodionov.porosenokpetr.feature_driller.domain.models.MenuSwitch
 import space.rodionov.porosenokpetr.feature_driller.domain.models.MenuSwitchWithTimePicker
 import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.*
@@ -145,7 +145,7 @@ class SettingsViewModel @Inject constructor(
     fun updateMenuItemsInList(type: SettingsItemType, lang: LanguageItem) = viewModelScope.launch {
         val newList = mutableListOf<BaseModel>()
         menuListFlow.value.forEach { menuItem ->
-            if (menuItem is MenuItem && menuItem.type == type) {
+            if (menuItem is MenuLanguage && menuItem.type == type) {
                 val newItem = menuItem.copy(language = lang)
                 newList.add(newItem)
             } else {

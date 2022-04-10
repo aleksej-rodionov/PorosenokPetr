@@ -41,7 +41,7 @@ class LanguageBottomsheetViewModel @Inject constructor(
 
     //================================LEARNED LANG==================================
     private val _learnedLang = observeLearnedLangUseCase.invoke()
-    val learnedLang= _learnedLang.stateIn(viewModelScope, SharingStarted.Lazily, Constants.NATIVE_LANGUAGE_EN)
+    val learnedLang = _learnedLang.stateIn(viewModelScope, SharingStarted.Lazily, Constants.NATIVE_LANGUAGE_EN)
     fun updateLearnedLang(lang: Int) = viewModelScope.launch { updateLearnedLangUseCase.invoke(lang) }
 
     //===============================LIST================================
@@ -55,8 +55,9 @@ class LanguageBottomsheetViewModel @Inject constructor(
             NATIVE_LANGUAGE_CHANGE -> LanguageHelper.getNativeLanguages(app)
             FOREIGN_LANGUAGE_CHANGE -> LanguageHelper.getLearnedLanguages(app)
             else -> {
-                Log.d(TAG_DB_REFACTOR, "inflateLanguageList: else branch")
-                LanguageHelper.getNativeLanguages(app)
+//                Log.d(TAG_DB_REFACTOR, "inflateLanguageList: else branch")
+//                LanguageHelper.getNativeLanguages(app)
+                mutableListOf<LanguageItem>()
             }
         }
         _langList.value = langs

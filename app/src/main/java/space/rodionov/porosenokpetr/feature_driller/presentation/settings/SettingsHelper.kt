@@ -2,7 +2,6 @@ package space.rodionov.porosenokpetr.feature_driller.presentation.settings
 
 import space.rodionov.porosenokpetr.feature_driller.domain.models.*
 import space.rodionov.porosenokpetr.feature_driller.presentation.settings.language.LanguageHelper
-import space.rodionov.porosenokpetr.feature_driller.presentation.settings.language.LanguageItem
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 import space.rodionov.porosenokpetr.feature_driller.utils.LocalizationHelper
 import space.rodionov.porosenokpetr.feature_driller.utils.SettingsItemType
@@ -17,12 +16,12 @@ object SettingsHelper {
             LocalizationHelper.fromForeignToNative,
             false
         ))
-        add(MenuItem(
+        add(MenuLanguage(
             SettingsItemType.CHANGE_NATIVE_LANG,
             LocalizationHelper.nativeLanguage,
             LanguageHelper.russian
         ))
-        add(MenuItem(
+        add(MenuLanguage(
             SettingsItemType.CHANGE_LEARNED_LANG,
             LocalizationHelper.learnedLanguageSettings,
             LanguageHelper.english

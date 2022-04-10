@@ -9,17 +9,22 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.BuildConfig
 import space.rodionov.porosenokpetr.R
+import space.rodionov.porosenokpetr.core.redrawViewGroup
 import space.rodionov.porosenokpetr.databinding.BottomsheetLanguageBinding
 import space.rodionov.porosenokpetr.feature_driller.utils.AppFlavor
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_CHANGE
+import space.rodionov.porosenokpetr.feature_driller.utils.LocalizationHelper
 
 @AndroidEntryPoint
-class LanguageBottomSheet: BottomSheetDialogFragment(), RadioGroup.OnCheckedChangeListener {
+class LanguageBottomSheet: BottomSheetDialogFragment() {
 
     companion object {
         const val LANGUAGE_BOTTOM_SHEET = "languageBottomSheet"
@@ -30,6 +35,14 @@ class LanguageBottomSheet: BottomSheetDialogFragment(), RadioGroup.OnCheckedChan
     }
 
     private val vmLanguageSheet: LanguageBottomsheetViewModel by viewModels()
+
+    private val langAdapter: LanguageAdapter by lazy {
+        LanguageAdapter(
+            onClickLang = {
+                vmLanguageSheet.onLangChecked(it)
+            }
+        )
+    }
 
     override fun getTheme(): Int = vmLanguageSheet.mode.value.let {
         when (it) {
@@ -66,29 +79,32 @@ class LanguageBottomSheet: BottomSheetDialogFragment(), RadioGroup.OnCheckedChan
         }
 
         binding.apply {
+
+            rvLanguage.adapter = langAdapter
+            rvLanguage.layoutManager = LinearLayoutManager(requireContext())
+            rvLanguage.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+
             this@LanguageBottomSheet.lifecycleScope.launchWhenStarted {
                 vmLanguageSheet.langList.collectLatest { langs ->
-                    radioGroup.setOnCheckedChangeListener(null)
-                    radioGroup.removeAllViews()
+                    langAdapter.submitList(langs)
+                }
+            }
 
-                    val natLang = vmLanguageSheet.nativeLang.value
-                    langs.forEach { lang ->
-                        val rb = RadioButton(requireContext())
-                        rb.text = lang.getLocalizedName(natLang)
-                        rb.isChecked = lang.langIndex == natLang
-                        radioGroup.addView(rb)
-                    }
-//                    radioGroup.redrawRadios(fetchColors(vmLanguageSheet.mode.value, resources)) // todo убрать отсюда
+            this@LanguageBottomSheet.lifecycleScope.launchWhenStarted {
+                vmLanguageSheet.mode.collectLatest {
+                    val mode = it ?: return@collectLatest
+                    (root as ViewGroup).redrawViewGroup(mode)
+                }
+            }
 
-                    radioGroup.setOnCheckedChangeListener(this@LanguageBottomSheet)
+            vmLanguageSheet.nativeOrForeign.observe(viewLifecycleOwner) {
+                tvTitle.text = if (it == NATIVE_LANGUAGE_CHANGE) {
+                    getString(LocalizationHelper.nativeLanguage.getIdByLang(vmLanguageSheet.nativeLang.value))
+                } else {
+                    getString(LocalizationHelper.learnedLanguege.getIdByLang(vmLanguageSheet.nativeLang.value))
                 }
             }
         }
-    }
-
-    override fun onCheckedChanged(rb: RadioGroup?, index: Int) {
-        vmLanguageSheet.onLangChecked(index)
-        dismiss()
     }
 }
 

@@ -1,10 +1,13 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation.settings.language
 
+import android.content.ContentValues.TAG
+import android.util.Log
 import space.rodionov.porosenokpetr.feature_driller.utils.AppFlavor
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_EN
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_RU
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_SE
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_UA
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_DB_REFACTOR
 
 data class LanguageItem(
     val langIndex: Int,
@@ -32,14 +35,19 @@ object LanguageHelper {
     val english = LanguageItem(NATIVE_LANGUAGE_EN, "Инглиш", "Iнглiш", "English","Engelska")
     val swedish = LanguageItem(NATIVE_LANGUAGE_SE, "Шведский", "Шведська", "Swedish","Svenska")
 
-    fun getNativeLanguages(app: AppFlavor) = when (app) {
-        AppFlavor.ENGLISH_DRILLER -> mutableListOf(russian, ukrainian)
-        AppFlavor.SWEDISH_DRILLER -> mutableListOf(russian, ukrainian, english)
+    fun getNativeLanguages(app: AppFlavor) : MutableList<LanguageItem>{
+       return when (app) {
+            AppFlavor.ENGLISH_DRILLER -> mutableListOf(russian, ukrainian)
+            AppFlavor.SWEDISH_DRILLER -> mutableListOf(russian, ukrainian, english)
+        }
     }
 
-    fun getLearnedLanguages(app: AppFlavor) = when (app) {
-        AppFlavor.ENGLISH_DRILLER -> mutableListOf() // empty
-        AppFlavor.SWEDISH_DRILLER -> mutableListOf(ukrainian, english, swedish)
+    fun getLearnedLanguages(app: AppFlavor) : MutableList<LanguageItem> {
+//        Log.d(TAG_DB_REFACTOR, "getLearnedLanguages: ")
+        return when (app) {
+            AppFlavor.ENGLISH_DRILLER -> mutableListOf(english)
+            AppFlavor.SWEDISH_DRILLER -> mutableListOf(ukrainian, english, swedish)
+        }
     }
 
     fun getLangByIndex(langIndex: Int) : LanguageItem {
