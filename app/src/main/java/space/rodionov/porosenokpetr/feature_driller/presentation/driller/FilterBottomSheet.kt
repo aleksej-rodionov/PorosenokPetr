@@ -38,7 +38,7 @@ class FilterBottomSheet : BottomSheetDialogFragment(), CompoundButton.OnCheckedC
         requireParentFragment()
     })
 
-    override fun getTheme(): Int = vmDriller.mode.value?.let {
+    override fun getTheme(): Int = vmDriller.mode.value.let {
         when (it) {
             Constants.MODE_LIGHT -> R.style.Theme_NavBarDay
             Constants.MODE_DARK -> R.style.Theme_NavBarNight
@@ -75,7 +75,7 @@ class FilterBottomSheet : BottomSheetDialogFragment(), CompoundButton.OnCheckedC
                         newChip.isChecked = cat.isCategoryActive
                         chipGroupCategories.addView(newChip)
                     }
-                    chipGroupCategories.redrawChips(fetchColors(vmDriller.mode.value, resources)) // todo нахуй отсюда
+                    chipGroupCategories.redrawChips(fetchColors(vmDriller.mode.value, resources)) // todo убрать отсюда
                     chipGroupCategories.children.forEach { chip ->
                         (chip as Chip).setOnCheckedChangeListener(null)
                     }
@@ -140,7 +140,6 @@ class FilterBottomSheet : BottomSheetDialogFragment(), CompoundButton.OnCheckedC
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        (view!!.parent as View).setBackgroundColor(Color.TRANSPARENT)
 //        Log.d(TAG_PETR, "onCreate: CALLED")
     }
 

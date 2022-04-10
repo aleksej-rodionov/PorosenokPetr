@@ -9,12 +9,12 @@ import space.rodionov.porosenokpetr.feature_driller.domain.models.BaseModel
 import space.rodionov.porosenokpetr.feature_driller.domain.models.MenuSwitchWithTimePicker
 import space.rodionov.porosenokpetr.feature_driller.presentation.base.AdapterDelegate
 import space.rodionov.porosenokpetr.feature_driller.presentation.base.BaseViewHolder
-import space.rodionov.porosenokpetr.feature_driller.utils.SettingsSwitchType
+import space.rodionov.porosenokpetr.feature_driller.utils.SettingsItemType
 
 class SwitchWithTimeViewHolder(
     val parent: ViewGroup,
 //    val checkSwitch: (millisFromDayBeginning: Long, state: Boolean) -> Unit = { _, _ -> },
-    val checkSwitch: (type: SettingsSwitchType, state: Boolean) -> Unit = { _, _ -> },
+    val checkSwitch: (type: SettingsItemType, state: Boolean) -> Unit = { _, _ -> },
     val onTimePickerClick: () -> Unit = {}
 ): BaseViewHolder(parent, R.layout.item_settings_switch_with_time) {
     lateinit var binding: ItemSettingsSwitchWithTimeBinding
@@ -45,7 +45,7 @@ class SwitchWithTimeViewHolder(
 
 class SwitchWithTimeDelegate(
 //    private val checkSwitch: (millisFromDayBeginning: Long, state: Boolean) -> Unit = { _, _ -> },
-    private val checkSwitch: (type: SettingsSwitchType, state: Boolean) -> Unit = { _, _ -> },
+    private val checkSwitch: (type: SettingsItemType, state: Boolean) -> Unit = { _, _ -> },
     private val onTimePickerClick: () -> Unit = {}
 ): AdapterDelegate {
 

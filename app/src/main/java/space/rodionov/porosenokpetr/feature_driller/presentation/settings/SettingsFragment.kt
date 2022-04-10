@@ -15,14 +15,13 @@ import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.databinding.FragmentSettingsBinding
 import space.rodionov.porosenokpetr.databinding.SnackbarLayoutBinding
 import space.rodionov.porosenokpetr.feature_driller.presentation.settings.adapter.SettingsAdapter
+import space.rodionov.porosenokpetr.feature_driller.presentation.settings.language.LanguageBottomSheet
+import space.rodionov.porosenokpetr.feature_driller.presentation.settings.language.LanguageHelper
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANG_POSTFIX_RU
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANG_POSTFIX_UA
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_DARK
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_UA
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_NATIVE_LANG
 import space.rodionov.porosenokpetr.feature_driller.utils.LocalizationHelper
-import space.rodionov.porosenokpetr.feature_driller.utils.SettingsSwitchType
+import space.rodionov.porosenokpetr.feature_driller.utils.SettingsItemType
 import java.util.*
 
 @AndroidEntryPoint
@@ -39,7 +38,10 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
             checkSwitch = { type, isChecked ->
                 checkSwitch(type, isChecked)
             },
-            onTimePickerClick = { onTimePickerClick() }
+            onTimePickerClick = { onTimePickerClick() },
+            onItemClick = { type ->
+                onSetingsItemClick(type)
+            }
         )
     }
 
@@ -67,23 +69,23 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         }
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             vmSettings.transDir.collectLatest {
-                vmSettings.updateMenuList(SettingsSwitchType.TRANSLATION_DIRECTION, it)
+                vmSettings.updateMenuList(SettingsItemType.TRANSLATION_DIRECTION, it)
             }
         }
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             vmSettings.mode.collectLatest {
                 settingsAdapter.updateMode(it)
-                vmSettings.updateMenuList(SettingsSwitchType.NIGHT_MODE, it == MODE_DARK)
+                vmSettings.updateMenuList(SettingsItemType.NIGHT_MODE, it == MODE_DARK)
             }
         }
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             vmSettings.followSystemMode.collectLatest {
-                vmSettings.updateMenuList(SettingsSwitchType.SYSTEM_MODE, it)
+                vmSettings.updateMenuList(SettingsItemType.SYSTEM_MODE, it)
             }
         }
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             vmSettings.remind.collectLatest {
-                vmSettings.updateMenuList(SettingsSwitchType.REMINDER, it)
+                vmSettings.updateMenuList(SettingsItemType.REMINDER, it)
 
                 Log.d(Constants.TAG_PETR, "remind.collect: justopened = ${vmSettings.justOpened}")
                 if (it) {
@@ -111,7 +113,14 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
 
 
                 settingsAdapter.updateNativeLang(it)
-                vmSettings.updateMenuList(SettingsSwitchType.NATIVE_LANG, it == NATIVE_LANGUAGE_UA)
+                vmSettings.updateMenuList(SettingsItemType.NATIVE_LANG, it == NATIVE_LANGUAGE_UA)
+            }
+        }
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            vmSettings.learnedLanguage.collectLatest {
+//                settingsAdapter.updateLearnedLang(it)
+                val lang = LanguageHelper.getLangByIndex(it)
+                vmSettings.updateMenuItemsInList(SettingsItemType.CHANGE_LEARNED_LANG, lang)
             }
         }
 
@@ -126,6 +135,12 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
                     }
                     is SettingsViewModel.SettingsEvent.ShowSnackbar -> {
                         showSnackBar(Constants.DEFAULT_INT, event.text)
+                    }
+                    is SettingsViewModel.SettingsEvent.OnChangeLang -> {
+                        LanguageBottomSheet().show(
+                            requireFragmentManager(), // здесь не просто фрагмент манагер?
+                            LanguageBottomSheet.LANGUAGE_BOTTOM_SHEET
+                        )
                     }
                 }
             }
@@ -156,12 +171,16 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         snackBar.show()
     }
 
-    private fun checkSwitch(type: SettingsSwitchType, isChecked: Boolean) {
+    private fun checkSwitch(type: SettingsItemType, isChecked: Boolean) {
         vmSettings.checkSwitch(type, isChecked)
     }
 
     private fun onTimePickerClick() {
         vmSettings.openTimePicker()
+    }
+
+    private fun onSetingsItemClick(type: SettingsItemType) {
+        vmSettings.onChangeLang(type)
     }
 
     override fun onDestroyView() {

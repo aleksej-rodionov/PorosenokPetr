@@ -30,6 +30,9 @@ object Constants {
     const val NATIVE_LANGUAGE_EN = 2
     const val NATIVE_LANGUAGE_SE = 3
 
+    const val NATIVE_LANGUAGE_CHANGE = 100
+    const val FOREIGN_LANGUAGE_CHANGE = 101
+
     const val LANG_POSTFIX_RU = "ru"
     const val LANG_POSTFIX_UA = "ua"
 }

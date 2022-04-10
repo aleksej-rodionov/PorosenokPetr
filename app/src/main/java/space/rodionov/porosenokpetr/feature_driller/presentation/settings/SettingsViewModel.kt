@@ -1,25 +1,25 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation.settings
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.feature_driller.domain.models.BaseModel
+import space.rodionov.porosenokpetr.feature_driller.domain.models.MenuItem
 import space.rodionov.porosenokpetr.feature_driller.domain.models.MenuSwitch
 import space.rodionov.porosenokpetr.feature_driller.domain.models.MenuSwitchWithTimePicker
 import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.*
+import space.rodionov.porosenokpetr.feature_driller.presentation.settings.language.LanguageItem
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.FOREIGN_LANGUAGE_CHANGE
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_DARK
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_LIGHT
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_CHANGE
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_RU
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_UA
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_SETTINGS
-import space.rodionov.porosenokpetr.feature_driller.utils.SettingsSwitchType
+import space.rodionov.porosenokpetr.feature_driller.utils.SettingsItemType
 import space.rodionov.porosenokpetr.feature_driller.work.NotificationHelper
 import java.text.SimpleDateFormat
 import java.util.*
@@ -36,6 +36,8 @@ class SettingsViewModel @Inject constructor(
     private val setFollowSystemModeUseCase: SetFollowSystemModeUseCase,
     private val observeNativeLangUseCase: ObserveNativeLangUseCase,
     private val updateNativeLangUseCase: UpdateNativeLangUseCase,
+    private val observeLearnedLangUseCase: ObserveLearnedLangUseCase,
+    private val updateLearnedLangUseCase: UpdateLearnedLangUseCase,
     private val observeReminderUseCase: ObserveReminderUseCase,
     private val setReminderUseCase: SetReminderUseCase,
     private val observeNotificationMillisUseCase: ObserveNotificationMillisUseCase,
@@ -72,7 +74,7 @@ class SettingsViewModel @Inject constructor(
         setFollowSystemModeUseCase.invoke(follow)
     }
 
-    //==========================LANGUAGE=========================================
+    //==========================NATIVE LANGUAGE=========================================
     private val _nativeLanguage = observeNativeLangUseCase.invoke()
     val nativeLanguage = _nativeLanguage.stateIn(viewModelScope, SharingStarted.Lazily,
         Constants.NATIVE_LANGUAGE_RU
@@ -80,6 +82,16 @@ class SettingsViewModel @Inject constructor(
 
     private fun updateNativeLanguage(lang: Int) = viewModelScope.launch {
         updateNativeLangUseCase.invoke(lang)
+    }
+
+    //==========================LEARNED LANGUAGE=========================================
+    private val _learnedLanguage = observeLearnedLangUseCase.invoke()
+    val learnedLanguage = _learnedLanguage.stateIn(viewModelScope, SharingStarted.Lazily,
+        Constants.NATIVE_LANGUAGE_EN
+    )
+
+    private fun updateLearnedLanguage(lang: Int) = viewModelScope.launch {
+        updateLearnedLangUseCase.invoke(lang)
     }
 
     //==========================NOTIFICATION=========================================
@@ -103,6 +115,7 @@ class SettingsViewModel @Inject constructor(
 
     sealed class SettingsEvent {
         object OpenTimePicker : SettingsEvent()
+        data class OnChangeLang(val nativeOrForeign: Int) : SettingsEvent()
         data class ShowSnackbar(val text: String) : SettingsEvent()
     }
 
@@ -112,7 +125,7 @@ class SettingsViewModel @Inject constructor(
         notJustOpened()
     }
 
-    fun updateMenuList(type: SettingsSwitchType, state: Boolean) = viewModelScope.launch {
+    fun updateMenuList(type: SettingsItemType, state: Boolean) = viewModelScope.launch {
         val newList = mutableListOf<BaseModel>()
         menuListFlow.value.forEach { menuItem ->
             if (menuItem is MenuSwitch && menuItem.type == type) {
@@ -126,13 +139,26 @@ class SettingsViewModel @Inject constructor(
             }
         }
         _menuListFlow.value = newList.toMutableList()
-        if (type == SettingsSwitchType.SYSTEM_MODE) updateBlockedDarkModeItem(state)
+        if (type == SettingsItemType.SYSTEM_MODE) updateBlockedDarkModeItem(state)
+    }
+
+    fun updateMenuItemsInList(type: SettingsItemType, lang: LanguageItem) = viewModelScope.launch {
+        val newList = mutableListOf<BaseModel>()
+        menuListFlow.value.forEach { menuItem ->
+            if (menuItem is MenuItem && menuItem.type == type) {
+                val newItem = menuItem.copy(language = lang)
+                newList.add(newItem)
+            } else {
+                newList.add(menuItem)
+            }
+        }
+        _menuListFlow.value = newList.toMutableList()
     }
 
     private fun updateBlockedDarkModeItem(block: Boolean) = viewModelScope.launch {
         val newList = mutableListOf<BaseModel>()
         menuListFlow.value.forEach { menuItem ->
-            if (menuItem is MenuSwitch && menuItem.type == SettingsSwitchType.NIGHT_MODE) {
+            if (menuItem is MenuSwitch && menuItem.type == SettingsItemType.NIGHT_MODE) {
                 val newItem = menuItem.copy(isBlocked = block)
                 newList.add(newItem)
             } else newList.add(menuItem)
@@ -151,15 +177,15 @@ class SettingsViewModel @Inject constructor(
         _menuListFlow.value = newList.toMutableList()
     }
 
-    fun checkSwitch(type: SettingsSwitchType, isChecked: Boolean) = viewModelScope.launch {
+    fun checkSwitch(type: SettingsItemType, isChecked: Boolean) = viewModelScope.launch {
         when (type) {
-            SettingsSwitchType.TRANSLATION_DIRECTION -> updateTransDir(isChecked)
-            SettingsSwitchType.NIGHT_MODE -> {
+            SettingsItemType.TRANSLATION_DIRECTION -> updateTransDir(isChecked)
+            SettingsItemType.NIGHT_MODE -> {
                 updateMode(if (isChecked) MODE_DARK else MODE_LIGHT)
             }
-            SettingsSwitchType.SYSTEM_MODE -> updateFollowSystemMode(isChecked)
-            SettingsSwitchType.REMINDER -> updateRemind(isChecked)
-            SettingsSwitchType.NATIVE_LANG -> {
+            SettingsItemType.SYSTEM_MODE -> updateFollowSystemMode(isChecked)
+            SettingsItemType.REMINDER -> updateRemind(isChecked)
+            SettingsItemType.NATIVE_LANG -> {
                 updateNativeLanguage(if (isChecked) NATIVE_LANGUAGE_UA else NATIVE_LANGUAGE_RU)
             }
         }
@@ -167,6 +193,15 @@ class SettingsViewModel @Inject constructor(
 
     fun openTimePicker() = viewModelScope.launch {
         _settingsEventFlow.emit(SettingsEvent.OpenTimePicker)
+    }
+
+    fun onChangeLang(type: SettingsItemType) = viewModelScope.launch {
+        when (type) {
+            SettingsItemType.CHANGE_NATIVE_LANG ->
+                _settingsEventFlow.emit(SettingsEvent.OnChangeLang(NATIVE_LANGUAGE_CHANGE))
+            SettingsItemType.CHANGE_LEARNED_LANG ->
+                _settingsEventFlow.emit(SettingsEvent.OnChangeLang(FOREIGN_LANGUAGE_CHANGE))
+        }
     }
 
     fun showSnackbar(text: String) = viewModelScope.launch {

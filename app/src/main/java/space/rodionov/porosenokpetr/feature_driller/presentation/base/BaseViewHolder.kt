@@ -28,6 +28,8 @@ abstract class BaseViewHolder: RecyclerView.ViewHolder {
 
     var nativeLangBVH: Int = NATIVE_LANGUAGE_RU
 
+//    var learnedLang
+
     constructor(parent: ViewGroup, layoutId: Int):
             super(LayoutInflater.from(parent.context).inflate(layoutId, parent, false))
 
@@ -52,5 +54,9 @@ abstract class BaseViewHolder: RecyclerView.ViewHolder {
     fun setNativeLang(lang: Int) {
         nativeLangBVH = lang
 //        Log.d(TAG_NATIVE_LANG, "setNativeLang in BVH: $lang")
+    }
+
+    fun setLearnedLang(lang: Int) {
+
     }
 }

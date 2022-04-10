@@ -5,19 +5,10 @@ import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.util.TypedValue
-import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.AutoCompleteTextView
 import androidx.core.content.ContextCompat
-import androidx.core.view.updateLayoutParams
-import androidx.recyclerview.widget.RecyclerView
-import space.rodionov.porosenokpetr.feature_driller.domain.models.BaseModel
-import space.rodionov.porosenokpetr.feature_driller.domain.models.MenuSwitch
-import space.rodionov.porosenokpetr.feature_driller.domain.models.MenuSwitchWithTimePicker
-import space.rodionov.porosenokpetr.feature_driller.utils.SettingsSwitchType
 import java.math.BigDecimal
-import java.text.SimpleDateFormat
-import java.util.*
 
 fun Float.roundToTwoDecimals(): Float {
     var bd = BigDecimal(java.lang.Float.toString(this))

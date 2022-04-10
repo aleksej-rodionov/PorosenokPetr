@@ -54,6 +54,9 @@
     <string name="russian">Русский</string>
     <string name="ukrainian">Украинский</string>
     <string name="follow_system_locale">Использовать локализацию устройства</string>
+    <string name="native_language_settings">Родной язык</string>
+    <string name="learned_language_settings">Изучаемый язык</string>
+    <string name="language">Язык</string>
 
 
 
@@ -111,6 +114,9 @@
     <string name="russian_ua">Російська</string>
     <string name="ukrainian_ua">Українська</string>
     <string name="follow_system_locale_ua">Використати локалізацію телефону</string>
+    <string name="native_language_settings_ua">Рідна мова</string>
+    <string name="learned_language_settings_ua">Вивчаєма мова</string>
+    <string name="language_ua">Мова</string>
 
 
 
@@ -163,8 +169,14 @@
     <string name="notification_schedule_error_en">Schedule notification: Incorrect Date and Time</string>
     <string name="btn_next_text_en">Продовжити</string>
 
-    <string name="native_language_en">Рідна мова</string>
-    <string name="russian_en">Російська</string>
-    <string name="ukrainian_en">Українська</string>
-    <string name="follow_system_locale_en">Використати локалізацію телефону</string>
+    <string name="native_language_en">Native language</string>
+    <string name="russian_en">Russiam</string>
+    <string name="ukrainian_en">Ukrainian</string>
+    <string name="follow_system_locale_en">Follow system language</string>
+    <string name="learned_language_en">Learned language</string>
+    <string name="native_language_settings_en">Native language: </string>
+    <string name="learned_language_settings_en">Learned language: </string>
+    <string name="language_en">English</string>
+
+
 </resources>

@@ -80,7 +80,9 @@ object LocalizationHelper { // todo add english!
 
     val nativeLanguage = LocalizedString(StringTag.NATIVE_LANGUAGE, R.string.native_language, R.string.native_language, R.string.native_language_en)
     val currentNativeLanguage = LocalizedString(StringTag.CURRENT_NATIVE_LANGUAGE, R.string.russian, R.string.ukrainian_ua, R.string.english)  // note here's a dif
-
+    val nativeLanguageSettings = LocalizedString(StringTag.NATIVE_LANGUAGE_SETTINGS, R.string.native_language_settings, R.string.native_language_settings_ua, R.string.native_language_settings_en)
+    val learnedLanguageSettings = LocalizedString(StringTag.LEARNED_LANGUAGE_SETTINGS, R.string.learned_language_settings, R.string.learned_language_settings_ua, R.string.learned_language_settings_en)
+    val language = LocalizedString(StringTag.LANGUAGE, R.string.language, R.string.language_ua, R.string.language_en)
 
 }
 

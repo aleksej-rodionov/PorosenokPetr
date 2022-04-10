@@ -1,10 +1,11 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation.settings
 
-import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.feature_driller.domain.models.*
+import space.rodionov.porosenokpetr.feature_driller.presentation.settings.language.LanguageHelper
+import space.rodionov.porosenokpetr.feature_driller.presentation.settings.language.LanguageItem
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 import space.rodionov.porosenokpetr.feature_driller.utils.LocalizationHelper
-import space.rodionov.porosenokpetr.feature_driller.utils.SettingsSwitchType
+import space.rodionov.porosenokpetr.feature_driller.utils.SettingsItemType
 
 object SettingsHelper {
 
@@ -12,37 +13,47 @@ object SettingsHelper {
         add(Header(null, LocalizationHelper.translationDirection))
         add(MenuSwitch(
             null,
-            SettingsSwitchType.TRANSLATION_DIRECTION,
+            SettingsItemType.TRANSLATION_DIRECTION,
             LocalizationHelper.fromForeignToNative,
             false
+        ))
+        add(MenuItem(
+            SettingsItemType.CHANGE_NATIVE_LANG,
+            LocalizationHelper.nativeLanguage,
+            LanguageHelper.russian
+        ))
+        add(MenuItem(
+            SettingsItemType.CHANGE_LEARNED_LANG,
+            LocalizationHelper.learnedLanguageSettings,
+            LanguageHelper.english
         ))
         add(Header(null, LocalizationHelper.appearance))
         add(MenuSwitch(
             null,
-            SettingsSwitchType.NIGHT_MODE,
+            SettingsItemType.NIGHT_MODE,
             LocalizationHelper.darkMode,
             false
         ))
         add(MenuSwitch(
             null,
-            SettingsSwitchType.SYSTEM_MODE,
+            SettingsItemType.SYSTEM_MODE,
             LocalizationHelper.followSystemMode,
             false
         ))
         add(Header(null, LocalizationHelper.reminder))
         add(MenuSwitchWithTimePicker(
             null,
-            SettingsSwitchType.REMINDER,
+            SettingsItemType.REMINDER,
             LocalizationHelper.remind,
             false,
             Constants.MILLIS_IN_NINE_HOURS
         ))
-        add(Header(null, LocalizationHelper.nativeLanguage))
-        add(MenuSwitch(
-            null,
-            SettingsSwitchType.NATIVE_LANG,
-            LocalizationHelper.currentNativeLanguage,
-            false
-        ))
+//        add(Header(null, LocalizationHelper.nativeLanguage))
+//        add(MenuSwitch(
+//            null,
+//            SettingsSwitchType.NATIVE_LANG,
+//            LocalizationHelper.currentNativeLanguage,
+//            false
+//        ))
     }
 }

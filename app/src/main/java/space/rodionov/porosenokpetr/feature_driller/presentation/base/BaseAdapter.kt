@@ -9,7 +9,9 @@ import space.rodionov.porosenokpetr.feature_driller.domain.models.BaseModel
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.DEFAULT_INT
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MILLIS_IN_NINE_HOURS
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_LIGHT
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_EN
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_RU
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_DB_REFACTOR
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_NATIVE_LANG
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_SETTINGS
 
@@ -30,6 +32,13 @@ abstract class BaseAdapter(
         Log.d(TAG_NATIVE_LANG, "updateNativeLang: $lang")
         notifyDataSetChanged() // then try to comment this out
     }
+
+//    var learnedLangBA = NATIVE_LANGUAGE_EN
+//    open fun updateLearnedLang(lang: Int) {
+//        learnedLangBA = lang
+//        Log.d(TAG_DB_REFACTOR, "updateLearneLang: $lang")
+//        notifyDataSetChanged() // then try to comment this out
+//    }
 
 
     //=========================MAIN BOILERPLATE==================

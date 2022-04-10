@@ -13,19 +13,13 @@ import space.rodionov.porosenokpetr.feature_driller.presentation.base.AdapterDel
 import space.rodionov.porosenokpetr.feature_driller.presentation.base.BaseViewHolder
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANG_POSTFIX_RU
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANG_POSTFIX_UA
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_EN
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_RU
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_SE
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_UA
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_NATIVE_LANG
-import space.rodionov.porosenokpetr.feature_driller.utils.LocalizationHelper
-import space.rodionov.porosenokpetr.feature_driller.utils.SettingsSwitchType
-import java.util.*
+import space.rodionov.porosenokpetr.feature_driller.utils.SettingsItemType
 
 
 class SwitchViewHolder(
     val parent: ViewGroup,
-    val checkSwitch: (type: SettingsSwitchType, state: Boolean) -> Unit = { _, _ -> }
+    val checkSwitch: (type: SettingsItemType, state: Boolean) -> Unit = { _, _ -> }
 ) : BaseViewHolder(parent, R.layout.item_settings_switch) {
     lateinit var binding: ItemSettingsSwitchBinding
     override fun bind(model: BaseModel, holder: BaseViewHolder) {
@@ -52,12 +46,12 @@ class SwitchViewHolder(
         Log.d(TAG_NATIVE_LANG, "bindSwitchState: lang = $requestedLang")
 
         when(model.type) {
-            SettingsSwitchType.TRANSLATION_DIRECTION -> {
+            SettingsItemType.TRANSLATION_DIRECTION -> {
                 switch.isChecked = model.switchState
                 val resId = model.text.getIdByLang(nativeLangBVH) // todo get current transDir. take if from model.switchState or change it in vm.updMenuList()
                 switch.text =res.getString(resId)
             }
-            SettingsSwitchType.NIGHT_MODE -> {
+            SettingsItemType.NIGHT_MODE -> {
                 switch.isChecked = model.switchState
                 val resId = model.text.getIdByLang(nativeLangBVH)
                 switch.text =res.getString(resId)
@@ -71,7 +65,7 @@ class SwitchViewHolder(
                     switch.isEnabled = true
                 }
             }
-            SettingsSwitchType.SYSTEM_MODE -> {
+            SettingsItemType.SYSTEM_MODE -> {
                 switch.isChecked = model.switchState
                 val resId = model.text.getIdByLang(nativeLangBVH)
                 switch.text =res.getString(resId)
@@ -79,7 +73,7 @@ class SwitchViewHolder(
                 switch.thumbTintList = ColorStateList.valueOf(res.getColor(R.color.white))//todo костыль (и только костыль пока-что помог)
                 switch.isEnabled = true //todo костыль
             }
-            SettingsSwitchType.NATIVE_LANG -> {
+            SettingsItemType.NATIVE_LANG -> {
                 switch.isChecked = model.switchState
                 val resId = model.text.getIdByLang(nativeLangBVH)
                 switch.text = res.getString(resId)
@@ -93,7 +87,7 @@ class SwitchViewHolder(
 
 
 class SwitchDelegate(
-    private val checkSwitch: (type: SettingsSwitchType, state: Boolean) -> Unit = { _, _ -> }
+    private val checkSwitch: (type: SettingsItemType, state: Boolean) -> Unit = { _, _ -> }
 ): AdapterDelegate {
     override fun onCreateViewHolder(parent: ViewGroup): BaseViewHolder {
         return SwitchViewHolder(parent, checkSwitch)
