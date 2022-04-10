@@ -7,7 +7,6 @@ import space.rodionov.porosenokpetr.feature_driller.domain.models.BaseModel
 import space.rodionov.porosenokpetr.feature_driller.domain.models.MenuLanguage
 import space.rodionov.porosenokpetr.feature_driller.presentation.base.AdapterDelegate
 import space.rodionov.porosenokpetr.feature_driller.presentation.base.BaseViewHolder
-import space.rodionov.porosenokpetr.feature_driller.presentation.settings.language.LanguageHelper
 import space.rodionov.porosenokpetr.feature_driller.utils.SettingsItemType
 
 class ItemViewHolder(
@@ -19,7 +18,7 @@ class ItemViewHolder(
         binding = ItemSettingsItemBinding.bind(itemView)
         with(binding) {
             model as MenuLanguage
-            tvText.text = "${res.getString(model.text.getIdByLang(nativeLangBVH))}"
+            tvText.text = res.getString(model.title.getIdByLang(nativeLangBVH))
             tvLangName.text = model.language.getLocalizedName(nativeLangBVH)
             root.setOnClickListener {
                 clickItem(model.type)

@@ -11,7 +11,7 @@ import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGU
 import space.rodionov.porosenokpetr.feature_driller.utils.LangForAdapter
 
 class LanguageAdapter(
-    private val onClickLang: (Int) -> Unit
+    private val onClickLang: (Int) -> Unit = {}
 ): ListAdapter<LanguageItem, LanguageAdapter.LanguageViewHolder>(LanguageComparator()), LangForAdapter {
 
     companion object {
@@ -62,6 +62,7 @@ class LanguageComparator: DiffUtil.ItemCallback<LanguageItem>() {
     }
 
     override fun areContentsTheSame(oldItem: LanguageItem, newItem: LanguageItem): Boolean {
-        return oldItem.langIndex==newItem.langIndex && oldItem.nameRus==newItem.nameRus
+        return oldItem.langIndex==newItem.langIndex && oldItem.nameRus==newItem.nameRus &&
+                oldItem.nameEng==newItem.nameEng
     }
 }

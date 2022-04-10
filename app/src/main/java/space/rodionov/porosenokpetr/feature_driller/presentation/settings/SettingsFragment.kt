@@ -137,6 +137,12 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
                         showSnackBar(Constants.DEFAULT_INT, event.text)
                     }
                     is SettingsViewModel.SettingsEvent.OnChangeLang -> {
+                        val args = Bundle()
+                        val langToChange = event.nativeOrForeign
+                        args.putInt("nativeForeign", langToChange)
+
+                        val languageBottomSheet = LanguageBottomSheet()
+                        languageBottomSheet.arguments = args
                         LanguageBottomSheet().show(
                             requireFragmentManager(), // здесь не просто фрагмент манагер?
                             LanguageBottomSheet.LANGUAGE_BOTTOM_SHEET

@@ -6,7 +6,7 @@ import space.rodionov.porosenokpetr.feature_driller.utils.SettingsItemType
 
 data class MenuLanguage(
     val type: SettingsItemType,
-    val text: LocalizedString,
+    val title: LocalizedString,
     val language: LanguageItem
 ): BaseModel
 

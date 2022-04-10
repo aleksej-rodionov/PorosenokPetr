@@ -51,16 +51,17 @@ class LanguageBottomsheetViewModel @Inject constructor(
     val langList = _langList.asStateFlow()
 
     fun inflateLanguageList(app: AppFlavor) {
-        val langs = when (nativeOrForeign.value) {
-            NATIVE_LANGUAGE_CHANGE -> LanguageHelper.getNativeLanguages(app)
-            FOREIGN_LANGUAGE_CHANGE -> LanguageHelper.getLearnedLanguages(app)
+        val langs =  mutableListOf<LanguageItem>()
+        when (nativeOrForeign.value) {
+            NATIVE_LANGUAGE_CHANGE -> langs.addAll(LanguageHelper.getNativeLanguages(app))
+            FOREIGN_LANGUAGE_CHANGE -> langs.addAll(LanguageHelper.getLearnedLanguages(app))
             else -> {
 //                Log.d(TAG_DB_REFACTOR, "inflateLanguageList: else branch")
 //                LanguageHelper.getNativeLanguages(app)
-                mutableListOf<LanguageItem>()
+//                mutableListOf<LanguageItem>()
             }
         }
-        _langList.value = langs
+        _langList.value = langs.toMutableList()
     }
 
     //===========================METHODS==============================

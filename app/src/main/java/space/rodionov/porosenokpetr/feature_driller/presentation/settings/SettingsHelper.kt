@@ -18,7 +18,7 @@ object SettingsHelper {
         ))
         add(MenuLanguage(
             SettingsItemType.CHANGE_NATIVE_LANG,
-            LocalizationHelper.nativeLanguage,
+            LocalizationHelper.nativeLanguageSettings,
             LanguageHelper.russian
         ))
         add(MenuLanguage(

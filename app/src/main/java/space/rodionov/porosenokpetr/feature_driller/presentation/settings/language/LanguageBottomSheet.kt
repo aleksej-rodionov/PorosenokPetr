@@ -56,7 +56,7 @@ class LanguageBottomSheet: BottomSheetDialogFragment() {
         super.onCreate(savedInstanceState)
         val args = arguments
         args?.let {
-            vmLanguageSheet.nativeOrForeign.value = it.getInt("nativeForeign") // todo pass it from the Fragment
+            vmLanguageSheet.nativeOrForeign.value = it.getInt("nativeForeign")
         }
     }
 
@@ -94,6 +94,12 @@ class LanguageBottomSheet: BottomSheetDialogFragment() {
                 vmLanguageSheet.mode.collectLatest {
                     val mode = it ?: return@collectLatest
                     (root as ViewGroup).redrawViewGroup(mode)
+                }
+            }
+
+            this@LanguageBottomSheet.lifecycleScope.launchWhenStarted {
+                vmLanguageSheet.nativeLang.collectLatest {
+                    langAdapter.updateNativeLang(it)
                 }
             }
 

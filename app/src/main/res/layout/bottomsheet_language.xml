@@ -49,7 +49,6 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/divider_top"
-        tools:listitem="@layout/item_language" />
+        app:layout_constraintTop_toTopOf="@id/divider_top" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
