@@ -12,7 +12,7 @@ import space.rodionov.porosenokpetr.feature_driller.domain.models.Category
 import space.rodionov.porosenokpetr.feature_driller.presentation.CatWithWordsDiff
 import space.rodionov.porosenokpetr.core.ModeForAdapter
 import space.rodionov.porosenokpetr.core.redrawViewGroup
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_RU
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_RU
 import space.rodionov.porosenokpetr.feature_driller.utils.LangForAdapter
 import space.rodionov.porosenokpetr.feature_driller.utils.countPercentage
 
@@ -34,7 +34,7 @@ class CollectionAdapter(
     override fun getTag(): String = TAG_COLLECTION_ADAPTER
 
     //================NATIVE LANG================
-    private var nativeLang: Int = NATIVE_LANGUAGE_RU
+    private var nativeLang: Int = LANGUAGE_RU
     override fun updateNativeLang(newLang: Int) {
         nativeLang = newLang
     }

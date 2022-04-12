@@ -56,10 +56,10 @@ class DrillerViewModel @Inject constructor(
     val mode = _mode.stateIn(viewModelScope, SharingStarted.Lazily, 0)
 
     private val _nativeLang = observeNativeLangUseCase.invoke()
-    val nativeLang= _nativeLang.stateIn(viewModelScope, SharingStarted.Lazily, Constants.NATIVE_LANGUAGE_RU)
+    val nativeLang= _nativeLang.stateIn(viewModelScope, SharingStarted.Lazily, Constants.LANGUAGE_RU)
 
     private val _learnedLang = observeLearnedLangUseCase.invoke()
-    val learnedLang= _learnedLang.stateIn(viewModelScope, SharingStarted.Lazily, Constants.NATIVE_LANGUAGE_EN)
+    val learnedLang= _learnedLang.stateIn(viewModelScope, SharingStarted.Lazily, Constants.LANGUAGE_EN)
 
     private val snapshotCatsInCaseUncheckAll = mutableListOf<String>()
     var rememberPositionAfterChangingStack = false

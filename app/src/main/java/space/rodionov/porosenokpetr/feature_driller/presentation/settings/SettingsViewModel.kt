@@ -17,8 +17,8 @@ import space.rodionov.porosenokpetr.feature_driller.utils.Constants.FOREIGN_LANG
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_DARK
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_LIGHT
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_CHANGE
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_RU
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_UA
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_RU
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_UA
 import space.rodionov.porosenokpetr.feature_driller.utils.SettingsItemType
 import space.rodionov.porosenokpetr.feature_driller.work.NotificationHelper
 import java.text.SimpleDateFormat
@@ -77,7 +77,7 @@ class SettingsViewModel @Inject constructor(
     //==========================NATIVE LANGUAGE=========================================
     private val _nativeLanguage = observeNativeLangUseCase.invoke()
     val nativeLanguage = _nativeLanguage.stateIn(viewModelScope, SharingStarted.Lazily,
-        Constants.NATIVE_LANGUAGE_RU
+        Constants.LANGUAGE_RU
     )
 
     private fun updateNativeLanguage(lang: Int) = viewModelScope.launch {
@@ -87,7 +87,7 @@ class SettingsViewModel @Inject constructor(
     //==========================LEARNED LANGUAGE=========================================
     private val _learnedLanguage = observeLearnedLangUseCase.invoke()
     val learnedLanguage = _learnedLanguage.stateIn(viewModelScope, SharingStarted.Lazily,
-        Constants.NATIVE_LANGUAGE_EN
+        Constants.LANGUAGE_EN
     )
 
     private fun updateLearnedLanguage(lang: Int) = viewModelScope.launch {
@@ -186,7 +186,7 @@ class SettingsViewModel @Inject constructor(
             SettingsItemType.SYSTEM_MODE -> updateFollowSystemMode(isChecked)
             SettingsItemType.REMINDER -> updateRemind(isChecked)
             SettingsItemType.NATIVE_LANG -> {
-                updateNativeLanguage(if (isChecked) NATIVE_LANGUAGE_UA else NATIVE_LANGUAGE_RU)
+                updateNativeLanguage(if (isChecked) LANGUAGE_UA else LANGUAGE_RU)
             }
         }
     }

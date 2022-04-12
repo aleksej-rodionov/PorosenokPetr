@@ -103,12 +103,19 @@ class LanguageBottomSheet: BottomSheetDialogFragment() {
                 }
             }
 
-            vmLanguageSheet.nativeOrForeign.observe(viewLifecycleOwner) {
+            this@LanguageBottomSheet.lifecycleScope.launchWhenStarted {
+                vmLanguageSheet.learnedLang.collectLatest {
+                    langAdapter.updateLearnedLang(it)
+                }
+            }
+
+            vmLanguageSheet.nativeOrForeign.observe(viewLifecycleOwner) { // todo если не меняется на тру и неправильно не успевает, то объявить адаптер после получения бандла
                 tvTitle.text = if (it == NATIVE_LANGUAGE_CHANGE) {
                     getString(LocalizationHelper.nativeLanguage.getIdByLang(vmLanguageSheet.nativeLang.value))
                 } else {
                     getString(LocalizationHelper.learnedLanguege.getIdByLang(vmLanguageSheet.nativeLang.value))
                 }
+                langAdapter.changeNativeOrForeign(it)
             }
         }
     }

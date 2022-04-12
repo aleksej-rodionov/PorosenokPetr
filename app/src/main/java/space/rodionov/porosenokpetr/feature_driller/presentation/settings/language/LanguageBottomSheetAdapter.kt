@@ -7,7 +7,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import space.rodionov.porosenokpetr.databinding.ItemLanguageBinding
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_RU
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.FOREIGN_LANGUAGE_CHANGE
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_EN
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_RU
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_CHANGE
 import space.rodionov.porosenokpetr.feature_driller.utils.LangForAdapter
 
 class LanguageAdapter(
@@ -18,9 +21,13 @@ class LanguageAdapter(
         const val TAG_LANGUAGE_ADAPTER = "languageAdapter"
     }
 
-    private var nativeLang = NATIVE_LANGUAGE_RU
+    private var nativeOrForeign = NATIVE_LANGUAGE_CHANGE
+    fun changeNativeOrForeign(natOrFor: Int) { nativeOrForeign = natOrFor }
+
+    private var nativeLang = LANGUAGE_RU
     override fun updateNativeLang(newLang: Int) { nativeLang = newLang }
-    override fun updateLearnedLang(newLang: Int) { /*empty*/ }
+    private var learnedLang = LANGUAGE_EN
+    override fun updateLearnedLang(newLang: Int) { learnedLang = newLang }
     override fun getTagForLang(): String = TAG_LANGUAGE_ADAPTER
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LanguageViewHolder {
@@ -45,8 +52,13 @@ class LanguageAdapter(
         fun bind(lang: LanguageItem) {
             with(binding) {
                 tvText.text = lang.getLocalizedName(nativeLang)
-                ivCheck.visibility = if (lang.langIndex == nativeLang) View.VISIBLE
+                if (nativeOrForeign == NATIVE_LANGUAGE_CHANGE) {
+                    ivCheck.visibility = if (lang.langIndex == nativeLang) View.VISIBLE
                     else View.INVISIBLE
+                } else {
+                    ivCheck.visibility = if (lang.langIndex == learnedLang) View.VISIBLE
+                    else View.INVISIBLE
+                }
 
                 root.setOnClickListener {
                     onClickLang(lang.langIndex)

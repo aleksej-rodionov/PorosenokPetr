@@ -1,6 +1,5 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation.settings.language
 
-import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -15,8 +14,6 @@ import space.rodionov.porosenokpetr.feature_driller.utils.AppFlavor
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.FOREIGN_LANGUAGE_CHANGE
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_CHANGE
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_DB_REFACTOR
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_NATIVE_LANG
 import javax.inject.Inject
 
 @HiltViewModel
@@ -36,12 +33,12 @@ class LanguageBottomsheetViewModel @Inject constructor(
 
     //=========================NATIVE LANG=======================
     private val _nativeLang = observeNativeLangUseCase.invoke()
-    val nativeLang= _nativeLang.stateIn(viewModelScope, SharingStarted.Lazily, Constants.NATIVE_LANGUAGE_RU)
+    val nativeLang= _nativeLang.stateIn(viewModelScope, SharingStarted.Lazily, Constants.LANGUAGE_RU)
     fun updateNativeLang(lang: Int) = viewModelScope.launch { updateNativeLangUseCase.invoke(lang) }
 
     //================================LEARNED LANG==================================
     private val _learnedLang = observeLearnedLangUseCase.invoke()
-    val learnedLang = _learnedLang.stateIn(viewModelScope, SharingStarted.Lazily, Constants.NATIVE_LANGUAGE_EN)
+    val learnedLang = _learnedLang.stateIn(viewModelScope, SharingStarted.Lazily, Constants.LANGUAGE_EN)
     fun updateLearnedLang(lang: Int) = viewModelScope.launch { updateLearnedLangUseCase.invoke(lang) }
 
     //===============================LIST================================

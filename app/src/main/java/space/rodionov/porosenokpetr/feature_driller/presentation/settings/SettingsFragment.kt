@@ -19,7 +19,7 @@ import space.rodionov.porosenokpetr.feature_driller.presentation.settings.langua
 import space.rodionov.porosenokpetr.feature_driller.presentation.settings.language.LanguageHelper
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_DARK
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_UA
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_UA
 import space.rodionov.porosenokpetr.feature_driller.utils.LocalizationHelper
 import space.rodionov.porosenokpetr.feature_driller.utils.SettingsItemType
 import java.util.*
@@ -108,12 +108,12 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         }
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             vmSettings.nativeLanguage.collectLatest {
-                binding.tvTitle.text = resources.getString( if (it == NATIVE_LANGUAGE_UA) LocalizationHelper.settings.uaId
+                binding.tvTitle.text = resources.getString( if (it == LANGUAGE_UA) LocalizationHelper.settings.uaId
                 else LocalizationHelper.settings.ruId)
 
 
                 settingsAdapter.updateNativeLang(it)
-                vmSettings.updateMenuList(SettingsItemType.NATIVE_LANG, it == NATIVE_LANGUAGE_UA)
+                vmSettings.updateMenuList(SettingsItemType.NATIVE_LANG, it == LANGUAGE_UA)
             }
         }
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {

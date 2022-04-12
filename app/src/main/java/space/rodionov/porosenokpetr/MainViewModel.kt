@@ -1,6 +1,5 @@
 package space.rodionov.porosenokpetr
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -8,11 +7,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.*
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_RU
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
-import space.rodionov.porosenokpetr.feature_driller.work.NotificationHelper
-import java.text.SimpleDateFormat
-import java.util.*
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_RU
 import javax.inject.Inject
 
 @HiltViewModel
@@ -38,7 +33,7 @@ class MainViewModel @Inject constructor(
 
     //==========================LANGUAGE=========================================
     private val _nativeLanguage = observeNativeLangUseCase.invoke()
-    val nativeLanguage = _nativeLanguage.stateIn(viewModelScope, SharingStarted.Lazily, NATIVE_LANGUAGE_RU)
+    val nativeLanguage = _nativeLanguage.stateIn(viewModelScope, SharingStarted.Lazily, LANGUAGE_RU)
 
     //==========================REMINDER=========================================
     private val _reminder = observeReminderUseCase.invoke()

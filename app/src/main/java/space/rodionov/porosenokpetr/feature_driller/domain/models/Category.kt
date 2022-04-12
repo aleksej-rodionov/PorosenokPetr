@@ -2,9 +2,9 @@ package space.rodionov.porosenokpetr.feature_driller.domain.models
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_EN
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_RU
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_UA
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_EN
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_RU
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_UA
 
 @Parcelize
 data class Category(
@@ -16,9 +16,9 @@ data class Category(
 ): BaseModel, Parcelable {
 
     fun getLocalizedName(lang: Int) = when (lang) {
-        NATIVE_LANGUAGE_RU -> nameRus
-        NATIVE_LANGUAGE_UA -> nameUkr
-        NATIVE_LANGUAGE_EN -> nameEng ?: nameRus
+        LANGUAGE_RU -> nameRus
+        LANGUAGE_UA -> nameUkr
+        LANGUAGE_EN -> nameEng ?: nameRus
         else -> nameRus
     }
 }

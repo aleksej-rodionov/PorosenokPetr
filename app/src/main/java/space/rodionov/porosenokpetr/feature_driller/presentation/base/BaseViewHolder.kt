@@ -1,7 +1,6 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation.base
 
 import android.content.res.Resources
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,11 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import space.rodionov.porosenokpetr.core.fetchColors
 import space.rodionov.porosenokpetr.core.fetchTheme
 import space.rodionov.porosenokpetr.feature_driller.domain.models.BaseModel
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_LIGHT
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_RU
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_NATIVE_LANG
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_SETTINGS
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_RU
 
 abstract class BaseViewHolder: RecyclerView.ViewHolder {
 
@@ -26,7 +22,7 @@ abstract class BaseViewHolder: RecyclerView.ViewHolder {
     var mode = fetchTheme(modeBVH, itemView.resources)
     var colors = mode.fetchColors()
 
-    var nativeLangBVH: Int = NATIVE_LANGUAGE_RU
+    var nativeLangBVH: Int = LANGUAGE_RU
 
 //    var learnedLang
 

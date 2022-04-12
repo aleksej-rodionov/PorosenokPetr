@@ -42,7 +42,7 @@ class CollectionViewModel @Inject constructor(
 
     private val _nativeLanguage = observeNativeLangUseCase.invoke()
     val nativeLanguage = _nativeLanguage.stateIn(viewModelScope, SharingStarted.Lazily,
-        Constants.NATIVE_LANGUAGE_RU
+        Constants.LANGUAGE_RU
     )
 
     sealed class CollectionEvent {

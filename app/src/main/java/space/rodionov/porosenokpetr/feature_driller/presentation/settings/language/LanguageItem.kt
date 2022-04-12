@@ -1,13 +1,10 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation.settings.language
 
-import android.content.ContentValues.TAG
-import android.util.Log
 import space.rodionov.porosenokpetr.feature_driller.utils.AppFlavor
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_EN
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_RU
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_SE
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_UA
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_DB_REFACTOR
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_EN
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_RU
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_SE
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_UA
 
 data class LanguageItem(
     val langIndex: Int,
@@ -19,10 +16,10 @@ data class LanguageItem(
 
     fun getLocalizedName(lang: Int): String {
         return when (lang) {
-            NATIVE_LANGUAGE_RU -> nameRus
-            NATIVE_LANGUAGE_UA -> nameUkr
-            NATIVE_LANGUAGE_EN -> nameEng
-            NATIVE_LANGUAGE_SE -> nameSwe
+            LANGUAGE_RU -> nameRus
+            LANGUAGE_UA -> nameUkr
+            LANGUAGE_EN -> nameEng
+            LANGUAGE_SE -> nameSwe
             else -> nameRus
         }
     }
@@ -30,10 +27,10 @@ data class LanguageItem(
 
 object LanguageHelper {
 
-    val russian = LanguageItem(NATIVE_LANGUAGE_RU, "Русский", "Россiйська", "Russian", "Ryska")
-    val ukrainian = LanguageItem(NATIVE_LANGUAGE_UA, "Украинский", "Українська", "Ukrainian", "Ukrainsk")
-    val english = LanguageItem(NATIVE_LANGUAGE_EN, "Инглиш", "Iнглiш", "English","Engelska")
-    val swedish = LanguageItem(NATIVE_LANGUAGE_SE, "Шведский", "Шведська", "Swedish","Svenska")
+    val russian = LanguageItem(LANGUAGE_RU, "Русский", "Россiйська", "Russian", "Ryska")
+    val ukrainian = LanguageItem(LANGUAGE_UA, "Украинский", "Українська", "Ukrainian", "Ukrainsk")
+    val english = LanguageItem(LANGUAGE_EN, "Инглиш", "Iнглiш", "English","Engelska")
+    val swedish = LanguageItem(LANGUAGE_SE, "Шведский", "Шведська", "Swedish","Svenska")
 
     fun getNativeLanguages(app: AppFlavor) : MutableList<LanguageItem>{
        return when (app) {
@@ -52,10 +49,10 @@ object LanguageHelper {
 
     fun getLangByIndex(langIndex: Int) : LanguageItem {
         return when (langIndex) {
-            NATIVE_LANGUAGE_RU -> russian
-            NATIVE_LANGUAGE_UA -> ukrainian
-            NATIVE_LANGUAGE_EN -> english
-            NATIVE_LANGUAGE_SE -> swedish
+            LANGUAGE_RU -> russian
+            LANGUAGE_UA -> ukrainian
+            LANGUAGE_EN -> english
+            LANGUAGE_SE -> swedish
             else -> russian
         }
     }

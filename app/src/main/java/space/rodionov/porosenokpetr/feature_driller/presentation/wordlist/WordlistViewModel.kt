@@ -15,8 +15,8 @@ import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Category
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
 import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.*
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_EN
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_RU
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_EN
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_RU
 import javax.inject.Inject
 
 @HiltViewModel
@@ -49,10 +49,10 @@ class WordlistViewModel @Inject constructor(
     val word = _word.stateIn(viewModelScope, SharingStarted.Lazily, null)
 
     private val _nativeLang = observeNativeLangUseCase.invoke()
-    val nativeLang= _nativeLang.stateIn(viewModelScope, SharingStarted.Lazily, NATIVE_LANGUAGE_RU)
+    val nativeLang= _nativeLang.stateIn(viewModelScope, SharingStarted.Lazily, LANGUAGE_RU)
 
     private val _learnedLang = observeLearnedLangUseCase.invoke()
-    val learnedLang= _learnedLang.stateIn(viewModelScope, SharingStarted.Lazily, NATIVE_LANGUAGE_EN)
+    val learnedLang= _learnedLang.stateIn(viewModelScope, SharingStarted.Lazily, LANGUAGE_EN)
 
     var catToSearchIn = state.getLiveData<Category>("category", null)
     val catNameFlow = catNameFromStorageUseCase.invoke()

@@ -8,8 +8,8 @@ import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MILLIS_IN_NINE_HOURS
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_EN
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_RU
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_EN
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_RU
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_NATIVE_LANG
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_NOTIFY
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
@@ -32,7 +32,7 @@ class Datastore /*@Inject constructor*/( // todo сделать интерфей
         val REMINDER = booleanPreferencesKey("remind")
         val MILLIS_FROM_DAY_BEGINNING = longPreferencesKey("millis")
         val NATIVE_LANGUAGE = intPreferencesKey("nativeLanguage")
-        val LEARNED_LANGUAGE = intPreferencesKey("nativeLanguage")
+        val LEARNED_LANGUAGE = intPreferencesKey("learnedLanguage")
 //        val FOLLOW_SYSTEM_LOCALE = booleanPreferencesKey("followSystemLocale")
     }
 
@@ -168,7 +168,7 @@ class Datastore /*@Inject constructor*/( // todo сделать интерфей
             }
         }
         .map { prefs ->
-            val language = prefs[PrefKeys.NATIVE_LANGUAGE] ?: NATIVE_LANGUAGE_RU
+            val language = prefs[PrefKeys.NATIVE_LANGUAGE] ?: LANGUAGE_RU
             language
         }
 
@@ -190,12 +190,12 @@ class Datastore /*@Inject constructor*/( // todo сделать интерфей
             }
         }
         .map { prefs ->
-            val language = prefs[PrefKeys.LEARNED_LANGUAGE] ?: NATIVE_LANGUAGE_EN
+            val language = prefs[PrefKeys.LEARNED_LANGUAGE] ?: LANGUAGE_EN
             language
         }
 
     suspend fun updateLearnedLanguage(language: Int) {
-        Log.d(TAG_NATIVE_LANG, "updateNativeLanguage: $language")
+        Log.d(TAG_NATIVE_LANG, "updateLearneLanguage: $language")
         datastore.edit { prefs ->
             prefs[PrefKeys.LEARNED_LANGUAGE] = language
         }
