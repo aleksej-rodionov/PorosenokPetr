@@ -56,7 +56,7 @@ class LanguageBottomSheet: BottomSheetDialogFragment() {
         super.onCreate(savedInstanceState)
         val args = arguments
         args?.let {
-            vmLanguageSheet.nativeOrForeign.value = it.getInt("nativeForeign")
+            vmLanguageSheet.nativeOrForeign.value = it.getInt("nativeOrForeign")
         }
     }
 

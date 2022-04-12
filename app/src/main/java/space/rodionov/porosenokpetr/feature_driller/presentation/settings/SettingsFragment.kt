@@ -139,11 +139,11 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
                     is SettingsViewModel.SettingsEvent.OnChangeLang -> {
                         val args = Bundle()
                         val langToChange = event.nativeOrForeign
-                        args.putInt("nativeForeign", langToChange)
+                        args.putInt("nativeOrForeign", langToChange)
 
                         val languageBottomSheet = LanguageBottomSheet()
                         languageBottomSheet.arguments = args
-                        LanguageBottomSheet().show(
+                        languageBottomSheet.show(
                             requireFragmentManager(), // здесь не просто фрагмент манагер?
                             LanguageBottomSheet.LANGUAGE_BOTTOM_SHEET
                         )

@@ -14,6 +14,7 @@ import space.rodionov.porosenokpetr.feature_driller.presentation.base.BaseViewHo
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANG_POSTFIX_RU
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANG_POSTFIX_UA
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_NATIVE_LANG
+import space.rodionov.porosenokpetr.feature_driller.utils.LocalizationHelper
 import space.rodionov.porosenokpetr.feature_driller.utils.SettingsItemType
 
 
@@ -48,7 +49,8 @@ class SwitchViewHolder(
         when(model.type) {
             SettingsItemType.TRANSLATION_DIRECTION -> {
                 switch.isChecked = model.switchState
-                val resId = model.text.getIdByLang(nativeLangBVH) // todo get current transDir. take if from model.switchState or change it in vm.updMenuList()
+                val resId = if (model.switchState) LocalizationHelper.fromNativeToForeign.getIdByLang(nativeLangBVH)
+                    else LocalizationHelper.fromForeignToNative.getIdByLang(nativeLangBVH)
                 switch.text =res.getString(resId)
             }
             SettingsItemType.NIGHT_MODE -> {
