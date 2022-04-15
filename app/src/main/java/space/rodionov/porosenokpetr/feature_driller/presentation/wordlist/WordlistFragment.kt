@@ -114,6 +114,17 @@ class WordlistFragment : Fragment(R.layout.fragment_wordlist), TextToSpeech.OnIn
                 wordlistAdapter.updateMode(mode)
             }
         }
+
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            vmWordlist.nativeLang.collectLatest {
+                wordlistAdapter.updateNativeLang(it)
+            }
+        }
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            vmWordlist.learnedLang.collectLatest {
+                wordlistAdapter.updateLearnedLang(it)
+            }
+        }
     }
 
     override fun onInit(status: Int) {
