@@ -36,7 +36,7 @@ abstract class WordDatabase : RoomDatabase() {
 
             appScope.launch {
                 if (BuildConfig.FLAVOR == "englishdriller") {
-                    Log.d(TAG_NATIVE_LANG, "onCreate: flavor = englishdriller")
+                    Log.d(TAG_DB_REFACTOR, "onCreate: flavor = englishdriller")
                     val catNamesRus = app.resources.getStringArray(R.array.cat_name_rus).toList()
                     val catNamesUkr = app.resources.getStringArray(R.array.cat_name_ukr).toList()
                     catNamesRus.forEachIndexed { index, s ->
@@ -49,21 +49,13 @@ abstract class WordDatabase : RoomDatabase() {
 
                     catNamesRus.forEachIndexed { index, s ->
 
-                        val engResId = app.resources.getIdentifier(
-                            "eng$index",
-                            "array",
-                            app.packageName
-                        )
-                        val engWords = app.resources.getStringArray(engResId).toList()
-                        Log.d(TAG_PETR, "engwords size = ${engWords.size}: ")
-
-                        val rusResId = app.resources.getIdentifier(
-                            "rus$index",
-                            "array",
-                            app.packageName
-                        )
+                        val rusResId = app.resources.getIdentifier("rus$index", "array", app.packageName)
                         val rusWords = app.resources.getStringArray(rusResId).toList()
-                        Log.d(TAG_PETR, "ruswords size = ${rusWords.size}: ")
+                        Log.d(TAG_DB_REFACTOR, "ruswords size = ${rusWords.size}: ")
+
+                        val engResId = app.resources.getIdentifier("eng$index", "array", app.packageName)
+                        val engWords = app.resources.getStringArray(engResId).toList()
+                        Log.d(TAG_DB_REFACTOR, "engwords size = ${engWords.size}: ")
 
                         for (i in engWords.indices) {
                             dao.insertWord(WordEntity(rusWords[i], null, engWords[i], null, categoryName = s))  // todo add ukrainian later
@@ -140,7 +132,7 @@ abstract class WordDatabase : RoomDatabase() {
                 }
 
                 if (BuildConfig.FLAVOR == "swedishdriller") {
-                    Log.d(TAG_NATIVE_LANG, "onCreate: flavor = swedishdriller")
+                    Log.d(TAG_DB_REFACTOR, "onCreate: flavor = swedishdriller")
 
                     val catNamesRus = app.resources.getStringArray(R.array.cat_name_rus).toList()
                     val catNamesUkr = app.resources.getStringArray(R.array.cat_name_ukr).toList()
@@ -152,29 +144,30 @@ abstract class WordDatabase : RoomDatabase() {
                             nameUkr = catNamesUkr[index],
                             nameEng = catNamesEng[index]
                         )
-                        Log.d(TAG_DB_REFACTOR, "insertCat: $cat")
                         dao.insertCategory(cat)
                     }
 
                     catNamesRus.forEachIndexed { index, s ->
-                        val rusResId = app.resources.getIdentifier("rus$index", "array", app.packageName)
+                        Log.d(TAG_DB_REFACTOR, "onCreate: cat = $s")
+
+                        val rusResId = app.resources.getIdentifier("rus${index+1}", "array", app.packageName)
                         val rusWords = app.resources.getStringArray(rusResId).toList()
-                        Log.d(TAG_PETR, "ruswords size = ${rusWords.size}: ")
+                        Log.d(TAG_NATIVE_LANG, "ruswords size = ${rusWords.size}: ")
 
-                        val ukrResId = app.resources.getIdentifier("ukr$index", "array", app.packageName)
+                        val ukrResId = app.resources.getIdentifier("ukr${index+1}", "array", app.packageName)
                         val ukrWords = app.resources.getStringArray(ukrResId).toList()
-                        Log.d(TAG_PETR, "ruswords size = ${ukrWords.size}: ")
+                        Log.d(TAG_DB_REFACTOR, "ruswords size = ${ukrWords.size}: ")
 
-                        val engResId = app.resources.getIdentifier("eng$index", "array", app.packageName)
+                        val engResId = app.resources.getIdentifier("eng${index+1}", "array", app.packageName)
                         val engWords = app.resources.getStringArray(engResId).toList()
-                        Log.d(TAG_PETR, "engwords size = ${engWords.size}: ")
+                        Log.d(TAG_DB_REFACTOR, "engwords size = ${engWords.size}: ")
 
-                        val sweResId = app.resources.getIdentifier("swe$index", "array", app.packageName)
+                        val sweResId = app.resources.getIdentifier("foreign${index+1}", "array", app.packageName)
                         val sweWords = app.resources.getStringArray(sweResId).toList()
-                        Log.d(TAG_PETR, "ruswords size = ${sweWords.size}: ")
+                        Log.d(TAG_DB_REFACTOR, "ruswords size = ${sweWords.size}: ")
 
                         for (i in engWords.indices) {
-                            dao.insertWord(WordEntity(rusWords[i], ukrWords[i], engWords[i], sweWords[i], s))
+                            dao.insertWord(WordEntity(rusWords[i], ukrWords[i], engWords[i], sweWords[i], categoryName = s))
                         }
                     }
 

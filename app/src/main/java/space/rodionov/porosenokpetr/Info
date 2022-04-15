@@ -5,7 +5,9 @@ in process:
 
 Next todo:
 
-- swedish words: add them to categories (bug)
+- langBottomSheet make checkMark work normally and dismiss (bug)
+- fix ukr voc
+- upload to GooglePlay
 
 
 Features
