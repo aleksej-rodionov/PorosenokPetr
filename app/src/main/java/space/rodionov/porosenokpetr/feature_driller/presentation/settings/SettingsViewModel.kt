@@ -142,7 +142,7 @@ class SettingsViewModel @Inject constructor(
         if (type == SettingsItemType.SYSTEM_MODE) updateBlockedDarkModeItem(state)
     }
 
-    fun updateMenuItemsInList(type: SettingsItemType, lang: LanguageItem) = viewModelScope.launch {
+    fun updateMenuItemsInList(type: SettingsItemType, lang: LanguageItem) = viewModelScope.launch { // todo combine with previous function
         val newList = mutableListOf<BaseModel>()
         menuListFlow.value.forEach { menuItem ->
             if (menuItem is MenuLanguage && menuItem.type == type) {

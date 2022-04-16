@@ -40,6 +40,7 @@ class LanguageBottomSheet: BottomSheetDialogFragment() {
         LanguageAdapter(
             onClickLang = {
                 vmLanguageSheet.onLangChecked(it)
+                dismiss()
             }
         )
     }
@@ -100,12 +101,14 @@ class LanguageBottomSheet: BottomSheetDialogFragment() {
             this@LanguageBottomSheet.lifecycleScope.launchWhenStarted {
                 vmLanguageSheet.nativeLang.collectLatest {
                     langAdapter.updateNativeLang(it)
+                    vmLanguageSheet.refreshList()
                 }
             }
 
             this@LanguageBottomSheet.lifecycleScope.launchWhenStarted {
                 vmLanguageSheet.learnedLang.collectLatest {
                     langAdapter.updateLearnedLang(it)
+                    vmLanguageSheet.refreshList()
                 }
             }
 

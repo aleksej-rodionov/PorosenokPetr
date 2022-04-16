@@ -69,6 +69,20 @@ class LanguageBottomsheetViewModel @Inject constructor(
             updateLearnedLang(lang)
         }
     }
+
+    fun refreshList() = viewModelScope.launch {
+        val langs = langList.value.toMutableList()
+        _langList.value = langs
+    }
+
+//    fun updateNativeLangInList(lang: Int) = viewModelScope.launch {
+//        // ??
+//    }
+//
+//    fun updateLearnedLangInList() = viewModelScope.launch {
+//        val langs = langList.value.toMutableList()
+//        _langList.value = langs
+//    }
 }
 
 

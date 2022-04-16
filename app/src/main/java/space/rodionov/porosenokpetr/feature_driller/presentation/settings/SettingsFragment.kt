@@ -111,9 +111,10 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
                 binding.tvTitle.text = resources.getString( if (it == LANGUAGE_UA) LocalizationHelper.settings.uaId
                 else LocalizationHelper.settings.ruId)
 
-
                 settingsAdapter.updateNativeLang(it)
-                vmSettings.updateMenuList(SettingsItemType.NATIVE_LANG, it == LANGUAGE_UA)
+
+                val lang = LanguageHelper.getLangByIndex(it)
+                vmSettings.updateMenuItemsInList(SettingsItemType.CHANGE_NATIVE_LANG, lang)
             }
         }
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
