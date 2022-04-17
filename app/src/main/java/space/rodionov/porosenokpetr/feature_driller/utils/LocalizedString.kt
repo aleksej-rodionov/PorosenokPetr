@@ -64,6 +64,15 @@ object LocalizationHelper { // todo add english!
     val followSystemMode = LocalizedString(StringTag.FOLLOW_SYSTEM_MODE, R.string.follow_system_mode, R.string.follow_system_mode_ua, R.string.follow_system_mode_en)
     val appearance = LocalizedString(StringTag.APPEARANCE, R.string.appearance, R.string.appearance_ua, R.string.appearance_en)
 
+//    val fromNative = LocalizedString(StringTag.FROM_NATIVE, R.string.from_russian, R.string.from_ukrainian_ua, R.string.from_english_en)
+//    val toNative = LocalizedString(StringTag.FROM_NATIVE, R.string.to_russian, R.string.to_ukrainian_ua, R.string.to_english_en)
+//    val fromUkrainian = LocalizedString(StringTag.FROM_UKRAINIAN, R.string.from_ukrainian, R.string.from_ukrainian_ua, R.string.from_ukrainian_en)
+//    val fromEnglish = LocalizedString(StringTag.FROM_ENGLISH, R.string.from_english, R.string.from_english_ua, R.string.from_english_en)
+//    val fromSwedish = LocalizedString(StringTag.FROM_SWEDISH, R.string.from_swedish, R.string.from_swedish_ua, R.string.from_swedish_en)
+//    val toUkrainian = LocalizedString(StringTag.TO_UKRAINIAN, R.string.to_ukrainian, R.string.to_ukrainian_ua, R.string.to_ukrainian_en)
+//    val toEnglish = LocalizedString(StringTag.TO_ENGLISH, R.string.to_english, R.string.to_english_ua, R.string.to_english_en)
+//    val toSwedish = LocalizedString(StringTag.TO_SWEDISH, R.string.to_swedish, R.string.to_swedish_ua, R.string.to_swedish_en)
+
     val settings = LocalizedString(StringTag.SETTINGS, R.string.settings, R.string.settings_ua, R.string.settings_en)
 
     val chooseTime = LocalizedString(StringTag.CHOOSE_TIME, R.string.choose_time, R.string.choose_time_ua, R.string.choose_time_en)

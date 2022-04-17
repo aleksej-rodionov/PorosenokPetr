@@ -37,6 +37,15 @@ enum class StringTag {
     FOLLOW_SYSTEM_MODE,
     APPEARANCE,
 
+//    FROM_NATIVE,
+//    TO_NATIVE,
+//    FROM_SWEDISH,
+//    FROM_ENGLISH,
+//    FROM_UKRAINIAN,
+//    TO_SWEDISH,
+//    TO_ENGLISH,
+//    TO_UKRAINIAN,
+
     SETTINGS,
 
     CHOOSE_TIME,

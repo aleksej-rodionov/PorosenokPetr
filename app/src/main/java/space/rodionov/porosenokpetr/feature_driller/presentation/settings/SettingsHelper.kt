@@ -9,7 +9,7 @@ import space.rodionov.porosenokpetr.feature_driller.utils.SettingsItemType
 object SettingsHelper {
 
     fun getSettingsMenu() = mutableListOf<BaseModel>().apply {
-        add(Header(null, LocalizationHelper.translationDirection))
+        add(Header(null, LocalizationHelper.language))
         add(MenuSwitch(
             null,
             SettingsItemType.TRANSLATION_DIRECTION,

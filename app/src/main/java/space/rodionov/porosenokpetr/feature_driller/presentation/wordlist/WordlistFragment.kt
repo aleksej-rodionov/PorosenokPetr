@@ -20,6 +20,8 @@ import space.rodionov.porosenokpetr.core.showKeyboard
 import space.rodionov.porosenokpetr.databinding.FragmentWordlistBinding
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.EMPTY_STRING
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_EN
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_RU
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.feature_driller.utils.LocalizationHelper
 import java.util.*
@@ -149,8 +151,8 @@ class WordlistFragment : Fragment(R.layout.fragment_wordlist), TextToSpeech.OnIn
 
     private fun showWordBottomSheet(word: Word) {
         val args = Bundle()
-        args.putString("rus", word.getTranslation(vmWordlist.nativeLang.value))
-        args.putString("eng", word.getTranslation(vmWordlist.learnedLang.value))
+        args.putString("rus", word.getTranslation(/*vmWordlist.nativeLang.value*/ LANGUAGE_RU)) // вытаскиваем слова по этим двум языкам просто потому, что эти два языка фигурируют во всех Flavours
+        args.putString("eng", word.getTranslation(/*vmWordlist.learnedLang.value*/ LANGUAGE_EN)) // вытаскиваем слова по этим двум языкам просто потому, что эти два языка фигурируют во всех Flavours
         args.putString("categoryName", word.categoryName)
         
         val wordBottomSheet = WordlistBottomSheet()

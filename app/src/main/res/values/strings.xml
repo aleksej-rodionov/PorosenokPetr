@@ -32,11 +32,21 @@
     <string name="word_not_learned">Слово не выучено</string>
     <string name="word_description">%1$s.\nВы можете пометить слово как выученное, и оно больше не будет встречаться в колоде.\nЕсли пометите слово как НЕвыученное, оно будет попадаться в колоде.</string>
     <string name="translation_direction">Направление перевода</string>
-    <string name="from_en_to_ru">С инглиша на русский</string>
-    <string name="from_ru_to_en">С русского на инглиш</string>
+    <string name="from_en_to_ru">С иностранного на родной</string>
+    <string name="from_ru_to_en">С родного на иностранный</string>
     <string name="dark_mode">Тёмная тема</string>
     <string name="follow_system_mode">Использовать тему телефона</string>
     <string name="appearance">Внешний вид</string>
+
+<!--    <string name="from_native">С русского</string>-->
+<!--    <string name="from_russian">С русского</string>-->
+<!--    <string name="from_swedish">С шведского</string>-->
+<!--    <string name="from_english">С инглиша</string>-->
+<!--    <string name="from_ukrainian">С украинского</string>-->
+<!--    <string name="to_russian"> на русский</string>-->
+<!--    <string name="to_swedish"> на шведский</string>-->
+<!--    <string name="to_english"> на инглиш</string>-->
+<!--    <string name="to_ukrainian">  на украинский</string>-->
 
     <string name="settings">Настройки</string>
 
@@ -93,11 +103,21 @@
     <string name="word_not_learned_ua">Слово не вивчене</string>
     <string name="word_description_ua">%1$s.\nВи можете позначити слово як вивчене, і воно більше не зустрічатиметься у колоді. \nЯкщо помітите слово як НЕвивчене, воно траплятиметься у колоді.</string>
     <string name="translation_direction_ua">Напрямок перекладу</string>
-    <string name="from_en_to_ru_ua">З інглішу на українську</string>
-    <string name="from_ru_to_en_ua">З української на інглиш</string>
+    <string name="from_en_to_ru_ua">З іноземної на українську</string>
+    <string name="from_ru_to_en_ua">З української на іноземний</string>
     <string name="dark_mode_ua">Темна тема</string>
     <string name="follow_system_mode_ua">Використати тему телефону</string>
     <string name="appearance_ua">Зовнішній вигляд</string>
+
+<!--    <string name="from_native_ua">З української</string>-->
+<!--    <string name="from_russian_ua">З росiйської</string>-->
+<!--    <string name="from_swedish_ua">З шведської</string>-->
+<!--    <string name="from_english_ua">З iнглiшу</string>-->
+<!--    <string name="from_ukrainian_ua">З української</string>-->
+<!--    <string name="to_russian_ua"> на росiйську</string>-->
+<!--    <string name="to_swedish_ua"> на шведську</string>-->
+<!--    <string name="to_english_ua"> на інглиш</string>-->
+<!--    <string name="to_ukrainian_ua"> на українську</string>-->
 
     <string name="settings_ua">Налаштування</string>
 
@@ -153,11 +173,21 @@
     <string name="word_not_learned_en">Слово не вивчене</string>
     <string name="word_description_en">%1$s.\nВи можете позначити слово як вивчене, і воно більше не зустрічатиметься у колоді. \nЯкщо помітите слово як НЕвивчене, воно траплятиметься у колоді.</string>
     <string name="translation_direction_en">Напрямок перекладу</string>
-    <string name="from_en_to_ru_en">З інглішу на українську</string>
-    <string name="from_ru_to_en_en">З української на інглиш</string>
+    <string name="from_en_to_ru_en">From foreign to native</string>
+    <string name="from_ru_to_en_en">From native to foreign</string>
     <string name="dark_mode_en">Темна тема</string>
     <string name="follow_system_mode_en">Використати тему телефону</string>
     <string name="appearance_en">Зовнішній вигляд</string>
+
+<!--    <string name="from_native_en">From english</string>-->
+<!--    <string name="from_russian_en">From russian</string>-->
+<!--    <string name="from_swedish_en">From swedish</string>-->
+<!--    <string name="from_english_en">From english</string>-->
+<!--    <string name="from_ukrainian_en">From ukrainian</string>-->
+<!--    <string name="to_russian_en"> to russian</string>-->
+<!--    <string name="to_swedish_en"> to swedish</string>-->
+<!--    <string name="to_english_en"> to english</string>-->
+<!--    <string name="to_ukrainian_en"> to ukrainian</string>-->
 
     <string name="settings_en">Налаштування</string>
 

@@ -47,12 +47,21 @@ class SwitchViewHolder(
         Log.d(TAG_NATIVE_LANG, "bindSwitchState: lang = $requestedLang")
 
         when(model.type) {
+
             SettingsItemType.TRANSLATION_DIRECTION -> {
                 switch.isChecked = model.switchState
+
+//                val fromId = if (model.switchState) {
+//                    LocalizationHelper.fromNative.getIdByLang(nativeLangBVH)
+//                } else {
+//                    if ()
+//                }
+
                 val resId = if (model.switchState) LocalizationHelper.fromNativeToForeign.getIdByLang(nativeLangBVH)
                     else LocalizationHelper.fromForeignToNative.getIdByLang(nativeLangBVH)
                 switch.text =res.getString(resId)
             }
+
             SettingsItemType.NIGHT_MODE -> {
                 switch.isChecked = model.switchState
                 val resId = model.text.getIdByLang(nativeLangBVH)
