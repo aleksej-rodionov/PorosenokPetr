@@ -81,7 +81,7 @@
             android:dropDownHeight="200dp"
             android:focusable="true"
             android:gravity="center_vertical"
-            android:hint="@string/search_word"
+            tools:hint="@string/search_word"
             android:imeOptions="actionSearch"
             android:inputType="textCapSentences"
             android:lines="1"

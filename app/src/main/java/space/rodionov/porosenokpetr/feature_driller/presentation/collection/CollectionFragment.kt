@@ -87,6 +87,7 @@ class   CollectionFragment : Fragment(
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             vmCollection.nativeLanguage.collectLatest {
                 binding?.tvTitle?.text = resources.getString(LocalizationHelper.collection.getIdByLang(it))
+                binding?.tvSearch?.text = getString(LocalizationHelper.searchWord.getIdByLang(it))
                 collectionAdapter.updateNativeLang(it)
             }
         }

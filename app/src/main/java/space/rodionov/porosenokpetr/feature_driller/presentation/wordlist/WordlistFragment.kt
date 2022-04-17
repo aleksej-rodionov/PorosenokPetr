@@ -22,6 +22,7 @@ import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.EMPTY_STRING
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_EN
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_RU
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_NATIVE_LANG
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.feature_driller.utils.LocalizationHelper
 import java.util.*
@@ -57,9 +58,6 @@ class WordlistFragment : Fragment(R.layout.fragment_wordlist), TextToSpeech.OnIn
                 setHasFixedSize(true)
                 addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
             }
-            ivClearText.setOnClickListener {
-                etSearch.text.clear()
-            }
             etSearch.showKeyboard()
             etSearch.addTextChangedListener {
                 ivClearText.isVisible = !it.toString().isEmpty()
@@ -67,6 +65,9 @@ class WordlistFragment : Fragment(R.layout.fragment_wordlist), TextToSpeech.OnIn
                 vmWordlist.onSearch(it.toString())
             }
 
+            ivClearText.setOnClickListener {
+                etSearch.text.clear()
+            }
             btnBack.setOnClickListener {
                 (activity as MainActivity).onBackPressed()
             }
@@ -79,7 +80,9 @@ class WordlistFragment : Fragment(R.layout.fragment_wordlist), TextToSpeech.OnIn
         vmWordlist.catToSearchIn.observe(viewLifecycleOwner) {
             binding?.apply {
                 if (it == null) {
-                    tvTitle.text = getString(LocalizationHelper.searchAmongAllWords.getIdByLang(vmWordlist.nativeLang.value))
+                    val langId = vmWordlist.nativeLang.value
+                    Log.d(TAG_NATIVE_LANG, "initViewModel: langid = $langId")
+                    tvTitle.text = getString(LocalizationHelper.searchAmongAllWords.getIdByLang(langId))
                 }
                 vmWordlist.updateCatStorage(EMPTY_STRING)
                 val cat = it ?: return@observe
@@ -120,6 +123,18 @@ class WordlistFragment : Fragment(R.layout.fragment_wordlist), TextToSpeech.OnIn
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             vmWordlist.nativeLang.collectLatest {
                 wordlistAdapter.updateNativeLang(it)
+
+                if (vmWordlist.catToSearchIn.value == null) {
+                    binding?.tvTitle?.text = getString(LocalizationHelper.searchAmongAllWords.getIdByLang(it))
+                } else {
+                    val cat = vmWordlist.catToSearchIn.value
+                    binding?.tvTitle?.text = getString(
+                        LocalizationHelper.searchIn.getIdByLang(it),
+                        cat?.getLocalizedName(it)
+                    )
+                }
+
+                binding?.etSearch?.setHint(getString(LocalizationHelper.searchWord.getIdByLang(it)))
             }
         }
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {

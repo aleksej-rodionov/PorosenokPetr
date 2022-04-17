@@ -49,7 +49,7 @@ class WordlistViewModel @Inject constructor(
     val word = _word.stateIn(viewModelScope, SharingStarted.Lazily, null)
 
     private val _nativeLang = observeNativeLangUseCase.invoke()
-    val nativeLang= _nativeLang.stateIn(viewModelScope, SharingStarted.Lazily, LANGUAGE_RU)
+    val nativeLang = _nativeLang.stateIn(viewModelScope, SharingStarted.Lazily, LANGUAGE_RU)
 
     private val _learnedLang = observeLearnedLangUseCase.invoke()
     val learnedLang= _learnedLang.stateIn(viewModelScope, SharingStarted.Lazily, LANGUAGE_EN)
