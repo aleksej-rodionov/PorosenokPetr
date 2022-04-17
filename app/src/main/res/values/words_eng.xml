@@ -2,7 +2,9 @@
 <resources>
 
 
-    <string-array name="eng5">	<item>utility function</item>
+    <string-array name="eng5">
+        <item>it\'s not a hindrance</item>
+        <item>utility function</item>
         <item>in the middle of a probability distribution</item>
         <item>I also stumbled over this issue</item>
         <item>old adage</item>

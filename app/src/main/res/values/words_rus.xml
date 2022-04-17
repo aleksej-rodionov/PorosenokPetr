@@ -2,7 +2,9 @@
 <resources>
 
 
-    <string-array name="rus5">	<item>вспомогательная функция</item>
+    <string-array name="rus5">
+        <item>это не помеха</item>
+        <item>вспомогательная функция</item>
         <item>в середине распределения вероятностей</item>
         <item>я тоже натыкался на эту тему</item>
         <item>старая пословица</item>

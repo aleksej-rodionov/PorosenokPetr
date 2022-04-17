@@ -34,7 +34,7 @@ object LanguageHelper {
 
     fun getNativeLanguages(app: AppFlavor) : MutableList<LanguageItem>{
        return when (app) {
-            AppFlavor.ENGLISH_DRILLER -> mutableListOf(russian, ukrainian)
+            AppFlavor.ENGLISH_DRILLER -> mutableListOf(russian/*, ukrainian*/) // todo вернуть если будет укр словарь
             AppFlavor.SWEDISH_DRILLER -> mutableListOf(russian, ukrainian, english)
         }
     }

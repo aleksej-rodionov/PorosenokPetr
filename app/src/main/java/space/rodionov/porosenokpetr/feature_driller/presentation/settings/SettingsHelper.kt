@@ -1,5 +1,6 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation.settings
 
+import space.rodionov.porosenokpetr.BuildConfig
 import space.rodionov.porosenokpetr.feature_driller.domain.models.*
 import space.rodionov.porosenokpetr.feature_driller.presentation.settings.language.LanguageHelper
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants
@@ -10,22 +11,31 @@ object SettingsHelper {
 
     fun getSettingsMenu() = mutableListOf<BaseModel>().apply {
         add(Header(null, LocalizationHelper.language))
-        add(MenuSwitch(
-            null,
-            SettingsItemType.TRANSLATION_DIRECTION,
-            LocalizationHelper.fromForeignToNative,
-            false
-        ))
-        add(MenuLanguage(
-            SettingsItemType.CHANGE_NATIVE_LANG,
-            LocalizationHelper.nativeLanguageSettings,
-            LanguageHelper.russian
-        ))
-        add(MenuLanguage(
-            SettingsItemType.CHANGE_LEARNED_LANG,
-            LocalizationHelper.learnedLanguageSettings,
-            LanguageHelper.english
-        ))
+        add(
+            MenuSwitch(
+                null,
+                SettingsItemType.TRANSLATION_DIRECTION,
+                LocalizationHelper.fromForeignToNative,
+                false
+            )
+        )
+
+        if (BuildConfig.FLAVOR == "swedishdriller"){add(
+            MenuLanguage(
+                SettingsItemType.CHANGE_NATIVE_LANG,
+                LocalizationHelper.nativeLanguageSettings,
+                LanguageHelper.russian
+            )
+        )
+        add(
+            MenuLanguage(
+                SettingsItemType.CHANGE_LEARNED_LANG,
+                LocalizationHelper.learnedLanguageSettings,
+                LanguageHelper.english
+            )
+        )
+    }
+
         add(Header(null, LocalizationHelper.appearance))
         add(MenuSwitch(
             null,
