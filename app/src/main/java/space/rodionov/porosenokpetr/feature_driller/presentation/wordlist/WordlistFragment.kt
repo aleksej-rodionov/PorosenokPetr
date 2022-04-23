@@ -13,15 +13,19 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import space.rodionov.porosenokpetr.BuildConfig
 import space.rodionov.porosenokpetr.MainActivity
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.redrawViewGroup
 import space.rodionov.porosenokpetr.core.showKeyboard
 import space.rodionov.porosenokpetr.databinding.FragmentWordlistBinding
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.EMPTY_STRING
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_EN
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_RU
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_SE
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_UA
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_NATIVE_LANG
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.feature_driller.utils.LocalizationHelper
@@ -147,7 +151,17 @@ class WordlistFragment : Fragment(R.layout.fragment_wordlist), TextToSpeech.OnIn
     override fun onInit(status: Int) {
         if (status == TextToSpeech.SUCCESS) {
             try {
-                textToSpeech?.language = Locale.ENGLISH
+                if (BuildConfig.FLAVOR == "englishdriller") {
+                    textToSpeech?.language = Locale.ENGLISH
+                } else if (BuildConfig.FLAVOR == "swedishdriller") {
+                    when (vmWordlist.learnedLang.value) {
+                        LANGUAGE_EN -> textToSpeech?.language = Locale.ENGLISH
+                        LANGUAGE_SE -> textToSpeech?.language = Locale("sv", "SE")
+                        LANGUAGE_UA -> textToSpeech?.language = Locale("uk", "UA")
+                    }
+                } else {
+                    textToSpeech?.language = Locale.ENGLISH
+                }
             } catch (e: Exception) {
                 Log.d(TAG_PETR, "TTS: Exception: ${e.localizedMessage}")
             }

@@ -22,6 +22,7 @@ import space.rodionov.porosenokpetr.core.fetchColors
 import space.rodionov.porosenokpetr.core.redrawChips
 import space.rodionov.porosenokpetr.core.redrawViewGroup
 import space.rodionov.porosenokpetr.databinding.BottomsheetFilterBinding
+import space.rodionov.porosenokpetr.feature_driller.utils.LocalizationHelper
 
 @AndroidEntryPoint
 class FilterBottomSheet : BottomSheetDialogFragment(), CompoundButton.OnCheckedChangeListener {
@@ -71,7 +72,7 @@ class FilterBottomSheet : BottomSheetDialogFragment(), CompoundButton.OnCheckedC
                     chipGroupCategories.removeAllViews()
                     categories.forEach { cat ->
                         val newChip = Chip(requireContext())
-                        newChip.text = cat.resourceName
+                        newChip.text = cat.getLocalizedName(vmDriller.nativeLang.value)
                         newChip.isChecked = cat.isCategoryActive
                         chipGroupCategories.addView(newChip)
                     }
@@ -118,6 +119,13 @@ class FilterBottomSheet : BottomSheetDialogFragment(), CompoundButton.OnCheckedC
                 vmDriller.mode.collectLatest {
                     val mode = it ?: return@collectLatest
                     (root as ViewGroup).redrawViewGroup(mode)
+                }
+            }
+
+            this@FilterBottomSheet.lifecycleScope.launchWhenStarted {
+                vmDriller.nativeLang.collectLatest {
+                    tvTitle.text = getString(LocalizationHelper.activeCategories.getIdByLang(it))
+                    cbActivateAll.text = getString(LocalizationHelper.activateAllCategories.getIdByLang(it))
                 }
             }
         }

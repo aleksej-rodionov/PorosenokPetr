@@ -14,10 +14,14 @@ import androidx.navigation.fragment.findNavController
 import com.yuyakaido.android.cardstackview.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import space.rodionov.porosenokpetr.BuildConfig
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.redrawViewGroup
 import space.rodionov.porosenokpetr.databinding.FragmentDrillerBinding
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_EN
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_SE
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_UA
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
 import java.util.*
 
@@ -188,7 +192,17 @@ class DrillerFragment : Fragment(R.layout.fragment_driller), CardStackListener, 
     override fun onInit(status: Int) {
         if (status == TextToSpeech.SUCCESS) {
             try {
-                textToSpeech?.language = Locale.ENGLISH
+                if (BuildConfig.FLAVOR == "englishdriller") {
+                    textToSpeech?.language = Locale.ENGLISH
+                } else if (BuildConfig.FLAVOR == "swedishdriller") {
+                    when (vmDriller.learnedLang.value) {
+                        LANGUAGE_EN -> textToSpeech?.language = Locale.ENGLISH
+                        LANGUAGE_SE -> textToSpeech?.language = Locale("sv", "SE")
+                        LANGUAGE_UA -> textToSpeech?.language = Locale("uk", "UA")
+                    }
+                } else {
+                    textToSpeech?.language = Locale.ENGLISH
+                }
             } catch (e: Exception) {
                 Log.d(TAG_PETR, "TTS: Exception: ${e.localizedMessage}")
             }
