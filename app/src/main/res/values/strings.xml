@@ -52,7 +52,7 @@
 
     <string name="choose_time">Выберите время</string>
     <string name="notification_title">English: напоминалочка</string>
-    <string name="notification_subtitle">Не забыли уделить пару минут инглишу? =)</string>
+    <string name="notification_subtitle">Не забыли уделить пару минут языку? =)</string>
     <string name="remind">Напоминать о занятиях</string>
     <string name="reminder">Напоминание</string>
     <string name="notification_schedule_title">Установлено уведомление:\u00a0</string>
@@ -123,7 +123,7 @@
 
     <string name="choose_time_ua">Виберіть час</string>
     <string name="notification_title_ua">English: нагадування</string>
-    <string name="notification_subtitle_ua">Чи не забули приділити пару хвилин інглишу? =)</string>
+    <string name="notification_subtitle_ua">Чи не забули приділити пару хвилин мове? =)</string>
     <string name="remind_ua">Нагадувати про заняття</string>
     <string name="reminder_ua">Нагадування</string>
     <string name="notification_schedule_title_ua">Встановлено повідомлення:\u00a0</string>
@@ -149,35 +149,35 @@
     <string name="top_200_verbs_en">Топ 200 дієслів</string>
     <string name="usual_words_en">Звичайні слова</string>
     <string name="usual_verbs_en">Звичайні дієслова</string>
-    <string name="phrasal_verbs_en">Фразові дієслова</string>
-    <string name="phrases_en">Мовні зв\'язки</string>
+    <string name="phrasal_verbs_en">Phrasal verbs</string>
+    <string name="phrases_en">Phrases</string>
 
-    <string name="item_count_en">У колоді %1$d слшв</string>
-    <string name="current_position_en">Поточна позиція: %1$d</string>
+    <string name="item_count_en">Words in stack: %1$d</string>
+    <string name="current_position_en">Current position: %1$d</string>
     <string name="on_card_appeared_en">onCardAppeared(%1$d)</string>
     <string name="on_card_disappeared_en">onCardDisappeared(%1$d)</string>
 
-    <string name="active_categories_en">Досліджувані категорії</string>
+    <string name="active_categories_en">Active categories</string>
     <string name="active_all_categories_en">Включити всі категорії</string>
     <string name="cannot_turn_all_cats_off_en">Ви не можете вибрати менше 1 категорії</string>
 
-    <string name="collection_en">Колекція</string>
-    <string name="search_word_en">Шукати слово ..</string>
-    <string name="search_among_all_words_en">Пошук серед усіх слів</string>
-    <string name="search_in_en">Пошук у: %1$s</string>
+    <string name="collection_en">Collection</string>
+    <string name="search_word_en">Search word ..</string>
+    <string name="search_among_all_words_en">Search among all words</string>
+    <string name="search_in_en">Search in: %1$s</string>
     <string name="percentage_en">%1$s \%</string>
 
-    <string name="category_en">Категорія</string>
+    <string name="category_en">Category</string>
     <string name="word_in_dialog_en">%1$s - %2$s</string>
-    <string name="word_learned_en">Слово вивчене</string>
-    <string name="word_not_learned_en">Слово не вивчене</string>
-    <string name="word_description_en">%1$s.\nВи можете позначити слово як вивчене, і воно більше не зустрічатиметься у колоді. \nЯкщо помітите слово як НЕвивчене, воно траплятиметься у колоді.</string>
-    <string name="translation_direction_en">Напрямок перекладу</string>
+    <string name="word_learned_en">The word is learned</string>
+    <string name="word_not_learned_en">The word is not learned</string>
+    <string name="word_description_en">%1$s.\nYou can mark the word as learned and it\'ll not be met in the stack. \nIf you mark the word as NOT learned, you\'ll meet it in the stack.</string>
+    <string name="translation_direction_en">Translation direction</string>
     <string name="from_en_to_ru_en">From foreign to native</string>
     <string name="from_ru_to_en_en">From native to foreign</string>
-    <string name="dark_mode_en">Темна тема</string>
-    <string name="follow_system_mode_en">Використати тему телефону</string>
-    <string name="appearance_en">Зовнішній вигляд</string>
+    <string name="dark_mode_en">Dark mode</string>
+    <string name="follow_system_mode_en">Follow system mode</string>
+    <string name="appearance_en">Appearance</string>
 
 <!--    <string name="from_native_en">From english</string>-->
 <!--    <string name="from_russian_en">From russian</string>-->
@@ -189,21 +189,21 @@
 <!--    <string name="to_english_en"> to english</string>-->
 <!--    <string name="to_ukrainian_en"> to ukrainian</string>-->
 
-    <string name="settings_en">Налаштування</string>
+    <string name="settings_en">Settings</string>
 
-    <string name="choose_time_en">Виберіть час</string>
-    <string name="notification_title_en">English: нагадування</string>
-    <string name="notification_subtitle_en">Чи не забули приділити пару хвилин інглишу? =)</string>
-    <string name="remind_en">Нагадувати про заняття</string>
-    <string name="reminder_en">Нагадування</string>
-    <string name="notification_schedule_title_en">Встановлено повідомлення:\u00a0</string>
+    <string name="choose_time_en">Choose time</string>
+    <string name="notification_title_en">Notification</string>
+    <string name="notification_subtitle_en">Haven\'t you forgot to do some language lesson? =)</string>
+    <string name="remind_en">Remind about lesson</string>
+    <string name="reminder_en">Reminder</string>
+    <string name="notification_schedule_title_en">Reminder scheduled:\u00a0</string>
     <string name="notification_schedule_pattern_en">dd.MM.yy  HH:mm</string>
     <string name="notification_schedule_error_en">Schedule notification: Incorrect Date and Time</string>
-    <string name="btn_next_text_en">Продовжити</string>
+    <string name="btn_next_text_en">Proceed</string>
 
     <string name="native_language_en">Native language</string>
     <string name="learned_language_en">Learned language</string>
-    <string name="russian_en">Russiam</string>
+    <string name="russian_en">Russian</string>
     <string name="ukrainian_en">Ukrainian</string>
     <string name="follow_system_locale_en">Follow system language</string>
     <string name="native_language_settings_en">Native language: </string>

@@ -100,6 +100,8 @@
         android:layout_marginTop="16dp"
         android:gravity="center"
         android:text="Новый раунд"
+        android:tag="dont_redraw"
+        android:textColor="@color/gray100"
         android:textAllCaps="false"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
