@@ -10,9 +10,6 @@ enum class SettingsItemType {
     CHANGE_LEARNED_LANG
 }
 
-//enum class SettingsItemType {
-//}
-
 enum class AppFlavor {
     ENGLISH_DRILLER, SWEDISH_DRILLER
 }
