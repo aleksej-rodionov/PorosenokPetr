@@ -17,19 +17,19 @@ import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.redrawViewGroup
 import space.rodionov.porosenokpetr.databinding.FragmentCollectionBinding
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Category
+import space.rodionov.porosenokpetr.feature_driller.presentation.base.viewBinding
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.feature_driller.utils.LocalizationHelper
 import java.util.*
 
 
 @AndroidEntryPoint
-class   CollectionFragment : Fragment(
-    R.layout.fragment_collection
-) {
+class CollectionFragment : Fragment(R.layout.fragment_collection) {
 
     private val vmCollection: CollectionViewModel by viewModels()
-    private var _binding: FragmentCollectionBinding? = null
-    private val binding get() = _binding
+//    private var _binding: FragmentCollectionBinding? = null
+//    private val binding get() = _binding
+    private val binding by viewBinding<FragmentCollectionBinding>()
 
     private val collectionAdapter: CollectionAdapter by lazy {
         CollectionAdapter(
@@ -44,7 +44,7 @@ class   CollectionFragment : Fragment(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentCollectionBinding.bind(view)
+//        _binding = FragmentCollectionBinding.bind(view)
 
         binding?.apply {
             rvCats.apply {
@@ -140,10 +140,10 @@ class   CollectionFragment : Fragment(
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
+//    override fun onDestroyView() {
+//        super.onDestroyView()
+//        _binding = null
+//    }
 }
 
 

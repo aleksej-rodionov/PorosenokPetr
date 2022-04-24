@@ -18,6 +18,7 @@ import space.rodionov.porosenokpetr.BuildConfig
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.redrawViewGroup
 import space.rodionov.porosenokpetr.databinding.FragmentDrillerBinding
+import space.rodionov.porosenokpetr.feature_driller.presentation.base.viewBinding
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_EN
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_SE
@@ -29,8 +30,9 @@ import java.util.*
 class DrillerFragment : Fragment(R.layout.fragment_driller), CardStackListener, TextToSpeech.OnInitListener {
 
     private val vmDriller: DrillerViewModel by viewModels()
-    private var _binding: FragmentDrillerBinding? = null
-    private val binding get() = _binding!!
+//    private var _binding: FragmentDrillerBinding? = null
+//    private val binding get() = _binding!!
+    private val binding by viewBinding<FragmentDrillerBinding>()
     private var textToSpeech: TextToSpeech? = null
 
     private val drillerAdapter = DrillerAdapter(
@@ -41,7 +43,7 @@ class DrillerFragment : Fragment(R.layout.fragment_driller), CardStackListener, 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentDrillerBinding.bind(view)
+//        _binding = FragmentDrillerBinding.bind(view)
         initViewModel()
 
         textToSpeech = TextToSpeech(requireContext(), this)
@@ -157,8 +159,6 @@ class DrillerFragment : Fragment(R.layout.fragment_driller), CardStackListener, 
                 drillerAdapter.updateMode(mode)
             }
         }
-
-        // other Observers
     }
 
     override fun onResume() {
@@ -257,11 +257,8 @@ class DrillerFragment : Fragment(R.layout.fragment_driller), CardStackListener, 
         }
     }
 
-
-
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
         vmDriller.rememberPositionInCaseOfDestroy()
         textToSpeech?.let {
             it.stop()

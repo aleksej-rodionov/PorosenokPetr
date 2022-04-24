@@ -20,6 +20,7 @@ import space.rodionov.porosenokpetr.core.redrawViewGroup
 import space.rodionov.porosenokpetr.core.showKeyboard
 import space.rodionov.porosenokpetr.databinding.FragmentWordlistBinding
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
+import space.rodionov.porosenokpetr.feature_driller.presentation.base.viewBinding
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.EMPTY_STRING
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_EN
@@ -34,9 +35,11 @@ import java.util.*
 @AndroidEntryPoint
 class WordlistFragment : Fragment(R.layout.fragment_wordlist), TextToSpeech.OnInitListener {
 
+//    private var _binding: FragmentWordlistBinding? = null
+//    val binding get() = _binding
+    private val binding by viewBinding<FragmentWordlistBinding>()
+
     private val vmWordlist: WordlistViewModel by viewModels()
-    private var _binding: FragmentWordlistBinding? = null
-    val binding get() = _binding
     private var textToSpeech: TextToSpeech? = null
 
     private val wordlistAdapter: WordlistAdapter by lazy {
@@ -52,7 +55,7 @@ class WordlistFragment : Fragment(R.layout.fragment_wordlist), TextToSpeech.OnIn
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentWordlistBinding.bind(view)
+//        _binding = FragmentWordlistBinding.bind(view)
 
         textToSpeech = TextToSpeech(requireContext(), this)
 
@@ -194,7 +197,7 @@ class WordlistFragment : Fragment(R.layout.fragment_wordlist), TextToSpeech.OnIn
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
+//        _binding = null
         textToSpeech?.let {
             it.stop()
             it.shutdown()

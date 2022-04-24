@@ -3,6 +3,7 @@ package space.rodionov.porosenokpetr.feature_driller.presentation.settings
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -12,8 +13,10 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.MainActivity
 import space.rodionov.porosenokpetr.R
+import space.rodionov.porosenokpetr.core.redrawViewGroup
 import space.rodionov.porosenokpetr.databinding.FragmentSettingsBinding
 import space.rodionov.porosenokpetr.databinding.SnackbarLayoutBinding
+import space.rodionov.porosenokpetr.feature_driller.presentation.base.viewBinding
 import space.rodionov.porosenokpetr.feature_driller.presentation.settings.adapter.SettingsAdapter
 import space.rodionov.porosenokpetr.feature_driller.presentation.settings.language.LanguageBottomSheet
 import space.rodionov.porosenokpetr.feature_driller.presentation.settings.language.LanguageHelper
@@ -27,11 +30,8 @@ import java.util.*
 @AndroidEntryPoint
 class SettingsFragment : Fragment(R.layout.fragment_settings) {
 
-    private var _binding: FragmentSettingsBinding? = null
-    private val binding get() = _binding!!
-
+    private val binding by viewBinding<FragmentSettingsBinding>()
     private val vmSettings: SettingsViewModel by viewModels()
-//    private val applicationContext = (activity as MainActivity).applicationContext
 
     private val settingsAdapter: SettingsAdapter by lazy {
         SettingsAdapter(
@@ -47,7 +47,6 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentSettingsBinding.bind(view)
 
         binding.apply {
             recyclerView.adapter = settingsAdapter
@@ -74,6 +73,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         }
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             vmSettings.mode.collectLatest {
+                (binding?.root as ViewGroup).redrawViewGroup(it)
                 settingsAdapter.updateMode(it)
                 vmSettings.updateMenuList(SettingsItemType.NIGHT_MODE, it == MODE_DARK)
             }
@@ -190,10 +190,10 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         vmSettings.onChangeLang(type)
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
+//    override fun onDestroyView() {
+//        super.onDestroyView()
+//        _binding = null
+//    }
 }
 
 

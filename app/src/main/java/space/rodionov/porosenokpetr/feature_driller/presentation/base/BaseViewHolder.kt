@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import space.rodionov.porosenokpetr.core.fetchColors
 import space.rodionov.porosenokpetr.core.fetchTheme
+import space.rodionov.porosenokpetr.core.redrawViewGroup
 import space.rodionov.porosenokpetr.feature_driller.domain.models.BaseModel
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_LIGHT
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_RU
@@ -45,6 +46,8 @@ abstract class BaseViewHolder: RecyclerView.ViewHolder {
 
     fun setMode(mode: Int) {
         modeBVH = mode
+
+        if (itemView is ViewGroup) itemView.redrawViewGroup(mode)
     }
 
     fun setNativeLang(lang: Int) {

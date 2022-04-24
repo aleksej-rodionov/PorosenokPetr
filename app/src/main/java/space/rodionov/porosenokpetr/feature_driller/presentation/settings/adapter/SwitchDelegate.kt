@@ -60,6 +60,9 @@ class SwitchViewHolder(
                 val resId = if (model.switchState) LocalizationHelper.fromNativeToForeign.getIdByLang(nativeLangBVH)
                     else LocalizationHelper.fromForeignToNative.getIdByLang(nativeLangBVH)
                 switch.text =res.getString(resId)
+                switch.setTextColor(colors[3])//todo костыль (почемуто иногда блокируется этот switch, хотя isBlocked приходит false ВСЕГДА)
+                switch.thumbTintList = ColorStateList.valueOf(res.getColor(R.color.white))//todo костыль (и только костыль пока-что помог)
+                switch.isEnabled = true //todo костыль
             }
 
             SettingsItemType.NIGHT_MODE -> {

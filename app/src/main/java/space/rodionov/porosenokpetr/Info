@@ -1,18 +1,16 @@
 
 in process:
 
-- intering learnedLanguage change into Settings in process
+- viewBindingDelegate
 
 Next todo:
 
-- локализацию по всей прилке допилити (тамо немнога)
 - fix ukr voc
 - upload to GooglePlay
 
 
 Features
 
-- buildVariants for SwedishDriller + add u native voc (in progress)
 - AddEditWord bottomSheet
 - audio player service for listening
 - back-end with vocabularies, audio and authorization (before implementing backend u can use firebase)
