@@ -92,6 +92,11 @@ object LocalizationHelper { // todo add english!
     val learnedLanguageSettings = LocalizedString(StringTag.LEARNED_LANGUAGE_SETTINGS, R.string.learned_language_settings, R.string.learned_language_settings_ua, R.string.learned_language_settings_en)
     val language = LocalizedString(StringTag.LANGUAGE, R.string.language, R.string.language_ua, R.string.language_en)
 
+    val swedishWord = LocalizedString(StringTag.SWEDISH_WORD, R.string.foreign_word, R.string.foreign_word_ua, R.string.foreign_word_en)
+    val russianTranslation = LocalizedString(StringTag.RUSSIAN_TRANSLATION, R.string.rus_word, R.string.rus_word_ua, R.string.rus_word_en)
+    val englishTranslation = LocalizedString(StringTag.ENGLISH_TRANSLATION, R.string.eng_word, R.string.eng_word_ua, R.string.eng_word_en)
+    val ukrainianTranslation = LocalizedString(StringTag.UKRAINIAN_TRANSLATION, R.string.ukr_word, R.string.ukr_word_ua, R.string.ukr_word_en)
+
 }
 
 

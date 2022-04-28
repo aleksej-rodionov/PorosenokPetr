@@ -1,7 +1,6 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation.wordlist.edit_add_word
 
 import android.content.DialogInterface
-import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -14,10 +13,10 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import space.rodionov.porosenokpetr.BuildConfig
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.R
-import space.rodionov.porosenokpetr.core.fetchColors
 import space.rodionov.porosenokpetr.core.redrawViewGroup
 import space.rodionov.porosenokpetr.databinding.BottomsheetWordlistBinding
 import space.rodionov.porosenokpetr.feature_driller.utils.LocalizationHelper
@@ -78,7 +77,28 @@ class WordlistBottomSheet : BottomSheetDialogFragment() {
 
                     val natLang = vmEditAddWord.nativeLang.value
 
+
                     // todo сетить переводы в эдиттексты в зависимости от Flavour-a
+                    if (BuildConfig.FLAVOR == "englishdriller") {
+                        etForeign.setHint(LocalizationHelper.englishTranslation.getIdByLang(natLang))
+                        etRus.setHint(LocalizationHelper.russianTranslation.getIdByLang(natLang))
+                        etForeign.setText(it.eng)
+                        etRus.setText(it.rus)
+                        groupEng.visibility = View.GONE
+                        groupUkr.visibility = View.GONE
+                    }
+                    if (BuildConfig.FLAVOR == "swedishdriller") {
+                        etForeign.setHint(LocalizationHelper.swedishWord.getIdByLang(natLang))
+                        etRus.setHint(LocalizationHelper.russianTranslation.getIdByLang(natLang))
+                        etEng.setHint(LocalizationHelper.englishTranslation.getIdByLang(natLang))
+                        etUkr.setHint(LocalizationHelper.ukrainianTranslation.getIdByLang(natLang))
+
+                        etForeign.setText(it.swe)
+                        etRus.setText(it.rus)
+                        etEng.setText(it.eng)
+                        etUkr.setText(it.ukr)
+                    }
+
 
                     tvCategory.text = getString(LocalizationHelper.category.getIdByLang(natLang))
 

@@ -69,6 +69,11 @@
     <string name="learned_language_settings">Изучаемый язык</string>
     <string name="language">Язык</string>
 
+    <string name="rus_word_ua">Русский перевод ..</string>
+    <string name="foreign_word_ua">Шведское слово ..</string>
+    <string name="eng_word_ua">Английский перевод ..</string>
+    <string name="ukr_word_ua">Украинский перевод ..</string>
+
 
 
 
@@ -140,6 +145,11 @@
     <string name="learned_language_settings_ua">Вивчаєма мова: </string>
     <string name="language_ua">Мова</string>
 
+    <string name="rus_word">Російський переклад ..</string>
+    <string name="foreign_word">Шведське слово ..</string>
+    <string name="eng_word">Англійський переклад ..</string>
+    <string name="ukr_word">Український переклад ..</string>
+
 
 
     <!--  EN  -->
@@ -209,10 +219,11 @@
     <string name="native_language_settings_en">Native language: </string>
     <string name="learned_language_settings_en">Learned language: </string>
     <string name="language_en">English</string>
-    <string name="rus_word">Русский перевод ..</string>
-    <string name="foreign_word">Шведское слово..</string>
-    <string name="eng_word">Английский перевод ..</string>
-    <string name="ukr_word">Украинский перевод ..</string>
+
+    <string name="rus_word_en">Russian translation ..</string>
+    <string name="foreign_word_en">Swedish word ..</string>
+    <string name="eng_word_en">English translation ..</string>
+    <string name="ukr_word_en">Ukrainian translation ..</string>
 
 
 </resources>
