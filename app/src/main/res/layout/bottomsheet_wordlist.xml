@@ -179,11 +179,10 @@
         android:layout_height="28dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="12dp"
-        android:src="@drawable/ic_new_round"
+        android:src="@drawable/ic_check"
         android:tag="dont_redraw"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/ic_learned" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:id="@+id/divider_top"
@@ -221,10 +220,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <com.google.android.material.chip.Chip
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="Хуй"/>
+<!--        <com.google.android.material.chip.Chip-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            tools:text="Хуй"/>-->
 
     </com.google.android.material.chip.ChipGroup>
 
@@ -275,12 +274,13 @@
         android:background="?attr/selectableItemBackgroundBorderless"
         android:clickable="true"
         android:focusable="true"
+        android:tag="dont_redraw"
         android:padding="4dp"
         android:src="@drawable/ic_info"
         app:layout_constraintBottom_toBottomOf="@id/switch_learned"
         app:layout_constraintStart_toEndOf="@id/switch_learned"
         app:layout_constraintTop_toTopOf="@id/switch_learned"
-        app:tint="@color/purple_700" />
+        app:tint="#2196F3" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline5"
