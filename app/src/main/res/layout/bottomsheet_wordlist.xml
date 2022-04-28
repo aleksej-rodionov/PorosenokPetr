@@ -56,6 +56,12 @@
         android:inputType="textCapSentences"
         android:textStyle="italic"/>
 
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group_foreign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="et_foreign,bg_foreign" />
+
     <View
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -90,6 +96,12 @@
         android:gravity="center_vertical"
         android:inputType="textCapSentences"
         android:textStyle="italic"/>
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group_rus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="bg_rus,et_rus" />
 
     <View
         android:layout_width="0dp"
@@ -126,6 +138,12 @@
         android:inputType="textCapSentences"
         android:textStyle="italic"/>
 
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group_eng"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="bg_eng,et_eng" />
+
     <View
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -161,6 +179,12 @@
         android:inputType="textCapSentences"
         android:textStyle="italic"/>
 
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group_ukr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="bg_ukr,et_ukr" />
+
     <ImageView
         android:id="@+id/iv_learned"
         android:layout_width="28dp"
@@ -171,6 +195,13 @@
         android:tag="dont_redraw"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/barrier_words"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="et_foreign, et_rus, et_eng, et_ukr" />
 
     <View
         android:id="@+id/divider_top"
