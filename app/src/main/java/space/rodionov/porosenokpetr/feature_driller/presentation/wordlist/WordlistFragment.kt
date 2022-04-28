@@ -21,7 +21,7 @@ import space.rodionov.porosenokpetr.core.showKeyboard
 import space.rodionov.porosenokpetr.databinding.FragmentWordlistBinding
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
 import space.rodionov.porosenokpetr.feature_driller.presentation.base.viewBinding
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants
+import space.rodionov.porosenokpetr.feature_driller.presentation.wordlist.edit_add_word.WordlistBottomSheet
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.EMPTY_STRING
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_EN
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_RU
@@ -35,8 +35,6 @@ import java.util.*
 @AndroidEntryPoint
 class WordlistFragment : Fragment(R.layout.fragment_wordlist), TextToSpeech.OnInitListener {
 
-//    private var _binding: FragmentWordlistBinding? = null
-//    val binding get() = _binding
     private val binding by viewBinding<FragmentWordlistBinding>()
 
     private val vmWordlist: WordlistViewModel by viewModels()
@@ -190,7 +188,7 @@ class WordlistFragment : Fragment(R.layout.fragment_wordlist), TextToSpeech.OnIn
         val wordBottomSheet = WordlistBottomSheet()
         wordBottomSheet.arguments = args
         wordBottomSheet.show(
-            childFragmentManager,
+            requireFragmentManager(), // здесь не просто фрагмент манагер?
             WordlistBottomSheet.WORDLIST_BOTTOM_SHEET
         )
     }

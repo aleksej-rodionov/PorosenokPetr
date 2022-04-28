@@ -1,4 +1,4 @@
-package space.rodionov.porosenokpetr.feature_driller.presentation.wordlist
+package space.rodionov.porosenokpetr.feature_driller.presentation.wordlist.edit_add_word
 
 import android.content.DialogInterface
 import android.content.res.ColorStateList
@@ -31,11 +31,9 @@ class WordlistBottomSheet : BottomSheetDialogFragment() {
     private val binding: BottomsheetWordlistBinding by lazy {
         BottomsheetWordlistBinding.inflate(layoutInflater)
     }
-    private val vmWordlist: WordlistViewModel by viewModels({
-        requireParentFragment()
-    })
+    private val vmEditAddWord: EditAddWordViewModel by viewModels()
 
-    override fun getTheme(): Int = vmWordlist.mode.value?.let {
+    override fun getTheme(): Int = vmEditAddWord.mode.value?.let {
         when (it) {
             Constants.MODE_LIGHT -> R.style.Theme_NavBarDay
             Constants.MODE_DARK -> R.style.Theme_NavBarNight
@@ -51,9 +49,9 @@ class WordlistBottomSheet : BottomSheetDialogFragment() {
             val rus = it.getString("rus")
             val eng = it.getString("eng")
             val categoryName = it.getString("categoryName")
-            vmWordlist.nativLivedata.value = rus
-            vmWordlist.foreignLivedata.value = eng
-            vmWordlist.catNameLivedata.value = categoryName
+            vmEditAddWord.nativLivedata.value = rus
+            vmEditAddWord.foreignLivedata.value = eng
+            vmEditAddWord.catNameLivedata.value = categoryName
         }
     }
 
@@ -71,13 +69,13 @@ class WordlistBottomSheet : BottomSheetDialogFragment() {
 
         binding.apply {
             this@WordlistBottomSheet.lifecycleScope.launchWhenStarted {
-                vmWordlist.word.collectLatest {
+                vmEditAddWord.word.collectLatest {
                     it?.let {w->
                         Log.d(TAG_PETR, "observeWord BottomSheet New value = $w")
                     }
                     val word = it?: return@collectLatest
 
-                    val natLang = vmWordlist.nativeLang.value
+                    val natLang = vmEditAddWord.nativeLang.value
 
 //                    tvWord.text = resources.getString(
 //                        R.string.word_in_dialog,
@@ -87,14 +85,14 @@ class WordlistBottomSheet : BottomSheetDialogFragment() {
                     val learned =
                         if (word.isWordActive) getString(LocalizationHelper.wordLearned.getIdByLang(natLang))
                         else getString(LocalizationHelper.wordNotLearned.getIdByLang(natLang))
-                    tvDecription.text = resources.getString(
-                        LocalizationHelper.wordDescription.getIdByLang(natLang),
-                        learned
-                    )
+//                    tvDecription.text = resources.getString(
+//                        LocalizationHelper.wordDescription.getIdByLang(natLang),
+//                        learned
+//                    )
                     if (word.isWordActive) {
                         ivLearned.setImageDrawable(resources.getDrawable(R.drawable.ic_new_round))
                         ivLearned.imageTintList = null
-                        ivLearned.imageTintList = ColorStateList.valueOf(fetchColors(vmWordlist.mode.value, resources)[3])
+                        ivLearned.imageTintList = ColorStateList.valueOf(fetchColors(vmEditAddWord.mode.value, resources)[3])
                     } else {
                         ivLearned.setImageDrawable(resources.getDrawable(R.drawable.ic_learned))
                         ivLearned.imageTintList = null
@@ -104,13 +102,13 @@ class WordlistBottomSheet : BottomSheetDialogFragment() {
                     switchLearned.isChecked = !word.isWordActive
                     switchLearned.text = learned
                     switchLearned.setOnCheckedChangeListener { _, isChecked ->
-                        if (isChecked) vmWordlist.inactivateWord() else vmWordlist.activateWord()
+                        if (isChecked) vmEditAddWord.inactivateWord() else vmEditAddWord.activateWord()
                     }
                 }
             }
 
             this@WordlistBottomSheet.lifecycleScope.launchWhenStarted {
-                vmWordlist.mode.collectLatest {
+                vmEditAddWord.mode.collectLatest {
                     val mode = it ?: return@collectLatest
                     (root as ViewGroup).redrawViewGroup(mode)
                 }
@@ -120,9 +118,9 @@ class WordlistBottomSheet : BottomSheetDialogFragment() {
 
     override fun onDismiss(dialog: DialogInterface) {
         super.onDismiss(dialog)
-        vmWordlist.nativLivedata.value = null
-        vmWordlist.foreignLivedata.value = null
-        vmWordlist.catNameLivedata.value = null
+        vmEditAddWord.nativLivedata.value = null
+        vmEditAddWord.foreignLivedata.value = null
+        vmEditAddWord.catNameLivedata.value = null
     }
 }
 

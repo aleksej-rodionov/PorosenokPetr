@@ -119,7 +119,6 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         }
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             vmSettings.learnedLanguage.collectLatest {
-//                settingsAdapter.updateLearnedLang(it)
                 val lang = LanguageHelper.getLangByIndex(it)
                 vmSettings.updateMenuItemsInList(SettingsItemType.CHANGE_LEARNED_LANG, lang)
             }
@@ -138,20 +137,23 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
                         showSnackBar(Constants.DEFAULT_INT, event.text)
                     }
                     is SettingsViewModel.SettingsEvent.OnChangeLang -> {
-                        val args = Bundle()
-                        val langToChange = event.nativeOrForeign
-                        args.putInt("nativeOrForeign", langToChange)
-
-                        val languageBottomSheet = LanguageBottomSheet()
-                        languageBottomSheet.arguments = args
-                        languageBottomSheet.show(
-                            requireFragmentManager(), // здесь не просто фрагмент манагер?
-                            LanguageBottomSheet.LANGUAGE_BOTTOM_SHEET
-                        )
+                        showLanguageBottomSheet(event.nativeOrForeign)
                     }
                 }
             }
         }
+    }
+
+    private fun showLanguageBottomSheet(langToChange: Int) {
+        val args = Bundle()
+        args.putInt("nativeOrForeign", langToChange)
+
+        val languageBottomSheet = LanguageBottomSheet()
+        languageBottomSheet.arguments = args
+        languageBottomSheet.show(
+            requireFragmentManager(), // здесь не просто фрагмент манагер?
+            LanguageBottomSheet.LANGUAGE_BOTTOM_SHEET
+        )
     }
 
     private fun showSnackBar(resId: Int, text: String) {
@@ -189,11 +191,6 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
     private fun onSetingsItemClick(type: SettingsItemType) {
         vmSettings.onChangeLang(type)
     }
-
-//    override fun onDestroyView() {
-//        super.onDestroyView()
-//        _binding = null
-//    }
 }
 
 
