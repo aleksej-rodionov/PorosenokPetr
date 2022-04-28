@@ -21,19 +21,161 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tv_word"
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/bg_search"
+        android:tag="bg_et"
+        android:id="@+id/bg_foreign"
+        android:layout_paddingVertical="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/et_foreign"
+        app:layout_constraintEnd_toEndOf="@id/et_foreign"
+        app:layout_constraintStart_toStartOf="@id/et_foreign"
+        app:layout_constraintTop_toTopOf="@id/et_foreign" />
+
+    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+        android:id="@+id/et_foreign"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
+        android:layout_marginHorizontal="8dp"
+        android:clickable="true"
+        android:background="@null"
+        android:dropDownHeight="200dp"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        tools:hint="@string/foreign_word"
+        android:imeOptions="actionSearch"
+        android:inputType="textCapSentences"
+        android:lines="1"
         android:padding="8dp"
-        android:textColor="@color/gray900"
-        android:textSize="16dp"
-        android:visibility="visible"
+        android:popupBackground="@drawable/bg_suggestion"
+        android:popupElevation="5dp"
+        android:tag="tv_beta"
+        android:textColor="@color/gray600"
+        android:textSize="16sp"
+        android:textStyle="italic"
+        android:theme="@style/SuggestionStyle"
         app:layout_constraintEnd_toStartOf="@+id/iv_learned"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Foreign word - русский перевод" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/bg_search"
+        android:tag="bg_et"
+        android:id="@+id/bg_rus"
+        android:layout_paddingVertical="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/et_rus"
+        app:layout_constraintEnd_toEndOf="@id/et_rus"
+        app:layout_constraintStart_toStartOf="@id/et_rus"
+        app:layout_constraintTop_toTopOf="@id/et_rus" />
+
+    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+        android:id="@+id/et_rus"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginHorizontal="8dp"
+        android:clickable="true"
+        android:background="@null"
+        android:dropDownHeight="200dp"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        tools:hint="@string/rus_word"
+        android:imeOptions="actionSearch"
+        android:inputType="textCapSentences"
+        android:lines="1"
+        android:padding="8dp"
+        android:popupBackground="@drawable/bg_suggestion"
+        android:popupElevation="5dp"
+        android:tag="tv_beta"
+        android:textColor="@color/gray600"
+        android:textSize="16sp"
+        android:textStyle="italic"
+        android:theme="@style/SuggestionStyle"
+        app:layout_constraintEnd_toStartOf="@+id/iv_learned"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_foreign" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/bg_search"
+        android:tag="bg_et"
+        android:id="@+id/bg_eng"
+        android:layout_paddingVertical="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/et_eng"
+        app:layout_constraintEnd_toEndOf="@id/et_eng"
+        app:layout_constraintStart_toStartOf="@id/et_eng"
+        app:layout_constraintTop_toTopOf="@id/et_eng" />
+
+    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+        android:id="@+id/et_eng"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginHorizontal="8dp"
+        android:clickable="true"
+        android:background="@null"
+        android:dropDownHeight="200dp"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        tools:hint="@string/eng_word"
+        android:imeOptions="actionSearch"
+        android:inputType="textCapSentences"
+        android:lines="1"
+        android:padding="8dp"
+        android:popupBackground="@drawable/bg_suggestion"
+        android:popupElevation="5dp"
+        android:tag="tv_beta"
+        android:textColor="@color/gray600"
+        android:textSize="16sp"
+        android:textStyle="italic"
+        android:theme="@style/SuggestionStyle"
+        app:layout_constraintEnd_toStartOf="@+id/iv_learned"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_rus" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/bg_search"
+        android:tag="bg_et"
+        android:id="@+id/bg_ukr"
+        android:layout_paddingVertical="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/et_ukr"
+        app:layout_constraintEnd_toEndOf="@id/et_ukr"
+        app:layout_constraintStart_toStartOf="@id/et_ukr"
+        app:layout_constraintTop_toTopOf="@id/et_ukr" />
+
+    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+        android:id="@+id/et_ukr"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginHorizontal="8dp"
+        android:clickable="true"
+        android:background="@null"
+        android:dropDownHeight="200dp"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        tools:hint="@string/ukr_word"
+        android:imeOptions="actionSearch"
+        android:inputType="textCapSentences"
+        android:lines="1"
+        android:padding="8dp"
+        android:popupBackground="@drawable/bg_suggestion"
+        android:popupElevation="5dp"
+        android:tag="tv_beta"
+        android:textColor="@color/gray600"
+        android:textSize="16sp"
+        android:textStyle="italic"
+        android:theme="@style/SuggestionStyle"
+        app:layout_constraintEnd_toStartOf="@+id/iv_learned"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_eng" />
 
     <ImageView
         android:id="@+id/iv_learned"
@@ -47,6 +189,18 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@drawable/ic_learned" />
 
+    <View
+        android:id="@+id/divider_top"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginHorizontal="16dp"
+        android:background="@color/gray200"
+        android:tag="divider_contrast"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_ukr" />
+
     <TextView
         android:id="@+id/tv_category"
         android:layout_width="0dp"
@@ -58,32 +212,38 @@
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_word"
+        app:layout_constraintTop_toBottomOf="@id/divider_top"
         tools:text="@string/category" />
 
-    <View
-        android:id="@+id/divider_top"
+    <com.google.android.material.chip.ChipGroup
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginHorizontal="16dp"
-        android:background="@color/gray200"
-        android:tag="divider_contrast"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_category" />
-
-    <TextView
-        android:id="@+id/tv_decription"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:tag="tv_beta"
-        android:textColor="@color/gray600"
-        android:textSize="14dp"
-        android:visibility="visible"
+        android:id="@+id/chip_group_categories"
+        app:chipSpacing="8dp"
+        android:paddingHorizontal="8dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_category"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/divider_top"
-        tools:text="@string/word_description" />
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.chip.Chip
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Хуй"/>
+
+    </com.google.android.material.chip.ChipGroup>
+
+<!--    <TextView-->
+<!--        android:id="@+id/tv_decription"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:padding="8dp"-->
+<!--        android:tag="tv_beta"-->
+<!--        android:textColor="@color/gray600"-->
+<!--        android:textSize="14dp"-->
+<!--        android:visibility="visible"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/divider_top"-->
+<!--        tools:text="@string/word_description" />-->
 
     <View
         android:id="@+id/divider"
@@ -94,7 +254,7 @@
         android:tag="divider_contrast"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_decription" />
+        app:layout_constraintTop_toBottomOf="@id/chip_group_categories" />
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/switch_learned"
@@ -111,6 +271,20 @@
         app:switchPadding="16dp"
         app:track="@drawable/switch_track"
         tools:text="@string/word_learned" />
+
+    <ImageView
+        android:id="@+id/btn_info"
+        android:layout_width="32dp"
+        android:layout_height="0dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="4dp"
+        android:src="@drawable/ic_info"
+        app:layout_constraintBottom_toBottomOf="@id/switch_learned"
+        app:layout_constraintStart_toEndOf="@id/switch_learned"
+        app:layout_constraintTop_toTopOf="@id/switch_learned"
+        app:tint="@color/purple_700" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline5"
