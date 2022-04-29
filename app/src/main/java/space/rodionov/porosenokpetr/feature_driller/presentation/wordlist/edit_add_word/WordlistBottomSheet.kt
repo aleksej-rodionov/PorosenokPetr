@@ -96,6 +96,7 @@ class WordlistBottomSheet : BottomSheetDialogFragment() {
                         }
                     }
                 }
+                dismiss()
             }
 
             this@WordlistBottomSheet.lifecycleScope.launchWhenStarted {

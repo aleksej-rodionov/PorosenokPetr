@@ -5,8 +5,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asFlow
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import space.rodionov.porosenokpetr.feature_driller.di.ApplicationScope
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
 import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.*
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants
@@ -20,7 +22,8 @@ class EditAddWordViewModel @Inject constructor(
     private val updateIsWordActiveUseCase: UpdateIsWordActiveUseCase,
     private val updateWordUseCase: UpdateWordUseCase,
     private val observeMode: ObserveModeUseCase,
-    private val state: SavedStateHandle
+    private val state: SavedStateHandle,
+    @ApplicationScope private val applicationScope: CoroutineScope
 ) : ViewModel() {
     //    var nativeLangLiveData = state.getLiveData<Int?>("nativeLangLiveData", null)
     var nativLivedata = state.getLiveData<String>("nativLivedata", null)
@@ -60,7 +63,7 @@ class EditAddWordViewModel @Inject constructor(
 
     //=======================================METHODS========================================
 
-    fun onDoneCLick(newWord: Word) = viewModelScope.launch {
+    fun onDoneCLick(newWord: Word) = applicationScope.launch {
         word.value?.let {
             updateWordUseCase.invoke(it, newWord)
         }
