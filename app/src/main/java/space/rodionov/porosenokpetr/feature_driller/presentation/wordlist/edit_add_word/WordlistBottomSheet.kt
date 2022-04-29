@@ -19,6 +19,7 @@ import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.redrawViewGroup
 import space.rodionov.porosenokpetr.databinding.BottomsheetWordlistBinding
+import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
 import space.rodionov.porosenokpetr.feature_driller.utils.LocalizationHelper
 
 @AndroidEntryPoint
@@ -70,7 +71,31 @@ class WordlistBottomSheet : BottomSheetDialogFragment() {
         binding.apply {
 
             ivDone.setOnClickListener {
-                vmEditAddWord.onDoneCLick()
+                var newWord: Word? = null
+                if (BuildConfig.FLAVOR == "englishdriller") {
+                   vmEditAddWord.word.value?.let {
+                       newWord = it.copy(
+                           rus = etRus.text.toString(),
+                           eng = etForeign.text.toString()
+                       )
+                       newWord?.let { new ->
+                           vmEditAddWord.onDoneCLick(new)
+                       }
+                   }
+                }
+                if (BuildConfig.FLAVOR == "swedishdriller") {
+                    vmEditAddWord.word.value?.let {
+                        newWord = it.copy(
+                            rus = etRus.text.toString(),
+                            ukr = etUkr.text.toString(),
+                            eng = etEng.text.toString(),
+                            swe = etForeign.text.toString()
+                        )
+                        newWord?.let { new ->
+                            vmEditAddWord.onDoneCLick(new)
+                        }
+                    }
+                }
             }
 
             this@WordlistBottomSheet.lifecycleScope.launchWhenStarted {

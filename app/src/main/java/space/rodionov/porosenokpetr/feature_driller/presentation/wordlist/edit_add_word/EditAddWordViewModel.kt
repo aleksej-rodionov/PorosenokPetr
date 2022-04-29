@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
 import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.*
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 import javax.inject.Inject
@@ -59,8 +60,10 @@ class EditAddWordViewModel @Inject constructor(
 
     //=======================================METHODS========================================
 
-    fun onDoneCLick() = viewModelScope.launch {
-
+    fun onDoneCLick(newWord: Word) = viewModelScope.launch {
+        word.value?.let {
+            updateWordUseCase.invoke(it, newWord)
+        }
     }
 
     fun activateWord() = viewModelScope.launch {
