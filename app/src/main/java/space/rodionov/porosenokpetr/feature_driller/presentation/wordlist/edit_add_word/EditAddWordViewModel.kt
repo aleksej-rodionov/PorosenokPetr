@@ -17,6 +17,7 @@ class EditAddWordViewModel @Inject constructor(
     private val observeLearnedLangUseCase: ObserveLearnedLangUseCase,
     private val observeWordUseCase: ObserveWordUseCase,
     private val updateIsWordActiveUseCase: UpdateIsWordActiveUseCase,
+    private val updateWordUseCase: UpdateWordUseCase,
     private val observeMode: ObserveModeUseCase,
     private val state: SavedStateHandle
 ) : ViewModel() {
@@ -57,6 +58,11 @@ class EditAddWordViewModel @Inject constructor(
 
 
     //=======================================METHODS========================================
+
+    fun onDoneCLick() = viewModelScope.launch {
+
+    }
+
     fun activateWord() = viewModelScope.launch {
         nativLivedata.value?.let { nativ ->
             foreignLivedata.value?.let { foreign ->
@@ -76,5 +82,4 @@ class EditAddWordViewModel @Inject constructor(
             }
         }
     }
-
 }

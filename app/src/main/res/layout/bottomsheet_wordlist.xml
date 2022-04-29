@@ -186,7 +186,7 @@
         app:constraint_referenced_ids="bg_ukr,et_ukr" />
 
     <ImageView
-        android:id="@+id/iv_learned"
+        android:id="@+id/iv_done"
         android:layout_width="28dp"
         android:layout_height="28dp"
         android:layout_marginTop="28dp"

@@ -23,6 +23,13 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object DrillerModule {
 
+
+    @Provides
+    @Singleton
+    fun provideUpdateWordUseCase(repo: WordRepo): UpdateWordUseCase {
+        return UpdateWordUseCase(repo)
+    }
+
     @Provides
     @Singleton
     fun provideObserveLearnedLangUseCase(repo: WordRepo): ObserveLearnedLangUseCase {

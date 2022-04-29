@@ -68,6 +68,11 @@ class WordlistBottomSheet : BottomSheetDialogFragment() {
         (view.parent as View).setBackgroundColor(Color.TRANSPARENT)
 
         binding.apply {
+
+            ivDone.setOnClickListener {
+                vmEditAddWord.onDoneCLick()
+            }
+
             this@WordlistBottomSheet.lifecycleScope.launchWhenStarted {
                 vmEditAddWord.word.collectLatest {
                     it?.let {w->

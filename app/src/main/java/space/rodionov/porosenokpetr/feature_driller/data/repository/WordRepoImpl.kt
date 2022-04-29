@@ -5,6 +5,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
+import space.rodionov.porosenokpetr.BuildConfig
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.core.Resource
 import space.rodionov.porosenokpetr.feature_driller.data.local.WordDao
@@ -32,6 +33,32 @@ class WordRepoImpl(
         wordEntity.let {
             Log.d(TAG_PETR, "updateWordIsActive: word found and changed")
             dao.updateWord(it.copy(isWordActive = isActive))
+        }
+    }
+
+    override suspend fun updateWord(word: Word, newWord: Word) {
+        val wordEntity = dao.getWord(word.rus, word.eng, word.categoryName)
+        if (BuildConfig.FLAVOR == "englishdriller") {
+            wordEntity.let {
+                dao.updateWord(
+                    it.copy(
+                        rus = newWord.rus,
+                        eng = newWord.eng
+                    )
+                )
+            }
+        }
+            if (BuildConfig.FLAVOR == "swedishdriller") {
+            wordEntity.let {
+                dao.updateWord(
+                    it.copy(
+                        newWord.rus,
+                        newWord.ukr,
+                        newWord.eng,
+                        newWord.swe
+                    )
+                )
+            }
         }
     }
 
