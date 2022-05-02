@@ -38,7 +38,7 @@
         <item>плавучий будинок</item>
         <item>хатина</item>
         <item>маяк</item>
-        <item>Дерев'яний будинок</item>
+        <item>Дерев\'яний будинок</item>
         <item>особняк</item>
         <item>палац</item>
         <item>намет</item>
@@ -151,7 +151,7 @@
         <item>лопата</item>
         <item>стрічка</item>
         <item>ящик для інструментів</item>
-        <item>помірно, \ 'відставання \'</item>
+        <item>помірно, \'відставання \'</item>
         <item>Окрема, самотність (норми)</item>
         <item>Згода (з іншими)</item>
         <item>затишно</item>
@@ -219,7 +219,7 @@
         <item>гриб</item>
         <item>ніж</item>
         <item>лимон</item>
-        <item>м'ясо</item>
+        <item>м\'ясо</item>
         <item>цукор</item>
         <item>морозиво</item>
         <item>печиво</item>
@@ -364,7 +364,7 @@
         <item>відділок поліції</item>
         <item>парк розваг</item>
         <item>школа</item>
-        <item>м'ясна лавка</item>
+        <item>м\'ясна лавка</item>
         <item>турнікет</item>
         <item>площа</item>
         <item>місто</item>
@@ -514,7 +514,7 @@
         <item>в робочий час</item>	</string-array>
     <string-array name="ukr6">	<item>акумулятор</item>
         <item>стільниковий телефон</item>
-        <item>комп'ютер</item>
+        <item>комп\'ютер</item>
         <item>файл</item>
         <item>навушники</item>
         <item>клавіатура</item>
@@ -633,7 +633,7 @@
     <string-array name="ukr7">	<item>жінка</item>
         <item>хлопчик</item>
         <item>батьки</item>
-        <item>сім'я</item>
+        <item>сім\'я</item>
         <item>батько</item>
         <item>Подруга</item>
         <item>Дідусь</item>
@@ -2541,7 +2541,7 @@
         <item>більш-менш</item>
         <item>в робочий час</item>
         <item>пізній / пізній / пізній</item>
-        <item>Яків закінчив у 16 ​​років, потім пішов додому.</item>
+        <item>Яків закінчив о 16 годині, потім пішов додому.</item>
         <item>Стіна прокидається, а потім приймає душ</item>
         <item>Вчора Ларс прийшов додому пізніше, ніж завжди</item>
         <item>Марк вивчає шведській з 2019 року.</item>
