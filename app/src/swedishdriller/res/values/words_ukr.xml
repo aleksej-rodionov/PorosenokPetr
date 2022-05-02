@@ -437,7 +437,7 @@
         <item>механік</item>
         <item>столяр</item>
         <item>хімік</item>
-        <item>п'ятниця</item>
+        <item>п\'ятниця</item>
         <item>субота</item>
         <item>середа</item>
         <item>четвер</item>
@@ -557,7 +557,7 @@
         <item>циліндр</item>
         <item>восьмикутник</item>
         <item>овальний</item>
-        <item>п'ятикутник</item>
+        <item>п\'ятикутник</item>
         <item>піраміда</item>
         <item>прямокутник</item>
         <item>шестикутник</item>
@@ -590,7 +590,7 @@
         <item>3 у ступеню 2</item>
         <item>віднімання</item>
         <item>Кнопка увімкнення</item>
-        <item>пристрій читання карток пам'яті</item>
+        <item>пристрій читання карток пам\'яті</item>
         <item>кабель живлення</item>
         <item>таблиця</item>
         <item>адаптер</item>
@@ -718,9 +718,9 @@
         <item>рідко</item>
         <item>зосереджений на людині</item>
         <item>Відсутність совісті та співчуття до інших</item>
-        <item>охорона здоров'я</item>
+        <item>охорона здоров\'я</item>
         <item>ясність</item>
-        <item>м'який</item>
+        <item>м\'який</item>
         <item>Неймовірний</item>
         <item>ворожка</item>
         <item>уряд</item>
@@ -759,10 +759,10 @@
         <item>Конституційне право на ...</item>
         <item>журі</item>
         <item>закон</item>
-        <item>Втеча з в'язниці</item>
+        <item>Втеча з в\'язниці</item>
         <item>камера</item>
         <item>Тюремні працівники</item>
-        <item>ув'язнений</item>
+        <item>ув\'язнений</item>
         <item>підозрювані</item>
         <item>терорист</item>
         <item>розшукувати</item>
@@ -848,7 +848,7 @@
         <item>новий</item>
         <item>Здоровий</item>
         <item>некрасивий</item>
-        <item>Повний / п’яний</item>
+        <item>Повний / п\’яний</item>
         <item>старий</item>
         <item>безкоштовний</item>
         <item>одружений/одружена</item>
@@ -927,73 +927,73 @@
         <item>два</item>
         <item>три</item>
         <item>чотири</item>
-        <item>П'ять</item>
+        <item>П\'ять</item>
         <item>шість</item>
         <item>сім</item>
         <item>вісім</item>
-        <item>дев'ять</item>
+        <item>дев\'ять</item>
         <item>десять</item>
         <item>одинадцять</item>
         <item>дванадцять</item>
         <item>тринадцять</item>
         <item>Чотирнадцять</item>
-        <item>п’ятнадцять</item>
+        <item>п\’ятнадцять</item>
         <item>шістнадцять</item>
         <item>сімнадцять</item>
         <item>вісімнадцять</item>
-        <item>дев'ятнадцять</item>
+        <item>дев\'ятнадцять</item>
         <item>двадцять</item>
         <item>двадцять один</item>
         <item>двадцять два</item>
-        <item>двадцять п'ять</item>
+        <item>двадцять п\'ять</item>
         <item>тридцять</item>
         <item>сорок</item>
-        <item>п’ятдесят</item>
+        <item>п\’ятдесят</item>
         <item>шістдесят</item>
         <item>сімдесят</item>
-        <item>сімдесят п'ять</item>
+        <item>сімдесят п\'ять</item>
         <item>вісімдесят</item>
-        <item>дев'яносто</item>
+        <item>дев\'яносто</item>
         <item>сто</item>
-        <item>сто п’ятдесят</item>
+        <item>сто п\’ятдесят</item>
         <item>двісті</item>
         <item>триста</item>
         <item>чотириста</item>
-        <item>п’ятсот</item>
+        <item>п\’ятсот</item>
         <item>тисяча</item>
         <item>дві тисячі</item>
         <item>три тисячі</item>
         <item>чотири тисячі</item>
-        <item>п'ять тисяч</item>
+        <item>п\'ять тисяч</item>
         <item>десять тисяч</item>
-        <item>п’ятдесят тисяч</item>
+        <item>п\’ятдесят тисяч</item>
         <item>сто тисяч</item>
         <item>один мільйон</item>
         <item>перший</item>
         <item>другий</item>
         <item>третій</item>
         <item>четвертий</item>
-        <item>п'ятий</item>
+        <item>п\'ятий</item>
         <item>шостий</item>
         <item>сьомий</item>
         <item>восьмий</item>
-        <item>дев'ятий</item>
+        <item>дев\'ятий</item>
         <item>десятий</item>
         <item>одинадцятий</item>
         <item>дванадцятий</item>
         <item>тринадцятий</item>
         <item>Чотирнадцятий</item>
-        <item>п'ятнадцятий</item>
+        <item>п\'ятнадцятий</item>
         <item>шістнадцятий</item>
         <item>сімнадцятий</item>
         <item>вісімнадцятий</item>
-        <item>дев'ятнадцятий</item>
+        <item>дев\'ятнадцятий</item>
         <item>двадцятий</item>
         <item>двадцять перший</item>
         <item>Двадцять другий</item>
-        <item>п’ятдесятий</item>
+        <item>п\’ятдесятий</item>
         <item>сотий</item>
-        <item>П'ятисотий</item>
+        <item>П\'ятисотий</item>
         <item>тисячний</item>
         <item>мільйонний</item>	</string-array>
     <string-array name="ukr9">	<item>швидка допомога</item>
@@ -1021,11 +1021,11 @@
         <item>кістка</item>
         <item>головний мозок</item>
         <item>лікоть</item>
-        <item>п’ята</item>
+        <item>п\’ята</item>
         <item>коліно</item>
         <item>нога</item>
         <item>вуса</item>
-        <item>м'яз</item>
+        <item>м\'яз</item>
         <item>скелет</item>
         <item>шкіра</item>
         <item>хребет</item>
@@ -1080,13 +1080,13 @@
         <item>укус комахи</item>
         <item>біль</item>
         <item>Зламана кістка</item>
-        <item>м'язова напруга)</item>
+        <item>м\'язова напруга)</item>
         <item>корчі, судорога</item>
         <item>Боляче</item>
         <item>алергія</item>
         <item>нежить</item>
         <item>астма</item>
-        <item>Підвищений кров'яний тиск</item>
+        <item>Підвищений кров\'яний тиск</item>
         <item>грип</item>
         <item>цукровий діабет</item>
         <item>кардіолог</item>
@@ -1347,7 +1347,7 @@
         <item>грунт</item>	</string-array>
     <string-array name="ukr11">	<item>мені подобається</item>
         <item>я зустрічаю</item>
-        <item>я п'ю</item>
+        <item>я п\'ю</item>
         <item>мені не подобається</item>
         <item>я вважаю</item>
         <item>Я думаю (рахувати)</item>
@@ -1375,7 +1375,7 @@
         <item>я співаю</item>
         <item>я танцюю</item>
         <item>я дивлюся телевізор</item>
-        <item>Я борюся, б'юся</item>
+        <item>Я борюся, б\'юся</item>
         <item>я стрибаю</item>
         <item>я бігу</item>
         <item>я одягаюся</item>
@@ -1506,12 +1506,12 @@
         <item>я з</item>
         <item>я відвідую</item>
         <item>я живу в ...</item>
-        <item>Я дивлюся на пам’ятки</item>
+        <item>Я дивлюся на пам\’ятки</item>
         <item>Я виступаю (виконувати)</item>
         <item>Я будую</item>
         <item>Я наполягаю (чай, щоб вливатися)</item>
         <item>Я замочую</item>
-        <item>Я варю / кип'ячу</item>
+        <item>Я варю / кип\'ячу</item>
         <item>Я смажу</item>
         <item>Я чищу (овочі)</item>
         <item>Я нарізаю</item>
@@ -1545,7 +1545,7 @@
         <item>я сношу (будинок)</item>
         <item>я намазую (масло)</item>
         <item>Я піднімаюся</item>
-        <item>я б'ю</item>
+        <item>я б\'ю</item>
         <item>Я мию вікна</item>
         <item>Я рибачу</item>
         <item>Воно піднімається / сходить</item>
@@ -1612,7 +1612,7 @@
         <item>Я більше не можу (працювати понаднормово))</item>
         <item>Мене призначили ...</item>
         <item>Я успадковую</item>
-        <item>щоб з'ясувати</item>
+        <item>щоб з\'ясувати</item>
         <item>Я змушую його ...</item>
         <item>Я правляю (над)</item>
         <item>Мені це зійшло з рук</item>
@@ -1635,7 +1635,7 @@
         <item>Я ріжу</item>
         <item>я вмираю</item>
         <item>я зникаю</item>
-        <item>я п'ю</item>
+        <item>я п\'ю</item>
         <item>Я вожу тачку</item>
         <item>я їм</item>
         <item>я знаходжусь</item>
@@ -1648,7 +1648,7 @@
         <item>Я йду</item>
         <item>Я хапаю це</item>
         <item>я маю</item>
-        <item>я б'ю</item>
+        <item>я б\'ю</item>
         <item>я тримаю</item>
         <item>я запрошую</item>
         <item>я знаю</item>
@@ -1704,7 +1704,7 @@
         <item>Я вiдмiняю</item>
         <item>я повертаюся</item>
         <item>Я отримую</item>
-        <item>я пам'ятаю</item>
+        <item>я пам\'ятаю</item>
         <item>я згадую</item>
         <item>я чищу</item>
         <item>я шукаю</item>
@@ -1914,7 +1914,7 @@
         <item>Я втратив гаманець</item>
         <item>Чи можу я позичити ваш мобільний телефон?</item>
         <item>Я сфотографую, добре?</item>
-        <item>Я тут п’ять днів.</item>
+        <item>Я тут п\’ять днів.</item>
         <item>Так</item>
         <item>Ні</item>
         <item>добре</item>
@@ -2093,7 +2093,7 @@
         <item>два рази</item>
         <item>Вона стоїть біля дверей. \ N (вона стоїть біля дверей.)</item>
         <item>Ми йдемо по дорозі. \ N (ми йдемо по дорозі.)</item>
-        <item>Я сиджу за комп’ютером. \ N (я сиджу за комп’ютером.)</item>
+        <item>Я сиджу за комп\’ютером. \ N (я сиджу за комп\’ютером.)</item>
         <item>Вони живуть у місті біля узбережжя. \ N (вони живуть у місті на узбережжі.)</item>
         <item>Ви бачили цей замок біля парку? \ N (ви всі бачили замок біля парку?)</item>
         <item>Ви викладаєте в Великому університеті?</item>
@@ -2135,7 +2135,7 @@
         <item>Мені огидно</item>
         <item>Це сталося о 18:08 за місцевим часом</item>
         <item>навіть більше</item>
-        <item>П’ятого серпня</item>
+        <item>П\’ятого серпня</item>
         <item>ті, хто</item>
         <item>в перший раз</item>
         <item>Це залежить від духовного стану людини</item>
@@ -2184,7 +2184,7 @@
         <item>щотижневий запас їжі</item>
         <item>Це не так (це не так)</item>
         <item>що ще...</item>
-        <item>Дворічна заборона в'їзду</item>
+        <item>Дворічна заборона в\'їзду</item>
         <item>З міркувань безпеки</item>
         <item>Значний вплив на</item>
         <item>Деякі з ...</item>
@@ -2287,7 +2287,7 @@
         <item>Мені потрібно перевірити, чи відкритий кіоск</item>
         <item>Я можу</item>
         <item>я попросив ...</item>
-        <item>Я продав комп’ютер свого батька за 110 доларів</item>
+        <item>Я продав комп\’ютер свого батька за 110 доларів</item>
         <item>Я можу (можу)</item>
         <item>Я буду ... (щось робити, я збираюся ...)</item>
         <item>Я з Білорусі</item>
@@ -2492,8 +2492,8 @@
         <item>неважливо</item>
         <item>Так Так саме так!</item>
         <item>Часто</item>
-        <item>Тут, м'яко кажучи, нема над чим сміятися</item>
-        <item>Я, м'яко кажучи, не здивований</item>
+        <item>Тут, м\'яко кажучи, нема над чим сміятися</item>
+        <item>Я, м\'яко кажучи, не здивований</item>
         <item>так, саме так!</item>
         <item>саме так! (Абсолютно!)</item>
         <item>Ми не були впевнені, але потім ми погуглили, і в натурі - це вірно.</item>
