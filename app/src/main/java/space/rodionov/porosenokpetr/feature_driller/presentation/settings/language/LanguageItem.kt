@@ -43,7 +43,7 @@ object LanguageHelper {
 //        Log.d(TAG_DB_REFACTOR, "getLearnedLanguages: ")
         return when (app) {
             AppFlavor.ENGLISH_DRILLER -> mutableListOf(english)
-            AppFlavor.SWEDISH_DRILLER -> mutableListOf(/*ukrainian, */english, swedish)
+            AppFlavor.SWEDISH_DRILLER -> mutableListOf(ukrainian, english, swedish)
         }
     }
 
