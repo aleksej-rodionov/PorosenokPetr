@@ -16,12 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class EditAddWordViewModel @Inject constructor(
-    private val observeNativeLangUseCase: ObserveNativeLangUseCase,
-    private val observeLearnedLangUseCase: ObserveLearnedLangUseCase,
-    private val observeWordUseCase: ObserveWordUseCase,
-    private val updateIsWordActiveUseCase: UpdateIsWordActiveUseCase,
-    private val updateWordUseCase: UpdateWordUseCase,
-    private val observeMode: ObserveModeUseCase,
+    private val drillerUseCases: DrillerUseCases,
     private val state: SavedStateHandle,
     @ApplicationScope private val applicationScope: CoroutineScope
 ) : ViewModel() {
@@ -37,16 +32,16 @@ class EditAddWordViewModel @Inject constructor(
     ) { rus, eng, catName ->
         Triple(rus, eng, catName)
     }.flatMapLatest { (rus, eng, catName) ->
-        observeWordUseCase.invoke(rus, eng, catName)
+        drillerUseCases.observeWordUseCase.invoke(rus, eng, catName)
     }
     val word = _word.stateIn(viewModelScope, SharingStarted.Lazily, null)
 
     //====================================NATIVE LANG==================================
-    private val _nativeLang = observeNativeLangUseCase.invoke()
+    private val _nativeLang = drillerUseCases.observeNativeLangUseCase.invoke()
     val nativeLang = _nativeLang.stateIn(viewModelScope, SharingStarted.Lazily, Constants.LANGUAGE_RU)
 
     //============MODE============
-    private val _mode = observeMode.invoke()
+    private val _mode = drillerUseCases.observeModeUseCase.invoke()
     val mode = _mode.stateIn(viewModelScope, SharingStarted.Lazily, 0)
 
 
@@ -65,7 +60,7 @@ class EditAddWordViewModel @Inject constructor(
 
     fun onDoneCLick(newWord: Word) = applicationScope.launch {
         word.value?.let {
-            updateWordUseCase.invoke(it, newWord)
+            drillerUseCases.updateWordUseCase.invoke(it, newWord)
         }
     }
 
@@ -73,7 +68,7 @@ class EditAddWordViewModel @Inject constructor(
         nativLivedata.value?.let { nativ ->
             foreignLivedata.value?.let { foreign ->
                 catNameLivedata.value?.let { catName ->
-                    updateIsWordActiveUseCase.invoke(nativ, foreign, catName, true)
+                    drillerUseCases.updateIsWordActiveUseCase.invoke(nativ, foreign, catName, true)
                 }
             }
         }
@@ -83,7 +78,7 @@ class EditAddWordViewModel @Inject constructor(
         nativLivedata.value?.let { nativ ->
             foreignLivedata.value?.let { foreign ->
                 catNameLivedata.value?.let { catName ->
-                    updateIsWordActiveUseCase.invoke(nativ, foreign, catName, false)
+                    drillerUseCases.updateIsWordActiveUseCase.invoke(nativ, foreign, catName, false)
                 }
             }
         }

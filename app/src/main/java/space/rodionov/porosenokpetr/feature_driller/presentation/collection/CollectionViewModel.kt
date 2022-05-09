@@ -14,13 +14,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CollectionViewModel @Inject constructor(
-//    private val observeAllCategories: ObserveAllCategoriesUseCase,
-    private val observeAllCatsWithWordsUseCase: ObserveAllCatsWithWordsUseCase,
-    private val makeCategoryActiveUseCase: MakeCategoryActiveUseCase,
-    private val observeNativeLangUseCase: ObserveNativeLangUseCase,
-    private val observeAllActiveCatsNamesUseCase: ObserveAllActiveCatsNamesUseCase,
-    private val observeMode: ObserveModeUseCase,
-    private val state: SavedStateHandle
+    private val drillerUseCases: DrillerUseCases,
+   private val state: SavedStateHandle
 ) : ViewModel() {
     private var activeCatsAmount = state.get<Int>("activeCatsAmount") ?: 0
         set(value) {
@@ -28,19 +23,19 @@ class CollectionViewModel @Inject constructor(
             state.set("activeCatsAmount", value)
         }
 
-    private val _mode = observeMode.invoke()
+    private val _mode = drillerUseCases.observeModeUseCase.invoke()
     val mode = _mode.stateIn(viewModelScope, SharingStarted.Lazily, MODE_LIGHT)
 
-    private val _categories = observeAllCatsWithWordsUseCase.invoke()
+    private val _categories = drillerUseCases.observeAllCatsWithWordsUseCase.invoke()
     val categories = _categories.stateIn(viewModelScope, SharingStarted.Lazily, null)
 
-    private val _activeCatsFlow = observeAllActiveCatsNamesUseCase.invoke()
+    private val _activeCatsFlow = drillerUseCases.observeAllActiveCatsNamesUseCase.invoke()
     val activeCatsFlow = _activeCatsFlow.stateIn(viewModelScope, SharingStarted.Lazily, null)
 
     private val _eventFlow = MutableSharedFlow<CollectionEvent>()
     val eventFlow = _eventFlow.asSharedFlow()
 
-    private val _nativeLanguage = observeNativeLangUseCase.invoke()
+    private val _nativeLanguage = drillerUseCases.observeNativeLangUseCase.invoke()
     val nativeLanguage = _nativeLanguage.stateIn(viewModelScope, SharingStarted.Lazily,
         Constants.LANGUAGE_RU
     )
@@ -76,11 +71,11 @@ class CollectionViewModel @Inject constructor(
     }
 
     fun activateCategory(catName: String) = viewModelScope.launch {
-        makeCategoryActiveUseCase(catName, true)
+        drillerUseCases.makeCategoryActiveUseCase(catName, true)
     }
 
     fun inactivateCategory(catName: String) = viewModelScope.launch  {
-        makeCategoryActiveUseCase(catName, false)
+        drillerUseCases.makeCategoryActiveUseCase(catName, false)
     }
 }
 

@@ -28,20 +28,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SettingsViewModel @Inject constructor(
     private val notificationHelper: NotificationHelper,
-    private val observeTransDirUseCase: ObserveTranslationDirectionUseCase,
-    private val saveTransDirUseCase: SaveTranslationDirectionUseCase,
-    private val observeModeUseCase: ObserveModeUseCase,
-    private val setModeUseCase: SetModeUseCase,
-    private val observeFollowSystemModeUseCase: ObserveFollowSystemModeUseCase,
-    private val setFollowSystemModeUseCase: SetFollowSystemModeUseCase,
-    private val observeNativeLangUseCase: ObserveNativeLangUseCase,
-    private val updateNativeLangUseCase: UpdateNativeLangUseCase,
-    private val observeLearnedLangUseCase: ObserveLearnedLangUseCase,
-    private val updateLearnedLangUseCase: UpdateLearnedLangUseCase,
-    private val observeReminderUseCase: ObserveReminderUseCase,
-    private val setReminderUseCase: SetReminderUseCase,
-    private val observeNotificationMillisUseCase: ObserveNotificationMillisUseCase,
-    private val setNotificationMillisUseCase: SetNotificationMillisUseCase
+    private val drillerUseCases: DrillerUseCases
 ) : ViewModel() {
 
     var justOpened = true
@@ -51,62 +38,62 @@ class SettingsViewModel @Inject constructor(
     val menuListFlow = _menuListFlow.asStateFlow()
 
     //==========================TRANSLATION DIRECTION=========================================
-    private val _transDir = observeTransDirUseCase.invoke()
+    private val _transDir = drillerUseCases.observeTranslationDirectionUseCase.invoke()
     val transDir = _transDir.stateIn(viewModelScope, SharingStarted.Lazily, false)
 
     fun updateTransDir(nativeToForeign: Boolean) = viewModelScope.launch {
-        saveTransDirUseCase.invoke(nativeToForeign)
+        drillerUseCases.saveTranslationDirectionUseCase.invoke(nativeToForeign)
     }
 
     //==========================MODE=========================================
-    private val _mode = observeModeUseCase.invoke()
+    private val _mode = drillerUseCases.observeModeUseCase.invoke()
     val mode = _mode.stateIn(viewModelScope, SharingStarted.Lazily, 0)
 
     fun updateMode(mode:Int) = viewModelScope.launch {
-        setModeUseCase.invoke(mode)
+        drillerUseCases.setModeUseCase.invoke(mode)
     }
 
     //==========================FOLLOW SYSTEM MODE=========================================
-    private val _followSystemMode = observeFollowSystemModeUseCase.invoke()
+    private val _followSystemMode = drillerUseCases.observeFollowSystemModeUseCase.invoke()
     val followSystemMode = _followSystemMode.stateIn(viewModelScope, SharingStarted.Lazily, false)
 
     private fun updateFollowSystemMode(follow: Boolean) = viewModelScope.launch {
-        setFollowSystemModeUseCase.invoke(follow)
+        drillerUseCases.setFollowSystemModeUseCase.invoke(follow)
     }
 
     //==========================NATIVE LANGUAGE=========================================
-    private val _nativeLanguage = observeNativeLangUseCase.invoke()
+    private val _nativeLanguage = drillerUseCases.observeNativeLangUseCase.invoke()
     val nativeLanguage = _nativeLanguage.stateIn(viewModelScope, SharingStarted.Lazily,
         Constants.LANGUAGE_RU
     )
 
     private fun updateNativeLanguage(lang: Int) = viewModelScope.launch {
-        updateNativeLangUseCase.invoke(lang)
+        drillerUseCases.updateNativeLangUseCase.invoke(lang)
     }
 
     //==========================LEARNED LANGUAGE=========================================
-    private val _learnedLanguage = observeLearnedLangUseCase.invoke()
+    private val _learnedLanguage = drillerUseCases.observeLearnedLangUseCase.invoke()
     val learnedLanguage = _learnedLanguage.stateIn(viewModelScope, SharingStarted.Lazily,
         Constants.LANGUAGE_EN
     )
 
     private fun updateLearnedLanguage(lang: Int) = viewModelScope.launch {
-        updateLearnedLangUseCase.invoke(lang)
+        drillerUseCases.updateLearnedLangUseCase.invoke(lang)
     }
 
     //==========================NOTIFICATION=========================================
-    private val _remind = observeReminderUseCase.invoke()
+    private val _remind = drillerUseCases.observeReminderUseCase.invoke()
     val remind = _remind.stateIn(viewModelScope, SharingStarted.Lazily, false)
 
     private fun updateRemind(follow: Boolean) = viewModelScope.launch {
-        setReminderUseCase.invoke(follow)
+        drillerUseCases.setReminderUseCase.invoke(follow)
     }
 
-    private val _notificationTime = observeNotificationMillisUseCase.invoke()
+    private val _notificationTime = drillerUseCases.observeNotificationMillisUseCase.invoke()
     val notificationTime = _notificationTime.stateIn(viewModelScope, SharingStarted.Lazily, Constants.MILLIS_IN_NINE_HOURS)
 
     fun updateNotificationTime(millis: Long) = viewModelScope.launch {
-        setNotificationMillisUseCase.invoke(millis)
+        drillerUseCases.setNotificationMillisUseCase.invoke(millis)
     }
 
     //=======================EVENT SHARED FLOW======================================

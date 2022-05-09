@@ -17,18 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DrillerViewModel @Inject constructor(
-    private val getTenWordsUseCase: GetTenWordsUseCase,
-    private val updateWordIsActiveUseCase: UpdateWordIsActiveUseCase,
-    private val observeAllCategories: ObserveAllCategoriesUseCase,
-    private val makeCategoryActiveUseCase: MakeCategoryActiveUseCase,
-    private val getAllActiveCatsNamesUseCase: GetAllActiveCatsNamesUseCase,
-    private val getAllCatsNamesUseCase: GetAllCatsNamesUseCase,
-    private val isCategoryActive: IsCategoryActiveUseCase,
-    private val getRandomWord: GetRandomWordUseCase,
-    private val observeTranslationDirectionUseCase: ObserveTranslationDirectionUseCase,
-    private val observeMode: ObserveModeUseCase,
-    private val observeNativeLangUseCase: ObserveNativeLangUseCase,
-    private val observeLearnedLangUseCase: ObserveLearnedLangUseCase,
+    private val drillerUseCases: DrillerUseCases,
     private val state: SavedStateHandle
 ) : ViewModel() {
     var savedPosition = state.get<Int>("savedPos") ?: 0
@@ -49,16 +38,16 @@ class DrillerViewModel @Inject constructor(
             state.set("memorizePosOnDestroy", value)
         }
 
-    private val _transDir = observeTranslationDirectionUseCase.invoke()
+    private val _transDir = drillerUseCases.observeTranslationDirectionUseCase.invoke()
     val transDir = _transDir.stateIn(viewModelScope, SharingStarted.Lazily, null)
 
-    private val _mode = observeMode.invoke()
+    private val _mode = drillerUseCases.observeModeUseCase.invoke()
     val mode = _mode.stateIn(viewModelScope, SharingStarted.Lazily, 0)
 
-    private val _nativeLang = observeNativeLangUseCase.invoke()
+    private val _nativeLang = drillerUseCases.observeNativeLangUseCase.invoke()
     val nativeLang= _nativeLang.stateIn(viewModelScope, SharingStarted.Lazily, Constants.LANGUAGE_RU)
 
-    private val _learnedLang = observeLearnedLangUseCase.invoke()
+    private val _learnedLang = drillerUseCases.observeLearnedLangUseCase.invoke()
     val learnedLang= _learnedLang.stateIn(viewModelScope, SharingStarted.Lazily, Constants.LANGUAGE_EN)
 
     private val snapshotCatsInCaseUncheckAll = mutableListOf<String>()
@@ -67,7 +56,7 @@ class DrillerViewModel @Inject constructor(
     private val _currentPosition = MutableStateFlow(0)
     val currentPosition = _currentPosition.asStateFlow() // todo сохранять currentPosition в savedStateHandle
 
-    private val _categories = observeAllCategories.invoke()
+    private val _categories = drillerUseCases.observeAllCategoriesUseCase.invoke()
     val categories = _categories.stateIn(viewModelScope, SharingStarted.Lazily, null)
 
     private val _wordsState = MutableStateFlow(WordState())
@@ -93,7 +82,7 @@ class DrillerViewModel @Inject constructor(
 
     fun addTenWords() = viewModelScope.launch {
 //        Log.d(TAG_PETR, "VM addTenWords: CALLED")
-        getTenWordsUseCase().onEach { result -> // onEach = on each emission of the flow
+        drillerUseCases.getTenWordsUseCase().onEach { result -> // onEach = on each emission of the flow
             val oldPlusNewWords = mutableListOf<Word>()
             oldPlusNewWords.addAll(wordsState.value.words)
 
@@ -142,7 +131,7 @@ class DrillerViewModel @Inject constructor(
 
     fun inactivateCurrentWord() = viewModelScope.launch {
         val word = wordsState.value.words[currentPosition.value]
-        updateWordIsActiveUseCase(word, false)
+        drillerUseCases.updateWordIsActiveUseCase(word, false)
     }
 
 //====================METHODS FOR BOTTOMSHEET CHIPGROUP================================
@@ -160,7 +149,7 @@ class DrillerViewModel @Inject constructor(
 
     fun onCheckBoxTurnedOn() = viewModelScope.launch {
         makeSnapshot()
-        val allCats = getAllCatsNamesUseCase.invoke()
+        val allCats = drillerUseCases.getAllCatsNamesUseCase.invoke()
         allCats.forEach { catName ->
             activateCategory(catName)
         }
@@ -169,7 +158,7 @@ class DrillerViewModel @Inject constructor(
     }
 
     fun onCheckBoxTurnedOff() = viewModelScope.launch {
-        val allCatsNames = getAllCatsNamesUseCase.invoke()
+        val allCatsNames = drillerUseCases.getAllCatsNamesUseCase.invoke()
         allCatsNames.forEach { name ->
             if (!snapshotCatsInCaseUncheckAll.contains(name)) {
                 inactivateCategory(name)
@@ -178,8 +167,8 @@ class DrillerViewModel @Inject constructor(
     }
 
     private suspend fun checkIfOnlyOneInactiveCat(): Boolean {
-        val allCats = getAllCatsNamesUseCase.invoke()
-        val allActiveCats = getAllActiveCatsNamesUseCase.invoke()
+        val allCats = drillerUseCases.getAllCatsNamesUseCase.invoke()
+        val allActiveCats = drillerUseCases.getAllActiveCatsNamesUseCase.invoke()
         return allCats.size - allActiveCats.size == 1
     }
 
@@ -197,11 +186,11 @@ class DrillerViewModel @Inject constructor(
     }
 
     private fun activateCategory(catName: String) = viewModelScope.launch {
-        makeCategoryActiveUseCase(catName, true)
+        drillerUseCases.makeCategoryActiveUseCase(catName, true)
     }
 
     private suspend fun inactivateCategory(catName: String) {
-        makeCategoryActiveUseCase(catName, false)
+        drillerUseCases.makeCategoryActiveUseCase(catName, false)
     }
 
     fun showNotLessThanOneCategory(msg: String) = viewModelScope.launch {
@@ -209,8 +198,8 @@ class DrillerViewModel @Inject constructor(
     }
 
     private fun makeSnapshot() = viewModelScope.launch {
-        val allCats = getAllCatsNamesUseCase.invoke()
-        val allActiveCats = getAllActiveCatsNamesUseCase.invoke()
+        val allCats = drillerUseCases.getAllCatsNamesUseCase.invoke()
+        val allActiveCats = drillerUseCases.getAllActiveCatsNamesUseCase.invoke()
         if (allActiveCats.size == allCats.size && allActiveCats.isNotEmpty()) {
             val singleCat = listOf(allActiveCats[0])
             refulfillSnapshotByNewNames(singleCat)
@@ -244,10 +233,10 @@ class DrillerViewModel @Inject constructor(
 //        Log.d(TAG_PETR, "wholeList.size = ${wholeList.size}, curPos = ${currentPosition.value}, curPosWord = ${wholeList.elementAt(currentPosition.value)}")
         delay(500L)
         val newWholeList = mutableListOf<Word>()
-        val allActiveCatsNames = getAllActiveCatsNamesUseCase.invoke()
+        val allActiveCatsNames = drillerUseCases.getAllActiveCatsNamesUseCase.invoke()
         newWholeList.addAll(wholeList.map { word ->
-            if (!isCategoryActive.invoke(word.categoryName)) {
-                val newWord = getRandomWord.invoke(allActiveCatsNames)
+            if (!drillerUseCases.isCategoryActiveUseCase.invoke(word.categoryName)) {
+                val newWord = drillerUseCases.getRandomWordUseCase.invoke(allActiveCatsNames)
                 newWord
             } else word
         })

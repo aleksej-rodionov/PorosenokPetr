@@ -24,192 +24,6 @@ import javax.inject.Singleton
 object DrillerModule {
 
 
-    @Provides
-    @Singleton
-    fun provideUpdateWordUseCase(repo: WordRepo): UpdateWordUseCase {
-        return UpdateWordUseCase(repo)
-    }
-
-    @Provides
-    @Singleton
-    fun provideObserveLearnedLangUseCase(repo: WordRepo): ObserveLearnedLangUseCase {
-        return ObserveLearnedLangUseCase(repo)
-    }
-
-    @Provides
-    @Singleton
-    fun provideUpdateLearnedLangUseCase(repo: WordRepo): UpdateLearnedLangUseCase {
-        return UpdateLearnedLangUseCase(repo)
-    }
-
-    @Provides
-    @Singleton
-    fun provideObserveNativeLangUseCase(repo: WordRepo): ObserveNativeLangUseCase {
-        return ObserveNativeLangUseCase(repo)
-    }
-
-    @Provides
-    @Singleton
-    fun provideUpdateNativeLangUseCase(repo: WordRepo): UpdateNativeLangUseCase {
-        return UpdateNativeLangUseCase(repo)
-    }
-
-    @Provides
-    @Singleton
-    fun provideObserveNotificationMillisUseCase(repo: WordRepo): ObserveNotificationMillisUseCase {
-        return ObserveNotificationMillisUseCase(repo)
-    }
-
-    @Provides
-    @Singleton
-    fun provideSetNotificationMillisUseCase(repo: WordRepo): SetNotificationMillisUseCase {
-        return SetNotificationMillisUseCase(repo)
-    }
-
-    @Provides
-    @Singleton
-    fun provideObserveReminderUseCase(repo: WordRepo): ObserveReminderUseCase {
-        return ObserveReminderUseCase(repo)
-    }
-
-    @Provides
-    @Singleton
-    fun provideSetReminderUseCase(repo: WordRepo): SetReminderUseCase {
-        return SetReminderUseCase(repo)
-    }
-
-    @Provides
-    @Singleton
-    fun provideGetModeUseCase(repo: WordRepo): ObserveModeUseCase {
-        return ObserveModeUseCase(repo)
-    }
-
-    @Provides
-    @Singleton
-    fun provideGetFollowSystemModeUseCase(repo: WordRepo): ObserveFollowSystemModeUseCase {
-        return ObserveFollowSystemModeUseCase(repo)
-    }
-
-    @Provides
-    @Singleton
-    fun provideSetModeUseCase(repo: WordRepo): SetModeUseCase {
-        return SetModeUseCase(repo)
-    }
-
-    @Provides
-    @Singleton
-    fun provideSetFollowSystemModeUseCase(repo: WordRepo): SetFollowSystemModeUseCase {
-        return SetFollowSystemModeUseCase(repo)
-    }
-
-    @Provides
-    @Singleton
-    fun provideSaveTranslationDirectionUseCase(repo: WordRepo): SaveTranslationDirectionUseCase {
-        return SaveTranslationDirectionUseCase(repo)
-    }
-
-    @Provides
-    @Singleton
-    fun provideObserveTranslationDirectionUseCase(repo: WordRepo): ObserveTranslationDirectionUseCase {
-        return ObserveTranslationDirectionUseCase(repo)
-    }
-
-    @Provides
-    @Singleton
-    fun provideUpdateIsWordActiveUseCase(repo: WordRepo): UpdateIsWordActiveUseCase {
-        return UpdateIsWordActiveUseCase(repo)
-    }
-
-    @Provides
-    @Singleton
-    fun provideObserveWordUseCase(repo: WordRepo): ObserveWordUseCase {
-        return ObserveWordUseCase(repo)
-    }
-
-    @Provides
-    @Singleton
-    fun provideUpdateCatNameStorageUseCase(repo: WordRepo): UpdateCatNameStorageUseCase {
-        return UpdateCatNameStorageUseCase(repo)
-    }
-
-    @Provides
-    @Singleton
-    fun provideCatNameFromStorageUseCase(repo: WordRepo): CatNameFromStorageUseCase {
-        return CatNameFromStorageUseCase(repo)
-    }
-
-    @Provides
-    @Singleton
-    fun provideObserveWordsSearchQueryUseCase(repo: WordRepo): ObserveWordsSearchQueryUseCase {
-        return ObserveWordsSearchQueryUseCase(repo)
-    }
-
-    @Provides
-    @Singleton
-    fun provideObserveAllCatsWithWordsUseCase(repo: WordRepo): ObserveAllCatsWithWordsUseCase {
-        return ObserveAllCatsWithWordsUseCase(repo)
-    }
-
-    @Provides
-    @Singleton
-    fun provideGetCatCompletionPercentUseCase(repo: WordRepo): GetCatCompletionPercentUseCase {
-        return GetCatCompletionPercentUseCase(repo)
-    }
-
-    @Provides
-    @Singleton
-    fun provideObserveAllActiveCatsNamesUseCase(repo: WordRepo): ObserveAllActiveCatsNamesUseCase {
-        return ObserveAllActiveCatsNamesUseCase(repo)
-    }
-
-    @Provides
-    @Singleton
-    fun provideGetRandomWordUseCase(repo: WordRepo): GetRandomWordUseCase {
-        return GetRandomWordUseCase(repo)
-    }
-
-    @Provides
-    @Singleton
-    fun provideIsCategoryActiveUseCase(repo: WordRepo): IsCategoryActiveUseCase {
-        return IsCategoryActiveUseCase(repo)
-    }
-
-    @Provides
-    @Singleton
-    fun provideGetAllCatsNamesUseCase(repo: WordRepo): GetAllCatsNamesUseCase {
-        return GetAllCatsNamesUseCase(repo)
-    }
-
-    @Provides
-    @Singleton
-    fun provideGetAllActiveCatsNamesUseCase(repo: WordRepo): GetAllActiveCatsNamesUseCase {
-        return GetAllActiveCatsNamesUseCase(repo)
-    }
-
-    @Provides
-    @Singleton
-    fun provideMakeCategoryActiveUseCase(repo: WordRepo): MakeCategoryActiveUseCase {
-        return MakeCategoryActiveUseCase(repo)
-    }
-
-    @Provides
-    @Singleton
-    fun provideObserveAllCategoriesUseCase(repo: WordRepo): ObserveAllCategoriesUseCase {
-        return ObserveAllCategoriesUseCase(repo)
-    }
-
-    @Provides
-    @Singleton
-    fun provideUpdateWordIsActiveUseCase(repo: WordRepo): UpdateWordIsActiveUseCase {
-        return UpdateWordIsActiveUseCase(repo)
-    }
-
-    @Provides
-    @Singleton
-    fun provideGetTenWordsUseCase(repo: WordRepo): GetTenWordsUseCase {
-        return GetTenWordsUseCase(repo)
-    }
-
 //    @Provides
 //    @Singleton
 //    fun provideWorkerParameters() = WorkerParameters
@@ -241,6 +55,45 @@ object DrillerModule {
             .fallbackToDestructiveMigration()
             .addCallback(callback)
             .build()
+    }
+
+
+    @Provides
+    @Singleton
+    fun provideDrillerUseCases(repo: WordRepo): DrillerUseCases {
+        return DrillerUseCases(
+            updateWordUseCase = UpdateWordUseCase(repo),
+            observeLearnedLangUseCase = ObserveLearnedLangUseCase(repo),
+            updateLearnedLangUseCase = UpdateLearnedLangUseCase(repo),
+            observeNativeLangUseCase = ObserveNativeLangUseCase(repo),
+            updateNativeLangUseCase = UpdateNativeLangUseCase(repo),
+            observeNotificationMillisUseCase = ObserveNotificationMillisUseCase(repo),
+            setNotificationMillisUseCase = SetNotificationMillisUseCase(repo),
+            observeReminderUseCase = ObserveReminderUseCase(repo),
+            setReminderUseCase = SetReminderUseCase(repo),
+            observeModeUseCase = ObserveModeUseCase(repo),
+            observeFollowSystemModeUseCase = ObserveFollowSystemModeUseCase(repo),
+            setModeUseCase = SetModeUseCase(repo),
+            setFollowSystemModeUseCase = SetFollowSystemModeUseCase(repo),
+            saveTranslationDirectionUseCase = SaveTranslationDirectionUseCase(repo),
+            observeTranslationDirectionUseCase = ObserveTranslationDirectionUseCase(repo),
+            updateIsWordActiveUseCase = UpdateIsWordActiveUseCase(repo),
+            observeWordUseCase = ObserveWordUseCase(repo),
+            updateCatNameStorageUseCase = UpdateCatNameStorageUseCase(repo),
+            catNameFromStorageUseCase = CatNameFromStorageUseCase(repo),
+            observeWordsSearchQueryUseCase = ObserveWordsSearchQueryUseCase(repo),
+            observeAllCatsWithWordsUseCase = ObserveAllCatsWithWordsUseCase(repo),
+            getCatCompletionPercentUseCase = GetCatCompletionPercentUseCase(repo),
+            observeAllActiveCatsNamesUseCase = ObserveAllActiveCatsNamesUseCase(repo),
+            getRandomWordUseCase = GetRandomWordUseCase(repo),
+            isCategoryActiveUseCase = IsCategoryActiveUseCase(repo),
+            getAllCatsNamesUseCase = GetAllCatsNamesUseCase(repo),
+            getAllActiveCatsNamesUseCase = GetAllActiveCatsNamesUseCase(repo),
+            makeCategoryActiveUseCase = MakeCategoryActiveUseCase(repo),
+            observeAllCategoriesUseCase = ObserveAllCategoriesUseCase(repo),
+            updateWordIsActiveUseCase = UpdateWordIsActiveUseCase(repo),
+            getTenWordsUseCase = GetTenWordsUseCase(repo)
+        )
     }
 
     @ApplicationScope

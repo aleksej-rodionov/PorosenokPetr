@@ -12,31 +12,27 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val observeModeUseCase: ObserveModeUseCase,
-    private val setModeUseCase: SetModeUseCase,
-    private val observeFollowSystemModeUseCase: ObserveFollowSystemModeUseCase,
-    private val observeNativeLangUseCase: ObserveNativeLangUseCase,
-    private val observeReminderUseCase: ObserveReminderUseCase
+    private val drillerUseCases: DrillerUseCases
 ): ViewModel() {
 
     //==========================MODE=========================================
-    private val _mode = observeModeUseCase.invoke()
+    private val _mode = drillerUseCases.observeModeUseCase.invoke()
     val mode = _mode.stateIn(viewModelScope, SharingStarted.Lazily, 0)
 
     fun updateMode(mode:Int) = viewModelScope.launch {
-        setModeUseCase.invoke(mode)
+        drillerUseCases.setModeUseCase.invoke(mode)
     }
 
     //==========================FOLLOW SYSTEM MODE=========================================
-    private val _followSystemMode = observeFollowSystemModeUseCase.invoke()
+    private val _followSystemMode = drillerUseCases.observeFollowSystemModeUseCase.invoke()
     val followSystemMode = _followSystemMode.stateIn(viewModelScope, SharingStarted.Lazily, false)
 
     //==========================LANGUAGE=========================================
-    private val _nativeLanguage = observeNativeLangUseCase.invoke()
+    private val _nativeLanguage = drillerUseCases.observeNativeLangUseCase.invoke()
     val nativeLanguage = _nativeLanguage.stateIn(viewModelScope, SharingStarted.Lazily, LANGUAGE_RU)
 
     //==========================REMINDER=========================================
-    private val _reminder = observeReminderUseCase.invoke()
+    private val _reminder = drillerUseCases.observeReminderUseCase.invoke()
     val reminder = _reminder.stateIn(viewModelScope, SharingStarted.Lazily, false)
 
     //=============================METHODS======================================

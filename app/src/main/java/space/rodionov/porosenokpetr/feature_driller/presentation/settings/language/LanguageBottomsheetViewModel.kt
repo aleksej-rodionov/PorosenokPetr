@@ -18,28 +18,24 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LanguageBottomsheetViewModel @Inject constructor(
-    private val observeNativeLangUseCase: ObserveNativeLangUseCase,
-    private val updateNativeLangUseCase: UpdateNativeLangUseCase,
-    private val observeLearnedLangUseCase: ObserveLearnedLangUseCase,
-    private val updateLearnedLangUseCase: UpdateLearnedLangUseCase,
-    private val observeMode: ObserveModeUseCase,
+    private val drillerUseCases: DrillerUseCases,
     private val state: SavedStateHandle
 ) : ViewModel() {
     var nativeOrForeign = state.getLiveData<Int>("nativeForeign", NATIVE_LANGUAGE_CHANGE)
 
     //============MODE============
-    private val _mode = observeMode.invoke()
+    private val _mode = drillerUseCases.observeModeUseCase.invoke()
     val mode = _mode.stateIn(viewModelScope, SharingStarted.Lazily, 0)
 
     //=========================NATIVE LANG=======================
-    private val _nativeLang = observeNativeLangUseCase.invoke()
+    private val _nativeLang = drillerUseCases.observeNativeLangUseCase.invoke()
     val nativeLang= _nativeLang.stateIn(viewModelScope, SharingStarted.Lazily, Constants.LANGUAGE_RU)
-    fun updateNativeLang(lang: Int) = viewModelScope.launch { updateNativeLangUseCase.invoke(lang) }
+    fun updateNativeLang(lang: Int) = viewModelScope.launch { drillerUseCases.updateNativeLangUseCase.invoke(lang) }
 
     //================================LEARNED LANG==================================
-    private val _learnedLang = observeLearnedLangUseCase.invoke()
+    private val _learnedLang = drillerUseCases.observeLearnedLangUseCase.invoke()
     val learnedLang = _learnedLang.stateIn(viewModelScope, SharingStarted.Lazily, Constants.LANGUAGE_EN)
-    fun updateLearnedLang(lang: Int) = viewModelScope.launch { updateLearnedLangUseCase.invoke(lang) }
+    fun updateLearnedLang(lang: Int) = viewModelScope.launch { drillerUseCases.updateLearnedLangUseCase.invoke(lang) }
 
     //===============================LIST================================
     val initialList = mutableListOf<LanguageItem>()
