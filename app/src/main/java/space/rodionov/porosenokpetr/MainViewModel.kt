@@ -9,8 +9,9 @@ import kotlinx.coroutines.launch
 import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.*
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_RU
 import javax.inject.Inject
+import javax.inject.Singleton
 
-@HiltViewModel
+@Singleton
 class MainViewModel @Inject constructor(
     private val drillerUseCases: DrillerUseCases
 ): ViewModel() {

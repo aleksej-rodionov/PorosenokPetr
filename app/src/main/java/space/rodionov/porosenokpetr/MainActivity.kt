@@ -16,16 +16,21 @@ import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_DARK
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_LIGHT
 import space.rodionov.porosenokpetr.databinding.ActivityMainBinding
+import space.rodionov.porosenokpetr.feature_driller.di.ViewModelFactory
 import java.util.*
+import javax.inject.Inject
 
-@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var factory: ViewModelFactory
 
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
     private val vmMain: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        PorosenokPetrApp.component?.inject(this)
         super.onCreate(savedInstanceState)
         val view = binding.root
         setContentView(view)

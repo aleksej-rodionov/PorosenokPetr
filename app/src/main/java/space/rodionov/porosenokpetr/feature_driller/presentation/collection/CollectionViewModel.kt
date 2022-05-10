@@ -12,7 +12,6 @@ import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.*
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 import javax.inject.Inject
 
-@HiltViewModel
 class CollectionViewModel @Inject constructor(
     private val drillerUseCases: DrillerUseCases,
    private val state: SavedStateHandle

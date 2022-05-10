@@ -2,31 +2,19 @@ package space.rodionov.porosenokpetr.feature_driller.di
 
 import android.app.Application
 import androidx.room.Room
-import androidx.work.WorkerParameters
 import dagger.Module
 import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.SupervisorJob
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 import space.rodionov.porosenokpetr.feature_driller.data.local.WordDatabase
 import space.rodionov.porosenokpetr.feature_driller.data.repository.WordRepoImpl
 import space.rodionov.porosenokpetr.feature_driller.data.storage.Datastore
 import space.rodionov.porosenokpetr.feature_driller.domain.repository.WordRepo
 import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.*
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 import space.rodionov.porosenokpetr.feature_driller.work.NotificationHelper
-import javax.inject.Qualifier
 import javax.inject.Singleton
 
 @Module
-@InstallIn(SingletonComponent::class)
-object DrillerModule {
-
-
-//    @Provides
-//    @Singleton
-//    fun provideWorkerParameters() = WorkerParameters
+class AppModule {
 
     @Provides
     @Singleton
@@ -95,13 +83,4 @@ object DrillerModule {
             getTenWordsUseCase = GetTenWordsUseCase(repo)
         )
     }
-
-    @ApplicationScope
-    @Provides
-    @Singleton
-    fun provideApplicationScope() = CoroutineScope(SupervisorJob())
 }
-
-@Retention(AnnotationRetention.RUNTIME)
-@Qualifier
-annotation class ApplicationScope

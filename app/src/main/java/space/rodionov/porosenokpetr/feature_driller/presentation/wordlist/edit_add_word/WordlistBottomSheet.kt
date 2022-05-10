@@ -22,7 +22,6 @@ import space.rodionov.porosenokpetr.databinding.BottomsheetWordlistBinding
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
 import space.rodionov.porosenokpetr.feature_driller.utils.LocalizationHelper
 
-@AndroidEntryPoint
 class WordlistBottomSheet : BottomSheetDialogFragment() {
 
     companion object {

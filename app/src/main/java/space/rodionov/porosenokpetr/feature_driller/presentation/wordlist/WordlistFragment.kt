@@ -32,7 +32,6 @@ import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.feature_driller.utils.LocalizationHelper
 import java.util.*
 
-@AndroidEntryPoint
 class WordlistFragment : Fragment(R.layout.fragment_wordlist), TextToSpeech.OnInitListener {
 
     private val binding by viewBinding<FragmentWordlistBinding>()
