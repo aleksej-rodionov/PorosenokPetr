@@ -22,7 +22,7 @@ import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
 import javax.inject.Inject
 
-class DrillerViewModel /*@Inject constructor*/(
+class DrillerViewModel (
     private val drillerUseCases: DrillerUseCases,
     private val state: SavedStateHandle,
 ) : ViewModel() {

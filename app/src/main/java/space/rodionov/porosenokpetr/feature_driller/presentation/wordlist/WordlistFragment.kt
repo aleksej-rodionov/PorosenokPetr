@@ -18,10 +18,9 @@ import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.redrawViewGroup
 import space.rodionov.porosenokpetr.core.showKeyboard
 import space.rodionov.porosenokpetr.databinding.FragmentWordlistBinding
+import space.rodionov.porosenokpetr.feature_driller.di.GenericSavedStateViewModelFactory
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
 import space.rodionov.porosenokpetr.feature_driller.presentation.base.viewBinding
-import space.rodionov.porosenokpetr.feature_driller.presentation.driller.DrillerViewModel
-import space.rodionov.porosenokpetr.feature_driller.presentation.driller.DrillerViewModelAssistedFactory
 import space.rodionov.porosenokpetr.feature_driller.presentation.wordlist.edit_add_word.WordlistBottomSheet
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.EMPTY_STRING
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_EN
@@ -39,9 +38,9 @@ class WordlistFragment : Fragment(R.layout.fragment_wordlist), TextToSpeech.OnIn
     private val binding by viewBinding<FragmentWordlistBinding>()
 
     @Inject
-    lateinit var assistedFactory: WordlistViewModelAssistedFactory //todo 1)объединить в одну фабрику и 2)перенести в базовый фрагмент
+    lateinit var assistedFactory: WordlistViewModelFactory
     private val vmWordlist: WordlistViewModel by viewModels {
-        assistedFactory.create(this)
+        GenericSavedStateViewModelFactory(assistedFactory, this)
     }
 
     private var textToSpeech: TextToSpeech? = null

@@ -1,30 +1,22 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation.settings.language
 
-import androidx.lifecycle.AbstractSavedStateViewModelFactory
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.savedstate.SavedStateRegistryOwner
-import dagger.assisted.Assisted
-import dagger.assisted.AssistedFactory
-import dagger.assisted.AssistedInject
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import space.rodionov.porosenokpetr.feature_driller.di.ApplicationScope
 import space.rodionov.porosenokpetr.feature_driller.di.ViewModelAssistedFactory
 import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.DrillerUseCases
-import space.rodionov.porosenokpetr.feature_driller.presentation.collection.CollectionViewModel
 import space.rodionov.porosenokpetr.feature_driller.utils.AppFlavor
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.FOREIGN_LANGUAGE_CHANGE
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_CHANGE
 import javax.inject.Inject
 
-class LanguageBottomsheetViewModel @Inject constructor(
+class LanguageBottomsheetViewModel (
     private val drillerUseCases: DrillerUseCases,
     private val state: SavedStateHandle,
 ) : ViewModel() {

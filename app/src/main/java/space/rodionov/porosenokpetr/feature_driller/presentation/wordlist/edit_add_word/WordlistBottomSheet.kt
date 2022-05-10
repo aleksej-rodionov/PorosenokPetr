@@ -18,9 +18,8 @@ import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.redrawViewGroup
 import space.rodionov.porosenokpetr.databinding.BottomsheetWordlistBinding
+import space.rodionov.porosenokpetr.feature_driller.di.GenericSavedStateViewModelFactory
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
-import space.rodionov.porosenokpetr.feature_driller.presentation.driller.DrillerViewModel
-import space.rodionov.porosenokpetr.feature_driller.presentation.driller.DrillerViewModelAssistedFactory
 import space.rodionov.porosenokpetr.feature_driller.utils.LocalizationHelper
 import javax.inject.Inject
 
@@ -35,11 +34,10 @@ class WordlistBottomSheet : BottomSheetDialogFragment() {
     }
 
     @Inject
-    lateinit var assistedFactory: DrillerViewModelAssistedFactory //todo 1)объединить в одну фабрику и 2)перенести в базовый фрагмент
+    lateinit var assistedFactory: EditAddWordViewModelFactory
     private val vmEditAddWord: EditAddWordViewModel by viewModels {
-        assistedFactory.create(this)
+        GenericSavedStateViewModelFactory(assistedFactory, this)
     }
-//    private val vmEditAddWord: EditAddWordViewModel by viewModels()
 
     override fun getTheme(): Int = vmEditAddWord.mode.value.let {
         when (it) {

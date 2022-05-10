@@ -15,6 +15,7 @@ import space.rodionov.porosenokpetr.MainActivity
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.redrawViewGroup
 import space.rodionov.porosenokpetr.databinding.FragmentCollectionBinding
+import space.rodionov.porosenokpetr.feature_driller.di.GenericSavedStateViewModelFactory
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Category
 import space.rodionov.porosenokpetr.feature_driller.presentation.base.viewBinding
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
@@ -31,8 +32,10 @@ class CollectionFragment : Fragment(R.layout.fragment_collection) {
 //        factoryProducer = { factory }
 //    )
     @Inject
-    lateinit var assistedFactory: CollectionViewModelAssistedFactory //todo 1)объединить в одну фабрику и 2)перенести в базовый фрагмент
-    private val vmCollection: CollectionViewModel by viewModels { assistedFactory.create(this) }
+    lateinit var assistedFactory: CollectionViewModelFactory
+    private val vmCollection: CollectionViewModel by viewModels {
+        GenericSavedStateViewModelFactory(assistedFactory, this)
+    }
 
 
     private val binding by viewBinding<FragmentCollectionBinding>()

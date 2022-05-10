@@ -17,6 +17,7 @@ import space.rodionov.porosenokpetr.BuildConfig
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.redrawViewGroup
 import space.rodionov.porosenokpetr.databinding.FragmentDrillerBinding
+import space.rodionov.porosenokpetr.feature_driller.di.GenericSavedStateViewModelFactory
 import space.rodionov.porosenokpetr.feature_driller.presentation.base.viewBinding
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_EN
@@ -29,9 +30,9 @@ import javax.inject.Inject
 class DrillerFragment : Fragment(R.layout.fragment_driller), CardStackListener, TextToSpeech.OnInitListener {
 
     @Inject
-    lateinit var assistedFactory: DrillerViewModelAssistedFactory //todo 1)объединить в одну фабрику и 2)перенести в базовый фрагмент
+    lateinit var assistedFactory: DrillerViewModelFactory
     private val vmDriller: DrillerViewModel by viewModels {
-        assistedFactory.create(this)
+        GenericSavedStateViewModelFactory(assistedFactory,this)
     }
 
     private val binding by viewBinding<FragmentDrillerBinding>()

@@ -20,6 +20,7 @@ import space.rodionov.porosenokpetr.core.fetchColors
 import space.rodionov.porosenokpetr.core.redrawChips
 import space.rodionov.porosenokpetr.core.redrawViewGroup
 import space.rodionov.porosenokpetr.databinding.BottomsheetFilterBinding
+import space.rodionov.porosenokpetr.feature_driller.di.GenericSavedStateViewModelFactory
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 import space.rodionov.porosenokpetr.feature_driller.utils.LocalizationHelper
 import javax.inject.Inject
@@ -39,10 +40,10 @@ class FilterBottomSheet : BottomSheetDialogFragment(), CompoundButton.OnCheckedC
 //    })
 
     @Inject
-    lateinit var assistedFactory: DrillerViewModelAssistedFactory //todo 1)объединить в одну фабрику и 2)перенести в базовый фрагмент
+    lateinit var assistedFactory: DrillerViewModelFactory
     private val vmDriller: DrillerViewModel by viewModels(
         ownerProducer = { requireParentFragment() },
-        factoryProducer = { assistedFactory.create(requireParentFragment() /*or this?*/) } // todo проверить не надо ли вернуть зыс
+        factoryProducer = { GenericSavedStateViewModelFactory(assistedFactory, requireParentFragment()) } // todo проверить не надо ли вернуть зыс
     )
 
     override fun getTheme(): Int = vmDriller.mode.value.let {

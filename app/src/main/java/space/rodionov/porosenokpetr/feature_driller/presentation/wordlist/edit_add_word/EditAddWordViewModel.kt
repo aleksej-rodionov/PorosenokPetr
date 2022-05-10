@@ -17,7 +17,7 @@ import space.rodionov.porosenokpetr.feature_driller.presentation.wordlist.Wordli
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 import javax.inject.Inject
 
-class EditAddWordViewModel @Inject constructor(
+class EditAddWordViewModel (
     private val drillerUseCases: DrillerUseCases,
     private val state: SavedStateHandle,
     @ApplicationScope private val applicationScope: CoroutineScope

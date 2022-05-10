@@ -15,6 +15,7 @@ import space.rodionov.porosenokpetr.BuildConfig
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.redrawViewGroup
 import space.rodionov.porosenokpetr.databinding.BottomsheetLanguageBinding
+import space.rodionov.porosenokpetr.feature_driller.di.GenericSavedStateViewModelFactory
 import space.rodionov.porosenokpetr.feature_driller.utils.AppFlavor
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_CHANGE
@@ -32,9 +33,9 @@ class LanguageBottomSheet: BottomSheetDialogFragment() {
     }
 
     @Inject
-    lateinit var assistedFactory: LanguageBottomsheetViewModelAssistedFactory //todo 1)объединить в одну фабрику и 2)перенести в базовый фрагмент
+    lateinit var assistedFactory: LanguageBottomsheetViewModelFactory
     private val vmLanguageSheet: LanguageBottomsheetViewModel by viewModels {
-        assistedFactory.create(this)
+        GenericSavedStateViewModelFactory(assistedFactory, this)
     }
 
     private val langAdapter: LanguageAdapter by lazy {

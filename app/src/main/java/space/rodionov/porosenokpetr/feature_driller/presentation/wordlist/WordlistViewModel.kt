@@ -1,29 +1,25 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation.wordlist
 
 import android.util.Log
-import androidx.lifecycle.*
-import androidx.savedstate.SavedStateRegistryOwner
-import dagger.assisted.Assisted
-import dagger.assisted.AssistedFactory
-import dagger.assisted.AssistedInject
-import kotlinx.coroutines.CoroutineScope
+import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asFlow
+import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import space.rodionov.porosenokpetr.feature_driller.di.ApplicationScope
 import space.rodionov.porosenokpetr.feature_driller.di.ViewModelAssistedFactory
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_LIGHT
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Category
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
-import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.*
-import space.rodionov.porosenokpetr.feature_driller.presentation.settings.language.LanguageBottomsheetViewModel
+import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.DrillerUseCases
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_EN
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_RU
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_LIGHT
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
 import javax.inject.Inject
 
-class WordlistViewModel @Inject constructor(
+class WordlistViewModel (
     private val drillerUseCases: DrillerUseCases,
     private val state: SavedStateHandle,
 ) : ViewModel() {

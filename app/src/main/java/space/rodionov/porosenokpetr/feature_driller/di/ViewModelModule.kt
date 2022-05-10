@@ -26,35 +26,35 @@ abstract class ViewModelModule {
     @ViewModelKey(MainViewModel::class)
     internal abstract fun mainViewModel(mainViewModel: MainViewModel): ViewModel
 
-    @Binds
-    @IntoMap
-    @ViewModelKey(CollectionViewModel::class)
-    internal abstract fun collectionViewModel(collectionViewModel: CollectionViewModel): ViewModel
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(DrillerViewModel::class)
-    internal abstract fun drillerViewModel(drillerViewModel: DrillerViewModel): ViewModel
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(LanguageBottomsheetViewModel::class)
-    internal abstract fun languageBottomsheetViewModel(languageBottomsheetViewModel: LanguageBottomsheetViewModel): ViewModel
+//    @Binds
+//    @IntoMap
+//    @ViewModelKey(CollectionViewModel::class)
+//    internal abstract fun collectionViewModel(collectionViewModel: CollectionViewModel): ViewModel
+//
+//    @Binds
+//    @IntoMap
+//    @ViewModelKey(DrillerViewModel::class)
+//    internal abstract fun drillerViewModel(drillerViewModel: DrillerViewModel): ViewModel
+//
+//    @Binds
+//    @IntoMap
+//    @ViewModelKey(LanguageBottomsheetViewModel::class)
+//    internal abstract fun languageBottomsheetViewModel(languageBottomsheetViewModel: LanguageBottomsheetViewModel): ViewModel
 
     @Binds
     @IntoMap
     @ViewModelKey(SettingsViewModel::class)
     internal abstract fun settingsViewModel(settingsViewModel: SettingsViewModel): ViewModel
 
-    @Binds
-    @IntoMap
-    @ViewModelKey(EditAddWordViewModel::class)
-    internal abstract fun editAddWordViewModel(editAddWordViewModel: EditAddWordViewModel): ViewModel
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(WordlistViewModel::class)
-    internal abstract fun wordlistViewModel(wordlistViewModel: WordlistViewModel): ViewModel
+//    @Binds
+//    @IntoMap
+//    @ViewModelKey(EditAddWordViewModel::class)
+//    internal abstract fun editAddWordViewModel(editAddWordViewModel: EditAddWordViewModel): ViewModel
+//
+//    @Binds
+//    @IntoMap
+//    @ViewModelKey(WordlistViewModel::class)
+//    internal abstract fun wordlistViewModel(wordlistViewModel: WordlistViewModel): ViewModel
 }
 
 

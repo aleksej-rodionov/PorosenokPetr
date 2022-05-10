@@ -23,7 +23,7 @@ import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_LIGHT
 import javax.inject.Inject
 
-class CollectionViewModel @Inject constructor(
+class CollectionViewModel (
     private val drillerUseCases: DrillerUseCases,
    private val state: SavedStateHandle,
 ) : ViewModel() {

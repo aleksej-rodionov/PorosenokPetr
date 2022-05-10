@@ -3,6 +3,7 @@ package space.rodionov.porosenokpetr
 import android.app.Application
 import androidx.work.Configuration
 import androidx.work.WorkManager
+import space.rodionov.porosenokpetr.feature_driller.di.DaggerMainComponent
 import space.rodionov.porosenokpetr.feature_driller.di.MainComponent
 import space.rodionov.porosenokpetr.feature_driller.work.NotifyWorkerFactory
 import javax.inject.Inject
