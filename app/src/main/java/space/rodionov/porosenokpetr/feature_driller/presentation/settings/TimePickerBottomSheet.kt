@@ -36,8 +36,8 @@ class TimePickerBottomSheet: BottomSheetDialogFragment() {
 //    private val vmSettings: SettingsViewModel by viewModels({ requireParentFragment() })
     @Inject
     lateinit var factory: ViewModelFactory //todo перенести в базовый фрагмент
-    private val vmSettings: SettingsViewModel by viewModels<SettingsViewModel>(
-        ownerProducer = { requireActivity() },
+    private val vmSettings by viewModels<SettingsViewModel>(
+        ownerProducer = { requireParentFragment() },
         factoryProducer = { factory }
     )
 

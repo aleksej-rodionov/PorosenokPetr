@@ -1,25 +1,31 @@
 package space.rodionov.porosenokpetr
 
 import android.app.Application
-import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.Configuration
-import dagger.hilt.android.HiltAndroidApp
+import androidx.work.WorkManager
 import space.rodionov.porosenokpetr.feature_driller.di.MainComponent
+import space.rodionov.porosenokpetr.feature_driller.work.NotifyWorkerFactory
 import javax.inject.Inject
 
 
-class PorosenokPetrApp: Application(), Configuration.Provider {
+class PorosenokPetrApp: Application() {
 
-    @Inject lateinit var workerFactory: HiltWorkerFactory
+//    @Inject lateinit var workerFactory: HiltWorkerFactory
+//    override fun getWorkManagerConfiguration() = Configuration.Builder()
+//        .setWorkerFactory(workerFactory)
+//        .build()
 
-    override fun getWorkManagerConfiguration() = Configuration.Builder()
-        .setWorkerFactory(workerFactory)
-        .build()
+    @Inject lateinit var workerFactory: NotifyWorkerFactory
 
     override fun onCreate() {
         super.onCreate() // todo move creating notificationChannel and notificationManager here
         component = DaggerMainComponent.builder().application(this).build()
         component?.inject(this)
+
+        val workManagerConfig = Configuration.Builder()
+            .setWorkerFactory(workerFactory)
+            .build()
+        WorkManager.initialize(this, workManagerConfig)
     }
 
     companion object {

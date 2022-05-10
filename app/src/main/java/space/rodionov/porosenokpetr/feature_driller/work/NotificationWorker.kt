@@ -10,23 +10,20 @@ import android.media.AudioAttributes
 import android.media.RingtoneManager
 import android.os.Build
 import androidx.core.app.NotificationCompat
-import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
 import androidx.work.ListenableWorker.Result.success
-import androidx.work.Worker
 import androidx.work.WorkerParameters
 import dagger.assisted.Assisted
+import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import space.rodionov.porosenokpetr.MainActivity
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.vectorToBitmap
-import space.rodionov.porosenokpetr.feature_driller.data.storage.Datastore
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 
-@HiltWorker
 class NotificationWorker @AssistedInject constructor (
-    @Assisted context: Context,
-    @Assisted params: WorkerParameters,
+    @Assisted private val context: Context,
+    @Assisted private val params: WorkerParameters,
     private val notificationHelper: NotificationHelper
 ) : CoroutineWorker(context, params) {
 
@@ -97,5 +94,14 @@ class NotificationWorker @AssistedInject constructor (
         const val NOTIFICATION_CHANNEL = "porosenok_petr_channel_01"
         const val NOTIFICATION_WORK = "porosenok_petr_notification_work"
         const val MILLIS_SINCE_DAY_START = "millis_since_day_start"
+    }
+
+    /**
+     * class annotate with @AssistedFactory will available in the dependency graph, you don't need
+     * additional binding from [HelloWorldWorker_Factory_Impl] to [Factory].
+     */
+    @AssistedFactory
+    interface Factory{
+        fun create(context: Context, params: WorkerParameters): NotificationWorker
     }
 }

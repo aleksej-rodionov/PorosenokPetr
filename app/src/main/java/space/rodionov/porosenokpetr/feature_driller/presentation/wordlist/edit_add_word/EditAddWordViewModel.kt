@@ -5,7 +5,6 @@ import androidx.savedstate.SavedStateRegistryOwner
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -16,7 +15,6 @@ import space.rodionov.porosenokpetr.feature_driller.presentation.driller.Driller
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 import javax.inject.Inject
 
-@HiltViewModel
 class EditAddWordViewModel @Inject constructor(
     private val drillerUseCases: DrillerUseCases,
     private val state: SavedStateHandle,

@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.snackbar.Snackbar
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.MainActivity
 import space.rodionov.porosenokpetr.PorosenokPetrApp
@@ -23,21 +22,19 @@ import space.rodionov.porosenokpetr.feature_driller.presentation.settings.adapte
 import space.rodionov.porosenokpetr.feature_driller.presentation.settings.language.LanguageBottomSheet
 import space.rodionov.porosenokpetr.feature_driller.presentation.settings.language.LanguageHelper
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_DARK
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_UA
+import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_DARK
 import space.rodionov.porosenokpetr.feature_driller.utils.LocalizationHelper
 import space.rodionov.porosenokpetr.feature_driller.utils.SettingsItemType
-import java.util.*
 import javax.inject.Inject
 
-@AndroidEntryPoint
 class SettingsFragment : Fragment(R.layout.fragment_settings) {
 
     private val binding by viewBinding<FragmentSettingsBinding>()
 
     @Inject
     lateinit var factory: ViewModelFactory //todo перенести в базовый фрагмент
-    private val vmSettings: SettingsViewModel by viewModels<SettingsViewModel>(
+    private val vmSettings by viewModels<SettingsViewModel>(
         ownerProducer = { requireActivity() },
         factoryProducer = { factory }
     )

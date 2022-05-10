@@ -12,15 +12,12 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.yuyakaido.android.cardstackview.*
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.BuildConfig
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.redrawViewGroup
 import space.rodionov.porosenokpetr.databinding.FragmentDrillerBinding
 import space.rodionov.porosenokpetr.feature_driller.presentation.base.viewBinding
-import space.rodionov.porosenokpetr.feature_driller.presentation.collection.CollectionViewModel
-import space.rodionov.porosenokpetr.feature_driller.presentation.collection.CollectionViewModelAssistedFactory
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_EN
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_SE

@@ -15,7 +15,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-class NotificationHelper(
+class NotificationHelper (
    private val context: Context
 ) {
 
