@@ -27,13 +27,15 @@ import javax.inject.Inject
 
 class CollectionFragment : Fragment(R.layout.fragment_collection) {
 
-    private val vmCollection: CollectionViewModel by viewModels()
 //    @Inject
 //    lateinit var factory: ViewModelFactory //todo перенести в базовый фрагмент
 //    private val vmCollection: CollectionViewModel by viewModels<CollectionViewModel>(
 //        ownerProducer = { requireActivity() },
 //        factoryProducer = { factory }
 //    )
+    @Inject
+    lateinit var assistedFactory: CollectionViewModelAssistedFactory //todo 1)объединить в одну фабрику и 2)перенести в базовый фрагмент
+    private val vmCollection: CollectionViewModel by viewModels { assistedFactory.create(this) }
 
 
     private val binding by viewBinding<FragmentCollectionBinding>()

@@ -21,6 +21,8 @@ import space.rodionov.porosenokpetr.core.showKeyboard
 import space.rodionov.porosenokpetr.databinding.FragmentWordlistBinding
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
 import space.rodionov.porosenokpetr.feature_driller.presentation.base.viewBinding
+import space.rodionov.porosenokpetr.feature_driller.presentation.driller.DrillerViewModel
+import space.rodionov.porosenokpetr.feature_driller.presentation.driller.DrillerViewModelAssistedFactory
 import space.rodionov.porosenokpetr.feature_driller.presentation.wordlist.edit_add_word.WordlistBottomSheet
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.EMPTY_STRING
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_EN
@@ -31,12 +33,18 @@ import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_NATIVE_L
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.feature_driller.utils.LocalizationHelper
 import java.util.*
+import javax.inject.Inject
 
 class WordlistFragment : Fragment(R.layout.fragment_wordlist), TextToSpeech.OnInitListener {
 
     private val binding by viewBinding<FragmentWordlistBinding>()
 
-    private val vmWordlist: WordlistViewModel by viewModels()
+    @Inject
+    lateinit var assistedFactory: WordlistViewModelAssistedFactory //todo 1)объединить в одну фабрику и 2)перенести в базовый фрагмент
+    private val vmWordlist: WordlistViewModel by viewModels {
+        assistedFactory.create(this)
+    }
+
     private var textToSpeech: TextToSpeech? = null
 
     private val wordlistAdapter: WordlistAdapter by lazy {

@@ -19,19 +19,24 @@ import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.redrawViewGroup
 import space.rodionov.porosenokpetr.databinding.FragmentDrillerBinding
 import space.rodionov.porosenokpetr.feature_driller.presentation.base.viewBinding
+import space.rodionov.porosenokpetr.feature_driller.presentation.collection.CollectionViewModel
+import space.rodionov.porosenokpetr.feature_driller.presentation.collection.CollectionViewModelAssistedFactory
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_EN
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_SE
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_UA
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
 import java.util.*
+import javax.inject.Inject
 
-@AndroidEntryPoint
 class DrillerFragment : Fragment(R.layout.fragment_driller), CardStackListener, TextToSpeech.OnInitListener {
 
-    private val vmDriller: DrillerViewModel by viewModels()
-//    private var _binding: FragmentDrillerBinding? = null
-//    private val binding get() = _binding!!
+    @Inject
+    lateinit var assistedFactory: DrillerViewModelAssistedFactory //todo 1)объединить в одну фабрику и 2)перенести в базовый фрагмент
+    private val vmDriller: DrillerViewModel by viewModels {
+        assistedFactory.create(this)
+    }
+
     private val binding by viewBinding<FragmentDrillerBinding>()
     private var textToSpeech: TextToSpeech? = null
 

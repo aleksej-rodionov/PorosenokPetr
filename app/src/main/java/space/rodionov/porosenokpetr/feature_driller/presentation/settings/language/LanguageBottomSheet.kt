@@ -18,12 +18,14 @@ import space.rodionov.porosenokpetr.BuildConfig
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.redrawViewGroup
 import space.rodionov.porosenokpetr.databinding.BottomsheetLanguageBinding
+import space.rodionov.porosenokpetr.feature_driller.presentation.wordlist.WordlistViewModel
+import space.rodionov.porosenokpetr.feature_driller.presentation.wordlist.WordlistViewModelAssistedFactory
 import space.rodionov.porosenokpetr.feature_driller.utils.AppFlavor
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_CHANGE
 import space.rodionov.porosenokpetr.feature_driller.utils.LocalizationHelper
+import javax.inject.Inject
 
-@AndroidEntryPoint
 class LanguageBottomSheet: BottomSheetDialogFragment() {
 
     companion object {
@@ -34,7 +36,11 @@ class LanguageBottomSheet: BottomSheetDialogFragment() {
         BottomsheetLanguageBinding.inflate(layoutInflater)
     }
 
-    private val vmLanguageSheet: LanguageBottomsheetViewModel by viewModels()
+    @Inject
+    lateinit var assistedFactory: LanguageBottomsheetViewModelAssistedFactory //todo 1)объединить в одну фабрику и 2)перенести в базовый фрагмент
+    private val vmLanguageSheet: LanguageBottomsheetViewModel by viewModels {
+        assistedFactory.create(this)
+    }
 
     private val langAdapter: LanguageAdapter by lazy {
         LanguageAdapter(

@@ -1,10 +1,11 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation.wordlist
 
 import android.util.Log
-import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asFlow
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
+import androidx.savedstate.SavedStateRegistryOwner
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedFactory
+import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -15,11 +16,11 @@ import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Category
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
 import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.*
+import space.rodionov.porosenokpetr.feature_driller.presentation.driller.DrillerViewModel
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_EN
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_RU
 import javax.inject.Inject
 
-@HiltViewModel
 class WordlistViewModel @Inject constructor(
     private val drillerUseCases: DrillerUseCases,
     private val state: SavedStateHandle
@@ -83,6 +84,21 @@ class WordlistViewModel @Inject constructor(
     }
 }
 
+class WordlistViewModelFactory @AssistedInject constructor(
+    private val drillerUseCases: DrillerUseCases,
+    @Assisted owner: SavedStateRegistryOwner,
+) : AbstractSavedStateViewModelFactory(owner, null) {
+    override fun <T : ViewModel?> create(
+        key: String,
+        modelClass: Class<T>,
+        handle: SavedStateHandle
+    ): T = WordlistViewModel(drillerUseCases, handle) as T
+}
+
+@AssistedFactory
+interface WordlistViewModelAssistedFactory {
+    fun create(owner: SavedStateRegistryOwner): WordlistViewModelFactory
+}
 
 
 

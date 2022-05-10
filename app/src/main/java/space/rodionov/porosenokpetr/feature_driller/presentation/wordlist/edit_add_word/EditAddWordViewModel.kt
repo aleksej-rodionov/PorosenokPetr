@@ -1,9 +1,10 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation.wordlist.edit_add_word
 
-import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asFlow
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
+import androidx.savedstate.SavedStateRegistryOwner
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedFactory
+import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.*
@@ -11,6 +12,7 @@ import kotlinx.coroutines.launch
 import space.rodionov.porosenokpetr.feature_driller.di.ApplicationScope
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
 import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.*
+import space.rodionov.porosenokpetr.feature_driller.presentation.driller.DrillerViewModel
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 import javax.inject.Inject
 
@@ -83,4 +85,21 @@ class EditAddWordViewModel @Inject constructor(
             }
         }
     }
+}
+
+class EditAddWordViewModelFactory @AssistedInject constructor(
+    private val drillerUseCases: DrillerUseCases,
+    @Assisted owner: SavedStateRegistryOwner,
+    @ApplicationScope private val applicationScope: CoroutineScope // todo работает норм?
+) : AbstractSavedStateViewModelFactory(owner, null) {
+    override fun <T : ViewModel?> create(
+        key: String,
+        modelClass: Class<T>,
+        handle: SavedStateHandle
+    ): T = EditAddWordViewModel(drillerUseCases, handle, applicationScope) as T
+}
+
+@AssistedFactory
+interface EditAddWordViewModelAssistedFactory {
+    fun create(owner: SavedStateRegistryOwner): EditAddWordViewModelFactory
 }

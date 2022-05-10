@@ -35,7 +35,6 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
 
     private val binding by viewBinding<FragmentSettingsBinding>()
 
-//    private val vmSettings: SettingsViewModel by viewModels()
     @Inject
     lateinit var factory: ViewModelFactory //todo перенести в базовый фрагмент
     private val vmSettings: SettingsViewModel by viewModels<SettingsViewModel>(

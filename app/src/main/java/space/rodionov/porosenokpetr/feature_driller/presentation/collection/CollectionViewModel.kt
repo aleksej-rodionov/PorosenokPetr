@@ -1,8 +1,13 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation.collection
 
+import androidx.lifecycle.AbstractSavedStateViewModelFactory
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.savedstate.SavedStateRegistryOwner
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedFactory
+import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -76,6 +81,22 @@ class CollectionViewModel @Inject constructor(
     fun inactivateCategory(catName: String) = viewModelScope.launch  {
         drillerUseCases.makeCategoryActiveUseCase(catName, false)
     }
+}
+
+class CollectionViewModelFactory @AssistedInject constructor(
+    private val drillerUseCases: DrillerUseCases,
+    @Assisted owner: SavedStateRegistryOwner,
+) : AbstractSavedStateViewModelFactory(owner, null) {
+    override fun <T : ViewModel?> create(
+        key: String,
+        modelClass: Class<T>,
+        handle: SavedStateHandle
+    ): T = CollectionViewModel(drillerUseCases, handle) as T
+}
+
+@AssistedFactory
+interface CollectionViewModelAssistedFactory {
+    fun create(owner: SavedStateRegistryOwner): CollectionViewModelFactory
 }
 
 

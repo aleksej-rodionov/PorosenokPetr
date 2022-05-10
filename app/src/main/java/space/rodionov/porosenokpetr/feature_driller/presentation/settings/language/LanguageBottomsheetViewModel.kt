@@ -1,8 +1,13 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation.settings.language
 
+import androidx.lifecycle.AbstractSavedStateViewModelFactory
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.savedstate.SavedStateRegistryOwner
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedFactory
+import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -10,13 +15,13 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.*
+import space.rodionov.porosenokpetr.feature_driller.presentation.wordlist.WordlistViewModel
 import space.rodionov.porosenokpetr.feature_driller.utils.AppFlavor
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.FOREIGN_LANGUAGE_CHANGE
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_CHANGE
 import javax.inject.Inject
 
-@HiltViewModel
 class LanguageBottomsheetViewModel @Inject constructor(
     private val drillerUseCases: DrillerUseCases,
     private val state: SavedStateHandle
@@ -70,15 +75,22 @@ class LanguageBottomsheetViewModel @Inject constructor(
         val langs = langList.value.toMutableList()
         _langList.value = langs
     }
+}
 
-//    fun updateNativeLangInList(lang: Int) = viewModelScope.launch {
-//        // ??
-//    }
-//
-//    fun updateLearnedLangInList() = viewModelScope.launch {
-//        val langs = langList.value.toMutableList()
-//        _langList.value = langs
-//    }
+class LanguageBottomsheetViewModelFactory @AssistedInject constructor(
+    private val drillerUseCases: DrillerUseCases,
+    @Assisted owner: SavedStateRegistryOwner,
+) : AbstractSavedStateViewModelFactory(owner, null) {
+    override fun <T : ViewModel?> create(
+        key: String,
+        modelClass: Class<T>,
+        handle: SavedStateHandle
+    ): T = LanguageBottomsheetViewModel(drillerUseCases, handle) as T
+}
+
+@AssistedFactory
+interface LanguageBottomsheetViewModelAssistedFactory {
+    fun create(owner: SavedStateRegistryOwner): LanguageBottomsheetViewModelFactory
 }
 
 

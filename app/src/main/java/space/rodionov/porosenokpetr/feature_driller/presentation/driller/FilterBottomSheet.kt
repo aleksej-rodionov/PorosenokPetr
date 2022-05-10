@@ -23,8 +23,8 @@ import space.rodionov.porosenokpetr.core.redrawChips
 import space.rodionov.porosenokpetr.core.redrawViewGroup
 import space.rodionov.porosenokpetr.databinding.BottomsheetFilterBinding
 import space.rodionov.porosenokpetr.feature_driller.utils.LocalizationHelper
+import javax.inject.Inject
 
-@AndroidEntryPoint
 class FilterBottomSheet : BottomSheetDialogFragment(), CompoundButton.OnCheckedChangeListener {
 
     companion object {
@@ -35,9 +35,16 @@ class FilterBottomSheet : BottomSheetDialogFragment(), CompoundButton.OnCheckedC
         BottomsheetFilterBinding.inflate(layoutInflater)
     }
 
-    private val vmDriller: DrillerViewModel by viewModels({
-        requireParentFragment()
-    })
+//    private val vmDriller: DrillerViewModel by viewModels({
+//        requireParentFragment()
+//    })
+
+    @Inject
+    lateinit var assistedFactory: DrillerViewModelAssistedFactory //todo 1)объединить в одну фабрику и 2)перенести в базовый фрагмент
+    private val vmDriller: DrillerViewModel by viewModels(
+        ownerProducer = { requireParentFragment() },
+        factoryProducer = { assistedFactory.create(requireParentFragment() /*or this?*/) } // todo проверить не надо ли вернуть зыс
+    )
 
     override fun getTheme(): Int = vmDriller.mode.value.let {
         when (it) {
@@ -76,7 +83,12 @@ class FilterBottomSheet : BottomSheetDialogFragment(), CompoundButton.OnCheckedC
                         newChip.isChecked = cat.isCategoryActive
                         chipGroupCategories.addView(newChip)
                     }
-                    chipGroupCategories.redrawChips(fetchColors(vmDriller.mode.value, resources)) // todo убрать отсюда
+                    chipGroupCategories.redrawChips(
+                        fetchColors(
+                            vmDriller.mode.value,
+                            resources
+                        )
+                    ) // todo убрать отсюда
                     chipGroupCategories.children.forEach { chip ->
                         (chip as Chip).setOnCheckedChangeListener(null)
                     }
@@ -125,7 +137,8 @@ class FilterBottomSheet : BottomSheetDialogFragment(), CompoundButton.OnCheckedC
             this@FilterBottomSheet.lifecycleScope.launchWhenStarted {
                 vmDriller.nativeLang.collectLatest {
                     tvTitle.text = getString(LocalizationHelper.activeCategories.getIdByLang(it))
-                    cbActivateAll.text = getString(LocalizationHelper.activateAllCategories.getIdByLang(it))
+                    cbActivateAll.text =
+                        getString(LocalizationHelper.activateAllCategories.getIdByLang(it))
                 }
             }
         }
