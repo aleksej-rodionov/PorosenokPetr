@@ -9,19 +9,22 @@ import androidx.savedstate.SavedStateRegistryOwner
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import space.rodionov.porosenokpetr.core.Resource
+import space.rodionov.porosenokpetr.feature_driller.di.ApplicationScope
+import space.rodionov.porosenokpetr.feature_driller.di.ViewModelAssistedFactory
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
 import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.DrillerUseCases
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
 import javax.inject.Inject
 
-class DrillerViewModel @Inject constructor(
+class DrillerViewModel /*@Inject constructor*/(
     private val drillerUseCases: DrillerUseCases,
-    private val state: SavedStateHandle
+    private val state: SavedStateHandle,
 ) : ViewModel() {
     var savedPosition = state.get<Int>("savedPos") ?: 0
         set(value) {
@@ -283,18 +286,26 @@ data class WordState(
     val isLoading: Boolean = false
 )
 
-class DrillerViewModelFactory @AssistedInject constructor(
+class DrillerViewModelFactory @Inject constructor(
     private val drillerUseCases: DrillerUseCases,
-    @Assisted owner: SavedStateRegistryOwner,
-) : AbstractSavedStateViewModelFactory(owner, null) {
-    override fun <T : ViewModel?> create(
-        key: String,
-        modelClass: Class<T>,
-        handle: SavedStateHandle
-    ): T = DrillerViewModel(drillerUseCases, handle) as T
+) : ViewModelAssistedFactory<DrillerViewModel> {
+    override fun create(handle: SavedStateHandle): DrillerViewModel {
+        return DrillerViewModel(drillerUseCases, handle)
+    }
 }
 
-@AssistedFactory
-interface DrillerViewModelAssistedFactory {
-    fun create(owner: SavedStateRegistryOwner): DrillerViewModelFactory
-}
+//class DrillerViewModelFactory @AssistedInject constructor(
+//    private val drillerUseCases: DrillerUseCases,
+//    @Assisted owner: SavedStateRegistryOwner,
+//) : AbstractSavedStateViewModelFactory(owner, null) {
+//    override fun <T : ViewModel?> create(
+//        key: String,
+//        modelClass: Class<T>,
+//        handle: SavedStateHandle
+//    ): T = DrillerViewModel(drillerUseCases, handle) as T
+//}
+//
+//@AssistedFactory
+//interface DrillerViewModelAssistedFactory {
+//    fun create(owner: SavedStateRegistryOwner): DrillerViewModelFactory
+//}

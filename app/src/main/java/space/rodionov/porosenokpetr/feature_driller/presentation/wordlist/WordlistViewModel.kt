@@ -6,22 +6,26 @@ import androidx.savedstate.SavedStateRegistryOwner
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import space.rodionov.porosenokpetr.feature_driller.di.ApplicationScope
+import space.rodionov.porosenokpetr.feature_driller.di.ViewModelAssistedFactory
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_LIGHT
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Category
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
 import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.*
+import space.rodionov.porosenokpetr.feature_driller.presentation.settings.language.LanguageBottomsheetViewModel
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_EN
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_RU
 import javax.inject.Inject
 
 class WordlistViewModel @Inject constructor(
     private val drillerUseCases: DrillerUseCases,
-    private val state: SavedStateHandle
+    private val state: SavedStateHandle,
 ) : ViewModel() {
 
     private val _nativeLang = drillerUseCases.observeNativeLangUseCase.invoke()
@@ -82,21 +86,29 @@ class WordlistViewModel @Inject constructor(
     }
 }
 
-class WordlistViewModelFactory @AssistedInject constructor(
+class WordlistViewModelFactory @Inject constructor(
     private val drillerUseCases: DrillerUseCases,
-    @Assisted owner: SavedStateRegistryOwner,
-) : AbstractSavedStateViewModelFactory(owner, null) {
-    override fun <T : ViewModel?> create(
-        key: String,
-        modelClass: Class<T>,
-        handle: SavedStateHandle
-    ): T = WordlistViewModel(drillerUseCases, handle) as T
+) : ViewModelAssistedFactory<WordlistViewModel> {
+    override fun create(handle: SavedStateHandle): WordlistViewModel {
+        return WordlistViewModel(drillerUseCases, handle)
+    }
 }
 
-@AssistedFactory
-interface WordlistViewModelAssistedFactory {
-    fun create(owner: SavedStateRegistryOwner): WordlistViewModelFactory
-}
+//class WordlistViewModelFactory @AssistedInject constructor(
+//    private val drillerUseCases: DrillerUseCases,
+//    @Assisted owner: SavedStateRegistryOwner,
+//) : AbstractSavedStateViewModelFactory(owner, null) {
+//    override fun <T : ViewModel?> create(
+//        key: String,
+//        modelClass: Class<T>,
+//        handle: SavedStateHandle
+//    ): T = WordlistViewModel(drillerUseCases, handle) as T
+//}
+//
+//@AssistedFactory
+//interface WordlistViewModelAssistedFactory {
+//    fun create(owner: SavedStateRegistryOwner): WordlistViewModelFactory
+//}
 
 
 

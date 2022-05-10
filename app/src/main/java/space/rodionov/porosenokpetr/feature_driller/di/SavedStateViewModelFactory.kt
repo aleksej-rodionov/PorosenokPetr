@@ -1,5 +1,6 @@
 package space.rodionov.porosenokpetr.feature_driller.di
 
+import android.os.Bundle
 import androidx.lifecycle.AbstractSavedStateViewModelFactory
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
@@ -12,7 +13,7 @@ import javax.inject.Inject
 import javax.inject.Provider
 import javax.inject.Singleton
 
-@Singleton
+/*@Singleton
 class AssistedViewModelFactory @Inject constructor(
     private val viewModels: MutableMap<Class<out ViewModel>, Provider<ViewModel>>
 ) : ViewModelProvider.Factory {
@@ -23,26 +24,45 @@ class AssistedViewModelFactory @Inject constructor(
         return viewModelProvider.get() as T
     }
 
-}
+}*/
 
-class SavedStateViewModelFactory @AssistedInject constructor(
-    private val viewModels: MutableMap<Class<out ViewModel>, Provider<ViewModel>>,
-    @Assisted owner: SavedStateRegistryOwner,
-) : AbstractSavedStateViewModelFactory(owner, null) {
-
-    override fun <T : ViewModel?> create(
+class GenericSavedStateViewModelFactory<out V : ViewModel>(
+    private val viewModelFactory: ViewModelAssistedFactory<V>,
+    owner: SavedStateRegistryOwner,
+    defaultArgs: Bundle? = null
+) : AbstractSavedStateViewModelFactory(owner, defaultArgs) {
+    @Suppress("UNCHECKED_CAST")
+    override fun <T : ViewModel> create(
         key: String,
         modelClass: Class<T>,
         handle: SavedStateHandle
     ): T {
-//        CharactersViewModel(getCharactersUseCase, storageImpl, handle) as T
-        val viewModelProvider = viewModels[modelClass]
-            ?: throw IllegalArgumentException("model class $modelClass not found")
-        return viewModelProvider.get() as T
+        return viewModelFactory.create(handle) as T
     }
 }
 
-@AssistedFactory
-interface SavedStateViewModelAssistedFactory {
-    fun create(owner: SavedStateRegistryOwner): SavedStateViewModelFactory
+interface ViewModelAssistedFactory<T : ViewModel> {
+    fun create(handle: SavedStateHandle): T
 }
+
+//class SavedStateViewModelFactory @AssistedInject constructor(
+//    private val viewModels: MutableMap<Class<out ViewModel>, Provider<ViewModel>>,
+//    @Assisted owner: SavedStateRegistryOwner,
+//) : AbstractSavedStateViewModelFactory(owner, null) {
+//
+//    override fun <T : ViewModel?> create(
+//        key: String,
+//        modelClass: Class<T>,
+//        handle: SavedStateHandle
+//    ): T {
+////        CharactersViewModel(getCharactersUseCase, storageImpl, handle) as T
+//        val viewModelProvider = viewModels[modelClass]
+//            ?: throw IllegalArgumentException("model class $modelClass not found")
+//        return viewModelProvider.get() as T
+//    }
+//}
+//
+//@AssistedFactory
+//interface SavedStateViewModelAssistedFactory {
+//    fun create(owner: SavedStateRegistryOwner): SavedStateViewModelFactory
+//}

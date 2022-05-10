@@ -18,7 +18,8 @@ import javax.inject.Singleton
 @Component(
     modules = [
         ScopeModule::class,
-        AppModule::class
+        AppModule::class,
+        ViewModelModule::class
     ]
 )
 interface MainComponent {

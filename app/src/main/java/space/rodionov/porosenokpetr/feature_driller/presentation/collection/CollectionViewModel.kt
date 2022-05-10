@@ -8,20 +8,24 @@ import androidx.savedstate.SavedStateRegistryOwner
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import space.rodionov.porosenokpetr.feature_driller.di.ApplicationScope
+import space.rodionov.porosenokpetr.feature_driller.di.ViewModelAssistedFactory
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Category
 import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.DrillerUseCases
+import space.rodionov.porosenokpetr.feature_driller.presentation.driller.DrillerViewModel
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_LIGHT
 import javax.inject.Inject
 
 class CollectionViewModel @Inject constructor(
     private val drillerUseCases: DrillerUseCases,
-   private val state: SavedStateHandle
+   private val state: SavedStateHandle,
 ) : ViewModel() {
     private var activeCatsAmount = state.get<Int>("activeCatsAmount") ?: 0
         set(value) {
@@ -85,21 +89,29 @@ class CollectionViewModel @Inject constructor(
     }
 }
 
-class CollectionViewModelFactory @AssistedInject constructor(
+class CollectionViewModelFactory @Inject constructor(
     private val drillerUseCases: DrillerUseCases,
-    @Assisted owner: SavedStateRegistryOwner,
-) : AbstractSavedStateViewModelFactory(owner, null) {
-    override fun <T : ViewModel?> create(
-        key: String,
-        modelClass: Class<T>,
-        handle: SavedStateHandle
-    ): T = CollectionViewModel(drillerUseCases, handle) as T
+) : ViewModelAssistedFactory<CollectionViewModel> {
+    override fun create(handle: SavedStateHandle): CollectionViewModel {
+        return CollectionViewModel(drillerUseCases, handle)
+    }
 }
 
-@AssistedFactory
-interface CollectionViewModelAssistedFactory {
-    fun create(owner: SavedStateRegistryOwner): CollectionViewModelFactory
-}
+//class CollectionViewModelFactory @AssistedInject constructor(
+//    private val drillerUseCases: DrillerUseCases,
+//    @Assisted owner: SavedStateRegistryOwner,
+//) : AbstractSavedStateViewModelFactory(owner, null) {
+//    override fun <T : ViewModel?> create(
+//        key: String,
+//        modelClass: Class<T>,
+//        handle: SavedStateHandle
+//    ): T = CollectionViewModel(drillerUseCases, handle) as T
+//}
+//
+//@AssistedFactory
+//interface CollectionViewModelAssistedFactory {
+//    fun create(owner: SavedStateRegistryOwner): CollectionViewModelFactory
+//}
 
 
 

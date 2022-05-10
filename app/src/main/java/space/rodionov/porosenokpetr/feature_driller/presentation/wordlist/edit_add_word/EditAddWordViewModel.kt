@@ -9,9 +9,11 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import space.rodionov.porosenokpetr.feature_driller.di.ApplicationScope
+import space.rodionov.porosenokpetr.feature_driller.di.ViewModelAssistedFactory
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
 import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.*
 import space.rodionov.porosenokpetr.feature_driller.presentation.driller.DrillerViewModel
+import space.rodionov.porosenokpetr.feature_driller.presentation.wordlist.WordlistViewModel
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 import javax.inject.Inject
 
@@ -85,19 +87,28 @@ class EditAddWordViewModel @Inject constructor(
     }
 }
 
-class EditAddWordViewModelFactory @AssistedInject constructor(
+class EditAddWordViewModelFactory @Inject constructor(
     private val drillerUseCases: DrillerUseCases,
-    @Assisted owner: SavedStateRegistryOwner,
     @ApplicationScope private val applicationScope: CoroutineScope // todo работает норм?
-) : AbstractSavedStateViewModelFactory(owner, null) {
-    override fun <T : ViewModel?> create(
-        key: String,
-        modelClass: Class<T>,
-        handle: SavedStateHandle
-    ): T = EditAddWordViewModel(drillerUseCases, handle, applicationScope) as T
+) : ViewModelAssistedFactory<EditAddWordViewModel> {
+    override fun create(handle: SavedStateHandle): EditAddWordViewModel {
+        return EditAddWordViewModel(drillerUseCases, handle, applicationScope)
+    }
 }
 
-@AssistedFactory
-interface EditAddWordViewModelAssistedFactory {
-    fun create(owner: SavedStateRegistryOwner): EditAddWordViewModelFactory
-}
+//class EditAddWordViewModelFactory @AssistedInject constructor(
+//    private val drillerUseCases: DrillerUseCases,
+//    @Assisted owner: SavedStateRegistryOwner,
+//    @ApplicationScope private val applicationScope: CoroutineScope // todo работает норм?
+//) : AbstractSavedStateViewModelFactory(owner, null) {
+//    override fun <T : ViewModel?> create(
+//        key: String,
+//        modelClass: Class<T>,
+//        handle: SavedStateHandle
+//    ): T = EditAddWordViewModel(drillerUseCases, handle, applicationScope) as T
+//}
+//
+//@AssistedFactory
+//interface EditAddWordViewModelAssistedFactory {
+//    fun create(owner: SavedStateRegistryOwner): EditAddWordViewModelFactory
+//}

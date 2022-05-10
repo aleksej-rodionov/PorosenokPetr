@@ -8,12 +8,16 @@ import androidx.savedstate.SavedStateRegistryOwner
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import space.rodionov.porosenokpetr.feature_driller.di.ApplicationScope
+import space.rodionov.porosenokpetr.feature_driller.di.ViewModelAssistedFactory
 import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.DrillerUseCases
+import space.rodionov.porosenokpetr.feature_driller.presentation.collection.CollectionViewModel
 import space.rodionov.porosenokpetr.feature_driller.utils.AppFlavor
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.FOREIGN_LANGUAGE_CHANGE
@@ -22,7 +26,7 @@ import javax.inject.Inject
 
 class LanguageBottomsheetViewModel @Inject constructor(
     private val drillerUseCases: DrillerUseCases,
-    private val state: SavedStateHandle
+    private val state: SavedStateHandle,
 ) : ViewModel() {
     var nativeOrForeign = state.getLiveData<Int>("nativeForeign", NATIVE_LANGUAGE_CHANGE)
 
@@ -75,21 +79,29 @@ class LanguageBottomsheetViewModel @Inject constructor(
     }
 }
 
-class LanguageBottomsheetViewModelFactory @AssistedInject constructor(
+class LanguageBottomsheetViewModelFactory @Inject constructor(
     private val drillerUseCases: DrillerUseCases,
-    @Assisted owner: SavedStateRegistryOwner,
-) : AbstractSavedStateViewModelFactory(owner, null) {
-    override fun <T : ViewModel?> create(
-        key: String,
-        modelClass: Class<T>,
-        handle: SavedStateHandle
-    ): T = LanguageBottomsheetViewModel(drillerUseCases, handle) as T
+) : ViewModelAssistedFactory<LanguageBottomsheetViewModel> {
+    override fun create(handle: SavedStateHandle): LanguageBottomsheetViewModel {
+        return LanguageBottomsheetViewModel(drillerUseCases, handle)
+    }
 }
 
-@AssistedFactory
-interface LanguageBottomsheetViewModelAssistedFactory {
-    fun create(owner: SavedStateRegistryOwner): LanguageBottomsheetViewModelFactory
-}
+//class LanguageBottomsheetViewModelFactory @AssistedInject constructor(
+//    private val drillerUseCases: DrillerUseCases,
+//    @Assisted owner: SavedStateRegistryOwner,
+//) : AbstractSavedStateViewModelFactory(owner, null) {
+//    override fun <T : ViewModel?> create(
+//        key: String,
+//        modelClass: Class<T>,
+//        handle: SavedStateHandle
+//    ): T = LanguageBottomsheetViewModel(drillerUseCases, handle) as T
+//}
+//
+//@AssistedFactory
+//interface LanguageBottomsheetViewModelAssistedFactory {
+//    fun create(owner: SavedStateRegistryOwner): LanguageBottomsheetViewModelFactory
+//}
 
 
 
