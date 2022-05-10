@@ -25,7 +25,6 @@ import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
 
-@HiltViewModel
 class SettingsViewModel @Inject constructor(
     private val notificationHelper: NotificationHelper,
     private val drillerUseCases: DrillerUseCases

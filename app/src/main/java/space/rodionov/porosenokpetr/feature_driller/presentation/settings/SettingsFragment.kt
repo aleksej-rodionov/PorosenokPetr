@@ -12,10 +12,12 @@ import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.MainActivity
+import space.rodionov.porosenokpetr.PorosenokPetrApp
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.redrawViewGroup
 import space.rodionov.porosenokpetr.databinding.FragmentSettingsBinding
 import space.rodionov.porosenokpetr.databinding.SnackbarLayoutBinding
+import space.rodionov.porosenokpetr.feature_driller.di.ViewModelFactory
 import space.rodionov.porosenokpetr.feature_driller.presentation.base.viewBinding
 import space.rodionov.porosenokpetr.feature_driller.presentation.settings.adapter.SettingsAdapter
 import space.rodionov.porosenokpetr.feature_driller.presentation.settings.language.LanguageBottomSheet
@@ -26,12 +28,20 @@ import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_UA
 import space.rodionov.porosenokpetr.feature_driller.utils.LocalizationHelper
 import space.rodionov.porosenokpetr.feature_driller.utils.SettingsItemType
 import java.util.*
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class SettingsFragment : Fragment(R.layout.fragment_settings) {
 
     private val binding by viewBinding<FragmentSettingsBinding>()
-    private val vmSettings: SettingsViewModel by viewModels()
+
+//    private val vmSettings: SettingsViewModel by viewModels()
+    @Inject
+    lateinit var factory: ViewModelFactory //todo перенести в базовый фрагмент
+    private val vmSettings: SettingsViewModel by viewModels<SettingsViewModel>(
+        ownerProducer = { requireActivity() },
+        factoryProducer = { factory }
+    )
 
     private val settingsAdapter: SettingsAdapter by lazy {
         SettingsAdapter(
@@ -43,6 +53,11 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
                 onSetingsItemClick(type)
             }
         )
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        PorosenokPetrApp.component?.inject(this)
+        super.onCreate(savedInstanceState)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

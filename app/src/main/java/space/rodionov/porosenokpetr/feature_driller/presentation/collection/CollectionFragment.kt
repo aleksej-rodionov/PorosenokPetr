@@ -16,19 +16,26 @@ import space.rodionov.porosenokpetr.MainActivity
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.redrawViewGroup
 import space.rodionov.porosenokpetr.databinding.FragmentCollectionBinding
+import space.rodionov.porosenokpetr.feature_driller.di.ViewModelFactory
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Category
 import space.rodionov.porosenokpetr.feature_driller.presentation.base.viewBinding
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.feature_driller.utils.LocalizationHelper
 import java.util.*
+import javax.inject.Inject
 
 
-@AndroidEntryPoint
 class CollectionFragment : Fragment(R.layout.fragment_collection) {
 
     private val vmCollection: CollectionViewModel by viewModels()
-//    private var _binding: FragmentCollectionBinding? = null
-//    private val binding get() = _binding
+//    @Inject
+//    lateinit var factory: ViewModelFactory //todo перенести в базовый фрагмент
+//    private val vmCollection: CollectionViewModel by viewModels<CollectionViewModel>(
+//        ownerProducer = { requireActivity() },
+//        factoryProducer = { factory }
+//    )
+
+
     private val binding by viewBinding<FragmentCollectionBinding>()
 
     private val collectionAdapter: CollectionAdapter by lazy {

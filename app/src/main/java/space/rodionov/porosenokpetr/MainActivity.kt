@@ -27,7 +27,10 @@ class MainActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
-    private val vmMain: MainViewModel by viewModels()
+//    private val vmMain: MainViewModel by viewModels()
+    private val vmMain by viewModels<MainViewModel>(
+        factoryProducer = { factory }
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         PorosenokPetrApp.component?.inject(this)

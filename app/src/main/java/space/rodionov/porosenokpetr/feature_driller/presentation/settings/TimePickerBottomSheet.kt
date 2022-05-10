@@ -1,5 +1,6 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation.settings
 
+import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,11 +10,14 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.coroutines.flow.collectLatest
+import space.rodionov.porosenokpetr.PorosenokPetrApp
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.*
 import space.rodionov.porosenokpetr.databinding.BottomsheetTimePickerBinding
+import space.rodionov.porosenokpetr.feature_driller.di.ViewModelFactory
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 import java.util.*
+import javax.inject.Inject
 
 class TimePickerBottomSheet: BottomSheetDialogFragment() {
 
@@ -28,9 +32,21 @@ class TimePickerBottomSheet: BottomSheetDialogFragment() {
         BottomsheetTimePickerBinding.inflate(layoutInflater)
     }
 
-    private val vmSettings: SettingsViewModel by viewModels({ requireParentFragment() })
 
-    override fun getTheme(): Int = vmSettings.mode.value?.let {
+//    private val vmSettings: SettingsViewModel by viewModels({ requireParentFragment() })
+    @Inject
+    lateinit var factory: ViewModelFactory //todo перенести в базовый фрагмент
+    private val vmSettings: SettingsViewModel by viewModels<SettingsViewModel>(
+        ownerProducer = { requireActivity() },
+        factoryProducer = { factory }
+    )
+
+    override fun onAttach(context: Context) {
+        PorosenokPetrApp.component?.inject(this)
+        super.onAttach(context)
+    }
+
+    override fun getTheme(): Int = vmSettings.mode.value.let {
         when (it) {
             Constants.MODE_LIGHT -> R.style.Theme_NavBarDay
             Constants.MODE_DARK -> R.style.Theme_NavBarNight
