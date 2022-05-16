@@ -37,6 +37,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
+        freeCompilerArgs = ['-Xjvm-default=compatibility']
         jvmTarget = '1.8'
         useIR = true
     }
@@ -136,4 +137,5 @@ dependencies {
     // WorkManager
     implementation 'androidx.work:work-runtime-ktx:2.3.4'
     implementation 'androidx.hilt:hilt-work:1.0.0-alpha01'
+
 }
