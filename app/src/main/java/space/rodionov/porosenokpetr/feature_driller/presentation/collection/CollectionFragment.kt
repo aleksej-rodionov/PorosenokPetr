@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.MainActivity
+import space.rodionov.porosenokpetr.PorosenokPetrApp
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.redrawViewGroup
 import space.rodionov.porosenokpetr.databinding.FragmentCollectionBinding
@@ -51,11 +52,16 @@ class CollectionFragment : Fragment(R.layout.fragment_collection) {
         )
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        PorosenokPetrApp.component?.inject(this)
+        super.onCreate(savedInstanceState)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 //        _binding = FragmentCollectionBinding.bind(view)
 
-        binding?.apply {
+        binding.apply {
             rvCats.apply {
                 adapter = collectionAdapter
                 setHasFixedSize(true)

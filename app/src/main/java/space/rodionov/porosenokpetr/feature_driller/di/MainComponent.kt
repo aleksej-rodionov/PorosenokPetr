@@ -10,6 +10,7 @@ import space.rodionov.porosenokpetr.feature_driller.presentation.driller.Driller
 import space.rodionov.porosenokpetr.feature_driller.presentation.driller.FilterBottomSheet
 import space.rodionov.porosenokpetr.feature_driller.presentation.settings.SettingsFragment
 import space.rodionov.porosenokpetr.feature_driller.presentation.settings.TimePickerBottomSheet
+import space.rodionov.porosenokpetr.feature_driller.presentation.settings.language.LanguageBottomSheet
 import space.rodionov.porosenokpetr.feature_driller.presentation.wordlist.WordlistFragment
 import space.rodionov.porosenokpetr.feature_driller.presentation.wordlist.edit_add_word.WordlistBottomSheet
 import javax.inject.Singleton
@@ -33,6 +34,7 @@ interface MainComponent {
     fun inject(fragment: TimePickerBottomSheet)
     fun inject(fragment: WordlistFragment)
     fun inject(fragment: WordlistBottomSheet)
+    fun inject(fragment: LanguageBottomSheet)
 
     @Component.Builder
     interface Builder {

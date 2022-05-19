@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import com.yuyakaido.android.cardstackview.*
 import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.BuildConfig
+import space.rodionov.porosenokpetr.PorosenokPetrApp
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.redrawViewGroup
 import space.rodionov.porosenokpetr.databinding.FragmentDrillerBinding
@@ -30,9 +31,9 @@ import javax.inject.Inject
 class DrillerFragment : Fragment(R.layout.fragment_driller), CardStackListener, TextToSpeech.OnInitListener {
 
     @Inject
-    lateinit var assistedFactory: DrillerViewModelFactory
+    lateinit var drillerVMFactory: DrillerViewModelFactory
     private val vmDriller: DrillerViewModel by viewModels {
-        GenericSavedStateViewModelFactory(assistedFactory,this)
+        GenericSavedStateViewModelFactory(drillerVMFactory,this)
     }
 
     private val binding by viewBinding<FragmentDrillerBinding>()
@@ -44,14 +45,18 @@ class DrillerFragment : Fragment(R.layout.fragment_driller), CardStackListener, 
         }
     )
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        PorosenokPetrApp.component?.inject(this)
+        super.onCreate(savedInstanceState)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        _binding = FragmentDrillerBinding.bind(view)
         initViewModel()
 
         textToSpeech = TextToSpeech(requireContext(), this)
 
-        binding?.apply {
+        binding.apply {
             cardStackView.apply {
                 adapter = drillerAdapter
                 layoutManager = createLayoutManager()
@@ -80,7 +85,7 @@ class DrillerFragment : Fragment(R.layout.fragment_driller), CardStackListener, 
     private fun initViewModel() {
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             vmDriller.wordsState.collectLatest { wordsState ->
-                binding?.apply {
+                binding.apply {
                     progressBar.isVisible = wordsState.isLoading
                     ivCheck.isVisible = !wordsState.isLoading // а если ошибка то другой iv ?
                     tvItemCount.text = getString(R.string.item_count, wordsState.words.size)

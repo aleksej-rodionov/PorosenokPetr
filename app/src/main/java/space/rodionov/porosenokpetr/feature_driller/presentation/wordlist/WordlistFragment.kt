@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.BuildConfig
 import space.rodionov.porosenokpetr.MainActivity
+import space.rodionov.porosenokpetr.PorosenokPetrApp
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.redrawViewGroup
 import space.rodionov.porosenokpetr.core.showKeyboard
@@ -56,13 +57,17 @@ class WordlistFragment : Fragment(R.layout.fragment_wordlist), TextToSpeech.OnIn
         )
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        PorosenokPetrApp.component?.inject(this)
+        super.onCreate(savedInstanceState)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        _binding = FragmentWordlistBinding.bind(view)
 
         textToSpeech = TextToSpeech(requireContext(), this)
 
-        binding?.apply {
+        binding.apply {
             rvWords.apply {
                 adapter = wordlistAdapter
                 setHasFixedSize(true)
@@ -88,7 +93,7 @@ class WordlistFragment : Fragment(R.layout.fragment_wordlist), TextToSpeech.OnIn
 
     private fun initViewModel() {
         vmWordlist.catToSearchIn.observe(viewLifecycleOwner) {
-            binding?.apply {
+            binding.apply {
                 if (it == null) {
                     val langId = vmWordlist.nativeLang.value
                     Log.d(TAG_NATIVE_LANG, "initViewModel: langid = $langId")

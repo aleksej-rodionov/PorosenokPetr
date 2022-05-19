@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.BuildConfig
+import space.rodionov.porosenokpetr.PorosenokPetrApp
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.redrawViewGroup
 import space.rodionov.porosenokpetr.databinding.BottomsheetLanguageBinding
@@ -56,6 +57,7 @@ class LanguageBottomSheet: BottomSheetDialogFragment() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        PorosenokPetrApp.component?.inject(this)
         super.onCreate(savedInstanceState)
         val args = arguments
         args?.let {

@@ -15,6 +15,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.chip.Chip
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.collectLatest
+import space.rodionov.porosenokpetr.PorosenokPetrApp
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.fetchColors
 import space.rodionov.porosenokpetr.core.redrawChips
@@ -53,6 +54,12 @@ class FilterBottomSheet : BottomSheetDialogFragment(), CompoundButton.OnCheckedC
             else -> R.style.Theme_NavBarDay
         }
     } ?: R.style.Theme_NavBarDay
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        PorosenokPetrApp.component?.inject(this)
+        super.onCreate(savedInstanceState)
+//        Log.d(TAG_PETR, "onCreate: CALLED")
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -158,11 +165,6 @@ class FilterBottomSheet : BottomSheetDialogFragment(), CompoundButton.OnCheckedC
     }
 
 //============BELOW METHODS JUST FOR TESTING BOTTOMSHEETDIALOGFRGMENT LIFECYCLE====================
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-//        Log.d(TAG_PETR, "onCreate: CALLED")
-    }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 //        Log.d(TAG_PETR, "onCreateDialog: CALLED")

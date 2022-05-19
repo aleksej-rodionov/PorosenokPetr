@@ -1,20 +1,13 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation.driller
 
 import android.util.Log
-import androidx.lifecycle.AbstractSavedStateViewModelFactory
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.savedstate.SavedStateRegistryOwner
-import dagger.assisted.Assisted
-import dagger.assisted.AssistedFactory
-import dagger.assisted.AssistedInject
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import space.rodionov.porosenokpetr.core.Resource
-import space.rodionov.porosenokpetr.feature_driller.di.ApplicationScope
 import space.rodionov.porosenokpetr.feature_driller.di.ViewModelAssistedFactory
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
 import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.DrillerUseCases
