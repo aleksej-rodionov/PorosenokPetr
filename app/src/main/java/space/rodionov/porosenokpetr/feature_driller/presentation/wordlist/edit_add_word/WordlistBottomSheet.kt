@@ -13,6 +13,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.chip.Chip
 import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.BuildConfig
+import space.rodionov.porosenokpetr.PorosenokPetrApp
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.R
@@ -48,6 +49,7 @@ class WordlistBottomSheet : BottomSheetDialogFragment() {
     } ?: R.style.Theme_NavBarDay
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        PorosenokPetrApp.component?.inject(this)
         super.onCreate(savedInstanceState)
         val args = arguments
         args?.let {
