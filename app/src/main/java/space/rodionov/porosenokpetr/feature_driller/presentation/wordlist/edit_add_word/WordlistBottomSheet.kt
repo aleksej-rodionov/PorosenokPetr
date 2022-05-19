@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.children
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -140,9 +141,13 @@ class WordlistBottomSheet : BottomSheetDialogFragment() {
 
                     tvCategory.text = getString(LocalizationHelper.category.getIdByLang(natLang))
 
-                    val chip = Chip(requireContext())
-                    chip.text = it.categoryName
-                    chipGroupCategories.addView(chip)
+                    if (chipGroupCategories.children.filter { chip ->
+                            chip is Chip && chip.text == it.categoryName
+                        }.toMutableList().isEmpty()) {
+                        val chip = Chip(requireContext())
+                        chip.text = it.categoryName
+                        chipGroupCategories.addView(chip)
+                    }
 
                     switchLearned.setOnCheckedChangeListener(null)
                     switchLearned.isChecked = !word.isWordActive

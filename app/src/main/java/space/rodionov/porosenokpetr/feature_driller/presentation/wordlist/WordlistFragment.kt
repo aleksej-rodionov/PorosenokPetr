@@ -10,6 +10,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
 import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.BuildConfig
@@ -38,10 +39,12 @@ class WordlistFragment : Fragment(R.layout.fragment_wordlist), TextToSpeech.OnIn
 
     private val binding by viewBinding<FragmentWordlistBinding>()
 
+    val args by navArgs<WordlistFragmentArgs>()
+
     @Inject
     lateinit var assistedFactory: WordlistViewModelFactory
     private val vmWordlist: WordlistViewModel by viewModels {
-        GenericSavedStateViewModelFactory(assistedFactory, this)
+        GenericSavedStateViewModelFactory(assistedFactory, this, args.toBundle())
     }
 
     private var textToSpeech: TextToSpeech? = null
