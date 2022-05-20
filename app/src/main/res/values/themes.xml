@@ -18,6 +18,7 @@
     </style>
 
     <style name="Theme.NavBarDay" parent="@style/Theme.Design.BottomSheetDialog">
+        <item name="android:windowSoftInputMode">adjustResize</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
         <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
         <item name="android:windowIsFloating">false</item>
@@ -27,6 +28,7 @@
     </style>
 
     <style name="Theme.NavBarNight" parent="@style/Theme.Design.BottomSheetDialog">
+        <item name="android:windowSoftInputMode">adjustResize</item>
         <item name="android:windowIsFloating">false</item>
         <item name="android:navigationBarColor">@color/gray850</item>
         <item name="statusBarForeground">@color/white</item>

@@ -1,22 +1,19 @@
 
 in process:
 
-- make signes and save dem;
-- deploy in google play
+
 
 Next todo:
 
-- upload to GooglePlay
+- Jetpack Compose
 
 
 Features
 
-- AddEditWord bottomSheet
-- audio player service for listening
-- back-end with vocabularies, audio and authorization (before implementing backend u can use firebase)
+- audio player service for listening (before implementing backend u can use firebase)
+- back-end with vocabularies, audio and authorization
 
 
 Bugs
-- автоклавиатура в wordListFragment только при переходе по едитекста и все категории, но не по тапу
-на конкретную категорию
+
 
