@@ -1,11 +1,27 @@
 
 in process:
 
-
+- implementing Compose
 
 Next todo:
 
-- Jetpack Compose
+- Jetpack Compose {
+    Research {
+        how to inject Composables and their viewModels by Dagger2
+    }
+
+    To do {
+        Composables for {
+            CategoryItem
+            CategoryList
+            WordItem
+            WordList
+            EditWOrdBottomSheet
+        }
+        3 viewModels for them
+        Inject all of this by Dagger2
+    }
+}
 
 
 Features
