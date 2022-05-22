@@ -16,7 +16,7 @@ fun CollectionItem(
 ) {
     Row(modifier = Modifier) {
         Text(
-            text = catWithWords.category.name,
+            text = catWithWords.category.nameEng ?: "",
             style = MaterialTheme.typography.body1
         )
         Switch(checked = false, onCheckedChange = {

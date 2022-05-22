@@ -2,7 +2,6 @@ package space.rodionov.porosenokpetr.feature_driller.presentation.collection
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -13,11 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import space.rodionov.porosenokpetr.MainViewModel
-import space.rodionov.porosenokpetr.R
-import space.rodionov.porosenokpetr.feature_driller.domain.models.Category
 
 //@Composable
 //fun CollectionScreen(openOtherScreen: () -> Unit) {
@@ -26,10 +21,10 @@ import space.rodionov.porosenokpetr.feature_driller.domain.models.Category
 @Composable
 fun CollectionScreen(
     navController: NavController,
-//    vmCollection: CollectionViewModelNew = hiltViewModel(),
-//    vmMain: MainViewModel = hiltViewModel()
+//    vmCollection: CollectionViewModelNew = hiltViewModel(), // todo inject viewModels by Dagger2
+//    vmMain: MainViewModel = hiltViewModel() // todo inject viewModels by Dagger2
 ) {
-    val state = vmCollection.state.value
+//    val state = vmCollection.state.value // todo inject viewModels by Dagger2
     val scaffoldState = rememberScaffoldState()
     val scope = rememberCoroutineScope()
 
@@ -82,23 +77,23 @@ fun CollectionScreen(
             }
             Divider()
             LazyColumn(modifier = Modifier.fillMaxSize()) {
-                items(state.catsWithWords) { cww ->
-                    CollectionItem(
-                        catWithWords = cww,
-                        onChecked = {
-                            if (it) {
-                                vmCollection.activateCategory(cww.category.name)
-                            } else {
-                                if (vmCollection.howManyActiveCats() < 2) {
-                                    vmCollection.updateCatSwitchState(cww.category)
-                                    vmCollection.shoeSnackbar("Нельзя отключить все категории"/*getString(R.string.cannot_turn_all_cats_off)*/)
-                                } else {
-                                    vmCollection.inactivateCategory(cww.category.name)
-                                }
-                            }
-                        }
-                    )
-                }
+//                items(state.catsWithWords) { cww -> // todo inject viewModels by Dagger2
+//                    CollectionItem(
+//                        catWithWords = cww,
+//                        onChecked = {
+//                            if (it) {
+//                                vmCollection.activateCategory(cww.category.name)
+//                            } else {
+//                                if (vmCollection.howManyActiveCats() < 2) {
+//                                    vmCollection.updateCatSwitchState(cww.category)
+//                                    vmCollection.shoeSnackbar("Нельзя отключить все категории"/*getString(R.string.cannot_turn_all_cats_off)*/)
+//                                } else {
+//                                    vmCollection.inactivateCategory(cww.category.name)
+//                                }
+//                            }
+//                        }
+//                    )
+//                }
             }
         }
     }
