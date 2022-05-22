@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import space.rodionov.porosenokpetr.feature_driller.domain.models.CatWithWords
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Category
 import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.*
 import space.rodionov.porosenokpetr.feature_driller.presentation.util.Screen
@@ -41,10 +42,17 @@ class CollectionViewModelNew @Inject constructor(
         getCollectionJob = drillerUseCases.observeAllCatsWithWordsUseCase()
             .onEach { cwws ->
                 _state.value = state.value.copy(
-                    catsWithWords = cwws
+                    catsWithWords = cwws,
+                    disableTurningOffCategories = areLessThanTwoActiveCategories(cwws)
                 )
             }
             .launchIn(viewModelScope)
+    }
+
+    private fun areLessThanTwoActiveCategories(categories: List<CatWithWords>) : Boolean {
+        return categories.filter {
+            it.category.isCategoryActive
+        }.size < 2
     }
 
     private fun getMode() {
