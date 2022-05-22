@@ -6,7 +6,5 @@ import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_LIGHT
 
 data class CollectionState(
     val catsWithWords: List<CatWithWords> = emptyList(),
-    val searchQuery: String = "",
-    val mode: Int = MODE_LIGHT,
-    val translationDirection: Boolean = false
+    val mode: Int = MODE_LIGHT
 )

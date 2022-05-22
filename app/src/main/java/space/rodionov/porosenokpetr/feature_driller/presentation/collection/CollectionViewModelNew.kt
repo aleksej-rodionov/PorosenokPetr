@@ -10,17 +10,13 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Category
 import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.*
+import space.rodionov.porosenokpetr.feature_driller.presentation.util.Screen
+import space.rodionov.porosenokpetr.feature_driller.presentation.util.UiEvent
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 import javax.inject.Inject
 
-//@HiltViewModel
 class CollectionViewModelNew @Inject constructor(
-//    private val observeAllCatsWithWordsUseCase: ObserveAllCatsWithWordsUseCase,
-//    private val makeCategoryActiveUseCase: MakeCategoryActiveUseCase,
-//    private val observeAllActiveCatsNamesUseCase: ObserveAllActiveCatsNamesUseCase,
-//    private val observeMode: ObserveModeUseCase,
     private val drillerUseCases: DrillerUseCases,
-
     private val ssh: SavedStateHandle
 ) : ViewModel() {
     private var activeCatsAmount = ssh.get<Int>("activeCatsAmount") ?: 0
@@ -29,30 +25,26 @@ class CollectionViewModelNew @Inject constructor(
             ssh.set("activeCatsAmount", value)
         }
 
-    private val _mode = drillerUseCases.observeModeUseCase.invoke()
-    val mode = _mode.stateIn(viewModelScope, SharingStarted.Lazily, Constants.MODE_LIGHT)
+//    private val _mode = drillerUseCases.observeModeUseCase.invoke()
+//    val mode = _mode.stateIn(viewModelScope, SharingStarted.Lazily, Constants.MODE_LIGHT)
 
 //    private val _categories = observeAllCatsWithWordsUseCase.invoke()
 //    val categories = _categories.stateIn(viewModelScope, SharingStarted.Lazily, null)
     private val _state = mutableStateOf(CollectionState())
     val state: State<CollectionState> = _state
 
-    private val _activeCatsFlow = drillerUseCases.observeAllActiveCatsNamesUseCase.invoke()
-    val activeCatsFlow = _activeCatsFlow.stateIn(viewModelScope, SharingStarted.Lazily, null)
+//    private val _activeCatsFlow = drillerUseCases.observeAllActiveCatsNamesUseCase.invoke()
+//    val activeCatsFlow = _activeCatsFlow.stateIn(viewModelScope, SharingStarted.Lazily, null)
 
-    private val _eventFlow = MutableSharedFlow<CollectionEvent>()
-    val eventFlow = _eventFlow.asSharedFlow()
-
-//    sealed class CollectionEvent {
-//        data class NavigateToWordlistScreen(val cat: Category?) : CollectionEvent()
-//        data class RefreshCatSwitch(val cat: Category) : CollectionEvent()
-//        data class ShowSnackbar(val msg: String) : CollectionEvent()
-//    }
+    private val _uiEvent = MutableSharedFlow<UiEvent>()
+    val uiEvent = _uiEvent.asSharedFlow()
 
     private var getCollectionJob: Job? = null
+    private var getModeJob: Job? = null
 
     init {
         getCollection()
+        getMode()
     }
 
 //============================METHODS=============================================================
@@ -68,26 +60,61 @@ class CollectionViewModelNew @Inject constructor(
             .launchIn(viewModelScope)
     }
 
-    fun refreshActiveCatsAmount(newValue: Int) {
-        activeCatsAmount = newValue
+    private fun getMode() {
+        getModeJob?.cancel()
+        getModeJob = drillerUseCases.observeModeUseCase()
+            .onEach {
+                _state.value = state.value.copy(
+                    mode = it
+                )
+            }
+            .launchIn(viewModelScope)
     }
 
-    fun howManyActiveCats() : Int = activeCatsAmount
+    fun onEvent(event: CollectionEvent) {
+        when (event) {
+            is CollectionEvent.onCategoryClick -> {
+                sendUiEvent(UiEvent.Navigate(Screen.CollectionScreen.route + "?category=${event.cat.resourceName}"))
+            }
+            is CollectionEvent.onCategoryOnChange -> {
+                if (event.isOn) {
+                    activateCategory(event.cat.resourceName)
+                } else {
+                    inactivateCategory(event.cat.resourceName)
+                }
+            }
+            is CollectionEvent.onSearchClick -> {
+                sendUiEvent(UiEvent.Navigate(Screen.CollectionScreen.route))
+            }
+        }
+    }
+
+    private fun sendUiEvent(event: UiEvent) {
+        viewModelScope.launch {
+            _uiEvent.emit(event)
+        }
+    }
+
+//    fun refreshActiveCatsAmount(newValue: Int) {
+//        activeCatsAmount = newValue
+//    }
+
+//    fun howManyActiveCats() : Int = activeCatsAmount
 
     fun onCategoryClick(cat: Category) = viewModelScope.launch {
-        _eventFlow.emit(CollectionEvent.NavigateToWordlistScreen(cat))
+        _uiEvent.emit(UiEvent.NavigateToWordlistScreen(cat))
     }
 
     fun onSearchClick() = viewModelScope.launch {
-        _eventFlow.emit(CollectionEvent.NavigateToWordlistScreen(null))
+        _uiEvent.emit(CollectionEvent.NavigateToWordlistScreen(null))
     }
 
-    fun updateCatSwitchState(cat: Category) = viewModelScope.launch {
-        _eventFlow.emit(CollectionEvent.RefreshCatSwitch(cat))
-    }
+//    fun updateCatSwitchState(cat: Category) = viewModelScope.launch {
+//        _uiEvent.emit(CollectionEvent.RefreshCatSwitch(cat))
+//    }
 
-    fun shoeSnackbar(msg: String) = viewModelScope.launch {
-        _eventFlow.emit(CollectionEvent.ShowSnackbar(msg))
+    fun showSnackbar(msg: String) = viewModelScope.launch {
+        _uiEvent.emit(CollectionEvent.ShowSnackbar(msg))
     }
 
     fun activateCategory(catName: String) = viewModelScope.launch {
