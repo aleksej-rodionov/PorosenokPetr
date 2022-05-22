@@ -14,6 +14,12 @@ import javax.inject.Singleton
 class MainViewModel @Inject constructor(
     private val drillerUseCases: DrillerUseCases
 ): ViewModel() {
+//    private val _showFragments = MutableStateFlow<Boolean>(true)
+//    val showFragments = _showFragments.asStateFlow()
+//
+//    fun switchUiShit() = viewModelScope.launch {
+//        _showFragments.value = !showFragments.value
+//    }
 
     //==========================MODE=========================================
     private val _mode = drillerUseCases.observeModeUseCase.invoke()

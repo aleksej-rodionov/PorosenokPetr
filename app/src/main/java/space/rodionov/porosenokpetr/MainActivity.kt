@@ -61,6 +61,44 @@ class MainActivity : AppCompatActivity() {
                 if (it) vmMain.updateMode(getSystemTheme())
             }
         }
+
+//        binding.fab.setOnClickListener {
+//            vmMain.switchUiShit()
+//        }
+//
+//        this.lifecycleScope.launchWhenStarted {
+//            vmMain.showFragments.collectLatest {
+//                if (it) {
+//                    WindowCompat.setDecorFitsSystemWindows(window, false)
+//                    binding.composeView.visibility = View.GONE
+//                    binding.navHostFragment.visibility = View.VISIBLE
+//                } else {
+//                    WindowCompat.setDecorFitsSystemWindows(window, false)
+//                    binding.navHostFragment.visibility = View.GONE
+//                    binding.composeView.visibility = View.VISIBLE
+//                    binding.composeView.apply {
+//                        setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
+//                        setContent {
+//                            PorosenokPetrTheme {
+//                                Surface(
+//                                    color = MaterialTheme.colors.background
+//                                ) {
+//                                    val navController = rememberNavController()
+//                                    NavHost(
+//                                        navController = navController,
+//                                        startDestination = Screen.CollectionScreen.route
+//                                    ) {
+//                                        composable(route = Screen.CollectionScreen.route) {
+//                                            CollectionScreen(navController = navController)
+//                                        }
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {

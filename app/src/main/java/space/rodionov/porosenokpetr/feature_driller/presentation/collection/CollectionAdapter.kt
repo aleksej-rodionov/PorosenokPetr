@@ -46,12 +46,12 @@ class CollectionAdapter(
 
 
 
-//    fun refreshCatSwitchState(catToRefresh: Category) {
-//        val pos = findPosByName(catToRefresh.resourceName)
-//        pos?.let {
-//            notifyItemChanged(it)
-//        }
-//    }
+    fun refreshCatSwitchState(catToRefresh: Category) {
+        val pos = findPosByName(catToRefresh.resourceName)
+        pos?.let {
+            notifyItemChanged(it)
+        }
+    }
 
     private fun findPosByName(catName: String): Int? {
         var pos: Int? = null

@@ -19,22 +19,9 @@ class CollectionViewModelNew @Inject constructor(
     private val drillerUseCases: DrillerUseCases,
     private val ssh: SavedStateHandle
 ) : ViewModel() {
-    private var activeCatsAmount = ssh.get<Int>("activeCatsAmount") ?: 0
-        set(value) {
-            field = value
-            ssh.set("activeCatsAmount", value)
-        }
-
-//    private val _mode = drillerUseCases.observeModeUseCase.invoke()
-//    val mode = _mode.stateIn(viewModelScope, SharingStarted.Lazily, Constants.MODE_LIGHT)
-
-//    private val _categories = observeAllCatsWithWordsUseCase.invoke()
-//    val categories = _categories.stateIn(viewModelScope, SharingStarted.Lazily, null)
+   //todo private var activeCatsAmount = ssh.get<Int>("activeCatsAmount") ?: 0
     private val _state = mutableStateOf(CollectionState())
     val state: State<CollectionState> = _state
-
-//    private val _activeCatsFlow = drillerUseCases.observeAllActiveCatsNamesUseCase.invoke()
-//    val activeCatsFlow = _activeCatsFlow.stateIn(viewModelScope, SharingStarted.Lazily, null)
 
     private val _uiEvent = MutableSharedFlow<UiEvent>()
     val uiEvent = _uiEvent.asSharedFlow()
@@ -95,33 +82,11 @@ class CollectionViewModelNew @Inject constructor(
         }
     }
 
-//    fun refreshActiveCatsAmount(newValue: Int) {
-//        activeCatsAmount = newValue
-//    }
-
-//    fun howManyActiveCats() : Int = activeCatsAmount
-
-    fun onCategoryClick(cat: Category) = viewModelScope.launch {
-        _uiEvent.emit(UiEvent.NavigateToWordlistScreen(cat))
-    }
-
-    fun onSearchClick() = viewModelScope.launch {
-        _uiEvent.emit(CollectionEvent.NavigateToWordlistScreen(null))
-    }
-
-//    fun updateCatSwitchState(cat: Category) = viewModelScope.launch {
-//        _uiEvent.emit(CollectionEvent.RefreshCatSwitch(cat))
-//    }
-
-    fun showSnackbar(msg: String) = viewModelScope.launch {
-        _uiEvent.emit(CollectionEvent.ShowSnackbar(msg))
-    }
-
-    fun activateCategory(catName: String) = viewModelScope.launch {
+    private fun activateCategory(catName: String) = viewModelScope.launch {
         drillerUseCases.makeCategoryActiveUseCase(catName, true)
     }
 
-    fun inactivateCategory(catName: String) = viewModelScope.launch  {
+    private fun inactivateCategory(catName: String) = viewModelScope.launch  {
         drillerUseCases.makeCategoryActiveUseCase(catName, false)
     }
 }
