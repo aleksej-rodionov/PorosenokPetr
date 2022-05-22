@@ -2,7 +2,9 @@ package space.rodionov.porosenokpetr
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.DrillerUseCases
@@ -14,12 +16,12 @@ import javax.inject.Singleton
 class MainViewModel @Inject constructor(
     private val drillerUseCases: DrillerUseCases
 ): ViewModel() {
-//    private val _showFragments = MutableStateFlow<Boolean>(true)
-//    val showFragments = _showFragments.asStateFlow()
-//
-//    fun switchUiShit() = viewModelScope.launch {
-//        _showFragments.value = !showFragments.value
-//    }
+    private val _showFragments = MutableStateFlow<Boolean>(true)
+    val showFragments = _showFragments.asStateFlow()
+
+    fun switchUiShit(showXml: Boolean?) = viewModelScope.launch {
+        _showFragments.value = showXml ?: !showFragments.value
+    }
 
     //==========================MODE=========================================
     private val _mode = drillerUseCases.observeModeUseCase.invoke()

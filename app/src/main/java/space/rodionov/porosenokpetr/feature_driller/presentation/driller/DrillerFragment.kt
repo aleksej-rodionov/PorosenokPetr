@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import com.yuyakaido.android.cardstackview.*
 import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.BuildConfig
+import space.rodionov.porosenokpetr.MainActivity
 import space.rodionov.porosenokpetr.PorosenokPetrApp
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.redrawViewGroup
@@ -73,7 +74,8 @@ class DrillerFragment : Fragment(R.layout.fragment_driller), CardStackListener, 
             }
 
             btnCollection.setOnClickListener {
-                vmDriller.navigateToCollectionScreen()
+//                vmDriller.navigateToCollectionScreen()
+                (activity as MainActivity).switchShowFragments(false)
             }
 
             btnSettings.setOnClickListener {
