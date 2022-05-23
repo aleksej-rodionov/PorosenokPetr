@@ -86,15 +86,16 @@ class MainActivity : AppCompatActivity() {
                                 Surface(
                                     color = MaterialTheme.colors.background
                                 ) {
-                                    val navController = rememberNavController()
-                                    NavHost(
-                                        navController = navController,
-                                        startDestination = Screen.CollectionScreen.route
-                                    ) {
-                                        composable(route = Screen.CollectionScreen.route) {
-                                            Screen.CollectionScreen(navController = navController)
-                                        }
-                                    }
+//                                    val navController = rememberNavController()
+//                                    NavHost(
+//                                        navController = navController,
+//                                        startDestination = Screen.CollectionScreen.route
+//                                    ) {
+//                                        composable(route = Screen.CollectionScreen.route) {
+//                                            Screen.CollectionScreen(navController = navController)
+//                                        }
+//                                    }
+                                    DestinationsNavHost
                                 }
                             }
                         }
