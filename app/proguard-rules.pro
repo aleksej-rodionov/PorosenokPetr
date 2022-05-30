@@ -22,3 +22,7 @@
 
 -keepnames class * extends android.os.Parcelable
 -keepnames class * extends java.io.Serializable
+
+-keepclassmembers class space.rodionov.porosenokpetr.databinding.**  {
+    public <methods>;
+}
