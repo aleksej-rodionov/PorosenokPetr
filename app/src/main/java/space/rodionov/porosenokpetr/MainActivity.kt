@@ -22,7 +22,9 @@ import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_DARK
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_LIGHT
 import space.rodionov.porosenokpetr.databinding.ActivityMainBinding
 import space.rodionov.porosenokpetr.feature_driller.di.ViewModelFactory
+import space.rodionov.porosenokpetr.feature_driller.presentation.collection.CollectionScreen
 import space.rodionov.porosenokpetr.feature_driller.presentation.util.Screen
+import space.rodionov.porosenokpetr.ui_compose.NavDestinations
 import space.rodionov.porosenokpetr.ui_compose.theme.PorosenokPetrTheme
 import java.util.*
 import javax.inject.Inject
@@ -86,16 +88,20 @@ class MainActivity : AppCompatActivity() {
                                 Surface(
                                     color = MaterialTheme.colors.background
                                 ) {
-//                                    val navController = rememberNavController()
-//                                    NavHost(
-//                                        navController = navController,
-//                                        startDestination = Screen.CollectionScreen.route
-//                                    ) {
-//                                        composable(route = Screen.CollectionScreen.route) {
-//                                            Screen.CollectionScreen(navController = navController)
-//                                        }
-//                                    }
-                                    DestinationsNavHost
+                                    val navController = rememberNavController()
+                                    NavHost(
+                                        navController,
+                                        startDestination = NavDestinations.ScreenCollection.destination
+                                    ) {
+                                        composable(route = NavDestinations.ScreenCollection.destination) {
+
+
+                                            CollectionScreen(
+                                                navController = navController
+                                            )
+
+                                        }
+                                    }
                                 }
                             }
                         }

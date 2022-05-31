@@ -18,8 +18,8 @@ import androidx.navigation.NavController
 //fun CollectionScreen(openOtherScreen: () -> Unit) {
 
 //@ExperimentalAnimationApi
+//@Destination
 @Composable
-@Destination
 fun CollectionScreen(
     navController: NavController,
 //    vmCollection: CollectionViewModelNew = hiltViewModel(), // todo inject viewModels by Dagger2

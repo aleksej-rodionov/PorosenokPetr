@@ -23,8 +23,8 @@ class EditAddWordViewModel (
     @ApplicationScope private val applicationScope: CoroutineScope
 ) : ViewModel() {
     //    var nativeLangLiveData = state.getLiveData<Int?>("nativeLangLiveData", null)
-    var nativLivedata = state.getLiveData<String>("nativLivedata", null)
-    var foreignLivedata = state.getLiveData<String>("foreignLivedata", null)
+    var nativLivedata = state.getLiveData<String?>("nativLivedata", null)
+    var foreignLivedata = state.getLiveData<String?>("foreignLivedata", null)
     var catNameLivedata = state.getLiveData<String?>("catNameLivedata", null)
 
     private val _word = combine(

@@ -30,7 +30,7 @@ class WordlistViewModel (
     private val _learnedLang = drillerUseCases.observeLearnedLangUseCase.invoke()
     val learnedLang = _learnedLang.stateIn(viewModelScope, SharingStarted.Lazily, LANGUAGE_EN)
 
-    var catToSearchIn = state.getLiveData<Category>("category", null)
+    var catToSearchIn = state.getLiveData<Category?>("category", null)
     val catNameFlow = drillerUseCases.catNameFromStorageUseCase.invoke()
 
     val searchQuery = state.getLiveData("searchQuery", "")
