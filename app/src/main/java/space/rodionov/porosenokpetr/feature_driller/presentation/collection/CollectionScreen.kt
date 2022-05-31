@@ -86,7 +86,7 @@ fun CollectionScreen(
                         onChecked = {
                             if (it) {
                                 vmCollection.activateCategory(cww.category.resourceName)
-                            } else {
+                            } else { // todo ok we are here fix this below.
                                 if (vmCollection.howManyActiveCats() < 2) {
                                     vmCollection.updateCatSwitchState(cww.category)
                                     vmCollection.shoeSnackbar("Нельзя отключить все категории"/*getString(R.string.cannot_turn_all_cats_off)*/)
