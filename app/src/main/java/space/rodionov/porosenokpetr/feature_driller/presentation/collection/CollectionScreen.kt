@@ -2,6 +2,7 @@ package space.rodionov.porosenokpetr.feature_driller.presentation.collection
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -11,21 +12,22 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 
-//@Composable
-//fun CollectionScreen(openOtherScreen: () -> Unit) {
 
-//@ExperimentalAnimationApi
 //@Destination
 @Composable
 fun CollectionScreen(
     navController: NavController,
+    vmCollection: CollectionViewModelNew
 //    vmCollection: CollectionViewModelNew = hiltViewModel(), // todo inject viewModels by Dagger2
 //    vmMain: MainViewModel = hiltViewModel() // todo inject viewModels by Dagger2
 ) {
 //    val state = vmCollection.state.value // todo inject viewModels by Dagger2
+    val state = vmCollection.state.value
+
     val scaffoldState = rememberScaffoldState()
     val scope = rememberCoroutineScope()
 
@@ -43,8 +45,8 @@ fun CollectionScreen(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 IconButton(onClick = {
-//                    vmMain.switchUiShit() // todo pass it through viewModel event
-                    navController.navigateUp() // todo pass it through viewModel event
+//                    vmMain.switchUiShit() // todo pass it through viewModel event тут вставить
+                    navController.navigateUp() // todo pass it through viewModel event это убрать
                 }) {
                     Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Back")
                 }
@@ -78,23 +80,23 @@ fun CollectionScreen(
             }
             Divider()
             LazyColumn(modifier = Modifier.fillMaxSize()) {
-//                items(state.catsWithWords) { cww -> // todo inject viewModels by Dagger2
-//                    CollectionItem(
-//                        catWithWords = cww,
-//                        onChecked = {
-//                            if (it) {
-//                                vmCollection.activateCategory(cww.category.name)
-//                            } else {
-//                                if (vmCollection.howManyActiveCats() < 2) {
-//                                    vmCollection.updateCatSwitchState(cww.category)
-//                                    vmCollection.shoeSnackbar("Нельзя отключить все категории"/*getString(R.string.cannot_turn_all_cats_off)*/)
-//                                } else {
-//                                    vmCollection.inactivateCategory(cww.category.name)
-//                                }
-//                            }
-//                        }
-//                    )
-//                }
+                items(state.catsWithWords) { cww -> // todo inject viewModels by Dagger2
+                    CollectionItem(
+                        catWithWords = cww,
+                        onChecked = {
+                            if (it) {
+                                vmCollection.activateCategory(cww.category.resourceName)
+                            } else {
+                                if (vmCollection.howManyActiveCats() < 2) {
+                                    vmCollection.updateCatSwitchState(cww.category)
+                                    vmCollection.shoeSnackbar("Нельзя отключить все категории"/*getString(R.string.cannot_turn_all_cats_off)*/)
+                                } else {
+                                    vmCollection.inactivateCategory(cww.category.name)
+                                }
+                            }
+                        }
+                    )
+                }
             }
         }
     }

@@ -90,7 +90,7 @@ class CollectionViewModelNew @Inject constructor(
         }
     }
 
-    private fun activateCategory(catName: String) = viewModelScope.launch {
+    /*private*/ fun activateCategory(catName: String) = viewModelScope.launch {
         drillerUseCases.makeCategoryActiveUseCase(catName, true)
     }
 
