@@ -95,7 +95,7 @@ class MainActivity : AppCompatActivity() {
                                         composable(route = NavDestinations.ScreenCollection.destination) {
 
 
-                                            val vmCollection: CollectionViewModelNew = daggerViewModel {}
+                                            val vmCollection: CollectionViewModelNew = daggerViewModel {} //todo почитай про state в Composable
 
                                             CollectionScreen(
                                                 navController = navController,
