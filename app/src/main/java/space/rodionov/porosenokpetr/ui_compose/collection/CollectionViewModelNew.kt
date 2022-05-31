@@ -1,4 +1,4 @@
-package space.rodionov.porosenokpetr.feature_driller.presentation.collection
+package space.rodionov.porosenokpetr.ui_compose.collection
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
@@ -9,11 +9,9 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import space.rodionov.porosenokpetr.feature_driller.domain.models.CatWithWords
-import space.rodionov.porosenokpetr.feature_driller.domain.models.Category
 import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.*
 import space.rodionov.porosenokpetr.feature_driller.presentation.util.Screen
 import space.rodionov.porosenokpetr.feature_driller.presentation.util.UiEvent
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants
 import javax.inject.Inject
 
 class CollectionViewModelNew @Inject constructor(
@@ -94,7 +92,7 @@ class CollectionViewModelNew @Inject constructor(
         drillerUseCases.makeCategoryActiveUseCase(catName, true)
     }
 
-    private fun inactivateCategory(catName: String) = viewModelScope.launch  {
+    /*private*/ fun inactivateCategory(catName: String) = viewModelScope.launch  {
         drillerUseCases.makeCategoryActiveUseCase(catName, false)
     }
 }

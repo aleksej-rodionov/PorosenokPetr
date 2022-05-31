@@ -3,7 +3,6 @@ package space.rodionov.porosenokpetr
 import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.compose.material.MaterialTheme
@@ -23,7 +22,7 @@ import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_LIGHT
 import space.rodionov.porosenokpetr.databinding.ActivityMainBinding
 import space.rodionov.porosenokpetr.feature_driller.di.ViewModelFactory
 import space.rodionov.porosenokpetr.feature_driller.presentation.collection.CollectionScreen
-import space.rodionov.porosenokpetr.feature_driller.presentation.util.Screen
+import space.rodionov.porosenokpetr.ui_compose.collection.CollectionViewModelNew
 import space.rodionov.porosenokpetr.ui_compose.NavDestinations
 import space.rodionov.porosenokpetr.ui_compose.theme.PorosenokPetrTheme
 import java.util.*
@@ -96,8 +95,11 @@ class MainActivity : AppCompatActivity() {
                                         composable(route = NavDestinations.ScreenCollection.destination) {
 
 
+                                            val vmCollection: CollectionViewModelNew = daggerViewModel {}
+
                                             CollectionScreen(
-                                                navController = navController
+                                                navController = navController,
+                                                vmCollection = vmCollection
                                             )
 
                                         }

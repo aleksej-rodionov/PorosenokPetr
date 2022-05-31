@@ -1,4 +1,4 @@
-package space.rodionov.porosenokpetr.feature_driller.presentation.collection
+package space.rodionov.porosenokpetr.ui_compose.collection
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material.MaterialTheme

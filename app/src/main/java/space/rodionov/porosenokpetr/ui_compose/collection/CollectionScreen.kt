@@ -12,9 +12,10 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontStyle
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import space.rodionov.porosenokpetr.ui_compose.collection.CollectionItem
+import space.rodionov.porosenokpetr.ui_compose.collection.CollectionViewModelNew
 
 
 //@Destination
@@ -86,13 +87,13 @@ fun CollectionScreen(
                         onChecked = {
                             if (it) {
                                 vmCollection.activateCategory(cww.category.resourceName)
-                            } else { // todo ok we are here fix this below.
-                                if (vmCollection.howManyActiveCats() < 2) {
-                                    vmCollection.updateCatSwitchState(cww.category)
-                                    vmCollection.shoeSnackbar("Нельзя отключить все категории"/*getString(R.string.cannot_turn_all_cats_off)*/)
-                                } else {
-                                    vmCollection.inactivateCategory(cww.category.name)
-                                }
+                            } else { // todo fix logic below
+//                                if (vmCollection.howManyActiveCats() < 2) {
+//                                    vmCollection.updateCatSwitchState(cww.category)
+//                                    vmCollection.shoeSnackbar("Нельзя отключить все категории"/*getString(R.string.cannot_turn_all_cats_off)*/)
+//                                } else {
+                                    vmCollection.inactivateCategory(cww.category.resourceName)
+//                                }
                             }
                         }
                     )
