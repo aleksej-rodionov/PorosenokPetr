@@ -243,13 +243,7 @@ class DrillerFragment : Fragment(R.layout.fragment_driller), CardStackListener, 
 
     override fun onCardAppeared(view: View?, position: Int) {
         binding?.tvOnCardAppeared?.text = getString(R.string.on_card_appeared, position)
-        if (vmDriller.rememberPositionAfterChangingStack) {
-            vmDriller.scrollToCurPos()
-            vmDriller.updateCurrentPosition(vmDriller.currentPosition.value)
-            vmDriller.rememberPositionAfterChangingStack = false
-        } else {
-            vmDriller.updateCurrentPosition(position)
-        }
+        vmDriller.onCardAppeared(position)
         if (position == drillerAdapter.itemCount - 3 && position < Constants.MAX_STACK_SIZE - 10) {
             vmDriller.addTenWords()
         }

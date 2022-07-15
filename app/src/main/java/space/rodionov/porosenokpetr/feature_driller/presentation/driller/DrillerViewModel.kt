@@ -124,6 +124,16 @@ class DrillerViewModel (
 //        updateSavedPosition(pos)
     }
 
+    fun onCardAppeared(position: Int) {
+        if (rememberPositionAfterChangingStack) {
+            scrollToCurPos()
+            updateCurrentPosition(currentPosition.value)
+            rememberPositionAfterChangingStack = false
+        } else {
+            updateCurrentPosition(position)
+        }
+    }
+
     fun updateSavedPosition(pos: Int) {
         savedPosition = pos
     }
