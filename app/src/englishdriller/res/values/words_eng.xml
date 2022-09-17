@@ -10,7 +10,30 @@
 <!--        <item>phrases</item>-->
 <!--    </string-array>-->
 
-    <string-array name="eng5">	<item>utility function</item>
+    <string-array name="eng5">	<item>better than anything else we tried up to this point</item>
+        <item>your peers are snitching on you</item>
+        <item>unless...</item>
+        <item>their efforts are gathering momentum</item>
+        <item>what might happen down the road</item>
+        <item>he had very good intel</item>
+        <item>you have to outdo that guy</item>
+        <item>there always is a competitor</item>
+        <item>it’s a skill worth sharpening</item>
+        <item>it keeps me up at night</item>
+        <item>it doesn't take a genius to...</item>
+        <item>they are desperate for more Western military aid</item>
+        <item>are we willing to put forth the effort to recover?</item>
+        <item>network bandwidth</item>
+        <item>listen up!</item>
+        <item>it's tempting to...</item>
+        <item>clean and tidy</item>
+        <item>dangling references</item>
+        <item>they were early to the...</item>
+        <item>we are hardwired to notice the negative</item>
+        <item>letters joined with a pipe</item>
+
+        <item>it\'s not a hindrance</item>
+        <item>utility function</item>
         <item>in the middle of a probability distribution</item>
         <item>I also stumbled over this issue</item>
         <item>old adage</item>
@@ -345,7 +368,6 @@
         <item>there are those who are sure that …</item>
         <item>… closer to the truth</item>
         <item>I\'m absoluterly convinced that …</item>
-        <item>there are good reasons for …</item>
         <item>they would argue with me</item>
         <item>(they) claim that ...</item>
         <item>there is no doubt that …</item>
@@ -379,10 +401,7 @@
         <item>If you ask me</item>
         <item>It seems to me</item>
         <item>In my view</item>
-        <item>As far as I’m concerned</item>
         <item>I think it’s really great, don’t you?</item>
-        <item>Personally, I’m not that keen on…</item>
-        <item>Do you think?</item>
         <item>Wouldn’t you agree…</item>
         <item>What I don’t understand is..</item>
         <item>What’s really worrying is…</item>
@@ -400,26 +419,21 @@
         <item>I (completely) disagree with you.</item>
         <item>Absolutely.</item>
         <item>I couldn’t agree more.</item>
-        <item>That’s a very good point.</item>
         <item>There’s a lot in what you say.</item>
         <item>There is something in what you are saying but…</item>
         <item>There may be some truth in that, but I think…</item>
         <item>To some extent that’s right…</item>
-        <item>I agree with you up to a point…</item>
         <item>I agree in part…</item>
         <item>Surely, though…</item>
         <item>But is it always true? For example, think about…</item>
         <item>I think that’s totally right. A good example of this…</item>
-        <item>You’ve got a point there, especially that...</item>
         <item>I can see what you mean.</item>
         <item>I can see your point.</item>
         <item>That’s what I was thinking…</item>
         <item>I have to disagree with you.</item>
         <item>I’m afraid I don’t agree with you.</item>
         <item>I am not sure.</item>
-        <item>That’s not the point, I’m afraid.</item>
         <item>I wouldn’t say so! For example…</item>
-        <item>It’s not really my thing. Don’t you think…</item>
         <item>you have to admit…</item>
         <item>I don’t think that’s fair.</item>
         <item>It must be…</item>
@@ -747,7 +761,6 @@
         <item>to figure out</item>
         <item>to keep up (to do smth)</item>
         <item>to show-off</item>
-        <item>to be up to …</item>
         <item>to pop into</item>
         <item>to shove in</item>
         <item>to come up with …</item>
@@ -871,7 +884,7 @@
         <item>to arrange (for)</item>
         <item>to assert</item>
         <item>to assess</item>
-        <item>Join...</item>
+        <item>to join...</item>
         <item>to assign</item>
         <item>to assist (smb in …) </item>
         <item>to astonish</item>
@@ -1053,6 +1066,14 @@
         <item>to mimic</item>
         <item>to mind</item>
         <item>to mislead</item>
+        <item>to reify</item>
+        <item>to loom</item>
+        <item>to blunt sanctions\' impact</item>
+        <item>gets overlooked</item>
+        <item>to enclose in...</item>
+        <item>to limit file clutter</item>
+        <item>(to) snitch</item>
+        <item>to cover up</item>
         <item>to mistify</item>
         <item>to modify</item>
         <item>to mold</item>
@@ -2690,8 +2711,7 @@
         <item>dog</item>
         <item>door</item>
         <item>down</item>
-        "<item>dress /
-to dress</item>"
+        <item>dress/to dress</item>
         <item>drink</item>
         <item>driver</item>
         <item>duck</item>
@@ -2875,7 +2895,7 @@ to dress</item>"
         <item>language</item>
         <item>laptop</item>
         <item>large</item>
-        <item>last</item>
+        <item>the last</item>
         <item>late</item>
         <item>lawyer</item>
         <item>lazy</item>
@@ -3311,6 +3331,14 @@ to dress</item>"
         <item>skewed</item>
         <item>regimented</item>
         <item>stumbling block</item>
-        <item>ancient</item>	</string-array>
+        <item>ancient</item>
+        <item>a timeline of upcuming events</item>
+        <item>substantial amount of data</item>
+        <item>lampshade</item>
+        <item>in short supply</item>
+        <item>lead-up to..</item>
+        <item>bustling capital</item>
+        <item>concise</item>
+        <item>error-prone</item>	</string-array>
 
 </resources>
