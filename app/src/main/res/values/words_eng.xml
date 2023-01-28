@@ -2,7 +2,41 @@
 <resources>
 
 
-    <string-array name="eng5">	<item>better than anything else we tried up to this point</item>
+    <string-array name="eng5">
+        <item>on a trip</item>
+        <item>on foot</item>
+        <item>on television</item>
+        <item>The bird is in the tree</item>
+        <item>concerning ...</item>
+        <item>I cut my hand on a broken glass</item>
+        <item>across from ...</item>
+        <item>for the sake of ...</item>
+        <item>by virtue of ...</item>
+        <item>instead of ...</item>
+        <item>depth-first traversal of element hierarchy</item>
+        <item>on equal footing</item>
+        <item>futile attempt</item>
+        <item>ahead of time</item>
+        <item>coherent and consistent ideology</item>
+        <item>scar hasn't healed</item>
+        <item>atrocity of holocaust</item>
+        <item>there is some restraint of his aspirations</item>
+        <item>we heard those tapes in our head and kept setting higher expectations of ourselves</item>
+        <item>nitty-gritty details of...</item>
+        <item>nothing got tampered with it</item>
+        <item>at your disposal</item>
+        <item>muddy conditions had hindered large vehicles from traversing</item>
+        <item>and such</item>
+        <item>it is being transferred</item>
+        <item>numerous functions</item>
+        <item>you can reach out there</item>
+        <item>In inferential statistics, you estimate a parameter of a population by calculating a statistic of a sample</item>
+        <item>in the way you want</item>
+        <item>the clock says noon</item>
+        <item>step on the gas!</item>
+        <item>the roof leaks</item>
+        <item>the floor was level</item>
+        <item>better than anything else we tried up to this point</item>
         <item>your peers are snitching on you</item>
         <item>unless...</item>
         <item>their efforts are gathering momentum</item>
@@ -23,7 +57,7 @@
         <item>they were early to the...</item>
         <item>we are hardwired to notice the negative</item>
         <item>letters joined with a pipe</item>
-
+        <item>for the sake of simplicity</item>
         <item>it\'s not a hindrance</item>
         <item>utility function</item>
         <item>in the middle of a probability distribution</item>
@@ -319,7 +353,6 @@
         <item>to sum up</item>
         <item>on the whole</item>
         <item>in conclusion</item>
-        <item>overall</item>
         <item>not to mention …</item>
         <item>never mind about …</item>
         <item>to take … into account</item>
@@ -471,14 +504,6 @@
         <item>Unshakable determination</item>
         <item>Firm (прил.)</item>
         <item>To captivate her with his eloquence</item>
-        <item>formidable</item>
-
-        <item>Richly reimagined </item>
-        <item>Spellbinding </item>
-        <item>Bewitching </item>
-        <item>Despair </item>
-        <item>Revenge </item>
-        <item>Timeless </item>
         <item>... alongside (smth)</item>
         <item>Severe </item>
         <item>It was a rubbishy, cheap and offensive remark that I have been regretting ever since.</item>
@@ -675,6 +700,8 @@
         <item>to put up (with)</item>
         <item>to flare out</item>
         <item>to drink in (the scenery)</item>
+        <item>to empathize with someone</item>
+        <item>to root for someone</item>
         <item>to catch up (with / on)</item>
         <item>to split up</item>
         <item>to live on</item>
@@ -817,6 +844,7 @@
         <item>to drop in (at)</item>
         <item>to look up (smth)</item>
         <item>to rent out</item>
+        <item>shove it up your ass</item>
         <item>to stock up on groceries</item>
         <item>to zoom in on</item>
         <item>to fall short</item>
@@ -849,7 +877,8 @@
         <item>to fill to the brim</item>
         <item>to revert</item>
         <item>to bounce ideas</item>
-
+        <item>to iterate over ...</item>
+        <item>to wire up 1 with 2</item>
         <item>(to) thud</item>
         <item>to  focus on …</item>
         <item>to abandon (smth)</item>
@@ -1008,6 +1037,7 @@
         <item>to grasp</item>
         <item>to guess</item>
         <item>to handover</item>
+        <item>to revoke privileges from users</item>
         <item>to harden</item>
         <item>to have a custody of the child</item>
         <item>to have wont</item>
@@ -1146,6 +1176,7 @@
         <item>to smother</item>
         <item>to smother</item>
         <item>to spill (out)</item>
+        <item>to tweak (behavior)</item>
         <item>to spill</item>
         <item>to splash</item>
         <item>to be prone (to)</item>
@@ -1213,6 +1244,9 @@
         <item>to bridge</item>
         <item>to overcome</item>
         <item>to inflate</item>
+        <item>to keep in mind</item>
+        <item>to categorize</item>
+        <item>to fast forward</item>
         <item>to moan</item>
         <item>to sneeze</item>
         <item>to draw an analogy</item>
@@ -3331,6 +3365,21 @@
         <item>lead-up to..</item>
         <item>bustling capital</item>
         <item>concise</item>
-        <item>error-prone</item>	</string-array>
+        <item>error-prone</item>
+        <item>formidable</item>
+        <item>Richly reimagined </item>
+        <item>Spellbinding </item>
+        <item>Bewitching </item>
+        <item>Despair </item>
+        <item>Revenge </item>
+        <item>Timeless </item>
+        <item>lawn</item>
+        <item>attic</item>
+        <item>tap</item>
+        <item>eaves</item>
+        <item>swirling around</item>
+        <item>scant, meager</item>
+        <item>intrinsic (to)</item>
+        <item>bearer</item>	</string-array>
 
 </resources>
