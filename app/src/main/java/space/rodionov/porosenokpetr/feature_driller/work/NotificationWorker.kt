@@ -46,7 +46,7 @@ class NotificationWorker @AssistedInject constructor (
         val bitmap = applicationContext.vectorToBitmap(R.drawable.ic_clock_black)
         val titleNotification = applicationContext.getString(R.string.notification_title)
         val subtitleNotification = applicationContext.getString(R.string.notification_subtitle)
-        val pendingIntent = PendingIntent.getActivity(applicationContext, 0, intent, 0)
+        val pendingIntent = PendingIntent.getActivity(applicationContext, 0, intent, PendingIntent.FLAG_IMMUTABLE)
         val notification = NotificationCompat.Builder(applicationContext, NOTIFICATION_CHANNEL)
             .setLargeIcon(bitmap)
             .setSmallIcon(R.drawable.ic_clock_white)
@@ -58,7 +58,7 @@ class NotificationWorker @AssistedInject constructor (
 
         notification.priority = NotificationCompat.PRIORITY_MAX
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) { // todo a если версия ниже, то и не добавлять этот пункт в настройки?
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             notification.setChannelId(NOTIFICATION_CHANNEL)
 
             val ringtoneManager = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)

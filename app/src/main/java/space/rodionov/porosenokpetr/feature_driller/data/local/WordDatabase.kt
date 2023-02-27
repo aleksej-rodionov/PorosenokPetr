@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import space.rodionov.porosenokpetr.BuildConfig
@@ -47,6 +48,8 @@ abstract class WordDatabase : RoomDatabase() {
                         ))
                     }
 
+//                    val words = mutableListOf<WordEntity>()
+
                     catNamesRus.forEachIndexed { index, s ->
 
                         val rusResId = app.resources.getIdentifier("rus$index", "array", app.packageName)
@@ -59,76 +62,14 @@ abstract class WordDatabase : RoomDatabase() {
 
                         for (i in engWords.indices) {
                             dao.insertWord(WordEntity(rusWords[i], null, engWords[i], null, categoryName = s))  // todo add ukrainian later
+
+//                            if (i == 0) words.add(WordEntity(rusWords[i], null, engWords[i], null, categoryName = s))
                         }
-                    }
 
-                /*    val rus0 = app.resources.getStringArray(R.array.rus0).toList()
-                    val rus1 = app.resources.getStringArray(R.array.rus1).toList()
-                    val rus2 = app.resources.getStringArray(R.array.rus2).toList()
-                    val rus3 = app.resources.getStringArray(R.array.rus3).toList()
-                    val rus4 = app.resources.getStringArray(R.array.rus4).toList()
-                    val rus5 = app.resources.getStringArray(R.array.rus5).toList()
-                    val foreign0 = app.resources.getStringArray(R.array.eng0).toList()
-                    val foreign1 = app.resources.getStringArray(R.array.eng1).toList()
-                    val foreign2 = app.resources.getStringArray(R.array.eng2).toList()
-                    val foreign3 = app.resources.getStringArray(R.array.eng3).toList()
-                    val foreign4 = app.resources.getStringArray(R.array.eng4).toList()
-                    val foreign5 = app.resources.getStringArray(R.array.eng5).toList()
+//                        val wordsJson = Gson().toJson(words)
 
-                    for (i in foreign0.indices) {
-                        dao.insertWord(
-                            WordEntity(
-                                rus0[i],
-                                foreign0[i],
-                                app.resources.getString(R.string.top_800_words)
-                            )
-                        )
+//                        Log.d("WORDS_JSON", wordsJson)
                     }
-                    for (i in foreign1.indices) {
-                        dao.insertWord(
-                            WordEntity(
-                                rus1[i],
-                                foreign1[i],
-                                app.resources.getString(R.string.phrases)
-                            )
-                        )
-                    }
-                    for (i in foreign2.indices) {
-                        dao.insertWord(
-                            WordEntity(
-                                rus2[i],
-                                foreign2[i],
-                                app.resources.getString(R.string.phrasal_verbs)
-                            )
-                        )
-                    }
-                    for (i in foreign3.indices) {
-                        dao.insertWord(
-                            WordEntity(
-                                rus3[i],
-                                foreign3[i],
-                                app.resources.getString(R.string.usual_verbs)
-                            )
-                        )
-                    }
-                    for (i in foreign4.indices) {
-                        dao.insertWord(
-                            WordEntity(
-                                rus4[i],
-                                foreign4[i],
-                                app.resources.getString(R.string.usual_words)
-                            )
-                        )
-                    }
-                    for (i in foreign5.indices) {
-                        dao.insertWord(
-                            WordEntity(
-                                rus5[i],
-                                foreign5[i],
-                                app.resources.getString(R.string.top_200_verbs)
-                            )
-                        )
-                    }*/
                 }
 
                 if (BuildConfig.FLAVOR == "swedishdriller") {

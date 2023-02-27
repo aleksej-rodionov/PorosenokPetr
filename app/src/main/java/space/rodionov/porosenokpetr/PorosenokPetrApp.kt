@@ -26,6 +26,7 @@ class PorosenokPetrApp: Application() {
         val workManagerConfig = Configuration.Builder()
             .setWorkerFactory(workerFactory)
             .build()
+
         WorkManager.initialize(this, workManagerConfig)
     }
 
