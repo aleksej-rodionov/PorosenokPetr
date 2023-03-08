@@ -5,13 +5,15 @@ in process:
 
 Next todo:
 
+- project structure
 - Jetpack Compose
+- modularization
+- populate DB from JSON, not XML
 
 
 Features
 
-- audio player service for listening (before implementing backend u can use firebase)
-- back-end with vocabularies, audio and authorization
+- back-end with vocabularies and authorization
 
 
 Bugs
