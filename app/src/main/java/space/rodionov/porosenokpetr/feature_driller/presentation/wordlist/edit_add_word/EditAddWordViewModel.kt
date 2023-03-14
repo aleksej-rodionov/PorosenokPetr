@@ -8,6 +8,7 @@ import dagger.assisted.AssistedInject
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import space.rodionov.porosenokpetr.core.domain.use_case.PreferencesUseCases
 import space.rodionov.porosenokpetr.feature_driller.di.ApplicationScope
 import space.rodionov.porosenokpetr.feature_driller.di.ViewModelAssistedFactory
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
@@ -19,6 +20,7 @@ import javax.inject.Inject
 
 class EditAddWordViewModel (
     private val drillerUseCases: DrillerUseCases,
+    private val preferenvesUseCases: PreferencesUseCases,
     private val state: SavedStateHandle,
     @ApplicationScope private val applicationScope: CoroutineScope
 ) : ViewModel() {
@@ -43,7 +45,7 @@ class EditAddWordViewModel (
     val nativeLang = _nativeLang.stateIn(viewModelScope, SharingStarted.Lazily, Constants.LANGUAGE_RU)
 
     //============MODE============
-    private val _mode = drillerUseCases.observeModeUseCase.invoke()
+    private val _mode = preferenvesUseCases.observeModeUseCase.invoke()
     val mode = _mode.stateIn(viewModelScope, SharingStarted.Lazily, 0)
 
 
@@ -89,10 +91,11 @@ class EditAddWordViewModel (
 
 class EditAddWordViewModelFactory @Inject constructor(
     private val drillerUseCases: DrillerUseCases,
+    private val preferenvesUseCases: PreferencesUseCases,
     @ApplicationScope private val applicationScope: CoroutineScope // todo работает норм?
 ) : ViewModelAssistedFactory<EditAddWordViewModel> {
     override fun create(handle: SavedStateHandle): EditAddWordViewModel {
-        return EditAddWordViewModel(drillerUseCases, handle, applicationScope)
+        return EditAddWordViewModel(drillerUseCases, preferenvesUseCases, handle, applicationScope)
     }
 }
 

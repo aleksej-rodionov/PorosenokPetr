@@ -1,11 +1,5 @@
 package space.rodionov.porosenokpetr.feature_driller.domain.use_cases
 
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.flatMapLatest
-import kotlinx.coroutines.flow.flow
-import space.rodionov.porosenokpetr.feature_driller.data.local.entity.WordEntity
-import space.rodionov.porosenokpetr.feature_driller.domain.models.Category
 import space.rodionov.porosenokpetr.feature_driller.domain.repository.WordRepo
 
 class GetCatCompletionPercentUseCase( // todo удалить

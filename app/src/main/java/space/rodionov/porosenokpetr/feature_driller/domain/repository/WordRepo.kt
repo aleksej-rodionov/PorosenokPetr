@@ -2,8 +2,6 @@ package space.rodionov.porosenokpetr.feature_driller.domain.repository
 
 import kotlinx.coroutines.flow.Flow
 import space.rodionov.porosenokpetr.core.Resource
-import space.rodionov.porosenokpetr.feature_driller.data.local.entity.CategoryWithWords
-import space.rodionov.porosenokpetr.feature_driller.data.local.entity.WordEntity
 import space.rodionov.porosenokpetr.feature_driller.domain.models.CatWithWords
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Category
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
@@ -43,29 +41,29 @@ interface WordRepo {
 
     fun observeAllActiveCatsNames(): Flow<List<String>>
 
-    fun getMode(): Flow<Int>
-    suspend fun setMode(mode: Int)
-
-    fun getFollowSystemMode(): Flow<Boolean>
-    suspend fun setFollowSystemMode(follow: Boolean)
-
-    fun getRemind(): Flow<Boolean>
-    suspend fun setRemind(remind: Boolean)
-
-    fun getNotifyMillis(): Flow<Long>
-    suspend fun setNotifyMillis(millis: Long)
-
-    fun getTransDir() : Flow<Boolean>
-    suspend fun setTransDir(nativeToForeign: Boolean)
-
-    fun observeNativeLanguage() : Flow<Int>
-    suspend fun updateNativeLanguage(newLanguage: Int)
-
-    fun observeLearnedLanguage() : Flow<Int>
-    suspend fun updateLearnedLanguage(newLanguage: Int)
-
-    fun storageCatName() : Flow<String>
-    suspend fun updateStorageCat(catName: String)
+//    fun getMode(): Flow<Int>
+//    suspend fun setMode(mode: Int)
+//
+//    fun getFollowSystemMode(): Flow<Boolean>
+//    suspend fun setFollowSystemMode(follow: Boolean)
+//
+//    fun getRemind(): Flow<Boolean>
+//    suspend fun setRemind(remind: Boolean)
+//
+//    fun getNotifyMillis(): Flow<Long>
+//    suspend fun setNotifyMillis(millis: Long)
+//
+//    fun getTransDir() : Flow<Boolean>
+//    suspend fun setTransDir(nativeToForeign: Boolean)
+//
+//    fun observeNativeLanguage() : Flow<Int>
+//    suspend fun updateNativeLanguage(newLanguage: Int)
+//
+//    fun observeLearnedLanguage() : Flow<Int>
+//    suspend fun updateLearnedLanguage(newLanguage: Int)
+//
+//    fun storageCatName() : Flow<String>
+//    suspend fun updateStorageCat(catName: String)
 }
 
 

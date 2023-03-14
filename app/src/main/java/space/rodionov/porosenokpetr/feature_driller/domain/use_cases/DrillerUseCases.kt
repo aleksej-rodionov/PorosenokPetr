@@ -1,25 +1,17 @@
 package space.rodionov.porosenokpetr.feature_driller.domain.use_cases
 
+import space.rodionov.porosenokpetr.core.domain.use_case.*
+
 data class DrillerUseCases(
-    val updateWordUseCase: UpdateWordUseCase,
     val observeLearnedLangUseCase: ObserveLearnedLangUseCase,
     val updateLearnedLangUseCase: UpdateLearnedLangUseCase,
     val observeNativeLangUseCase: ObserveNativeLangUseCase,
     val updateNativeLangUseCase: UpdateNativeLangUseCase,
-    val observeNotificationMillisUseCase: ObserveNotificationMillisUseCase,
-    val setNotificationMillisUseCase: SetNotificationMillisUseCase,
-    val observeReminderUseCase: ObserveReminderUseCase,
-    val setReminderUseCase: SetReminderUseCase,
-    val observeModeUseCase: ObserveModeUseCase,
-    val observeFollowSystemModeUseCase: ObserveFollowSystemModeUseCase,
-    val setModeUseCase: SetModeUseCase,
-    val setFollowSystemModeUseCase: SetFollowSystemModeUseCase,
     val saveTranslationDirectionUseCase: SaveTranslationDirectionUseCase,
     val observeTranslationDirectionUseCase: ObserveTranslationDirectionUseCase,
+    val updateWordUseCase: UpdateWordUseCase,
     val updateIsWordActiveUseCase: UpdateIsWordActiveUseCase,
     val observeWordUseCase: ObserveWordUseCase,
-    val updateCatNameStorageUseCase: UpdateCatNameStorageUseCase,
-    val catNameFromStorageUseCase: CatNameFromStorageUseCase,
     val observeWordsSearchQueryUseCase: ObserveWordsSearchQueryUseCase,
     val observeAllCatsWithWordsUseCase: ObserveAllCatsWithWordsUseCase,
     val getCatCompletionPercentUseCase: GetCatCompletionPercentUseCase,

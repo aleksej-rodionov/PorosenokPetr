@@ -8,6 +8,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import space.rodionov.porosenokpetr.core.Resource
+import space.rodionov.porosenokpetr.core.domain.use_case.PreferencesUseCases
 import space.rodionov.porosenokpetr.feature_driller.di.ViewModelAssistedFactory
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
 import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.DrillerUseCases
@@ -17,6 +18,7 @@ import javax.inject.Inject
 
 class DrillerViewModel (
     private val drillerUseCases: DrillerUseCases,
+    private val preferenvesUseCases: PreferencesUseCases,
     private val state: SavedStateHandle,
 ) : ViewModel() {
     var savedPosition = state.get<Int>("savedPos") ?: 0
@@ -40,7 +42,7 @@ class DrillerViewModel (
     private val _transDir = drillerUseCases.observeTranslationDirectionUseCase.invoke()
     val transDir = _transDir.stateIn(viewModelScope, SharingStarted.Lazily, null)
 
-    private val _mode = drillerUseCases.observeModeUseCase.invoke()
+    private val _mode = preferenvesUseCases.observeModeUseCase.invoke()
     val mode = _mode.stateIn(viewModelScope, SharingStarted.Lazily, 0)
 
     private val _nativeLang = drillerUseCases.observeNativeLangUseCase.invoke()
@@ -291,9 +293,10 @@ data class WordState(
 
 class DrillerViewModelFactory @Inject constructor(
     private val drillerUseCases: DrillerUseCases,
+    private val preferenvesUseCases: PreferencesUseCases
 ) : ViewModelAssistedFactory<DrillerViewModel> {
     override fun create(handle: SavedStateHandle): DrillerViewModel {
-        return DrillerViewModel(drillerUseCases, handle)
+        return DrillerViewModel(drillerUseCases, preferenvesUseCases, handle)
     }
 }
 

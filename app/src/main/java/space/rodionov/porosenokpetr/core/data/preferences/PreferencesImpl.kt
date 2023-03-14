@@ -1,4 +1,4 @@
-package space.rodionov.porosenokpetr.feature_driller.data.storage
+package space.rodionov.porosenokpetr.core.data.preferences
 
 import android.app.Application
 import android.content.Context
@@ -8,6 +8,7 @@ import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import space.rodionov.porosenokpetr.BuildConfig
+import space.rodionov.porosenokpetr.core.domain.preferences.Preferences
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MILLIS_IN_NINE_HOURS
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_EN
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_RU
@@ -20,9 +21,9 @@ import java.io.IOException
 private val Context.datastore by preferencesDataStore("datastore")
 
 //@Singleton
-class Datastore /*@Inject constructor*/( // todo сделать интерфейс, чтобы можно было менять storageImpl
+class PreferencesImpl /*@Inject constructor*/(
    /* @ApplicationContext*/ app: Application
-) {
+): Preferences {
 
     private val datastore = app.datastore
 
@@ -39,7 +40,7 @@ class Datastore /*@Inject constructor*/( // todo сделать интерфей
     }
 
     //==========================CATEGORY OPENED IN WORD COLLECTION============================================
-    val categoryFlow = datastore.data
+    override fun categoryFlow() = datastore.data
         .catch {exception ->
             if (exception is IOException) {
                 Log.e(TAG_PETR, "Error reading preferences", exception)
@@ -53,14 +54,14 @@ class Datastore /*@Inject constructor*/( // todo сделать интерфей
             category
         }
 
-    suspend fun updateCategoryChosen(category: String) {
+    override suspend fun updateCategoryChosen(category: String) {
         datastore.edit { preferences ->
             preferences[PrefKeys.CATEGORY] = category
         }
     }
 
     //==========================TRANSLATION DIRECTION============================================
-    val translationDirectionFlow = datastore.data
+    override fun translationDirectionFlow() = datastore.data
         .catch {exception ->
             if (exception is IOException) {
                 Log.e(TAG_PETR, "Error reading preferences", exception)
@@ -74,14 +75,14 @@ class Datastore /*@Inject constructor*/( // todo сделать интерфей
             nativeToForeign
         }
 
-    suspend fun updatetranslationDirection(nativeToForeign: Boolean) {
+   override suspend fun updatetranslationDirection(nativeToForeign: Boolean) {
         datastore.edit { preferences ->
             preferences[PrefKeys.TRANSLATION_DIRECTION] = nativeToForeign
         }
     }
 
     //==========================MODE============================================
-    val modeFlow = datastore.data
+    override fun modeFlow() = datastore.data
         .catch {exception ->
             if (exception is IOException) {
                 Log.e(TAG_PETR, "Error reading preferences", exception)
@@ -95,14 +96,14 @@ class Datastore /*@Inject constructor*/( // todo сделать интерфей
             mode
         }
 
-    suspend fun updateMode(mode: Int) {
+    override suspend fun updateMode(mode: Int) {
         datastore.edit { prefs ->
             prefs[PrefKeys.MODE] = mode
         }
     }
 
     //===============================IS FOLLOWING SYSTEM MODE=======================
-    val followSystemModeFlow = datastore.data
+    override fun followSystemModeFlow() = datastore.data
         .catch {exception ->
             if (exception is IOException) {
                 Log.e(TAG_PETR, "Error reading preferences", exception)
@@ -116,51 +117,12 @@ class Datastore /*@Inject constructor*/( // todo сделать интерфей
             follow
         }
 
-    suspend fun updateFollowSystemMode(follow: Boolean) {
+    override suspend fun updateFollowSystemMode(follow: Boolean) {
         datastore.edit { it[PrefKeys.FOLLOW_SYSTEM_MODE] = follow }
     }
 
-    //===============================REMINDER=======================
-    val remindFlow = datastore.data
-        .catch {exception ->
-            if (exception is IOException) {
-                Log.e(TAG_PETR, "Error reading preferences", exception)
-                emit(emptyPreferences())
-            } else {
-                throw exception
-            }
-        }
-        .map { prefs ->
-            val remind = prefs[PrefKeys.REMINDER] ?: false
-            remind
-        }
-
-    suspend fun updateRemind(remind: Boolean) {
-        datastore.edit { it[PrefKeys.REMINDER] = remind }
-    }
-
-    val millisFlow = datastore.data
-        .catch {exception ->
-            if (exception is IOException) {
-                Log.e(TAG_PETR, "Error reading preferences", exception)
-                emit(emptyPreferences())
-            } else {
-                throw exception
-            }
-        }
-        .map { prefs ->
-            val millis = prefs[PrefKeys.MILLIS_FROM_DAY_BEGINNING] ?: MILLIS_IN_NINE_HOURS
-            Log.d(TAG_NOTIFY, "Datastore.getMillisFlow: $millis")
-            millis
-        }
-
-    suspend fun updateMillis(millis: Long) {
-        Log.d(TAG_NOTIFY, "Datastore.updateMillis: $millis")
-        datastore.edit { it[PrefKeys.MILLIS_FROM_DAY_BEGINNING] = millis }
-    }
-
     //==========================NATIVE LANGUAGE============================================
-    val nativeLanguageFlow = datastore.data
+    override fun nativeLanguageFlow() = datastore.data
         .catch {exception ->
             if (exception is IOException) {
                 Log.e(TAG_PETR, "Error reading preferences", exception)
@@ -174,7 +136,7 @@ class Datastore /*@Inject constructor*/( // todo сделать интерфей
             language
         }
 
-    suspend fun updateNativeLanguage(language: Int) {
+    override suspend fun updateNativeLanguage(language: Int) {
         Log.d(TAG_NATIVE_LANG, "updateNativeLanguage: $language")
         datastore.edit { prefs ->
             prefs[PrefKeys.NATIVE_LANGUAGE] = language
@@ -182,7 +144,7 @@ class Datastore /*@Inject constructor*/( // todo сделать интерфей
     }
 
     //==========================LEARNED LANGUAGE============================================
-    val learnedLanguageFlow = datastore.data
+    override fun learnedLanguageFlow() = datastore.data
         .catch {exception ->
             if (exception is IOException) {
                 Log.e(TAG_PETR, "Error reading preferences", exception)
@@ -196,7 +158,7 @@ class Datastore /*@Inject constructor*/( // todo сделать интерфей
             language
         }
 
-    suspend fun updateLearnedLanguage(language: Int) {
+    override suspend fun updateLearnedLanguage(language: Int) {
         Log.d(TAG_NATIVE_LANG, "updateLearneLanguage: $language")
         datastore.edit { prefs ->
             prefs[PrefKeys.LEARNED_LANGUAGE] = language

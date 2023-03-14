@@ -9,6 +9,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import space.rodionov.porosenokpetr.core.domain.use_case.PreferencesUseCases
 import space.rodionov.porosenokpetr.feature_driller.di.ViewModelAssistedFactory
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Category
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
@@ -19,10 +20,13 @@ import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_LIGHT
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
 import javax.inject.Inject
 
-class WordlistViewModel (
+class WordlistViewModel(
     private val drillerUseCases: DrillerUseCases,
+    private val preferencesUseCases: PreferencesUseCases,
     private val state: SavedStateHandle,
 ) : ViewModel() {
+
+    private var catName: String = ""
 
     private val _nativeLang = drillerUseCases.observeNativeLangUseCase.invoke()
     val nativeLang = _nativeLang.stateIn(viewModelScope, SharingStarted.Lazily, LANGUAGE_RU)
@@ -31,12 +35,11 @@ class WordlistViewModel (
     val learnedLang = _learnedLang.stateIn(viewModelScope, SharingStarted.Lazily, LANGUAGE_EN)
 
     var catToSearchIn = state.getLiveData<Category>("category", null)
-    val catNameFlow = drillerUseCases.catNameFromStorageUseCase.invoke()
 
     val searchQuery = state.getLiveData("searchQuery", "")
 
     //==================================MODE==========================
-    private val _mode = drillerUseCases.observeModeUseCase.invoke()
+    private val _mode = preferencesUseCases.observeModeUseCase.invoke()
     val mode = _mode.stateIn(viewModelScope, SharingStarted.Lazily, MODE_LIGHT)
 
     //==============================UI EVENTS==============================
@@ -48,14 +51,11 @@ class WordlistViewModel (
         data class SpeakWord(val word: String) : WordlistEvent()
     }
 
-    private val wordsFlow = combine(
-        catNameFlow,
-        searchQuery.asFlow()
-    ) { catName, query ->
-        Pair(catName, query)
-    }.flatMapLatest { (catName, query) ->
-        drillerUseCases.observeWordsSearchQueryUseCase.invoke(catName, query)
-    }
+    //todo fix
+    private val wordsFlow = drillerUseCases.observeWordsSearchQueryUseCase.invoke(
+        catName,
+        searchQuery.value ?: ""
+    )
 
     val words = wordsFlow.stateIn(viewModelScope, SharingStarted.Lazily, null)
 
@@ -69,8 +69,8 @@ class WordlistViewModel (
         }
     }
 
-    fun updateCatStorage(catName: String) = viewModelScope.launch {
-        drillerUseCases.updateCatNameStorageUseCase.invoke(catName)
+    fun updateCatStorage(catName: String) {
+        this.catName = catName
     }
 
     fun openWordBottomSheet(word: Word) = viewModelScope.launch {
@@ -84,9 +84,10 @@ class WordlistViewModel (
 
 class WordlistViewModelFactory @Inject constructor(
     private val drillerUseCases: DrillerUseCases,
+    private val preferencesUseCases: PreferencesUseCases
 ) : ViewModelAssistedFactory<WordlistViewModel> {
     override fun create(handle: SavedStateHandle): WordlistViewModel {
-        return WordlistViewModel(drillerUseCases, handle)
+        return WordlistViewModel(drillerUseCases, preferencesUseCases, handle)
     }
 }
 

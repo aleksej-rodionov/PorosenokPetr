@@ -14,6 +14,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import space.rodionov.porosenokpetr.core.domain.use_case.PreferencesUseCases
 import space.rodionov.porosenokpetr.feature_driller.di.ApplicationScope
 import space.rodionov.porosenokpetr.feature_driller.di.ViewModelAssistedFactory
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Category
@@ -25,7 +26,8 @@ import javax.inject.Inject
 
 class CollectionViewModel (
     private val drillerUseCases: DrillerUseCases,
-   private val state: SavedStateHandle,
+    private val preferenvesUseCases: PreferencesUseCases,
+    private val state: SavedStateHandle,
 ) : ViewModel() {
     private var activeCatsAmount = state.get<Int>("activeCatsAmount") ?: 0
         set(value) {
@@ -33,7 +35,7 @@ class CollectionViewModel (
             state.set("activeCatsAmount", value)
         }
 
-    private val _mode = drillerUseCases.observeModeUseCase.invoke()
+    private val _mode = preferenvesUseCases.observeModeUseCase.invoke()
     val mode = _mode.stateIn(viewModelScope, SharingStarted.Lazily, MODE_LIGHT)
 
     private val _categories = drillerUseCases.observeAllCatsWithWordsUseCase.invoke()
@@ -91,9 +93,10 @@ class CollectionViewModel (
 
 class CollectionViewModelFactory @Inject constructor(
     private val drillerUseCases: DrillerUseCases,
-) : ViewModelAssistedFactory<CollectionViewModel> {
+    private val preferenvesUseCases: PreferencesUseCases
+    ) : ViewModelAssistedFactory<CollectionViewModel> {
     override fun create(handle: SavedStateHandle): CollectionViewModel {
-        return CollectionViewModel(drillerUseCases, handle)
+        return CollectionViewModel(drillerUseCases, preferenvesUseCases, handle)
     }
 }
 

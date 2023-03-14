@@ -8,8 +8,8 @@ import kotlinx.coroutines.flow.map
 import space.rodionov.porosenokpetr.BuildConfig
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.core.Resource
-import space.rodionov.porosenokpetr.feature_driller.data.local.WordDao
-import space.rodionov.porosenokpetr.feature_driller.data.storage.Datastore
+import space.rodionov.porosenokpetr.core.data.local.WordDao
+import space.rodionov.porosenokpetr.core.data.preferences.PreferencesImpl
 import space.rodionov.porosenokpetr.feature_driller.domain.models.CatWithWords
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Category
 import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
@@ -17,7 +17,7 @@ import space.rodionov.porosenokpetr.feature_driller.domain.repository.WordRepo
 
 class WordRepoImpl(
     private val dao: WordDao,
-    private val datastore: Datastore
+//    private val preferences: PreferencesImpl
 ) : WordRepo {
 
     override fun getTenWords(): Flow<Resource<List<Word>>> = flow {
@@ -130,29 +130,29 @@ class WordRepoImpl(
 
     override fun observeAllActiveCatsNames(): Flow<List<String>> = dao.observeAllActiveCatsNames()
 
-    override fun getMode(): Flow<Int> = datastore.modeFlow
-    override suspend fun setMode(mode: Int) = datastore.updateMode(mode)
-
-    override fun getFollowSystemMode(): Flow<Boolean> = datastore.followSystemModeFlow
-    override suspend fun setFollowSystemMode(follow: Boolean) = datastore.updateFollowSystemMode(follow)
-
-    override fun getRemind(): Flow<Boolean> = datastore.remindFlow
-    override suspend fun setRemind(remind: Boolean)  = datastore.updateRemind(remind)
-
-    override fun getNotifyMillis(): Flow<Long> = datastore.millisFlow
-    override suspend fun setNotifyMillis(millis: Long) = datastore.updateMillis(millis)
-
-    override fun getTransDir(): Flow<Boolean> = datastore.translationDirectionFlow
-    override suspend fun setTransDir(nativeToForeign: Boolean) {
-        datastore.updatetranslationDirection(nativeToForeign)
-    }
-
-    override fun observeNativeLanguage(): Flow<Int> = datastore.nativeLanguageFlow
-    override suspend fun updateNativeLanguage(newLanguage: Int) = datastore.updateNativeLanguage(newLanguage)
-
-    override fun observeLearnedLanguage(): Flow<Int> = datastore.learnedLanguageFlow
-    override suspend fun updateLearnedLanguage(newLanguage: Int) = datastore.updateLearnedLanguage(newLanguage)
-
-    override fun storageCatName(): Flow<String> = datastore.categoryFlow
-    override suspend fun updateStorageCat(catName: String) = datastore.updateCategoryChosen(catName)
+//    override fun getMode(): Flow<Int> = preferences.modeFlow
+//    override suspend fun setMode(mode: Int) = preferences.updateMode(mode)
+//
+//    override fun getFollowSystemMode(): Flow<Boolean> = preferences.followSystemModeFlow
+//    override suspend fun setFollowSystemMode(follow: Boolean) = preferences.updateFollowSystemMode(follow)
+//
+//    override fun getRemind(): Flow<Boolean> = preferences.remindFlow
+//    override suspend fun setRemind(remind: Boolean)  = preferences.updateRemind(remind)
+//
+//    override fun getNotifyMillis(): Flow<Long> = preferences.millisFlow
+//    override suspend fun setNotifyMillis(millis: Long) = preferences.updateMillis(millis)
+//
+//    override fun getTransDir(): Flow<Boolean> = preferences.translationDirectionFlow
+//    override suspend fun setTransDir(nativeToForeign: Boolean) {
+//        preferences.updatetranslationDirection(nativeToForeign)
+//    }
+//
+//    override fun observeNativeLanguage(): Flow<Int> = preferences.nativeLanguageFlow
+//    override suspend fun updateNativeLanguage(newLanguage: Int) = preferences.updateNativeLanguage(newLanguage)
+//
+//    override fun observeLearnedLanguage(): Flow<Int> = preferences.learnedLanguageFlow
+//    override suspend fun updateLearnedLanguage(newLanguage: Int) = preferences.updateLearnedLanguage(newLanguage)
+//
+//    override fun storageCatName(): Flow<String> = preferences.categoryFlow
+//    override suspend fun updateStorageCat(catName: String) = preferences.updateCategoryChosen(catName)
 }

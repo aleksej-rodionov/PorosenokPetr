@@ -1,12 +1,14 @@
-package space.rodionov.porosenokpetr.feature_driller.di
+package space.rodionov.porosenokpetr.core.di
 
 import android.app.Application
 import androidx.room.Room
 import dagger.Module
 import dagger.Provides
-import space.rodionov.porosenokpetr.feature_driller.data.local.WordDatabase
+import space.rodionov.porosenokpetr.core.data.local.WordDatabase
+import space.rodionov.porosenokpetr.core.data.preferences.PreferencesImpl
+import space.rodionov.porosenokpetr.core.domain.preferences.Preferences
+import space.rodionov.porosenokpetr.core.domain.use_case.*
 import space.rodionov.porosenokpetr.feature_driller.data.repository.WordRepoImpl
-import space.rodionov.porosenokpetr.feature_driller.data.storage.Datastore
 import space.rodionov.porosenokpetr.feature_driller.domain.repository.WordRepo
 import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.*
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants
@@ -23,14 +25,14 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideRepo(db: WordDatabase, datastore: Datastore): WordRepo {
-        return WordRepoImpl(db.dao, datastore)
+    fun provideRepo(db: WordDatabase): WordRepo {
+        return WordRepoImpl(db.dao)
     }
 
     @Provides
     @Singleton
-    fun provideDatastore(app: Application): Datastore {
-        return Datastore(app)
+    fun provideDatastore(app: Application): Preferences {
+        return PreferencesImpl(app)
     }
 
     @Provides
@@ -45,30 +47,36 @@ class AppModule {
             .build()
     }
 
-
     @Provides
     @Singleton
-    fun provideDrillerUseCases(repo: WordRepo): DrillerUseCases {
+    fun providePreferencesUseCases(preferences: Preferences): PreferencesUseCases {
+        return PreferencesUseCases(
+            observeModeUseCase = ObserveModeUseCase(preferences),
+            observeFollowSystemModeUseCase = ObserveFollowSystemModeUseCase(preferences),
+            setModeUseCase = SetModeUseCase(preferences),
+            setFollowSystemModeUseCase = SetFollowSystemModeUseCase(preferences),
+        )
+    }
+
+
+    //todo move to another features
+    @Provides
+    @Singleton
+    fun provideDrillerUseCases(
+        repo: WordRepo,
+        preferences: Preferences
+    ): DrillerUseCases {
         return DrillerUseCases(
+            observeLearnedLangUseCase = ObserveLearnedLangUseCase(preferences),
+            updateLearnedLangUseCase = UpdateLearnedLangUseCase(preferences),
+            observeNativeLangUseCase = ObserveNativeLangUseCase(preferences),
+            updateNativeLangUseCase = UpdateNativeLangUseCase(preferences),
+            saveTranslationDirectionUseCase = SaveTranslationDirectionUseCase(preferences),
+            observeTranslationDirectionUseCase = ObserveTranslationDirectionUseCase(preferences),
+
             updateWordUseCase = UpdateWordUseCase(repo),
-            observeLearnedLangUseCase = ObserveLearnedLangUseCase(repo),
-            updateLearnedLangUseCase = UpdateLearnedLangUseCase(repo),
-            observeNativeLangUseCase = ObserveNativeLangUseCase(repo),
-            updateNativeLangUseCase = UpdateNativeLangUseCase(repo),
-            observeNotificationMillisUseCase = ObserveNotificationMillisUseCase(repo),
-            setNotificationMillisUseCase = SetNotificationMillisUseCase(repo),
-            observeReminderUseCase = ObserveReminderUseCase(repo),
-            setReminderUseCase = SetReminderUseCase(repo),
-            observeModeUseCase = ObserveModeUseCase(repo),
-            observeFollowSystemModeUseCase = ObserveFollowSystemModeUseCase(repo),
-            setModeUseCase = SetModeUseCase(repo),
-            setFollowSystemModeUseCase = SetFollowSystemModeUseCase(repo),
-            saveTranslationDirectionUseCase = SaveTranslationDirectionUseCase(repo),
-            observeTranslationDirectionUseCase = ObserveTranslationDirectionUseCase(repo),
             updateIsWordActiveUseCase = UpdateIsWordActiveUseCase(repo),
             observeWordUseCase = ObserveWordUseCase(repo),
-            updateCatNameStorageUseCase = UpdateCatNameStorageUseCase(repo),
-            catNameFromStorageUseCase = CatNameFromStorageUseCase(repo),
             observeWordsSearchQueryUseCase = ObserveWordsSearchQueryUseCase(repo),
             observeAllCatsWithWordsUseCase = ObserveAllCatsWithWordsUseCase(repo),
             getCatCompletionPercentUseCase = GetCatCompletionPercentUseCase(repo),

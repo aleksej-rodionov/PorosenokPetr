@@ -77,19 +77,19 @@ class TimePickerBottomSheet: BottomSheetDialogFragment() {
             npHours.minValue = 0
             npHours.maxValue = hourList.size - 1
 
-            this@TimePickerBottomSheet.lifecycleScope.launchWhenStarted {
-                vmSettings.notificationTime.collectLatest {
-                    val hoursAndMinutes = parseLongToHoursAndMinutes(it)
-                    val hours = hoursAndMinutes.first
-                    val minutes = hoursAndMinutes.second.roundMinutesToFiveMinutes()
-                    hourList.forEachIndexed { index, s ->
-                        if (s == hours) npHours.value = index
-                    }
-                    minuteList.forEachIndexed { index, s ->
-                        if (s == minutes) npMinutes.value = index
-                    }
-                }
-            }
+//            this@TimePickerBottomSheet.lifecycleScope.launchWhenStarted {
+//                vmSettings.notificationTime.collectLatest {
+//                    val hoursAndMinutes = parseLongToHoursAndMinutes(it)
+//                    val hours = hoursAndMinutes.first
+//                    val minutes = hoursAndMinutes.second.roundMinutesToFiveMinutes()
+//                    hourList.forEachIndexed { index, s ->
+//                        if (s == hours) npHours.value = index
+//                    }
+//                    minuteList.forEachIndexed { index, s ->
+//                        if (s == minutes) npMinutes.value = index
+//                    }
+//                }
+//            }
 
             this@TimePickerBottomSheet.lifecycleScope.launchWhenStarted {
                 vmSettings.mode.collectLatest {
@@ -102,7 +102,10 @@ class TimePickerBottomSheet: BottomSheetDialogFragment() {
                 val h = hourList[npHours.value]
                 val m = minuteList[npMinutes.value]
                 val millis = hoursAndMinutesToMillis(h, m)
-                vmSettings.updateNotificationTime(millis)
+
+                //todo remove
+//                vmSettings.updateNotificationTime(millis)
+
                 vmSettings.cancelNotification()
                 vmSettings.buildAndScheduleNotification(millis).apply {
                     this?.let { timestamp ->

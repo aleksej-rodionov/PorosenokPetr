@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import space.rodionov.porosenokpetr.core.domain.use_case.PreferencesUseCases
 import space.rodionov.porosenokpetr.feature_driller.domain.models.BaseModel
 import space.rodionov.porosenokpetr.feature_driller.domain.models.MenuLanguage
 import space.rodionov.porosenokpetr.feature_driller.domain.models.MenuSwitch
@@ -26,6 +27,7 @@ import javax.inject.Inject
 
 class SettingsViewModel @Inject constructor(
     private val notificationHelper: NotificationHelper,
+    private val preferenvesUseCases: PreferencesUseCases,
     private val drillerUseCases: DrillerUseCases
 ) : ViewModel() {
 
@@ -44,19 +46,19 @@ class SettingsViewModel @Inject constructor(
     }
 
     //==========================MODE=========================================
-    private val _mode = drillerUseCases.observeModeUseCase.invoke()
+    private val _mode = preferenvesUseCases.observeModeUseCase.invoke()
     val mode = _mode.stateIn(viewModelScope, SharingStarted.Lazily, 0)
 
     fun updateMode(mode:Int) = viewModelScope.launch {
-        drillerUseCases.setModeUseCase.invoke(mode)
+        preferenvesUseCases.setModeUseCase.invoke(mode)
     }
 
     //==========================FOLLOW SYSTEM MODE=========================================
-    private val _followSystemMode = drillerUseCases.observeFollowSystemModeUseCase.invoke()
+    private val _followSystemMode = preferenvesUseCases.observeFollowSystemModeUseCase.invoke()
     val followSystemMode = _followSystemMode.stateIn(viewModelScope, SharingStarted.Lazily, false)
 
     private fun updateFollowSystemMode(follow: Boolean) = viewModelScope.launch {
-        drillerUseCases.setFollowSystemModeUseCase.invoke(follow)
+        preferenvesUseCases.setFollowSystemModeUseCase.invoke(follow)
     }
 
     //==========================NATIVE LANGUAGE=========================================
@@ -77,21 +79,6 @@ class SettingsViewModel @Inject constructor(
 
     private fun updateLearnedLanguage(lang: Int) = viewModelScope.launch {
         drillerUseCases.updateLearnedLangUseCase.invoke(lang)
-    }
-
-    //==========================NOTIFICATION=========================================
-    private val _remind = drillerUseCases.observeReminderUseCase.invoke()
-    val remind = _remind.stateIn(viewModelScope, SharingStarted.Lazily, false)
-
-    private fun updateRemind(follow: Boolean) = viewModelScope.launch {
-        drillerUseCases.setReminderUseCase.invoke(follow)
-    }
-
-    private val _notificationTime = drillerUseCases.observeNotificationMillisUseCase.invoke()
-    val notificationTime = _notificationTime.stateIn(viewModelScope, SharingStarted.Lazily, Constants.MILLIS_IN_NINE_HOURS)
-
-    fun updateNotificationTime(millis: Long) = viewModelScope.launch {
-        drillerUseCases.setNotificationMillisUseCase.invoke(millis)
     }
 
     //=======================EVENT SHARED FLOW======================================
@@ -169,7 +156,9 @@ class SettingsViewModel @Inject constructor(
                 updateMode(if (isChecked) MODE_DARK else MODE_LIGHT)
             }
             SettingsItemType.SYSTEM_MODE -> updateFollowSystemMode(isChecked)
-            SettingsItemType.REMINDER -> updateRemind(isChecked)
+            SettingsItemType.REMINDER -> {
+                //todo remove
+            }
             SettingsItemType.NATIVE_LANG -> {
                 updateNativeLanguage(if (isChecked) LANGUAGE_UA else LANGUAGE_RU)
             }
@@ -193,7 +182,10 @@ class SettingsViewModel @Inject constructor(
         _settingsEventFlow.emit(SettingsEvent.ShowSnackbar(text))
     }
 
-    fun buildAndScheduleNotification() = notificationHelper.buildNotification(notificationTime.value)
+    fun buildAndScheduleNotification() {
+        //todo remove
+//        notificationHelper.buildNotification(notificationTime.value)
+    }
     fun buildAndScheduleNotification(millisFromDayStart: Long) = notificationHelper.buildNotification(millisFromDayStart)
     fun cancelNotification() = notificationHelper.cancelNotification()
 

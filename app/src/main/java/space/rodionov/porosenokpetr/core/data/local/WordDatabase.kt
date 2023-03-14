@@ -1,21 +1,19 @@
-package space.rodionov.porosenokpetr.feature_driller.data.local
+package space.rodionov.porosenokpetr.core.data.local
 
 import android.app.Application
 import android.util.Log
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import space.rodionov.porosenokpetr.BuildConfig
 import space.rodionov.porosenokpetr.R
-import space.rodionov.porosenokpetr.feature_driller.data.local.entity.CategoryEntity
-import space.rodionov.porosenokpetr.feature_driller.data.local.entity.WordEntity
+import space.rodionov.porosenokpetr.core.data.local.entity.CategoryEntity
+import space.rodionov.porosenokpetr.core.data.local.entity.WordEntity
 import space.rodionov.porosenokpetr.feature_driller.di.ApplicationScope
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_DB_REFACTOR
 import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_NATIVE_LANG
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
 import javax.inject.Inject
 import javax.inject.Provider
 
@@ -41,11 +39,13 @@ abstract class WordDatabase : RoomDatabase() {
                     val catNamesRus = app.resources.getStringArray(R.array.cat_name_rus).toList()
                     val catNamesUkr = app.resources.getStringArray(R.array.cat_name_ukr).toList()
                     catNamesRus.forEachIndexed { index, s ->
-                        dao.insertCategory(CategoryEntity(
+                        dao.insertCategory(
+                            CategoryEntity(
                             resourceName = s,
                             nameRus = s,
                             nameUkr = catNamesUkr[index]
-                        ))
+                        )
+                        )
                     }
 
 //                    val words = mutableListOf<WordEntity>()

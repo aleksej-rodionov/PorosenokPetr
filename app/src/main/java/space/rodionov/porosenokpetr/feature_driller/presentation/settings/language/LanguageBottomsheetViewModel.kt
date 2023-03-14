@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import space.rodionov.porosenokpetr.core.domain.use_case.PreferencesUseCases
 import space.rodionov.porosenokpetr.feature_driller.di.ViewModelAssistedFactory
 import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.DrillerUseCases
 import space.rodionov.porosenokpetr.feature_driller.utils.AppFlavor
@@ -18,12 +19,13 @@ import javax.inject.Inject
 
 class LanguageBottomsheetViewModel (
     private val drillerUseCases: DrillerUseCases,
+    private val preferenvesUseCases: PreferencesUseCases,
     private val state: SavedStateHandle,
 ) : ViewModel() {
     var nativeOrForeign = state.getLiveData<Int>("nativeForeign", NATIVE_LANGUAGE_CHANGE)
 
     //============MODE============
-    private val _mode = drillerUseCases.observeModeUseCase.invoke()
+    private val _mode = preferenvesUseCases.observeModeUseCase.invoke()
     val mode = _mode.stateIn(viewModelScope, SharingStarted.Lazily, 0)
 
     //=========================NATIVE LANG=======================
@@ -73,9 +75,10 @@ class LanguageBottomsheetViewModel (
 
 class LanguageBottomsheetViewModelFactory @Inject constructor(
     private val drillerUseCases: DrillerUseCases,
+    private val preferenvesUseCases: PreferencesUseCases
 ) : ViewModelAssistedFactory<LanguageBottomsheetViewModel> {
     override fun create(handle: SavedStateHandle): LanguageBottomsheetViewModel {
-        return LanguageBottomsheetViewModel(drillerUseCases, handle)
+        return LanguageBottomsheetViewModel(drillerUseCases, preferenvesUseCases, handle)
     }
 }
 

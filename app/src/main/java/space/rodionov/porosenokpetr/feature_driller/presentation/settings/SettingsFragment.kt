@@ -94,29 +94,29 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
                 vmSettings.updateMenuList(SettingsItemType.SYSTEM_MODE, it)
             }
         }
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            vmSettings.remind.collectLatest {
-                vmSettings.updateMenuList(SettingsItemType.REMINDER, it)
-
-                Log.d(Constants.TAG_PETR, "remind.collect: justopened = ${vmSettings.justOpened}")
-                if (it) {
-                    vmSettings.buildAndScheduleNotification().apply {
-                        if (!vmSettings.justOpened) {
-                            this?.let { timestamp ->
-                                vmSettings.scheduleSuccessSnackBar(timestamp, getString(R.string.notification_schedule_title), getString(R.string.notification_schedule_pattern))
-                            } ?: vmSettings.scheduleErrorSnackbar(resources.getString(R.string.notification_schedule_error))
-                        }
-                    }
-                } else {
-                    vmSettings.cancelNotification()
-                }
-            }
-        }
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            vmSettings.notificationTime.collectLatest {
-                vmSettings.updateNotificationTimeInList(it)
-            }
-        }
+//        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+//            vmSettings.remind.collectLatest {
+//                vmSettings.updateMenuList(SettingsItemType.REMINDER, it)
+//
+//                Log.d(Constants.TAG_PETR, "remind.collect: justopened = ${vmSettings.justOpened}")
+//                if (it) {
+//                    vmSettings.buildAndScheduleNotification().apply {
+//                        if (!vmSettings.justOpened) {
+//                            this?.let { timestamp ->
+//                                vmSettings.scheduleSuccessSnackBar(timestamp, getString(R.string.notification_schedule_title), getString(R.string.notification_schedule_pattern))
+//                            } ?: vmSettings.scheduleErrorSnackbar(resources.getString(R.string.notification_schedule_error))
+//                        }
+//                    }
+//                } else {
+//                    vmSettings.cancelNotification()
+//                }
+//            }
+//        }
+//        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+//            vmSettings.notificationTime.collectLatest {
+//                vmSettings.updateNotificationTimeInList(it)
+//            }
+//        }
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             vmSettings.nativeLanguage.collectLatest {
                 binding.tvTitle.text = resources.getString( if (it == LANGUAGE_UA) LocalizationHelper.settings.uaId

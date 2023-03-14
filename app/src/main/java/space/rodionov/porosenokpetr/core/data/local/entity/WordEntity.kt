@@ -1,4 +1,4 @@
-package space.rodionov.porosenokpetr.feature_driller.data.local.entity
+package space.rodionov.porosenokpetr.core.data.local.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

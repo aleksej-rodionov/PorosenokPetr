@@ -5,6 +5,7 @@ import dagger.BindsInstance
 import dagger.Component
 import space.rodionov.porosenokpetr.MainActivity
 import space.rodionov.porosenokpetr.PorosenokPetrApp
+import space.rodionov.porosenokpetr.core.di.AppModule
 import space.rodionov.porosenokpetr.feature_driller.presentation.collection.CollectionFragment
 import space.rodionov.porosenokpetr.feature_driller.presentation.driller.DrillerFragment
 import space.rodionov.porosenokpetr.feature_driller.presentation.driller.FilterBottomSheet
