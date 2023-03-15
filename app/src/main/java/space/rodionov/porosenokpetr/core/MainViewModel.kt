@@ -36,14 +36,15 @@ class MainViewModel @Inject constructor(
 
     fun onBtnClick() {
         viewModelScope.launch {
-            Log.d("TAG_DB", "clicked")
-            val number = repo.getWordsQuantity()
-            Log.d("TAG_DB", "number of words = ${number.toString()}")
+//            Log.d("TAG_DB", "clicked")
+//            val number = repo.getWordsQuantity()
+//            Log.d("TAG_DB", "number of words = ${number.toString()}")
 
-//            val tenWords = cardStackUseCases.getTenWordsUseCase.invoke()
-//            tenWords.forEach {
-//                Log.d("TAG_DB", "${it.swe}")
-//            }
+            val tenWords = repo.getTenWords()
+//            Log.d("TAG_DB", "${tenWords}")
+            tenWords.forEach {
+                Log.d("TAG_DB", "${it.swe}")
+            }
         }
     }
 }

@@ -15,6 +15,7 @@ import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.data.local.entity.CategoryEntity
 import space.rodionov.porosenokpetr.core.data.local.entity.WordEntity
 import space.rodionov.porosenokpetr.core.data.local.entity.WordRaw
+import space.rodionov.porosenokpetr.core.data.local.entity.swedishCategories
 import space.rodionov.porosenokpetr.core.data.local.mapper.toWordEntity
 import space.rodionov.porosenokpetr.core.di.ApplicationScope
 import space.rodionov.porosenokpetr.core.util.Constants.TAG_DB_REFACTOR
@@ -38,14 +39,16 @@ abstract class WordDatabase : RoomDatabase() {
             val dao = database.get().dao
 
             appScope.launch {
-
+//todo move DB populating to separate UseCase
                 if (BuildConfig.FLAVOR == "swedishdriller") {
+
                     Log.d("TAG_DB", "onCreate: started")
+                    swedishCategories.forEach {
+                        dao.insertCategory(it)
+                    }
 
                     val rawWordsFromJson = parseVocabulary(app)
-                    //todo then try to make this more economical
                     rawWordsFromJson.forEach {
-                        Log.d("TAG_DB", "insertWord(${it.swe})")
                         dao.insertWord(WordEntity(it.rus, it.ukr, it.eng, it.swe, it.catName))
                     }
                     Log.d("TAG_DB", "onCreate: finished")
