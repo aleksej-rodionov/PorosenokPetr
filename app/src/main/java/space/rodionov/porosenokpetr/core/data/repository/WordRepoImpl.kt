@@ -19,13 +19,26 @@ class WordRepoImpl(
     private val dao: WordDao,
 ) : WordRepo {
 
-    override fun getTenWords(): Flow<Resource<List<Word>>> = flow {
-        emit(Resource.Loading())
-        delay(500L) // для пробы
-        val words = dao.getTenWords().map { it.toWord() }
-        emit(Resource.Success(words))
-        // todo обработать Resource.Error ?? (когда будет API)
+//    override fun getTenWords(): Flow<Resource<List<Word>>> = flow {
+//        emit(Resource.Loading())
+//        delay(500L) // для пробы
+//        val words = dao.getTenWords().map {
+//            Log.d("TAG_DB", "getTenWords: ${it.swe}")
+//            it.toWord()
+//        }
+//        emit(Resource.Success(words))
+//        // todo обработать Resource.Error ?? (когда будет API)
+//    }
+
+    override suspend fun getTenWords(): List<Word> {
+        return dao.getTenWords().map {
+            Log.d("TAG_DB", "getTenWords: ${it.swe}")
+            it.toWord()
+        }
     }
+
+    override suspend fun getAllWords() = dao.getAllWords().map { it.toWord() }
+    override suspend fun getWordsQuantity(): Int = dao.getAllWords().size
 
     override suspend fun updateWordIsActive(word: Word, isActive: Boolean) {
         val wordEntity = dao.getWord(word.rus, word.eng, word.categoryName)

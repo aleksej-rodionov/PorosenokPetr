@@ -44,12 +44,9 @@ abstract class WordDatabase : RoomDatabase() {
 
                     val rawWordsFromJson = parseVocabulary(app)
                     //todo then try to make this more economical
-                    val wordEntities = rawWordsFromJson.map {
-                        it.toWordEntity()
-                    }
-
-                    wordEntities.forEach {
-                        dao.insertWord(it)
+                    rawWordsFromJson.forEach {
+                        Log.d("TAG_DB", "insertWord(${it.swe})")
+                        dao.insertWord(WordEntity(it.rus, it.ukr, it.eng, it.swe, it.catName))
                     }
                     Log.d("TAG_DB", "onCreate: finished")
                 }

@@ -5,14 +5,19 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Button
+import androidx.compose.material.Text
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.util.Constants.MODE_DARK
 import space.rodionov.porosenokpetr.core.util.Constants.MODE_LIGHT
-import space.rodionov.porosenokpetr.databinding.ActivityMainBinding
 import space.rodionov.porosenokpetr.core.util.ViewModelFactory
 import javax.inject.Inject
 
@@ -23,8 +28,6 @@ class MainActivity : ComponentActivity() {
     @Inject
     lateinit var factory: ViewModelFactory
 
-    private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
-
     private val vmMain by viewModels<MainViewModel>(
         factoryProducer = { factory }
     )
@@ -33,17 +36,25 @@ class MainActivity : ComponentActivity() {
         PorosenokPetrApp.component?.inject(this)
         super.onCreate(savedInstanceState)
 
-        this.lifecycleScope.launchWhenStarted {
-            vmMain.tenWords.collectLatest {
-                it?.data?.let {
-                    it.forEach { word ->
-                        Log.d("TAG_DB", word.swe ?: "<empty>")
-                    }
-                } ?: run {
-                    Log.d("TAG_DB", "onCreate: ERROR")
-                }
+        setContent {
+            Button(onClick = {vmMain.onBtnClick()},
+            modifier = Modifier.padding(4.dp)
+            ) {
+                Text("Button блять")
             }
         }
+
+//        this.lifecycleScope.launchWhenStarted {
+//            vmMain.tenWords.collectLatest {
+//                it?.data?.let {
+//                    it.forEach { word ->
+//                        Log.d("TAG_DB", word.swe ?: "<empty>")
+//                    }
+//                } ?: run {
+//                    Log.d("TAG_DB", "onCreate: ERROR")
+//                }
+//            }
+//        }
 
 
 

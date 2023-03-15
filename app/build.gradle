@@ -42,7 +42,10 @@ android {
         useIR = true
     }
     buildFeatures {
-        viewBinding true
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion "1.1.0-rc02"
     }
     packagingOptions {
         resources {
@@ -137,5 +140,27 @@ dependencies {
     // WorkManager
     implementation 'androidx.work:work-runtime-ktx:2.7.1'
     implementation 'androidx.hilt:hilt-work:1.0.0-alpha01'
+
+    //Compose
+    def composeVersion = "1.1.0-rc01"
+    def composeCompilerVersion = "1.1.0-rc02"
+    implementation "androidx.compose.material:material:$composeVersion"
+    implementation "androidx.compose.ui:ui:$composeVersion"
+    implementation "androidx.compose.ui:ui-tooling-preview:$composeVersion"
+    implementation "androidx.compose.runtime:runtime:$composeVersion"
+    implementation "androidx.compose.compiler:compiler:$composeCompilerVersion"
+
+    def navigationVersion = "2.4.0-beta02"
+    implementation "androidx.navigation:navigation-compose:$navigationVersion"
+
+    def hiltNavigationComposeVersion = "1.0.0-beta01"
+    implementation "androidx.hilt:hilt-navigation-compose:$hiltNavigationComposeVersion"
+
+    def activityComposeVersion = "1.4.0"
+    implementation "androidx.activity:activity-compose:$activityComposeVersion"
+
+    def lifecycleVersion = "2.4.0"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycleVersion"
+
 
 }

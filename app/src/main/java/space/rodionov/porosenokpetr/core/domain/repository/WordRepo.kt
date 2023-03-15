@@ -8,7 +8,10 @@ import space.rodionov.porosenokpetr.core.domain.model.Word
 
 interface WordRepo {
 
-    fun getTenWords(): Flow<Resource<List<Word>>>
+    suspend fun getTenWords(): List<Word>
+
+    suspend fun getAllWords(): List<Word>
+    suspend fun getWordsQuantity(): Int
 
 //    fun observeWords(query: String): Flow<Resource<List<Word>>>
 

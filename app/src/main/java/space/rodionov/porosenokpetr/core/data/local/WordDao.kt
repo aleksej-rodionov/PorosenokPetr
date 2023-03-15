@@ -15,6 +15,9 @@ interface WordDao {
     @Query("SELECT * FROM wordentity WHERE categoryName IN (SELECT resourceName FROM categoryentity WHERE isCategoryActive = 1) AND isWordActive = 1 ORDER BY RANDOM() LIMIT 10")
     suspend fun getTenWords(): List<WordEntity>
 
+    @Query("SELECT * FROM wordentity")
+    suspend fun getAllWords(): List<WordEntity>
+
     @Query("SELECT * FROM wordentity WHERE rus = :rus AND `eng` = :eng AND categoryName = :categoryName LIMIT 1")
     suspend fun getWord(rus: String, eng: String, categoryName: String): WordEntity
 
