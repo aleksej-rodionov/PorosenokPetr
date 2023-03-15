@@ -11,14 +11,12 @@ import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import space.rodionov.porosenokpetr.BuildConfig
-import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.data.local.entity.CategoryEntity
 import space.rodionov.porosenokpetr.core.data.local.entity.WordEntity
 import space.rodionov.porosenokpetr.core.data.local.entity.WordRaw
 import space.rodionov.porosenokpetr.core.data.local.entity.swedishCategories
-import space.rodionov.porosenokpetr.core.data.local.mapper.toWordEntity
+import space.rodionov.porosenokpetr.core.data.local.mapper.toCategoryEntity
 import space.rodionov.porosenokpetr.core.di.ApplicationScope
-import space.rodionov.porosenokpetr.core.util.Constants.TAG_DB_REFACTOR
 import javax.inject.Inject
 import javax.inject.Provider
 
@@ -44,7 +42,7 @@ abstract class WordDatabase : RoomDatabase() {
 
                     Log.d("TAG_DB", "onCreate: started")
                     swedishCategories.forEach {
-                        dao.insertCategory(it)
+                        dao.insertCategory(it.toCategoryEntity())
                     }
 
                     val rawWordsFromJson = parseVocabulary(app)

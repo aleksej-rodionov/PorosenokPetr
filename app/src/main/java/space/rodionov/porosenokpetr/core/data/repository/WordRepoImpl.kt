@@ -9,7 +9,9 @@ import space.rodionov.porosenokpetr.BuildConfig
 import space.rodionov.porosenokpetr.core.util.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.core.util.Resource
 import space.rodionov.porosenokpetr.core.data.local.WordDao
+import space.rodionov.porosenokpetr.core.data.local.mapper.toCategoryEntity
 import space.rodionov.porosenokpetr.core.data.local.mapper.toWord
+import space.rodionov.porosenokpetr.core.data.local.mapper.toWordEntity
 import space.rodionov.porosenokpetr.core.domain.model.CatWithWords
 import space.rodionov.porosenokpetr.core.domain.model.Category
 import space.rodionov.porosenokpetr.core.domain.model.Word
@@ -19,16 +21,13 @@ class WordRepoImpl(
     private val dao: WordDao,
 ) : WordRepo {
 
-//    override fun getTenWords(): Flow<Resource<List<Word>>> = flow {
-//        emit(Resource.Loading())
-//        delay(500L) // для пробы
-//        val words = dao.getTenWords().map {
-//            Log.d("TAG_DB", "getTenWords: ${it.swe}")
-//            it.toWord()
-//        }
-//        emit(Resource.Success(words))
-//        // todo обработать Resource.Error ?? (когда будет API)
-//    }
+    override suspend fun insertCategory(category: Category) {
+        dao.insertCategory(category.toCategoryEntity())
+    }
+
+    override suspend fun insertWord(word: Word) {
+        dao.insertWord(word.toWordEntity())
+    }
 
     override suspend fun getTenWords(): List<Word> {
         return dao.getTenWords().map {

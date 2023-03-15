@@ -8,7 +8,8 @@ data class Word(
     val eng: String,
     val swe: String?,
     val categoryName: String,
-    val isWordActive: Boolean
+    val isWordActive: Boolean,
+    val id: Int? = null
 ) {
 
     fun getTranslation(lang: Int): String {

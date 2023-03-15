@@ -8,6 +8,9 @@ import space.rodionov.porosenokpetr.core.domain.model.Word
 
 interface WordRepo {
 
+    suspend fun insertCategory(category: Category)
+    suspend fun insertWord(word: Word)
+
     suspend fun getTenWords(): List<Word>
 
     suspend fun getAllWords(): List<Word>
@@ -26,10 +29,6 @@ interface WordRepo {
 
     fun wordsBySearchQuery(catName: String, searchQuery: String) : Flow<List<Word>>
 
-//    fun observeActiveWordsByCat(catName: String) : Flow<List<WordEntity>>
-//
-//    fun observeAllWordsByCat(catName: String) : Flow<List<WordEntity>>
-
     fun observeAllCategories() : Flow<List<Category>>
 
     fun observeAllCategoriesWithWords() : Flow<List<CatWithWords>>
@@ -43,30 +42,6 @@ interface WordRepo {
     suspend fun isCatActive(name: String): Boolean
 
     fun observeAllActiveCatsNames(): Flow<List<String>>
-
-//    fun getMode(): Flow<Int>
-//    suspend fun setMode(mode: Int)
-//
-//    fun getFollowSystemMode(): Flow<Boolean>
-//    suspend fun setFollowSystemMode(follow: Boolean)
-//
-//    fun getRemind(): Flow<Boolean>
-//    suspend fun setRemind(remind: Boolean)
-//
-//    fun getNotifyMillis(): Flow<Long>
-//    suspend fun setNotifyMillis(millis: Long)
-//
-//    fun getTransDir() : Flow<Boolean>
-//    suspend fun setTransDir(nativeToForeign: Boolean)
-//
-//    fun observeNativeLanguage() : Flow<Int>
-//    suspend fun updateNativeLanguage(newLanguage: Int)
-//
-//    fun observeLearnedLanguage() : Flow<Int>
-//    suspend fun updateLearnedLanguage(newLanguage: Int)
-//
-//    fun storageCatName() : Flow<String>
-//    suspend fun updateStorageCat(catName: String)
 }
 
 

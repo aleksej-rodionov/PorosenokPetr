@@ -11,16 +11,30 @@ fun WordEntity.toWord(): Word {
         ukr = ukr,
         swe = swe,
         categoryName = categoryName,
-        isWordActive = isWordActive
+        isWordActive = isWordActive,
+        id = id
     )
 }
 
-fun WordRaw.toWordEntity(): WordEntity {
+fun Word.toWordEntity(): WordEntity {
     return WordEntity(
+        eng = eng,
+        rus = rus,
+        ukr = ukr,
+        swe = swe,
+        categoryName = categoryName,
+        isWordActive = isWordActive,
+        id = id
+    )
+}
+
+fun WordRaw.toWord(): Word {
+    return Word(
         rus = rus,
         eng = eng,
         swe = swe,
         ukr = ukr,
-        categoryName = catName
+        categoryName = catName,
+        isWordActive = true
     )
 }

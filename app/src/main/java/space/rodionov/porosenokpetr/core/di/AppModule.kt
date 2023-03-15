@@ -12,12 +12,8 @@ import space.rodionov.porosenokpetr.core.domain.preferences.Preferences
 import space.rodionov.porosenokpetr.core.domain.use_case.*
 import space.rodionov.porosenokpetr.core.data.repository.WordRepoImpl
 import space.rodionov.porosenokpetr.core.domain.repository.WordRepo
-import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.*
 import space.rodionov.porosenokpetr.core.util.Constants
-import space.rodionov.porosenokpetr.feature_cardstack.domain.use_case.*
 import space.rodionov.porosenokpetr.feature_settings.reminder.NotificationHelper
-import space.rodionov.porosenokpetr.feature_settings.domain.use_case.use_case.*
-import space.rodionov.porosenokpetr.feature_vocabulary.domaion.use_case.*
 import javax.inject.Singleton
 
 //todo :app module
@@ -75,4 +71,17 @@ class AppModule {
             makeCategoryActiveUseCase = MakeCategoryActiveUseCase(repo)
         )
     }
+
+    //todo :app module
+    @Provides
+    @Singleton
+    fun provideMainInteractor(
+        repo: WordRepo,
+        @ApplicationScope appScope: CoroutineScope,
+        app: Application
+    ) = SplashInteractor(
+        repo,
+        appScope,
+        app
+    )
 }
