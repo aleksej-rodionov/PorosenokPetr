@@ -9,6 +9,7 @@ import space.rodionov.porosenokpetr.BuildConfig
 import space.rodionov.porosenokpetr.core.util.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.core.util.Resource
 import space.rodionov.porosenokpetr.core.data.local.WordDao
+import space.rodionov.porosenokpetr.core.data.local.mapper.toWord
 import space.rodionov.porosenokpetr.core.domain.model.CatWithWords
 import space.rodionov.porosenokpetr.core.domain.model.Category
 import space.rodionov.porosenokpetr.core.domain.model.Word
@@ -16,7 +17,6 @@ import space.rodionov.porosenokpetr.core.domain.repository.WordRepo
 
 class WordRepoImpl(
     private val dao: WordDao,
-//    private val preferences: PreferencesImpl
 ) : WordRepo {
 
     override fun getTenWords(): Flow<Resource<List<Word>>> = flow {
@@ -128,30 +128,4 @@ class WordRepoImpl(
     override suspend fun isCatActive(name: String): Boolean = dao.isCategoryActive(name)
 
     override fun observeAllActiveCatsNames(): Flow<List<String>> = dao.observeAllActiveCatsNames()
-
-//    override fun getMode(): Flow<Int> = preferences.modeFlow
-//    override suspend fun setMode(mode: Int) = preferences.updateMode(mode)
-//
-//    override fun getFollowSystemMode(): Flow<Boolean> = preferences.followSystemModeFlow
-//    override suspend fun setFollowSystemMode(follow: Boolean) = preferences.updateFollowSystemMode(follow)
-//
-//    override fun getRemind(): Flow<Boolean> = preferences.remindFlow
-//    override suspend fun setRemind(remind: Boolean)  = preferences.updateRemind(remind)
-//
-//    override fun getNotifyMillis(): Flow<Long> = preferences.millisFlow
-//    override suspend fun setNotifyMillis(millis: Long) = preferences.updateMillis(millis)
-//
-//    override fun getTransDir(): Flow<Boolean> = preferences.translationDirectionFlow
-//    override suspend fun setTransDir(nativeToForeign: Boolean) {
-//        preferences.updatetranslationDirection(nativeToForeign)
-//    }
-//
-//    override fun observeNativeLanguage(): Flow<Int> = preferences.nativeLanguageFlow
-//    override suspend fun updateNativeLanguage(newLanguage: Int) = preferences.updateNativeLanguage(newLanguage)
-//
-//    override fun observeLearnedLanguage(): Flow<Int> = preferences.learnedLanguageFlow
-//    override suspend fun updateLearnedLanguage(newLanguage: Int) = preferences.updateLearnedLanguage(newLanguage)
-//
-//    override fun storageCatName(): Flow<String> = preferences.categoryFlow
-//    override suspend fun updateStorageCat(catName: String) = preferences.updateCategoryChosen(catName)
 }

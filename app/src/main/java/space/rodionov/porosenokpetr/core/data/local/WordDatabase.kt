@@ -1,19 +1,23 @@
 package space.rodionov.porosenokpetr.core.data.local
 
 import android.app.Application
+import android.content.Context
 import android.util.Log
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import space.rodionov.porosenokpetr.BuildConfig
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.data.local.entity.CategoryEntity
 import space.rodionov.porosenokpetr.core.data.local.entity.WordEntity
+import space.rodionov.porosenokpetr.core.data.local.entity.WordRaw
+import space.rodionov.porosenokpetr.core.data.local.mapper.toWordEntity
 import space.rodionov.porosenokpetr.core.di.ApplicationScope
 import space.rodionov.porosenokpetr.core.util.Constants.TAG_DB_REFACTOR
-import space.rodionov.porosenokpetr.core.util.Constants.TAG_NATIVE_LANG
 import javax.inject.Inject
 import javax.inject.Provider
 
@@ -34,91 +38,42 @@ abstract class WordDatabase : RoomDatabase() {
             val dao = database.get().dao
 
             appScope.launch {
-                if (BuildConfig.FLAVOR == "englishdriller") {
-                    Log.d(TAG_DB_REFACTOR, "onCreate: flavor = englishdriller")
-                    val catNamesRus = app.resources.getStringArray(R.array.cat_name_rus).toList()
-                    val catNamesUkr = app.resources.getStringArray(R.array.cat_name_ukr).toList()
-                    catNamesRus.forEachIndexed { index, s ->
-                        dao.insertCategory(
-                            CategoryEntity(
-                            resourceName = s,
-                            nameRus = s,
-                            nameUkr = catNamesUkr[index]
-                        )
-                        )
-                    }
-
-//                    val words = mutableListOf<WordEntity>()
-
-                    catNamesRus.forEachIndexed { index, s ->
-
-                        val rusResId = app.resources.getIdentifier("rus$index", "array", app.packageName)
-                        val rusWords = app.resources.getStringArray(rusResId).toList()
-                        Log.d(TAG_DB_REFACTOR, "ruswords size = ${rusWords.size}: ")
-
-                        val engResId = app.resources.getIdentifier("eng$index", "array", app.packageName)
-                        val engWords = app.resources.getStringArray(engResId).toList()
-                        Log.d(TAG_DB_REFACTOR, "engwords size = ${engWords.size}: ")
-
-                        for (i in engWords.indices) {
-                            dao.insertWord(WordEntity(rusWords[i], null, engWords[i], null, categoryName = s))  // todo add ukrainian later
-
-//                            if (i == 0) words.add(WordEntity(rusWords[i], null, engWords[i], null, categoryName = s))
-                        }
-
-//                        val wordsJson = Gson().toJson(words)
-
-//                        Log.d("WORDS_JSON", wordsJson)
-                    }
-                }
 
                 if (BuildConfig.FLAVOR == "swedishdriller") {
-                    Log.d(TAG_DB_REFACTOR, "onCreate: flavor = swedishdriller")
+                    Log.d("TAG_DB", "onCreate: started")
 
-                    val catNamesRus = app.resources.getStringArray(R.array.cat_name_rus).toList()
-                    val catNamesUkr = app.resources.getStringArray(R.array.cat_name_ukr).toList()
-                    val catNamesEng = app.resources.getStringArray(R.array.cat_name_eng).toList()
-                    catNamesRus.forEachIndexed { index, s ->
-                        val cat = CategoryEntity(
-                            resourceName = s,
-                            nameRus = s,
-                            nameUkr = catNamesUkr[index],
-                            nameEng = catNamesEng[index]
-                        )
-                        dao.insertCategory(cat)
+                    val rawWordsFromJson = parseVocabulary(app)
+                    //todo then try to make this more economical
+                    val wordEntities = rawWordsFromJson.map {
+                        it.toWordEntity()
                     }
 
-                    catNamesRus.forEachIndexed { index, s ->
-                        Log.d(TAG_DB_REFACTOR, "onCreate: cat = $s")
-
-                        val rusResId = app.resources.getIdentifier("rus${index+1}", "array", app.packageName)
-                        val rusWords = app.resources.getStringArray(rusResId).toList()
-                        Log.d(TAG_NATIVE_LANG, "ruswords size = ${rusWords.size}: ")
-
-                        val ukrResId = app.resources.getIdentifier("ukr${index+1}", "array", app.packageName)
-                        val ukrWords = app.resources.getStringArray(ukrResId).toList()
-                        Log.d(TAG_DB_REFACTOR, "ruswords size = ${ukrWords.size}: ")
-
-                        val engResId = app.resources.getIdentifier("eng${index+1}", "array", app.packageName)
-                        val engWords = app.resources.getStringArray(engResId).toList()
-                        Log.d(TAG_DB_REFACTOR, "engwords size = ${engWords.size}: ")
-
-                        val sweResId = app.resources.getIdentifier("foreign${index+1}", "array", app.packageName)
-                        val sweWords = app.resources.getStringArray(sweResId).toList()
-                        Log.d(TAG_DB_REFACTOR, "ruswords size = ${sweWords.size}: ")
-
-                        for (i in engWords.indices) {
-                            dao.insertWord(WordEntity(rusWords[i], ukrWords[i], engWords[i], sweWords[i], categoryName = s))
-                        }
+                    wordEntities.forEach {
+                        dao.insertWord(it)
                     }
-
+                    Log.d("TAG_DB", "onCreate: finished")
                 }
             }
         }
     }
 }
 
+fun parseVocabulary(context: Context): List<WordRaw> {
+    var vocabularyJson = ""
+    try {
+        vocabularyJson = context.assets.open("vocabulary/vocabulary_swedish.json")
+            .bufferedReader()
+            .use {
+                it.readText()
+            }
+    } catch (e: Exception) {
+        Log.d("TAG_DB", "parseVocabulary: exception = ${e.message}")
+    }
 
+    val wordListTYpe = object : TypeToken<List<WordRaw>>() {}.type
+    val wordRawList: List<WordRaw> = Gson().fromJson(vocabularyJson, wordListTYpe)
+    return wordRawList
+}
 
 
 

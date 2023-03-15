@@ -2,6 +2,7 @@ package space.rodionov.porosenokpetr.core
 
 import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.ComponentActivity
 import androidx.activity.viewModels
@@ -31,6 +32,18 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         PorosenokPetrApp.component?.inject(this)
         super.onCreate(savedInstanceState)
+
+        this.lifecycleScope.launchWhenStarted {
+            vmMain.tenWords.collectLatest {
+                it?.data?.let {
+                    it.forEach { word ->
+                        Log.d("TAG_DB", word.swe ?: "<empty>")
+                    }
+                } ?: run {
+                    Log.d("TAG_DB", "onCreate: ERROR")
+                }
+            }
+        }
 
 
 

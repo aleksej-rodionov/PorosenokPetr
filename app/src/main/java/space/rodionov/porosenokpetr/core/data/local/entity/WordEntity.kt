@@ -13,15 +13,4 @@ data class WordEntity(
     val categoryName: String,
     val isWordActive: Boolean = true,
     @PrimaryKey(autoGenerate = true) val id: Int = 0
-) {
-    fun toWord(): Word {
-        return Word(
-            eng = eng,
-            rus = rus,
-            ukr = ukr,
-            swe = swe,
-            categoryName = categoryName,
-            isWordActive = isWordActive
-        )
-    }
-}
+)
