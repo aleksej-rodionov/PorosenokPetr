@@ -1,17 +1,13 @@
 package space.rodionov.porosenokpetr.core
 
 import android.content.res.Configuration
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.activity.ComponentActivity
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowCompat
-import androidx.core.view.updatePadding
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.flow.collectLatest
-import space.rodionov.porosenokpetr.MainViewModel
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.util.Constants.MODE_DARK
 import space.rodionov.porosenokpetr.core.util.Constants.MODE_LIGHT
@@ -21,14 +17,13 @@ import javax.inject.Inject
 
 //todo :app module
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : ComponentActivity() {
 
     @Inject
     lateinit var factory: ViewModelFactory
 
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
-//    private val vmMain: MainViewModel by viewModels()
     private val vmMain by viewModels<MainViewModel>(
         factoryProducer = { factory }
     )
@@ -36,19 +31,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         PorosenokPetrApp.component?.inject(this)
         super.onCreate(savedInstanceState)
-        val view = binding.root
-        setContentView(view)
 
 
 
-        ViewCompat.setOnApplyWindowInsetsListener(binding.navHostFragment) { v, insets ->
-            v.updatePadding(
-                top = insets.systemWindowInsetTop,
-                bottom = insets.systemWindowInsetBottom
-            )
-            insets
-        }
-        WindowCompat.setDecorFitsSystemWindows(window, true)
+
 
         this.lifecycleScope.launchWhenStarted {
             vmMain.mode.collectLatest {

@@ -1,7 +1,6 @@
 package space.rodionov.porosenokpetr.core.domain.model
 
 import space.rodionov.porosenokpetr.core.util.Constants.EMPTY_STRING
-import space.rodionov.porosenokpetr.feature_settings.domain.model.BaseModel
 
 data class Word(
     val rus: String,
@@ -10,7 +9,7 @@ data class Word(
     val swe: String?,
     val categoryName: String,
     val isWordActive: Boolean
-): BaseModel {
+) {
 
     fun getTranslation(lang: Int): String {
         return when (lang) {

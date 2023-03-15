@@ -4,6 +4,8 @@ import android.app.Application
 import androidx.room.Room
 import dagger.Module
 import dagger.Provides
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.SupervisorJob
 import space.rodionov.porosenokpetr.core.data.local.WordDatabase
 import space.rodionov.porosenokpetr.core.data.preferences.PreferencesImpl
 import space.rodionov.porosenokpetr.core.domain.preferences.Preferences
@@ -22,6 +24,11 @@ import javax.inject.Singleton
 
 @Module
 class AppModule {
+
+    @ApplicationScope
+    @Provides
+    @Singleton
+    fun provideApplicationScope() = CoroutineScope(SupervisorJob())
 
     @Provides
     @Singleton
@@ -66,53 +73,6 @@ class AppModule {
             observeNativeLangUseCase = ObserveNativeLangUseCase(preferences),
             observeTranslationDirectionUseCase = ObserveTranslationDirectionUseCase(preferences),
             makeCategoryActiveUseCase = MakeCategoryActiveUseCase(repo)
-        )
-    }
-
-    //todo move to another features
-    @Provides
-    @Singleton
-    fun provideCardStackUseCases(
-        repo: WordRepo,
-    ): CardStackUseCases {
-        return CardStackUseCases(
-            getRandomWordUseCase = GetRandomWordUseCase(repo),
-            isCategoryActiveUseCase = IsCategoryActiveUseCase(repo),
-            getAllCatsNamesUseCase = GetAllCatsNamesUseCase(repo),
-            getAllActiveCatsNamesUseCase = GetAllActiveCatsNamesUseCase(repo),
-            observeAllCategoriesUseCase = ObserveAllCategoriesUseCase(repo),
-            updateWordIsActiveUseCase = UpdateWordIsActiveUseCase(repo),
-            getTenWordsUseCase = GetTenWordsUseCase(repo)
-        )
-    }
-
-    //todo move to another features
-    @Provides
-    @Singleton
-    fun provideVocabularyUseCases(
-        repo: WordRepo,
-    ): VocabularyUseCases {
-        return VocabularyUseCases(
-            updateWordUseCase = UpdateWordUseCase(repo),
-            updateIsWordActiveUseCase = UpdateIsWordActiveUseCase(repo),
-            observeWordUseCase = ObserveWordUseCase(repo),
-            observeWordsSearchQueryUseCase = ObserveWordsSearchQueryUseCase(repo),
-            observeAllCatsWithWordsUseCase = ObserveAllCatsWithWordsUseCase(repo),
-            observeAllActiveCatsNamesUseCase = ObserveAllActiveCatsNamesUseCase(repo)
-        )
-    }
-
-    //todo move to another features
-    @Provides
-    @Singleton
-    fun provideSettingsUseCases(
-        preferences: Preferences
-    ): SettingsUseCases {
-        return SettingsUseCases(
-            updateLearnedLangUseCase = UpdateLearnedLangUseCase(preferences),
-            updateNativeLangUseCase = UpdateNativeLangUseCase(preferences),
-            saveTranslationDirectionUseCase = SaveTranslationDirectionUseCase(preferences),
-            setFollowSystemModeUseCase = SetFollowSystemModeUseCase(preferences),
         )
     }
 }

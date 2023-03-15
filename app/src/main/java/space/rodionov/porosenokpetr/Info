@@ -5,7 +5,6 @@ in process:
 
 Next todo:
 
-- project structure
 - Jetpack Compose
 - modularization
 - populate DB from JSON, not XML

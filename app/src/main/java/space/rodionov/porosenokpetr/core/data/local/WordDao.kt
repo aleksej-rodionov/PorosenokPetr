@@ -43,6 +43,7 @@ interface WordDao {
     @Query("SELECT * FROM categoryentity")
     fun observeAllCategories(): Flow<List<CategoryEntity>>
 
+    @Transaction
     @Query("SELECT * FROM categoryentity")
     fun observeAllCategoriesWithWords(): Flow<List<CategoryWithWords>>
 
