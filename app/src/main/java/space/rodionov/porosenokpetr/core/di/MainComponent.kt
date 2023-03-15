@@ -5,9 +5,9 @@ import dagger.BindsInstance
 import dagger.Component
 import space.rodionov.porosenokpetr.core.MainActivity
 import space.rodionov.porosenokpetr.core.PorosenokPetrApp
-import space.rodionov.porosenokpetr.feature_driller.presentation.collection.CollectionFragment
-import space.rodionov.porosenokpetr.feature_driller.presentation.driller.DrillerFragment
-import space.rodionov.porosenokpetr.feature_driller.presentation.driller.FilterBottomSheet
+import space.rodionov.porosenokpetr.feature_vocabulary.presentation.CollectionFragment
+import space.rodionov.porosenokpetr.feature_cardstack.presentation.DrillerFragment
+import space.rodionov.porosenokpetr.feature_cardstack.presentation.FilterBottomSheet
 import space.rodionov.porosenokpetr.feature_driller.presentation.settings.SettingsFragment
 import space.rodionov.porosenokpetr.feature_driller.presentation.settings.TimePickerBottomSheet
 import space.rodionov.porosenokpetr.feature_driller.presentation.settings.language.LanguageBottomSheet

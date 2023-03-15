@@ -1,4 +1,4 @@
-package space.rodionov.porosenokpetr.feature_driller.presentation.collection
+package space.rodionov.porosenokpetr.feature_vocabulary.presentation
 
 import android.util.Log
 import android.view.LayoutInflater

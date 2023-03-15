@@ -1,4 +1,4 @@
-package space.rodionov.porosenokpetr.feature_driller.work
+package space.rodionov.porosenokpetr.feature_settings.reminder
 
 import android.app.NotificationChannel
 import android.app.NotificationManager

@@ -13,7 +13,7 @@ import space.rodionov.porosenokpetr.core.domain.repository.WordRepo
 import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.*
 import space.rodionov.porosenokpetr.core.util.Constants
 import space.rodionov.porosenokpetr.feature_cardstack.domain.use_case.*
-import space.rodionov.porosenokpetr.feature_driller.work.NotificationHelper
+import space.rodionov.porosenokpetr.feature_settings.reminder.NotificationHelper
 import space.rodionov.porosenokpetr.feature_settings.domain.use_case.use_case.*
 import space.rodionov.porosenokpetr.feature_vocabulary.domaion.use_case.*
 import javax.inject.Singleton
@@ -74,7 +74,6 @@ class AppModule {
     @Singleton
     fun provideCardStackUseCases(
         repo: WordRepo,
-        preferences: Preferences
     ): CardStackUseCases {
         return CardStackUseCases(
             getRandomWordUseCase = GetRandomWordUseCase(repo),
@@ -92,7 +91,6 @@ class AppModule {
     @Singleton
     fun provideVocabularyUseCases(
         repo: WordRepo,
-        preferences: Preferences
     ): VocabularyUseCases {
         return VocabularyUseCases(
             updateWordUseCase = UpdateWordUseCase(repo),
@@ -108,7 +106,6 @@ class AppModule {
     @Provides
     @Singleton
     fun provideSettingsUseCases(
-        repo: WordRepo,
         preferences: Preferences
     ): SettingsUseCases {
         return SettingsUseCases(

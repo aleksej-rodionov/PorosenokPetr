@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/drillerFragment"
-        android:name="space.rodionov.porosenokpetr.feature_driller.presentation.driller.DrillerFragment"
+        android:name="space.rodionov.porosenokpetr.feature_cardstack.presentation.DrillerFragment"
         android:label="fragment_driller"
         tools:layout="@layout/fragment_driller" >
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/collectionFragment"
-        android:name="space.rodionov.porosenokpetr.feature_driller.presentation.collection.CollectionFragment"
+        android:name="space.rodionov.porosenokpetr.feature_vocabulary.presentation.CollectionFragment"
         android:label="fragment_collection"
         tools:layout="@layout/fragment_collection" >
         <action

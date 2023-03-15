@@ -1,4 +1,4 @@
-package space.rodionov.porosenokpetr.feature_driller.presentation.driller
+package space.rodionov.porosenokpetr.feature_cardstack.presentation
 
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
@@ -139,11 +139,13 @@ class DrillerFragment : Fragment(R.layout.fragment_driller), CardStackListener, 
                     }
                     is DrillerViewModel.DrillerEvent.NavigateToCollectionScreen -> {
                         vmDriller.rememberPositionAfterSwitchFragment()
-                        val navAction = DrillerFragmentDirections.actionDrillerFragmentToCollectionFragment()
+                        val navAction =
+                            space.rodionov.porosenokpetr.feature_driller.presentation.driller.DrillerFragmentDirections.actionDrillerFragmentToCollectionFragment()
                         findNavController().navigate(navAction)
                     }
                     is DrillerViewModel.DrillerEvent.NavigateToSettings -> {
-                        val navAction = DrillerFragmentDirections.actionDrillerFragmentToSettingsFragment()
+                        val navAction =
+                            space.rodionov.porosenokpetr.feature_driller.presentation.driller.DrillerFragmentDirections.actionDrillerFragmentToSettingsFragment()
                         findNavController().navigate(navAction)
                     }
                     is DrillerViewModel.DrillerEvent.OpenFilterBottomSheet -> {

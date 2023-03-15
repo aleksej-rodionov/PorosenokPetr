@@ -1,4 +1,4 @@
-package space.rodionov.porosenokpetr.feature_driller.presentation.collection
+package space.rodionov.porosenokpetr.feature_vocabulary.presentation
 
 import android.os.Bundle
 import android.util.Log
@@ -112,7 +112,7 @@ class CollectionFragment : Fragment(R.layout.fragment_collection) {
                 when (event) {
                     is CollectionViewModel.CollectionEvent.NavigateToWordlistScreen -> {
                         val action =
-                            CollectionFragmentDirections.actionCollectionFragmentToWordlistFragment()
+                            space.rodionov.porosenokpetr.feature_driller.presentation.collection.CollectionFragmentDirections.actionCollectionFragmentToWordlistFragment()
                         if (event.cat != null) {
                             action.category = event.cat
                         } else {

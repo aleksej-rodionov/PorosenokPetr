@@ -1,4 +1,4 @@
-package space.rodionov.porosenokpetr.feature_driller.presentation.driller
+package space.rodionov.porosenokpetr.feature_cardstack.presentation
 
 //class DrillerViewHolder(parent: ViewGroup) :
 //    BaseViewHolder(parent, R.layout.item_word_card) {

@@ -1,4 +1,4 @@
-package space.rodionov.porosenokpetr.feature_driller.presentation.driller
+package space.rodionov.porosenokpetr.feature_cardstack.presentation
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

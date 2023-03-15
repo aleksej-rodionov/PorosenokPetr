@@ -1,4 +1,4 @@
-package space.rodionov.porosenokpetr.feature_driller.presentation.collection
+package space.rodionov.porosenokpetr.feature_vocabulary.presentation
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel

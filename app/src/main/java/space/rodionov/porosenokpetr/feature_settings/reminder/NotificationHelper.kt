@@ -1,4 +1,4 @@
-package space.rodionov.porosenokpetr.feature_driller.work
+package space.rodionov.porosenokpetr.feature_settings.reminder
 
 import android.content.Context
 import android.util.Log
