@@ -11,9 +11,9 @@ import space.rodionov.porosenokpetr.BuildConfig
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.data.local.entity.CategoryEntity
 import space.rodionov.porosenokpetr.core.data.local.entity.WordEntity
-import space.rodionov.porosenokpetr.feature_driller.di.ApplicationScope
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_DB_REFACTOR
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_NATIVE_LANG
+import space.rodionov.porosenokpetr.core.di.ApplicationScope
+import space.rodionov.porosenokpetr.core.util.Constants.TAG_DB_REFACTOR
+import space.rodionov.porosenokpetr.core.util.Constants.TAG_NATIVE_LANG
 import javax.inject.Inject
 import javax.inject.Provider
 

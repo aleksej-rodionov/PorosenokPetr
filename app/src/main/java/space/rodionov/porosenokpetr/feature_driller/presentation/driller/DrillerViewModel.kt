@@ -7,17 +7,16 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import space.rodionov.porosenokpetr.core.Resource
-import space.rodionov.porosenokpetr.core.domain.use_case.PreferencesUseCases
-import space.rodionov.porosenokpetr.feature_driller.di.ViewModelAssistedFactory
-import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
-import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.DrillerUseCases
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
+import space.rodionov.porosenokpetr.core.util.Resource
+import space.rodionov.porosenokpetr.core.util.ViewModelAssistedFactory
+import space.rodionov.porosenokpetr.core.domain.model.Word
+import space.rodionov.porosenokpetr.core.domain.use_case.SharedUseCases
+import space.rodionov.porosenokpetr.core.util.Constants
+import space.rodionov.porosenokpetr.core.util.Constants.TAG_PETR
 import javax.inject.Inject
 
 class DrillerViewModel (
-    private val drillerUseCases: DrillerUseCases,
+    private val sharedUseCases: SharedUseCases,
     private val preferenvesUseCases: PreferencesUseCases,
     private val state: SavedStateHandle,
 ) : ViewModel() {
@@ -39,16 +38,16 @@ class DrillerViewModel (
             state.set("memorizePosOnDestroy", value)
         }
 
-    private val _transDir = drillerUseCases.observeTranslationDirectionUseCase.invoke()
+    private val _transDir = sharedUseCases.observeTranslationDirectionUseCase.invoke()
     val transDir = _transDir.stateIn(viewModelScope, SharingStarted.Lazily, null)
 
     private val _mode = preferenvesUseCases.observeModeUseCase.invoke()
     val mode = _mode.stateIn(viewModelScope, SharingStarted.Lazily, 0)
 
-    private val _nativeLang = drillerUseCases.observeNativeLangUseCase.invoke()
+    private val _nativeLang = sharedUseCases.observeNativeLangUseCase.invoke()
     val nativeLang= _nativeLang.stateIn(viewModelScope, SharingStarted.Lazily, Constants.LANGUAGE_RU)
 
-    private val _learnedLang = drillerUseCases.observeLearnedLangUseCase.invoke()
+    private val _learnedLang = sharedUseCases.observeLearnedLangUseCase.invoke()
     val learnedLang= _learnedLang.stateIn(viewModelScope, SharingStarted.Lazily, Constants.LANGUAGE_EN)
 
     private val snapshotCatsInCaseUncheckAll = mutableListOf<String>()
@@ -57,7 +56,7 @@ class DrillerViewModel (
     private val _currentPosition = MutableStateFlow(0)
     val currentPosition = _currentPosition.asStateFlow() // todo сохранять currentPosition в savedStateHandle
 
-    private val _categories = drillerUseCases.observeAllCategoriesUseCase.invoke()
+    private val _categories = sharedUseCases.observeAllCategoriesUseCase.invoke()
     val categories = _categories.stateIn(viewModelScope, SharingStarted.Lazily, null)
 
     private val _wordsState = MutableStateFlow(WordState())
@@ -83,7 +82,7 @@ class DrillerViewModel (
 
     fun addTenWords() = viewModelScope.launch {
 //        Log.d(TAG_PETR, "VM addTenWords: CALLED")
-        drillerUseCases.getTenWordsUseCase().onEach { result -> // onEach = on each emission of the flow
+        sharedUseCases.getTenWordsUseCase().onEach { result -> // onEach = on each emission of the flow
             val oldPlusNewWords = mutableListOf<Word>()
             oldPlusNewWords.addAll(wordsState.value.words)
 
@@ -142,7 +141,7 @@ class DrillerViewModel (
 
     fun inactivateCurrentWord() = viewModelScope.launch {
         val word = wordsState.value.words[currentPosition.value]
-        drillerUseCases.updateWordIsActiveUseCase(word, false)
+        sharedUseCases.updateWordIsActiveUseCase(word, false)
     }
 
 //====================METHODS FOR BOTTOMSHEET CHIPGROUP================================
@@ -160,7 +159,7 @@ class DrillerViewModel (
 
     fun onCheckBoxTurnedOn() = viewModelScope.launch {
         makeSnapshot()
-        val allCats = drillerUseCases.getAllCatsNamesUseCase.invoke()
+        val allCats = sharedUseCases.getAllCatsNamesUseCase.invoke()
         allCats.forEach { catName ->
             activateCategory(catName)
         }
@@ -169,7 +168,7 @@ class DrillerViewModel (
     }
 
     fun onCheckBoxTurnedOff() = viewModelScope.launch {
-        val allCatsNames = drillerUseCases.getAllCatsNamesUseCase.invoke()
+        val allCatsNames = sharedUseCases.getAllCatsNamesUseCase.invoke()
         allCatsNames.forEach { name ->
             if (!snapshotCatsInCaseUncheckAll.contains(name)) {
                 inactivateCategory(name)
@@ -178,8 +177,8 @@ class DrillerViewModel (
     }
 
     private suspend fun checkIfOnlyOneInactiveCat(): Boolean {
-        val allCats = drillerUseCases.getAllCatsNamesUseCase.invoke()
-        val allActiveCats = drillerUseCases.getAllActiveCatsNamesUseCase.invoke()
+        val allCats = sharedUseCases.getAllCatsNamesUseCase.invoke()
+        val allActiveCats = sharedUseCases.getAllActiveCatsNamesUseCase.invoke()
         return allCats.size - allActiveCats.size == 1
     }
 
@@ -197,11 +196,11 @@ class DrillerViewModel (
     }
 
     private fun activateCategory(catName: String) = viewModelScope.launch {
-        drillerUseCases.makeCategoryActiveUseCase(catName, true)
+        sharedUseCases.makeCategoryActiveUseCase(catName, true)
     }
 
     private suspend fun inactivateCategory(catName: String) {
-        drillerUseCases.makeCategoryActiveUseCase(catName, false)
+        sharedUseCases.makeCategoryActiveUseCase(catName, false)
     }
 
     fun showNotLessThanOneCategory(msg: String) = viewModelScope.launch {
@@ -209,8 +208,8 @@ class DrillerViewModel (
     }
 
     private fun makeSnapshot() = viewModelScope.launch {
-        val allCats = drillerUseCases.getAllCatsNamesUseCase.invoke()
-        val allActiveCats = drillerUseCases.getAllActiveCatsNamesUseCase.invoke()
+        val allCats = sharedUseCases.getAllCatsNamesUseCase.invoke()
+        val allActiveCats = sharedUseCases.getAllActiveCatsNamesUseCase.invoke()
         if (allActiveCats.size == allCats.size && allActiveCats.isNotEmpty()) {
             val singleCat = listOf(allActiveCats[0])
             refulfillSnapshotByNewNames(singleCat)
@@ -244,10 +243,10 @@ class DrillerViewModel (
 //        Log.d(TAG_PETR, "wholeList.size = ${wholeList.size}, curPos = ${currentPosition.value}, curPosWord = ${wholeList.elementAt(currentPosition.value)}")
         delay(500L)
         val newWholeList = mutableListOf<Word>()
-        val allActiveCatsNames = drillerUseCases.getAllActiveCatsNamesUseCase.invoke()
+        val allActiveCatsNames = sharedUseCases.getAllActiveCatsNamesUseCase.invoke()
         newWholeList.addAll(wholeList.map { word ->
-            if (!drillerUseCases.isCategoryActiveUseCase.invoke(word.categoryName)) {
-                val newWord = drillerUseCases.getRandomWordUseCase.invoke(allActiveCatsNames)
+            if (!sharedUseCases.isCategoryActiveUseCase.invoke(word.categoryName)) {
+                val newWord = sharedUseCases.getRandomWordUseCase.invoke(allActiveCatsNames)
                 newWord
             } else word
         })
@@ -292,11 +291,11 @@ data class WordState(
 )
 
 class DrillerViewModelFactory @Inject constructor(
-    private val drillerUseCases: DrillerUseCases,
+    private val sharedUseCases: SharedUseCases,
     private val preferenvesUseCases: PreferencesUseCases
 ) : ViewModelAssistedFactory<DrillerViewModel> {
     override fun create(handle: SavedStateHandle): DrillerViewModel {
-        return DrillerViewModel(drillerUseCases, preferenvesUseCases, handle)
+        return DrillerViewModel(sharedUseCases, preferenvesUseCases, handle)
     }
 }
 

@@ -5,12 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import space.rodionov.porosenokpetr.core.fetchColors
-import space.rodionov.porosenokpetr.core.fetchTheme
-import space.rodionov.porosenokpetr.core.redrawViewGroup
-import space.rodionov.porosenokpetr.feature_driller.domain.models.BaseModel
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_LIGHT
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_RU
+import space.rodionov.porosenokpetr.core.util.fetchColors
+import space.rodionov.porosenokpetr.core.util.fetchTheme
+import space.rodionov.porosenokpetr.core.util.redrawViewGroup
+import space.rodionov.porosenokpetr.feature_settings.domain.model.BaseModel
+import space.rodionov.porosenokpetr.core.util.Constants.MODE_LIGHT
+import space.rodionov.porosenokpetr.core.util.Constants.LANGUAGE_RU
 
 abstract class BaseViewHolder: RecyclerView.ViewHolder {
 

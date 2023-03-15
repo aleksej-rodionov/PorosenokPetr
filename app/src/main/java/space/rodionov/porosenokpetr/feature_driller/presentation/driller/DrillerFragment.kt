@@ -14,17 +14,17 @@ import androidx.navigation.fragment.findNavController
 import com.yuyakaido.android.cardstackview.*
 import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.BuildConfig
-import space.rodionov.porosenokpetr.PorosenokPetrApp
+import space.rodionov.porosenokpetr.core.PorosenokPetrApp
 import space.rodionov.porosenokpetr.R
-import space.rodionov.porosenokpetr.core.redrawViewGroup
+import space.rodionov.porosenokpetr.core.util.GenericSavedStateViewModelFactory
+import space.rodionov.porosenokpetr.core.util.redrawViewGroup
 import space.rodionov.porosenokpetr.databinding.FragmentDrillerBinding
-import space.rodionov.porosenokpetr.feature_driller.di.GenericSavedStateViewModelFactory
 import space.rodionov.porosenokpetr.feature_driller.presentation.base.viewBinding
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_EN
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_SE
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_UA
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
+import space.rodionov.porosenokpetr.core.util.Constants
+import space.rodionov.porosenokpetr.core.util.Constants.LANGUAGE_EN
+import space.rodionov.porosenokpetr.core.util.Constants.LANGUAGE_SE
+import space.rodionov.porosenokpetr.core.util.Constants.LANGUAGE_UA
+import space.rodionov.porosenokpetr.core.util.Constants.TAG_PETR
 import java.util.*
 import javax.inject.Inject
 

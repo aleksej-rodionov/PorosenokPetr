@@ -15,15 +15,15 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.chip.Chip
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.collectLatest
-import space.rodionov.porosenokpetr.PorosenokPetrApp
+import space.rodionov.porosenokpetr.core.PorosenokPetrApp
 import space.rodionov.porosenokpetr.R
-import space.rodionov.porosenokpetr.core.fetchColors
-import space.rodionov.porosenokpetr.core.redrawChips
-import space.rodionov.porosenokpetr.core.redrawViewGroup
+import space.rodionov.porosenokpetr.core.util.GenericSavedStateViewModelFactory
+import space.rodionov.porosenokpetr.core.util.fetchColors
+import space.rodionov.porosenokpetr.core.util.redrawChips
+import space.rodionov.porosenokpetr.core.util.redrawViewGroup
 import space.rodionov.porosenokpetr.databinding.BottomsheetFilterBinding
-import space.rodionov.porosenokpetr.feature_driller.di.GenericSavedStateViewModelFactory
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants
-import space.rodionov.porosenokpetr.feature_driller.utils.LocalizationHelper
+import space.rodionov.porosenokpetr.core.util.Constants
+import space.rodionov.porosenokpetr.core.util.LocalizationHelper
 import javax.inject.Inject
 
 class FilterBottomSheet : BottomSheetDialogFragment(), CompoundButton.OnCheckedChangeListener {
@@ -35,10 +35,6 @@ class FilterBottomSheet : BottomSheetDialogFragment(), CompoundButton.OnCheckedC
     private val binding: BottomsheetFilterBinding by lazy {
         BottomsheetFilterBinding.inflate(layoutInflater)
     }
-
-//    private val vmDriller: DrillerViewModel by viewModels({
-//        requireParentFragment()
-//    })
 
     @Inject
     lateinit var assistedFactory: DrillerViewModelFactory

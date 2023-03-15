@@ -14,15 +14,15 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.chip.Chip
 import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.BuildConfig
-import space.rodionov.porosenokpetr.PorosenokPetrApp
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
+import space.rodionov.porosenokpetr.core.PorosenokPetrApp
+import space.rodionov.porosenokpetr.core.util.Constants
+import space.rodionov.porosenokpetr.core.util.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.R
-import space.rodionov.porosenokpetr.core.redrawViewGroup
+import space.rodionov.porosenokpetr.core.util.GenericSavedStateViewModelFactory
+import space.rodionov.porosenokpetr.core.util.redrawViewGroup
 import space.rodionov.porosenokpetr.databinding.BottomsheetWordlistBinding
-import space.rodionov.porosenokpetr.feature_driller.di.GenericSavedStateViewModelFactory
-import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
-import space.rodionov.porosenokpetr.feature_driller.utils.LocalizationHelper
+import space.rodionov.porosenokpetr.core.domain.model.Word
+import space.rodionov.porosenokpetr.core.util.LocalizationHelper
 import javax.inject.Inject
 
 class WordlistBottomSheet : BottomSheetDialogFragment() {

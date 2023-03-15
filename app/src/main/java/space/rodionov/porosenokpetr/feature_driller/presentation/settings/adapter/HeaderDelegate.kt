@@ -3,8 +3,8 @@ package space.rodionov.porosenokpetr.feature_driller.presentation.settings.adapt
 import android.view.ViewGroup
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.databinding.ItemHeaderBinding
-import space.rodionov.porosenokpetr.feature_driller.domain.models.BaseModel
-import space.rodionov.porosenokpetr.feature_driller.domain.models.Header
+import space.rodionov.porosenokpetr.feature_settings.domain.model.BaseModel
+import space.rodionov.porosenokpetr.feature_settings.domain.model.Header
 import space.rodionov.porosenokpetr.feature_driller.presentation.base.AdapterDelegate
 import space.rodionov.porosenokpetr.feature_driller.presentation.base.BaseViewHolder
 import java.util.*

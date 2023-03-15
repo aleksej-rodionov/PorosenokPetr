@@ -1,7 +1,7 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation.base
 
 import androidx.recyclerview.widget.DiffUtil
-import space.rodionov.porosenokpetr.feature_driller.domain.models.BaseModel
+import space.rodionov.porosenokpetr.feature_settings.domain.model.BaseModel
 
 class BaseComparator<T : BaseModel>: DiffUtil.ItemCallback<T>() {
 

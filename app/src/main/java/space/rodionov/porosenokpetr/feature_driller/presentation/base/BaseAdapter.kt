@@ -5,11 +5,11 @@ import android.util.Log
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import space.rodionov.porosenokpetr.feature_driller.domain.models.BaseModel
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.DEFAULT_INT
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_LIGHT
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_RU
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_NATIVE_LANG
+import space.rodionov.porosenokpetr.feature_settings.domain.model.BaseModel
+import space.rodionov.porosenokpetr.core.util.Constants.DEFAULT_INT
+import space.rodionov.porosenokpetr.core.util.Constants.MODE_LIGHT
+import space.rodionov.porosenokpetr.core.util.Constants.LANGUAGE_RU
+import space.rodionov.porosenokpetr.core.util.Constants.TAG_NATIVE_LANG
 
 abstract class BaseAdapter(
     delegates: List<AdapterDelegate>,

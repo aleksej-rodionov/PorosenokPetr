@@ -3,8 +3,8 @@ package space.rodionov.porosenokpetr.feature_driller.presentation.settings.adapt
 import android.view.ViewGroup
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.databinding.ItemSettingsItemBinding
-import space.rodionov.porosenokpetr.feature_driller.domain.models.BaseModel
-import space.rodionov.porosenokpetr.feature_driller.domain.models.MenuLanguage
+import space.rodionov.porosenokpetr.feature_settings.domain.model.BaseModel
+import space.rodionov.porosenokpetr.feature_settings.domain.model.MenuLanguage
 import space.rodionov.porosenokpetr.feature_driller.presentation.base.AdapterDelegate
 import space.rodionov.porosenokpetr.feature_driller.presentation.base.BaseViewHolder
 import space.rodionov.porosenokpetr.feature_driller.utils.SettingsItemType

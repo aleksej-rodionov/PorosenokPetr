@@ -8,12 +8,17 @@ import space.rodionov.porosenokpetr.core.data.local.WordDatabase
 import space.rodionov.porosenokpetr.core.data.preferences.PreferencesImpl
 import space.rodionov.porosenokpetr.core.domain.preferences.Preferences
 import space.rodionov.porosenokpetr.core.domain.use_case.*
-import space.rodionov.porosenokpetr.feature_driller.data.repository.WordRepoImpl
-import space.rodionov.porosenokpetr.feature_driller.domain.repository.WordRepo
+import space.rodionov.porosenokpetr.core.data.repository.WordRepoImpl
+import space.rodionov.porosenokpetr.core.domain.repository.WordRepo
 import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.*
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants
+import space.rodionov.porosenokpetr.core.util.Constants
+import space.rodionov.porosenokpetr.feature_cardstack.domain.use_case.*
 import space.rodionov.porosenokpetr.feature_driller.work.NotificationHelper
+import space.rodionov.porosenokpetr.feature_settings.domain.use_case.use_case.*
+import space.rodionov.porosenokpetr.feature_vocabulary.domaion.use_case.*
 import javax.inject.Singleton
+
+//todo :app module
 
 @Module
 class AppModule {
@@ -49,46 +54,68 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun providePreferencesUseCases(preferences: Preferences): PreferencesUseCases {
-        return PreferencesUseCases(
+    fun provideSharedUseCases(
+        repo: WordRepo,
+        preferences: Preferences
+    ): SharedUseCases { // todo provide each separately
+        return SharedUseCases(
             observeModeUseCase = ObserveModeUseCase(preferences),
             observeFollowSystemModeUseCase = ObserveFollowSystemModeUseCase(preferences),
             setModeUseCase = SetModeUseCase(preferences),
-            setFollowSystemModeUseCase = SetFollowSystemModeUseCase(preferences),
+            observeLearnedLangUseCase = ObserveLearnedLangUseCase(preferences),
+            observeNativeLangUseCase = ObserveNativeLangUseCase(preferences),
+            observeTranslationDirectionUseCase = ObserveTranslationDirectionUseCase(preferences),
+            makeCategoryActiveUseCase = MakeCategoryActiveUseCase(repo)
         )
     }
-
 
     //todo move to another features
     @Provides
     @Singleton
-    fun provideDrillerUseCases(
+    fun provideCardStackUseCases(
         repo: WordRepo,
         preferences: Preferences
-    ): DrillerUseCases {
-        return DrillerUseCases(
-            observeLearnedLangUseCase = ObserveLearnedLangUseCase(preferences),
-            updateLearnedLangUseCase = UpdateLearnedLangUseCase(preferences),
-            observeNativeLangUseCase = ObserveNativeLangUseCase(preferences),
-            updateNativeLangUseCase = UpdateNativeLangUseCase(preferences),
-            saveTranslationDirectionUseCase = SaveTranslationDirectionUseCase(preferences),
-            observeTranslationDirectionUseCase = ObserveTranslationDirectionUseCase(preferences),
+    ): CardStackUseCases {
+        return CardStackUseCases(
+            getRandomWordUseCase = GetRandomWordUseCase(repo),
+            isCategoryActiveUseCase = IsCategoryActiveUseCase(repo),
+            getAllCatsNamesUseCase = GetAllCatsNamesUseCase(repo),
+            getAllActiveCatsNamesUseCase = GetAllActiveCatsNamesUseCase(repo),
+            observeAllCategoriesUseCase = ObserveAllCategoriesUseCase(repo),
+            updateWordIsActiveUseCase = UpdateWordIsActiveUseCase(repo),
+            getTenWordsUseCase = GetTenWordsUseCase(repo)
+        )
+    }
 
+    //todo move to another features
+    @Provides
+    @Singleton
+    fun provideVocabularyUseCases(
+        repo: WordRepo,
+        preferences: Preferences
+    ): VocabularyUseCases {
+        return VocabularyUseCases(
             updateWordUseCase = UpdateWordUseCase(repo),
             updateIsWordActiveUseCase = UpdateIsWordActiveUseCase(repo),
             observeWordUseCase = ObserveWordUseCase(repo),
             observeWordsSearchQueryUseCase = ObserveWordsSearchQueryUseCase(repo),
             observeAllCatsWithWordsUseCase = ObserveAllCatsWithWordsUseCase(repo),
-            getCatCompletionPercentUseCase = GetCatCompletionPercentUseCase(repo),
-            observeAllActiveCatsNamesUseCase = ObserveAllActiveCatsNamesUseCase(repo),
-            getRandomWordUseCase = GetRandomWordUseCase(repo),
-            isCategoryActiveUseCase = IsCategoryActiveUseCase(repo),
-            getAllCatsNamesUseCase = GetAllCatsNamesUseCase(repo),
-            getAllActiveCatsNamesUseCase = GetAllActiveCatsNamesUseCase(repo),
-            makeCategoryActiveUseCase = MakeCategoryActiveUseCase(repo),
-            observeAllCategoriesUseCase = ObserveAllCategoriesUseCase(repo),
-            updateWordIsActiveUseCase = UpdateWordIsActiveUseCase(repo),
-            getTenWordsUseCase = GetTenWordsUseCase(repo)
+            observeAllActiveCatsNamesUseCase = ObserveAllActiveCatsNamesUseCase(repo)
+        )
+    }
+
+    //todo move to another features
+    @Provides
+    @Singleton
+    fun provideSettingsUseCases(
+        repo: WordRepo,
+        preferences: Preferences
+    ): SettingsUseCases {
+        return SettingsUseCases(
+            updateLearnedLangUseCase = UpdateLearnedLangUseCase(preferences),
+            updateNativeLangUseCase = UpdateNativeLangUseCase(preferences),
+            saveTranslationDirectionUseCase = SaveTranslationDirectionUseCase(preferences),
+            setFollowSystemModeUseCase = SetFollowSystemModeUseCase(preferences),
         )
     }
 }

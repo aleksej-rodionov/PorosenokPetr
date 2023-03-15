@@ -7,14 +7,14 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.SwitchCompat
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.databinding.ItemSettingsSwitchBinding
-import space.rodionov.porosenokpetr.feature_driller.domain.models.BaseModel
-import space.rodionov.porosenokpetr.feature_driller.domain.models.MenuSwitch
+import space.rodionov.porosenokpetr.feature_settings.domain.model.BaseModel
+import space.rodionov.porosenokpetr.feature_settings.domain.model.MenuSwitch
 import space.rodionov.porosenokpetr.feature_driller.presentation.base.AdapterDelegate
 import space.rodionov.porosenokpetr.feature_driller.presentation.base.BaseViewHolder
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANG_POSTFIX_RU
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANG_POSTFIX_UA
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_NATIVE_LANG
-import space.rodionov.porosenokpetr.feature_driller.utils.LocalizationHelper
+import space.rodionov.porosenokpetr.core.util.Constants.LANG_POSTFIX_RU
+import space.rodionov.porosenokpetr.core.util.Constants.LANG_POSTFIX_UA
+import space.rodionov.porosenokpetr.core.util.Constants.TAG_NATIVE_LANG
+import space.rodionov.porosenokpetr.core.util.LocalizationHelper
 import space.rodionov.porosenokpetr.feature_driller.utils.SettingsItemType
 
 

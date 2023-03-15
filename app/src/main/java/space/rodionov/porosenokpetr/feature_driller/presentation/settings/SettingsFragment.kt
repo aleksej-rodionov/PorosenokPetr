@@ -1,7 +1,6 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation.settings
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
@@ -10,21 +9,21 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.collectLatest
-import space.rodionov.porosenokpetr.MainActivity
-import space.rodionov.porosenokpetr.PorosenokPetrApp
+import space.rodionov.porosenokpetr.core.MainActivity
+import space.rodionov.porosenokpetr.core.PorosenokPetrApp
 import space.rodionov.porosenokpetr.R
-import space.rodionov.porosenokpetr.core.redrawViewGroup
+import space.rodionov.porosenokpetr.core.util.redrawViewGroup
 import space.rodionov.porosenokpetr.databinding.FragmentSettingsBinding
 import space.rodionov.porosenokpetr.databinding.SnackbarLayoutBinding
-import space.rodionov.porosenokpetr.feature_driller.di.ViewModelFactory
+import space.rodionov.porosenokpetr.core.util.ViewModelFactory
 import space.rodionov.porosenokpetr.feature_driller.presentation.base.viewBinding
 import space.rodionov.porosenokpetr.feature_driller.presentation.settings.adapter.SettingsAdapter
 import space.rodionov.porosenokpetr.feature_driller.presentation.settings.language.LanguageBottomSheet
 import space.rodionov.porosenokpetr.feature_driller.presentation.settings.language.LanguageHelper
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_UA
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_DARK
-import space.rodionov.porosenokpetr.feature_driller.utils.LocalizationHelper
+import space.rodionov.porosenokpetr.core.util.Constants
+import space.rodionov.porosenokpetr.core.util.Constants.LANGUAGE_UA
+import space.rodionov.porosenokpetr.core.util.Constants.MODE_DARK
+import space.rodionov.porosenokpetr.core.util.LocalizationHelper
 import space.rodionov.porosenokpetr.feature_driller.utils.SettingsItemType
 import javax.inject.Inject
 

@@ -10,13 +10,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.coroutines.flow.collectLatest
-import space.rodionov.porosenokpetr.PorosenokPetrApp
+import space.rodionov.porosenokpetr.core.PorosenokPetrApp
 import space.rodionov.porosenokpetr.R
-import space.rodionov.porosenokpetr.core.*
+import space.rodionov.porosenokpetr.core.util.*
 import space.rodionov.porosenokpetr.databinding.BottomsheetTimePickerBinding
-import space.rodionov.porosenokpetr.feature_driller.di.ViewModelFactory
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants
-import java.util.*
+import space.rodionov.porosenokpetr.core.util.Constants
 import javax.inject.Inject
 
 class TimePickerBottomSheet: BottomSheetDialogFragment() {

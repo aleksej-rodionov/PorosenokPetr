@@ -8,17 +8,16 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import space.rodionov.porosenokpetr.core.domain.use_case.PreferencesUseCases
-import space.rodionov.porosenokpetr.feature_driller.di.ViewModelAssistedFactory
-import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.DrillerUseCases
-import space.rodionov.porosenokpetr.feature_driller.utils.AppFlavor
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.FOREIGN_LANGUAGE_CHANGE
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_CHANGE
+import space.rodionov.porosenokpetr.core.util.AppFlavor
+import space.rodionov.porosenokpetr.core.util.Constants
+import space.rodionov.porosenokpetr.core.util.Constants.FOREIGN_LANGUAGE_CHANGE
+import space.rodionov.porosenokpetr.core.util.Constants.NATIVE_LANGUAGE_CHANGE
+import space.rodionov.porosenokpetr.core.util.ViewModelAssistedFactory
+import space.rodionov.porosenokpetr.core.domain.use_case.SharedUseCases
 import javax.inject.Inject
 
 class LanguageBottomsheetViewModel (
-    private val drillerUseCases: DrillerUseCases,
+    private val sharedUseCases: SharedUseCases,
     private val preferenvesUseCases: PreferencesUseCases,
     private val state: SavedStateHandle,
 ) : ViewModel() {
@@ -29,14 +28,14 @@ class LanguageBottomsheetViewModel (
     val mode = _mode.stateIn(viewModelScope, SharingStarted.Lazily, 0)
 
     //=========================NATIVE LANG=======================
-    private val _nativeLang = drillerUseCases.observeNativeLangUseCase.invoke()
+    private val _nativeLang = sharedUseCases.observeNativeLangUseCase.invoke()
     val nativeLang= _nativeLang.stateIn(viewModelScope, SharingStarted.Lazily, Constants.LANGUAGE_RU)
-    fun updateNativeLang(lang: Int) = viewModelScope.launch { drillerUseCases.updateNativeLangUseCase.invoke(lang) }
+    fun updateNativeLang(lang: Int) = viewModelScope.launch { sharedUseCases.updateNativeLangUseCase.invoke(lang) }
 
     //================================LEARNED LANG==================================
-    private val _learnedLang = drillerUseCases.observeLearnedLangUseCase.invoke()
+    private val _learnedLang = sharedUseCases.observeLearnedLangUseCase.invoke()
     val learnedLang = _learnedLang.stateIn(viewModelScope, SharingStarted.Lazily, Constants.LANGUAGE_EN)
-    fun updateLearnedLang(lang: Int) = viewModelScope.launch { drillerUseCases.updateLearnedLangUseCase.invoke(lang) }
+    fun updateLearnedLang(lang: Int) = viewModelScope.launch { sharedUseCases.updateLearnedLangUseCase.invoke(lang) }
 
     //===============================LIST================================
     val initialList = mutableListOf<LanguageItem>()
@@ -74,11 +73,11 @@ class LanguageBottomsheetViewModel (
 }
 
 class LanguageBottomsheetViewModelFactory @Inject constructor(
-    private val drillerUseCases: DrillerUseCases,
+    private val sharedUseCases: SharedUseCases,
     private val preferenvesUseCases: PreferencesUseCases
 ) : ViewModelAssistedFactory<LanguageBottomsheetViewModel> {
     override fun create(handle: SavedStateHandle): LanguageBottomsheetViewModel {
-        return LanguageBottomsheetViewModel(drillerUseCases, preferenvesUseCases, handle)
+        return LanguageBottomsheetViewModel(sharedUseCases, preferenvesUseCases, handle)
     }
 }
 

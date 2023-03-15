@@ -1,25 +1,21 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation.wordlist.edit_add_word
 
-import androidx.lifecycle.*
-import androidx.savedstate.SavedStateRegistryOwner
-import dagger.assisted.Assisted
-import dagger.assisted.AssistedFactory
-import dagger.assisted.AssistedInject
+import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asFlow
+import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import space.rodionov.porosenokpetr.core.domain.use_case.PreferencesUseCases
-import space.rodionov.porosenokpetr.feature_driller.di.ApplicationScope
-import space.rodionov.porosenokpetr.feature_driller.di.ViewModelAssistedFactory
-import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
-import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.*
-import space.rodionov.porosenokpetr.feature_driller.presentation.driller.DrillerViewModel
-import space.rodionov.porosenokpetr.feature_driller.presentation.wordlist.WordlistViewModel
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants
+import space.rodionov.porosenokpetr.core.di.ApplicationScope
+import space.rodionov.porosenokpetr.core.util.ViewModelAssistedFactory
+import space.rodionov.porosenokpetr.core.domain.model.Word
+import space.rodionov.porosenokpetr.core.domain.use_case.SharedUseCases
+import space.rodionov.porosenokpetr.core.util.Constants
 import javax.inject.Inject
 
 class EditAddWordViewModel (
-    private val drillerUseCases: DrillerUseCases,
+    private val sharedUseCases: SharedUseCases,
     private val preferenvesUseCases: PreferencesUseCases,
     private val state: SavedStateHandle,
     @ApplicationScope private val applicationScope: CoroutineScope
@@ -36,12 +32,12 @@ class EditAddWordViewModel (
     ) { rus, eng, catName ->
         Triple(rus, eng, catName)
     }.flatMapLatest { (rus, eng, catName) ->
-        drillerUseCases.observeWordUseCase.invoke(rus, eng, catName)
+        sharedUseCases.observeWordUseCase.invoke(rus, eng, catName)
     }
     val word = _word.stateIn(viewModelScope, SharingStarted.Lazily, null)
 
     //====================================NATIVE LANG==================================
-    private val _nativeLang = drillerUseCases.observeNativeLangUseCase.invoke()
+    private val _nativeLang = sharedUseCases.observeNativeLangUseCase.invoke()
     val nativeLang = _nativeLang.stateIn(viewModelScope, SharingStarted.Lazily, Constants.LANGUAGE_RU)
 
     //============MODE============
@@ -64,7 +60,7 @@ class EditAddWordViewModel (
 
     fun onDoneCLick(newWord: Word) = applicationScope.launch {
         word.value?.let {
-            drillerUseCases.updateWordUseCase.invoke(it, newWord)
+            sharedUseCases.updateWordUseCase.invoke(it, newWord)
         }
     }
 
@@ -72,7 +68,7 @@ class EditAddWordViewModel (
         nativLivedata.value?.let { nativ ->
             foreignLivedata.value?.let { foreign ->
                 catNameLivedata.value?.let { catName ->
-                    drillerUseCases.updateIsWordActiveUseCase.invoke(nativ, foreign, catName, true)
+                    sharedUseCases.updateIsWordActiveUseCase.invoke(nativ, foreign, catName, true)
                 }
             }
         }
@@ -82,7 +78,7 @@ class EditAddWordViewModel (
         nativLivedata.value?.let { nativ ->
             foreignLivedata.value?.let { foreign ->
                 catNameLivedata.value?.let { catName ->
-                    drillerUseCases.updateIsWordActiveUseCase.invoke(nativ, foreign, catName, false)
+                    sharedUseCases.updateIsWordActiveUseCase.invoke(nativ, foreign, catName, false)
                 }
             }
         }
@@ -90,12 +86,12 @@ class EditAddWordViewModel (
 }
 
 class EditAddWordViewModelFactory @Inject constructor(
-    private val drillerUseCases: DrillerUseCases,
+    private val sharedUseCases: SharedUseCases,
     private val preferenvesUseCases: PreferencesUseCases,
     @ApplicationScope private val applicationScope: CoroutineScope // todo работает норм?
 ) : ViewModelAssistedFactory<EditAddWordViewModel> {
     override fun create(handle: SavedStateHandle): EditAddWordViewModel {
-        return EditAddWordViewModel(drillerUseCases, preferenvesUseCases, handle, applicationScope)
+        return EditAddWordViewModel(sharedUseCases, preferenvesUseCases, handle, applicationScope)
     }
 }
 

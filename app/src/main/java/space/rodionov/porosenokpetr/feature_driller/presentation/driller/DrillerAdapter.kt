@@ -6,13 +6,13 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import space.rodionov.porosenokpetr.databinding.ItemWordCardBinding
-import space.rodionov.porosenokpetr.feature_driller.domain.models.Word
+import space.rodionov.porosenokpetr.core.domain.model.Word
 import space.rodionov.porosenokpetr.feature_driller.presentation.WordDiff
-import space.rodionov.porosenokpetr.core.ModeForAdapter
-import space.rodionov.porosenokpetr.core.redrawViewGroup
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_EN
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_RU
-import space.rodionov.porosenokpetr.feature_driller.utils.LangForAdapter
+import space.rodionov.porosenokpetr.core.util.ModeForAdapter
+import space.rodionov.porosenokpetr.core.util.redrawViewGroup
+import space.rodionov.porosenokpetr.core.util.Constants.LANGUAGE_EN
+import space.rodionov.porosenokpetr.core.util.Constants.LANGUAGE_RU
+import space.rodionov.porosenokpetr.core.util.LangForAdapter
 
 class DrillerAdapter(
     private val onSpeakWord: (String) -> Unit = {}

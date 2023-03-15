@@ -16,10 +16,10 @@ import androidx.work.WorkerParameters
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
-import space.rodionov.porosenokpetr.MainActivity
+import space.rodionov.porosenokpetr.core.MainActivity
 import space.rodionov.porosenokpetr.R
-import space.rodionov.porosenokpetr.core.vectorToBitmap
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants
+import space.rodionov.porosenokpetr.core.util.vectorToBitmap
+import space.rodionov.porosenokpetr.core.util.Constants
 
 class NotificationWorker @AssistedInject constructor (
     @Assisted private val context: Context,

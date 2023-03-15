@@ -1,7 +1,7 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation.base
 
 import androidx.collection.SparseArrayCompat
-import space.rodionov.porosenokpetr.feature_driller.domain.models.BaseModel
+import space.rodionov.porosenokpetr.feature_settings.domain.model.BaseModel
 import java.lang.NullPointerException
 
 class AdapterDelegateManager {

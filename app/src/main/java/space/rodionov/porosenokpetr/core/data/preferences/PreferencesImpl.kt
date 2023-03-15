@@ -9,13 +9,11 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import space.rodionov.porosenokpetr.BuildConfig
 import space.rodionov.porosenokpetr.core.domain.preferences.Preferences
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MILLIS_IN_NINE_HOURS
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_EN
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_RU
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_SE
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_NATIVE_LANG
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_NOTIFY
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.TAG_PETR
+import space.rodionov.porosenokpetr.core.util.Constants.LANGUAGE_EN
+import space.rodionov.porosenokpetr.core.util.Constants.LANGUAGE_RU
+import space.rodionov.porosenokpetr.core.util.Constants.LANGUAGE_SE
+import space.rodionov.porosenokpetr.core.util.Constants.TAG_NATIVE_LANG
+import space.rodionov.porosenokpetr.core.util.Constants.TAG_PETR
 import java.io.IOException
 
 private val Context.datastore by preferencesDataStore("datastore")

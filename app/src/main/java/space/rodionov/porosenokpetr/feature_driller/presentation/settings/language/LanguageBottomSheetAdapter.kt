@@ -7,15 +7,15 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import space.rodionov.porosenokpetr.databinding.ItemLanguageBinding
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.FOREIGN_LANGUAGE_CHANGE
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_EN
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_RU
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_CHANGE
-import space.rodionov.porosenokpetr.feature_driller.utils.LangForAdapter
+import space.rodionov.porosenokpetr.core.util.Constants.LANGUAGE_EN
+import space.rodionov.porosenokpetr.core.util.Constants.LANGUAGE_RU
+import space.rodionov.porosenokpetr.core.util.Constants.NATIVE_LANGUAGE_CHANGE
+import space.rodionov.porosenokpetr.core.util.LangForAdapter
 
 class LanguageAdapter(
     private val onClickLang: (Int) -> Unit = {}
-): ListAdapter<LanguageItem, LanguageAdapter.LanguageViewHolder>(LanguageComparator()), LangForAdapter {
+): ListAdapter<LanguageItem, LanguageAdapter.LanguageViewHolder>(LanguageComparator()),
+    LangForAdapter {
 
     companion object {
         const val TAG_LANGUAGE_ADAPTER = "languageAdapter"

@@ -1,31 +1,22 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation.collection
 
-import androidx.lifecycle.AbstractSavedStateViewModelFactory
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.savedstate.SavedStateRegistryOwner
-import dagger.assisted.Assisted
-import dagger.assisted.AssistedFactory
-import dagger.assisted.AssistedInject
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import space.rodionov.porosenokpetr.core.domain.use_case.PreferencesUseCases
-import space.rodionov.porosenokpetr.feature_driller.di.ApplicationScope
-import space.rodionov.porosenokpetr.feature_driller.di.ViewModelAssistedFactory
-import space.rodionov.porosenokpetr.feature_driller.domain.models.Category
-import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.DrillerUseCases
-import space.rodionov.porosenokpetr.feature_driller.presentation.driller.DrillerViewModel
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_LIGHT
+import space.rodionov.porosenokpetr.core.util.ViewModelAssistedFactory
+import space.rodionov.porosenokpetr.core.domain.model.Category
+import space.rodionov.porosenokpetr.core.domain.use_case.SharedUseCases
+import space.rodionov.porosenokpetr.core.util.Constants
+import space.rodionov.porosenokpetr.core.util.Constants.MODE_LIGHT
 import javax.inject.Inject
 
 class CollectionViewModel (
-    private val drillerUseCases: DrillerUseCases,
+    private val sharedUseCases: SharedUseCases,
     private val preferenvesUseCases: PreferencesUseCases,
     private val state: SavedStateHandle,
 ) : ViewModel() {
@@ -38,16 +29,16 @@ class CollectionViewModel (
     private val _mode = preferenvesUseCases.observeModeUseCase.invoke()
     val mode = _mode.stateIn(viewModelScope, SharingStarted.Lazily, MODE_LIGHT)
 
-    private val _categories = drillerUseCases.observeAllCatsWithWordsUseCase.invoke()
+    private val _categories = sharedUseCases.observeAllCatsWithWordsUseCase.invoke()
     val categories = _categories.stateIn(viewModelScope, SharingStarted.Lazily, null)
 
-    private val _activeCatsFlow = drillerUseCases.observeAllActiveCatsNamesUseCase.invoke()
+    private val _activeCatsFlow = sharedUseCases.observeAllActiveCatsNamesUseCase.invoke()
     val activeCatsFlow = _activeCatsFlow.stateIn(viewModelScope, SharingStarted.Lazily, null)
 
     private val _eventFlow = MutableSharedFlow<CollectionEvent>()
     val eventFlow = _eventFlow.asSharedFlow()
 
-    private val _nativeLanguage = drillerUseCases.observeNativeLangUseCase.invoke()
+    private val _nativeLanguage = sharedUseCases.observeNativeLangUseCase.invoke()
     val nativeLanguage = _nativeLanguage.stateIn(viewModelScope, SharingStarted.Lazily,
         Constants.LANGUAGE_RU
     )
@@ -83,20 +74,20 @@ class CollectionViewModel (
     }
 
     fun activateCategory(catName: String) = viewModelScope.launch {
-        drillerUseCases.makeCategoryActiveUseCase(catName, true)
+        sharedUseCases.makeCategoryActiveUseCase(catName, true)
     }
 
     fun inactivateCategory(catName: String) = viewModelScope.launch  {
-        drillerUseCases.makeCategoryActiveUseCase(catName, false)
+        sharedUseCases.makeCategoryActiveUseCase(catName, false)
     }
 }
 
 class CollectionViewModelFactory @Inject constructor(
-    private val drillerUseCases: DrillerUseCases,
+    private val sharedUseCases: SharedUseCases,
     private val preferenvesUseCases: PreferencesUseCases
     ) : ViewModelAssistedFactory<CollectionViewModel> {
     override fun create(handle: SavedStateHandle): CollectionViewModel {
-        return CollectionViewModel(drillerUseCases, preferenvesUseCases, handle)
+        return CollectionViewModel(sharedUseCases, preferenvesUseCases, handle)
     }
 }
 

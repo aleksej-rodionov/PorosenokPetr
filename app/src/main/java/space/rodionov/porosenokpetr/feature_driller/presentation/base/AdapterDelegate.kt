@@ -1,7 +1,7 @@
 package space.rodionov.porosenokpetr.feature_driller.presentation.base
 
 import android.view.ViewGroup
-import space.rodionov.porosenokpetr.feature_driller.domain.models.BaseModel
+import space.rodionov.porosenokpetr.feature_settings.domain.model.BaseModel
 
 interface AdapterDelegate {
 

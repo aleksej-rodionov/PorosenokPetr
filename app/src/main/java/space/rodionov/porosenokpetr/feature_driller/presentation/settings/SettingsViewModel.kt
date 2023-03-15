@@ -5,20 +5,19 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import space.rodionov.porosenokpetr.core.domain.use_case.PreferencesUseCases
-import space.rodionov.porosenokpetr.feature_driller.domain.models.BaseModel
-import space.rodionov.porosenokpetr.feature_driller.domain.models.MenuLanguage
-import space.rodionov.porosenokpetr.feature_driller.domain.models.MenuSwitch
-import space.rodionov.porosenokpetr.feature_driller.domain.models.MenuSwitchWithTimePicker
-import space.rodionov.porosenokpetr.feature_driller.domain.use_cases.DrillerUseCases
+import space.rodionov.porosenokpetr.feature_settings.domain.model.BaseModel
+import space.rodionov.porosenokpetr.feature_settings.domain.model.MenuLanguage
+import space.rodionov.porosenokpetr.feature_settings.domain.model.MenuSwitch
+import space.rodionov.porosenokpetr.feature_settings.domain.model.MenuSwitchWithTimePicker
+import space.rodionov.porosenokpetr.core.domain.use_case.SharedUseCases
 import space.rodionov.porosenokpetr.feature_driller.presentation.settings.language.LanguageItem
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.FOREIGN_LANGUAGE_CHANGE
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_RU
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.LANGUAGE_UA
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_DARK
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.MODE_LIGHT
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_CHANGE
+import space.rodionov.porosenokpetr.core.util.Constants
+import space.rodionov.porosenokpetr.core.util.Constants.FOREIGN_LANGUAGE_CHANGE
+import space.rodionov.porosenokpetr.core.util.Constants.LANGUAGE_RU
+import space.rodionov.porosenokpetr.core.util.Constants.LANGUAGE_UA
+import space.rodionov.porosenokpetr.core.util.Constants.MODE_DARK
+import space.rodionov.porosenokpetr.core.util.Constants.MODE_LIGHT
+import space.rodionov.porosenokpetr.core.util.Constants.NATIVE_LANGUAGE_CHANGE
 import space.rodionov.porosenokpetr.feature_driller.utils.SettingsItemType
 import space.rodionov.porosenokpetr.feature_driller.work.NotificationHelper
 import java.text.SimpleDateFormat
@@ -28,7 +27,7 @@ import javax.inject.Inject
 class SettingsViewModel @Inject constructor(
     private val notificationHelper: NotificationHelper,
     private val preferenvesUseCases: PreferencesUseCases,
-    private val drillerUseCases: DrillerUseCases
+    private val sharedUseCases: SharedUseCases
 ) : ViewModel() {
 
     var justOpened = true
@@ -38,11 +37,11 @@ class SettingsViewModel @Inject constructor(
     val menuListFlow = _menuListFlow.asStateFlow()
 
     //==========================TRANSLATION DIRECTION=========================================
-    private val _transDir = drillerUseCases.observeTranslationDirectionUseCase.invoke()
+    private val _transDir = sharedUseCases.observeTranslationDirectionUseCase.invoke()
     val transDir = _transDir.stateIn(viewModelScope, SharingStarted.Lazily, false)
 
     fun updateTransDir(nativeToForeign: Boolean) = viewModelScope.launch {
-        drillerUseCases.saveTranslationDirectionUseCase.invoke(nativeToForeign)
+        sharedUseCases.saveTranslationDirectionUseCase.invoke(nativeToForeign)
     }
 
     //==========================MODE=========================================
@@ -62,23 +61,23 @@ class SettingsViewModel @Inject constructor(
     }
 
     //==========================NATIVE LANGUAGE=========================================
-    private val _nativeLanguage = drillerUseCases.observeNativeLangUseCase.invoke()
+    private val _nativeLanguage = sharedUseCases.observeNativeLangUseCase.invoke()
     val nativeLanguage = _nativeLanguage.stateIn(viewModelScope, SharingStarted.Lazily,
         Constants.LANGUAGE_RU
     )
 
     private fun updateNativeLanguage(lang: Int) = viewModelScope.launch {
-        drillerUseCases.updateNativeLangUseCase.invoke(lang)
+        sharedUseCases.updateNativeLangUseCase.invoke(lang)
     }
 
     //==========================LEARNED LANGUAGE=========================================
-    private val _learnedLanguage = drillerUseCases.observeLearnedLangUseCase.invoke()
+    private val _learnedLanguage = sharedUseCases.observeLearnedLangUseCase.invoke()
     val learnedLanguage = _learnedLanguage.stateIn(viewModelScope, SharingStarted.Lazily,
         Constants.LANGUAGE_EN
     )
 
     private fun updateLearnedLanguage(lang: Int) = viewModelScope.launch {
-        drillerUseCases.updateLearnedLangUseCase.invoke(lang)
+        sharedUseCases.updateLearnedLangUseCase.invoke(lang)
     }
 
     //=======================EVENT SHARED FLOW======================================

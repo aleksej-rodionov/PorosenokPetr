@@ -12,15 +12,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.BuildConfig
-import space.rodionov.porosenokpetr.PorosenokPetrApp
 import space.rodionov.porosenokpetr.R
-import space.rodionov.porosenokpetr.core.redrawViewGroup
+import space.rodionov.porosenokpetr.core.PorosenokPetrApp
+import space.rodionov.porosenokpetr.core.util.*
 import space.rodionov.porosenokpetr.databinding.BottomsheetLanguageBinding
-import space.rodionov.porosenokpetr.feature_driller.di.GenericSavedStateViewModelFactory
-import space.rodionov.porosenokpetr.feature_driller.utils.AppFlavor
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants
-import space.rodionov.porosenokpetr.feature_driller.utils.Constants.NATIVE_LANGUAGE_CHANGE
-import space.rodionov.porosenokpetr.feature_driller.utils.LocalizationHelper
+import space.rodionov.porosenokpetr.core.util.Constants.NATIVE_LANGUAGE_CHANGE
 import javax.inject.Inject
 
 class LanguageBottomSheet: BottomSheetDialogFragment() {
