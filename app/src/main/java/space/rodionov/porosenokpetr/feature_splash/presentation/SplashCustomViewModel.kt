@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -32,6 +33,7 @@ class SplashCustomViewModel @Inject constructor(
                 }.launchIn(viewModelScope)
 
             } else {
+                delay(1000L) // crunch to see so beautiful splash
                 _isDbPopulated.send(true)
             }
         }
