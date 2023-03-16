@@ -1,12 +1,13 @@
-package space.rodionov.porosenokpetr.core.di
+package space.rodionov.porosenokpetr.main.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
-import space.rodionov.porosenokpetr.core.MainViewModel
+import space.rodionov.porosenokpetr.main.presentation.MainViewModel
 import space.rodionov.porosenokpetr.core.util.ViewModelFactory
+import space.rodionov.porosenokpetr.feature_splash.presentation.SplashCustomViewModel
 import javax.inject.Singleton
 
 //todo :app module
@@ -22,6 +23,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(MainViewModel::class)
     internal abstract fun mainViewModel(mainViewModel: MainViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SplashCustomViewModel::class)
+    internal abstract fun customSplashViewModel(splashCustomViewModel: SplashCustomViewModel): ViewModel
 }
 
 

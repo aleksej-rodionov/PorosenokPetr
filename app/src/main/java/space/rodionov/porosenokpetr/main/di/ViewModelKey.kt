@@ -1,4 +1,4 @@
-package space.rodionov.porosenokpetr.core.di
+package space.rodionov.porosenokpetr.main.di
 
 import androidx.lifecycle.ViewModel
 import dagger.MapKey

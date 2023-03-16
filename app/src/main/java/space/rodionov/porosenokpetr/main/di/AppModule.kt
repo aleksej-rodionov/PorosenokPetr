@@ -1,4 +1,4 @@
-package space.rodionov.porosenokpetr.core.di
+package space.rodionov.porosenokpetr.main.di
 
 import android.app.Application
 import androidx.room.Room
@@ -13,10 +13,8 @@ import space.rodionov.porosenokpetr.core.domain.use_case.*
 import space.rodionov.porosenokpetr.core.data.repository.WordRepoImpl
 import space.rodionov.porosenokpetr.core.domain.repository.WordRepo
 import space.rodionov.porosenokpetr.core.util.Constants
-import space.rodionov.porosenokpetr.feature_settings.reminder.NotificationHelper
+import space.rodionov.porosenokpetr.feature_splash.domain.use_case.SplashInteractor
 import javax.inject.Singleton
-
-//todo :app module
 
 @Module
 class AppModule {
@@ -25,11 +23,6 @@ class AppModule {
     @Provides
     @Singleton
     fun provideApplicationScope() = CoroutineScope(SupervisorJob())
-
-    @Provides
-    @Singleton
-    fun provideNotificationHelper(app: Application): NotificationHelper =
-        NotificationHelper(app)
 
     @Provides
     @Singleton
@@ -47,11 +40,11 @@ class AppModule {
     @Singleton
     fun provideDB(
         app: Application,
-        callback: WordDatabase.Callback
+//        callback: WordDatabase.Callback
     ): WordDatabase {
         return Room.databaseBuilder(app, WordDatabase::class.java, Constants.WORD_DB)
             .fallbackToDestructiveMigration()
-            .addCallback(callback)
+//            .addCallback(callback)
             .build()
     }
 

@@ -1,6 +1,8 @@
 package space.rodionov.porosenokpetr.core.util
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.Canvas
@@ -8,7 +10,25 @@ import android.util.TypedValue
 import android.view.inputmethod.InputMethodManager
 import android.widget.AutoCompleteTextView
 import androidx.core.content.ContextCompat
+import space.rodionov.porosenokpetr.core.domain.model.Word
 import java.math.BigDecimal
+import kotlin.math.roundToInt
+
+inline fun <reified T: Activity> Activity.startActivity() {
+    val intent = Intent(this, T::class.java)
+    startActivity(intent)
+    finish()
+}
+
+fun List<Word>.countPercentage(): Int {
+    val learnedCount = this.filter {
+        !it.isWordActive
+    }.size
+    val totalCount = this.size
+    val lch = learnedCount * 100.0f
+    val percentage = if (!(lch / totalCount).isNaN()) (lch / totalCount).roundToInt() else 0
+    return percentage
+}
 
 fun Float.roundToTwoDecimals(): Float {
     var bd = BigDecimal(java.lang.Float.toString(this))

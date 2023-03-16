@@ -1,10 +1,8 @@
-package space.rodionov.porosenokpetr.core
+package space.rodionov.porosenokpetr.main
 
 import android.app.Application
-import space.rodionov.porosenokpetr.core.di.DaggerMainComponent
-import space.rodionov.porosenokpetr.core.di.MainComponent
-
-//todo :app module
+import space.rodionov.porosenokpetr.main.di.DaggerMainComponent
+import space.rodionov.porosenokpetr.main.di.MainComponent
 
 class PorosenokPetrApp: Application() {
 

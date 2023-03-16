@@ -9,6 +9,7 @@ import space.rodionov.porosenokpetr.BuildConfig
 import space.rodionov.porosenokpetr.core.util.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.core.util.Resource
 import space.rodionov.porosenokpetr.core.data.local.WordDao
+import space.rodionov.porosenokpetr.core.data.local.mapper.toCategory
 import space.rodionov.porosenokpetr.core.data.local.mapper.toCategoryEntity
 import space.rodionov.porosenokpetr.core.data.local.mapper.toWord
 import space.rodionov.porosenokpetr.core.data.local.mapper.toWordEntity
