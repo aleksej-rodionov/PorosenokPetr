@@ -5,6 +5,10 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.ui.graphics.Color
+import space.rodionov.porosenokpetr.core.presentation.Dimensions
+import space.rodionov.porosenokpetr.core.presentation.LocalSpacing
 
 private val DarkColorPalette = darkColors(
     primary = Purple200,
@@ -13,18 +17,17 @@ private val DarkColorPalette = darkColors(
 )
 
 private val LightColorPalette = lightColors(
-    primary = Purple500,
+    primary = Gray100,
     primaryVariant = Purple700,
-    secondary = Teal200
+    secondary = Teal200,
 
-    /* Other default colors to override
+//     Other default colors to override
     background = Color.White,
     surface = Color.White,
     onPrimary = Color.White,
     onSecondary = Color.Black,
     onBackground = Color.Black,
     onSurface = Color.Black,
-    */
 )
 
 @Composable
@@ -38,10 +41,12 @@ fun PorosenokPetrTheme(
         LightColorPalette
     }
 
-    MaterialTheme(
-        colors = colors,
-        typography = Typography,
-        shapes = Shapes,
-        content = content
-    )
+    CompositionLocalProvider(LocalSpacing provides Dimensions()) {
+        MaterialTheme(
+            colors = colors,
+            typography = Typography,
+            shapes = Shapes,
+            content = content
+        )
+    }
 }

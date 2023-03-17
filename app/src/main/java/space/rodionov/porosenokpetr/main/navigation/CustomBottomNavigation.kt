@@ -19,6 +19,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import space.rodionov.porosenokpetr.main.navigation.sub_graphs.CardStackDestinations
 import space.rodionov.porosenokpetr.main.navigation.sub_graphs.SettingsDestinations
 import space.rodionov.porosenokpetr.main.navigation.sub_graphs.VocabularyDestinations
+import space.rodionov.porosenokpetr.ui.theme.Gray850
 
 const val TAG_NAV = "TAG_NAV"
 
@@ -49,8 +50,8 @@ fun CustomBottomNavigation(navController: NavController) {
                 },
                 selected = currentRoute == graphRoute,
 //                selected = currentRoute.isChildOf(graphRoute),
-                selectedContentColor = Color.White,
-                unselectedContentColor = Color.White.copy(alpha = 0.4f),
+                selectedContentColor = Gray850,
+                unselectedContentColor = Gray850.copy(alpha = 0.4f),
                 alwaysShowLabel = true,
                 onClick = {
                     if (currentRoute.startsWith(graphRoute)) { // if we already inside this subGraph..

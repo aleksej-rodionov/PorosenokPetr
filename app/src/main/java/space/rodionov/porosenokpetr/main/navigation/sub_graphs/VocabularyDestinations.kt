@@ -1,22 +1,25 @@
 package space.rodionov.porosenokpetr.main.navigation.sub_graphs
 
+import androidx.activity.ComponentActivity
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import space.rodionov.porosenokpetr.core.util.ViewModelFactory
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.VocabularyMainScreen
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.VocabularySearchScreen
 
 fun NavGraphBuilder.addVocabularyGraph(
-    navController: NavHostController
+    navController: NavHostController,
+    viewModelOwner: ComponentActivity,
+    viewModelFactory: ViewModelFactory
 ) {
 
     this.composable(route = VocabularyDestinations.VocabularyMain.route) {
         VocabularyMainScreen(
-            onSearch = {
-                navController.navigate("${VocabularyDestinations.VocabularySearch.route}/${it?.resourceName}")
-            }
+            viewModelOwner,
+            viewModelFactory
         )
     }
 
