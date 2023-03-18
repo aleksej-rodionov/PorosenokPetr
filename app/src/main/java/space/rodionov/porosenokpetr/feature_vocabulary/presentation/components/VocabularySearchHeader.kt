@@ -31,8 +31,11 @@ fun VocabularySearchHeader(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(horizontal = spacing.spaceSmall,
-            vertical = spacing.spaceExtraSmall)
+            .padding(
+                start = spacing.spaceSmall,
+                end = spacing.spaceSmall,
+                top = spacing.spaceExtraSmall
+            )
     ) {
 
         Row(
@@ -72,7 +75,11 @@ fun VocabularySearchHeader(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(spacing.spaceSmall)
+                .padding(
+                    start = spacing.spaceSmall,
+                    end = spacing.spaceSmall,
+                    bottom = spacing.spaceSmall
+                )
         ) {
 
             SearchTextField(

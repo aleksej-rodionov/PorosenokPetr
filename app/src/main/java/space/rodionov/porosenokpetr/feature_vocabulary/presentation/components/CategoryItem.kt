@@ -1,0 +1,78 @@
+package space.rodionov.porosenokpetr.feature_vocabulary.presentation.components
+
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Checkbox
+import androidx.compose.material.Icon
+import androidx.compose.material.IconToggleButton
+import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowDropDown
+import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material.icons.filled.KeyboardArrowUp
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.style.TextOverflow
+import space.rodionov.porosenokpetr.core.presentation.LocalSpacing
+import space.rodionov.porosenokpetr.feature_vocabulary.presentation.model.VocabularyItem
+import space.rodionov.porosenokpetr.ui.theme.Gray600
+import space.rodionov.porosenokpetr.ui.theme.Gray900
+
+@Composable
+fun CategoryItem(
+    category: VocabularyItem.CategoryUi,
+    modifier: Modifier = Modifier,
+    onCategoryOpenedChanged: (VocabularyItem.CategoryUi, Boolean) -> Unit,
+    onCategoryActiveChanged: (VocabularyItem.CategoryUi, Boolean) -> Unit
+) {
+
+    val spacing = LocalSpacing.current
+
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(spacing.spaceSmall),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.End
+    ) {
+
+        Text(
+            modifier = Modifier.fillMaxWidth(),
+            text = category.getLocalizedName(2), //todo localization compLocal
+            color = Gray900,
+            maxLines = 2,
+            overflow = TextOverflow.Ellipsis
+        )
+
+        Text(
+            text = "99%",
+            color = Gray600,
+            fontStyle = FontStyle.Italic
+        )
+
+        Checkbox(
+            checked = category.isCategoryActive,
+            onCheckedChange = {
+                onCategoryActiveChanged(category, it)
+            }
+        )
+
+        IconToggleButton(
+            checked = category.isOpenedInCollection,
+            onCheckedChange = {
+                onCategoryOpenedChanged(category, it)
+            }
+        ) {
+
+            Icon(
+                imageVector = if (category.isOpenedInCollection) Icons.Filled.KeyboardArrowDown
+                else Icons.Default.KeyboardArrowUp,
+                contentDescription = "Open/close"
+            )
+        }
+    }
+}

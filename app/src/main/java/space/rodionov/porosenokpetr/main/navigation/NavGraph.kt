@@ -1,6 +1,7 @@
 package space.rodionov.porosenokpetr.main.navigation
 
 import androidx.activity.ComponentActivity
+import androidx.compose.material.ScaffoldState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ThumbUp
 import androidx.compose.runtime.Composable
@@ -17,6 +18,7 @@ import space.rodionov.porosenokpetr.main.navigation.sub_graphs.*
 fun MainNavGraph(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
+    scaffoldState: ScaffoldState,
     startDestination: String = ChildGraphs.CardStackGraph.route,
     viewModelOwner: ComponentActivity,
     viewModelFactory: ViewModelFactory
@@ -39,7 +41,7 @@ fun MainNavGraph(
                 route = ChildGraphs.VocabularyGraph.route,
                 startDestination = VocabularyDestinations.VocabularyMain.route
             ) {
-                addVocabularyGraph(navController, viewModelOwner, viewModelFactory)
+                addVocabularyGraph(navController, scaffoldState, viewModelOwner, viewModelFactory)
             }
 
             navigation(

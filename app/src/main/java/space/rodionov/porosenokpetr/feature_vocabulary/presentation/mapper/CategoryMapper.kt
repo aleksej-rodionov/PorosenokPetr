@@ -1,16 +1,21 @@
 package space.rodionov.porosenokpetr.feature_vocabulary.presentation.mapper
 
 import space.rodionov.porosenokpetr.core.domain.model.Category
-import space.rodionov.porosenokpetr.feature_vocabulary.presentation.model.CategoryUi
+import space.rodionov.porosenokpetr.core.domain.model.Word
+import space.rodionov.porosenokpetr.feature_vocabulary.presentation.model.VocabularyItem
 
-fun Category.toCategoryUi(): CategoryUi {
-    return CategoryUi(
-        resourceName, isCategoryActive, id, nameRus, nameUkr, nameEng
-    )
+fun Category.toCategoryUi(): VocabularyItem.CategoryUi {
+    return VocabularyItem.CategoryUi(resourceName, isCategoryActive, id, nameRus, nameUkr, nameEng)
 }
 
-fun CategoryUi.toCategory(): Category {
-    return Category(
-        resourceName, isCategoryActive, id, nameRus, nameUkr, nameEng
-    )
+fun VocabularyItem.CategoryUi.toCategory(): Category {
+    return Category(resourceName, isCategoryActive, id, nameRus, nameUkr, nameEng)
+}
+
+fun Word.toWordUi(): VocabularyItem.WordUi {
+    return VocabularyItem.WordUi(rus, ukr, eng, swe, categoryName, isWordActive, id)
+}
+
+fun VocabularyItem.WordUi.toWord(): Word {
+    return Word(rus, ukr, eng, swe, categoryName, isWordActive, id)
 }

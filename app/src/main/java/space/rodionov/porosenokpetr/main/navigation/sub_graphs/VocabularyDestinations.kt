@@ -1,6 +1,7 @@
 package space.rodionov.porosenokpetr.main.navigation.sub_graphs
 
 import androidx.activity.ComponentActivity
+import androidx.compose.material.ScaffoldState
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -12,12 +13,17 @@ import space.rodionov.porosenokpetr.feature_vocabulary.presentation.VocabularySe
 
 fun NavGraphBuilder.addVocabularyGraph(
     navController: NavHostController,
+    scaffoldState: ScaffoldState,
     viewModelOwner: ComponentActivity,
     viewModelFactory: ViewModelFactory
 ) {
 
     this.composable(route = VocabularyDestinations.VocabularyMain.route) {
         VocabularyMainScreen(
+            onNavigateUp = {
+                navController.navigateUp()
+            },
+            scaffoldState,
             viewModelOwner,
             viewModelFactory
         )
