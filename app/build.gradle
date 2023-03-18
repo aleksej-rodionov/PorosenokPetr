@@ -162,5 +162,6 @@ dependencies {
     def lifecycleVersion = "2.4.0"
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycleVersion"
 
+    implementation "com.google.accompanist:accompanist-flowlayout:0.15.0"
 
 }

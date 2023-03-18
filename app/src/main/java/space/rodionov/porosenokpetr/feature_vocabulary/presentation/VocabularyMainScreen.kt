@@ -14,6 +14,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import space.rodionov.porosenokpetr.core.domain.model.Category
 import space.rodionov.porosenokpetr.core.util.ViewModelFactory
+import space.rodionov.porosenokpetr.feature_vocabulary.presentation.components.VocabularyChipGroup
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.components.VocabularySearchHeader
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -30,9 +31,9 @@ fun VocabularyMainScreen(
     BackdropScaffold(
         appBar = {
             VocabularySearchHeader(
+                modifier = Modifier.background(color = MaterialTheme.colors.primary), // todo color primary
                 query = state.searchQuery,
                 shouldShowHint = state.showSearchHint,
-                modifier = Modifier.background(color = Color.White), // todo color primary
                 onBackClick = {
                     //todo
                 },
@@ -48,7 +49,12 @@ fun VocabularyMainScreen(
             )
         },
         backLayerContent = {
-            //todo switchGroup categories
+            VocabularyChipGroup(
+                categories = state.categories,
+                onSelectedChanged = { cat, opened ->
+                    viewModel.onEvent(VocabularyEvent.OnCategoryOpenedCHanged(cat, opened))
+                }
+            )
         },
         frontLayerContent = {
             //todo word list

@@ -2,10 +2,7 @@ package space.rodionov.porosenokpetr.feature_vocabulary.presentation.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
@@ -30,6 +27,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.presentation.LocalSpacing
@@ -37,10 +35,10 @@ import space.rodionov.porosenokpetr.ui.theme.*
 
 @Composable
 fun SearchTextField(
+    modifier: Modifier = Modifier,
     query: String,
     shouldShowHint: Boolean = false,
     onValueChange: (String) -> Unit,
-    modifier: Modifier = Modifier,
     hint: String = stringResource(id = R.string.search_word),
     onFocusChanged: (FocusState) -> Unit
 ) {
@@ -54,7 +52,9 @@ fun SearchTextField(
     ) {
 
         Image(
-            modifier = Modifier.align(Alignment.CenterVertically),
+            modifier = Modifier
+                .align(Alignment.CenterVertically)
+                .padding(horizontal = spacing.spaceSmall),
             painter = painterResource(id = R.drawable.ic_search),
             contentDescription = stringResource(id = R.string.search_word)
         )
@@ -64,29 +64,31 @@ fun SearchTextField(
         ) {
 
             BasicTextField(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(spacing.spaceExtraSmall)
+                    .height(28.dp)
+                    .wrapContentHeight(align = Alignment.CenterVertically)
+                    .onFocusChanged { onFocusChanged(it) },
                 value = query,
                 onValueChange = onValueChange,
                 singleLine = true,
                 textStyle = TextStyle(
                     color = Gray900
                 ),
-                cursorBrush = SolidColor(Gray600),
-                modifier = modifier
-                    .fillMaxWidth()
-                    .padding(spacing.spaceMedium)
-                    .onFocusChanged { onFocusChanged(it) }
+                cursorBrush = SolidColor(Gray600)
             )
 
             if (shouldShowHint) {
 
                 Text(
+                    modifier = Modifier
+                        .align(Alignment.CenterStart)
+                        .padding(start = spacing.spaceMedium),
                     text = hint,
                     style = MaterialTheme.typography.body1,
                     fontWeight = FontWeight.Light,
-                    color = Gray600,
-                    modifier = Modifier
-                        .align(Alignment.CenterStart)
-                        .padding(start = spacing.spaceMedium)
+                    color = Gray600
                 )
             }
         }

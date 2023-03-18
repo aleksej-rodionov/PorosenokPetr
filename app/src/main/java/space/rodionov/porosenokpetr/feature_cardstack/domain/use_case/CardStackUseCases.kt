@@ -5,7 +5,6 @@ data class CardStackUseCases(
     val getRandomWordUseCase: GetRandomWordUseCase,
     val getAllCatsNamesUseCase: GetAllCatsNamesUseCase,
     val getAllActiveCatsNamesUseCase: GetAllActiveCatsNamesUseCase,
-    val observeAllCategoriesUseCase: ObserveAllCategoriesUseCase,
     val updateWordIsActiveUseCase: UpdateWordIsActiveUseCase,
     val getTenWordsUseCase: GetTenWordsUseCase
 )

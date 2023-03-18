@@ -40,6 +40,11 @@ class WordRepoImpl(
     override suspend fun getAllWords() = dao.getAllWords().map { it.toWord() }
     override suspend fun getWordsQuantity(): Int = dao.getAllWords().size
 
+    override fun observeAllCategories(): Flow<List<Category>> =
+        dao.observeAllCategories().map { cats ->
+            cats.map { it.toCategory() }
+        }
+
     override suspend fun updateWordIsActive(word: Word, isActive: Boolean) {
         val wordEntity = dao.getWord(word.rus, word.eng, word.categoryName)
         wordEntity.let {
@@ -108,11 +113,6 @@ class WordRepoImpl(
             words.map {
                 it.toWord()
             }
-        }
-
-    override fun observeAllCategories(): Flow<List<Category>> =
-        dao.observeAllCategories().map { cats ->
-            cats.map { it.toCategory() }
         }
 
     override fun observeAllCategoriesWithWords(): Flow<List<CatWithWords>> {
