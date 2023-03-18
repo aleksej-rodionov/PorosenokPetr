@@ -16,7 +16,19 @@ interface WordRepo {
     suspend fun getAllWords(): List<Word>
     suspend fun getWordsQuantity(): Int
 
-//    fun observeWords(query: String): Flow<Resource<List<Word>>>
+    fun observeAllCategories() : Flow<List<Category>>
+
+    fun observeWordsBySearchQueryInCategories(
+        searchQuery: String,
+        categories: List<Category>
+    ): Flow<List<Word>>
+
+    suspend fun getWordsBySearchQueryInCategories(
+        searchQuery: String,
+        categories: List<Category>
+    ): List<Word>
+
+    fun wordsBySearchQuery(catName: String, searchQuery: String) : Flow<List<Word>>
 
     suspend fun updateWord(word: Word, newWord: Word)
 
@@ -26,10 +38,6 @@ interface WordRepo {
     suspend fun getRandomWordFromActiveCats(activeCatsNames: List<String>) : Word
 
     fun observeWord(nativ: String, foreign: String, categoryName: String) : Flow<Word>
-
-    fun wordsBySearchQuery(catName: String, searchQuery: String) : Flow<List<Word>>
-
-    fun observeAllCategories() : Flow<List<Category>>
 
     fun observeAllCategoriesWithWords() : Flow<List<CatWithWords>>
 

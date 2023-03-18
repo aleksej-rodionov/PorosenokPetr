@@ -1,4 +1,4 @@
-package space.rodionov.porosenokpetr.feature_vocabulary.domaion.use_case
+package space.rodionov.porosenokpetr.feature_vocabulary.domain.use_case
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

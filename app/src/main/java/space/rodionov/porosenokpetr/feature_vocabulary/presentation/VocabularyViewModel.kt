@@ -6,21 +6,21 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.flow.receiveAsFlow
-import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import space.rodionov.porosenokpetr.core.domain.model.Word
 import space.rodionov.porosenokpetr.core.domain.use_case.SharedUseCases
 import space.rodionov.porosenokpetr.core.util.UiEffect
+import space.rodionov.porosenokpetr.feature_vocabulary.domain.use_case.VocabularyUseCases
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.ext.mapCategoriesOnOpenedChanged
+import space.rodionov.porosenokpetr.feature_vocabulary.presentation.mapper.toCategory
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.mapper.toCategoryUi
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.model.VocabularyItem
 import javax.inject.Inject
 
 class VocabularyViewModel @Inject constructor(
-    private val sharedUseCases: SharedUseCases
+    private val sharedUseCases: SharedUseCases,
+    private val vocabularyUseCases: VocabularyUseCases
 ): ViewModel() {
 
     var state by mutableStateOf(VocabularyState())
@@ -29,11 +29,20 @@ class VocabularyViewModel @Inject constructor(
     private val _uiEffect = Channel<UiEffect>()
     val uiEffect = _uiEffect.receiveAsFlow()
 
+
+
     init {
 
         sharedUseCases.observeAllCategoriesUseCase.invoke().onEach { list ->
             val categories = list.map { it.toCategoryUi() }
             state = state.copy(categories = categories)
+        }.launchIn(viewModelScope)
+
+        vocabularyUseCases.observeWordsBySearchQueryInCategories.invoke(
+            "",
+            state.categories.map { it.toCategory() }
+        ).onEach {
+            state = state.copy(list = it)
         }.launchIn(viewModelScope)
     }
 

@@ -45,6 +45,39 @@ class WordRepoImpl(
             cats.map { it.toCategory() }
         }
 
+    override fun observeWordsBySearchQueryInCategories(
+        searchQuery: String,
+        categories: List<Category>
+    ): Flow<List<Word>> {
+        return dao.observeWordsBySearchQueryInCategories(
+            searchQuery,
+            categories.map { it.resourceName }
+        ).map { entityList ->
+            entityList.map {
+                it.toWord()
+            }
+        }
+    }
+
+    override suspend fun getWordsBySearchQueryInCategories(
+        searchQuery: String,
+        categories: List<Category>
+    ): List<Word> {
+        return dao.getWordsBySearchQueryInCategories(
+            searchQuery,
+            categories.map { it.resourceName }
+        ).map {
+            it.toWord()
+        }
+    }
+
+    override fun wordsBySearchQuery(catName: String, searchQuery: String) =
+        dao.observeWords(catName, searchQuery).map { words ->
+            words.map {
+                it.toWord()
+            }
+        }
+
     override suspend fun updateWordIsActive(word: Word, isActive: Boolean) {
         val wordEntity = dao.getWord(word.rus, word.eng, word.categoryName)
         wordEntity.let {
@@ -65,7 +98,7 @@ class WordRepoImpl(
                 )
             }
         }
-            if (BuildConfig.FLAVOR == "swedishdriller") {
+        if (BuildConfig.FLAVOR == "swedishdriller") {
             wordEntity.let {
                 dao.updateWord(
                     it.copy(
@@ -107,13 +140,6 @@ class WordRepoImpl(
     override suspend fun getRandomWordFromActiveCats(activeCatsNames: List<String>): Word {
         return dao.getRandomWordFromActiveCats(activeCatsNames).toWord()
     }
-
-    override fun wordsBySearchQuery(catName: String, searchQuery: String) =
-        dao.observeWords(catName, searchQuery).map { words ->
-            words.map {
-                it.toWord()
-            }
-        }
 
     override fun observeAllCategoriesWithWords(): Flow<List<CatWithWords>> {
         return dao.observeAllCategoriesWithWords().map { cwws ->

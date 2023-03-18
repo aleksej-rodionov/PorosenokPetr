@@ -21,6 +21,12 @@ interface WordDao {
     @Query("SELECT * FROM categoryentity")
     fun observeAllCategories(): Flow<List<CategoryEntity>>
 
+    @Query("SELECT * FROM wordentity WHERE categoryName IN (:categoryNames) AND (rus LIKE '%' || :searchQuery || '%' OR `ukr` LIKE '%' || :searchQuery || '%' OR `eng` LIKE '%' || :searchQuery || '%' OR `swe` LIKE '%' || :searchQuery || '%')")
+    fun observeWordsBySearchQueryInCategories(searchQuery: String, categoryNames: List<String>): Flow<List<WordEntity>>
+
+    @Query("SELECT * FROM wordentity WHERE categoryName IN (:categoryNames) AND (rus LIKE '%' || :searchQuery || '%' OR `ukr` LIKE '%' || :searchQuery || '%' OR `eng` LIKE '%' || :searchQuery || '%' OR `swe` LIKE '%' || :searchQuery || '%')")
+    suspend fun getWordsBySearchQueryInCategories(searchQuery: String, categoryNames: List<String>): List<WordEntity>
+
     @Query("SELECT * FROM wordentity WHERE rus = :rus AND `eng` = :eng AND categoryName = :categoryName LIMIT 1")
     suspend fun getWord(rus: String, eng: String, categoryName: String): WordEntity
 

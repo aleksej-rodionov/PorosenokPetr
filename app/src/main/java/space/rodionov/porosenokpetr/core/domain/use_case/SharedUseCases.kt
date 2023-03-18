@@ -1,6 +1,5 @@
 package space.rodionov.porosenokpetr.core.domain.use_case
 
-import space.rodionov.porosenokpetr.core.domain.use_case.*
 import space.rodionov.porosenokpetr.feature_cardstack.domain.use_case.ObserveAllCategoriesUseCase
 
 data class SharedUseCases(
