@@ -56,7 +56,7 @@ fun VocabularyMainScreen(
                 query = state.searchQuery,
                 shouldShowHint = state.showSearchHint,
                 onBackClick = {
-                    //todo
+                    viewModel.onEvent(VocabularyEvent.OnBackClick)
                 },
                 onMenuClick = {
                     //todo
@@ -82,6 +82,7 @@ fun VocabularyMainScreen(
             VocabularyFrontLayer(
                 modifier = Modifier,
                 items = state.frontList,
+                wordsQuantity = state.wordsQuantity,
                 onCategoryDisplayedChanged = { category, opened ->
                     viewModel.onEvent(VocabularyEvent.OnCategoryDisplayedCHanged(category, opened))
                 },

@@ -16,7 +16,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import space.rodionov.porosenokpetr.core.presentation.LocalSpacing
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.model.VocabularyItem
 import space.rodionov.porosenokpetr.ui.theme.Gray100
@@ -36,7 +39,7 @@ fun CategoryItem(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .padding(spacing.spaceSmall)
+            .padding(horizontal = spacing.spaceMedium)
             .background(color = Gray100),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
@@ -53,9 +56,12 @@ fun CategoryItem(
         )
 
         Text(
+            modifier = Modifier.padding(end = 12.dp),
+            fontStyle = FontStyle.Italic,
+            fontSize = 12.sp,
             text = "99%",
             color = Gray600,
-            fontStyle = FontStyle.Italic
+            textAlign = TextAlign.End
         )
 
         Checkbox(

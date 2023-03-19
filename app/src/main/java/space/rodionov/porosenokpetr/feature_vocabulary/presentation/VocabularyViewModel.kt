@@ -30,7 +30,7 @@ private const val TAG = "VocabularyViewModel"
 class VocabularyViewModel @Inject constructor(
     private val sharedUseCases: SharedUseCases,
     private val vocabularyUseCases: VocabularyUseCases
-): ViewModel() {
+) : ViewModel() {
 
     var state by mutableStateOf(VocabularyState())
         private set
@@ -65,6 +65,7 @@ class VocabularyViewModel @Inject constructor(
             vocabularyUseCases.observeWordsBySearchQueryInCategories(q, c)
         }.onEach { words ->
             // todo handle result
+            val wordsQuantity = 2
 //            Log.d(TAG, "wordList.size = ${words.size}")
 //            state = state.copy(frontList = words.map { it.toWordUi() })
 
@@ -72,7 +73,10 @@ class VocabularyViewModel @Inject constructor(
                 testWord.toWordUi(),
                 testCategory.toCategoryUi()
             )
-            state = state.copy(frontList = testItems)
+            state = state.copy(
+                frontList = testItems,
+                wordsQuantity = wordsQuantity
+            )
         }.launchIn(viewModelScope)
     }
 
@@ -140,9 +144,9 @@ class VocabularyViewModel @Inject constructor(
 }
 
 
-
 data class VocabularyState(
     val frontList: List<VocabularyItem> = emptyList(),
+    val wordsQuantity: Int = 0,
     val categories: List<VocabularyItem.CategoryUi> = emptyList(),
     val searchQuery: String = "",
     val showSearchHint: Boolean = false
@@ -150,21 +154,23 @@ data class VocabularyState(
 
 sealed class VocabularyEvent {
 
-    object OnBackClick: VocabularyEvent()
-    data class OnSearchQueryChanged(val query: String): VocabularyEvent()
-    data class OnSearchFocusChanged(val isFocused: Boolean): VocabularyEvent()
+    object OnBackClick : VocabularyEvent()
+    data class OnSearchQueryChanged(val query: String) : VocabularyEvent()
+    data class OnSearchFocusChanged(val isFocused: Boolean) : VocabularyEvent()
     data class OnCategoryDisplayedCHanged(
         val category: VocabularyItem.CategoryUi,
         val display: Boolean
-    ): VocabularyEvent()
+    ) : VocabularyEvent()
+
     data class OnCategoryActiveChanged(
         val category: VocabularyItem.CategoryUi,
         val active: Boolean
-    ): VocabularyEvent()
-    data class OnWordClick(val word: VocabularyItem.WordUi): VocabularyEvent()
-    data class OnVoiceClick(val text: String): VocabularyEvent()
+    ) : VocabularyEvent()
+
+    data class OnWordClick(val word: VocabularyItem.WordUi) : VocabularyEvent()
+    data class OnVoiceClick(val text: String) : VocabularyEvent()
     data class OnWordActiveChanged(
         val word: VocabularyItem.WordUi,
         val active: Boolean
-    ): VocabularyEvent()
+    ) : VocabularyEvent()
 }

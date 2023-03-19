@@ -14,6 +14,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.presentation.LocalSpacing
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.model.VocabularyItem
@@ -38,7 +39,7 @@ fun WordItem(
             .background(color = Gray200)
             .fillMaxWidth()
             .clickable { onWordClick(word) }
-            .padding(spacing.spaceSmall)
+            .padding(horizontal = spacing.spaceMedium)
     ) {
 
         Row(
@@ -87,7 +88,9 @@ fun WordItem(
         }
 
         Row(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = spacing.spaceSmall),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
@@ -95,14 +98,15 @@ fun WordItem(
             Text(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .weight(1f)
-                    .padding(horizontal = spacing.spaceMedium),
+                    .weight(1f),
                 text = word.eng,
                 color = Gray600,
             )
 
             Text(
+                modifier = Modifier.padding(end = 12.dp),
                 fontStyle = FontStyle.Italic,
+                fontSize = 12.sp,
                 text = word.categoryName,
                 color = Gray600,
                 textAlign = TextAlign.End

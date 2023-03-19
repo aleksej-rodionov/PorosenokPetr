@@ -11,22 +11,29 @@ import space.rodionov.porosenokpetr.core.presentation.Dimensions
 import space.rodionov.porosenokpetr.core.presentation.LocalSpacing
 
 private val DarkColorPalette = darkColors(
-    primary = Purple200,
+    primary = Gray850,
     primaryVariant = Purple700,
-    secondary = Teal200
+    secondary = Blue,
+
+    background = Gray900,
+    surface = Gray900,
+    onPrimary = TransparentGray15,
+    onSecondary = Gray100,
+    onBackground = Gray100,
+    onSurface = Gray100,
 )
 
 private val LightColorPalette = lightColors(
-    primary = Gray200,
+    primary = Gray200, //Deep surfaces
     primaryVariant = Purple700,
-    secondary = Teal200,
+    secondary = Blue, //CheckBoxes
 
     background = Gray100, // screens' backgrounds
     surface = Gray100, // drawers' backgrounds
     onPrimary = TransparentGray15,
-    onSecondary = Color.Black,
-    onBackground = Color.Black,
-    onSurface = Color.Black,
+    onSecondary = Gray900,
+    onBackground = Gray900,
+    onSurface = Gray900,
 )
 
 @Composable
