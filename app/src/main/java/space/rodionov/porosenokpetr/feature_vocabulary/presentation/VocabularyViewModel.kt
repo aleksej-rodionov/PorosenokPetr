@@ -1,13 +1,16 @@
 package space.rodionov.porosenokpetr.feature_vocabulary.presentation
 
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import space.rodionov.porosenokpetr.core.domain.model.Category
 import space.rodionov.porosenokpetr.core.domain.model.Word
 import space.rodionov.porosenokpetr.core.domain.use_case.SharedUseCases
 import space.rodionov.porosenokpetr.core.util.UiEffect
@@ -18,6 +21,9 @@ import space.rodionov.porosenokpetr.feature_vocabulary.presentation.mapper.toCat
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.model.VocabularyItem
 import javax.inject.Inject
 
+private const val TAG = "VocabularyViewModel"
+
+@OptIn(ExperimentalCoroutinesApi::class)
 class VocabularyViewModel @Inject constructor(
     private val sharedUseCases: SharedUseCases,
     private val vocabularyUseCases: VocabularyUseCases
@@ -29,20 +35,30 @@ class VocabularyViewModel @Inject constructor(
     private val _uiEffect = Channel<UiEffect>()
     val uiEffect = _uiEffect.receiveAsFlow()
 
+    private val _searchQueries = MutableStateFlow("")
+    private val searchQueries: StateFlow<String> = _searchQueries.asStateFlow()
 
+    private val _categoriesOpened = MutableStateFlow<List<Category>>(emptyList())
+    private val categoriesOpened: StateFlow<List<Category>> = _categoriesOpened.asStateFlow()
 
     init {
 
+        // this is only for categories' chipGroup
         sharedUseCases.observeAllCategoriesUseCase.invoke().onEach { list ->
             val categories = list.map { it.toCategoryUi() }
             state = state.copy(categories = categories)
         }.launchIn(viewModelScope)
 
-        vocabularyUseCases.observeWordsBySearchQueryInCategories.invoke(
-            "",
-            state.categories.map { it.toCategory() }
-        ).onEach {
-            state = state.copy(list = it)
+        combine(
+            searchQueries,
+            categoriesOpened
+        ) { query, categories ->
+            Pair(query, categories)
+        }.flatMapLatest { (q, c) ->
+            vocabularyUseCases.observeWordsBySearchQueryInCategories(q, c)
+        }.onEach {
+            Log.d(TAG, "wordList.size = ${it.size}")
+            state = state.copy() //todo convert result
         }.launchIn(viewModelScope)
     }
 
@@ -57,11 +73,15 @@ class VocabularyViewModel @Inject constructor(
                 )
             }
             is VocabularyEvent.OnSearchQueryChanged -> {
+                _searchQueries.value = event.query //todo remove
                 state = state.copy(
                     searchQuery = event.query
                 )
             }
             is VocabularyEvent.OnCategoryOpenedCHanged -> {
+                _categoriesOpened.value = state.categories.mapCategoriesOnOpenedChanged(event.category, event.opened).map {
+                    it.toCategory()
+                } //todo remove
                 state = state.copy(
                     categories = state.categories.mapCategoriesOnOpenedChanged(event.category, event.opened)
                 )
