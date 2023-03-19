@@ -17,7 +17,7 @@ import space.rodionov.porosenokpetr.ui.theme.Gray600
 fun VocabularyFrontLayer(
     modifier: Modifier = Modifier,
     items: List<VocabularyItem>,
-    onCategoryOpenedChanged: (VocabularyItem.CategoryUi, Boolean) -> Unit,
+    onCategoryDisplayedChanged: (VocabularyItem.CategoryUi, Boolean) -> Unit,
     onCategoryActiveChanged: (VocabularyItem.CategoryUi, Boolean) -> Unit,
     onWordClick: (VocabularyItem.WordUi) -> Unit,
     onVoiceClick: (String) -> Unit,
@@ -54,10 +54,6 @@ fun VocabularyFrontLayer(
                 text = "Всего отображено 120 слов",
                 fontStyle = FontStyle.Italic
             )
-
-//            IconButton(onClick = { /*TODO*/ }) {
-//
-//            }
         }
 
         LazyColumn(
@@ -69,8 +65,8 @@ fun VocabularyFrontLayer(
 
                         CategoryItem(
                             category = item,
-                            onCategoryOpenedChanged = { category, opened ->
-                                onCategoryActiveChanged(category, opened)
+                            onCategoryDisplayedChanged = { category, opened ->
+                                onCategoryDisplayedChanged(category, opened)
                             },
                             onCategoryActiveChanged = { category, active ->
                                 onCategoryActiveChanged(category, active)

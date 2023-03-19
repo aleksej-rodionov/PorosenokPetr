@@ -1,5 +1,7 @@
 package space.rodionov.porosenokpetr.feature_vocabulary.presentation.model
 
+import space.rodionov.porosenokpetr.core.domain.model.Category
+import space.rodionov.porosenokpetr.core.domain.model.Word
 import space.rodionov.porosenokpetr.core.util.Constants
 
 sealed class VocabularyItem {
@@ -11,7 +13,7 @@ sealed class VocabularyItem {
         val nameRus: String,
         val nameUkr: String,
         val nameEng: String? = null,
-        val isOpenedInCollection: Boolean = false
+        val isDisplayedInCollection: Boolean = false
     ) : VocabularyItem() {
 
         fun getLocalizedName(lang: Int) = when (lang) {
@@ -44,3 +46,25 @@ sealed class VocabularyItem {
     }
 }
 
+
+
+
+
+//for testing
+
+val testWord = Word(
+    rus = "хуй",
+    ukr = "хуй",
+    eng = "dick",
+    swe = "kuk",
+    categoryName = "Shit",
+    isWordActive = true
+)
+
+val testCategory = Category(
+    resourceName = "Shit",
+    isCategoryActive = true,
+    nameRus = "Дерьмо",
+    nameUkr = "Лайно",
+    nameEng = "Shit"
+)

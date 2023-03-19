@@ -1,10 +1,8 @@
 package space.rodionov.porosenokpetr.feature_vocabulary.presentation.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.IconToggleButton
@@ -15,9 +13,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.presentation.LocalSpacing
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.model.VocabularyItem
+import space.rodionov.porosenokpetr.ui.theme.Gray200
+import space.rodionov.porosenokpetr.ui.theme.Gray400
 import space.rodionov.porosenokpetr.ui.theme.Gray600
 import space.rodionov.porosenokpetr.ui.theme.Gray900
 
@@ -32,66 +33,80 @@ fun WordItem(
 
     val spacing = LocalSpacing.current
 
-    Row(
+    Column(
         modifier = modifier
+            .background(color = Gray200)
             .fillMaxWidth()
             .clickable { onWordClick(word) }
-            .padding(spacing.spaceMedium),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.End
+            .padding(spacing.spaceSmall)
     ) {
 
-        Text(
+        Row(
             modifier = Modifier.fillMaxWidth(),
-            text = word.swe ?: "",
-            color = Gray900,
-        )
-
-        IconButton(
-            onClick = { onVoiceClick(word.swe ?: "") }
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
 
-            Icon(
-                painter = painterResource(id = R.drawable.ic_play),
-                contentDescription = "Voice" //todo localized resource
+            Text(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f),
+                text = word.swe ?: "",
+                color = Gray900,
             )
+
+            IconButton(
+                modifier = Modifier
+                    .padding(12.dp)
+                    .size(24.dp, 24.dp),
+                onClick = { onVoiceClick(word.swe ?: "") }
+            ) {
+
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_play),
+                    contentDescription = "Voice" //todo localized resource
+                )
+            }
+
+            IconToggleButton(
+                modifier = Modifier
+                    .padding(12.dp)
+                    .size(24.dp, 24.dp),
+                checked = word.isWordActive,
+                onCheckedChange = { onWordActiveChanged(word, it) }
+            ) {
+
+                Icon(
+                    painter = painterResource(
+                        id = if (word.isWordActive) R.drawable.ic_new_round
+                        else R.drawable.ic_learned
+                    ),
+                    contentDescription = "Change activity"
+                )
+            }
         }
 
-        IconToggleButton(
-            checked = word.isWordActive,
-            onCheckedChange = { onWordActiveChanged(word, it) }
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
 
-            Icon(
-                painter = painterResource(
-                    id = if (word.isWordActive) R.drawable.ic_new_round
-                    else R.drawable.ic_learned
-                ),
-                contentDescription = "Change activity"
+            Text(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f)
+                    .padding(horizontal = spacing.spaceMedium),
+                text = word.eng,
+                color = Gray600,
+            )
+
+            Text(
+                fontStyle = FontStyle.Italic,
+                text = word.categoryName,
+                color = Gray600,
+                textAlign = TextAlign.End
             )
         }
-    }
-
-    Row(
-        modifier = modifier
-            .fillMaxWidth()
-            .clickable { onWordClick(word) }
-            .padding(spacing.spaceMedium),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween
-    ) {
-
-        Text(
-            modifier = Modifier.fillMaxWidth(),
-            text = word.eng,
-            color = Gray600,
-        )
-
-        Text(
-            fontStyle = FontStyle.Italic,
-            text = word.categoryName,
-            color = Gray600,
-            textAlign = TextAlign.End
-        )
     }
 }

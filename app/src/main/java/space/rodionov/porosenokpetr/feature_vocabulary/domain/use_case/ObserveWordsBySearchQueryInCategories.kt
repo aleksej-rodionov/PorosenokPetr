@@ -11,7 +11,7 @@ class ObserveWordsBySearchQueryInCategories(
 
     operator fun invoke(
         query: String,
-        categories: List<Category>
+        categories: List<String>
     ): Flow<List<Word>> {
         return repo.observeWordsBySearchQueryInCategories(
             query,

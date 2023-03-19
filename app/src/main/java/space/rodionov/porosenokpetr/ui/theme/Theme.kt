@@ -21,9 +21,8 @@ private val LightColorPalette = lightColors(
     primaryVariant = Purple700,
     secondary = Teal200,
 
-//     Other default colors to override
-    background = Color.White,
-    surface = Color.White,
+    background = Gray100, // screens' backgrounds
+    surface = Gray100, // drawers' backgrounds
     onPrimary = TransparentGray15,
     onSecondary = Color.Black,
     onBackground = Color.Black,

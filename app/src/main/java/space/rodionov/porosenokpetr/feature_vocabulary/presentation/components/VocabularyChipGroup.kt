@@ -34,7 +34,7 @@ fun VocabularyChipGroup(
             categories.forEach {
                 VocabularyChip(
                     category = it,
-                    isSelected = it.isOpenedInCollection,
+                    isSelected = it.isDisplayedInCollection,
                     onSelectionChanged = { cat, opened ->
                         onSelectedChanged(cat, opened)
                     },

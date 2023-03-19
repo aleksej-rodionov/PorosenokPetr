@@ -7,14 +7,10 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.flow.collectLatest
-import space.rodionov.porosenokpetr.core.domain.model.Category
 import space.rodionov.porosenokpetr.core.presentation.LocalSpacing
 import space.rodionov.porosenokpetr.core.util.UiEffect
 import space.rodionov.porosenokpetr.core.util.ViewModelFactory
@@ -78,19 +74,19 @@ fun VocabularyMainScreen(
                 modifier = Modifier.padding(horizontal = LocalSpacing.current.spaceMedium),
                 categories = state.categories,
                 onSelectedChanged = { cat, opened ->
-                    viewModel.onEvent(VocabularyEvent.OnCategoryOpenedCHanged(cat, opened))
+                    viewModel.onEvent(VocabularyEvent.OnCategoryDisplayedCHanged(cat, opened))
                 }
             )
         },
         frontLayerContent = {
             VocabularyFrontLayer(
                 modifier = Modifier,
-                items = state.categories,
-                onCategoryOpenedChanged = { category, opened ->
-                    viewModel.onEvent(VocabularyEvent.OnCategoryOpenedCHanged(category, opened))
+                items = state.frontList,
+                onCategoryDisplayedChanged = { category, opened ->
+                    viewModel.onEvent(VocabularyEvent.OnCategoryDisplayedCHanged(category, opened))
                 },
                 onCategoryActiveChanged = { category, active ->
-                    viewModel.onEvent(VocabularyEvent.OnCategoryOpenedCHanged(category, active))
+                    viewModel.onEvent(VocabularyEvent.OnCategoryDisplayedCHanged(category, active))
                 },
                 onWordClick = { viewModel.onEvent(VocabularyEvent.OnWordClick(it)) },
                 onVoiceClick = { viewModel.onEvent(VocabularyEvent.OnVoiceClick(it)) },

@@ -18,9 +18,11 @@ interface WordRepo {
 
     fun observeAllCategories() : Flow<List<Category>>
 
+    suspend fun getAllCategories() : List<Category>
+
     fun observeWordsBySearchQueryInCategories(
         searchQuery: String,
-        categories: List<Category>
+        categories: List<String>
     ): Flow<List<Word>>
 
     suspend fun getWordsBySearchQueryInCategories(

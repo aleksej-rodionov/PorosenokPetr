@@ -45,13 +45,17 @@ class WordRepoImpl(
             cats.map { it.toCategory() }
         }
 
+    override suspend fun getAllCategories(): List<Category> {
+        return dao.getAllCategories().map { it.toCategory() }
+    }
+
     override fun observeWordsBySearchQueryInCategories(
         searchQuery: String,
-        categories: List<Category>
+        categories: List<String>
     ): Flow<List<Word>> {
         return dao.observeWordsBySearchQueryInCategories(
             searchQuery,
-            categories.map { it.resourceName }
+            categories
         ).map { entityList ->
             entityList.map {
                 it.toWord()

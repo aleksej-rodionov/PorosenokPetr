@@ -1,5 +1,6 @@
 package space.rodionov.porosenokpetr.feature_vocabulary.presentation.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -9,7 +10,6 @@ import androidx.compose.material.Icon
 import androidx.compose.material.IconToggleButton
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.runtime.Composable
@@ -19,6 +19,7 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextOverflow
 import space.rodionov.porosenokpetr.core.presentation.LocalSpacing
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.model.VocabularyItem
+import space.rodionov.porosenokpetr.ui.theme.Gray100
 import space.rodionov.porosenokpetr.ui.theme.Gray600
 import space.rodionov.porosenokpetr.ui.theme.Gray900
 
@@ -26,7 +27,7 @@ import space.rodionov.porosenokpetr.ui.theme.Gray900
 fun CategoryItem(
     category: VocabularyItem.CategoryUi,
     modifier: Modifier = Modifier,
-    onCategoryOpenedChanged: (VocabularyItem.CategoryUi, Boolean) -> Unit,
+    onCategoryDisplayedChanged: (VocabularyItem.CategoryUi, Boolean) -> Unit,
     onCategoryActiveChanged: (VocabularyItem.CategoryUi, Boolean) -> Unit
 ) {
 
@@ -35,13 +36,16 @@ fun CategoryItem(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .padding(spacing.spaceSmall),
+            .padding(spacing.spaceSmall)
+            .background(color = Gray100),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.End
+        horizontalArrangement = Arrangement.SpaceBetween
     ) {
 
         Text(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f),
             text = category.getLocalizedName(2), //todo localization compLocal
             color = Gray900,
             maxLines = 2,
@@ -62,14 +66,14 @@ fun CategoryItem(
         )
 
         IconToggleButton(
-            checked = category.isOpenedInCollection,
+            checked = category.isDisplayedInCollection,
             onCheckedChange = {
-                onCategoryOpenedChanged(category, it)
+                onCategoryDisplayedChanged(category, it)
             }
         ) {
 
             Icon(
-                imageVector = if (category.isOpenedInCollection) Icons.Filled.KeyboardArrowDown
+                imageVector = if (category.isDisplayedInCollection) Icons.Filled.KeyboardArrowDown
                 else Icons.Default.KeyboardArrowUp,
                 contentDescription = "Open/close"
             )

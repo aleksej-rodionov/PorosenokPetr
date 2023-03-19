@@ -13,6 +13,7 @@ import space.rodionov.porosenokpetr.core.domain.use_case.*
 import space.rodionov.porosenokpetr.core.data.repository.WordRepoImpl
 import space.rodionov.porosenokpetr.core.domain.repository.WordRepo
 import space.rodionov.porosenokpetr.core.util.Constants
+import space.rodionov.porosenokpetr.feature_cardstack.domain.use_case.GetAllCategoriesUseCase
 import space.rodionov.porosenokpetr.feature_cardstack.domain.use_case.ObserveAllCategoriesUseCase
 import space.rodionov.porosenokpetr.feature_splash.domain.use_case.SplashInteractor
 import javax.inject.Singleton
@@ -63,6 +64,7 @@ class AppModule {
             observeNativeLangUseCase = ObserveNativeLangUseCase(preferences),
             observeTranslationDirectionUseCase = ObserveTranslationDirectionUseCase(preferences),
             observeAllCategoriesUseCase = ObserveAllCategoriesUseCase(repo),
+            getAllCategoriesUseCase = GetAllCategoriesUseCase(repo),
             makeCategoryActiveUseCase = MakeCategoryActiveUseCase(repo)
         )
     }
