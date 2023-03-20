@@ -12,6 +12,8 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.AutoCompleteTextView
 import androidx.core.content.ContextCompat
 import space.rodionov.porosenokpetr.core.domain.model.Word
+import space.rodionov.porosenokpetr.core.util.Constants.WORD_ACTIVE
+import space.rodionov.porosenokpetr.core.util.Constants.WORD_LEARNED
 import java.math.BigDecimal
 import kotlin.math.roundToInt
 
@@ -23,10 +25,10 @@ inline fun <reified T: Activity> Activity.startActivity() {
 
 fun List<Word>.countPercentage(): Int {
     val learnedCount = this.filter {
-        it.isWordLearned
+        it.wordStatus == WORD_LEARNED
     }.size
     val totalIncludedCount = this.filter {
-        it.isWordActive || it.isWordLearned
+        it.wordStatus == WORD_LEARNED || it.wordStatus == WORD_ACTIVE
     }.size
     val lch = learnedCount * 100.0f
     val percentage = if (!(lch / totalIncludedCount).isNaN()) (lch / totalIncludedCount).roundToInt() else 0

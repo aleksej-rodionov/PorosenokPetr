@@ -28,7 +28,8 @@ fun VocabularyFrontLayer(
     onCategoryActiveChanged: (VocabularyItem.CategoryUi, Boolean) -> Unit,
     onWordClick: (VocabularyItem.WordUi) -> Unit,
     onVoiceClick: (String) -> Unit,
-    onWordStatusChanged: (VocabularyItem.WordUi, Int) -> Unit
+    onWordStatusChanged: (VocabularyItem.WordUi, Int) -> Unit,
+    onFilterClick: () -> Unit
 ) {
 
     val spacing = LocalSpacing.current
@@ -78,8 +79,9 @@ fun VocabularyFrontLayer(
                     )
 
                     IconButton(
-                        onClick = {//todo
-                             }
+                        onClick = {
+                            onFilterClick()
+                        }
                     ) {
 
                         Icon(
