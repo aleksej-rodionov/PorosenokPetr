@@ -6,8 +6,10 @@ import android.view.View
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.material.rememberScaffoldState
+import androidx.compose.ui.Modifier
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.compose.rememberNavController
@@ -18,7 +20,7 @@ import space.rodionov.porosenokpetr.core.util.Constants.MODE_LIGHT
 import space.rodionov.porosenokpetr.core.util.ViewModelFactory
 import space.rodionov.porosenokpetr.main.PorosenokPetrApp
 import space.rodionov.porosenokpetr.main.navigation.CustomBottomNavigation
-import space.rodionov.porosenokpetr.main.navigation.MainNavGraph
+import space.rodionov.porosenokpetr.main.navigation.MainNavHost
 import space.rodionov.porosenokpetr.ui.theme.PorosenokPetrTheme
 import javax.inject.Inject
 
@@ -46,7 +48,8 @@ class MainActivity : ComponentActivity() {
                     bottomBar = { CustomBottomNavigation(navController = navController) }
                 ) {
 
-                    MainNavGraph(
+                    MainNavHost(
+                        modifier = Modifier.padding(it),
                         navController = navController,
                         scaffoldState = scaffoldState,
                         viewModelOwner = this,

@@ -1,13 +1,10 @@
 package space.rodionov.porosenokpetr.core.data.repository
 
 import android.util.Log
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import space.rodionov.porosenokpetr.BuildConfig
 import space.rodionov.porosenokpetr.core.util.Constants.TAG_PETR
-import space.rodionov.porosenokpetr.core.util.Resource
 import space.rodionov.porosenokpetr.core.data.local.WordDao
 import space.rodionov.porosenokpetr.core.data.local.mapper.toCategory
 import space.rodionov.porosenokpetr.core.data.local.mapper.toCategoryEntity
@@ -69,7 +66,7 @@ class WordRepoImpl(
     ): List<Word> {
         return dao.getWordsBySearchQueryInCategories(
             searchQuery,
-            categories.map { it.resourceName }
+            categories.map { it.name }
         ).map {
             it.toWord()
         }

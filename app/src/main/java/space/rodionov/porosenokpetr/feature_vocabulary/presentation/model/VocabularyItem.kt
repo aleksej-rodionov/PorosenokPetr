@@ -7,13 +7,14 @@ import space.rodionov.porosenokpetr.core.util.Constants
 sealed class VocabularyItem {
 
     data class CategoryUi(
-        val resourceName: String,
+        val name: String,
         val isCategoryActive: Boolean = true,
         val id: Int? = null,
         val nameRus: String,
         val nameUkr: String,
         val nameEng: String? = null,
-        val isDisplayedInCollection: Boolean = false
+        val isDisplayedInCollection: Boolean = false,
+        val isFocusedInList: Boolean = false
     ) : VocabularyItem() {
 
         fun getLocalizedName(lang: Int) = when (lang) {
@@ -62,9 +63,19 @@ val testWord = Word(
 )
 
 val testCategory = Category(
-    resourceName = "Shit",
+    name = "Shit",
     isCategoryActive = true,
     nameRus = "Дерьмо",
     nameUkr = "Лайно",
     nameEng = "Shit"
 )
+
+/*val wordsQuantity = 2
+val testItems = listOf<VocabularyItem>(
+    testWord.toWordUi(),
+    testCategory.toCategoryUi()
+)
+state = state.copy(
+frontList = testItems,
+wordsQuantity = wordsQuantity
+)*/

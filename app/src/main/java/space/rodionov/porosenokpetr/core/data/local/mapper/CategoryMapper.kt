@@ -5,7 +5,7 @@ import space.rodionov.porosenokpetr.core.domain.model.Category
 
 fun Category.toCategoryEntity(): CategoryEntity {
     return CategoryEntity(
-        resourceName,
+        name,
         isCategoryActive,
         id = id,
         nameRus = nameRus,
@@ -16,7 +16,7 @@ fun Category.toCategoryEntity(): CategoryEntity {
 
 fun CategoryEntity.toCategory(): Category {
     return Category(
-        resourceName = resourceName,
+        name = name,
         isCategoryActive = isCategoryActive,
         id = id,
         nameRus = nameRus,

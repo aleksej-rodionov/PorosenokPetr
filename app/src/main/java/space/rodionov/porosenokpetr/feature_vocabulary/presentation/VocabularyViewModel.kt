@@ -1,6 +1,5 @@
 package space.rodionov.porosenokpetr.feature_vocabulary.presentation
 
-import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -12,7 +11,6 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import space.rodionov.porosenokpetr.core.domain.model.Word
 import space.rodionov.porosenokpetr.core.domain.use_case.SharedUseCases
 import space.rodionov.porosenokpetr.core.util.UiEffect
 import space.rodionov.porosenokpetr.feature_vocabulary.domain.use_case.VocabularyUseCases
@@ -20,8 +18,6 @@ import space.rodionov.porosenokpetr.feature_vocabulary.presentation.ext.mapCateg
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.mapper.toCategoryUi
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.mapper.toWordUi
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.model.VocabularyItem
-import space.rodionov.porosenokpetr.feature_vocabulary.presentation.model.testCategory
-import space.rodionov.porosenokpetr.feature_vocabulary.presentation.model.testWord
 import javax.inject.Inject
 
 private const val TAG = "VocabularyViewModel"
@@ -44,16 +40,32 @@ class VocabularyViewModel @Inject constructor(
     private val _categoriesDisplayed = MutableStateFlow<List<String>>(emptyList())
     private val categoriesDisplayed: StateFlow<List<String>> = _categoriesDisplayed.asStateFlow()
 
+    private val _allCategories = MutableStateFlow<List<VocabularyItem.CategoryUi>>(emptyList())
+    private val allCategories: StateFlow<List<VocabularyItem.CategoryUi>> = _allCategories.asStateFlow()
+
     init {
 
         // this is only for categories' chipGroup
         viewModelScope.launch {
-            val allCategories = sharedUseCases.getAllCategoriesUseCase.invoke().map {
+            val allCats = sharedUseCases.getAllCategoriesUseCase.invoke().map {
                 it.toCategoryUi().copy(
-                    isDisplayedInCollection = categoriesDisplayed.value.contains(it.resourceName)
+                    isDisplayedInCollection = categoriesDisplayed.value.contains(it.name)
                 )
             }
-            state = state.copy(categories = allCategories)
+            state = state.copy(categoriesInChipGroup = allCats)
+        }
+
+        viewModelScope.launch {
+            sharedUseCases.observeAllCategoriesUseCase.invoke().collectLatest { categories ->
+
+                val allCats = categories.map {
+                    it.toCategoryUi().copy(
+                        isDisplayedInCollection = categoriesDisplayed.value.contains(it.name)
+                    )
+                }
+
+                _allCategories.value = allCats
+            }
         }
 
         combine(
@@ -64,19 +76,23 @@ class VocabularyViewModel @Inject constructor(
         }.flatMapLatest { (q, c) ->
             vocabularyUseCases.observeWordsBySearchQueryInCategories(q, c)
         }.onEach { words ->
-            // todo handle result
-            val wordsQuantity = 2
-//            Log.d(TAG, "wordList.size = ${words.size}")
-//            state = state.copy(frontList = words.map { it.toWordUi() })
 
-            val testItems = listOf<VocabularyItem>(
-                testWord.toWordUi(),
-                testCategory.toCategoryUi()
-            )
-            state = state.copy(
-                frontList = testItems,
-                wordsQuantity = wordsQuantity
-            )
+            val wordsQuantity = words.size
+            state = state.copy(wordsQuantity = wordsQuantity)
+
+            val newList = mutableListOf<VocabularyItem>()
+            val allCats = allCategories.value
+            val wordsReceived: List<VocabularyItem.WordUi> = words.map { it.toWordUi() }
+
+            allCats.forEach { category ->
+                newList.add(category)
+                    newList.addAll(wordsReceived.filter { word ->
+                        word.categoryName == category.name
+                    })
+            }
+
+            state = state.copy(frontList = newList)
+
         }.launchIn(viewModelScope)
     }
 
@@ -129,16 +145,16 @@ class VocabularyViewModel @Inject constructor(
         category: VocabularyItem.CategoryUi,
         display: Boolean
     ) {
-        val updatedCategories = state.categories.mapCategoriesOnDisplayedChanged(
+        val updatedCategories = state.categoriesInChipGroup.mapCategoriesOnDisplayedChanged(
             category, display
         )
-        state = state.copy(categories = updatedCategories)
+        state = state.copy(categoriesInChipGroup = updatedCategories)
         categoriesDisplayedJob?.cancel()
         categoriesDisplayedJob = viewModelScope.launch {
             delay(700L)
             _categoriesDisplayed.value = updatedCategories.filter {
                 it.isDisplayedInCollection
-            }.map { it.resourceName }
+            }.map { it.name }
         }
     }
 }
@@ -147,7 +163,7 @@ class VocabularyViewModel @Inject constructor(
 data class VocabularyState(
     val frontList: List<VocabularyItem> = emptyList(),
     val wordsQuantity: Int = 0,
-    val categories: List<VocabularyItem.CategoryUi> = emptyList(),
+    val categoriesInChipGroup: List<VocabularyItem.CategoryUi> = emptyList(),
     val searchQuery: String = "",
     val showSearchHint: Boolean = false
 )

@@ -72,7 +72,7 @@ fun VocabularyMainScreen(
         backLayerContent = {
             VocabularyChipGroup(
                 modifier = Modifier.padding(horizontal = LocalSpacing.current.spaceMedium),
-                categories = state.categories,
+                categories = state.categoriesInChipGroup,
                 onSelectedChanged = { cat, opened ->
                     viewModel.onEvent(VocabularyEvent.OnCategoryDisplayedCHanged(cat, opened))
                 }

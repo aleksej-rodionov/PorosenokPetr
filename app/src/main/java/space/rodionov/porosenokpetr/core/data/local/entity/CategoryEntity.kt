@@ -6,13 +6,14 @@ import space.rodionov.porosenokpetr.core.domain.model.Category
 
 @Entity
 data class CategoryEntity(
-    val resourceName: String,
+    val name: String,
     val isCategoryActive: Boolean = true,
     @PrimaryKey(autoGenerate = true) val id: Int? = null,
     val nameRus: String,
     val nameUkr: String,
     val nameEng: String? = null
 )
+
 val swedishCategories = listOf(
     Category("At home", nameRus = "Дом и хозяйство", nameEng = "At home", nameUkr = "Вдома"),
     Category("Food", nameRus = "Жратва", nameEng = "Food", nameUkr = "Їжа"),

@@ -24,11 +24,11 @@ private val DarkColorPalette = darkColors(
 )
 
 private val LightColorPalette = lightColors(
-    primary = Gray200, //Deep surfaces
+    primary = Gray300, //Deep surfaces
     primaryVariant = Purple700,
     secondary = Blue, //CheckBoxes
 
-    background = Gray100, // screens' backgrounds
+    background = Gray200, // screens' backgrounds
     surface = Gray100, // drawers' backgrounds
     onPrimary = TransparentGray15,
     onSecondary = Gray900,

@@ -8,7 +8,7 @@ import space.rodionov.porosenokpetr.core.util.Constants.LANGUAGE_UA
 
 @Parcelize
 data class Category(
-    val resourceName: String,
+    val name: String,
     val isCategoryActive: Boolean = true,
     val id: Int? = null,
     val nameRus: String,

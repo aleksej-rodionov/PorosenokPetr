@@ -12,7 +12,7 @@ interface WordDao {
 //    @Query("") // todo renameCategories (внедрить техническое имя (англ) и мутабельное имя на родном языке выбранном в Datastore, потом пройтись по функциям)
 //    suspend fun renameCategories(newNames: List<String>)
 
-    @Query("SELECT * FROM wordentity WHERE categoryName IN (SELECT resourceName FROM categoryentity WHERE isCategoryActive = 1) AND isWordActive = 1 ORDER BY RANDOM() LIMIT 10")
+    @Query("SELECT * FROM wordentity WHERE categoryName IN (SELECT name FROM categoryentity WHERE isCategoryActive = 1) AND isWordActive = 1 ORDER BY RANDOM() LIMIT 10")
     suspend fun getTenWords(): List<WordEntity>
 
     @Query("SELECT * FROM wordentity")
@@ -59,19 +59,19 @@ interface WordDao {
     @Query("SELECT * FROM categoryentity")
     fun observeAllCategoriesWithWords(): Flow<List<CategoryWithWords>>
 
-    @Query("SELECT * FROM categoryentity WHERE resourceName = :name")
+    @Query("SELECT * FROM categoryentity WHERE name = :name")
     suspend fun getCategoryByName(name: String): CategoryEntity
 
-    @Query("SELECT resourceName FROM categoryentity WHERE isCategoryActive = 1")
+    @Query("SELECT name FROM categoryentity WHERE isCategoryActive = 1")
     suspend fun getALlActiveCatsNames(): List<String>
 
-    @Query("SELECT resourceName FROM categoryentity")
+    @Query("SELECT name FROM categoryentity")
     suspend fun getAllCatNames(): List<String>
 
-    @Query("SELECT isCategoryActive FROM categoryentity WHERE resourceName = :catName")
+    @Query("SELECT isCategoryActive FROM categoryentity WHERE name = :catName")
     suspend fun isCategoryActive(catName: String): Boolean
 
-    @Query("SELECT resourceName FROM categoryentity WHERE isCategoryActive = 1")
+    @Query("SELECT name FROM categoryentity WHERE isCategoryActive = 1")
     fun observeAllActiveCatsNames(): Flow<List<String>>
 
     @Query("SELECT * FROM wordentity WHERE rus = :rus AND `eng` = :eng AND categoryName = :categoryName LIMIT 1")

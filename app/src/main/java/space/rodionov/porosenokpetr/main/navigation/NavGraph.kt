@@ -15,7 +15,7 @@ import space.rodionov.porosenokpetr.core.util.ViewModelFactory
 import space.rodionov.porosenokpetr.main.navigation.sub_graphs.*
 
 @Composable
-fun MainNavGraph(
+fun MainNavHost(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
     scaffoldState: ScaffoldState,
