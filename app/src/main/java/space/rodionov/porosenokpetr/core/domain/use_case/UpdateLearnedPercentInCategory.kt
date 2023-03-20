@@ -7,7 +7,7 @@ class UpdateLearnedPercentInCategory(
     private val repo: WordRepo
 ) {
 
-    operator suspend fun invoke(catName: String) {
+    suspend operator fun invoke(catName: String) {
 
         val words = repo.getWordsByCat(catName)
         val learnedFromActivePercent = words.countPercentage()

@@ -90,19 +90,10 @@ class WordRepoImpl(
             }
         }
 
-    override suspend fun updateWordIsActive(word: Word, isActive: Boolean) {
+    override suspend fun updateWordStatus(word: Word, status: Int) {
         val wordEntity = dao.getWord(word.rus, word.eng, word.categoryName)
         wordEntity.let {
-            Log.d(TAG_PETR, "updateWordIsActive: word found and changed")
-            dao.updateWord(it.copy(isWordActive = isActive))
-        }
-    }
-
-    override suspend fun updateWordIsLearned(word: Word, isLearned: Boolean) {
-        val wordEntity = dao.getWord(word.rus, word.eng, word.categoryName)
-        wordEntity.let {
-            Log.d(TAG_PETR, "updateWordIsActive: word found and changed")
-            dao.updateWord(it.copy(isWordLearned = isLearned))
+            dao.updateWord(it.copy(wordStatus = status))
         }
     }
 

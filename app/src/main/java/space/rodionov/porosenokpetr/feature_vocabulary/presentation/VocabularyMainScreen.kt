@@ -91,8 +91,8 @@ fun VocabularyMainScreen(
                 },
                 onWordClick = { viewModel.onEvent(VocabularyEvent.OnWordClick(it)) },
                 onVoiceClick = { viewModel.onEvent(VocabularyEvent.OnVoiceClick(it)) },
-                onWordActiveChanged = { word, active ->
-                    viewModel.onEvent(VocabularyEvent.OnWordActiveChanged(word, active))
+                onWordStatusChanged = { word, status ->
+                    viewModel.onEvent(VocabularyEvent.OnWordStatusChanged(word, status))
                 }
             )
         },

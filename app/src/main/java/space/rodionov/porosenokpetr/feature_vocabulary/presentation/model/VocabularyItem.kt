@@ -3,6 +3,7 @@ package space.rodionov.porosenokpetr.feature_vocabulary.presentation.model
 import space.rodionov.porosenokpetr.core.domain.model.Category
 import space.rodionov.porosenokpetr.core.domain.model.Word
 import space.rodionov.porosenokpetr.core.util.Constants
+import space.rodionov.porosenokpetr.core.util.Constants.WORD_ACTIVE
 
 sealed class VocabularyItem {
 
@@ -32,8 +33,7 @@ sealed class VocabularyItem {
         val eng: String,
         val swe: String?,
         val categoryName: String,
-        val isWordActive: Boolean = true,
-        val isWordLearned: Boolean = false,
+        val wordStatus: Int = WORD_ACTIVE,
         val id: Int? = null
     ): VocabularyItem() {
 

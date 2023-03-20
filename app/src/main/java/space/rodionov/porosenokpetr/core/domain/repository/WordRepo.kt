@@ -36,9 +36,7 @@ interface WordRepo {
 
     fun wordsBySearchQuery(catName: String, searchQuery: String) : Flow<List<Word>>
 
-    suspend fun updateWordIsActive(word: Word, isActive: Boolean)
-
-    suspend fun updateWordIsLearned(word: Word, isLearned: Boolean)
+    suspend fun updateWordStatus(word: Word, status: Int)
 
     suspend fun getRandomWordFromActiveCats(activeCatsNames: List<String>) : Word
 

@@ -10,7 +10,6 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.dp
@@ -29,7 +28,7 @@ fun VocabularyFrontLayer(
     onCategoryActiveChanged: (VocabularyItem.CategoryUi, Boolean) -> Unit,
     onWordClick: (VocabularyItem.WordUi) -> Unit,
     onVoiceClick: (String) -> Unit,
-    onWordActiveChanged: (VocabularyItem.WordUi, Boolean) -> Unit
+    onWordStatusChanged: (VocabularyItem.WordUi, Int) -> Unit
 ) {
 
     val spacing = LocalSpacing.current
@@ -118,10 +117,10 @@ fun VocabularyFrontLayer(
                             WordItem(
                                 word = item,
                                 onVoiceClick = { onVoiceClick(it) },
-                                onWordActiveChanged = { word, active ->
-                                    onWordActiveChanged(
+                                onWordStatusChanged = { word, status ->
+                                    onWordStatusChanged(
                                         word,
-                                        active
+                                        status
                                     )
                                 },
                                 onWordClick = { onWordClick(it) }

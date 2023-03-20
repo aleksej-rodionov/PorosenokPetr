@@ -12,7 +12,7 @@ interface WordDao {
 //    @Query("") // todo renameCategories (внедрить техническое имя (англ) и мутабельное имя на родном языке выбранном в Datastore, потом пройтись по функциям)
 //    suspend fun renameCategories(newNames: List<String>)
 
-    @Query("SELECT * FROM wordentity WHERE categoryName IN (SELECT name FROM categoryentity WHERE isCategoryActive = 1) AND isWordActive = 1 ORDER BY RANDOM() LIMIT 10")
+    @Query("SELECT * FROM wordentity WHERE categoryName IN (SELECT name FROM categoryentity WHERE isCategoryActive = 1) AND wordStatus = 1 ORDER BY RANDOM() LIMIT 10")
     suspend fun getTenWords(): List<WordEntity>
 
     @Query("SELECT * FROM wordentity")
@@ -42,10 +42,10 @@ interface WordDao {
     @Query("SELECT * FROM wordentity WHERE rus = :rus AND `eng` = :eng AND categoryName = :categoryName LIMIT 1")
     suspend fun getWord(rus: String, eng: String, categoryName: String): WordEntity
 
-    @Query("SELECT * FROM wordentity WHERE categoryName IN (:activeCatsNames) AND isWordActive = 1 ORDER BY RANDOM() LIMIT 1")
+    @Query("SELECT * FROM wordentity WHERE categoryName IN (:activeCatsNames) AND wordStatus = 1 ORDER BY RANDOM() LIMIT 1")
     suspend fun getRandomWordFromActiveCats(activeCatsNames: List<String>): WordEntity
 
-    @Query("SELECT * FROM wordentity WHERE categoryName = :catName AND isWordActive = 1")
+    @Query("SELECT * FROM wordentity WHERE categoryName = :catName AND wordStatus = 1")
     fun observeActiveWordsByCat(catName: String): Flow<List<WordEntity>>
 
     @Query("SELECT * FROM wordentity WHERE categoryName = :catName")

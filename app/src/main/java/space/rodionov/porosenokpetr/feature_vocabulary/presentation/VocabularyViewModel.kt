@@ -12,6 +12,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import space.rodionov.porosenokpetr.core.domain.use_case.SharedUseCases
+import space.rodionov.porosenokpetr.core.util.Constants.DEFAULT_INT
 import space.rodionov.porosenokpetr.core.util.UiEffect
 import space.rodionov.porosenokpetr.feature_vocabulary.domain.use_case.VocabularyUseCases
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.ext.mapCategoriesOnDisplayedChanged
@@ -147,13 +148,21 @@ class VocabularyViewModel @Inject constructor(
             is VocabularyEvent.OnVoiceClick -> {
                 //todo voice
             }
-            is VocabularyEvent.OnWordActiveChanged -> {
-                viewModelScope.launch {
-                    sharedUseCases.updateWordIsActiveUseCase.invoke(
-                        event.word.toWord(),
-                        event.active
-                    )
+            is VocabularyEvent.OnWordStatusChanged -> {
+                if (event.status == DEFAULT_INT) {
+                    //todo open BottomDrawer what to do with the learned word
+                } else {
+                    viewModelScope.launch {
+                        sharedUseCases.updateWordStatusUseCase.invoke(
+                            event.word.toWord(),
+                            event.status
+                        )
+                        sharedUseCases.updateLearnedPercentInCategory(event.word.categoryName)
+                    }
                 }
+            }
+            is VocabularyEvent.OnFilterClick -> {
+                //todo open bottomDrawer filter
             }
         }
     }
@@ -213,8 +222,10 @@ sealed class VocabularyEvent {
 
     data class OnWordClick(val word: VocabularyItem.WordUi) : VocabularyEvent()
     data class OnVoiceClick(val text: String) : VocabularyEvent()
-    data class OnWordActiveChanged(
+    data class OnWordStatusChanged(
         val word: VocabularyItem.WordUi,
-        val active: Boolean
+        val status: Int
     ) : VocabularyEvent()
+
+    object OnFilterClick : VocabularyEvent()
 }

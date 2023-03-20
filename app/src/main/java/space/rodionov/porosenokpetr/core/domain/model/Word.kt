@@ -1,6 +1,7 @@
 package space.rodionov.porosenokpetr.core.domain.model
 
 import space.rodionov.porosenokpetr.core.util.Constants.EMPTY_STRING
+import space.rodionov.porosenokpetr.core.util.Constants.WORD_ACTIVE
 
 data class Word(
     val rus: String,
@@ -8,8 +9,7 @@ data class Word(
     val eng: String,
     val swe: String?,
     val categoryName: String,
-    val isWordActive: Boolean = true,
-    val isWordLearned: Boolean = false,
+    val wordStatus: Int = WORD_ACTIVE,
     val id: Int? = null
 ) {
 

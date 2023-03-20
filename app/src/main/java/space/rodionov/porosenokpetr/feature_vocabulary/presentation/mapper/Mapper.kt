@@ -13,9 +13,9 @@ fun VocabularyItem.CategoryUi.toCategory(): Category {
 }
 
 fun Word.toWordUi(): VocabularyItem.WordUi {
-    return VocabularyItem.WordUi(rus, ukr, eng, swe, categoryName, isWordActive, isWordLearned, id)
+    return VocabularyItem.WordUi(rus, ukr, eng, swe, categoryName, wordStatus, id)
 }
 
 fun VocabularyItem.WordUi.toWord(): Word {
-    return Word(rus, ukr, eng, swe, categoryName, isWordActive, isWordLearned, id)
+    return Word(rus, ukr, eng, swe, categoryName, wordStatus, id)
 }

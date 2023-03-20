@@ -59,7 +59,7 @@ fun CategoryItem(
             modifier = Modifier.padding(end = 12.dp),
             fontStyle = FontStyle.Italic,
             fontSize = 12.sp,
-            text = "99%",
+            text = "${category.learnedFromActivePercentage}%",
             color = Gray600,
             textAlign = TextAlign.End
         )

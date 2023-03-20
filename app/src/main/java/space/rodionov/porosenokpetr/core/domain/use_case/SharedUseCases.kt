@@ -12,7 +12,7 @@ data class SharedUseCases(
     val setModeUseCase: SetModeUseCase,
     val observeAllCategoriesUseCase: ObserveAllCategoriesUseCase,
     val getAllCategoriesUseCase: GetAllCategoriesUseCase,
-    val updateWordIsActiveUseCase: UpdateWordIsActiveUseCase,
+    val updateWordStatusUseCase: UpdateWordStatusUseCase,
     val updateLearnedPercentInCategory: UpdateLearnedPercentInCategory,
     val makeCategoryActiveUseCase: MakeCategoryActiveUseCase
 )
