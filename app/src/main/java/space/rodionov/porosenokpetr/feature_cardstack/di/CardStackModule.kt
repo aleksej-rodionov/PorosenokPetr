@@ -19,7 +19,6 @@ class CardStackModule {
             isCategoryActiveUseCase = IsCategoryActiveUseCase(repo),
             getAllCatsNamesUseCase = GetAllCatsNamesUseCase(repo),
             getAllActiveCatsNamesUseCase = GetAllActiveCatsNamesUseCase(repo),
-            updateWordIsActiveUseCase = UpdateWordIsActiveUseCase(repo),
             getTenWordsUseCase = GetTenWordsUseCase(repo)
         )
     }

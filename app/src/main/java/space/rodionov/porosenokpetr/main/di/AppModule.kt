@@ -15,6 +15,7 @@ import space.rodionov.porosenokpetr.core.domain.repository.WordRepo
 import space.rodionov.porosenokpetr.core.util.Constants
 import space.rodionov.porosenokpetr.feature_cardstack.domain.use_case.GetAllCategoriesUseCase
 import space.rodionov.porosenokpetr.feature_cardstack.domain.use_case.ObserveAllCategoriesUseCase
+import space.rodionov.porosenokpetr.feature_cardstack.domain.use_case.UpdateWordIsActiveUseCase
 import space.rodionov.porosenokpetr.feature_splash.domain.use_case.SplashInteractor
 import javax.inject.Singleton
 
@@ -65,6 +66,7 @@ class AppModule {
             observeTranslationDirectionUseCase = ObserveTranslationDirectionUseCase(preferences),
             observeAllCategoriesUseCase = ObserveAllCategoriesUseCase(repo),
             getAllCategoriesUseCase = GetAllCategoriesUseCase(repo),
+            updateWordIsActiveUseCase = UpdateWordIsActiveUseCase(repo),
             makeCategoryActiveUseCase = MakeCategoryActiveUseCase(repo)
         )
     }

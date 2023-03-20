@@ -74,7 +74,7 @@ fun VocabularyMainScreen(
                 modifier = Modifier.padding(horizontal = LocalSpacing.current.spaceMedium),
                 categories = state.categoriesInChipGroup,
                 onSelectedChanged = { cat, opened ->
-                    viewModel.onEvent(VocabularyEvent.OnCategoryDisplayedCHanged(cat, opened))
+                    viewModel.onEvent(VocabularyEvent.OnCategoryDisplayedChanged(cat, opened))
                 }
             )
         },
@@ -84,10 +84,10 @@ fun VocabularyMainScreen(
                 items = state.frontList,
                 wordsQuantity = state.wordsQuantity,
                 onCategoryDisplayedChanged = { category, opened ->
-                    viewModel.onEvent(VocabularyEvent.OnCategoryDisplayedCHanged(category, opened))
+                    viewModel.onEvent(VocabularyEvent.OnCategoryDisplayedChanged(category, opened))
                 },
                 onCategoryActiveChanged = { category, active ->
-                    viewModel.onEvent(VocabularyEvent.OnCategoryDisplayedCHanged(category, active))
+                    viewModel.onEvent(VocabularyEvent.OnCategoryActiveChanged(category, active))
                 },
                 onWordClick = { viewModel.onEvent(VocabularyEvent.OnWordClick(it)) },
                 onVoiceClick = { viewModel.onEvent(VocabularyEvent.OnVoiceClick(it)) },

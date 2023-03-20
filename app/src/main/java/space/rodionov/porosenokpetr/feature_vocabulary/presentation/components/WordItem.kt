@@ -3,13 +3,11 @@ package space.rodionov.porosenokpetr.feature_vocabulary.presentation.components
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.IconToggleButton
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextAlign
@@ -18,10 +16,7 @@ import androidx.compose.ui.unit.sp
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.presentation.LocalSpacing
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.model.VocabularyItem
-import space.rodionov.porosenokpetr.ui.theme.Gray200
-import space.rodionov.porosenokpetr.ui.theme.Gray400
-import space.rodionov.porosenokpetr.ui.theme.Gray600
-import space.rodionov.porosenokpetr.ui.theme.Gray900
+import space.rodionov.porosenokpetr.ui.theme.*
 
 @Composable
 fun WordItem(
@@ -82,6 +77,8 @@ fun WordItem(
                         id = if (word.isWordActive) R.drawable.ic_new_round
                         else R.drawable.ic_learned
                     ),
+                    tint = if (word.isWordActive) Green
+                    else MaterialTheme.colors.onSurface,
                     contentDescription = "Change activity"
                 )
             }

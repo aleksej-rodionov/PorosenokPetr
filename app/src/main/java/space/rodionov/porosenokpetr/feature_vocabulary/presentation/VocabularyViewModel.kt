@@ -16,6 +16,7 @@ import space.rodionov.porosenokpetr.core.util.UiEffect
 import space.rodionov.porosenokpetr.feature_vocabulary.domain.use_case.VocabularyUseCases
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.ext.mapCategoriesOnDisplayedChanged
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.mapper.toCategoryUi
+import space.rodionov.porosenokpetr.feature_vocabulary.presentation.mapper.toWord
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.mapper.toWordUi
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.model.VocabularyItem
 import javax.inject.Inject
@@ -41,7 +42,8 @@ class VocabularyViewModel @Inject constructor(
     private val categoriesDisplayed: StateFlow<List<String>> = _categoriesDisplayed.asStateFlow()
 
     private val _allCategories = MutableStateFlow<List<VocabularyItem.CategoryUi>>(emptyList())
-    private val allCategories: StateFlow<List<VocabularyItem.CategoryUi>> = _allCategories.asStateFlow()
+    private val allCategories: StateFlow<List<VocabularyItem.CategoryUi>> =
+        _allCategories.asStateFlow()
 
     init {
 
@@ -59,12 +61,24 @@ class VocabularyViewModel @Inject constructor(
             sharedUseCases.observeAllCategoriesUseCase.invoke().collectLatest { categories ->
 
                 val allCats = categories.map {
-                    it.toCategoryUi().copy(
-                        isDisplayedInCollection = categoriesDisplayed.value.contains(it.name)
-                    )
+                    it.toCategoryUi()
+                        .copy(isDisplayedInCollection = categoriesDisplayed.value.contains(it.name))
                 }
 
                 _allCategories.value = allCats
+                val updatedFrontList = state.frontList.map { item ->
+                    when (item) {
+                        is VocabularyItem.CategoryUi -> {
+                            item.copy(isCategoryActive = allCats.find { category ->
+                                category.name == item.name
+                            }?.isCategoryActive == true)
+                        }
+                        is VocabularyItem.WordUi -> item
+                    }
+                }
+                state = state.copy(
+                    frontList = updatedFrontList
+                )
             }
         }
 
@@ -81,14 +95,18 @@ class VocabularyViewModel @Inject constructor(
             state = state.copy(wordsQuantity = wordsQuantity)
 
             val newList = mutableListOf<VocabularyItem>()
-            val allCats = allCategories.value
+            val allCats = allCategories.value.map { category ->
+                category.copy(
+                    isDisplayedInCollection = categoriesDisplayed.value.contains(category.name)
+                )
+            }
             val wordsReceived: List<VocabularyItem.WordUi> = words.map { it.toWordUi() }
 
             allCats.forEach { category ->
                 newList.add(category)
-                    newList.addAll(wordsReceived.filter { word ->
-                        word.categoryName == category.name
-                    })
+                newList.addAll(wordsReceived.filter { word ->
+                    word.categoryName == category.name
+                })
             }
 
             state = state.copy(frontList = newList)
@@ -109,14 +127,19 @@ class VocabularyViewModel @Inject constructor(
             is VocabularyEvent.OnSearchQueryChanged -> {
                 onSearchQueryChanged(event.query)
             }
-            is VocabularyEvent.OnCategoryDisplayedCHanged -> {
+            is VocabularyEvent.OnCategoryDisplayedChanged -> {
                 onCategoriesDisplayedChanged(
                     event.category,
                     event.display
                 )
             }
             is VocabularyEvent.OnCategoryActiveChanged -> {
-                //todo change in DB
+                viewModelScope.launch {
+                    sharedUseCases.makeCategoryActiveUseCase.invoke(
+                        event.category.name,
+                        event.active
+                    )
+                }
             }
             is VocabularyEvent.OnWordClick -> {
                 //todo open word editor
@@ -125,7 +148,12 @@ class VocabularyViewModel @Inject constructor(
                 //todo voice
             }
             is VocabularyEvent.OnWordActiveChanged -> {
-                //todo change in DB
+                viewModelScope.launch {
+                    sharedUseCases.updateWordIsActiveUseCase.invoke(
+                        event.word.toWord(),
+                        event.active
+                    )
+                }
             }
         }
     }
@@ -151,7 +179,7 @@ class VocabularyViewModel @Inject constructor(
         state = state.copy(categoriesInChipGroup = updatedCategories)
         categoriesDisplayedJob?.cancel()
         categoriesDisplayedJob = viewModelScope.launch {
-            delay(700L)
+            delay(200L)
             _categoriesDisplayed.value = updatedCategories.filter {
                 it.isDisplayedInCollection
             }.map { it.name }
@@ -173,7 +201,7 @@ sealed class VocabularyEvent {
     object OnBackClick : VocabularyEvent()
     data class OnSearchQueryChanged(val query: String) : VocabularyEvent()
     data class OnSearchFocusChanged(val isFocused: Boolean) : VocabularyEvent()
-    data class OnCategoryDisplayedCHanged(
+    data class OnCategoryDisplayedChanged(
         val category: VocabularyItem.CategoryUi,
         val display: Boolean
     ) : VocabularyEvent()
