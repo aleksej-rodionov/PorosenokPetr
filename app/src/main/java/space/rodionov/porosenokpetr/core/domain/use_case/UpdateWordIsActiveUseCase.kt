@@ -1,4 +1,4 @@
-package space.rodionov.porosenokpetr.feature_cardstack.domain.use_case
+package space.rodionov.porosenokpetr.core.domain.use_case
 
 import space.rodionov.porosenokpetr.core.domain.model.Word
 import space.rodionov.porosenokpetr.core.domain.repository.WordRepo

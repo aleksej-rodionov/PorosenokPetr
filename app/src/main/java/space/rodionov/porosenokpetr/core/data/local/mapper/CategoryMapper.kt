@@ -7,6 +7,7 @@ fun Category.toCategoryEntity(): CategoryEntity {
     return CategoryEntity(
         name,
         isCategoryActive,
+        learnedFromActivePercentage = learnedFromActivePercentage,
         id = id,
         nameRus = nameRus,
         nameUkr = nameUkr,
@@ -18,6 +19,7 @@ fun CategoryEntity.toCategory(): Category {
     return Category(
         name = name,
         isCategoryActive = isCategoryActive,
+        learnedFromActivePercentage = learnedFromActivePercentage,
         id = id,
         nameRus = nameRus,
         nameUkr = nameUkr,

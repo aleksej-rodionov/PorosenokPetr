@@ -25,24 +25,33 @@ interface WordDao {
     suspend fun getAllCategories(): List<CategoryEntity>
 
     @Query("SELECT * FROM wordentity WHERE categoryName IN (:categoryNames) AND (rus LIKE '%' || :searchQuery || '%' OR `ukr` LIKE '%' || :searchQuery || '%' OR `eng` LIKE '%' || :searchQuery || '%' OR `swe` LIKE '%' || :searchQuery || '%')")
-    fun observeWordsBySearchQueryInCategories(searchQuery: String, categoryNames: List<String>): Flow<List<WordEntity>>
+    fun observeWordsBySearchQueryInCategories(
+        searchQuery: String,
+        categoryNames: List<String>
+    ): Flow<List<WordEntity>>
 
     @Query("SELECT * FROM wordentity WHERE categoryName IN (:categoryNames) AND (rus LIKE '%' || :searchQuery || '%' OR `ukr` LIKE '%' || :searchQuery || '%' OR `eng` LIKE '%' || :searchQuery || '%' OR `swe` LIKE '%' || :searchQuery || '%')")
-    suspend fun getWordsBySearchQueryInCategories(searchQuery: String, categoryNames: List<String>): List<WordEntity>
+    suspend fun getWordsBySearchQueryInCategories(
+        searchQuery: String,
+        categoryNames: List<String>
+    ): List<WordEntity>
+
+    @Query("SELECT * FROM wordentity WHERE categoryName = :catName")
+    suspend fun getWordsByCat(catName: String): List<WordEntity>
 
     @Query("SELECT * FROM wordentity WHERE rus = :rus AND `eng` = :eng AND categoryName = :categoryName LIMIT 1")
     suspend fun getWord(rus: String, eng: String, categoryName: String): WordEntity
 
     @Query("SELECT * FROM wordentity WHERE categoryName IN (:activeCatsNames) AND isWordActive = 1 ORDER BY RANDOM() LIMIT 1")
-    suspend fun getRandomWordFromActiveCats(activeCatsNames: List<String>) : WordEntity
+    suspend fun getRandomWordFromActiveCats(activeCatsNames: List<String>): WordEntity
 
     @Query("SELECT * FROM wordentity WHERE categoryName = :catName AND isWordActive = 1")
-    fun observeActiveWordsByCat(catName: String) : Flow<List<WordEntity>>
+    fun observeActiveWordsByCat(catName: String): Flow<List<WordEntity>>
 
     @Query("SELECT * FROM wordentity WHERE categoryName = :catName")
-    fun observeAllWordsByCat(catName: String) : Flow<List<WordEntity>>
+    fun observeAllWordsByCat(catName: String): Flow<List<WordEntity>>
 
-    fun observeWords(catName: String, searchQuery: String) : Flow<List<WordEntity>> =
+    fun observeWords(catName: String, searchQuery: String): Flow<List<WordEntity>> =
         if (catName.isBlank()) {
             observeWordsByQuery(searchQuery)
         } else {
@@ -50,10 +59,10 @@ interface WordDao {
         }
 
     @Query("SELECT * FROM wordentity WHERE categoryName = :catName AND (rus LIKE '%' || :searchQuery || '%' OR `ukr` LIKE '%' || :searchQuery || '%' OR `eng` LIKE '%' || :searchQuery || '%' OR `swe` LIKE '%' || :searchQuery || '%') ORDER BY `rus` ASC") // todo order by
-    fun observeWordsByCatAndQuery(catName: String, searchQuery: String) : Flow<List<WordEntity>>
+    fun observeWordsByCatAndQuery(catName: String, searchQuery: String): Flow<List<WordEntity>>
 
     @Query("SELECT * FROM wordentity WHERE (rus LIKE '%' || :searchQuery || '%' OR `ukr` LIKE '%' || :searchQuery || '%' OR `eng` LIKE '%' || :searchQuery || '%' OR `swe` LIKE '%' || :searchQuery || '%') ORDER BY `rus` ASC") // todo order by
-    fun observeWordsByQuery(searchQuery: String) : Flow<List<WordEntity>>
+    fun observeWordsByQuery(searchQuery: String): Flow<List<WordEntity>>
 
     @Transaction
     @Query("SELECT * FROM categoryentity")
@@ -75,7 +84,11 @@ interface WordDao {
     fun observeAllActiveCatsNames(): Flow<List<String>>
 
     @Query("SELECT * FROM wordentity WHERE rus = :rus AND `eng` = :eng AND categoryName = :categoryName LIMIT 1")
-    fun observeWord(rus: String, eng: String, categoryName: String) : Flow<WordEntity> // todo ???pass chosen langs (all 4 with nulls) but not rus and eng???
+    fun observeWord(
+        rus: String,
+        eng: String,
+        categoryName: String
+    ): Flow<WordEntity> // todo ???pass chosen langs (all 4 with nulls) but not rus and eng???
 
 //    @Query("UPDATE wordentity SET isWordActive = :isActive WHERE `foreign` = :foreign AND (nativ = :nativ)")
 //    suspend fun updateIsWordActive(foreign: String, nativ: String, isActive: Boolean)

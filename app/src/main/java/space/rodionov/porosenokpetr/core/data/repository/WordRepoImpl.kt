@@ -72,6 +72,17 @@ class WordRepoImpl(
         }
     }
 
+    override suspend fun getWordsByCat(catName: String): List<Word> {
+        return dao.getWordsByCat(catName).map {
+            it.toWord()
+        }
+    }
+
+    override suspend fun updateLearnedPercentInCategory(catName: String, learnedPercent: Int) {
+        val categoryEntity = dao.getCategoryByName(catName)
+        dao.updateCategory(categoryEntity.copy(learnedFromActivePercentage = learnedPercent))
+    }
+
     override fun wordsBySearchQuery(catName: String, searchQuery: String) =
         dao.observeWords(catName, searchQuery).map { words ->
             words.map {
@@ -87,42 +98,11 @@ class WordRepoImpl(
         }
     }
 
-    override suspend fun updateWord(word: Word, newWord: Word) {
+    override suspend fun updateWordIsLearned(word: Word, isLearned: Boolean) {
         val wordEntity = dao.getWord(word.rus, word.eng, word.categoryName)
-        if (BuildConfig.FLAVOR == "englishdriller") {
-            wordEntity.let {
-                dao.updateWord(
-                    it.copy(
-                        rus = newWord.rus,
-                        eng = newWord.eng
-                    )
-                )
-            }
-        }
-        if (BuildConfig.FLAVOR == "swedishdriller") {
-            wordEntity.let {
-                dao.updateWord(
-                    it.copy(
-                        newWord.rus,
-                        newWord.ukr,
-                        newWord.eng,
-                        newWord.swe
-                    )
-                )
-            }
-        }
-    }
-
-    override suspend fun updateIsWordActive(
-        nativ: String,
-        foreign: String,
-        catName: String,
-        isActive: Boolean
-    ) {
-        val wordEntity = dao.getWord(nativ, foreign, catName)
         wordEntity.let {
             Log.d(TAG_PETR, "updateWordIsActive: word found and changed")
-            dao.updateWord(it.copy(isWordActive = isActive))
+            dao.updateWord(it.copy(isWordLearned = isLearned))
         }
     }
 

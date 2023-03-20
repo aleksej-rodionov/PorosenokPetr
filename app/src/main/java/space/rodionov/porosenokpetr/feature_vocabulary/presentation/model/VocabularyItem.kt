@@ -9,6 +9,7 @@ sealed class VocabularyItem {
     data class CategoryUi(
         val name: String,
         val isCategoryActive: Boolean = true,
+        val learnedFromActivePercentage: Int = 0,
         val id: Int? = null,
         val nameRus: String,
         val nameUkr: String,
@@ -32,6 +33,7 @@ sealed class VocabularyItem {
         val swe: String?,
         val categoryName: String,
         val isWordActive: Boolean = true,
+        val isWordLearned: Boolean = false,
         val id: Int? = null
     ): VocabularyItem() {
 
@@ -46,36 +48,3 @@ sealed class VocabularyItem {
         }
     }
 }
-
-
-
-
-
-//for testing
-
-val testWord = Word(
-    rus = "хуй",
-    ukr = "хуй",
-    eng = "dick",
-    swe = "kuk",
-    categoryName = "Shit",
-    isWordActive = true
-)
-
-val testCategory = Category(
-    name = "Shit",
-    isCategoryActive = true,
-    nameRus = "Дерьмо",
-    nameUkr = "Лайно",
-    nameEng = "Shit"
-)
-
-/*val wordsQuantity = 2
-val testItems = listOf<VocabularyItem>(
-    testWord.toWordUi(),
-    testCategory.toCategoryUi()
-)
-state = state.copy(
-frontList = testItems,
-wordsQuantity = wordsQuantity
-)*/

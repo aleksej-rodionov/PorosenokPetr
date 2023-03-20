@@ -30,12 +30,15 @@ interface WordRepo {
         categories: List<Category>
     ): List<Word>
 
+    suspend fun getWordsByCat(catName: String): List<Word>
+
+    suspend fun updateLearnedPercentInCategory(catName: String, learnedPercent: Int)
+
     fun wordsBySearchQuery(catName: String, searchQuery: String) : Flow<List<Word>>
 
-    suspend fun updateWord(word: Word, newWord: Word)
-
     suspend fun updateWordIsActive(word: Word, isActive: Boolean)
-    suspend fun updateIsWordActive(nativ: String, foreign: String, catName: String, isActive: Boolean)
+
+    suspend fun updateWordIsLearned(word: Word, isLearned: Boolean)
 
     suspend fun getRandomWordFromActiveCats(activeCatsNames: List<String>) : Word
 

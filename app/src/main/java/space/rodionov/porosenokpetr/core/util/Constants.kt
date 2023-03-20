@@ -33,4 +33,8 @@ object Constants {
 
     const val LANG_POSTFIX_RU = "ru"
     const val LANG_POSTFIX_UA = "ua"
+
+    const val WORD_EXCLUDED = 0
+    const val WORD_ACTIVE = 1
+    const val WORD_LEARNED = 100
 }

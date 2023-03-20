@@ -12,6 +12,7 @@ fun WordEntity.toWord(): Word {
         swe = swe,
         categoryName = categoryName,
         isWordActive = isWordActive,
+        isWordLearned = isWordLearned,
         id = id
     )
 }
@@ -24,6 +25,7 @@ fun Word.toWordEntity(): WordEntity {
         swe = swe,
         categoryName = categoryName,
         isWordActive = isWordActive,
+        isWordLearned = isWordLearned,
         id = id
     )
 }
@@ -35,6 +37,7 @@ fun WordRaw.toWord(): Word {
         swe = swe,
         ukr = ukr,
         categoryName = catName,
-        isWordActive = true
+        isWordActive = true,
+        isWordLearned = false
     )
 }

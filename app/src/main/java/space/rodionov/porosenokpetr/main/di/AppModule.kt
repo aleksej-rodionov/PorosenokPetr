@@ -15,8 +15,9 @@ import space.rodionov.porosenokpetr.core.domain.repository.WordRepo
 import space.rodionov.porosenokpetr.core.util.Constants
 import space.rodionov.porosenokpetr.feature_cardstack.domain.use_case.GetAllCategoriesUseCase
 import space.rodionov.porosenokpetr.feature_cardstack.domain.use_case.ObserveAllCategoriesUseCase
-import space.rodionov.porosenokpetr.feature_cardstack.domain.use_case.UpdateWordIsActiveUseCase
+import space.rodionov.porosenokpetr.core.domain.use_case.UpdateWordIsActiveUseCase
 import space.rodionov.porosenokpetr.feature_splash.domain.use_case.SplashInteractor
+import space.rodionov.porosenokpetr.core.domain.use_case.UpdateLearnedPercentInCategory
 import javax.inject.Singleton
 
 @Module
@@ -67,6 +68,7 @@ class AppModule {
             observeAllCategoriesUseCase = ObserveAllCategoriesUseCase(repo),
             getAllCategoriesUseCase = GetAllCategoriesUseCase(repo),
             updateWordIsActiveUseCase = UpdateWordIsActiveUseCase(repo),
+            updateLearnedPercentInCategory = UpdateLearnedPercentInCategory(repo),
             makeCategoryActiveUseCase = MakeCategoryActiveUseCase(repo)
         )
     }

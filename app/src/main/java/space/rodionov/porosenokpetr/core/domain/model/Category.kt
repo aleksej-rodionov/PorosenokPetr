@@ -10,6 +10,7 @@ import space.rodionov.porosenokpetr.core.util.Constants.LANGUAGE_UA
 data class Category(
     val name: String,
     val isCategoryActive: Boolean = true,
+    val learnedFromActivePercentage: Int = 0,
     val id: Int? = null,
     val nameRus: String,
     val nameUkr: String,

@@ -9,6 +9,7 @@ data class Word(
     val swe: String?,
     val categoryName: String,
     val isWordActive: Boolean = true,
+    val isWordLearned: Boolean = false,
     val id: Int? = null
 ) {
 

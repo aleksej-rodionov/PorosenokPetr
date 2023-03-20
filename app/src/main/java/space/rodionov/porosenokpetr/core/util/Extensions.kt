@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.Canvas
+import android.util.Log
 import android.util.TypedValue
 import android.view.inputmethod.InputMethodManager
 import android.widget.AutoCompleteTextView
@@ -22,11 +23,14 @@ inline fun <reified T: Activity> Activity.startActivity() {
 
 fun List<Word>.countPercentage(): Int {
     val learnedCount = this.filter {
-        !it.isWordActive
+        it.isWordLearned
     }.size
-    val totalCount = this.size
+    val totalIncludedCount = this.filter {
+        it.isWordActive || it.isWordLearned
+    }.size
     val lch = learnedCount * 100.0f
-    val percentage = if (!(lch / totalCount).isNaN()) (lch / totalCount).roundToInt() else 0
+    val percentage = if (!(lch / totalIncludedCount).isNaN()) (lch / totalIncludedCount).roundToInt() else 0
+    Log.d("TAG_PERCENT", "countPercentage: $percentage%")
     return percentage
 }
 

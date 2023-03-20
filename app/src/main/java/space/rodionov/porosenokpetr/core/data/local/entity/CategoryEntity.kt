@@ -8,6 +8,7 @@ import space.rodionov.porosenokpetr.core.domain.model.Category
 data class CategoryEntity(
     val name: String,
     val isCategoryActive: Boolean = true,
+    val learnedFromActivePercentage: Int = 0,
     @PrimaryKey(autoGenerate = true) val id: Int? = null,
     val nameRus: String,
     val nameUkr: String,
