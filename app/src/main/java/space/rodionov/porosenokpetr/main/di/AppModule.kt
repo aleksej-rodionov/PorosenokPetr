@@ -1,6 +1,8 @@
 package space.rodionov.porosenokpetr.main.di
 
 import android.app.Application
+import android.content.Context
+import android.speech.tts.TextToSpeech
 import androidx.room.Room
 import dagger.Module
 import dagger.Provides
@@ -18,6 +20,7 @@ import space.rodionov.porosenokpetr.feature_cardstack.domain.use_case.ObserveAll
 import space.rodionov.porosenokpetr.core.domain.use_case.UpdateWordStatusUseCase
 import space.rodionov.porosenokpetr.feature_splash.domain.use_case.SplashInteractor
 import space.rodionov.porosenokpetr.core.domain.use_case.UpdateLearnedPercentInCategory
+import space.rodionov.porosenokpetr.core.util.SwedishSpeaker
 import javax.inject.Singleton
 
 @Module
@@ -27,6 +30,24 @@ class AppModule {
     @Provides
     @Singleton
     fun provideApplicationScope() = CoroutineScope(SupervisorJob())
+
+    @Provides
+    @Singleton
+    fun provideTextToSpeechInitListener(): TextToSpeech.OnInitListener {
+        return object : TextToSpeech.OnInitListener {
+            override fun onInit(status: Int) {
+                TODO("Not yet implemented")
+            }
+        }
+    }
+
+    @Provides
+    @Singleton
+    fun provideTextToSpeech(
+        context: Application
+    ): SwedishSpeaker {
+        return SwedishSpeaker(context)
+    }
 
     @Provides
     @Singleton
@@ -56,7 +77,8 @@ class AppModule {
     @Singleton
     fun provideSharedUseCases(
         repo: WordRepo,
-        preferences: Preferences
+        preferences: Preferences,
+        speaker: SwedishSpeaker
     ): SharedUseCases { // todo provide each separately
         return SharedUseCases(
             observeModeUseCase = ObserveModeUseCase(preferences),
@@ -69,11 +91,11 @@ class AppModule {
             getAllCategoriesUseCase = GetAllCategoriesUseCase(repo),
             updateWordStatusUseCase = UpdateWordStatusUseCase(repo),
             updateLearnedPercentInCategory = UpdateLearnedPercentInCategory(repo),
+            speakWord = SpeakWord(speaker),
             makeCategoryActiveUseCase = MakeCategoryActiveUseCase(repo)
         )
     }
 
-    //todo :app module
     @Provides
     @Singleton
     fun provideMainInteractor(

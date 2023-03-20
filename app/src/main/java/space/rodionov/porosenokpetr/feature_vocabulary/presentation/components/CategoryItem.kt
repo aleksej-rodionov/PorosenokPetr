@@ -1,10 +1,8 @@
 package space.rodionov.porosenokpetr.feature_vocabulary.presentation.components
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Checkbox
 import androidx.compose.material.Icon
 import androidx.compose.material.IconToggleButton
@@ -36,53 +34,62 @@ fun CategoryItem(
 
     val spacing = LocalSpacing.current
 
-    Row(
-        modifier = modifier
+    Box(
+        modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = spacing.spaceMedium)
-            .background(color = Gray100),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween
+            .clickable {
+                onCategoryDisplayedChanged(category, !category.isDisplayedInCollection)
+            }
     ) {
 
-        Text(
-            modifier = Modifier
+        Row(
+            modifier = modifier
                 .fillMaxWidth()
-                .weight(1f),
-            text = category.getLocalizedName(2), //todo localization compLocal
-            color = Gray900,
-            maxLines = 2,
-            overflow = TextOverflow.Ellipsis
-        )
-
-        Text(
-            modifier = Modifier.padding(end = 12.dp),
-            fontStyle = FontStyle.Italic,
-            fontSize = 12.sp,
-            text = "${category.learnedFromActivePercentage}%",
-            color = Gray600,
-            textAlign = TextAlign.End
-        )
-
-        Checkbox(
-            checked = category.isCategoryActive,
-            onCheckedChange = {
-                onCategoryActiveChanged(category, it)
-            }
-        )
-
-        IconToggleButton(
-            checked = category.isDisplayedInCollection,
-            onCheckedChange = {
-                onCategoryDisplayedChanged(category, it)
-            }
+                .padding(horizontal = spacing.spaceMedium)
+                .background(color = Gray100),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
 
-            Icon(
-                imageVector = if (category.isDisplayedInCollection) Icons.Filled.KeyboardArrowDown
-                else Icons.Default.KeyboardArrowUp,
-                contentDescription = "Open/close"
+            Text(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f),
+                text = category.getLocalizedName(2), //todo localization compLocal
+                color = Gray900,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis
             )
+
+            Text(
+                modifier = Modifier.padding(end = 12.dp),
+                fontStyle = FontStyle.Italic,
+                fontSize = 12.sp,
+                text = "${category.learnedFromActivePercentage}%",
+                color = Gray600,
+                textAlign = TextAlign.End
+            )
+
+            Checkbox(
+                checked = category.isCategoryActive,
+                onCheckedChange = {
+                    onCategoryActiveChanged(category, it)
+                }
+            )
+
+            IconToggleButton(
+                checked = category.isDisplayedInCollection,
+                onCheckedChange = {
+                    onCategoryDisplayedChanged(category, it)
+                }
+            ) {
+
+                Icon(
+                    imageVector = if (category.isDisplayedInCollection) Icons.Filled.KeyboardArrowDown
+                    else Icons.Default.KeyboardArrowUp,
+                    contentDescription = "Open/close"
+                )
+            }
         }
     }
 }

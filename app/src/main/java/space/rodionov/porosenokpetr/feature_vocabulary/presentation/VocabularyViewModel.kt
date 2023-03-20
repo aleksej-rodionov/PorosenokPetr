@@ -149,7 +149,7 @@ class VocabularyViewModel @Inject constructor(
                 //todo open word editor
             }
             is VocabularyEvent.OnVoiceClick -> {
-                //todo voice
+                sharedUseCases.speakWord.invoke(event.text)
             }
             is VocabularyEvent.OnWordStatusChanged -> {
                 if (event.status == DEFAULT_INT) {
@@ -166,9 +166,6 @@ class VocabularyViewModel @Inject constructor(
             }
             VocabularyEvent.OnDIalogDismissed -> {
                 state = state.copy(showDropWordProgressDialogForWord = null)
-            }
-            is VocabularyEvent.OnFilterClick -> {
-                //todo open bottomDrawer filter
             }
             is VocabularyEvent.OnShowHideAllCategoriesSwitched -> {
                 onShowHideAllCategoriesClick(event.show)
@@ -246,8 +243,7 @@ sealed class VocabularyEvent {
         val word: VocabularyItem.WordUi,
         val status: Int
     ) : VocabularyEvent()
-    object OnDIalogDismissed: VocabularyEvent()
 
-    object OnFilterClick : VocabularyEvent()
-    data class OnShowHideAllCategoriesSwitched(val show: Boolean): VocabularyEvent()
+    object OnDIalogDismissed : VocabularyEvent()
+    data class OnShowHideAllCategoriesSwitched(val show: Boolean) : VocabularyEvent()
 }
