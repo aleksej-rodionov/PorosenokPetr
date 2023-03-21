@@ -30,6 +30,8 @@ fun List<Word>.countPercentage(): Int {
     val totalIncludedCount = this.filter {
         it.wordStatus == WORD_LEARNED || it.wordStatus == WORD_ACTIVE
     }.size
+    Log.d("TAG_PERCENT", "countPercentage: learnedCount = $learnedCount")
+    Log.d("TAG_PERCENT", "countPercentage: totalIncludedCount = $totalIncludedCount")
     val lch = learnedCount * 100.0f
     val percentage = if (!(lch / totalIncludedCount).isNaN()) (lch / totalIncludedCount).roundToInt() else 0
     Log.d("TAG_PERCENT", "countPercentage: $percentage%")

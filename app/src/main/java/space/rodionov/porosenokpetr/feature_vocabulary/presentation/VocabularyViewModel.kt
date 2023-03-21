@@ -19,6 +19,7 @@ import space.rodionov.porosenokpetr.core.util.Constants.WORD_LEARNED
 import space.rodionov.porosenokpetr.core.util.UiEffect
 import space.rodionov.porosenokpetr.feature_vocabulary.domain.use_case.VocabularyUseCases
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.ext.mapCategoriesOnDisplayedChanged
+import space.rodionov.porosenokpetr.feature_vocabulary.presentation.ext.updateCategoriesInFrontListByActivity
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.mapper.toCategoryUi
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.mapper.toWord
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.mapper.toWordUi
@@ -45,9 +46,7 @@ class VocabularyViewModel @Inject constructor(
     private val _categoriesDisplayed = MutableStateFlow<List<String>>(emptyList())
     private val categoriesDisplayed: StateFlow<List<String>> = _categoriesDisplayed.asStateFlow()
 
-    private val _allCategories = MutableStateFlow<List<VocabularyItem.CategoryUi>>(emptyList())
-    private val allCategories: StateFlow<List<VocabularyItem.CategoryUi>> =
-        _allCategories.asStateFlow()
+    private var _allCategories = listOf<VocabularyItem.CategoryUi>()
 
     init {
 
@@ -69,17 +68,8 @@ class VocabularyViewModel @Inject constructor(
                         .copy(isDisplayedInCollection = categoriesDisplayed.value.contains(it.name))
                 }
 
-                _allCategories.value = allCats
-                val updatedFrontList = state.frontList.map { item ->
-                    when (item) {
-                        is VocabularyItem.CategoryUi -> {
-                            item.copy(isCategoryActive = allCats.find { category ->
-                                category.name == item.name
-                            }?.isCategoryActive == true)
-                        }
-                        is VocabularyItem.WordUi -> item
-                    }
-                }
+                _allCategories = allCats
+                val updatedFrontList = state.frontList.updateCategoriesInFrontListByActivity(allCats)
                 state = state.copy(
                     frontList = updatedFrontList
                 )
@@ -99,15 +89,12 @@ class VocabularyViewModel @Inject constructor(
             state = state.copy(wordsQuantity = wordsQuantity)
 
             val newList = mutableListOf<VocabularyItem>()
-            val allCats = allCategories.value.map { category ->
-                category.copy(
-                    isDisplayedInCollection = categoriesDisplayed.value.contains(category.name)
-                )
-            }
-            val wordsReceived: List<VocabularyItem.WordUi> = words.map { it.toWordUi() }
 
-            allCats.forEach { category ->
-                newList.add(category)
+            val wordsReceived: List<VocabularyItem.WordUi> = words.map { it.toWordUi() }
+            _allCategories.forEach { category ->
+                newList.add(category.copy(
+                    isDisplayedInCollection = categoriesDisplayed.value.contains(category.name)
+                ))
                 newList.addAll(wordsReceived.filter { word ->
                     word.categoryName == category.name
                 })

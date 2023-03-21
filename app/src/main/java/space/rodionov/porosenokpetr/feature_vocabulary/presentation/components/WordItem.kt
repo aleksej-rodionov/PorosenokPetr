@@ -72,7 +72,7 @@ fun WordItem(
                     onWordStatusChanged(
                         word,
                         when (word.wordStatus) {
-                            WORD_ACTIVE -> WORD_EXCLUDED
+                            WORD_ACTIVE -> WORD_LEARNED
                             WORD_EXCLUDED -> WORD_ACTIVE
                             else -> DEFAULT_INT
                         }
