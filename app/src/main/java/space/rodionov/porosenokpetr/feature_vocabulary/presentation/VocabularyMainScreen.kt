@@ -113,7 +113,7 @@ fun VocabularyMainScreen(
             backLayerContent = {
                 VocabularyChipGroup(
                     modifier = Modifier.padding(horizontal = LocalSpacing.current.spaceMedium),
-                    categories = state.categoriesInChipGroup,
+                    categories = state.categoriesWithWords,
                     onSelectedChanged = { cat, opened ->
                         viewModel.onEvent(VocabularyEvent.OnCategoryDisplayedChanged(cat, opened))
                     }
@@ -122,7 +122,7 @@ fun VocabularyMainScreen(
             frontLayerContent = {
                 VocabularyFrontLayer(
                     modifier = Modifier,
-                    items = state.frontList,
+                    categoriesWithWords = state.categoriesWithWords,
                     wordsQuantity = state.wordsQuantity,
                     onCategoryDisplayedChanged = { category, opened ->
                         viewModel.onEvent(

@@ -1,5 +1,6 @@
 package space.rodionov.porosenokpetr.feature_vocabulary.presentation.components
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -19,10 +20,11 @@ import space.rodionov.porosenokpetr.core.presentation.LocalSpacing
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.model.VocabularyItem
 import space.rodionov.porosenokpetr.ui.theme.Gray600
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun VocabularyFrontLayer(
     modifier: Modifier = Modifier,
-    items: List<VocabularyItem>,
+    categoriesWithWords: List<VocabularyItem.CategoryUi>,
     wordsQuantity: Int,
     onCategoryDisplayedChanged: (VocabularyItem.CategoryUi, Boolean) -> Unit,
     onCategoryActiveChanged: (VocabularyItem.CategoryUi, Boolean) -> Unit,
@@ -100,37 +102,40 @@ fun VocabularyFrontLayer(
             LazyColumn(
                 modifier = Modifier.fillMaxWidth()
             ) {
-                items(items) { item ->
-                    when (item) {
-                        is VocabularyItem.CategoryUi -> {
 
-                            CategoryItem(
-                                category = item,
-                                onCategoryDisplayedChanged = { category, opened ->
-                                    onCategoryDisplayedChanged(category, opened)
-                                },
-                                onCategoryActiveChanged = { category, active ->
-                                    onCategoryActiveChanged(category, active)
-                                }
-                            )
-                        }
-                        is VocabularyItem.WordUi -> {
+                categoriesWithWords.forEach { category ->
 
-                            WordItem(
-                                word = item,
-                                onVoiceClick = { onVoiceClick(it) },
-                                onWordStatusChanged = { word, status ->
-                                    onWordStatusChanged(
-                                        word,
-                                        status
-                                    )
-                                },
-                                onWordClick = { onWordClick(it) }
-                            )
-                        }
+                    stickyHeader {
+
+                        CategoryItem(
+                            category = category,
+                            onCategoryDisplayedChanged = { category, opened ->
+                                onCategoryDisplayedChanged(category, opened)
+                            },
+                            onCategoryActiveChanged = { category, active ->
+                                onCategoryActiveChanged(category, active)
+                            }
+                        )
+
+                        Divider()
                     }
 
-                    Divider()
+                    items(category.words) { word ->
+
+                        WordItem(
+                            word = word,
+                            onVoiceClick = { onVoiceClick(it) },
+                            onWordStatusChanged = { w, status ->
+                                onWordStatusChanged(
+                                    w,
+                                    status
+                                )
+                            },
+                            onWordClick = { onWordClick(it) }
+                        )
+
+                        Divider()
+                    }
                 }
             }
 

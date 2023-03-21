@@ -13,16 +13,11 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import space.rodionov.porosenokpetr.core.domain.use_case.SharedUseCases
 import space.rodionov.porosenokpetr.core.util.Constants.DEFAULT_INT
-import space.rodionov.porosenokpetr.core.util.Constants.WORD_ACTIVE
-import space.rodionov.porosenokpetr.core.util.Constants.WORD_EXCLUDED
-import space.rodionov.porosenokpetr.core.util.Constants.WORD_LEARNED
 import space.rodionov.porosenokpetr.core.util.UiEffect
 import space.rodionov.porosenokpetr.feature_vocabulary.domain.use_case.VocabularyUseCases
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.ext.mapCategoriesOnDisplayedChanged
-import space.rodionov.porosenokpetr.feature_vocabulary.presentation.ext.updateCategoriesInFrontListByActivity
-import space.rodionov.porosenokpetr.feature_vocabulary.presentation.mapper.toCategoryUi
+import space.rodionov.porosenokpetr.feature_vocabulary.presentation.ext.transformData
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.mapper.toWord
-import space.rodionov.porosenokpetr.feature_vocabulary.presentation.mapper.toWordUi
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.model.VocabularyItem
 import javax.inject.Inject
 
@@ -46,61 +41,33 @@ class VocabularyViewModel @Inject constructor(
     private val _categoriesDisplayed = MutableStateFlow<List<String>>(emptyList())
     private val categoriesDisplayed: StateFlow<List<String>> = _categoriesDisplayed.asStateFlow()
 
-    private var _allCategories = listOf<VocabularyItem.CategoryUi>()
+    private val categoryLists = sharedUseCases.observeAllCategoriesUseCase.invoke()
+
+    private val wordLists = combine(
+        searchQueries,
+        categoriesDisplayed
+    ) { query, categories ->
+        Pair(query, categories)
+    }.flatMapLatest { (q, c) ->
+        vocabularyUseCases.observeWordsBySearchQueryInCategories(q, c)
+    }
 
     init {
 
-        // this is only for categories' chipGroup
-        viewModelScope.launch {
-            val allCats = sharedUseCases.getAllCategoriesUseCase.invoke().map {
-                it.toCategoryUi().copy(
-                    isDisplayedInCollection = categoriesDisplayed.value.contains(it.name)
-                )
-            }
-            state = state.copy(categoriesInChipGroup = allCats)
-        }
-
-        viewModelScope.launch {
-            sharedUseCases.observeAllCategoriesUseCase.invoke().collectLatest { categories ->
-
-                val allCats = categories.map {
-                    it.toCategoryUi()
-                        .copy(isDisplayedInCollection = categoriesDisplayed.value.contains(it.name))
-                }
-
-                _allCategories = allCats
-                val updatedFrontList = state.frontList.updateCategoriesInFrontListByActivity(allCats)
-                state = state.copy(
-                    frontList = updatedFrontList
-                )
-            }
-        }
-
         combine(
-            searchQueries,
-            categoriesDisplayed
-        ) { query, categories ->
-            Pair(query, categories)
-        }.flatMapLatest { (q, c) ->
-            vocabularyUseCases.observeWordsBySearchQueryInCategories(q, c)
-        }.onEach { words ->
+            categoryLists,
+            wordLists
+        ) { c, w ->
+            Pair(c, w)
+        }.onEach { (categories, words) ->
 
-            val wordsQuantity = words.size
-            state = state.copy(wordsQuantity = wordsQuantity)
+            val categoriesWithWords = Pair(categories, words).transformData()
+            val totalWords = words.size
 
-            val newList = mutableListOf<VocabularyItem>()
-
-            val wordsReceived: List<VocabularyItem.WordUi> = words.map { it.toWordUi() }
-            _allCategories.forEach { category ->
-                newList.add(category.copy(
-                    isDisplayedInCollection = categoriesDisplayed.value.contains(category.name)
-                ))
-                newList.addAll(wordsReceived.filter { word ->
-                    word.categoryName == category.name
-                })
-            }
-
-            state = state.copy(frontList = newList)
+            state = state.copy(
+                categoriesWithWords = categoriesWithWords,
+                wordsQuantity = totalWords
+            )
 
         }.launchIn(viewModelScope)
     }
@@ -175,10 +142,10 @@ class VocabularyViewModel @Inject constructor(
         category: VocabularyItem.CategoryUi,
         display: Boolean
     ) {
-        val updatedCategories = state.categoriesInChipGroup.mapCategoriesOnDisplayedChanged(
+        val updatedCategories = state.categoriesWithWords.mapCategoriesOnDisplayedChanged(
             category, display
         )
-        state = state.copy(categoriesInChipGroup = updatedCategories)
+//        state = state.copy(categoriesWithWords = updatedCategories)
         categoriesDisplayedJob?.cancel()
         categoriesDisplayedJob = viewModelScope.launch {
             delay(200L)
@@ -189,10 +156,10 @@ class VocabularyViewModel @Inject constructor(
     }
 
     private fun onShowHideAllCategoriesClick(show: Boolean) {
-        val updatedCategories = state.categoriesInChipGroup.map {
+        val updatedCategories = state.categoriesWithWords.map {
             it.copy(isDisplayedInCollection = show)
         }
-        state = state.copy(categoriesInChipGroup = updatedCategories)
+//        state = state.copy(categoriesWithWords = updatedCategories)
         _categoriesDisplayed.value = updatedCategories.filter {
             it.isDisplayedInCollection
         }.map { it.name }
@@ -201,9 +168,8 @@ class VocabularyViewModel @Inject constructor(
 
 
 data class VocabularyState(
-    val frontList: List<VocabularyItem> = emptyList(),
+    val categoriesWithWords: List<VocabularyItem.CategoryUi> = emptyList(),
     val wordsQuantity: Int = 0,
-    val categoriesInChipGroup: List<VocabularyItem.CategoryUi> = emptyList(),
     val searchQuery: String = "",
     val showSearchHint: Boolean = false,
     val showDropWordProgressDialogForWord: VocabularyItem.WordUi? = null

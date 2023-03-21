@@ -1,5 +1,9 @@
 package space.rodionov.porosenokpetr.feature_vocabulary.presentation.ext
 
+import space.rodionov.porosenokpetr.core.domain.model.Category
+import space.rodionov.porosenokpetr.core.domain.model.Word
+import space.rodionov.porosenokpetr.feature_vocabulary.presentation.mapper.toCategoryUi
+import space.rodionov.porosenokpetr.feature_vocabulary.presentation.mapper.toWordUi
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.model.VocabularyItem
 
 
@@ -16,6 +20,7 @@ fun List<VocabularyItem.CategoryUi>.mapCategoriesOnDisplayedChanged(
 fun List<VocabularyItem>.updateCategoriesInFrontListByActivity(
     allCategories: List<VocabularyItem.CategoryUi>
 ): List<VocabularyItem> {
+
     return this.map { item ->
         when (item) {
             is VocabularyItem.CategoryUi -> {
@@ -28,8 +33,19 @@ fun List<VocabularyItem>.updateCategoriesInFrontListByActivity(
     }
 }
 
-//fun List<VocabularyItem.WordUi>.compileNewFrontList(
-//    allCategories: List<VocabularyItem.CategoryUi>
-//): List<VocabularyItem {
-//
-//}
+fun Pair<List<Category>, List<Word>>.transformData(): List<VocabularyItem.CategoryUi> {
+
+    val categories = this.first.map { category ->
+
+        val wordsContained = this.second.filter { word ->
+            word.categoryName == category.name
+        }.map { it.toWordUi() }
+
+        category.toCategoryUi().copy(
+            isDisplayedInCollection = wordsContained.isNotEmpty(),
+            words = wordsContained
+        )
+    }
+
+    return categories
+}

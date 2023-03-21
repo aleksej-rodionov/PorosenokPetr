@@ -1,7 +1,5 @@
 package space.rodionov.porosenokpetr.feature_vocabulary.presentation.model
 
-import space.rodionov.porosenokpetr.core.domain.model.Category
-import space.rodionov.porosenokpetr.core.domain.model.Word
 import space.rodionov.porosenokpetr.core.util.Constants
 import space.rodionov.porosenokpetr.core.util.Constants.WORD_ACTIVE
 
@@ -16,6 +14,7 @@ sealed class VocabularyItem {
         val nameUkr: String,
         val nameEng: String? = null,
         val isDisplayedInCollection: Boolean = false,
+        val words: List<WordUi> = emptyList(),
         val isFocusedInList: Boolean = false
     ) : VocabularyItem() {
 
