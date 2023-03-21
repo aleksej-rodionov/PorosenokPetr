@@ -59,7 +59,7 @@ fun VocabularyMainScreen(
 
     if (state.showDropWordProgressDialogForWord != null) {
         DropWordProgressDialog(
-            word = state.showDropWordProgressDialogForWord,
+            wordToAsk = state.showDropWordProgressDialogForWord,
             onConfirmClick = {
                 viewModel.onEvent(VocabularyEvent.OnWordStatusChanged(it, WORD_ACTIVE))
                 viewModel.onEvent(VocabularyEvent.OnDIalogDismissed)
