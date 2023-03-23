@@ -133,6 +133,9 @@ class VocabularyViewModel @Inject constructor(
         searchJob?.cancel()
         searchJob = viewModelScope.launch {
             delay(700L)
+            if (query.isNotBlank()) _categoriesDisplayed.value = state.categoriesWithWords.map {
+                it.name
+            }
             _searchQueries.value = query
         }
     }

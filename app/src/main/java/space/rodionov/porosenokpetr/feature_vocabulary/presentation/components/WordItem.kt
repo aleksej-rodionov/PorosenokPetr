@@ -34,7 +34,7 @@ fun WordItem(
 
     Column(
         modifier = modifier
-            .background(color = Gray200)
+            .background(color = Gray300)
             .fillMaxWidth()
             .clickable { onWordClick(word) }
             .padding(horizontal = spacing.spaceMedium)

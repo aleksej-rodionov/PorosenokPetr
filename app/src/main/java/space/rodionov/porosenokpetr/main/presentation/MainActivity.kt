@@ -95,8 +95,8 @@ class MainActivity : ComponentActivity() {
     private fun setDefaultBarsColors(mode: Int) {
         when (mode) {
             MODE_LIGHT -> {
-                window.statusBarColor = ContextCompat.getColor(this, R.color.gray200)
-                window.navigationBarColor = ContextCompat.getColor(this, R.color.gray200)
+                window.statusBarColor = ContextCompat.getColor(this, R.color.gray300)
+                window.navigationBarColor = ContextCompat.getColor(this, R.color.gray100)
                 window.decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR)
             }
             MODE_DARK -> {
@@ -104,8 +104,8 @@ class MainActivity : ComponentActivity() {
                 window.navigationBarColor = ContextCompat.getColor(this, R.color.gray850)
             }
             else -> {
-                window.statusBarColor = ContextCompat.getColor(this, R.color.gray200)
-                window.navigationBarColor = ContextCompat.getColor(this, R.color.gray200)
+                window.statusBarColor = ContextCompat.getColor(this, R.color.gray300)
+                window.navigationBarColor = ContextCompat.getColor(this, R.color.gray100)
                 window.decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR)
             }
         }

@@ -19,6 +19,7 @@ import space.rodionov.porosenokpetr.core.presentation.LocalSpacing
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.model.VocabularyItem
 import space.rodionov.porosenokpetr.ui.theme.Gray600
 import space.rodionov.porosenokpetr.ui.theme.Gray900
+import space.rodionov.porosenokpetr.ui.theme.TransparentGray15
 
 @Composable
 fun VocabularyChip(
@@ -39,12 +40,12 @@ fun VocabularyChip(
             .border(
                 width = 2.dp,
                 color = if (isFocusedInList) Gray900 else {
-                    if (isSelected) color else MaterialTheme.colors.onPrimary
+                    if (isSelected) color else TransparentGray15
                 },
                 shape = RoundedCornerShape(100.dp)
             )
             .background(
-                color = if (isSelected) color else MaterialTheme.colors.onPrimary, //todo mode compLocal
+                color = if (isSelected) color else TransparentGray15, //todo mode compLocal
                 shape = RoundedCornerShape(100.dp)
             )
             .toggleable(

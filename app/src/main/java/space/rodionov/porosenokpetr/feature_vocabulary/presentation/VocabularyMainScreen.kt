@@ -18,6 +18,7 @@ import space.rodionov.porosenokpetr.core.util.Constants.WORD_ACTIVE
 import space.rodionov.porosenokpetr.core.util.UiEffect
 import space.rodionov.porosenokpetr.core.util.ViewModelFactory
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.components.*
+import space.rodionov.porosenokpetr.ui.theme.Gray300
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -90,10 +91,11 @@ fun VocabularyMainScreen(
     ) {
 
         BackdropScaffold(
+            modifier = Modifier.background(color = Gray300),
             scaffoldState = backdropState,
             appBar = {
                 VocabularySearchHeader(
-                    modifier = Modifier.background(color = MaterialTheme.colors.primary),
+                    modifier = Modifier.background(color = Gray300),
                     query = state.searchQuery,
                     shouldShowHint = state.showSearchHint,
                     onBackClick = {
@@ -112,7 +114,9 @@ fun VocabularyMainScreen(
             },
             backLayerContent = {
                 VocabularyChipGroup(
-                    modifier = Modifier.padding(horizontal = LocalSpacing.current.spaceMedium),
+                    modifier = Modifier
+                        .padding(horizontal = LocalSpacing.current.spaceMedium)
+                        .background(color = Gray300),
                     categories = state.categoriesWithWords,
                     onSelectedChanged = { cat, opened ->
                         viewModel.onEvent(VocabularyEvent.OnCategoryDisplayedChanged(cat, opened))

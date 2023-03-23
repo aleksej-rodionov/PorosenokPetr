@@ -7,10 +7,12 @@ import androidx.compose.material.icons.filled.ThumbUp
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
+import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.util.ViewModelFactory
 import space.rodionov.porosenokpetr.main.navigation.sub_graphs.*
 
@@ -56,21 +58,21 @@ fun MainNavHost(
 
 sealed class ChildGraphs(
     val route: String,
-    val icon: ImageVector
+    val icon: Int
 ) {
 
     object CardStackGraph : ChildGraphs(
-        route = "cardStackGraph",
-        icon = Icons.Filled.ThumbUp
+        route = "cardStack",
+        icon = R.drawable.ic_study
     )
 
     object VocabularyGraph : ChildGraphs(
-        route = "vocabularyGraph",
-        icon = Icons.Filled.ThumbUp
+        route = "vocabulary",
+        icon = R.drawable.ic_bookstack
     )
 
     object SettingsGraph : ChildGraphs(
-        route = "settingsGraph",
-        icon = Icons.Filled.ThumbUp
+        route = "settings",
+        icon = R.drawable.ic_settings_big
     )
 }

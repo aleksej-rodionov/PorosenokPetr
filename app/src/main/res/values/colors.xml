@@ -21,6 +21,7 @@
     <color name="textGray">#A2ACB6</color>
     <color name="gray100">#F6F7FB</color>
     <color name="gray200">#EFF1F5</color>
+    <color name="gray300">#FFE4E6EB</color>
     <color name="gray400">#CDCFD4</color>
     <color name="gray600">#A7A7AB</color>
     <color name="gray800">#686868</color>

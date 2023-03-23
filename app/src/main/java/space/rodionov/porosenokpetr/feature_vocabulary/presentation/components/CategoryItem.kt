@@ -40,13 +40,13 @@ fun CategoryItem(
             .clickable {
                 onCategoryDisplayedChanged(category, !category.isDisplayedInCollection)
             }
+            .background(color = Gray100)
     ) {
 
         Row(
             modifier = modifier
                 .fillMaxWidth()
-                .padding(horizontal = spacing.spaceMedium)
-                .background(color = Gray100),
+                .padding(horizontal = spacing.spaceMedium),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {

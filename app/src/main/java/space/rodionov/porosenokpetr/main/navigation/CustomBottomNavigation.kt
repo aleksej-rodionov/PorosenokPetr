@@ -1,7 +1,9 @@
 package space.rodionov.porosenokpetr.main.navigation
 
 import android.util.Log
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
@@ -10,8 +12,11 @@ import androidx.compose.material.icons.filled.ThumbUp
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.NavGraph
@@ -19,12 +24,17 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import space.rodionov.porosenokpetr.main.navigation.sub_graphs.CardStackDestinations
 import space.rodionov.porosenokpetr.main.navigation.sub_graphs.SettingsDestinations
 import space.rodionov.porosenokpetr.main.navigation.sub_graphs.VocabularyDestinations
+import space.rodionov.porosenokpetr.ui.theme.Gray100
+import space.rodionov.porosenokpetr.ui.theme.Gray400
 import space.rodionov.porosenokpetr.ui.theme.Gray850
+import space.rodionov.porosenokpetr.ui.theme.Gray900
 
 const val TAG_NAV = "TAG_NAV"
 
 @Composable
-fun CustomBottomNavigation(navController: NavController) {
+fun CustomBottomNavigation(
+    navController: NavController
+) {
 
     val currentBackStack by navController.currentBackStackEntryAsState()
     val currentRoute =
@@ -36,7 +46,9 @@ fun CustomBottomNavigation(navController: NavController) {
         ChildGraphs.SettingsGraph
     )
 
-    BottomNavigation {
+    BottomNavigation(
+        backgroundColor = Gray100
+    ) {
 
         bottomDestinations.forEach { bottomDest ->
 
@@ -44,12 +56,14 @@ fun CustomBottomNavigation(navController: NavController) {
 
             BottomNavigationItem(
                 icon = {
-                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                        Icon(imageVector = bottomDest.icon, contentDescription = bottomDest.route)
-                    }
+                    Icon(
+                        painter = painterResource(id = bottomDest.icon),
+                        contentDescription = bottomDest.route,
+                        modifier = Modifier.size(24.dp)
+                    )
                 },
-                selected = currentRoute == graphRoute,
-//                selected = currentRoute.isChildOf(graphRoute),
+//                selected = currentRoute == graphRoute,
+                selected = currentRoute.startsWith(graphRoute),
                 selectedContentColor = Gray850,
                 unselectedContentColor = Gray850.copy(alpha = 0.4f),
                 alwaysShowLabel = true,
@@ -61,7 +75,7 @@ fun CustomBottomNavigation(navController: NavController) {
                                 popUpTo(findStartDestination(navController.graph).id)
                             }
                         )
-                    } else if (graphRoute != currentRoute) { // does it make sense at all if apper case is not true???!
+                    } else if (graphRoute != currentRoute) { // does it make sense at all if the above case is not true???!
                         Log.d(TAG_NAV, "CustomBottomNavigation: STRANGE CONDITION REACHED")
                         navController.navigate(
                             route = graphRoute,
@@ -70,7 +84,6 @@ fun CustomBottomNavigation(navController: NavController) {
                                 restoreState = true
                                 // Pop up backstack to the first destination and save state. This makes going back
                                 // to the start destination when pressing back in any other bottom tab.
-                                //todo comment the code below if you use "isChildOf()" for "selected = " parameter
                                 val startDest = findStartDestination(navController.graph)
                                 popUpTo(startDest.id) {
                                     saveState = true
@@ -99,10 +112,4 @@ private fun findGraphRootRoute(graphRoute: String): String {
         else -> ChildGraphs.CardStackGraph.route
     }
 }
-
-private fun String.isChildOf(parentRoute: String): Boolean {
-    return this.startsWith(parentRoute)
-}
-
-
 
