@@ -7,6 +7,7 @@ import dagger.Module
 import dagger.multibindings.IntoMap
 import space.rodionov.porosenokpetr.main.presentation.MainViewModel
 import space.rodionov.porosenokpetr.core.util.ViewModelFactory
+import space.rodionov.porosenokpetr.feature_cardstack.presentation.CardStackViewModel
 import space.rodionov.porosenokpetr.feature_splash.presentation.SplashCustomViewModel
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.VocabularyViewModel
 import javax.inject.Singleton
@@ -29,6 +30,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(SplashCustomViewModel::class)
     internal abstract fun customSplashViewModel(splashCustomViewModel: SplashCustomViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(CardStackViewModel::class)
+    internal abstract fun cardStackViewModel(cardStackViewModel: CardStackViewModel): ViewModel
 
     @Binds
     @IntoMap

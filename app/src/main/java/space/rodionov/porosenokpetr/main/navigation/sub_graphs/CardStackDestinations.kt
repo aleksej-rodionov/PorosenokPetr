@@ -1,16 +1,26 @@
 package space.rodionov.porosenokpetr.main.navigation.sub_graphs
 
+import androidx.activity.ComponentActivity
+import androidx.compose.material.ScaffoldState
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
+import space.rodionov.porosenokpetr.core.util.ViewModelFactory
 import space.rodionov.porosenokpetr.feature_cardstack.presentation.CardStackMainScreen
 
 fun NavGraphBuilder.addCardStackGraph(
-    navController: NavHostController
+    navController: NavHostController,
+    scaffoldState: ScaffoldState,
+    viewModelOwner: ComponentActivity,
+    viewModelFactory: ViewModelFactory
 ) {
 
     this.composable(route = CardStackDestinations.CardStackMain.route) {
-        CardStackMainScreen()
+        CardStackMainScreen(
+            scaffoldState,
+            viewModelOwner,
+            viewModelFactory
+        )
     }
 }
 

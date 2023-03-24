@@ -9,6 +9,8 @@ import android.view.animation.LinearInterpolator
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.graphics.drawable.toDrawable
 import com.yuyakaido.android.cardstackview.*
+import space.rodionov.porosenokpetr.core.util.Constants
+import space.rodionov.porosenokpetr.core.util.Constants.WORD_LEARNED
 import space.rodionov.porosenokpetr.databinding.LayoutCardstackBinding
 import space.rodionov.porosenokpetr.feature_cardstack.presentation.CardstackState
 import space.rodionov.porosenokpetr.feature_cardstack.presentation.TAG_CARDSTACK
@@ -27,23 +29,29 @@ class CardStackView @JvmOverloads constructor(
 
     private val cardstackAdapter = CardStackAdapter(
         onSpeakWord = { word ->
-            onClickSpeakWord?.invoke(word)
+            onSpeakWord?.invoke(word)
         }
     )
 
-    private var onClickSpeakWord: ((String) -> Unit)? = null
-    fun setOnClickSpeakWordListener(callback: (String) -> Unit) {
-        onClickSpeakWord = callback
+    private var onWordAppeared: ((Int) -> Unit)? = null
+    fun setOnWordAppearedListener(callback: (Int) -> Unit) {
+        onWordAppeared = callback
     }
 
-    private var onWordSwiped: ((CardStackItem.WordUi, Int) -> Unit)? = null
-    fun setOnWordSwipedListener(callback: (CardStackItem.WordUi, Int) -> Unit) {
+    private var onWordSwiped: ((Int) -> Unit)? = null
+    fun setOnWordSwipedListener(callback: (Int) -> Unit) {
         onWordSwiped = callback
+    }
+
+    private var onSpeakWord: ((String) -> Unit)? = null
+    fun setOnSpeakWordListener(callback: (String) -> Unit) {
+        onSpeakWord = callback
     }
 
     fun initView(
         state: CardstackState
     ) {
+        Log.d(TAG_CARDSTACK, "initView: state = $state")
         this.cardstackState = state
 
         binding.root.background = resources.getColor(androidx.appcompat.R.color.material_grey_100).toDrawable()
@@ -55,9 +63,9 @@ class CardStackView @JvmOverloads constructor(
     override fun onCardDragging(direction: Direction?, ratio: Float) {}
 
     override fun onCardSwiped(direction: Direction?) {
+        Log.d(TAG_CARDSTACK, "onCardSwiped")
         if (direction == Direction.Bottom) {
-//            onWordSwiped?.invoke()
-            Log.d(TAG_CARDSTACK, "onCardSwiped: ${cardstackAdapter.currentList[].swe}")
+            onWordSwiped?.invoke(WORD_LEARNED)
         }
     }
 
@@ -67,8 +75,8 @@ class CardStackView @JvmOverloads constructor(
 
     override fun onCardAppeared(view: View?, position: Int) {
         Log.d(TAG_CARDSTACK, "onCardAppeared: ${cardstackAdapter.currentList[position].swe}")
-//        vmDriller.onCardAppeared(position)
-//        if (position == drillerAdapter.itemCount - 3 && position < Constants.MAX_STACK_SIZE - 10) {
+        onWordAppeared?.invoke(position)
+//        if (position == cardstackAdapter.itemCount - 3 && position < Constants.MAX_STACK_SIZE - 10) {
 //            vmDriller.addTenWords()
 //        }
 //        if (position == drillerAdapter.itemCount - 1) binding?.tvComplete?.visibility = View.VISIBLE

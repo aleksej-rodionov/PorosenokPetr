@@ -36,7 +36,7 @@ fun MainNavHost(
                 route = ChildGraphs.CardStackGraph.route,
                 startDestination = CardStackDestinations.CardStackMain.route
             ) {
-                addCardStackGraph(navController)
+                addCardStackGraph(navController, scaffoldState, viewModelOwner, viewModelFactory)
             }
 
             navigation(
