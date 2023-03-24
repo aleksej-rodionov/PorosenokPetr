@@ -2,6 +2,7 @@ package space.rodionov.porosenokpetr.feature_cardstack.presentation.componensts
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.LinearInterpolator
@@ -10,6 +11,8 @@ import androidx.core.graphics.drawable.toDrawable
 import com.yuyakaido.android.cardstackview.*
 import space.rodionov.porosenokpetr.databinding.LayoutCardstackBinding
 import space.rodionov.porosenokpetr.feature_cardstack.presentation.CardstackState
+import space.rodionov.porosenokpetr.feature_cardstack.presentation.TAG_CARDSTACK
+import space.rodionov.porosenokpetr.feature_cardstack.presentation.model.CardStackItem
 
 class CardStackView @JvmOverloads constructor(
     context: Context,
@@ -24,9 +27,19 @@ class CardStackView @JvmOverloads constructor(
 
     private val cardstackAdapter = CardStackAdapter(
         onSpeakWord = { word ->
-//            vmDriller.speakWord(word)
+            onClickSpeakWord?.invoke(word)
         }
     )
+
+    private var onClickSpeakWord: ((String) -> Unit)? = null
+    fun setOnClickSpeakWordListener(callback: (String) -> Unit) {
+        onClickSpeakWord = callback
+    }
+
+    private var onWordSwiped: ((CardStackItem.WordUi, Int) -> Unit)? = null
+    fun setOnWordSwipedListener(callback: (CardStackItem.WordUi, Int) -> Unit) {
+        onWordSwiped = callback
+    }
 
     fun initView(
         state: CardstackState
@@ -39,26 +52,21 @@ class CardStackView @JvmOverloads constructor(
         cardstackAdapter.submitList(state.words)
     }
 
-    override fun onCardDragging(direction: Direction?, ratio: Float) {
-        // empty
-    }
+    override fun onCardDragging(direction: Direction?, ratio: Float) {}
 
     override fun onCardSwiped(direction: Direction?) {
-//        if (direction == Direction.Bottom) {
-//            vmDriller.inactivateCurrentWord()
-//        }
+        if (direction == Direction.Bottom) {
+//            onWordSwiped?.invoke()
+            Log.d(TAG_CARDSTACK, "onCardSwiped: ${cardstackAdapter.currentList[].swe}")
+        }
     }
 
-    override fun onCardRewound() {
-        // empty
-    }
+    override fun onCardRewound() {}
 
-    override fun onCardCanceled() {
-        // empty
-    }
+    override fun onCardCanceled() {}
 
     override fun onCardAppeared(view: View?, position: Int) {
-//        binding?.tvOnCardAppeared?.text = getString(com.yuyakaido.android.cardstackview.R.string.on_card_appeared, position)
+        Log.d(TAG_CARDSTACK, "onCardAppeared: ${cardstackAdapter.currentList[position].swe}")
 //        vmDriller.onCardAppeared(position)
 //        if (position == drillerAdapter.itemCount - 3 && position < Constants.MAX_STACK_SIZE - 10) {
 //            vmDriller.addTenWords()
@@ -67,7 +75,7 @@ class CardStackView @JvmOverloads constructor(
     }
 
     override fun onCardDisappeared(view: View?, position: Int) {
-//        binding.tvOnCardDisappeared?.text = getString(com.yuyakaido.android.cardstackview.R.string.on_card_disappeared, position)
+        Log.d(TAG_CARDSTACK, "onCardDisappeared: ${cardstackAdapter.currentList[position].swe}")
 //        if (position == drillerAdapter.itemCount - 1) {
 //            binding.btnNewRound.visibility = View.VISIBLE
 //        } else {

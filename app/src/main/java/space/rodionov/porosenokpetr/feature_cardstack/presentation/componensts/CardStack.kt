@@ -21,7 +21,9 @@ fun CardStack(
     AndroidView(
         modifier = Modifier.fillMaxSize(),
         factory = {
-            view
+            view.apply {
+
+            }
         },
         update = {
             it.initView(state)

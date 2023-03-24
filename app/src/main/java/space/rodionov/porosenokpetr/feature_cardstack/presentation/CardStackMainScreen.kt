@@ -15,6 +15,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import space.rodionov.porosenokpetr.core.util.ViewModelFactory
 
+const val TAG_CARDSTACK = "TAG_CARDSTACK"
+
 @Composable
 fun CardStackMainScreen(
     scaffoldState: ScaffoldState,
