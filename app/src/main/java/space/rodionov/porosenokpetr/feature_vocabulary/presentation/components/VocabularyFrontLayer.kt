@@ -122,9 +122,6 @@ fun VocabularyFrontLayer(
 
                     items(
                         count = category.words.size,
-//                        key = { //todo try to remove - if performance screwed up?
-//                            category.words[it].id!!
-//                        },
                         itemContent= { index ->
 
                         WordItem(

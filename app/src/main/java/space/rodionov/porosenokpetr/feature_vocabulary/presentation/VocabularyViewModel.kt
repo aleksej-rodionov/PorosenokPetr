@@ -61,8 +61,6 @@ class VocabularyViewModel @Inject constructor(
             Pair(c, w)
         }.onEach { (categories, words) ->
 
-//            state = state.copy(isLoading = true)
-
             val categoriesWithWords = Pair(categories, words).transformData()
             val totalWords = words.size
 
@@ -70,8 +68,6 @@ class VocabularyViewModel @Inject constructor(
                 categoriesWithWords = categoriesWithWords,
                 wordsQuantity = totalWords
             )
-
-//            state = state.copy(isLoading = false)
 
         }.launchIn(viewModelScope)
     }
@@ -152,7 +148,6 @@ class VocabularyViewModel @Inject constructor(
         val updatedCategories = state.categoriesWithWords.mapCategoriesOnDisplayedChanged(
             category, display
         )
-//        state = state.copy(categoriesWithWords = updatedCategories)
         categoriesDisplayedJob?.cancel()
         categoriesDisplayedJob = viewModelScope.launch {
             delay(200L)
@@ -166,7 +161,6 @@ class VocabularyViewModel @Inject constructor(
         val updatedCategories = state.categoriesWithWords.map {
             it.copy(isDisplayedInCollection = show)
         }
-//        state = state.copy(categoriesWithWords = updatedCategories)
         _categoriesDisplayed.value = updatedCategories.filter {
             it.isDisplayedInCollection
         }.map { it.name }
