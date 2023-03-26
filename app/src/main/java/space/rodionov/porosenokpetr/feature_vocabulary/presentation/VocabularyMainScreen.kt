@@ -42,6 +42,8 @@ fun VocabularyMainScreen(
         scope.launch { sheetState.hide() }
     }
 
+//    val categoriesWithWords = remember { viewModel.state.categoriesWithWords }
+
     LaunchedEffect(key1 = true) {
         viewModel.uiEffect.collectLatest { effect ->
             when (effect) {
@@ -151,5 +153,9 @@ fun VocabularyMainScreen(
             },
             peekHeight = 100.dp
         )
+
+//        if (state.isLoading) {
+//            CircularProgressIndicator()
+//        }
     }
 }

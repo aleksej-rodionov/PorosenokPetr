@@ -57,6 +57,7 @@ class CardStackViewModel @Inject constructor(
                             it,
                             event.status
                         )
+                        sharedUseCases.updateLearnedPercentInCategory.invoke(it.categoryName)
                     }
                 }
             }

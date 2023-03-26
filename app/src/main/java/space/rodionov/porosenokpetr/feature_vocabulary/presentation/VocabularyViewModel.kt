@@ -61,6 +61,8 @@ class VocabularyViewModel @Inject constructor(
             Pair(c, w)
         }.onEach { (categories, words) ->
 
+//            state = state.copy(isLoading = true)
+
             val categoriesWithWords = Pair(categories, words).transformData()
             val totalWords = words.size
 
@@ -68,6 +70,8 @@ class VocabularyViewModel @Inject constructor(
                 categoriesWithWords = categoriesWithWords,
                 wordsQuantity = totalWords
             )
+
+//            state = state.copy(isLoading = false)
 
         }.launchIn(viewModelScope)
     }
@@ -114,7 +118,7 @@ class VocabularyViewModel @Inject constructor(
                             event.word.toWord(),
                             event.status
                         )
-                        sharedUseCases.updateLearnedPercentInCategory(event.word.categoryName)
+                        sharedUseCases.updateLearnedPercentInCategory.invoke(event.word.categoryName)
                     }
                 }
             }
@@ -175,7 +179,8 @@ data class VocabularyState(
     val wordsQuantity: Int = 0,
     val searchQuery: String = "",
     val showSearchHint: Boolean = false,
-    val showDropWordProgressDialogForWord: VocabularyItem.WordUi? = null
+    val showDropWordProgressDialogForWord: VocabularyItem.WordUi? = null,
+//    val isLoading: Boolean = false
 )
 
 sealed class VocabularyEvent {

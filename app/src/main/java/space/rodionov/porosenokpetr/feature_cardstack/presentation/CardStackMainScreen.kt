@@ -2,6 +2,7 @@ package space.rodionov.porosenokpetr.feature_cardstack.presentation
 
 import androidx.activity.ComponentActivity
 import androidx.activity.viewModels
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.ScaffoldState
@@ -12,6 +13,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.viewinterop.AndroidView
 import space.rodionov.porosenokpetr.core.util.ViewModelFactory
 import space.rodionov.porosenokpetr.feature_cardstack.presentation.componensts.CardStackView
+import space.rodionov.porosenokpetr.ui.theme.Gray300
 
 const val TAG_CARDSTACK = "TAG_CARDSTACK"
 
@@ -26,7 +28,9 @@ fun CardStackMainScreen(
     val state = viewModel.state
 
     Box(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = Gray300),
         contentAlignment = Alignment.Center
     ) {
 
@@ -44,7 +48,6 @@ fun CardStackMainScreen(
         )
     }
 }
-
 
 
 @Composable

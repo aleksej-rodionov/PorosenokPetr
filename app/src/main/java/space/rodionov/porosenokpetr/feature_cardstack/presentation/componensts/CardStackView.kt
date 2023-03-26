@@ -25,7 +25,7 @@ class CardStackView @JvmOverloads constructor(
 
     private val binding = LayoutCardstackBinding.inflate(LayoutInflater.from(context), this, true)
 
-    lateinit var cardstackState: CardstackState
+//    lateinit var cardstackState: CardstackState
 
     private val cardstackAdapter = CardStackAdapter(
         onSpeakWord = { word ->
@@ -51,13 +51,21 @@ class CardStackView @JvmOverloads constructor(
     fun initView(
         state: CardstackState
     ) {
-        Log.d(TAG_CARDSTACK, "initView: state = $state")
-        this.cardstackState = state
+        Log.d(TAG_CARDSTACK, "initView: currentList = ${cardstackAdapter.currentList.size}")
+        Log.d(TAG_CARDSTACK, "initView: state = ${state.words.size}")
+//        this.cardstackState = state
 
-        binding.root.background = resources.getColor(androidx.appcompat.R.color.material_grey_100).toDrawable()
-        binding.cardStack.adapter = cardstackAdapter
-        binding.cardStack.layoutManager = createCardStackLayoutManager(context, this)
-        cardstackAdapter.submitList(state.words)
+        binding.apply {
+            if (cardStack.adapter == null) {
+                cardStack.adapter = cardstackAdapter
+                cardStack.layoutManager = createCardStackLayoutManager(context, this@CardStackView)
+            }
+
+            if (cardstackAdapter.currentList.size != state.words.size) {
+                cardstackAdapter.submitList(state.words)
+                cardStack.scrollToPosition(state.currentPosition)
+            }
+        }
     }
 
     override fun onCardDragging(direction: Direction?, ratio: Float) {}
@@ -92,7 +100,10 @@ class CardStackView @JvmOverloads constructor(
     }
 }
 
-fun createCardStackLayoutManager(context: Context, listener: CardStackListener): CardStackLayoutManager {
+fun createCardStackLayoutManager(
+    context: Context,
+    listener: CardStackListener
+): CardStackLayoutManager {
     val drillerLayoutManager = CardStackLayoutManager(context, listener) // todo pass this not null
     drillerLayoutManager.apply {
         setOverlayInterpolator(LinearInterpolator())

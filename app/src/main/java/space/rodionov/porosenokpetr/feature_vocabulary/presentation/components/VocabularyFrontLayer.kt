@@ -120,10 +120,15 @@ fun VocabularyFrontLayer(
                         Divider()
                     }
 
-                    items(category.words) { word ->
+                    items(
+                        count = category.words.size,
+//                        key = { //todo try to remove - if performance screwed up?
+//                            category.words[it].id!!
+//                        },
+                        itemContent= { index ->
 
                         WordItem(
-                            word = word,
+                            word = category.words[index],
                             onVoiceClick = { onVoiceClick(it) },
                             onWordStatusChanged = { w, status ->
                                 onWordStatusChanged(
@@ -135,7 +140,7 @@ fun VocabularyFrontLayer(
                         )
 
                         Divider()
-                    }
+                    })
                 }
             }
 
