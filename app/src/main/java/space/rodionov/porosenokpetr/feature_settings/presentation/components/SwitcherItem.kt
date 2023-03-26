@@ -47,13 +47,6 @@ fun SwitcherItem(
                 )
         )
 
-//        Switch(
-//            checked = isChecked,
-//            onCheckedChange = onCheckedChanged,
-//            modifier = Modifier.padding(
-//                horizontal = spacing.spaceMedium )
-//        )
-
         CustomSwitcher(
             checked = isChecked,
             onCheckedChange = onCheckedChanged,

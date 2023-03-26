@@ -43,6 +43,7 @@ import androidx.compose.ui.platform.LocalViewConfiguration
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.*
 import kotlinx.coroutines.flow.collect
+import space.rodionov.porosenokpetr.ui.theme.Blue
 import kotlin.math.roundToInt
 
 /**
@@ -263,10 +264,10 @@ object SwitchDefaults {
      */
     @Composable
     fun colors(
-        checkedThumbColor: Color = MaterialTheme.colors.secondaryVariant,
-        checkedTrackColor: Color = checkedThumbColor,
-        checkedTrackAlpha: Float = 0.54f,
-        uncheckedThumbColor: Color = MaterialTheme.colors.surface,
+        checkedThumbColor: Color = Color.White,//MaterialTheme.colors.secondaryVariant,
+        checkedTrackColor: Color = Blue,//checkedThumbColor,
+        checkedTrackAlpha: Float = 1.0f,//0.54f,
+        uncheckedThumbColor: Color = Color.White,//MaterialTheme.colors.surface,
         uncheckedTrackColor: Color = MaterialTheme.colors.onSurface,
         uncheckedTrackAlpha: Float = 0.38f,
         disabledCheckedThumbColor: Color = checkedThumbColor

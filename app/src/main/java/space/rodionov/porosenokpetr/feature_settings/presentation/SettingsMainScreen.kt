@@ -1,5 +1,6 @@
 package space.rodionov.porosenokpetr.feature_settings.presentation
 
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.BackHandler
 import androidx.activity.viewModels
@@ -28,6 +29,8 @@ import space.rodionov.porosenokpetr.feature_settings.presentation.components.Set
 import space.rodionov.porosenokpetr.feature_settings.presentation.components.SwitcherItem
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.components.PlainItem
 import space.rodionov.porosenokpetr.ui.theme.Gray900
+
+private const val TAG_SWITCHER = "TAG_SWITCHER"
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -111,7 +114,7 @@ fun SettingsMainScreen(
                 text = "С родного на иностранный",
                 isChecked = true,
                 onCheckedChanged = {
-                    //todo
+                    Log.d(TAG_SWITCHER, "С родного на иностр = $it")
                 }
             )
             Divider(
@@ -126,14 +129,14 @@ fun SettingsMainScreen(
                 text = "Темная тема",
                 isChecked = false,
                 onCheckedChanged = {
-                    //todo
+                    Log.d(TAG_SWITCHER, "SettingsMainScreen: ТЁМНАЯ тема = $it")
                 }
             )
             SwitcherItem(
                 text = "Исопльзовать тему телефона",
                 isChecked = true,
                 onCheckedChanged = {
-                    //todo
+                    Log.d(TAG_SWITCHER, "SettingsMainScreen: тема телефона = $it")
                 }
             )
             Divider(
