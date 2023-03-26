@@ -8,6 +8,7 @@ import dagger.multibindings.IntoMap
 import space.rodionov.porosenokpetr.main.presentation.MainViewModel
 import space.rodionov.porosenokpetr.core.util.ViewModelFactory
 import space.rodionov.porosenokpetr.feature_cardstack.presentation.CardStackViewModel
+import space.rodionov.porosenokpetr.feature_settings.presentation.SettingsViewModel
 import space.rodionov.porosenokpetr.feature_splash.presentation.SplashCustomViewModel
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.VocabularyViewModel
 import javax.inject.Singleton
@@ -40,6 +41,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(VocabularyViewModel::class)
     internal abstract fun vocabularyViewModel(vocabularyViewModel: VocabularyViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SettingsViewModel::class)
+    internal abstract fun settingsViewModel(settingsViewModel: SettingsViewModel): ViewModel
 }
 
 

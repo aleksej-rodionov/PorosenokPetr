@@ -1,16 +1,29 @@
 package space.rodionov.porosenokpetr.main.navigation.sub_graphs
 
+import androidx.activity.ComponentActivity
+import androidx.compose.material.ScaffoldState
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
+import space.rodionov.porosenokpetr.core.util.ViewModelFactory
 import space.rodionov.porosenokpetr.feature_settings.presentation.SettingsMainScreen
 
 fun NavGraphBuilder.addSettingsGraph(
-    navHostController: NavHostController
+    navController: NavHostController,
+    scaffoldState: ScaffoldState,
+    viewModelOwner: ComponentActivity,
+    viewModelFactory: ViewModelFactory
 ) {
 
     this.composable(route = SettingsDestinations.SettingsMain.route) {
-        SettingsMainScreen()
+        SettingsMainScreen(
+            onNavigateUp = {
+                navController.navigateUp()
+            },
+            scaffoldState,
+            viewModelOwner,
+            viewModelFactory
+        )
     }
 }
 

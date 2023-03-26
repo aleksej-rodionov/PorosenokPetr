@@ -33,6 +33,7 @@ fun VocabularyMainScreen(
     val backdropState = rememberBackdropScaffoldState(initialValue = BackdropValue.Concealed)
     val state = viewModel.state
     val context = LocalContext.current
+
     val sheetState = rememberModalBottomSheetState(
         initialValue = ModalBottomSheetValue.Hidden,
         confirmStateChange = { it != ModalBottomSheetValue.HalfExpanded }
