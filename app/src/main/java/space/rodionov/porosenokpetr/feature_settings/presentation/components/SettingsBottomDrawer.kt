@@ -1,6 +1,5 @@
 package space.rodionov.porosenokpetr.feature_settings.presentation.components
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Divider
 import androidx.compose.runtime.Composable
@@ -8,7 +7,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import space.rodionov.porosenokpetr.core.presentation.LocalSpacing
-import space.rodionov.porosenokpetr.feature_vocabulary.presentation.components.BottomDrawerItem
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.components.TopLine
 import space.rodionov.porosenokpetr.ui.theme.Gray600
 

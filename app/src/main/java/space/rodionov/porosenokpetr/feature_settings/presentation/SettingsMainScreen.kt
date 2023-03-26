@@ -20,9 +20,13 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.presentation.LocalSpacing
+import space.rodionov.porosenokpetr.core.presentation.components.TopBar
 import space.rodionov.porosenokpetr.core.util.UiEffect
 import space.rodionov.porosenokpetr.core.util.ViewModelFactory
+import space.rodionov.porosenokpetr.feature_settings.presentation.components.HeaderItem
 import space.rodionov.porosenokpetr.feature_settings.presentation.components.SettingsBottomDrawer
+import space.rodionov.porosenokpetr.feature_settings.presentation.components.SwitcherItem
+import space.rodionov.porosenokpetr.feature_vocabulary.presentation.components.PlainItem
 import space.rodionov.porosenokpetr.ui.theme.Gray900
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -80,50 +84,67 @@ fun SettingsMainScreen(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(
-                    start = spacing.spaceSmall,
-                    end = spacing.spaceSmall,
-                    top = spacing.spaceExtraSmall
-                )
         ) {
 
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
+            Divider()
 
-                IconButton(
-                    onClick = {
-                        //todo viewModel.onEvent(VocabularyEvent.OnBackClick)
-                    }
-                ) {
-                    Icon(
-                        painter = painterResource(R.drawable.ic_back),
-                        contentDescription = "Back",
-                        tint = Gray900
-                    )
+            TopBar(
+                text = R.string.settings,
+                onBackClick = {
+                    viewModel.onEvent(SettingsEvent.OnBackClick)
+                },
+                onMenuClick = {
+                    //todo
                 }
+            )
 
-                Text(
-                    text = stringResource(id = R.string.settings), //todo localize
-                    textAlign = TextAlign.Center,
-                    style = MaterialTheme.typography.h6,
-                    color = Gray900
+            Divider(Modifier.padding(bottom = spacing.spaceSmall))
+
+            HeaderItem(text = "Язык")
+            PlainItem(
+                text = "Родной язык",
+                onClick = {
+                    //todo open select language bottomDrawer
+                }
+            )
+            SwitcherItem(
+                text = "С родного на иностранный",
+                isChecked = true,
+                onCheckedChanged = {
+                    //todo
+                }
+            )
+            Divider(
+                Modifier.padding(
+                    horizontal = spacing.spaceMedium,
+                    vertical = spacing.spaceSmall
                 )
+            )
 
-                IconButton(
-                    onClick = {
-                        //todo
-                    }
-                ) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.ic_baseline_more_horiz_24),
-                        contentDescription = "More",
-                        tint = Gray900
-                    )
+            HeaderItem(text = "Внешний вид")
+            SwitcherItem(
+                text = "Темная тема",
+                isChecked = false,
+                onCheckedChanged = {
+                    //todo
                 }
-            }
+            )
+            SwitcherItem(
+                text = "Исопльзовать тему телефона",
+                isChecked = true,
+                onCheckedChanged = {
+                    //todo
+                }
+            )
+            Divider(
+                Modifier.padding(
+                    horizontal = spacing.spaceMedium,
+                    vertical = spacing.spaceSmall
+                )
+            )
+
+//            HeaderItem(text = "Напоминание")
+            //todo ExpandableItem
         }
     }
 }

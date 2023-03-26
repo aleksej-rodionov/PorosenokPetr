@@ -21,8 +21,7 @@ fun CategoryFilterBottomDrawer(
 
     Column(
         modifier = Modifier
-            .fillMaxWidth()
-            .padding(spacing.spaceMedium),
+            .fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
@@ -42,22 +41,20 @@ fun CategoryFilterBottomDrawer(
             )
         }
         Divider()
-        BottomDrawerItem(
+        PlainItem(
             text = "Display all categories",
-            modifier = Modifier
-                .fillMaxWidth()
-                .clickable {
-                    onDisplayAllClick()
-                }
+            modifier = Modifier.fillMaxWidth(),
+            onClick = {
+                onDisplayAllClick()
+            }
         )
         Divider()
-        BottomDrawerItem(
+        PlainItem(
             text = "Hide all categories",
-            modifier = Modifier
-                .fillMaxWidth()
-                .clickable {
-                    onHideAllClick()
-                }
+            modifier = Modifier.fillMaxWidth(),
+            onClick = {
+                onHideAllClick()
+            }
         )
     }
 }

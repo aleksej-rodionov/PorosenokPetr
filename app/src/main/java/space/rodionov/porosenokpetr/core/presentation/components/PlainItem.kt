@@ -1,5 +1,6 @@
 package space.rodionov.porosenokpetr.feature_vocabulary.presentation.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
@@ -12,35 +13,41 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import space.rodionov.porosenokpetr.core.presentation.LocalSpacing
 
 @Composable
-fun BottomDrawerItem(
+fun PlainItem(
     text: String,
+    onClick: () -> Unit,
     modifier: Modifier = Modifier,
     imageVector: ImageVector? = null
 ) {
 
+    val spacing = LocalSpacing.current
+
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween,
-        modifier = modifier
+        modifier = modifier.clickable {
+            onClick()
+        }
     ) {
 
         Text(
             text = text,
-            fontSize = 18.sp,
+            fontSize = 16.sp,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
             modifier = Modifier
                 .weight(1f)
-                .padding(16.dp)
+                .padding(spacing.spaceMedium )
         )
 
         imageVector?.let {
             Icon(
                 imageVector = it,
-                contentDescription = "Delete",
-                modifier = Modifier.padding(16.dp)
+                contentDescription = "Icon",
+                modifier = Modifier.padding(spacing.spaceMedium )
             )
         }
     }

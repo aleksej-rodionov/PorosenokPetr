@@ -10,6 +10,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.presentation.LocalSpacing
+import space.rodionov.porosenokpetr.core.presentation.components.TopBar
 import space.rodionov.porosenokpetr.ui.theme.Gray900
 
 @Composable
@@ -30,46 +31,13 @@ fun VocabularySearchHeader(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(
-                start = spacing.spaceSmall,
-                end = spacing.spaceSmall,
-                top = spacing.spaceExtraSmall
-            )
     ) {
 
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-
-            IconButton(
-                onClick = onBackClick
-            ) {
-                Icon(
-                    painter = painterResource(R.drawable.ic_back),
-                    contentDescription = "Back",
-                    tint = Gray900
-                )
-            }
-
-            Text(
-                text = stringResource(id = R.string.collection),
-                textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.h6,
-                color = Gray900
-            )
-
-            IconButton(
-                onClick = onMenuClick
-            ) {
-                Icon(
-                    painter = painterResource(id = R.drawable.ic_baseline_more_horiz_24),
-                    contentDescription = "More",
-                    tint = Gray900
-                )
-            }
-        }
+        TopBar(
+            text = R.string.collection,
+            onBackClick = onBackClick,
+            onMenuClick = onMenuClick
+        )
 
         Box(
             modifier = Modifier
