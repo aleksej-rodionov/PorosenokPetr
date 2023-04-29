@@ -1,14 +1,20 @@
 package space.rodionov.porosenokpetr.main.presentation
 
 import android.util.Log
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import space.rodionov.porosenokpetr.core.domain.use_case.SharedUseCases
+import space.rodionov.porosenokpetr.core.util.Constants.MODE_DARK
 import space.rodionov.porosenokpetr.feature_splash.domain.use_case.SplashInteractor
 import space.rodionov.porosenokpetr.feature_cardstack.domain.use_case.CardStackUseCases
 import javax.inject.Inject
@@ -22,6 +28,9 @@ class MainViewModel @Inject constructor(
 //    private val repo: WordRepo//todo remove
 ) : ViewModel() {
 
+    var state by mutableStateOf(State())
+        private set
+
     //==========================MODE=========================================
     private val _mode = sharedUseCases.observeModeUseCase.invoke()
     val mode = _mode.stateIn(viewModelScope, SharingStarted.Lazily, 0)
@@ -34,16 +43,10 @@ class MainViewModel @Inject constructor(
     private val _followSystemMode = sharedUseCases.observeFollowSystemModeUseCase.invoke()
     val followSystemMode = _followSystemMode.stateIn(viewModelScope, SharingStarted.Lazily, false)
 
-//    init {
-//        Log.d("TAG_DB", ": SplashVM inited")
-//        viewModelScope.launch(Dispatchers.IO) {
-//            if (splashInteractor.getWordQuantity() == 0) {
-//                splashInteractor.populateDatabase()
-//            }
-////            delay(1000L)
-////            _isDbPopulated.send(true)
-//        }
-//    }
+    init {
+        _mode.onEach { state = state.copy(isDarkTheme = it == MODE_DARK) }.launchIn(viewModelScope)
+        _followSystemMode.onEach { state = state.copy(isFollowSystemMode = it) }.launchIn(viewModelScope)
+    }
 
     fun onBtnClick() {
         viewModelScope.launch {
@@ -57,4 +60,9 @@ class MainViewModel @Inject constructor(
 //            }
         }
     }
+
+    data class State(
+        val isDarkTheme: Boolean = false,
+        val isFollowSystemMode: Boolean = false
+    )
 }

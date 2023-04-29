@@ -22,6 +22,8 @@ import kotlinx.coroutines.launch
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.presentation.LocalSpacing
 import space.rodionov.porosenokpetr.core.presentation.components.TopBar
+import space.rodionov.porosenokpetr.core.util.Constants.MODE_DARK
+import space.rodionov.porosenokpetr.core.util.Constants.MODE_LIGHT
 import space.rodionov.porosenokpetr.core.util.UiEffect
 import space.rodionov.porosenokpetr.core.util.ViewModelFactory
 import space.rodionov.porosenokpetr.feature_settings.presentation.components.HeaderItem
@@ -44,6 +46,7 @@ fun SettingsMainScreen(
     val spacing = LocalSpacing.current
     val viewModel by owner.viewModels<SettingsViewModel> { factory }
     val context = LocalContext.current
+    val state = viewModel.state
 
     val sheetState = rememberModalBottomSheetState(
         initialValue = ModalBottomSheetValue.Hidden,
@@ -127,16 +130,16 @@ fun SettingsMainScreen(
             HeaderItem(text = "Внешний вид")
             SwitcherItem(
                 text = "Темная тема",
-                isChecked = false,
+                isChecked = state.mode == MODE_DARK,
                 onCheckedChanged = {
-                    Log.d(TAG_SWITCHER, "SettingsMainScreen: ТЁМНАЯ тема = $it")
+                    viewModel.onEvent(SettingsEvent.OnModeChanged(if (it) MODE_DARK else MODE_LIGHT))
                 }
             )
             SwitcherItem(
                 text = "Исопльзовать тему телефона",
-                isChecked = true,
+                isChecked = state.followSystemMode,
                 onCheckedChanged = {
-                    Log.d(TAG_SWITCHER, "SettingsMainScreen: тема телефона = $it")
+                    viewModel.onEvent(SettingsEvent.OnFollowSystemModeChanged(it))
                 }
             )
             Divider(

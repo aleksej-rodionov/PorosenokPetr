@@ -4,8 +4,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.launch
 import space.rodionov.porosenokpetr.core.domain.use_case.SharedUseCases
 import space.rodionov.porosenokpetr.core.util.Constants.LANGUAGE_RU
 import space.rodionov.porosenokpetr.core.util.Constants.MODE_LIGHT
@@ -17,7 +21,7 @@ import javax.inject.Inject
 class SettingsViewModel @Inject constructor(
     private val settingsUseCases: SettingsUseCases,
     private val sharedUseCases: SharedUseCases
-): ViewModel() {
+) : ViewModel() {
 
     var state by mutableStateOf(SettingsState())
         private set
@@ -30,23 +34,41 @@ class SettingsViewModel @Inject constructor(
             is SettingsEvent.OnBackClick -> {
 
             }
-            is SettingsEvent.OnModeChanged -> {
 
+            is SettingsEvent.OnModeChanged -> {
+                viewModelScope.launch { sharedUseCases.setModeUseCase.invoke(event.mode) }
             }
+
+            is SettingsEvent.OnFollowSystemModeChanged -> {
+                viewModelScope.launch { settingsUseCases.setFollowSystemModeUseCase.invoke(event.follow) }
+            }
+
             is SettingsEvent.OnNativeLanguageChanged -> {
 
             }
+        }
+    }
+
+    init {
+        sharedUseCases.observeModeUseCase.invoke().onEach {
+            state = state.copy(mode = it)
+        }.launchIn(viewModelScope)
+
+        sharedUseCases.observeFollowSystemModeUseCase.invoke().onEach {
+            state = state.copy(followSystemMode = it)
         }
     }
 }
 
 data class SettingsState(
     val mode: Int = MODE_LIGHT,
+    val followSystemMode: Boolean = false,
     val nativeLanguage: Int = LANGUAGE_RU
 )
 
 sealed class SettingsEvent {
     object OnBackClick : SettingsEvent()
-    data class OnModeChanged(val mode: Int): SettingsEvent()
-    data class OnNativeLanguageChanged(val language: Int): SettingsEvent()
+    data class OnModeChanged(val mode: Int) : SettingsEvent()
+    data class OnFollowSystemModeChanged(val follow: Boolean) : SettingsEvent()
+    data class OnNativeLanguageChanged(val language: Int) : SettingsEvent()
 }
