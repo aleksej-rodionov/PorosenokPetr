@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ThumbUp
 import androidx.compose.runtime.Composable
@@ -47,7 +48,7 @@ fun CustomBottomNavigation(
     )
 
     BottomNavigation(
-        backgroundColor = Gray100
+        backgroundColor = MaterialTheme.colors.surface
     ) {
 
         bottomDestinations.forEach { bottomDest ->
@@ -62,10 +63,9 @@ fun CustomBottomNavigation(
                         modifier = Modifier.size(24.dp)
                     )
                 },
-//                selected = currentRoute == graphRoute,
                 selected = currentRoute.startsWith(graphRoute),
-                selectedContentColor = Gray850,
-                unselectedContentColor = Gray850.copy(alpha = 0.4f),
+                selectedContentColor = MaterialTheme.colors.onSurface,
+                unselectedContentColor = MaterialTheme.colors.onSurface.copy(alpha = 0.4f),
                 alwaysShowLabel = true,
                 onClick = {
                     if (currentRoute.startsWith(graphRoute)) { // if we already inside this subGraph..

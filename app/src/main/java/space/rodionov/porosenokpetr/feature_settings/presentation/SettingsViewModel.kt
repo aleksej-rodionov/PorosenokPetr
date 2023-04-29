@@ -56,7 +56,7 @@ class SettingsViewModel @Inject constructor(
 
         sharedUseCases.observeFollowSystemModeUseCase.invoke().onEach {
             state = state.copy(followSystemMode = it)
-        }
+        }.launchIn(viewModelScope)
     }
 }
 

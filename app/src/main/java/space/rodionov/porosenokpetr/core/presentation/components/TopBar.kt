@@ -46,7 +46,7 @@ fun TopBar(
             Icon(
                 painter = painterResource(R.drawable.ic_back),
                 contentDescription = "Back",
-                tint = Gray900
+                tint = MaterialTheme.colors.onBackground
             )
         }
 
@@ -54,7 +54,7 @@ fun TopBar(
             text = stringResource(id = text), //todo localize
             textAlign = TextAlign.Center,
             style = MaterialTheme.typography.h6,
-            color = Gray900
+            color = MaterialTheme.colors.onBackground
         )
 
         IconButton(
@@ -63,7 +63,7 @@ fun TopBar(
             Icon(
                 painter = painterResource(id = R.drawable.ic_baseline_more_horiz_24),
                 contentDescription = "More",
-                tint = Gray900
+                tint = MaterialTheme.colors.onBackground
             )
         }
     }

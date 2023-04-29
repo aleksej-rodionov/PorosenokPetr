@@ -11,13 +11,13 @@ import space.rodionov.porosenokpetr.core.presentation.Dimensions
 import space.rodionov.porosenokpetr.core.presentation.LocalSpacing
 
 private val DarkColorPalette = darkColors(
-    primary = Gray850,
-    primaryVariant = Purple700,
+    primary = Blue,
+    primaryVariant = BlueTrans,
     secondary = Blue,
 
     background = Gray900,
-    surface = Gray900,
-    onPrimary = TransparentGray15,
+    surface = Gray850,
+    onPrimary = Gray100,
     onSecondary = Gray100,
     onBackground = Gray100,
     onSurface = Gray100,
@@ -25,13 +25,13 @@ private val DarkColorPalette = darkColors(
 
 private val LightColorPalette = lightColors(
     primary = Blue, //Text selection drops
-    primaryVariant = Purple700,
+    primaryVariant = BlueTrans,
     secondary = Blue, //CheckBoxes
 
     background = Gray200, // screens' backgrounds
     surface = Gray100, // drawers' backgrounds
-    onPrimary = Gray900,
-    onSecondary = Gray900,
+    onPrimary = Gray100,
+    onSecondary = Gray100,
     onBackground = Gray900,
     onSurface = Gray900,
 )

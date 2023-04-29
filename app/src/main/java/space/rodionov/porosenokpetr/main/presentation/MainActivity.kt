@@ -8,16 +8,20 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.compiler.plugins.kotlin.ComposeFqNames.remember
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.rememberScaffoldState
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.compose.rememberNavController
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.util.Constants.MODE_DARK
@@ -26,6 +30,8 @@ import space.rodionov.porosenokpetr.core.util.ViewModelFactory
 import space.rodionov.porosenokpetr.main.PorosenokPetrApp
 import space.rodionov.porosenokpetr.main.navigation.CustomBottomNavigation
 import space.rodionov.porosenokpetr.main.navigation.MainNavHost
+import space.rodionov.porosenokpetr.ui.theme.Gray200
+import space.rodionov.porosenokpetr.ui.theme.Gray900
 import space.rodionov.porosenokpetr.ui.theme.PorosenokPetrTheme
 import javax.inject.Inject
 
@@ -50,6 +56,18 @@ class MainActivity : ComponentActivity() {
 
                 val navController = rememberNavController()
                 val scaffoldState = rememberScaffoldState()
+                val systemUiController = rememberSystemUiController()
+
+                SideEffect {
+                    systemUiController.setStatusBarColor(
+                        color = if (state.isDarkTheme) Gray900 else Gray200,
+                        darkIcons = !state.isDarkTheme
+                    )
+                    systemUiController.setNavigationBarColor(
+                        color = if (state.isDarkTheme) Gray900 else Gray200,
+                        darkIcons = !state.isDarkTheme
+                    )
+                }
 
                 Scaffold(
                     scaffoldState = scaffoldState,
@@ -72,7 +90,7 @@ class MainActivity : ComponentActivity() {
             vmMain.mode.collectLatest {
                 val mode = it ?: return@collectLatest
 
-                setDefaultBarsColors(mode)
+//                setDefaultBarsColors(mode)
             }
         }
 
@@ -110,6 +128,8 @@ class MainActivity : ComponentActivity() {
             MODE_DARK -> {
                 window.statusBarColor = ContextCompat.getColor(this, R.color.gray850)
                 window.navigationBarColor = ContextCompat.getColor(this, R.color.gray850)
+                window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
             }
             else -> {
                 window.statusBarColor = ContextCompat.getColor(this, R.color.gray300)

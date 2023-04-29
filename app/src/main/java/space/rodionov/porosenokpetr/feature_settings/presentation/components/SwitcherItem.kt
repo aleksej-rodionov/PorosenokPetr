@@ -24,6 +24,7 @@ fun SwitcherItem(
     text: String,
     isChecked: Boolean,
     onCheckedChanged: (Boolean) -> Unit,
+    isEnabled: Boolean = true,
     modifier: Modifier = Modifier
 ) {
 
@@ -50,6 +51,7 @@ fun SwitcherItem(
         CustomSwitcher(
             checked = isChecked,
             onCheckedChange = onCheckedChanged,
+            enabled = isEnabled,
             modifier = Modifier.padding(horizontal = spacing.spaceMedium)
         )
     }

@@ -133,7 +133,8 @@ fun SettingsMainScreen(
                 isChecked = state.mode == MODE_DARK,
                 onCheckedChanged = {
                     viewModel.onEvent(SettingsEvent.OnModeChanged(if (it) MODE_DARK else MODE_LIGHT))
-                }
+                },
+                isEnabled = !state.followSystemMode
             )
             SwitcherItem(
                 text = "Исопльзовать тему телефона",

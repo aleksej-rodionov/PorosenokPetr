@@ -17,7 +17,7 @@ android {
         }
     }
 
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "space.rodionov.porosenokpetr"
@@ -179,6 +179,9 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:1.2.1"
     implementation "com.yuyakaido.android:card-stack-view:2.3.4"
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+
+    // System UI controller
+    implementation "com.google.accompanist:accompanist-systemuicontroller:0.27.0"
 
     // Leak Canary
     debugImplementation "com.squareup.leakcanary:leakcanary-android:2.8.1"
