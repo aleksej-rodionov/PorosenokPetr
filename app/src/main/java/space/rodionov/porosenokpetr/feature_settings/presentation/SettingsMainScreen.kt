@@ -137,7 +137,7 @@ fun SettingsMainScreen(
                 isEnabled = !state.followSystemMode
             )
             SwitcherItem(
-                text = "Исопльзовать тему телефона",
+                text = "Использовать тему телефона",
                 isChecked = state.followSystemMode,
                 onCheckedChanged = {
                     viewModel.onEvent(SettingsEvent.OnFollowSystemModeChanged(it))

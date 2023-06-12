@@ -6,18 +6,12 @@ import android.view.View
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.compose.compiler.plugins.kotlin.ComposeFqNames.remember
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.SideEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.key
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.compose.rememberNavController
@@ -52,7 +46,7 @@ class MainActivity : ComponentActivity() {
 
             val state = vmMain.state
 
-            PorosenokPetrTheme(darkTheme = state.isDarkTheme) {
+            PorosenokPetrTheme(darkTheme = state.isDarkTheme == MODE_DARK) {
 
                 val navController = rememberNavController()
                 val scaffoldState = rememberScaffoldState()
@@ -60,27 +54,29 @@ class MainActivity : ComponentActivity() {
 
                 SideEffect {
                     systemUiController.setStatusBarColor(
-                        color = if (state.isDarkTheme) Gray900 else Gray200,
-                        darkIcons = !state.isDarkTheme
+                        color = if (state.isDarkTheme == MODE_DARK) Gray900 else Gray200,
+                        darkIcons = state.isDarkTheme != MODE_DARK
                     )
                     systemUiController.setNavigationBarColor(
-                        color = if (state.isDarkTheme) Gray900 else Gray200,
-                        darkIcons = !state.isDarkTheme
+                        color = if (state.isDarkTheme == MODE_DARK) Gray900 else Gray200,
+                        darkIcons = state.isDarkTheme != MODE_DARK
                     )
                 }
 
-                Scaffold(
-                    scaffoldState = scaffoldState,
-                    bottomBar = { CustomBottomNavigation(navController = navController) }
-                ) {
-
-                    MainNavHost(
-                        modifier = Modifier.padding(it),
-                        navController = navController,
+                key(state.isDarkTheme) {
+                    Scaffold(
                         scaffoldState = scaffoldState,
-                        viewModelOwner = this,
-                        viewModelFactory = factory
-                    )
+                        bottomBar = { CustomBottomNavigation(navController = navController) }
+                    ) {
+
+                        MainNavHost(
+                            modifier = Modifier.padding(it),
+                            navController = navController,
+                            scaffoldState = scaffoldState,
+                            viewModelOwner = this,
+                            viewModelFactory = factory
+                        )
+                    }
                 }
             }
         }

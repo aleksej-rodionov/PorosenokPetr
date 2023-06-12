@@ -21,11 +21,11 @@ import space.rodionov.porosenokpetr.ui.theme.Gray900
 
 @Composable
 fun SwitcherItem(
+    modifier: Modifier = Modifier,
     text: String,
     isChecked: Boolean,
     onCheckedChanged: (Boolean) -> Unit,
     isEnabled: Boolean = true,
-    modifier: Modifier = Modifier
 ) {
 
     val spacing = LocalSpacing.current

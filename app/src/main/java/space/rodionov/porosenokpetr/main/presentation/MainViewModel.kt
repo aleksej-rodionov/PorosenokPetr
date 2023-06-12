@@ -15,6 +15,7 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import space.rodionov.porosenokpetr.core.domain.use_case.SharedUseCases
 import space.rodionov.porosenokpetr.core.util.Constants.MODE_DARK
+import space.rodionov.porosenokpetr.core.util.Constants.MODE_LIGHT
 import space.rodionov.porosenokpetr.feature_splash.domain.use_case.SplashInteractor
 import space.rodionov.porosenokpetr.feature_cardstack.domain.use_case.CardStackUseCases
 import javax.inject.Inject
@@ -44,7 +45,7 @@ class MainViewModel @Inject constructor(
     val followSystemMode = _followSystemMode.stateIn(viewModelScope, SharingStarted.Lazily, false)
 
     init {
-        _mode.onEach { state = state.copy(isDarkTheme = it == MODE_DARK) }.launchIn(viewModelScope)
+        _mode.onEach { state = state.copy(isDarkTheme = it) }.launchIn(viewModelScope)
         _followSystemMode.onEach { state = state.copy(isFollowSystemMode = it) }.launchIn(viewModelScope)
     }
 
@@ -62,7 +63,7 @@ class MainViewModel @Inject constructor(
     }
 
     data class State(
-        val isDarkTheme: Boolean = false,
+        val isDarkTheme: Int = MODE_LIGHT,
         val isFollowSystemMode: Boolean = false
     )
 }
