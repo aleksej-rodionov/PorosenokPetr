@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.ScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -20,8 +21,6 @@ import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.presentation.LocalSpacing
 import space.rodionov.porosenokpetr.core.util.ViewModelFactory
 import space.rodionov.porosenokpetr.feature_cardstack.presentation.componensts.CardStackView
-import space.rodionov.porosenokpetr.ui.theme.Gray300
-import space.rodionov.porosenokpetr.ui.theme.Gray900
 
 const val TAG_CARDSTACK = "TAG_CARDSTACK"
 
@@ -38,7 +37,7 @@ fun CardStackMainScreen(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = Gray300),
+            .background(color = MaterialTheme.colors.background), //todo Gray300 was
         contentAlignment = Alignment.Center
     ) {
 
@@ -71,7 +70,7 @@ fun CardStackMainScreen(
             Icon(
                 painter = painterResource(id = R.drawable.ic_baseline_more_horiz_24),
                 contentDescription = "More",
-                tint = Gray900
+                tint = MaterialTheme.colors.onBackground
             )
         }
     }
@@ -91,7 +90,9 @@ fun CardStack(
     val view = CardStackView(context)
 
     AndroidView(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+//            .background(color = MaterialTheme.colors.background)
+            .fillMaxSize(),
         factory = {
             view.apply {
                 setOnWordAppearedListener {

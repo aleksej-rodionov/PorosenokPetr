@@ -1,21 +1,14 @@
 package space.rodionov.porosenokpetr.main.navigation
 
 import android.util.Log
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ThumbUp
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -25,10 +18,6 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import space.rodionov.porosenokpetr.main.navigation.sub_graphs.CardStackDestinations
 import space.rodionov.porosenokpetr.main.navigation.sub_graphs.SettingsDestinations
 import space.rodionov.porosenokpetr.main.navigation.sub_graphs.VocabularyDestinations
-import space.rodionov.porosenokpetr.ui.theme.Gray100
-import space.rodionov.porosenokpetr.ui.theme.Gray400
-import space.rodionov.porosenokpetr.ui.theme.Gray850
-import space.rodionov.porosenokpetr.ui.theme.Gray900
 
 const val TAG_NAV = "TAG_NAV"
 

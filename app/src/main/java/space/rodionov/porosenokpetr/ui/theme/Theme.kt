@@ -6,7 +6,6 @@ import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.ui.graphics.Color
 import space.rodionov.porosenokpetr.core.presentation.Dimensions
 import space.rodionov.porosenokpetr.core.presentation.LocalSpacing
 

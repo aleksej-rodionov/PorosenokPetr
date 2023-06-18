@@ -51,7 +51,7 @@ fun VocabularyChipGroup(
                     onSelectionChanged = { cat, opened ->
                         onSelectedChanged(cat, opened)
                     },
-                    color = Blue,
+                    color = MaterialTheme.colors.primary,
                     selectedTextColor = Color.White
                 )
             }

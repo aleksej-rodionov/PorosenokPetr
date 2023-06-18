@@ -10,7 +10,7 @@ plugins {
 android {
     signingConfigs {
         release {
-            storeFile file('C:\\appKeys\\petr_keystore_sd_new.jks')
+            storeFile file('\\Users\\alexeyrodionov\\Downloads\\Telegram Desktop\\petr_keystore_sd_new.jks')
             storePassword 'GinNish91'
             keyAlias 'key0'
             keyPassword 'GinNish91'

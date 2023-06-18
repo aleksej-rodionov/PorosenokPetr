@@ -2,7 +2,6 @@ package space.rodionov.porosenokpetr.main.presentation
 
 import android.content.res.Configuration
 import android.os.Bundle
-import android.view.View
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -12,12 +11,10 @@ import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.key
 import androidx.compose.ui.Modifier
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import kotlinx.coroutines.flow.collectLatest
-import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.util.Constants.MODE_DARK
 import space.rodionov.porosenokpetr.core.util.Constants.MODE_LIGHT
 import space.rodionov.porosenokpetr.core.util.ViewModelFactory
@@ -113,27 +110,6 @@ class MainActivity : ComponentActivity() {
         }
     }
     //=================NIGHT MODE=====================
-
-    private fun setDefaultBarsColors(mode: Int) {
-        when (mode) {
-            MODE_LIGHT -> {
-                window.statusBarColor = ContextCompat.getColor(this, R.color.gray300)
-                window.navigationBarColor = ContextCompat.getColor(this, R.color.gray100)
-                window.decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR)
-            }
-            MODE_DARK -> {
-                window.statusBarColor = ContextCompat.getColor(this, R.color.gray850)
-                window.navigationBarColor = ContextCompat.getColor(this, R.color.gray850)
-                window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-                window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
-            }
-            else -> {
-                window.statusBarColor = ContextCompat.getColor(this, R.color.gray300)
-                window.navigationBarColor = ContextCompat.getColor(this, R.color.gray100)
-                window.decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR)
-            }
-        }
-    }
 }
 
 

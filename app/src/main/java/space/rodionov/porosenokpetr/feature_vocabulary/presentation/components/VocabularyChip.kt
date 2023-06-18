@@ -39,13 +39,13 @@ fun VocabularyChip(
             .clip(RoundedCornerShape(100.dp))
             .border(
                 width = 2.dp,
-                color = if (isFocusedInList) Gray900 else {
+                color = if (isFocusedInList) MaterialTheme.colors.onBackground else {
                     if (isSelected) color else TransparentGray15
                 },
                 shape = RoundedCornerShape(100.dp)
             )
             .background(
-                color = if (isSelected) color else TransparentGray15, //todo mode compLocal
+                color = if (isSelected) color else TransparentGray15,
                 shape = RoundedCornerShape(100.dp)
             )
             .toggleable(
@@ -63,7 +63,7 @@ fun VocabularyChip(
         Text(
             text = category.getLocalizedName(2), //todo compositionLocal for nativeLanguage
             style = textStyle,
-            color = if (isSelected) selectedTextColor else Gray600,
+            color = if (isSelected) selectedTextColor else Gray600, //todo this doesn't get repainted =(
         )
     }
 }

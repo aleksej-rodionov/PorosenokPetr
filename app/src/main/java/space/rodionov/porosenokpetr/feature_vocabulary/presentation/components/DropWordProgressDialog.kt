@@ -12,11 +12,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
-import androidx.compose.ui.window.DialogProperties
 import space.rodionov.porosenokpetr.core.presentation.LocalSpacing
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.model.VocabularyItem
-import space.rodionov.porosenokpetr.ui.theme.Gray100
-import space.rodionov.porosenokpetr.ui.theme.Gray900
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
@@ -36,7 +33,7 @@ fun DropWordProgressDialog(
         Surface(
             modifier = Modifier.padding(spacing.spaceLarge),
             shape = RoundedCornerShape(spacing.spaceMedium),
-            color = Gray100
+            color = MaterialTheme.colors.surface
         ) {
 
             Box(
@@ -67,7 +64,7 @@ fun DropWordProgressDialog(
                         ) {
                             Text(
                                 text = "Yes",
-                                color = Gray900
+                                color = MaterialTheme.colors.onSurface
                             )
                         }
 
@@ -76,7 +73,7 @@ fun DropWordProgressDialog(
                         ) {
                             Text(
                                 text = "No",
-                                color = Gray900
+                                color = MaterialTheme.colors.onSurface
                             )
                         }
                     }

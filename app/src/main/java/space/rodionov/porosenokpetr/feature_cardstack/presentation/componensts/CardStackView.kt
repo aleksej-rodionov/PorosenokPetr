@@ -9,12 +9,12 @@ import android.view.animation.LinearInterpolator
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.graphics.drawable.toDrawable
 import com.yuyakaido.android.cardstackview.*
-import space.rodionov.porosenokpetr.core.util.Constants
+import space.rodionov.porosenokpetr.R
+import space.rodionov.porosenokpetr.core.util.Constants.MODE_DARK
 import space.rodionov.porosenokpetr.core.util.Constants.WORD_LEARNED
 import space.rodionov.porosenokpetr.databinding.LayoutCardstackBinding
 import space.rodionov.porosenokpetr.feature_cardstack.presentation.CardstackState
 import space.rodionov.porosenokpetr.feature_cardstack.presentation.TAG_CARDSTACK
-import space.rodionov.porosenokpetr.feature_cardstack.presentation.model.CardStackItem
 
 class CardStackView @JvmOverloads constructor(
     context: Context,
@@ -64,6 +64,12 @@ class CardStackView @JvmOverloads constructor(
             if (cardstackAdapter.currentList.size != state.words.size) {
                 cardstackAdapter.submitList(state.words)
                 cardStack.scrollToPosition(state.currentPosition)
+            }
+
+            cardStack.background = if (state.mode == MODE_DARK) {
+                resources.getColor(R.color.gray900).toDrawable()
+            } else {
+                resources.getColor(R.color.gray200).toDrawable()
             }
         }
     }

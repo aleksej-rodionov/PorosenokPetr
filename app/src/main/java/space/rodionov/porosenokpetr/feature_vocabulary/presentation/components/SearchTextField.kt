@@ -51,12 +51,13 @@ fun SearchTextField(
             .padding(start = spacing.spaceExtraSmall)
     ) {
 
-        Image(
+        Icon(
             modifier = Modifier
                 .align(Alignment.CenterVertically)
                 .padding(horizontal = spacing.spaceSmall),
             painter = painterResource(id = R.drawable.ic_search),
-            contentDescription = stringResource(id = R.string.search_word)
+            contentDescription = stringResource(id = R.string.search_word),
+            tint = MaterialTheme.colors.onBackground
         )
 
         Box(
@@ -74,7 +75,7 @@ fun SearchTextField(
                 onValueChange = onValueChange,
                 singleLine = true,
                 textStyle = TextStyle(
-                    color = Gray900
+                    color = MaterialTheme.colors.onBackground
                 ),
                 cursorBrush = SolidColor(Gray600)
             )

@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import space.rodionov.porosenokpetr.core.domain.use_case.SharedUseCases
 import space.rodionov.porosenokpetr.core.util.Constants.MAX_STACK_SIZE
+import space.rodionov.porosenokpetr.core.util.Constants.MODE_LIGHT
 import space.rodionov.porosenokpetr.feature_cardstack.domain.use_case.CardStackUseCases
 import space.rodionov.porosenokpetr.feature_cardstack.presentation.mapper.toWord
 import space.rodionov.porosenokpetr.feature_cardstack.presentation.mapper.toWordUi
@@ -70,7 +71,8 @@ class CardStackViewModel @Inject constructor(
 
 data class CardstackState(
     val words: List<CardStackItem.WordUi> = emptyList(),
-    val currentPosition: Int = 0
+    val currentPosition: Int = 0,
+    val mode: Int = MODE_LIGHT
 )
 
 sealed class CardstackEvent {

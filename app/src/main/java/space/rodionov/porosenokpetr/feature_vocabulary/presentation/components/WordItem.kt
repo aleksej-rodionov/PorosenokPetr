@@ -34,7 +34,7 @@ fun WordItem(
 
     Column(
         modifier = modifier
-            .background(color = Gray300)
+            .background(color = MaterialTheme.colors.background)//todo Gray300 was
             .fillMaxWidth()
             .clickable { onWordClick(word) }
             .padding(horizontal = spacing.spaceMedium)
@@ -51,7 +51,7 @@ fun WordItem(
                     .fillMaxWidth()
                     .weight(1f),
                 text = word.swe ?: "",
-                color = Gray900,
+                color = MaterialTheme.colors.onBackground,
             )
 
             IconButton(
