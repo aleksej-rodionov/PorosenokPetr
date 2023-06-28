@@ -21,6 +21,8 @@ import com.yuyakaido.android.cardstackview.CardStackView
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.util.Constants.TAG_MODE
 
+//todo remove everything redundant (unrelated to cardstack)
+
 fun fetchTheme(mode: Int, res: Resources): Resources.Theme {
     val theme = res.newTheme()
     return when (mode) {
