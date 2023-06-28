@@ -104,10 +104,11 @@ fun CardStack(
                 setOnSpeakWordListener {
                     speakWord(it)
                 }
+                initView(state)
             }
         },
         update = {
-            it.initView(state)
+            it.changeMode(state.mode)
         }
     )
 }

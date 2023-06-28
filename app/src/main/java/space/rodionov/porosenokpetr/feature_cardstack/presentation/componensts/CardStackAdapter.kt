@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import space.rodionov.porosenokpetr.core.ModeForAdapter
+import space.rodionov.porosenokpetr.core.redrawViewGroup
 import space.rodionov.porosenokpetr.databinding.ItemWordBinding
 import space.rodionov.porosenokpetr.feature_cardstack.presentation.model.CardStackItem
 
@@ -20,6 +21,9 @@ private val onSpeakWord: (String) -> Unit = {}
     private var mode: Int = 0
     override fun updateMode(newMode: Int) {
         mode = newMode
+        (0 until itemCount).forEach {
+
+        }
     }
     override fun getTag(): String = TAG_CARDSTACK_ADAPTER
 
@@ -51,8 +55,8 @@ private val onSpeakWord: (String) -> Unit = {}
 
                 tvUpper.text = word.getTranslation(3)
                 tvDowner.text = word.getTranslation(0)
-//
-//                (root as ViewGroup).redrawViewGroup(mode)
+
+                (binding.root as ViewGroup).redrawViewGroup(mode)
 
                 root.setOnClickListener {
                     tvDowner.isVisible = true
@@ -67,6 +71,10 @@ private val onSpeakWord: (String) -> Unit = {}
                 }
             }
         }
+
+//        fun updateMode(mode: Int) {
+//            (binding.root as ViewGroup).redrawViewGroup(mode)
+//        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardStackViewHolder {
