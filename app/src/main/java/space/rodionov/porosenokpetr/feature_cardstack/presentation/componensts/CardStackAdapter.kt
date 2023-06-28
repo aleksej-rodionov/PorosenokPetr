@@ -6,25 +6,23 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import space.rodionov.porosenokpetr.core.ModeForAdapter
 import space.rodionov.porosenokpetr.databinding.ItemWordBinding
 import space.rodionov.porosenokpetr.feature_cardstack.presentation.model.CardStackItem
 
 class CardStackAdapter(
 private val onSpeakWord: (String) -> Unit = {}
-) : ListAdapter<CardStackItem.WordUi, CardStackAdapter.CardStackViewHolder>(WordDiff())/*, ModeForAdapter,
+) : ListAdapter<CardStackItem.WordUi, CardStackAdapter.CardStackViewHolder>(WordDiff()),
+    ModeForAdapter/*,
     LangForAdapter*/ {
 
-    companion object {
-        const val TAG_DRILLER_ADAPTER = "drillerAdapter"
-    }
-
     //===================DARK MODE===========================
-//    private var mode: Int = 0
-//    override fun updateMode(newMode: Int) {
-//        mode = newMode
-//    }
-//    override fun getTag(): String = TAG_DRILLER_ADAPTER
-//
+    private var mode: Int = 0
+    override fun updateMode(newMode: Int) {
+        mode = newMode
+    }
+    override fun getTag(): String = TAG_CARDSTACK_ADAPTER
+
 //    //===================LANG===========================
 //    private var nativeLang: Int = LANGUAGE_RU
 //    private var learnedLang: Int = LANGUAGE_EN
@@ -85,6 +83,10 @@ private val onSpeakWord: (String) -> Unit = {}
     override fun onBindViewHolder(holder: CardStackViewHolder, position: Int) {
         val curItem = getItem(position)
         holder.bind(curItem)
+    }
+
+    companion object {
+        const val TAG_CARDSTACK_ADAPTER = "cardstackAdapter"
     }
 }
 
