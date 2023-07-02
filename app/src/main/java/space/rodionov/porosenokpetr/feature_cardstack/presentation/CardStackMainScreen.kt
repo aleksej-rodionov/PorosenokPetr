@@ -108,7 +108,7 @@ fun CardStack(
             }
         },
         update = {
-            it.changeMode(state.mode)
+            it.submitList(state.words)
         }
     )
 }

@@ -3,46 +3,15 @@ package space.rodionov.porosenokpetr.feature_cardstack.presentation.componensts
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import space.rodionov.porosenokpetr.core.ModeForAdapter
 import space.rodionov.porosenokpetr.core.redrawViewGroup
 import space.rodionov.porosenokpetr.databinding.ItemWordBinding
 import space.rodionov.porosenokpetr.feature_cardstack.presentation.model.CardStackItem
 
 class CardStackAdapter(
-private val onSpeakWord: (String) -> Unit = {}
-) : ListAdapter<CardStackItem.WordUi, CardStackAdapter.CardStackViewHolder>(WordDiff()),
-    ModeForAdapter/*,
-    LangForAdapter*/ {
-
-    //===================DARK MODE===========================
-    private var mode: Int = 0
-    override fun updateMode(newMode: Int) {
-        mode = newMode
-        (0 until itemCount).forEach {
-
-        }
-    }
-    override fun getTag(): String = TAG_CARDSTACK_ADAPTER
-
-//    //===================LANG===========================
-//    private var nativeLang: Int = LANGUAGE_RU
-//    private var learnedLang: Int = LANGUAGE_EN
-//    override fun updateNativeLang(newLang: Int) {
-//        nativeLang = newLang
-//    }
-//    override fun updateLearnedLang(newLang: Int) {
-//        learnedLang = newLang
-//    }
-//    override fun getTagForLang(): String = TAG_DRILLER_ADAPTER // todo попробовать просто getTag() назвать чтоб один на три интерфейса
-
-    //=====================TRANSLATION DIR==========================
-    private var mNativeToForeign: Boolean = false
-    fun updateTransDir(nativeToForeign: Boolean) { mNativeToForeign = nativeToForeign }
-
-
+    private val onSpeakWord: (String) -> Unit = {}
+) : ListAdapter<CardStackItem.WordUi, CardStackAdapter.CardStackViewHolder>(CardStackItemComparator()) {
 
     inner class CardStackViewHolder(
         private val binding: ItemWordBinding,
@@ -51,12 +20,14 @@ private val onSpeakWord: (String) -> Unit = {}
         fun bind(word: CardStackItem.WordUi) {
             binding.apply {
                 tvDowner.isVisible = false
-                btnSpeak.isVisible = !mNativeToForeign
+                btnSpeak.isVisible = !word.isNativeToForeign
 
                 tvUpper.text = word.getTranslation(3)
                 tvDowner.text = word.getTranslation(0)
 
-                (binding.root as ViewGroup).redrawViewGroup(mode)
+                updateNativeLang(word.nativeLang)
+                updateIsNativeToForeign(word.isNativeToForeign)
+                updateMode(word.mode)
 
                 root.setOnClickListener {
                     tvDowner.isVisible = true
@@ -72,9 +43,27 @@ private val onSpeakWord: (String) -> Unit = {}
             }
         }
 
-//        fun updateMode(mode: Int) {
-//            (binding.root as ViewGroup).redrawViewGroup(mode)
-//        }
+        fun bindPayload(word: CardStackItem.WordUi, payloads: List<Any>) {
+            payloads.forEach { payload ->
+                when (payload) {
+                    Payloads.NATIVE_LANG -> updateNativeLang(word.nativeLang)
+                    Payloads.IS_NATIVE_TO_FOREIGN -> updateIsNativeToForeign(word.isNativeToForeign)
+                    Payloads.MODE -> updateMode(word.mode)
+                }
+            }
+        }
+
+        private fun updateNativeLang(nativeLang: Int) {
+            //todo
+        }
+
+        private fun updateIsNativeToForeign(nativeToForeign: Boolean) {
+            //todo
+        }
+
+        private fun updateMode(mode: Int) {
+            (binding.root as ViewGroup).redrawViewGroup(mode)
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardStackViewHolder {
@@ -93,16 +82,16 @@ private val onSpeakWord: (String) -> Unit = {}
         holder.bind(curItem)
     }
 
-    companion object {
-        const val TAG_CARDSTACK_ADAPTER = "cardstackAdapter"
+    override fun onBindViewHolder(
+        holder: CardStackViewHolder,
+        position: Int,
+        payloads: MutableList<Any>
+    ) {
+        if (payloads.isEmpty()) {
+            super.onBindViewHolder(holder, position, payloads)
+        } else {
+            val word = getItem(position)
+            holder.bindPayload(word, payloads)
+        }
     }
-}
-
-class WordDiff : DiffUtil.ItemCallback<CardStackItem.WordUi>() {
-    override fun areItemsTheSame(oldItem: CardStackItem.WordUi, newItem: CardStackItem.WordUi) =
-        oldItem == newItem
-
-    override fun areContentsTheSame(oldItem: CardStackItem.WordUi, newItem: CardStackItem.WordUi) =
-        oldItem.rus == newItem.rus && oldItem.ukr == newItem.ukr
-                && oldItem.eng == newItem.eng && oldItem.categoryName == newItem.categoryName
 }

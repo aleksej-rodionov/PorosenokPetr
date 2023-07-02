@@ -5,20 +5,17 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.view.animation.LinearInterpolator
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.graphics.drawable.toDrawable
 import com.yuyakaido.android.cardstackview.*
 import space.rodionov.porosenokpetr.R
-import space.rodionov.porosenokpetr.core.ModeForAdapter
-import space.rodionov.porosenokpetr.core.redrawViewGroup
 import space.rodionov.porosenokpetr.core.util.Constants.MODE_DARK
-import space.rodionov.porosenokpetr.core.util.Constants.TAG_MODE
 import space.rodionov.porosenokpetr.core.util.Constants.WORD_LEARNED
 import space.rodionov.porosenokpetr.databinding.LayoutCardstackBinding
 import space.rodionov.porosenokpetr.feature_cardstack.presentation.CardstackState
 import space.rodionov.porosenokpetr.feature_cardstack.presentation.TAG_CARDSTACK
+import space.rodionov.porosenokpetr.feature_cardstack.presentation.model.CardStackItem
 
 class CardStackView @JvmOverloads constructor(
     context: Context,
@@ -70,16 +67,16 @@ class CardStackView @JvmOverloads constructor(
                 cardStack.scrollToPosition(state.currentPosition)
             }
 
-            cardStack.background = if (state.mode == MODE_DARK) {
-                resources.getColor(R.color.gray900).toDrawable()
-            } else {
-                resources.getColor(R.color.gray200).toDrawable()
-            }
+//            cardStack.background = if (state.mode == MODE_DARK) {
+//                resources.getColor(R.color.gray900).toDrawable()
+//            } else {
+//                resources.getColor(R.color.gray200).toDrawable()
+//            }
         }
     }
 
-    fun changeMode(mode: Int) {
-        (binding.root as ViewGroup).redrawViewGroup(mode)
+    fun submitList(items: List<CardStackItem.WordUi>) {
+        cardstackAdapter.submitList(items)
     }
 
     override fun onCardDragging(direction: Direction?, ratio: Float) {}
