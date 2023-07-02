@@ -10,17 +10,20 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
-import space.rodionov.porosenokpetr.core.domain.use_case.SharedUseCases
+import space.rodionov.porosenokpetr.core.domain.use_case.ObserveFollowSystemModeUseCase
+import space.rodionov.porosenokpetr.core.domain.use_case.ObserveModeUseCase
+import space.rodionov.porosenokpetr.core.domain.use_case.SetModeUseCase
 import space.rodionov.porosenokpetr.core.util.Constants.LANGUAGE_RU
 import space.rodionov.porosenokpetr.core.util.Constants.MODE_LIGHT
 import space.rodionov.porosenokpetr.core.util.UiEffect
-import space.rodionov.porosenokpetr.feature_settings.domain.use_case.use_case.SettingsUseCases
-import space.rodionov.porosenokpetr.feature_vocabulary.presentation.VocabularyEvent
+import space.rodionov.porosenokpetr.feature_settings.domain.use_case.use_case.SetFollowSystemModeUseCase
 import javax.inject.Inject
 
 class SettingsViewModel @Inject constructor(
-    private val settingsUseCases: SettingsUseCases,
-    private val sharedUseCases: SharedUseCases
+    private val setModeUseCase: SetModeUseCase,
+    private val setFollowSystemModeUseCase: SetFollowSystemModeUseCase,
+    private val observeModeUseCase: ObserveModeUseCase,
+    private val observeFollowSystemModeUseCase: ObserveFollowSystemModeUseCase
 ) : ViewModel() {
 
     var state by mutableStateOf(SettingsState())
@@ -36,11 +39,11 @@ class SettingsViewModel @Inject constructor(
             }
 
             is SettingsEvent.OnModeChanged -> {
-                viewModelScope.launch { sharedUseCases.setModeUseCase.invoke(event.mode) }
+                viewModelScope.launch { setModeUseCase.invoke(event.mode) }
             }
 
             is SettingsEvent.OnFollowSystemModeChanged -> {
-                viewModelScope.launch { settingsUseCases.setFollowSystemModeUseCase.invoke(event.follow) }
+                viewModelScope.launch { setFollowSystemModeUseCase.invoke(event.follow) }
             }
 
             is SettingsEvent.OnNativeLanguageChanged -> {
@@ -50,11 +53,11 @@ class SettingsViewModel @Inject constructor(
     }
 
     init {
-        sharedUseCases.observeModeUseCase.invoke().onEach {
+        observeModeUseCase.invoke().onEach {
             state = state.copy(mode = it)
         }.launchIn(viewModelScope)
 
-        sharedUseCases.observeFollowSystemModeUseCase.invoke().onEach {
+        observeFollowSystemModeUseCase.invoke().onEach {
             state = state.copy(followSystemMode = it)
         }.launchIn(viewModelScope)
     }

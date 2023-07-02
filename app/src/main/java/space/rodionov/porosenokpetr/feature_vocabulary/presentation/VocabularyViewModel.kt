@@ -11,10 +11,14 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import space.rodionov.porosenokpetr.core.domain.use_case.SharedUseCases
+import space.rodionov.porosenokpetr.core.domain.use_case.MakeCategoryActiveUseCase
+import space.rodionov.porosenokpetr.core.domain.use_case.SpeakWordUseCase
+import space.rodionov.porosenokpetr.core.domain.use_case.UpdateLearnedPercentInCategoryUseCase
+import space.rodionov.porosenokpetr.core.domain.use_case.UpdateWordStatusUseCase
 import space.rodionov.porosenokpetr.core.util.Constants.DEFAULT_INT
 import space.rodionov.porosenokpetr.core.util.UiEffect
-import space.rodionov.porosenokpetr.feature_vocabulary.domain.use_case.VocabularyUseCases
+import space.rodionov.porosenokpetr.feature_cardstack.domain.use_case.ObserveAllCategoriesUseCase
+import space.rodionov.porosenokpetr.feature_vocabulary.domain.use_case.ObserveWordsBySearchQueryInCategories
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.ext.mapCategoriesOnDisplayedChanged
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.ext.transformData
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.mapper.toWord
@@ -25,8 +29,12 @@ private const val TAG = "VocabularyViewModel"
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class VocabularyViewModel @Inject constructor(
-    private val sharedUseCases: SharedUseCases,
-    private val vocabularyUseCases: VocabularyUseCases
+    private val observeAllCategoriesUseCase: ObserveAllCategoriesUseCase,
+    private val observeWordsBySearchQueryInCategories: ObserveWordsBySearchQueryInCategories,
+    private val makeCategoryActiveUseCase: MakeCategoryActiveUseCase,
+    private val speakWordUseCase: SpeakWordUseCase,
+    private val updateWordStatusUseCase: UpdateWordStatusUseCase,
+    private val updateLearnedPercentInCategoryUseCase: UpdateLearnedPercentInCategoryUseCase
 ) : ViewModel() {
 
     var state by mutableStateOf(VocabularyState())
@@ -41,7 +49,7 @@ class VocabularyViewModel @Inject constructor(
     private val _categoriesDisplayed = MutableStateFlow<List<String>>(emptyList())
     private val categoriesDisplayed: StateFlow<List<String>> = _categoriesDisplayed.asStateFlow()
 
-    private val categoryLists = sharedUseCases.observeAllCategoriesUseCase.invoke()
+    private val categoryLists = observeAllCategoriesUseCase.invoke()
 
     private val wordLists = combine(
         searchQueries,
@@ -49,7 +57,7 @@ class VocabularyViewModel @Inject constructor(
     ) { query, categories ->
         Pair(query, categories)
     }.flatMapLatest { (q, c) ->
-        vocabularyUseCases.observeWordsBySearchQueryInCategories(q, c)
+        observeWordsBySearchQueryInCategories(q, c)
     }
 
     init {
@@ -77,50 +85,59 @@ class VocabularyViewModel @Inject constructor(
             is VocabularyEvent.OnBackClick -> {
                 viewModelScope.launch { _uiEffect.send(UiEffect.NavigateUp) }
             }
+
             is VocabularyEvent.OnSearchFocusChanged -> {
                 state = state.copy(
                     showSearchHint = !event.isFocused && state.searchQuery.isBlank()
                 )
             }
+
             is VocabularyEvent.OnSearchQueryChanged -> {
                 onSearchQueryChanged(event.query)
             }
+
             is VocabularyEvent.OnCategoryDisplayedChanged -> {
                 onCategoriesDisplayedChanged(
                     event.category,
                     event.display
                 )
             }
+
             is VocabularyEvent.OnCategoryActiveChanged -> {
                 viewModelScope.launch {
-                    sharedUseCases.makeCategoryActiveUseCase.invoke(
+                    makeCategoryActiveUseCase.invoke(
                         event.category.name,
                         event.active
                     )
                 }
             }
+
             is VocabularyEvent.OnWordClick -> {
                 //todo open word editor
             }
+
             is VocabularyEvent.OnVoiceClick -> {
-                sharedUseCases.speakWord.invoke(event.text)
+                speakWordUseCase.invoke(event.text)
             }
+
             is VocabularyEvent.OnWordStatusChanged -> {
                 if (event.status == DEFAULT_INT) {
                     state = state.copy(showDropWordProgressDialogForWord = event.word)
                 } else {
                     viewModelScope.launch {
-                        sharedUseCases.updateWordStatusUseCase.invoke(
+                        updateWordStatusUseCase.invoke(
                             event.word.toWord(),
                             event.status
                         )
-                        sharedUseCases.updateLearnedPercentInCategory.invoke(event.word.categoryName)
+                        updateLearnedPercentInCategoryUseCase.invoke(event.word.categoryName)
                     }
                 }
             }
+
             VocabularyEvent.OnDIalogDismissed -> {
                 state = state.copy(showDropWordProgressDialogForWord = null)
             }
+
             is VocabularyEvent.OnShowHideAllCategoriesSwitched -> {
                 onShowHideAllCategoriesClick(event.show)
             }

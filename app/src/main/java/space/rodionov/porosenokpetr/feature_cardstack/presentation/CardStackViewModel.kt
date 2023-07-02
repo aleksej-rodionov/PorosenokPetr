@@ -8,20 +8,25 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import space.rodionov.porosenokpetr.core.domain.preferences.Preferences
 import space.rodionov.porosenokpetr.core.domain.use_case.ObserveModeUseCase
-import space.rodionov.porosenokpetr.core.domain.use_case.SharedUseCases
+import space.rodionov.porosenokpetr.core.domain.use_case.SpeakWordUseCase
+import space.rodionov.porosenokpetr.core.domain.use_case.UpdateLearnedPercentInCategoryUseCase
+import space.rodionov.porosenokpetr.core.domain.use_case.UpdateWordStatusUseCase
 import space.rodionov.porosenokpetr.core.util.Constants.MAX_STACK_SIZE
-import space.rodionov.porosenokpetr.core.util.Constants.MODE_LIGHT
-import space.rodionov.porosenokpetr.feature_cardstack.domain.use_case.CardStackUseCases
+import space.rodionov.porosenokpetr.feature_cardstack.domain.use_case.GetRandomWordUseCase
+import space.rodionov.porosenokpetr.feature_cardstack.domain.use_case.GetTenWordsUseCase
 import space.rodionov.porosenokpetr.feature_cardstack.presentation.mapper.toWord
 import space.rodionov.porosenokpetr.feature_cardstack.presentation.mapper.toWordUi
 import space.rodionov.porosenokpetr.feature_cardstack.presentation.model.CardStackItem
 import javax.inject.Inject
 
 class CardStackViewModel @Inject constructor(
-    private val sharedUseCases: SharedUseCases,
-    private val cardStackUseCases: CardStackUseCases,
+    private val getTenWordsUseCase: GetTenWordsUseCase,
+    private val getRandomWordUseCase: GetRandomWordUseCase,
+    private val observeModeUseCase: ObserveModeUseCase,
+    private val updateWordStatusUseCase: UpdateWordStatusUseCase,
+    private val updateLearnedPercentInCategoryUseCase: UpdateLearnedPercentInCategoryUseCase,
+    private val speakWordUseCase: SpeakWordUseCase
 ) : ViewModel() {
 
     var state by mutableStateOf(CardstackState())
@@ -29,14 +34,13 @@ class CardStackViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            val tenWordsMore = cardStackUseCases.getTenWordsUseCase.invoke().map {
+            val tenWordsMore = getTenWordsUseCase.invoke().map {
                 it.toWordUi()
             }
             state = state.copy(words = tenWordsMore)
         }
 
-        sharedUseCases.observeModeUseCase.invoke().onEach { mode ->
-//            state = state.copy(mode = it)
+        observeModeUseCase.invoke().onEach { mode ->
             state = state.copy(words = state.words.map { it.copy(mode = mode) })
         }.launchIn(viewModelScope)
     }
@@ -49,7 +53,7 @@ class CardStackViewModel @Inject constructor(
                     event.position < MAX_STACK_SIZE - 10
                 ) {
                     viewModelScope.launch {
-                        val tenWordsMore = cardStackUseCases.getTenWordsUseCase.invoke().map {
+                        val tenWordsMore = getTenWordsUseCase.invoke().map {
                             it.toWordUi()
                         }
                         val newList = mutableListOf<CardStackItem.WordUi>().apply {
@@ -66,17 +70,17 @@ class CardStackViewModel @Inject constructor(
                     val word =
                         (state.words[state.currentPosition] as? CardStackItem.WordUi)?.toWord()
                     word?.let {
-                        sharedUseCases.updateWordStatusUseCase.invoke(
+                        updateWordStatusUseCase.invoke(
                             it,
                             event.status
                         )
-                        sharedUseCases.updateLearnedPercentInCategory.invoke(it.categoryName)
+                        updateLearnedPercentInCategoryUseCase.invoke(it.categoryName)
                     }
                 }
             }
 
             is CardstackEvent.SpeakWord -> {
-                sharedUseCases.speakWord.invoke(event.word)
+                speakWordUseCase.invoke(event.word)
             }
         }
     }
@@ -85,7 +89,6 @@ class CardStackViewModel @Inject constructor(
 data class CardstackState(
     val words: List<CardStackItem.WordUi> = emptyList(),
     val currentPosition: Int = 0,
-    val mode: Int = MODE_LIGHT
 )
 
 sealed class CardstackEvent {

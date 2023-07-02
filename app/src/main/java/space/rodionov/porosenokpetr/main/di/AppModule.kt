@@ -1,7 +1,6 @@
 package space.rodionov.porosenokpetr.main.di
 
 import android.app.Application
-import android.content.Context
 import android.speech.tts.TextToSpeech
 import androidx.room.Room
 import dagger.Module
@@ -11,22 +10,17 @@ import kotlinx.coroutines.SupervisorJob
 import space.rodionov.porosenokpetr.core.data.local.WordDatabase
 import space.rodionov.porosenokpetr.core.data.preferences.PreferencesImpl
 import space.rodionov.porosenokpetr.core.domain.preferences.Preferences
-import space.rodionov.porosenokpetr.core.domain.use_case.*
 import space.rodionov.porosenokpetr.core.data.repository.WordRepoImpl
 import space.rodionov.porosenokpetr.core.domain.repository.WordRepo
 import space.rodionov.porosenokpetr.core.util.Constants
-import space.rodionov.porosenokpetr.feature_cardstack.domain.use_case.GetAllCategoriesUseCase
-import space.rodionov.porosenokpetr.feature_cardstack.domain.use_case.ObserveAllCategoriesUseCase
-import space.rodionov.porosenokpetr.core.domain.use_case.UpdateWordStatusUseCase
 import space.rodionov.porosenokpetr.feature_splash.domain.use_case.SplashInteractor
-import space.rodionov.porosenokpetr.core.domain.use_case.UpdateLearnedPercentInCategory
 import space.rodionov.porosenokpetr.core.util.SwedishSpeaker
 import javax.inject.Singleton
 
 @Module
 class AppModule {
 
-    @ApplicationScope
+    @AppQualifier
     @Provides
     @Singleton
     fun provideApplicationScope() = CoroutineScope(SupervisorJob())
@@ -75,32 +69,9 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideSharedUseCases(
-        repo: WordRepo,
-        preferences: Preferences,
-        speaker: SwedishSpeaker
-    ): SharedUseCases { // todo provide each separately
-        return SharedUseCases(
-            observeModeUseCase = ObserveModeUseCase(preferences),
-            observeFollowSystemModeUseCase = ObserveFollowSystemModeUseCase(preferences),
-            setModeUseCase = SetModeUseCase(preferences),
-            observeLearnedLangUseCase = ObserveLearnedLangUseCase(preferences),
-            observeNativeLangUseCase = ObserveNativeLangUseCase(preferences),
-            observeTranslationDirectionUseCase = ObserveTranslationDirectionUseCase(preferences),
-            observeAllCategoriesUseCase = ObserveAllCategoriesUseCase(repo),
-            getAllCategoriesUseCase = GetAllCategoriesUseCase(repo),
-            updateWordStatusUseCase = UpdateWordStatusUseCase(repo),
-            updateLearnedPercentInCategory = UpdateLearnedPercentInCategory(repo),
-            speakWord = SpeakWord(speaker),
-            makeCategoryActiveUseCase = MakeCategoryActiveUseCase(repo)
-        )
-    }
-
-    @Provides
-    @Singleton
     fun provideMainInteractor(
         repo: WordRepo,
-        @ApplicationScope appScope: CoroutineScope,
+        @AppQualifier appScope: CoroutineScope,
         app: Application
     ) = SplashInteractor(
         repo,

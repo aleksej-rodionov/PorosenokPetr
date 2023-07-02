@@ -26,8 +26,6 @@ class CardStackView @JvmOverloads constructor(
 
     private val binding = LayoutCardstackBinding.inflate(LayoutInflater.from(context), this, true)
 
-//    lateinit var cardstackState: CardstackState
-
     private val cardstackAdapter = CardStackAdapter(
         onSpeakWord = { word ->
             onSpeakWord?.invoke(word)
@@ -54,7 +52,6 @@ class CardStackView @JvmOverloads constructor(
     ) {
         Log.d(TAG_CARDSTACK, "initView: currentList = ${cardstackAdapter.currentList.size}")
         Log.d(TAG_CARDSTACK, "initView: state = ${state.words.size}")
-//        this.cardstackState = state
 
         binding.apply {
             if (cardStack.adapter == null) {
@@ -66,12 +63,6 @@ class CardStackView @JvmOverloads constructor(
                 cardstackAdapter.submitList(state.words)
                 cardStack.scrollToPosition(state.currentPosition)
             }
-
-//            cardStack.background = if (state.mode == MODE_DARK) {
-//                resources.getColor(R.color.gray900).toDrawable()
-//            } else {
-//                resources.getColor(R.color.gray200).toDrawable()
-//            }
         }
     }
 
@@ -123,7 +114,7 @@ fun createCardStackLayoutManager(
         setTranslationInterval(8.0f)
         setScaleInterval(0.95f)
         setMaxDegree(20.0f)
-        setDirections(com.yuyakaido.android.cardstackview.Direction.FREEDOM)
+        setDirections(Direction.FREEDOM)
         setSwipeThreshold(0.3f)
         setCanScrollHorizontal(true)
         setCanScrollVertical(true)

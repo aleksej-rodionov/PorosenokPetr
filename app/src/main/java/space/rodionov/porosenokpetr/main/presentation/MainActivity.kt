@@ -37,6 +37,11 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         PorosenokPetrApp.component?.inject(this)
+//        DaggerMainComponent
+//            .builder()
+//            .appComponent(Injector.get().appComponent)
+//            .build()
+//            .inject(this)
         super.onCreate(savedInstanceState)
 
         setContent {
