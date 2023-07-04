@@ -42,10 +42,10 @@ abstract class ViewModelModule {
     @ViewModelKey(VocabularyViewModel::class)
     internal abstract fun vocabularyViewModel(vocabularyViewModel: VocabularyViewModel): ViewModel
 
-    @Binds
-    @IntoMap
-    @ViewModelKey(SettingsViewModel::class)
-    internal abstract fun settingsViewModel(settingsViewModel: SettingsViewModel): ViewModel
+//    @Binds
+//    @IntoMap
+//    @ViewModelKey(SettingsViewModel::class)
+//    internal abstract fun settingsViewModel(settingsViewModel: SettingsViewModel): ViewModel
 }
 
 

@@ -50,7 +50,7 @@ fun MainNavHost(
                 route = ChildGraphs.SettingsGraph.route,
                 startDestination = SettingsDestinations.SettingsMain.route
             ) {
-                addSettingsGraph(navController, scaffoldState, viewModelOwner, viewModelFactory)
+                addSettingsGraph(navController, scaffoldState, /*viewModelOwner, viewModelFactory*/)
             }
         }
     )

@@ -34,12 +34,13 @@ private const val TAG_SWITCHER = "TAG_SWITCHER"
 fun SettingsMainScreen(
     onNavigateUp: () -> Unit,
     scaffoldState: ScaffoldState,
-    owner: ComponentActivity,
-    factory: ViewModelFactory
+    viewModel: SettingsViewModel,
+//    owner: ComponentActivity,
+//    factory: ViewModelFactory
 ) {
 
     val spacing = LocalSpacing.current
-    val viewModel by owner.viewModels<SettingsViewModel> { factory }
+//    val viewModel by owner.viewModels<SettingsViewModel> { factory }
     val context = LocalContext.current
     val state = viewModel.state
 

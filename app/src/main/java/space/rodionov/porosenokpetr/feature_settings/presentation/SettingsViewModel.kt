@@ -19,7 +19,7 @@ import space.rodionov.porosenokpetr.core.util.UiEffect
 import space.rodionov.porosenokpetr.feature_settings.domain.use_case.use_case.SetFollowSystemModeUseCase
 import javax.inject.Inject
 
-class SettingsViewModel @Inject constructor(
+class SettingsViewModel /*@Inject constructor*/(
     private val setModeUseCase: SetModeUseCase,
     private val setFollowSystemModeUseCase: SetFollowSystemModeUseCase,
     private val observeModeUseCase: ObserveModeUseCase,

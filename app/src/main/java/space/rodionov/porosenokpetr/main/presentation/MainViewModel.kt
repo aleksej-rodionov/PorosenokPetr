@@ -21,9 +21,9 @@ import javax.inject.Singleton
 
 @Singleton//todo remove?
 class MainViewModel @Inject constructor(
-    private val observeModeUseCase: ObserveModeUseCase,
-    private val setModeUseCase: SetModeUseCase,
-    private val observeFollowSystemModeUseCase: ObserveFollowSystemModeUseCase,
+//    private val observeModeUseCase: ObserveModeUseCase,
+//    private val setModeUseCase: SetModeUseCase,
+//    private val observeFollowSystemModeUseCase: ObserveFollowSystemModeUseCase,
     private val splashInteractor: SplashInteractor
 ) : ViewModel() {
 
@@ -31,21 +31,21 @@ class MainViewModel @Inject constructor(
         private set
 
     //==========================MODE=========================================
-    private val _mode = observeModeUseCase.invoke()
-    val mode = _mode.stateIn(viewModelScope, SharingStarted.Lazily, 0)
-
-    fun updateMode(mode: Int) = viewModelScope.launch {
-        setModeUseCase.invoke(mode)
-    }
-
-    //==========================FOLLOW SYSTEM MODE=========================================
-    private val _followSystemMode = observeFollowSystemModeUseCase.invoke()
-    val followSystemMode = _followSystemMode.stateIn(viewModelScope, SharingStarted.Lazily, false)
-
-    init {
-        _mode.onEach { state = state.copy(isDarkTheme = it) }.launchIn(viewModelScope)
-        _followSystemMode.onEach { state = state.copy(isFollowSystemMode = it) }.launchIn(viewModelScope)
-    }
+//    private val _mode = observeModeUseCase.invoke()
+//    val mode = _mode.stateIn(viewModelScope, SharingStarted.Lazily, 0)
+//
+//    fun updateMode(mode: Int) = viewModelScope.launch {
+//        setModeUseCase.invoke(mode)
+//    }
+//
+//    //==========================FOLLOW SYSTEM MODE=========================================
+//    private val _followSystemMode = observeFollowSystemModeUseCase.invoke()
+//    val followSystemMode = _followSystemMode.stateIn(viewModelScope, SharingStarted.Lazily, false)
+//
+//    init {
+//        _mode.onEach { state = state.copy(isDarkTheme = it) }.launchIn(viewModelScope)
+//        _followSystemMode.onEach { state = state.copy(isFollowSystemMode = it) }.launchIn(viewModelScope)
+//    }
 
     fun onBtnClick() {
         viewModelScope.launch {

@@ -49,9 +49,10 @@ class AppModule {
         return WordRepoImpl(db.dao)
     }
 
+    //    @TemporaryPrefQualifier
     @Provides
     @Singleton
-    fun provideDatastore(app: Application): Preferences {
+    fun providePreferences(app: Application): Preferences {
         return PreferencesImpl(app)
     }
 

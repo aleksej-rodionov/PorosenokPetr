@@ -23,7 +23,7 @@ import javax.inject.Inject
 class CardStackViewModel @Inject constructor(
     private val getTenWordsUseCase: GetTenWordsUseCase,
     private val getRandomWordUseCase: GetRandomWordUseCase,
-    private val observeModeUseCase: ObserveModeUseCase,
+//    private val observeModeUseCase: ObserveModeUseCase,
     private val updateWordStatusUseCase: UpdateWordStatusUseCase,
     private val updateLearnedPercentInCategoryUseCase: UpdateLearnedPercentInCategoryUseCase,
     private val speakWordUseCase: SpeakWordUseCase
@@ -40,9 +40,9 @@ class CardStackViewModel @Inject constructor(
             state = state.copy(words = tenWordsMore)
         }
 
-        observeModeUseCase.invoke().onEach { mode ->
-            state = state.copy(words = state.words.map { it.copy(mode = mode) })
-        }.launchIn(viewModelScope)
+//        observeModeUseCase.invoke().onEach { mode ->
+//            state = state.copy(words = state.words.map { it.copy(mode = mode) })
+//        }.launchIn(viewModelScope)
     }
 
     fun onEvent(event: CardstackEvent) {

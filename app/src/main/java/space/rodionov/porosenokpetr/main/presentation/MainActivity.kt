@@ -31,17 +31,12 @@ class MainActivity : ComponentActivity() {
     @Inject
     lateinit var factory: ViewModelFactory
 
-    private val vmMain by viewModels<MainViewModel>(
+    private val vmMain by this.viewModels<MainViewModel>(
         factoryProducer = { factory }
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         PorosenokPetrApp.component?.inject(this)
-//        DaggerMainComponent
-//            .builder()
-//            .appComponent(Injector.get().appComponent)
-//            .build()
-//            .inject(this)
         super.onCreate(savedInstanceState)
 
         setContent {
@@ -85,25 +80,25 @@ class MainActivity : ComponentActivity() {
 
 
         this.lifecycleScope.launchWhenStarted {
-            vmMain.mode.collectLatest {
-                val mode = it ?: return@collectLatest
-
-//                setDefaultBarsColors(mode)
-            }
+//            vmMain.mode.collectLatest {
+//                val mode = it ?: return@collectLatest
+//
+////                setDefaultBarsColors(mode)
+//            }
         }
 
         this.lifecycleScope.launchWhenStarted {
-            vmMain.followSystemMode.collectLatest {
-                if (it) vmMain.updateMode(getSystemTheme())
-            }
+//            vmMain.followSystemMode.collectLatest {
+//                if (it) vmMain.updateMode(getSystemTheme())
+//            }
         }
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig)
-        if (vmMain.followSystemMode.value) {
-            vmMain.updateMode(getSystemTheme())
-        }
+//        super.onConfigurationChanged(newConfig)
+//        if (vmMain.followSystemMode.value) {
+//            vmMain.updateMode(getSystemTheme())
+//        }
     }
 
     //=================NIGHT MODE=====================
