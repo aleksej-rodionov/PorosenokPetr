@@ -9,15 +9,15 @@ import space.rodionov.porosenokpetr.core.util.ViewModelFactory
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.VocabularyViewModel
 import space.rodionov.porosenokpetr.main.di.ViewModelKey
 
-@Module
-abstract class VocabularyViewModelModule {
-
-    @Binds
-    @VocabularyScope
-    internal abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(VocabularyViewModel::class)
-    internal abstract fun vocabularyViewModel(vocabularyViewModel: VocabularyViewModel): ViewModel
-}
+//@Module
+//abstract class VocabularyViewModelModule {
+//
+//    @Binds
+//    @VocabularyScope
+//    internal abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
+//
+//    @Binds
+//    @IntoMap
+//    @ViewModelKey(VocabularyViewModel::class)
+//    internal abstract fun vocabularyViewModel(vocabularyViewModel: VocabularyViewModel): ViewModel
+//}

@@ -9,16 +9,16 @@ import space.rodionov.porosenokpetr.core.util.ViewModelFactory
 import space.rodionov.porosenokpetr.main.presentation.MainViewModel
 import javax.inject.Singleton
 
-@Module
-abstract class MainViewModelModule {
-
-    @Binds
-//    @MainScope
-    @Singleton
-    internal abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(MainViewModel::class)
-    internal abstract fun mainViewModel(mainViewModel: MainViewModel): ViewModel
-}
+//@Module
+//abstract class MainViewModelModule {
+//
+//    @Binds
+////    @MainScope
+//    @Singleton
+//    internal abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
+//
+//    @Binds
+//    @IntoMap
+//    @ViewModelKey(MainViewModel::class)
+//    internal abstract fun mainViewModel(mainViewModel: MainViewModel): ViewModel
+//}

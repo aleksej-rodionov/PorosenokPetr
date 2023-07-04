@@ -12,20 +12,24 @@ import javax.inject.Singleton
 @Module
 class SettingsModule {
 
-    @Provides
-    @SettingsScope
-    fun provideSetModeUseCase(preferences: Preferences) = SetModeUseCase(preferences)
+//    @Provides //todo temporarily commented not to be bound multiple times
+////    @SettingsScope
+//    @Singleton
+//    fun provideSetModeUseCase(preferences: Preferences) = SetModeUseCase(preferences)
 
     @Provides
-    @SettingsScope
+//    @SettingsScope
+    @Singleton
     fun provideSetFollowSystemModeUseCase(preferences: Preferences) =
         SetFollowSystemModeUseCase(preferences)
 
-    @Provides
-    @SettingsScope
-    fun provideObserveModeUseCase(preferences: Preferences) = ObserveModeUseCase(preferences)
+//    @Provides //todo temporarily commented not to be bound multiple times
+////    @SettingsScope
+//    @Singleton
+//    fun provideObserveModeUseCase(preferences: Preferences) = ObserveModeUseCase(preferences)
 
-    @Provides
-    @SettingsScope
-    fun provideObserveFollowSystemModeUseCase(preferences: Preferences) = ObserveFollowSystemModeUseCase(preferences)
+//    @Provides //todo temporarily commented not to be bound multiple times
+////    @SettingsScope
+//    @Singleton
+//    fun provideObserveFollowSystemModeUseCase(preferences: Preferences) = ObserveFollowSystemModeUseCase(preferences)
 }

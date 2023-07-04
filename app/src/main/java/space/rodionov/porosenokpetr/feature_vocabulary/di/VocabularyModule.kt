@@ -16,27 +16,33 @@ import javax.inject.Singleton
 class VocabularyModule {
 
     @Provides
-    @VocabularyScope
+//    @VocabularyScope
+    @Singleton
     fun provideObserveAllCategoriesUseCase(repo: WordRepo) = ObserveAllCategoriesUseCase(repo)
 
     @Provides
-    @VocabularyScope
+//    @VocabularyScope
+    @Singleton
     fun provideObserveWordsBySearchQueryInCategories(repo: WordRepo) =
         ObserveWordsBySearchQueryInCategories(repo)
 
     @Provides
-    @VocabularyScope
+//    @VocabularyScope
+    @Singleton
     fun provideMakeCategoryActiveUseCase(repo: WordRepo) = MakeCategoryActiveUseCase(repo)
 
-    @Provides
-    @VocabularyScope
-    fun provideSpeakWordUseCase(swedishSpeaker: SwedishSpeaker) = SpeakWordUseCase(swedishSpeaker)
+//    @Provides //todo temporarily commented not to be bound multiple times
+////    @VocabularyScope
+//    @Singleton
+//    fun provideSpeakWordUseCase(swedishSpeaker: SwedishSpeaker) = SpeakWordUseCase(swedishSpeaker)
 
-    @Provides
-    @VocabularyScope
-    fun provideUpdateWordStatusUseCase(repo: WordRepo) = UpdateWordStatusUseCase(repo)
+//    @Provides //todo temporarily commented not to be bound multiple times
+////    @VocabularyScope
+//    @Singleton
+//    fun provideUpdateWordStatusUseCase(repo: WordRepo) = UpdateWordStatusUseCase(repo)
 
-    @Provides
-    @VocabularyScope
-    fun provideUpdateLearnedPercentInCategoryUseCase(repo: WordRepo) = UpdateLearnedPercentInCategoryUseCase(repo)
+//    @Provides //todo temporarily commented not to be bound multiple times
+////    @VocabularyScope
+//    @Singleton
+//    fun provideUpdateLearnedPercentInCategoryUseCase(repo: WordRepo) = UpdateLearnedPercentInCategoryUseCase(repo)
 }

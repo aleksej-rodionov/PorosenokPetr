@@ -35,7 +35,7 @@ class SettingsViewModel @Inject constructor(
     fun onEvent(event: SettingsEvent) {
         when (event) {
             is SettingsEvent.OnBackClick -> {
-
+                viewModelScope.launch { _uiEffect.send(UiEffect.NavigateUp) }
             }
 
             is SettingsEvent.OnModeChanged -> {

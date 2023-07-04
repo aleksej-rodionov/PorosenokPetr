@@ -11,18 +11,18 @@ import javax.inject.Singleton
 @Module
 class MainModule {
 
-    @Provides
 //    @MainScope
+    @Provides
     @Singleton
     fun provideObserveModeUseCase(preferences: Preferences) = ObserveModeUseCase(preferences)
 
-    @Provides
 //    @MainScope
+    @Provides
     @Singleton
     fun provideSetModeUseCase(preferences: Preferences) = SetModeUseCase(preferences)
 
-    @Provides
 //    @MainScope
+    @Provides
     @Singleton
     fun provideObserveFollowSystemModeUseCase(preferences: Preferences) =
         ObserveFollowSystemModeUseCase(preferences)

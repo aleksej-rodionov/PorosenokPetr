@@ -19,7 +19,7 @@ import space.rodionov.porosenokpetr.feature_splash.domain.use_case.SplashInterac
 import javax.inject.Inject
 import javax.inject.Singleton
 
-//@Singleton//todo remove?
+@Singleton//todo remove?
 class MainViewModel @Inject constructor(
     private val observeModeUseCase: ObserveModeUseCase,
     private val setModeUseCase: SetModeUseCase,

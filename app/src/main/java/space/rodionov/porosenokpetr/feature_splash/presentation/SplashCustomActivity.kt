@@ -36,7 +36,7 @@ class SplashCustomActivity: ComponentActivity() {
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        PorosenokPetrApp.component?.inject(this)
+        PorosenokPetrApp.component?.inject(this)//todo inject from SplashSuctomComponent
         super.onCreate(savedInstanceState)
         setContent {
             PorosenokPetrTheme {
