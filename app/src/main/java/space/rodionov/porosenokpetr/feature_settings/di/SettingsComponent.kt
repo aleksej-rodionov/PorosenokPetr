@@ -12,6 +12,8 @@ import space.rodionov.porosenokpetr.main.di.AppComponent
 )
 interface SettingsComponent {
 
+//    fun inject(component: SettingsComponent)
+
     @Component.Builder
     interface Builder {
         fun appComponent(appComponent: AppComponent): Builder

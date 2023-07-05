@@ -12,6 +12,7 @@ import space.rodionov.porosenokpetr.feature_settings.di.DaggerSettingsComponent
 import space.rodionov.porosenokpetr.feature_settings.di.SettingsComponent
 import space.rodionov.porosenokpetr.feature_settings.presentation.SettingsMainScreen
 import space.rodionov.porosenokpetr.feature_settings.presentation.SettingsViewModel
+import space.rodionov.porosenokpetr.main.PorosenokPetrApp
 
 fun NavGraphBuilder.addSettingsGraph(
     navController: NavHostController,
@@ -22,7 +23,11 @@ fun NavGraphBuilder.addSettingsGraph(
 
     this.composable(route = SettingsDestinations.SettingsMain.route) {
 
-        val component = DaggerSettingsComponent.builder().build()
+        val component = DaggerSettingsComponent
+            .builder()
+            .appComponent(PorosenokPetrApp.component ?: throw Exception("The fucking AppComponent is not found to inject SettingsComponent =("))
+            .build()
+
         val viewModel: SettingsViewModel = daggerComposeViewModel {
             component.getViewModel()
         }
