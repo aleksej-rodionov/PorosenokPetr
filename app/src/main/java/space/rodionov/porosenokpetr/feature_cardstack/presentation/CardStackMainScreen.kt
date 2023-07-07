@@ -27,11 +27,9 @@ const val TAG_CARDSTACK = "TAG_CARDSTACK"
 @Composable
 fun CardStackMainScreen(
     scaffoldState: ScaffoldState,
-    owner: ComponentActivity,
-    factory: ViewModelFactory
+    viewModel: CardStackViewModel
 ) {
 
-    val viewModel by owner.viewModels<CardStackViewModel> { factory }
     val state = viewModel.state
 
     Box(

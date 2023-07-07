@@ -13,14 +13,14 @@ import space.rodionov.porosenokpetr.core.domain.preferences.Preferences
 import space.rodionov.porosenokpetr.core.data.repository.WordRepoImpl
 import space.rodionov.porosenokpetr.core.domain.repository.WordRepo
 import space.rodionov.porosenokpetr.core.util.Constants
-import space.rodionov.porosenokpetr.feature_splash.domain.use_case.SplashInteractor
 import space.rodionov.porosenokpetr.core.util.SwedishSpeaker
+import space.rodionov.porosenokpetr.feature_splash.di.SplashQualifier
 import javax.inject.Singleton
 
 @Module
 class AppModule {
 
-    @AppQualifier
+    @SplashQualifier
     @Provides
     @Singleton
     fun provideApplicationScope() = CoroutineScope(SupervisorJob())
@@ -28,10 +28,8 @@ class AppModule {
     @Provides
     @Singleton
     fun provideTextToSpeechInitListener(): TextToSpeech.OnInitListener {
-        return object : TextToSpeech.OnInitListener {
-            override fun onInit(status: Int) {
-                TODO("Not yet implemented")
-            }
+        return TextToSpeech.OnInitListener {
+            TODO("Not yet implemented")
         }
     }
 
@@ -49,7 +47,6 @@ class AppModule {
         return WordRepoImpl(db.dao)
     }
 
-    //    @TemporaryPrefQualifier
     @Provides
     @Singleton
     fun providePreferences(app: Application): Preferences {
@@ -60,23 +57,9 @@ class AppModule {
     @Singleton
     fun provideDB(
         app: Application,
-//        callback: WordDatabase.Callback
     ): WordDatabase {
         return Room.databaseBuilder(app, WordDatabase::class.java, Constants.WORD_DB)
             .fallbackToDestructiveMigration()
-//            .addCallback(callback)
             .build()
     }
-
-    @Provides
-    @Singleton
-    fun provideMainInteractor(
-        repo: WordRepo,
-        @AppQualifier appScope: CoroutineScope,
-        app: Application
-    ) = SplashInteractor(
-        repo,
-        appScope,
-        app
-    )
 }

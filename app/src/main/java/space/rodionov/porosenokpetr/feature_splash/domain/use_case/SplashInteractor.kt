@@ -2,18 +2,18 @@ package space.rodionov.porosenokpetr.feature_splash.domain.use_case
 
 import android.content.Context
 import android.util.Log
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.launch
 import space.rodionov.porosenokpetr.BuildConfig
+import space.rodionov.porosenokpetr.core.data.local.entity.WordRaw
 import space.rodionov.porosenokpetr.core.data.local.entity.swedishCategories
-import space.rodionov.porosenokpetr.core.data.local.parseVocabulary
 import space.rodionov.porosenokpetr.core.domain.model.Word
 import space.rodionov.porosenokpetr.core.domain.repository.WordRepo
 
-class SplashInteractor(
+class SplashInteractor( //todo split to useCases
     private val repository: WordRepo,
     private val appScope: CoroutineScope,
     private val context: Context
@@ -43,5 +43,22 @@ class SplashInteractor(
         } else {
             emit(false)
         }
+    }
+
+    private fun parseVocabulary(context: Context): List<WordRaw> {
+        var vocabularyJson = ""
+        try {
+            vocabularyJson = context.assets.open("vocabulary/vocabulary_swedish.json")
+                .bufferedReader()
+                .use {
+                    it.readText()
+                }
+        } catch (e: Exception) {
+            Log.d("TAG_DB", "parseVocabulary: exception = ${e.message}")
+        }
+
+        val wordListTYpe = object : TypeToken<List<WordRaw>>() {}.type
+        val wordRawList: List<WordRaw> = Gson().fromJson(vocabularyJson, wordListTYpe)
+        return wordRawList
     }
 }

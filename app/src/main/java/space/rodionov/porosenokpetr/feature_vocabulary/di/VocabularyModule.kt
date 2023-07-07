@@ -10,39 +10,53 @@ import space.rodionov.porosenokpetr.core.domain.use_case.UpdateWordStatusUseCase
 import space.rodionov.porosenokpetr.core.util.SwedishSpeaker
 import space.rodionov.porosenokpetr.feature_cardstack.domain.use_case.ObserveAllCategoriesUseCase
 import space.rodionov.porosenokpetr.feature_vocabulary.domain.use_case.*
+import space.rodionov.porosenokpetr.feature_vocabulary.presentation.VocabularyViewModel
 import javax.inject.Singleton
 
 @Module
 class VocabularyModule {
 
     @Provides
-//    @VocabularyScope
-    @Singleton
+    @VocabularyScope
     fun provideObserveAllCategoriesUseCase(repo: WordRepo) = ObserveAllCategoriesUseCase(repo)
 
     @Provides
-//    @VocabularyScope
-    @Singleton
+    @VocabularyScope
     fun provideObserveWordsBySearchQueryInCategories(repo: WordRepo) =
         ObserveWordsBySearchQueryInCategories(repo)
 
     @Provides
-//    @VocabularyScope
-    @Singleton
+    @VocabularyScope
     fun provideMakeCategoryActiveUseCase(repo: WordRepo) = MakeCategoryActiveUseCase(repo)
 
-//    @Provides //todo temporarily commented not to be bound multiple times
-////    @VocabularyScope
-//    @Singleton
-//    fun provideSpeakWordUseCase(swedishSpeaker: SwedishSpeaker) = SpeakWordUseCase(swedishSpeaker)
+    @Provides
+    @VocabularyScope
+    fun provideSpeakWordUseCase(swedishSpeaker: SwedishSpeaker) = SpeakWordUseCase(swedishSpeaker)
 
-//    @Provides //todo temporarily commented not to be bound multiple times
-////    @VocabularyScope
-//    @Singleton
-//    fun provideUpdateWordStatusUseCase(repo: WordRepo) = UpdateWordStatusUseCase(repo)
+    @Provides
+    @VocabularyScope
+    fun provideUpdateWordStatusUseCase(repo: WordRepo) = UpdateWordStatusUseCase(repo)
 
-//    @Provides //todo temporarily commented not to be bound multiple times
-////    @VocabularyScope
-//    @Singleton
-//    fun provideUpdateLearnedPercentInCategoryUseCase(repo: WordRepo) = UpdateLearnedPercentInCategoryUseCase(repo)
+    @Provides
+    @VocabularyScope
+    fun provideUpdateLearnedPercentInCategoryUseCase(repo: WordRepo) =
+        UpdateLearnedPercentInCategoryUseCase(repo)
+
+    @Provides
+    @VocabularyScope
+    fun provideVocabularyViewModel(
+        observeAllCategoriesUseCase: ObserveAllCategoriesUseCase,
+        observeWordsBySearchQueryInCategories: ObserveWordsBySearchQueryInCategories,
+        makeCategoryActiveUseCase: MakeCategoryActiveUseCase,
+        speakWordUseCase: SpeakWordUseCase,
+        updateWordStatusUseCase: UpdateWordStatusUseCase,
+        updateLearnedPercentInCategoryUseCase: UpdateLearnedPercentInCategoryUseCase
+    ) = VocabularyViewModel(
+        observeAllCategoriesUseCase,
+        observeWordsBySearchQueryInCategories,
+        makeCategoryActiveUseCase,
+        speakWordUseCase,
+        updateWordStatusUseCase,
+        updateLearnedPercentInCategoryUseCase
+    )
 }

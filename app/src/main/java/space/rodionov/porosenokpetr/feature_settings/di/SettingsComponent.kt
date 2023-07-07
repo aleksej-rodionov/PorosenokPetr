@@ -4,15 +4,12 @@ import dagger.Component
 import space.rodionov.porosenokpetr.feature_settings.presentation.SettingsViewModel
 import space.rodionov.porosenokpetr.main.di.AppComponent
 
-
 @SettingsScope
 @Component(
-    dependencies = [AppComponent::class], //todo uncomment then
+    dependencies = [AppComponent::class],
     modules = [SettingsModule::class]
 )
 interface SettingsComponent {
-
-//    fun inject(component: SettingsComponent)
 
     @Component.Builder
     interface Builder {
@@ -20,5 +17,5 @@ interface SettingsComponent {
         fun build(): SettingsComponent
     }
 
-    fun getViewModel(): SettingsViewModel
+    fun getSettingsViewModel(): SettingsViewModel
 }

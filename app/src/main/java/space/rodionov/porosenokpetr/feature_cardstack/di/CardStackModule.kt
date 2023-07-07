@@ -9,39 +9,46 @@ import space.rodionov.porosenokpetr.core.domain.use_case.SpeakWordUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.UpdateLearnedPercentInCategoryUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.UpdateWordStatusUseCase
 import space.rodionov.porosenokpetr.core.util.SwedishSpeaker
-import space.rodionov.porosenokpetr.feature_cardstack.domain.use_case.*
-import javax.inject.Singleton
+import space.rodionov.porosenokpetr.feature_cardstack.domain.use_case.GetTenWordsUseCase
+import space.rodionov.porosenokpetr.feature_cardstack.presentation.CardStackViewModel
 
 @Module
 class CardStackModule {
 
     @Provides
-//    @CardStackScope
-    @Singleton
-    fun provideGetRandomWordUseCase(repo: WordRepo) = GetRandomWordUseCase(repo)
-
-    @Provides
-//    @CardStackScope
-    @Singleton
+    @CardStackScope
     fun provideGetTenWordsUseCase(repo: WordRepo) = GetTenWordsUseCase(repo)
 
-//    @Provides //todo temporarily commented not to be bound multiple times
-////    @CardStackScope
-//    @Singleton
-//    fun provideObserveModeUseCase(preferences: Preferences) = ObserveModeUseCase(preferences)
+    @Provides
+    @CardStackScope
+    fun provideObserveModeUseCase(preferences: Preferences) = ObserveModeUseCase(preferences)
 
     @Provides
-//    @CardStackScope
-    @Singleton
+    @CardStackScope
     fun provideUpdateWordStatusUseCase(repo: WordRepo) = UpdateWordStatusUseCase(repo)
 
     @Provides
-//    @CardStackScope
-    @Singleton
+    @CardStackScope
+    fun provideUpdateLearnedPercentInCategoryUseCase(repo: WordRepo) =
+        UpdateLearnedPercentInCategoryUseCase(repo)
+
+    @Provides
+    @CardStackScope
     fun provideSpeakWordUseCase(swedishSpeaker: SwedishSpeaker) = SpeakWordUseCase(swedishSpeaker)
 
     @Provides
-//    @VocabularyScope
-    @Singleton
-    fun provideUpdateLearnedPercentInCategoryUseCase(repo: WordRepo) = UpdateLearnedPercentInCategoryUseCase(repo)
+    @CardStackScope
+    fun provideCardStackViewModel(
+        getTenWordsUseCase: GetTenWordsUseCase,
+        observeModeUseCase: ObserveModeUseCase,
+        updateWordStatusUseCase: UpdateWordStatusUseCase,
+        updateLearnedPercentInCategoryUseCase: UpdateLearnedPercentInCategoryUseCase,
+        speakWordUseCase: SpeakWordUseCase
+    ) = CardStackViewModel(
+        getTenWordsUseCase,
+        observeModeUseCase,
+        updateWordStatusUseCase,
+        updateLearnedPercentInCategoryUseCase,
+        speakWordUseCase,
+    )
 }

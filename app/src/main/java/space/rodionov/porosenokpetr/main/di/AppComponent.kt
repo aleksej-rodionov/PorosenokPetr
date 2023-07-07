@@ -15,17 +15,7 @@ import javax.inject.Singleton
 @Singleton
 @Component(
     modules = [
-        AppModule::class,
-//        SplashCustomViewModelModule::class, //todo find how to remove
-        MainModule::class, //todo find how to remove
-//        MainViewModelModule::class, //todo find how to remove
-        CardStackModule::class,
-//        CardStackViewModelModule::class,
-        VocabularyModule::class,
-//        VocabularyViewModelModule::class,
-//        SettingsModule::class,
-//        SettingsViewModelModule::class,
-        ViewModelModule::class
+        AppModule::class
     ]
 )
 interface AppComponent {
