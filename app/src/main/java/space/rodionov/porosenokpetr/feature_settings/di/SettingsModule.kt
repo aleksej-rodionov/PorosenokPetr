@@ -3,10 +3,10 @@ package space.rodionov.porosenokpetr.feature_settings.di
 import dagger.Module
 import dagger.Provides
 import space.rodionov.porosenokpetr.core.domain.preferences.KeyValueStorage
-import space.rodionov.porosenokpetr.core.domain.use_case.ObserveFollowSystemModeUseCase
-import space.rodionov.porosenokpetr.core.domain.use_case.ObserveModeUseCase
-import space.rodionov.porosenokpetr.core.domain.use_case.SetModeUseCase
-import space.rodionov.porosenokpetr.feature_settings.domain.use_case.use_case.SetFollowSystemModeUseCase
+import space.rodionov.porosenokpetr.core.domain.use_case.CollectIsFollowingSystemModeUseCase
+import space.rodionov.porosenokpetr.core.domain.use_case.CollectModeUseCase
+import space.rodionov.porosenokpetr.core.domain.use_case.UpdateModeUseCase
+import space.rodionov.porosenokpetr.feature_settings.domain.use_case.use_case.UpdateIsFollowingSystemModeUseCase
 import space.rodionov.porosenokpetr.feature_settings.presentation.SettingsViewModel
 
 @Module
@@ -14,33 +14,33 @@ class SettingsModule {
 
     @Provides
     @SettingsScope
-    fun provideSetModeUseCase(keyValueStorage: KeyValueStorage) = SetModeUseCase(keyValueStorage)
+    fun provideSetModeUseCase(keyValueStorage: KeyValueStorage) = UpdateModeUseCase(keyValueStorage)
 
     @Provides
     @SettingsScope
     fun provideSetFollowSystemModeUseCase(keyValueStorage: KeyValueStorage) =
-        SetFollowSystemModeUseCase(keyValueStorage)
+        UpdateIsFollowingSystemModeUseCase(keyValueStorage)
 
     @Provides
     @SettingsScope
-    fun provideObserveModeUseCase(keyValueStorage: KeyValueStorage) = ObserveModeUseCase(keyValueStorage)
+    fun provideObserveModeUseCase(keyValueStorage: KeyValueStorage) = CollectModeUseCase(keyValueStorage)
 
     @Provides
     @SettingsScope
     fun provideObserveFollowSystemModeUseCase(keyValueStorage: KeyValueStorage) =
-        ObserveFollowSystemModeUseCase(keyValueStorage)
+        CollectIsFollowingSystemModeUseCase(keyValueStorage)
 
     @Provides
     @SettingsScope
     fun provideSettingsViewModel(
-        setModeUseCase: SetModeUseCase,
-        setFollowSystemModeUseCase: SetFollowSystemModeUseCase,
-        observeModeUseCase: ObserveModeUseCase,
-        observeFollowSystemModeUseCase: ObserveFollowSystemModeUseCase
+        updateModeUseCase: UpdateModeUseCase,
+        updateIsFollowingSystemModeUseCase: UpdateIsFollowingSystemModeUseCase,
+        collectModeUseCase: CollectModeUseCase,
+        collectIsFollowingSystemModeUseCase: CollectIsFollowingSystemModeUseCase
     ) = SettingsViewModel(
-        setModeUseCase,
-        setFollowSystemModeUseCase,
-        observeModeUseCase,
-        observeFollowSystemModeUseCase
+        updateModeUseCase,
+        updateIsFollowingSystemModeUseCase,
+        collectModeUseCase,
+        collectIsFollowingSystemModeUseCase
     )
 }

@@ -20,7 +20,7 @@ class CardStackItemComparator : DiffUtil.ItemCallback<CardStackItem.WordUi>() {
             payloads.add(Payloads.NATIVE_LANG)
         }
         if (oldItem.isNativeToForeign != newItem.isNativeToForeign) {
-            payloads.add(Payloads.IS_NATIVE_TO_FOREIGN)
+            payloads.add(Payloads.IS_NATIVE_TO_FOREIGN_KEY)
         }
         if (oldItem.mode != newItem.mode) {
             payloads.add(Payloads.MODE)
@@ -31,6 +31,6 @@ class CardStackItemComparator : DiffUtil.ItemCallback<CardStackItem.WordUi>() {
 
 object Payloads {
     const val NATIVE_LANG = "nativeLang"
-    const val IS_NATIVE_TO_FOREIGN = "isNativeToForeign"
+    const val IS_NATIVE_TO_FOREIGN_KEY = "isNativeToForeign"
     const val MODE = "mode"
 }

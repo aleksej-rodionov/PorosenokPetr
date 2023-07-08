@@ -8,12 +8,11 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import space.rodionov.porosenokpetr.core.domain.use_case.ObserveModeUseCase
+import space.rodionov.porosenokpetr.core.domain.use_case.CollectModeUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.SpeakWordUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.UpdateLearnedPercentInCategoryUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.UpdateWordStatusUseCase
 import space.rodionov.porosenokpetr.core.util.Constants.MAX_STACK_SIZE
-import space.rodionov.porosenokpetr.feature_cardstack.domain.use_case.GetRandomWordUseCase
 import space.rodionov.porosenokpetr.feature_cardstack.domain.use_case.GetTenWordsUseCase
 import space.rodionov.porosenokpetr.feature_cardstack.presentation.mapper.toWord
 import space.rodionov.porosenokpetr.feature_cardstack.presentation.mapper.toWordUi
@@ -22,7 +21,7 @@ import javax.inject.Inject
 
 class CardStackViewModel @Inject constructor(
     private val getTenWordsUseCase: GetTenWordsUseCase,
-    private val observeModeUseCase: ObserveModeUseCase,
+    private val collectModeUseCase: CollectModeUseCase,
     private val updateWordStatusUseCase: UpdateWordStatusUseCase,
     private val updateLearnedPercentInCategoryUseCase: UpdateLearnedPercentInCategoryUseCase,
     private val speakWordUseCase: SpeakWordUseCase
@@ -39,7 +38,7 @@ class CardStackViewModel @Inject constructor(
             state = state.copy(words = tenWordsMore)
         }
 
-        observeModeUseCase.invoke().onEach { mode ->
+        collectModeUseCase.invoke().onEach { mode ->
             state = state.copy(words = state.words.map { it.copy(mode = mode) })
         }.launchIn(viewModelScope)
     }

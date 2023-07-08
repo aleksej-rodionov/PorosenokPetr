@@ -10,16 +10,16 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import space.rodionov.porosenokpetr.core.domain.use_case.ObserveFollowSystemModeUseCase
-import space.rodionov.porosenokpetr.core.domain.use_case.ObserveModeUseCase
-import space.rodionov.porosenokpetr.core.domain.use_case.SetModeUseCase
+import space.rodionov.porosenokpetr.core.domain.use_case.CollectIsFollowingSystemModeUseCase
+import space.rodionov.porosenokpetr.core.domain.use_case.CollectModeUseCase
+import space.rodionov.porosenokpetr.core.domain.use_case.UpdateModeUseCase
 import space.rodionov.porosenokpetr.core.util.Constants.MODE_LIGHT
 import javax.inject.Inject
 
 class RootViewModel @Inject constructor(
-    private val observeModeUseCase: ObserveModeUseCase,
-    private val setModeUseCase: SetModeUseCase,
-    private val observeFollowSystemModeUseCase: ObserveFollowSystemModeUseCase,
+    private val collectModeUseCase: CollectModeUseCase,
+    private val updateModeUseCase: UpdateModeUseCase,
+    private val collectIsFollowingSystemModeUseCase: CollectIsFollowingSystemModeUseCase,
 //    private val splashInteractor: SplashInteractor
 ) : ViewModel() {
 
@@ -27,15 +27,15 @@ class RootViewModel @Inject constructor(
         private set
 
     //==========================MODE=========================================
-    private val _mode = observeModeUseCase.invoke()
+    private val _mode = collectModeUseCase.invoke()
     val mode = _mode.stateIn(viewModelScope, SharingStarted.Lazily, 0)
 
     fun updateMode(mode: Int) = viewModelScope.launch {
-        setModeUseCase.invoke(mode)
+        updateModeUseCase.invoke(mode)
     }
 
     //==========================FOLLOW SYSTEM MODE=========================================
-    private val _followSystemMode = observeFollowSystemModeUseCase.invoke()
+    private val _followSystemMode = collectIsFollowingSystemModeUseCase.invoke()
     val followSystemMode = _followSystemMode.stateIn(viewModelScope, SharingStarted.Lazily, false)
 
     init {

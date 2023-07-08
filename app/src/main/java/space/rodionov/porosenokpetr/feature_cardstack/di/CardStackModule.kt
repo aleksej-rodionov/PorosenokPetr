@@ -4,7 +4,7 @@ import dagger.Module
 import dagger.Provides
 import space.rodionov.porosenokpetr.core.domain.preferences.KeyValueStorage
 import space.rodionov.porosenokpetr.core.domain.repository.WordRepo
-import space.rodionov.porosenokpetr.core.domain.use_case.ObserveModeUseCase
+import space.rodionov.porosenokpetr.core.domain.use_case.CollectModeUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.SpeakWordUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.UpdateLearnedPercentInCategoryUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.UpdateWordStatusUseCase
@@ -21,7 +21,7 @@ class CardStackModule {
 
     @Provides
     @CardStackScope
-    fun provideObserveModeUseCase(keyValueStorage: KeyValueStorage) = ObserveModeUseCase(keyValueStorage)
+    fun provideObserveModeUseCase(keyValueStorage: KeyValueStorage) = CollectModeUseCase(keyValueStorage)
 
     @Provides
     @CardStackScope
@@ -40,13 +40,13 @@ class CardStackModule {
     @CardStackScope
     fun provideCardStackViewModel(
         getTenWordsUseCase: GetTenWordsUseCase,
-        observeModeUseCase: ObserveModeUseCase,
+        collectModeUseCase: CollectModeUseCase,
         updateWordStatusUseCase: UpdateWordStatusUseCase,
         updateLearnedPercentInCategoryUseCase: UpdateLearnedPercentInCategoryUseCase,
         speakWordUseCase: SpeakWordUseCase
     ) = CardStackViewModel(
         getTenWordsUseCase,
-        observeModeUseCase,
+        collectModeUseCase,
         updateWordStatusUseCase,
         updateLearnedPercentInCategoryUseCase,
         speakWordUseCase,
