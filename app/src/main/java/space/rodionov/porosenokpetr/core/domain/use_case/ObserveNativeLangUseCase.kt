@@ -1,9 +1,9 @@
 package space.rodionov.porosenokpetr.core.domain.use_case
 
-import space.rodionov.porosenokpetr.core.domain.preferences.Preferences
+import space.rodionov.porosenokpetr.core.domain.preferences.KeyValueStorage
 
 class ObserveNativeLangUseCase(
-    private val repo: Preferences
+    private val repo: KeyValueStorage
 ) {
 
     operator fun invoke() = repo.nativeLanguageFlow()

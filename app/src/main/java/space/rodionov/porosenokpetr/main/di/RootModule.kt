@@ -2,7 +2,7 @@ package space.rodionov.porosenokpetr.main.di
 
 import dagger.Module
 import dagger.Provides
-import space.rodionov.porosenokpetr.core.domain.preferences.Preferences
+import space.rodionov.porosenokpetr.core.domain.preferences.KeyValueStorage
 import space.rodionov.porosenokpetr.core.domain.use_case.ObserveFollowSystemModeUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.ObserveModeUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.SetModeUseCase
@@ -13,18 +13,18 @@ class RootModule {
     @Provides
     @RootScope
     fun provideObserveModeUseCase(
-        preferences: Preferences
-    ) = ObserveModeUseCase(preferences)
+        keyValueStorage: KeyValueStorage
+    ) = ObserveModeUseCase(keyValueStorage)
 
     @Provides
     @RootScope
     fun provideSetModeUseCase(
-        preferences: Preferences
-    ) = SetModeUseCase(preferences)
+        keyValueStorage: KeyValueStorage
+    ) = SetModeUseCase(keyValueStorage)
 
     @Provides
     @RootScope
     fun provideObserveFollowSystemModeUseCase(
-        preferences: Preferences
-    ) = ObserveFollowSystemModeUseCase(preferences)
+        keyValueStorage: KeyValueStorage
+    ) = ObserveFollowSystemModeUseCase(keyValueStorage)
 }

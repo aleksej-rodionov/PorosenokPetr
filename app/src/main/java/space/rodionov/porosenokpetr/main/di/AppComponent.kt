@@ -4,7 +4,7 @@ import android.app.Application
 import dagger.BindsInstance
 import dagger.Component
 import kotlinx.coroutines.CoroutineScope
-import space.rodionov.porosenokpetr.core.domain.preferences.Preferences
+import space.rodionov.porosenokpetr.core.domain.preferences.KeyValueStorage
 import space.rodionov.porosenokpetr.core.domain.repository.WordRepo
 import space.rodionov.porosenokpetr.core.util.SwedishSpeaker
 import space.rodionov.porosenokpetr.main.PorosenokPetrApp
@@ -19,7 +19,7 @@ import javax.inject.Singleton
 interface AppComponent {
 
     fun getApplication(): Application
-    fun getPreferences(): Preferences
+    fun getPreferences(): KeyValueStorage
     fun getWordRepo(): WordRepo
     fun getSwedishSpeaker(): SwedishSpeaker
     @AppCoroutineScopeQualifier //todo remove?

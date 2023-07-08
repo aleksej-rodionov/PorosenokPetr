@@ -2,7 +2,7 @@ package space.rodionov.porosenokpetr.feature_settings.di
 
 import dagger.Module
 import dagger.Provides
-import space.rodionov.porosenokpetr.core.domain.preferences.Preferences
+import space.rodionov.porosenokpetr.core.domain.preferences.KeyValueStorage
 import space.rodionov.porosenokpetr.core.domain.use_case.ObserveFollowSystemModeUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.ObserveModeUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.SetModeUseCase
@@ -14,21 +14,21 @@ class SettingsModule {
 
     @Provides
     @SettingsScope
-    fun provideSetModeUseCase(preferences: Preferences) = SetModeUseCase(preferences)
+    fun provideSetModeUseCase(keyValueStorage: KeyValueStorage) = SetModeUseCase(keyValueStorage)
 
     @Provides
     @SettingsScope
-    fun provideSetFollowSystemModeUseCase(preferences: Preferences) =
-        SetFollowSystemModeUseCase(preferences)
+    fun provideSetFollowSystemModeUseCase(keyValueStorage: KeyValueStorage) =
+        SetFollowSystemModeUseCase(keyValueStorage)
 
     @Provides
     @SettingsScope
-    fun provideObserveModeUseCase(preferences: Preferences) = ObserveModeUseCase(preferences)
+    fun provideObserveModeUseCase(keyValueStorage: KeyValueStorage) = ObserveModeUseCase(keyValueStorage)
 
     @Provides
     @SettingsScope
-    fun provideObserveFollowSystemModeUseCase(preferences: Preferences) =
-        ObserveFollowSystemModeUseCase(preferences)
+    fun provideObserveFollowSystemModeUseCase(keyValueStorage: KeyValueStorage) =
+        ObserveFollowSystemModeUseCase(keyValueStorage)
 
     @Provides
     @SettingsScope

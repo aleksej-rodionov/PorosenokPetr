@@ -2,7 +2,7 @@ package space.rodionov.porosenokpetr.feature_cardstack.di
 
 import dagger.Module
 import dagger.Provides
-import space.rodionov.porosenokpetr.core.domain.preferences.Preferences
+import space.rodionov.porosenokpetr.core.domain.preferences.KeyValueStorage
 import space.rodionov.porosenokpetr.core.domain.repository.WordRepo
 import space.rodionov.porosenokpetr.core.domain.use_case.ObserveModeUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.SpeakWordUseCase
@@ -21,7 +21,7 @@ class CardStackModule {
 
     @Provides
     @CardStackScope
-    fun provideObserveModeUseCase(preferences: Preferences) = ObserveModeUseCase(preferences)
+    fun provideObserveModeUseCase(keyValueStorage: KeyValueStorage) = ObserveModeUseCase(keyValueStorage)
 
     @Provides
     @CardStackScope

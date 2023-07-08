@@ -8,8 +8,8 @@ import dagger.Provides
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import space.rodionov.porosenokpetr.core.data.local.WordDatabase
-import space.rodionov.porosenokpetr.core.data.preferences.PreferencesImpl
-import space.rodionov.porosenokpetr.core.domain.preferences.Preferences
+import space.rodionov.porosenokpetr.core.data.preferences.KeyValueStorageImpl
+import space.rodionov.porosenokpetr.core.domain.preferences.KeyValueStorage
 import space.rodionov.porosenokpetr.core.data.repository.WordRepoImpl
 import space.rodionov.porosenokpetr.core.domain.repository.WordRepo
 import space.rodionov.porosenokpetr.core.util.Constants
@@ -48,8 +48,8 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun providePreferences(app: Application): Preferences {
-        return PreferencesImpl(app)
+    fun providePreferences(app: Application): KeyValueStorage {
+        return KeyValueStorageImpl(app)
     }
 
     @Provides
