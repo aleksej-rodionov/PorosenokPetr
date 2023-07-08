@@ -7,21 +7,20 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import space.rodionov.porosenokpetr.core.util.ViewModelFactory
 import space.rodionov.porosenokpetr.core.util.daggerComposeViewModel
+import space.rodionov.porosenokpetr.feature_cardstack.di.DaggerCardStackComponent
 import space.rodionov.porosenokpetr.feature_cardstack.presentation.CardStackMainScreen
 import space.rodionov.porosenokpetr.feature_cardstack.presentation.CardStackViewModel
 import space.rodionov.porosenokpetr.main.PorosenokPetrApp
 
 fun NavGraphBuilder.addCardStackGraph(
     navController: NavHostController,
-    scaffoldState: ScaffoldState,
-    viewModelOwner: ComponentActivity,
-    viewModelFactory: ViewModelFactory
+    scaffoldState: ScaffoldState
 ) {
 
     this.composable(route = CardStackDestinations.CardStackMain.route) {
 
         val component = DaggerCardStackComponent
-            .builder
+            .builder()
             .appComponent(PorosenokPetrApp.component ?: throw Exception("The AppComponent is not found to inject CardStackComponent =("))
             .build()
 

@@ -1,8 +1,6 @@
 package space.rodionov.porosenokpetr.feature_splash.presentation
 
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -19,8 +17,9 @@ import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.util.ViewModelFactory
 import space.rodionov.porosenokpetr.core.util.startActivity
+import space.rodionov.porosenokpetr.feature_splash.di.DaggerSplashComponent
 import space.rodionov.porosenokpetr.main.PorosenokPetrApp
-import space.rodionov.porosenokpetr.main.presentation.MainActivity
+import space.rodionov.porosenokpetr.main.presentation.RootActivity
 import space.rodionov.porosenokpetr.ui.theme.Blue
 import space.rodionov.porosenokpetr.ui.theme.PorosenokPetrTheme
 import space.rodionov.porosenokpetr.ui.theme.White
@@ -36,7 +35,11 @@ class SplashCustomActivity: ComponentActivity() {
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        PorosenokPetrApp.component?.inject(this)//todo inject from SplashSuctomComponent
+        val component = DaggerSplashComponent
+            .builder()
+            .appComponent(PorosenokPetrApp.component ?: throw Exception("The AppComponent is not found to inject SettingsComponent =("))
+            .build()
+        component.inject(this)
         super.onCreate(savedInstanceState)
         setContent {
             PorosenokPetrTheme {
@@ -64,5 +67,5 @@ class SplashCustomActivity: ComponentActivity() {
         }
     }
 
-    private fun startMainActivity() = startActivity<MainActivity>()
+    private fun startMainActivity() = startActivity<RootActivity>()
 }

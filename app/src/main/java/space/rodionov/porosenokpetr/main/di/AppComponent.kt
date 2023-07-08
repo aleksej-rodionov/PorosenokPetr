@@ -3,13 +3,11 @@ package space.rodionov.porosenokpetr.main.di
 import android.app.Application
 import dagger.BindsInstance
 import dagger.Component
+import kotlinx.coroutines.CoroutineScope
 import space.rodionov.porosenokpetr.core.domain.preferences.Preferences
-import space.rodionov.porosenokpetr.feature_cardstack.di.CardStackModule
-import space.rodionov.porosenokpetr.feature_settings.di.SettingsModule
-import space.rodionov.porosenokpetr.feature_splash.presentation.SplashCustomActivity
-import space.rodionov.porosenokpetr.feature_vocabulary.di.VocabularyModule
+import space.rodionov.porosenokpetr.core.domain.repository.WordRepo
+import space.rodionov.porosenokpetr.core.util.SwedishSpeaker
 import space.rodionov.porosenokpetr.main.PorosenokPetrApp
-import space.rodionov.porosenokpetr.main.presentation.MainActivity
 import javax.inject.Singleton
 
 @Singleton
@@ -20,7 +18,12 @@ import javax.inject.Singleton
 )
 interface AppComponent {
 
+    fun getApplication(): Application
     fun getPreferences(): Preferences
+    fun getWordRepo(): WordRepo
+    fun getSwedishSpeaker(): SwedishSpeaker
+    @AppCoroutineScopeQualifier //todo remove?
+    fun getAppCoroutineScope(): CoroutineScope
 
     @Component.Builder
     interface Builder {
@@ -30,8 +33,6 @@ interface AppComponent {
     }
 
     fun inject(application: PorosenokPetrApp)
-    fun inject(activity: MainActivity)
-    fun inject(activity: SplashCustomActivity)
 }
 
 

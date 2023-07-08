@@ -14,13 +14,12 @@ import space.rodionov.porosenokpetr.core.data.repository.WordRepoImpl
 import space.rodionov.porosenokpetr.core.domain.repository.WordRepo
 import space.rodionov.porosenokpetr.core.util.Constants
 import space.rodionov.porosenokpetr.core.util.SwedishSpeaker
-import space.rodionov.porosenokpetr.feature_splash.di.SplashQualifier
 import javax.inject.Singleton
 
 @Module
 class AppModule {
 
-    @SplashQualifier
+    @AppCoroutineScopeQualifier
     @Provides
     @Singleton
     fun provideApplicationScope() = CoroutineScope(SupervisorJob())

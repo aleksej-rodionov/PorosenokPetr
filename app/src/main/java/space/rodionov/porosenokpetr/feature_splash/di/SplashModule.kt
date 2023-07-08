@@ -7,6 +7,7 @@ import kotlinx.coroutines.CoroutineScope
 import space.rodionov.porosenokpetr.core.domain.repository.WordRepo
 import space.rodionov.porosenokpetr.feature_splash.domain.use_case.SplashInteractor
 import space.rodionov.porosenokpetr.feature_splash.presentation.SplashCustomViewModel
+import space.rodionov.porosenokpetr.main.di.AppCoroutineScopeQualifier
 
 @Module
 class SplashModule {
@@ -15,7 +16,7 @@ class SplashModule {
     @SplashScope
     fun provideSplashInteractor(
         repo: WordRepo,
-        @SplashQualifier appScope: CoroutineScope,
+        @AppCoroutineScopeQualifier appScope: CoroutineScope,
         app: Application
     ) = SplashInteractor(
         repo,

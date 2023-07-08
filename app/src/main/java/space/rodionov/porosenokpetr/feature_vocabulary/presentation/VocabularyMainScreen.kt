@@ -24,11 +24,9 @@ import space.rodionov.porosenokpetr.feature_vocabulary.presentation.components.*
 fun VocabularyMainScreen(
     onNavigateUp: () -> Unit,
     scaffoldState: ScaffoldState,
-    owner: ComponentActivity,
-    factory: ViewModelFactory
+    viewModel: VocabularyViewModel
 ) {
 
-    val viewModel by owner.viewModels<VocabularyViewModel> { factory }
     val backdropState = rememberBackdropScaffoldState(initialValue = BackdropValue.Concealed)
     val state = viewModel.state
     val context = LocalContext.current

@@ -1,15 +1,18 @@
 package space.rodionov.porosenokpetr.feature_splash.di
 
 import dagger.Component
+import space.rodionov.porosenokpetr.feature_splash.presentation.SplashCustomActivity
 import space.rodionov.porosenokpetr.feature_splash.presentation.SplashCustomViewModel
 import space.rodionov.porosenokpetr.main.di.AppComponent
 
 @SplashScope
 @Component(
     dependencies = [AppComponent::class],
-    modules = [SplashModule::class]
+    modules = [SplashModule::class, SplashViewModelModule::class]
 )
 interface SplashComponent {
+
+    fun getSplashViewModel(): SplashCustomViewModel
 
     @Component.Builder
     interface Builder {
@@ -17,5 +20,5 @@ interface SplashComponent {
         fun build(): SplashComponent
     }
 
-    fun getViewModel(): SplashCustomViewModel
+    fun inject(activity: SplashCustomActivity)
 }

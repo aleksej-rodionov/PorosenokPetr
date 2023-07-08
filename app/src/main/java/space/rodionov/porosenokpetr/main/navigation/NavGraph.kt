@@ -36,21 +36,21 @@ fun MainNavHost(
                 route = ChildGraphs.CardStackGraph.route,
                 startDestination = CardStackDestinations.CardStackMain.route
             ) {
-                addCardStackGraph(navController, scaffoldState, viewModelOwner, viewModelFactory)
+                addCardStackGraph(navController, scaffoldState)
             }
 
             navigation(
                 route = ChildGraphs.VocabularyGraph.route,
                 startDestination = VocabularyDestinations.VocabularyMain.route
             ) {
-                addVocabularyGraph(navController, scaffoldState, viewModelOwner, viewModelFactory)
+                addVocabularyGraph(navController, scaffoldState)
             }
 
             navigation(
                 route = ChildGraphs.SettingsGraph.route,
                 startDestination = SettingsDestinations.SettingsMain.route
             ) {
-                addSettingsGraph(navController, scaffoldState, /*viewModelOwner, viewModelFactory*/)
+                addSettingsGraph(navController, scaffoldState)
             }
         }
     )

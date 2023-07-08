@@ -19,6 +19,7 @@ import space.rodionov.porosenokpetr.core.util.Constants.MODE_DARK
 import space.rodionov.porosenokpetr.core.util.Constants.MODE_LIGHT
 import space.rodionov.porosenokpetr.core.util.ViewModelFactory
 import space.rodionov.porosenokpetr.main.PorosenokPetrApp
+import space.rodionov.porosenokpetr.main.di.DaggerRootComponent
 import space.rodionov.porosenokpetr.main.navigation.CustomBottomNavigation
 import space.rodionov.porosenokpetr.main.navigation.MainNavHost
 import space.rodionov.porosenokpetr.ui.theme.Gray200
@@ -26,17 +27,21 @@ import space.rodionov.porosenokpetr.ui.theme.Gray900
 import space.rodionov.porosenokpetr.ui.theme.PorosenokPetrTheme
 import javax.inject.Inject
 
-class MainActivity : ComponentActivity() {
+class RootActivity : ComponentActivity() {
 
     @Inject
     lateinit var factory: ViewModelFactory
 
-    private val vmMain by this.viewModels<MainViewModel>(
+    private val vmMain by this.viewModels<RootViewModel>(
         factoryProducer = { factory }
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        PorosenokPetrApp.component?.inject(this)
+        val component = DaggerRootComponent
+            .builder()
+            .appComponent(PorosenokPetrApp.component ?: throw Exception("The AppComponent is not found to inject SettingsComponent =("))
+            .build()
+        component.inject(this)
         super.onCreate(savedInstanceState)
 
         setContent {
@@ -80,25 +85,25 @@ class MainActivity : ComponentActivity() {
 
 
         this.lifecycleScope.launchWhenStarted {
-//            vmMain.mode.collectLatest {
-//                val mode = it ?: return@collectLatest
-//
-////                setDefaultBarsColors(mode)
-//            }
+            vmMain.mode.collectLatest {
+                val mode = it ?: return@collectLatest
+
+//                setDefaultBarsColors(mode)
+            }
         }
 
         this.lifecycleScope.launchWhenStarted {
-//            vmMain.followSystemMode.collectLatest {
-//                if (it) vmMain.updateMode(getSystemTheme())
-//            }
+            vmMain.followSystemMode.collectLatest {
+                if (it) vmMain.updateMode(getSystemTheme())
+            }
         }
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
-//        super.onConfigurationChanged(newConfig)
-//        if (vmMain.followSystemMode.value) {
-//            vmMain.updateMode(getSystemTheme())
-//        }
+        super.onConfigurationChanged(newConfig)
+        if (vmMain.followSystemMode.value) {
+            vmMain.updateMode(getSystemTheme())
+        }
     }
 
     //=================NIGHT MODE=====================
