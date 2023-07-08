@@ -30,7 +30,8 @@ fun NavGraphBuilder.addCardStackGraph(
 
         CardStackMainScreen(
             scaffoldState,
-            viewModel
+            viewModel.state,
+            { viewModel.onEvent(it) }
         )
     }
 }

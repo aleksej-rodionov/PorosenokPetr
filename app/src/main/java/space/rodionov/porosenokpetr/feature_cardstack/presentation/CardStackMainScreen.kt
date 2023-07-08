@@ -1,7 +1,5 @@
 package space.rodionov.porosenokpetr.feature_cardstack.presentation
 
-import androidx.activity.ComponentActivity
-import androidx.activity.viewModels
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -10,16 +8,17 @@ import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.ScaffoldState
+import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.presentation.LocalSpacing
-import space.rodionov.porosenokpetr.core.util.ViewModelFactory
 import space.rodionov.porosenokpetr.feature_cardstack.presentation.componensts.CardStackView
 
 const val TAG_CARDSTACK = "TAG_CARDSTACK"
@@ -27,10 +26,9 @@ const val TAG_CARDSTACK = "TAG_CARDSTACK"
 @Composable
 fun CardStackMainScreen(
     scaffoldState: ScaffoldState,
-    viewModel: CardStackViewModel
+    state: CardstackState,
+    onEvent: (CardstackEvent) -> Unit
 ) {
-
-    val state = viewModel.state
 
     Box(
         modifier = Modifier
@@ -44,13 +42,13 @@ fun CardStackMainScreen(
         CardStack(
             state = state,
             updateCurrentPosition = {
-                viewModel.onEvent(CardstackEvent.UpdateCurrentPosition(it))
+                onEvent(CardstackEvent.UpdateCurrentPosition(it))
             },
             updateWordStatus = {
-                viewModel.onEvent(CardstackEvent.UpdateWordStatus(it))
+                onEvent(CardstackEvent.UpdateWordStatus(it))
             },
             speakWord = {
-                viewModel.onEvent(CardstackEvent.SpeakWord(it))
+                onEvent(CardstackEvent.SpeakWord(it))
             }
         )
 
@@ -108,5 +106,17 @@ fun CardStack(
         update = {
             it.submitList(state.words)
         }
+    )
+}
+
+@Preview
+@Composable
+fun CardstackScreenPreview(
+    scaffoldState: ScaffoldState = rememberScaffoldState()
+) {
+    CardStackMainScreen(
+        scaffoldState = scaffoldState,
+        state = CardstackState(),
+        onEvent = {}
     )
 }

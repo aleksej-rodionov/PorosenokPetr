@@ -22,7 +22,10 @@ fun NavGraphBuilder.addVocabularyGraph(
 
         val component = DaggerVocabularyComponent
             .builder()
-            .appComponent(PorosenokPetrApp.component ?: throw Exception("The AppComponent is not found to inject SettingsComponent =("))
+            .appComponent(
+                PorosenokPetrApp.component
+                    ?: throw Exception("The AppComponent is not found to inject SettingsComponent =(")
+            )
             .build()
 
         val viewModel: VocabularyViewModel = daggerComposeViewModel {
@@ -34,7 +37,9 @@ fun NavGraphBuilder.addVocabularyGraph(
                 navController.navigateUp()
             },
             scaffoldState,
-            viewModel
+            viewModel.state,
+            viewModel.uiEffect,
+            { viewModel.onEvent(it) }
         )
     }
 
@@ -48,9 +53,9 @@ fun NavGraphBuilder.addVocabularyGraph(
 
 sealed class VocabularyDestinations(val route: String) {
 
-    object VocabularyMain: VocabularyDestinations(route = "vocabularyMain")
+    object VocabularyMain : VocabularyDestinations(route = "vocabularyMain")
 
-    object VocabularySearch: VocabularyDestinations(route = "vocabularySearch") {
+    object VocabularySearch : VocabularyDestinations(route = "vocabularySearch") {
         val routeWithArgs = "$route/{name}"
         val arguments = listOf(
             navArgument("name") {

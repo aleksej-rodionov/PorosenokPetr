@@ -1,8 +1,6 @@
 package space.rodionov.porosenokpetr.feature_vocabulary.presentation
 
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.BackHandler
-import androidx.activity.viewModels
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -10,13 +8,15 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.launch
 import space.rodionov.porosenokpetr.core.presentation.LocalSpacing
 import space.rodionov.porosenokpetr.core.util.Constants.WORD_ACTIVE
 import space.rodionov.porosenokpetr.core.util.UiEffect
-import space.rodionov.porosenokpetr.core.util.ViewModelFactory
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.components.*
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -24,11 +24,12 @@ import space.rodionov.porosenokpetr.feature_vocabulary.presentation.components.*
 fun VocabularyMainScreen(
     onNavigateUp: () -> Unit,
     scaffoldState: ScaffoldState,
-    viewModel: VocabularyViewModel
+    state: VocabularyState,
+    uiEffect: Flow<UiEffect>,
+    onEvent: (VocabularyEvent) -> Unit
 ) {
 
     val backdropState = rememberBackdropScaffoldState(initialValue = BackdropValue.Concealed)
-    val state = viewModel.state
     val context = LocalContext.current
 
     val sheetState = rememberModalBottomSheetState(
@@ -41,16 +42,18 @@ fun VocabularyMainScreen(
     }
 
     LaunchedEffect(key1 = true) {
-        viewModel.uiEffect.collectLatest { effect ->
+        uiEffect.collectLatest { effect ->
             when (effect) {
                 is UiEffect.NavigateUp -> {
                     onNavigateUp()
                 }
+
                 is UiEffect.ShowSnackbar -> {
                     scaffoldState.snackbarHostState.showSnackbar(
                         effect.msg.asString(context)
                     )
                 }
+
                 else -> Unit
             }
         }
@@ -60,11 +63,11 @@ fun VocabularyMainScreen(
         DropWordProgressDialog(
             wordToAsk = state.showDropWordProgressDialogForWord,
             onConfirmClick = {
-                viewModel.onEvent(VocabularyEvent.OnWordStatusChanged(it, WORD_ACTIVE))
-                viewModel.onEvent(VocabularyEvent.OnDIalogDismissed)
+                onEvent(VocabularyEvent.OnWordStatusChanged(it, WORD_ACTIVE))
+                onEvent(VocabularyEvent.OnDIalogDismissed)
             },
             onDissmiss = {
-                viewModel.onEvent(VocabularyEvent.OnDIalogDismissed)
+                onEvent(VocabularyEvent.OnDIalogDismissed)
             }
         )
     }
@@ -77,11 +80,11 @@ fun VocabularyMainScreen(
 
             CategoryFilterBottomDrawer(
                 onDisplayAllClick = {
-                    viewModel.onEvent(VocabularyEvent.OnShowHideAllCategoriesSwitched(true))
+                    onEvent(VocabularyEvent.OnShowHideAllCategoriesSwitched(true))
                     scope.launch { sheetState.hide() }
                 },
                 onHideAllClick = {
-                    viewModel.onEvent(VocabularyEvent.OnShowHideAllCategoriesSwitched(false))
+                    onEvent(VocabularyEvent.OnShowHideAllCategoriesSwitched(false))
                     scope.launch { sheetState.hide() }
                 }
             )
@@ -97,16 +100,16 @@ fun VocabularyMainScreen(
                     query = state.searchQuery,
                     shouldShowHint = state.showSearchHint,
                     onBackClick = {
-                        viewModel.onEvent(VocabularyEvent.OnBackClick)
+                        onEvent(VocabularyEvent.OnBackClick)
                     },
                     onMenuClick = {
                         //todo
                     },
                     onSearchTextChanged = {
-                        viewModel.onEvent(VocabularyEvent.OnSearchQueryChanged(it))
+                        onEvent(VocabularyEvent.OnSearchQueryChanged(it))
                     },
                     onSearchFocusChanged = {
-                        viewModel.onEvent(VocabularyEvent.OnSearchFocusChanged(it))
+                        onEvent(VocabularyEvent.OnSearchFocusChanged(it))
                     }
                 )
             },
@@ -117,7 +120,7 @@ fun VocabularyMainScreen(
                         .background(color = MaterialTheme.colors.background), //todo was Gray300
                     categories = state.categoriesWithWords,
                     onSelectedChanged = { cat, opened ->
-                        viewModel.onEvent(VocabularyEvent.OnCategoryDisplayedChanged(cat, opened))
+                        onEvent(VocabularyEvent.OnCategoryDisplayedChanged(cat, opened))
                     }
                 )
             },
@@ -127,7 +130,7 @@ fun VocabularyMainScreen(
                     categoriesWithWords = state.categoriesWithWords,
                     wordsQuantity = state.wordsQuantity,
                     onCategoryDisplayedChanged = { category, opened ->
-                        viewModel.onEvent(
+                        onEvent(
                             VocabularyEvent.OnCategoryDisplayedChanged(
                                 category,
                                 opened
@@ -135,12 +138,12 @@ fun VocabularyMainScreen(
                         )
                     },
                     onCategoryActiveChanged = { category, active ->
-                        viewModel.onEvent(VocabularyEvent.OnCategoryActiveChanged(category, active))
+                        onEvent(VocabularyEvent.OnCategoryActiveChanged(category, active))
                     },
-                    onWordClick = { viewModel.onEvent(VocabularyEvent.OnWordClick(it)) },
-                    onVoiceClick = { viewModel.onEvent(VocabularyEvent.OnVoiceClick(it)) },
+                    onWordClick = { onEvent(VocabularyEvent.OnWordClick(it)) },
+                    onVoiceClick = { onEvent(VocabularyEvent.OnVoiceClick(it)) },
                     onWordStatusChanged = { word, status ->
-                        viewModel.onEvent(VocabularyEvent.OnWordStatusChanged(word, status))
+                        onEvent(VocabularyEvent.OnWordStatusChanged(word, status))
                     },
                     onFilterClick = {
                         scope.launch { sheetState.show() }
@@ -150,4 +153,18 @@ fun VocabularyMainScreen(
             peekHeight = 100.dp
         )
     }
+}
+
+@Preview
+@Composable
+fun VocabularyMainScreenPreview(
+    scaffoldState: ScaffoldState = rememberScaffoldState()
+) {
+    VocabularyMainScreen(
+        onNavigateUp = {},
+        scaffoldState = scaffoldState,
+        state = VocabularyState(),
+        uiEffect = emptyFlow(),
+        onEvent = {}
+    )
 }
