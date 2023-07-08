@@ -19,7 +19,7 @@ fun NavGraphBuilder.addSettingsGraph(
 
         val component = DaggerSettingsComponent
             .builder()
-            .appComponent(PorosenokPetrApp.component ?: throw Exception("The AppComponent is not found to inject SettingsComponent =("))
+            .appComponent(PorosenokPetrApp.component!!)
             .build()
 
         val viewModel: SettingsViewModel = daggerComposeViewModel {

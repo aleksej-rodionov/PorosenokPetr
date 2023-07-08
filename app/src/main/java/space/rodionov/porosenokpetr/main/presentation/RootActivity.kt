@@ -39,7 +39,7 @@ class RootActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         val component = DaggerRootComponent
             .builder()
-            .appComponent(PorosenokPetrApp.component ?: throw Exception("The AppComponent is not found to inject SettingsComponent =("))
+            .appComponent(PorosenokPetrApp.component!!)
             .build()
         component.inject(this)
         super.onCreate(savedInstanceState)

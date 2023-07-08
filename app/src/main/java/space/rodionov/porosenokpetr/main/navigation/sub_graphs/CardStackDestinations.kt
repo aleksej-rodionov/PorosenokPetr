@@ -21,7 +21,7 @@ fun NavGraphBuilder.addCardStackGraph(
 
         val component = DaggerCardStackComponent
             .builder()
-            .appComponent(PorosenokPetrApp.component ?: throw Exception("The AppComponent is not found to inject CardStackComponent =("))
+            .appComponent(PorosenokPetrApp.component!!)
             .build()
 
         val viewModel: CardStackViewModel = daggerComposeViewModel {

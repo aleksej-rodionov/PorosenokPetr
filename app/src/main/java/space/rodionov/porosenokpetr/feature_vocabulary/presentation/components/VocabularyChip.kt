@@ -9,6 +9,11 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -18,7 +23,6 @@ import androidx.compose.ui.unit.dp
 import space.rodionov.porosenokpetr.core.presentation.LocalSpacing
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.model.VocabularyItem
 import space.rodionov.porosenokpetr.ui.theme.Gray600
-import space.rodionov.porosenokpetr.ui.theme.Gray900
 import space.rodionov.porosenokpetr.ui.theme.TransparentGray15
 
 @Composable
@@ -28,24 +32,23 @@ fun VocabularyChip(
     isSelected: Boolean = false,
     isFocusedInList: Boolean = false,
     onSelectionChanged: (VocabularyItem.CategoryUi, Boolean) -> Unit,
-    color: Color,
+    selectedColor: Color,
     selectedTextColor: Color,
     textStyle: TextStyle = MaterialTheme.typography.button
 ) {
 
     Box(
-        contentAlignment = Alignment.Center,
         modifier = modifier
             .clip(RoundedCornerShape(100.dp))
             .border(
                 width = 2.dp,
                 color = if (isFocusedInList) MaterialTheme.colors.onBackground else {
-                    if (isSelected) color else TransparentGray15
+                    if (isSelected) selectedColor else TransparentGray15
                 },
                 shape = RoundedCornerShape(100.dp)
             )
             .background(
-                color = if (isSelected) color else TransparentGray15,
+                color = if (isSelected) selectedColor else TransparentGray15,
                 shape = RoundedCornerShape(100.dp)
             )
             .toggleable(
@@ -57,13 +60,19 @@ fun VocabularyChip(
             .padding(
                 horizontal = LocalSpacing.current.spaceSmall,
                 vertical = 6.dp
-            )
+            ),
+        contentAlignment = Alignment.Center
     ) {
 
         Text(
             text = category.getLocalizedName(2), //todo compositionLocal for nativeLanguage
-            style = textStyle,
-            color = if (isSelected) selectedTextColor else Gray600, //todo this doesn't get repainted =(
+            modifier = Modifier,
+            color = if (isSelected) {
+                Color.White //todo this doesn't get repainted =(
+            } else {
+                Gray600
+            },
+            style = textStyle
         )
     }
 }

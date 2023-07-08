@@ -14,7 +14,6 @@ import androidx.compose.ui.unit.sp
 import com.google.accompanist.flowlayout.FlowRow
 import space.rodionov.porosenokpetr.core.presentation.LocalSpacing
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.model.VocabularyItem
-import space.rodionov.porosenokpetr.ui.theme.Blue
 
 @Composable
 fun VocabularyChipGroup(
@@ -51,7 +50,7 @@ fun VocabularyChipGroup(
                     onSelectionChanged = { cat, opened ->
                         onSelectedChanged(cat, opened)
                     },
-                    color = MaterialTheme.colors.primary,
+                    selectedColor = MaterialTheme.colors.primary,
                     selectedTextColor = Color.White
                 )
             }
