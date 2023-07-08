@@ -1,9 +1,7 @@
 package space.rodionov.porosenokpetr.feature_settings.presentation
 
 import android.util.Log
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.BackHandler
-import androidx.activity.viewModels
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
@@ -12,8 +10,11 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.launch
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.presentation.LocalSpacing
@@ -21,7 +22,6 @@ import space.rodionov.porosenokpetr.core.presentation.components.TopBar
 import space.rodionov.porosenokpetr.core.util.Constants.MODE_DARK
 import space.rodionov.porosenokpetr.core.util.Constants.MODE_LIGHT
 import space.rodionov.porosenokpetr.core.util.UiEffect
-import space.rodionov.porosenokpetr.core.util.ViewModelFactory
 import space.rodionov.porosenokpetr.feature_settings.presentation.components.HeaderItem
 import space.rodionov.porosenokpetr.feature_settings.presentation.components.SettingsBottomDrawer
 import space.rodionov.porosenokpetr.feature_settings.presentation.components.SwitcherItem
@@ -34,15 +34,13 @@ private const val TAG_SWITCHER = "TAG_SWITCHER"
 fun SettingsMainScreen(
     onNavigateUp: () -> Unit,
     scaffoldState: ScaffoldState,
-    viewModel: SettingsViewModel,
-//    owner: ComponentActivity,
-//    factory: ViewModelFactory
+    state: SettingsState,
+    uiEffect: Flow<UiEffect>,
+    onEvent: (SettingsEvent) -> Unit
 ) {
 
     val spacing = LocalSpacing.current
-//    val viewModel by owner.viewModels<SettingsViewModel> { factory }
     val context = LocalContext.current
-    val state = viewModel.state
 
     val sheetState = rememberModalBottomSheetState(
         initialValue = ModalBottomSheetValue.Hidden,
@@ -54,16 +52,18 @@ fun SettingsMainScreen(
     }
 
     LaunchedEffect(key1 = true) {
-        viewModel.uiEffect.collectLatest { effect ->
+        uiEffect.collectLatest { effect ->
             when (effect) {
                 is UiEffect.NavigateUp -> {
                     onNavigateUp()
                 }
+
                 is UiEffect.ShowSnackbar -> {
                     scaffoldState.snackbarHostState.showSnackbar(
                         effect.msg.asString(context)
                     )
                 }
+
                 else -> Unit
             }
         }
@@ -93,7 +93,7 @@ fun SettingsMainScreen(
             TopBar(
                 text = R.string.settings,
                 onBackClick = {
-                    viewModel.onEvent(SettingsEvent.OnBackClick)
+                    onEvent(SettingsEvent.OnBackClick)
                 },
                 onMenuClick = {
                     //todo
@@ -128,7 +128,7 @@ fun SettingsMainScreen(
                 text = "Темная тема",
                 isChecked = state.mode == MODE_DARK,
                 onCheckedChanged = {
-                    viewModel.onEvent(SettingsEvent.OnModeChanged(if (it) MODE_DARK else MODE_LIGHT))
+                    onEvent(SettingsEvent.OnModeChanged(if (it) MODE_DARK else MODE_LIGHT))
                 },
                 isEnabled = !state.followSystemMode
             )
@@ -136,7 +136,7 @@ fun SettingsMainScreen(
                 text = "Использовать тему телефона",
                 isChecked = state.followSystemMode,
                 onCheckedChanged = {
-                    viewModel.onEvent(SettingsEvent.OnFollowSystemModeChanged(it))
+                    onEvent(SettingsEvent.OnFollowSystemModeChanged(it))
                 }
             )
             Divider(
@@ -150,4 +150,19 @@ fun SettingsMainScreen(
             //todo ExpandableItem
         }
     }
+}
+
+@Preview
+@Composable
+fun SettingsMainScreenPreview(
+    scaffoldState: ScaffoldState = rememberScaffoldState()
+) {
+    // Create a preview instance of your screen using the provided scaffoldState and viewModel
+    SettingsMainScreen(
+        onNavigateUp = {},
+        scaffoldState = scaffoldState,
+        SettingsState(),
+        emptyFlow(),
+        { }
+    )
 }

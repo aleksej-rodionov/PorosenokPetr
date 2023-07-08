@@ -31,7 +31,9 @@ fun NavGraphBuilder.addSettingsGraph(
                 navController.navigateUp()
             },
             scaffoldState,
-            viewModel
+            viewModel.state,
+            viewModel.uiEffect,
+            { viewModel.onEvent(it) }
         )
     }
 }
