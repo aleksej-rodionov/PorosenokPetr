@@ -1,4 +1,4 @@
-package space.rodionov.porosenokpetr.feature_vocabulary.presentation
+package space.rodionov.porosenokpetr.feature_vocabulary.presentation.screens.vocabulary
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -134,7 +134,7 @@ class VocabularyViewModel @Inject constructor(
                 }
             }
 
-            VocabularyEvent.OnDIalogDismissed -> {
+            VocabularyEvent.OnDialogDismissed -> {
                 state = state.copy(showDropWordProgressDialogForWord = null)
             }
 
@@ -216,6 +216,6 @@ sealed class VocabularyEvent {
         val status: Int
     ) : VocabularyEvent()
 
-    object OnDIalogDismissed : VocabularyEvent()
+    object OnDialogDismissed : VocabularyEvent()
     data class OnShowHideAllCategoriesSwitched(val show: Boolean) : VocabularyEvent()
 }

@@ -8,9 +8,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import space.rodionov.porosenokpetr.core.util.daggerComposeViewModel
 import space.rodionov.porosenokpetr.feature_vocabulary.di.DaggerVocabularyComponent
-import space.rodionov.porosenokpetr.feature_vocabulary.presentation.VocabularyMainScreen
-import space.rodionov.porosenokpetr.feature_vocabulary.presentation.VocabularySearchScreen
-import space.rodionov.porosenokpetr.feature_vocabulary.presentation.VocabularyViewModel
+import space.rodionov.porosenokpetr.feature_vocabulary.presentation.screens.vocabulary.VocabularyScreen
+import space.rodionov.porosenokpetr.feature_vocabulary.presentation.screens.vocabulary.VocabularyViewModel
+import space.rodionov.porosenokpetr.feature_vocabulary.presentation.screens.wordeditor.WordEditorScreen
+import space.rodionov.porosenokpetr.feature_vocabulary.presentation.screens.wordeditor.WordEditorViewModel
 import space.rodionov.porosenokpetr.main.PorosenokPetrApp
 
 fun NavGraphBuilder.addVocabularyGraph(
@@ -22,17 +23,14 @@ fun NavGraphBuilder.addVocabularyGraph(
 
         val component = DaggerVocabularyComponent
             .builder()
-            .appComponent(
-                PorosenokPetrApp.component
-                    ?: throw Exception("The AppComponent is not found to inject SettingsComponent =(")
-            )
+            .appComponent(PorosenokPetrApp.component!!)
             .build()
 
         val viewModel: VocabularyViewModel = daggerComposeViewModel {
             component.getVocabularyViewModel()
         }
 
-        VocabularyMainScreen(
+        VocabularyScreen(
             onNavigateUp = {
                 navController.navigateUp()
             },
@@ -47,7 +45,23 @@ fun NavGraphBuilder.addVocabularyGraph(
         route = VocabularyDestinations.VocabularySearch.routeWithArgs,
         arguments = VocabularyDestinations.VocabularySearch.arguments
     ) {
-        VocabularySearchScreen()
+
+        val component = DaggerVocabularyComponent
+            .builder()
+            .appComponent(PorosenokPetrApp.component!!)
+            .build()
+
+        val viewModel: WordEditorViewModel = daggerComposeViewModel {
+            component.getWordEditorViewModel()
+        }
+
+        WordEditorScreen(
+            onNavigateUp = { navController.navigateUp() },
+            scaffoldState,
+            viewModel.state,
+            viewModel.uiEffect,
+            { viewModel.onEvent(it) }
+        )
     }
 }
 

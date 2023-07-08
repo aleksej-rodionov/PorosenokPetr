@@ -1,7 +1,8 @@
 package space.rodionov.porosenokpetr.feature_vocabulary.di
 
 import dagger.Component
-import space.rodionov.porosenokpetr.feature_vocabulary.presentation.VocabularyViewModel
+import space.rodionov.porosenokpetr.feature_vocabulary.presentation.screens.vocabulary.VocabularyViewModel
+import space.rodionov.porosenokpetr.feature_vocabulary.presentation.screens.wordeditor.WordEditorViewModel
 import space.rodionov.porosenokpetr.main.di.AppComponent
 
 @VocabularyScope
@@ -18,4 +19,5 @@ interface VocabularyComponent {
     }
 
     fun getVocabularyViewModel(): VocabularyViewModel
+    fun getWordEditorViewModel(): WordEditorViewModel
 }

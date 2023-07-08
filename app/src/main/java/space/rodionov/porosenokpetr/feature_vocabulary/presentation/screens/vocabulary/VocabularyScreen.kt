@@ -1,4 +1,4 @@
-package space.rodionov.porosenokpetr.feature_vocabulary.presentation
+package space.rodionov.porosenokpetr.feature_vocabulary.presentation.screens.vocabulary
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
@@ -21,7 +21,7 @@ import space.rodionov.porosenokpetr.feature_vocabulary.presentation.components.*
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun VocabularyMainScreen(
+fun VocabularyScreen(
     onNavigateUp: () -> Unit,
     scaffoldState: ScaffoldState,
     state: VocabularyState,
@@ -64,10 +64,10 @@ fun VocabularyMainScreen(
             wordToAsk = state.showDropWordProgressDialogForWord,
             onConfirmClick = {
                 onEvent(VocabularyEvent.OnWordStatusChanged(it, WORD_ACTIVE))
-                onEvent(VocabularyEvent.OnDIalogDismissed)
+                onEvent(VocabularyEvent.OnDialogDismissed)
             },
             onDissmiss = {
-                onEvent(VocabularyEvent.OnDIalogDismissed)
+                onEvent(VocabularyEvent.OnDialogDismissed)
             }
         )
     }
@@ -157,10 +157,10 @@ fun VocabularyMainScreen(
 
 @Preview
 @Composable
-fun VocabularyMainScreenPreview(
+fun VocabularyScreenPreview(
     scaffoldState: ScaffoldState = rememberScaffoldState()
 ) {
-    VocabularyMainScreen(
+    VocabularyScreen(
         onNavigateUp = {},
         scaffoldState = scaffoldState,
         state = VocabularyState(),
