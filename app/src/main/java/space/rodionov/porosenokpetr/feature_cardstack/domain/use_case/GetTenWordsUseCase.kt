@@ -6,5 +6,5 @@ class GetTenWordsUseCase(
     private val repo: WordRepo
 ) {
 
-    operator suspend fun invoke() = repo.getTenWords()
+    suspend operator fun invoke() = repo.getTenWords()
 }

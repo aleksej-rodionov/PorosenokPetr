@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -32,10 +33,7 @@ class CardStackViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            val tenWordsMore = getTenWordsUseCase.invoke().map {
-                it.toWordUi()
-            }
-            state = state.copy(words = tenWordsMore)
+            state = state.copy(words = getTenWords())
         }
 
         collectModeUseCase.invoke().onEach { mode ->
@@ -51,12 +49,9 @@ class CardStackViewModel @Inject constructor(
                     event.position < MAX_STACK_SIZE - 10
                 ) {
                     viewModelScope.launch {
-                        val tenWordsMore = getTenWordsUseCase.invoke().map {
-                            it.toWordUi()
-                        }
                         val newList = mutableListOf<CardStackItem.WordUi>().apply {
                             addAll(state.words)
-                            addAll(tenWordsMore)
+                            addAll(getTenWords())
                         }
                         state = state.copy(words = newList)
                     }
@@ -81,6 +76,14 @@ class CardStackViewModel @Inject constructor(
                 speakWordUseCase.invoke(event.word)
             }
         }
+    }
+
+    private suspend fun getTenWords(): List<CardStackItem.WordUi> {
+        val mode = collectModeUseCase.invoke().first()
+        val tenWords = getTenWordsUseCase.invoke().map {
+            it.toWordUi().copy(mode = mode)
+        }
+        return tenWords
     }
 }
 

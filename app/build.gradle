@@ -109,12 +109,6 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.4.0"
     implementation "androidx.lifecycle:lifecycle-common-java8:2.4.0"
 
-    //Dagger - Hilt
-//    implementation "com.google.dagger:hilt-android:2.38.1"
-//    kapt "com.google.dagger:hilt-android-compiler:2.38.1"
-//    implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
-//    kapt "androidx.hilt:hilt-compiler:1.0.0"
-
     //dagger
     implementation "com.google.dagger:dagger-android:2.40.5"
     implementation "com.google.dagger:dagger-android-support:2.40.5"
@@ -153,8 +147,8 @@ dependencies {
     implementation 'androidx.hilt:hilt-work:1.0.0-alpha01'
 
     //Compose
-    def composeVersion = "1.1.0-rc01"
-    def composeCompilerVersion = "1.1.0-rc02"
+    def composeVersion = "1.2.0"
+    def composeCompilerVersion = "1.2.0"
     implementation "androidx.compose.material:material:$composeVersion"
     implementation "androidx.compose.ui:ui:$composeVersion"
     implementation "androidx.compose.ui:ui-tooling:$composeVersion"
@@ -164,9 +158,6 @@ dependencies {
 
     def navigationVersion = "2.4.0-beta02"
     implementation "androidx.navigation:navigation-compose:$navigationVersion"
-
-//    def hiltNavigationComposeVersion = "1.0.0-beta01"
-//    implementation "androidx.hilt:hilt-navigation-compose:$hiltNavigationComposeVersion"
 
     def activityComposeVersion = "1.4.0"
     implementation "androidx.activity:activity-compose:$activityComposeVersion"
