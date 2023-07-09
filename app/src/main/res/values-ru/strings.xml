@@ -63,6 +63,8 @@
     <string name="learned_language">Изучаемый язык</string>
     <string name="russian">Русский</string>
     <string name="ukrainian">Украинский</string>
+    <string name="english">Английский</string>
+    <string name="swedish">Шведский</string>
     <string name="follow_system_locale">Использовать локализацию устройства</string>
     <string name="native_language_settings">Родной язык</string>
     <string name="learned_language_settings">Изучаемый язык</string>

@@ -10,6 +10,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.flow.Flow
@@ -18,14 +19,16 @@ import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.launch
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.presentation.LocalSpacing
+import space.rodionov.porosenokpetr.core.presentation.components.ChoiceItem
 import space.rodionov.porosenokpetr.core.presentation.components.TopBar
 import space.rodionov.porosenokpetr.core.util.Constants.MODE_DARK
 import space.rodionov.porosenokpetr.core.util.Constants.MODE_LIGHT
+import space.rodionov.porosenokpetr.core.util.Language
 import space.rodionov.porosenokpetr.core.util.UiEffect
 import space.rodionov.porosenokpetr.feature_settings.presentation.components.HeaderItem
 import space.rodionov.porosenokpetr.feature_settings.presentation.components.SettingsBottomDrawer
 import space.rodionov.porosenokpetr.feature_settings.presentation.components.SwitcherItem
-import space.rodionov.porosenokpetr.feature_vocabulary.presentation.components.PlainItem
+import space.rodionov.porosenokpetr.core.presentation.components.PlainItem
 
 private const val TAG_SWITCHER = "TAG_SWITCHER"
 
@@ -76,7 +79,12 @@ fun SettingsScreen(
         sheetContent = {
 
             SettingsBottomDrawer(
-
+                //todo check languages available
+                languages = listOf(Language.Russian, Language.Ukrainian, Language.English),
+                onLanguageClick = {
+                    onEvent(SettingsEvent.OnNativeLanguageChanged(it))
+                    scope.launch { sheetState.hide() }
+                }
             )
         }
     ) {
@@ -90,21 +98,21 @@ fun SettingsScreen(
 
             TopBar(
                 text = R.string.settings,
+                hasMenuIcon = false,
                 onBackClick = {
                     onEvent(SettingsEvent.OnBackClick)
                 },
-                onMenuClick = {
-                    //todo
-                }
+                onMenuClick = {}
             )
 
             Divider(Modifier.padding(bottom = spacing.spaceSmall))
 
             HeaderItem(text = "Язык")
-            PlainItem(
-                text = "Родной язык",
+            ChoiceItem(
+                textDesc = stringResource(id = R.string.native_language),
+                textChoice = stringResource(id = state.nativeLanguage.languageNameRes),
                 onClick = {
-                    //todo open select language bottomDrawer
+                    scope.launch { sheetState.show() }
                 }
             )
             SwitcherItem(

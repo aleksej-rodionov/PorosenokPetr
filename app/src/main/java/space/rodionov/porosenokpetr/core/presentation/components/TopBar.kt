@@ -1,7 +1,6 @@
 package space.rodionov.porosenokpetr.core.presentation.components
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Icon
@@ -20,27 +19,27 @@ import space.rodionov.porosenokpetr.core.presentation.LocalSpacing
 
 @Composable
 fun TopBar(
-    text: Int,
     modifier: Modifier = Modifier,
+    text: Int,
+    hasMenuIcon: Boolean = false,
     onBackClick: () -> Unit,
-    onMenuClick: () -> Unit,
+    onMenuClick: () -> Unit = {},
 ) {
 
     val spacing = LocalSpacing.current
 
-    Row(
+    Box(
         modifier = Modifier
             .fillMaxWidth()
             .padding(
                 start = spacing.spaceSmall,
                 end = spacing.spaceSmall,
                 top = spacing.spaceExtraSmall
-            ),
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
+            )
     ) {
 
         IconButton(
+            modifier = Modifier.align(Alignment.CenterStart),
             onClick = onBackClick
         ) {
             Icon(
@@ -51,20 +50,24 @@ fun TopBar(
         }
 
         Text(
+            modifier = Modifier.align(Alignment.Center),
             text = stringResource(id = text), //todo localize
             textAlign = TextAlign.Center,
             style = MaterialTheme.typography.h6,
             color = MaterialTheme.colors.onBackground
         )
 
-        IconButton(
-            onClick = onMenuClick
-        ) {
-            Icon(
-                painter = painterResource(id = R.drawable.ic_baseline_more_horiz_24),
-                contentDescription = "More",
-                tint = MaterialTheme.colors.onBackground
-            )
+        if (hasMenuIcon) {
+            IconButton(
+                modifier = Modifier.align(Alignment.CenterEnd),
+                onClick = onMenuClick
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_baseline_more_horiz_24),
+                    contentDescription = "More",
+                    tint = MaterialTheme.colors.onBackground
+                )
+            }
         }
     }
 }
@@ -74,6 +77,7 @@ fun TopBar(
 fun TopBarPreview() {
     TopBar(
         text = R.string.settings,
+        hasMenuIcon = true,
         onBackClick = {},
         onMenuClick = {}
     )

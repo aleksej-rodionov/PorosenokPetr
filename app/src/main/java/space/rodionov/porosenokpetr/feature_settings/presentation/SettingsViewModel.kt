@@ -21,11 +21,11 @@ import space.rodionov.porosenokpetr.feature_settings.domain.use_case.use_case.Up
 import space.rodionov.porosenokpetr.feature_settings.domain.use_case.use_case.UpdateNativeLanguageUseCase
 
 class SettingsViewModel(
-    private val updateModeUseCase: UpdateModeUseCase,
-    private val updateIsFollowingSystemModeUseCase: UpdateIsFollowingSystemModeUseCase,
     private val collectModeUseCase: CollectModeUseCase,
     private val collectIsFollowingSystemModeUseCase: CollectIsFollowingSystemModeUseCase,
     private val collectNativeLanguageUseCase: CollectNativeLanguageUseCase,
+    private val updateModeUseCase: UpdateModeUseCase,
+    private val updateIsFollowingSystemModeUseCase: UpdateIsFollowingSystemModeUseCase,
     private val updateNativeLanguageUseCase: UpdateNativeLanguageUseCase
 ) : ViewModel() {
 
@@ -50,9 +50,7 @@ class SettingsViewModel(
             }
 
             is SettingsEvent.OnNativeLanguageChanged -> {
-                viewModelScope.launch {
-                    updateNativeLanguageUseCase.invoke(event.language)
-                }
+                viewModelScope.launch { updateNativeLanguageUseCase.invoke(event.language) }
             }
         }
     }
@@ -67,7 +65,7 @@ class SettingsViewModel(
         }.launchIn(viewModelScope)
 
         collectNativeLanguageUseCase.invoke().onEach {
-            //todo update state
+            state = state.copy(nativeLanguage = it)
         }.launchIn(viewModelScope)
     }
 }

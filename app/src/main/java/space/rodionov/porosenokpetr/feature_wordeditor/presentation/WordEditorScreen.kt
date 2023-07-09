@@ -78,6 +78,7 @@ fun WordEditorScreen(
 
         TopBar(
             text = R.string.word_editor,
+            hasMenuIcon = false,
             onBackClick = { onEvent(WordEditorEvent.OnBackClick) },
             onMenuClick = {}
         )

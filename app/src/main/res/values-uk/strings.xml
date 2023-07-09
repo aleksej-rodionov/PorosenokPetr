@@ -64,6 +64,8 @@
     <string name="learned_language">Вивчаєма мова</string>
     <string name="russian">Російська</string>
     <string name="ukrainian">Українська</string>
+    <string name="english">Англійська</string>
+    <string name="swedish">Шведська</string>
     <string name="follow_system_locale">Використати локалізацію телефону</string>
     <string name="native_language_settings">Рідна мова</string>
     <string name="learned_language_settings">Вивчаєма мова: </string>

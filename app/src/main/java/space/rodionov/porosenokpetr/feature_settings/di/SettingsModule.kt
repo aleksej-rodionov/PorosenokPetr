@@ -16,15 +16,6 @@ class SettingsModule {
 
     @Provides
     @SettingsScope
-    fun provideSetModeUseCase(keyValueStorage: KeyValueStorage) = UpdateModeUseCase(keyValueStorage)
-
-    @Provides
-    @SettingsScope
-    fun provideSetFollowSystemModeUseCase(keyValueStorage: KeyValueStorage) =
-        UpdateIsFollowingSystemModeUseCase(keyValueStorage)
-
-    @Provides
-    @SettingsScope
     fun provideObserveModeUseCase(keyValueStorage: KeyValueStorage) =
         CollectModeUseCase(keyValueStorage)
 
@@ -40,24 +31,33 @@ class SettingsModule {
 
     @Provides
     @SettingsScope
+    fun provideSetModeUseCase(keyValueStorage: KeyValueStorage) = UpdateModeUseCase(keyValueStorage)
+
+    @Provides
+    @SettingsScope
+    fun provideSetFollowSystemModeUseCase(keyValueStorage: KeyValueStorage) =
+        UpdateIsFollowingSystemModeUseCase(keyValueStorage)
+
+    @Provides
+    @SettingsScope
     fun provideUpdateNativeLanguageUseCase(keyValueStorage: KeyValueStorage) =
         UpdateNativeLanguageUseCase(keyValueStorage)
 
     @Provides
     @SettingsScope
     fun provideSettingsViewModel(
-        updateModeUseCase: UpdateModeUseCase,
-        updateIsFollowingSystemModeUseCase: UpdateIsFollowingSystemModeUseCase,
         collectModeUseCase: CollectModeUseCase,
         collectIsFollowingSystemModeUseCase: CollectIsFollowingSystemModeUseCase,
         collectNativeLanguageUseCase: CollectNativeLanguageUseCase,
+        updateModeUseCase: UpdateModeUseCase,
+        updateIsFollowingSystemModeUseCase: UpdateIsFollowingSystemModeUseCase,
         updateNativeLanguageUseCase: UpdateNativeLanguageUseCase
     ) = SettingsViewModel(
-        updateModeUseCase,
-        updateIsFollowingSystemModeUseCase,
         collectModeUseCase,
         collectIsFollowingSystemModeUseCase,
         collectNativeLanguageUseCase,
+        updateModeUseCase,
+        updateIsFollowingSystemModeUseCase,
         updateNativeLanguageUseCase
     )
 }

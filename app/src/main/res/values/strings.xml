@@ -64,6 +64,8 @@
     <string name="learned_language">Learned language</string>
     <string name="russian">Russian</string>
     <string name="ukrainian">Ukrainian</string>
+    <string name="english">English</string>
+    <string name="swedish">Swedish</string>
     <string name="follow_system_locale">Follow system language</string>
     <string name="native_language_settings">Native language: </string>
     <string name="learned_language_settings">Learned language: </string>

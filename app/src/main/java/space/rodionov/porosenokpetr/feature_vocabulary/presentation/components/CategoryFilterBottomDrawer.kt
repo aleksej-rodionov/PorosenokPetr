@@ -1,6 +1,5 @@
 package space.rodionov.porosenokpetr.feature_vocabulary.presentation.components
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Divider
 import androidx.compose.runtime.Composable
@@ -8,6 +7,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import space.rodionov.porosenokpetr.core.presentation.LocalSpacing
+import space.rodionov.porosenokpetr.core.presentation.components.PlainItem
 import space.rodionov.porosenokpetr.ui.theme.Gray600
 
 @Composable
@@ -42,16 +42,16 @@ fun CategoryFilterBottomDrawer(
         }
         Divider()
         PlainItem(
-            text = "Display all categories",
             modifier = Modifier.fillMaxWidth(),
+            text = "Display all categories",
             onClick = {
                 onDisplayAllClick()
             }
         )
         Divider()
         PlainItem(
-            text = "Hide all categories",
             modifier = Modifier.fillMaxWidth(),
+            text = "Hide all categories",
             onClick = {
                 onHideAllClick()
             }
