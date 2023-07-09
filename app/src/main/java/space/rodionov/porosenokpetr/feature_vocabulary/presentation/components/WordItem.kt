@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import space.rodionov.porosenokpetr.R
@@ -34,7 +35,7 @@ fun WordItem(
 
     Column(
         modifier = modifier
-            .background(color = MaterialTheme.colors.background)//todo Gray300 was
+            .background(color = MaterialTheme.colors.background)
             .fillMaxWidth()
             .clickable { onWordClick(word) }
             .padding(horizontal = spacing.spaceMedium)
@@ -126,4 +127,15 @@ fun WordItem(
             )
         }
     }
+}
+
+@Preview
+@Composable
+fun WordItemPreview() {
+    WordItem(
+        word = VocabularyItem.WordUi("xuj", "xuj", "xuj", "xuj", "xuj"),
+        onVoiceClick = {},
+        onWordStatusChanged = { _, _ -> },
+        onWordClick = {}
+    )
 }

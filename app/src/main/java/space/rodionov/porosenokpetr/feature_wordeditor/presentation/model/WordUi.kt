@@ -2,6 +2,11 @@ package space.rodionov.porosenokpetr.feature_wordeditor.presentation.model
 
 import space.rodionov.porosenokpetr.core.util.Constants
 
+data class Translation(
+    val language: Int,
+    val translation: String
+)
+
 data class WordUi(
     val rus: String,
     val ukr: String?,

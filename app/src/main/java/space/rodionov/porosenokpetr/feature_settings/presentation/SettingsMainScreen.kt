@@ -69,8 +69,6 @@ fun SettingsMainScreen(
         }
     }
 
-    Divider()
-
     ModalBottomSheetLayout(
         modifier = Modifier.fillMaxSize(),
         sheetState = sheetState,
