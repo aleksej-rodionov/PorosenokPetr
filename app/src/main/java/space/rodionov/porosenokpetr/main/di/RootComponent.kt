@@ -11,13 +11,13 @@ import space.rodionov.porosenokpetr.main.presentation.RootViewModel
 )
 interface RootComponent {
 
-    fun getMainViewModel(): RootViewModel
-
     @Component.Builder
     interface Builder {
         fun appComponent(appComponent: AppComponent): Builder
         fun build(): RootComponent
     }
+
+    fun getMainViewModel(): RootViewModel
 
     fun inject(activity: RootActivity)
 }

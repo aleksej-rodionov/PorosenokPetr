@@ -2,12 +2,8 @@ package space.rodionov.porosenokpetr.main.navigation
 
 import androidx.activity.ComponentActivity
 import androidx.compose.material.ScaffoldState
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ThumbUp
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
@@ -27,8 +23,8 @@ fun MainNavHost(
 ) {
 
     NavHost(
-        navController =navController,
-        startDestination =startDestination,
+        navController = navController,
+        startDestination = startDestination,
         modifier = modifier,
         builder = {
 
@@ -41,7 +37,7 @@ fun MainNavHost(
 
             navigation(
                 route = ChildGraphs.VocabularyGraph.route,
-                startDestination = VocabularyDestinations.VocabularyMain.route
+                startDestination = VocabularyDestinations.WordCollection.route
             ) {
                 addVocabularyGraph(navController, scaffoldState)
             }

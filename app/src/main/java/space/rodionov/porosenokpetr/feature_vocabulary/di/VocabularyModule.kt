@@ -11,7 +11,6 @@ import space.rodionov.porosenokpetr.core.util.SwedishSpeaker
 import space.rodionov.porosenokpetr.feature_cardstack.domain.use_case.ObserveAllCategoriesUseCase
 import space.rodionov.porosenokpetr.feature_vocabulary.domain.use_case.*
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.VocabularyViewModel
-import space.rodionov.porosenokpetr.feature_wordeditor.presentation.WordEditorViewModel
 
 @Module
 class VocabularyModule {

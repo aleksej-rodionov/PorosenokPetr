@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import space.rodionov.porosenokpetr.core.util.UiEffect
-import space.rodionov.porosenokpetr.feature_vocabulary.presentation.model.VocabularyItem
+import space.rodionov.porosenokpetr.feature_wordeditor.presentation.model.WordUi
 import javax.inject.Inject
 
 class WordEditorViewModel @Inject constructor(
@@ -28,13 +28,7 @@ class WordEditorViewModel @Inject constructor(
 }
 
 data class WordEditorState(
-    val wordUi: VocabularyItem.WordUi = VocabularyItem.WordUi(
-        "Хуй",
-        "Хуй",
-        "Dick",
-        "Kuk",
-        categoryName = "Swearings"
-    )
+    val wordUi: WordUi = WordUi("Хуй", "Хуй", "Dick", "Kuk", "Swearings"),
 )
 
 sealed class WordEditorEvent(

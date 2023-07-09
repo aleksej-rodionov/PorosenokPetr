@@ -22,6 +22,7 @@ import space.rodionov.porosenokpetr.feature_vocabulary.presentation.components.*
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun VocabularyScreen(
+    onNavigateTo: (String) -> Unit,
     onNavigateUp: () -> Unit,
     scaffoldState: ScaffoldState,
     state: VocabularyState,
@@ -54,7 +55,9 @@ fun VocabularyScreen(
                     )
                 }
 
-                else -> Unit
+                is UiEffect.NavigateTo -> {
+                    onNavigateTo(effect.route)
+                }
             }
         }
     }
@@ -161,6 +164,7 @@ fun VocabularyScreenPreview(
     scaffoldState: ScaffoldState = rememberScaffoldState()
 ) {
     VocabularyScreen(
+        onNavigateTo = {},
         onNavigateUp = {},
         scaffoldState = scaffoldState,
         state = VocabularyState(),

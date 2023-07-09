@@ -11,11 +11,11 @@ import space.rodionov.porosenokpetr.main.di.AppComponent
 )
 interface VocabularyComponent {
 
-    fun getVocabularyViewModel(): VocabularyViewModel
-
     @Component.Builder
     interface Builder {
         fun appComponent(appComponent: AppComponent): Builder
         fun build(): VocabularyComponent
     }
+
+    fun getVocabularyViewModel(): VocabularyViewModel
 }

@@ -18,19 +18,19 @@ import javax.inject.Singleton
 )
 interface AppComponent {
 
-    fun getApplication(): Application
-    fun getPreferences(): KeyValueStorage
-    fun getWordRepo(): WordRepo
-    fun getSwedishSpeaker(): SwedishSpeaker
-    @AppCoroutineScopeQualifier //todo remove?
-    fun getAppCoroutineScope(): CoroutineScope
-
     @Component.Builder
     interface Builder {
         @BindsInstance
         fun application(application: Application): Builder
         fun build(): AppComponent
     }
+
+    fun getApplication(): Application
+    fun getPreferences(): KeyValueStorage
+    fun getWordRepo(): WordRepo
+    fun getSwedishSpeaker(): SwedishSpeaker
+    @AppCoroutineScopeQualifier
+    fun getAppCoroutineScope(): CoroutineScope
 
     fun inject(application: PorosenokPetrApp)
 }

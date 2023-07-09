@@ -10,6 +10,7 @@ import space.rodionov.porosenokpetr.core.util.daggerComposeViewModel
 import space.rodionov.porosenokpetr.feature_vocabulary.di.DaggerVocabularyComponent
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.VocabularyScreen
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.VocabularyViewModel
+import space.rodionov.porosenokpetr.feature_wordeditor.di.DaggerWordEditorComponent
 import space.rodionov.porosenokpetr.feature_wordeditor.presentation.WordEditorScreen
 import space.rodionov.porosenokpetr.feature_wordeditor.presentation.WordEditorViewModel
 import space.rodionov.porosenokpetr.main.PorosenokPetrApp
@@ -19,7 +20,7 @@ fun NavGraphBuilder.addVocabularyGraph(
     scaffoldState: ScaffoldState
 ) {
 
-    this.composable(route = VocabularyDestinations.VocabularyMain.route) {
+    this.composable(route = VocabularyDestinations.WordCollection.route) {
 
         val component = DaggerVocabularyComponent
             .builder()
@@ -31,6 +32,9 @@ fun NavGraphBuilder.addVocabularyGraph(
         }
 
         VocabularyScreen(
+            onNavigateTo = {
+                navController.navigate(it)
+            },
             onNavigateUp = {
                 navController.navigateUp()
             },
@@ -42,8 +46,8 @@ fun NavGraphBuilder.addVocabularyGraph(
     }
 
     this.composable(
-        route = VocabularyDestinations.VocabularySearch.routeWithArgs,
-        arguments = VocabularyDestinations.VocabularySearch.arguments
+        route = VocabularyDestinations.WordEditor.routeWithArgs,
+        arguments = VocabularyDestinations.WordEditor.arguments
     ) {
 
         val component = DaggerWordEditorComponent
@@ -67,9 +71,9 @@ fun NavGraphBuilder.addVocabularyGraph(
 
 sealed class VocabularyDestinations(val route: String) {
 
-    object VocabularyMain : VocabularyDestinations(route = "vocabularyMain")
+    object WordCollection : VocabularyDestinations(route = "wordCollection")
 
-    object VocabularySearch : VocabularyDestinations(route = "vocabularySearch") {
+    object WordEditor : VocabularyDestinations(route = "wordEditor") {
         val routeWithArgs = "$route/{name}"
         val arguments = listOf(
             navArgument("name") {

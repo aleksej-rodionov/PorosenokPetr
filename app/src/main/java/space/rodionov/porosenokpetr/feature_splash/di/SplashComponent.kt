@@ -12,13 +12,13 @@ import space.rodionov.porosenokpetr.main.di.AppComponent
 )
 interface SplashComponent {
 
-    fun getSplashViewModel(): SplashCustomViewModel
-
     @Component.Builder
     interface Builder {
         fun appComponent(appComponent: AppComponent): Builder
         fun build(): SplashComponent
     }
+
+    fun getSplashViewModel(): SplashCustomViewModel
 
     fun inject(activity: SplashCustomActivity)
 }

@@ -96,7 +96,7 @@ private val NavGraph.startDestination: NavDestination?
 private fun findGraphRootRoute(graphRoute: String): String {
     return when (graphRoute) {
         ChildGraphs.CardStackGraph.route -> CardStackDestinations.CardStackMain.route
-        ChildGraphs.VocabularyGraph.route -> VocabularyDestinations.VocabularyMain.route
+        ChildGraphs.VocabularyGraph.route -> VocabularyDestinations.WordCollection.route
         ChildGraphs.SettingsGraph.route -> SettingsDestinations.SettingsMain.route
         else -> ChildGraphs.CardStackGraph.route
     }

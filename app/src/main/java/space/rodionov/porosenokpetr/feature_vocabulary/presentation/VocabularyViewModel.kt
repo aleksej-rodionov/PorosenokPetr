@@ -23,6 +23,7 @@ import space.rodionov.porosenokpetr.feature_vocabulary.presentation.ext.mapCateg
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.ext.transformData
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.mapper.toWord
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.model.VocabularyItem
+import space.rodionov.porosenokpetr.main.navigation.sub_graphs.VocabularyDestinations
 import javax.inject.Inject
 
 private const val TAG = "VocabularyViewModel"
@@ -61,7 +62,6 @@ class VocabularyViewModel @Inject constructor(
     }
 
     init {
-
         combine(
             categoryLists,
             wordLists
@@ -113,7 +113,13 @@ class VocabularyViewModel @Inject constructor(
             }
 
             is VocabularyEvent.OnWordClick -> {
-                //todo open word editor
+                viewModelScope.launch {
+                    _uiEffect.send(
+                        UiEffect.NavigateTo(
+                            "${VocabularyDestinations.WordEditor.route}/${event.word.eng}"
+                        )
+                    )
+                }
             }
 
             is VocabularyEvent.OnVoiceClick -> {
