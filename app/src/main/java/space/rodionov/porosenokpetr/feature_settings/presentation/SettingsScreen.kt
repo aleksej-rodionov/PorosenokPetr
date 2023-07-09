@@ -31,7 +31,7 @@ private const val TAG_SWITCHER = "TAG_SWITCHER"
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun SettingsMainScreen(
+fun SettingsScreen(
     onNavigateUp: () -> Unit,
     scaffoldState: ScaffoldState,
     state: SettingsState,
@@ -152,11 +152,11 @@ fun SettingsMainScreen(
 
 @Preview
 @Composable
-fun SettingsMainScreenPreview(
+fun SettingsScreenPreview(
     scaffoldState: ScaffoldState = rememberScaffoldState()
 ) {
     // Create a preview instance of your screen using the provided scaffoldState and viewModel
-    SettingsMainScreen(
+    SettingsScreen(
         onNavigateUp = {},
         scaffoldState = scaffoldState,
         SettingsState(),

@@ -5,8 +5,10 @@ import dagger.Provides
 import space.rodionov.porosenokpetr.core.domain.preferences.KeyValueStorage
 import space.rodionov.porosenokpetr.core.domain.use_case.CollectIsFollowingSystemModeUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.CollectModeUseCase
+import space.rodionov.porosenokpetr.core.domain.use_case.CollectNativeLanguageUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.UpdateModeUseCase
 import space.rodionov.porosenokpetr.feature_settings.domain.use_case.use_case.UpdateIsFollowingSystemModeUseCase
+import space.rodionov.porosenokpetr.feature_settings.domain.use_case.use_case.UpdateNativeLanguageUseCase
 import space.rodionov.porosenokpetr.feature_settings.presentation.SettingsViewModel
 
 @Module
@@ -23,7 +25,8 @@ class SettingsModule {
 
     @Provides
     @SettingsScope
-    fun provideObserveModeUseCase(keyValueStorage: KeyValueStorage) = CollectModeUseCase(keyValueStorage)
+    fun provideObserveModeUseCase(keyValueStorage: KeyValueStorage) =
+        CollectModeUseCase(keyValueStorage)
 
     @Provides
     @SettingsScope
@@ -32,15 +35,29 @@ class SettingsModule {
 
     @Provides
     @SettingsScope
+    fun provideCollectNativeLanguageUseCase(keyValueStorage: KeyValueStorage) =
+        CollectNativeLanguageUseCase(keyValueStorage)
+
+    @Provides
+    @SettingsScope
+    fun provideUpdateNativeLanguageUseCase(keyValueStorage: KeyValueStorage) =
+        UpdateNativeLanguageUseCase(keyValueStorage)
+
+    @Provides
+    @SettingsScope
     fun provideSettingsViewModel(
         updateModeUseCase: UpdateModeUseCase,
         updateIsFollowingSystemModeUseCase: UpdateIsFollowingSystemModeUseCase,
         collectModeUseCase: CollectModeUseCase,
-        collectIsFollowingSystemModeUseCase: CollectIsFollowingSystemModeUseCase
+        collectIsFollowingSystemModeUseCase: CollectIsFollowingSystemModeUseCase,
+        collectNativeLanguageUseCase: CollectNativeLanguageUseCase,
+        updateNativeLanguageUseCase: UpdateNativeLanguageUseCase
     ) = SettingsViewModel(
         updateModeUseCase,
         updateIsFollowingSystemModeUseCase,
         collectModeUseCase,
-        collectIsFollowingSystemModeUseCase
+        collectIsFollowingSystemModeUseCase,
+        collectNativeLanguageUseCase,
+        updateNativeLanguageUseCase
     )
 }

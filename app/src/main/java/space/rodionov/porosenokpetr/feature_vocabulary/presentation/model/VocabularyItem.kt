@@ -2,6 +2,7 @@ package space.rodionov.porosenokpetr.feature_vocabulary.presentation.model
 
 import space.rodionov.porosenokpetr.core.util.Constants
 import space.rodionov.porosenokpetr.core.util.Constants.WORD_ACTIVE
+import space.rodionov.porosenokpetr.core.util.Language
 
 sealed class VocabularyItem {
 
@@ -18,10 +19,10 @@ sealed class VocabularyItem {
         val isFocusedInList: Boolean = false
     ) : VocabularyItem() {
 
-        fun getLocalizedName(lang: Int) = when (lang) {
-            Constants.LANGUAGE_RU -> nameRus
-            Constants.LANGUAGE_UA -> nameUkr
-            Constants.LANGUAGE_EN -> nameEng ?: nameRus
+        fun getLocalizedName(lang: Language) = when (lang) {
+            Language.Russian -> nameRus
+            Language.Ukrainian -> nameUkr
+            Language.English -> nameEng ?: nameRus
             else -> nameRus
         }
     }
@@ -34,7 +35,7 @@ sealed class VocabularyItem {
         val categoryName: String,
         val wordStatus: Int = WORD_ACTIVE,
         val id: Int? = null
-    ): VocabularyItem() {
+    ) : VocabularyItem() {
 
         fun getTranslation(lang: Int): String {
             return when (lang) {

@@ -29,7 +29,7 @@ import javax.inject.Inject
 private const val TAG = "VocabularyViewModel"
 
 @OptIn(ExperimentalCoroutinesApi::class)
-class VocabularyViewModel @Inject constructor(
+class VocabularyViewModel(
     private val observeAllCategoriesUseCase: ObserveAllCategoriesUseCase,
     private val observeWordsBySearchQueryInCategories: ObserveWordsBySearchQueryInCategories,
     private val makeCategoryActiveUseCase: MakeCategoryActiveUseCase,

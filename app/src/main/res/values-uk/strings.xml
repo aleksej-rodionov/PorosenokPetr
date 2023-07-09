@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">EnglishDriller</string>
+
+<!--    <string name="top_800_words">Топ 800 слiв</string>-->
+<!--    <string name="top_200_verbs">Топ 200 дієслів</string>-->
+<!--    <string name="usual_words">Звичайні слова</string>-->
+<!--    <string name="usual_verbs">Звичайні дієслова</string>-->
+<!--    <string name="phrasal_verbs">Фразові дієслова</string>-->
+<!--    <string name="phrases">Мовні зв\'язки</string>-->
+
+    <string name="item_count">У колоді %1$d слшв</string>
+    <string name="current_position">Поточна позиція: %1$d</string>
+    <string name="on_card_appeared">onCardAppeared(%1$d)</string>
+    <string name="on_card_disappeared">onCardDisappeared(%1$d)</string>
+
+    <string name="active_categories">Досліджувані категорії</string>
+    <string name="active_all_categories">Включити всі категорії</string>
+    <string name="cannot_turn_all_cats_off">Ви не можете вибрати менше 1 категорії</string>
+
+    <string name="collection">Колекція</string>
+    <string name="search_word">Шукати слово ..</string>
+    <string name="search_among_all_words">Пошук серед усіх слів</string>
+    <string name="search_in">Пошук у: %1$s</string>
+    <string name="percentage">%1$s \%</string>
+    <string name="word_editor">Редактинование слова</string>
+
+    <string name="category">Категорія</string>
+    <string name="word_in_dialog">%1$s - %2$s</string>
+    <string name="word_learned">Слово вивчене</string>
+    <string name="word_not_learned">Слово не вивчене</string>
+    <string name="word_description">%1$s.\nВи можете позначити слово як вивчене, і воно більше не зустрічатиметься у колоді. \nЯкщо помітите слово як НЕвивчене, воно траплятиметься у колоді.</string>
+    <string name="translation_direction">Напрямок перекладу</string>
+    <string name="from_en_to_ru">З іноземної на українську</string>
+    <string name="from_ru_to_en">З української на іноземний</string>
+    <string name="dark_mode">Темна тема</string>
+    <string name="follow_system_mode">Використати тему телефону</string>
+    <string name="appearance">Зовнішній вигляд</string>
+
+    <!--    <string name="from_native">З української</string>-->
+    <!--    <string name="from_russian">З росiйської</string>-->
+    <!--    <string name="from_swedish">З шведської</string>-->
+    <!--    <string name="from_english">З iнглiшу</string>-->
+    <!--    <string name="from_ukrainian">З української</string>-->
+    <!--    <string name="to_russian"> на росiйську</string>-->
+    <!--    <string name="to_swedish"> на шведську</string>-->
+    <!--    <string name="to_english"> на інглиш</string>-->
+    <!--    <string name="to_ukrainian"> на українську</string>-->
+
+    <string name="settings">Налаштування</string>
+
+    <string name="choose_time">Виберіть час</string>
+    <string name="notification_title">English: нагадування</string>
+    <string name="notification_subtitle">Чи не забули приділити пару хвилин мове? =)</string>
+    <string name="remind">Нагадувати про заняття</string>
+    <string name="reminder">Нагадування</string>
+    <string name="notification_schedule_title">Встановлено повідомлення:\u00a0</string>
+    <string name="notification_schedule_pattern">dd.MM.yy  HH:mm</string>
+    <string name="notification_schedule_error">Schedule notification: Incorrect Date and Time</string>
+    <string name="btn_next_text">Продовжити</string>
+
+    <string name="native_language">Рідна мова</string>
+    <string name="learned_language">Вивчаєма мова</string>
+    <string name="russian">Російська</string>
+    <string name="ukrainian">Українська</string>
+    <string name="follow_system_locale">Використати локалізацію телефону</string>
+    <string name="native_language_settings">Рідна мова</string>
+    <string name="learned_language_settings">Вивчаєма мова: </string>
+    <string name="language">Мова</string>
+
+    <string name="rus_word">Російський переклад ..</string>
+    <string name="foreign_word">Шведське слово ..</string>
+    <string name="eng_word">Англійський переклад ..</string>
+    <string name="ukr_word">Український переклад ..</string>
+
+</resources>

@@ -10,7 +10,7 @@ fun Category.toCategoryEntity(): CategoryEntity {
         learnedFromActivePercentage = learnedFromActivePercentage,
         id = id,
         nameRus = nameRus,
-        nameUkr = nameUkr,
+        nameUkr = nameUkr ?: nameRus,
         nameEng = nameEng
     )
 }

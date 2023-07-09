@@ -1,9 +1,10 @@
 package space.rodionov.porosenokpetr.feature_wordeditor.presentation.model
 
 import space.rodionov.porosenokpetr.core.util.Constants
+import space.rodionov.porosenokpetr.core.util.Language
 
 data class Translation(
-    val language: Int,
+    val language: Language,
     val translation: String
 )
 

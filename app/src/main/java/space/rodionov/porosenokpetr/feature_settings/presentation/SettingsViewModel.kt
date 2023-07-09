@@ -12,17 +12,21 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import space.rodionov.porosenokpetr.core.domain.use_case.CollectIsFollowingSystemModeUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.CollectModeUseCase
+import space.rodionov.porosenokpetr.core.domain.use_case.CollectNativeLanguageUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.UpdateModeUseCase
-import space.rodionov.porosenokpetr.core.util.Constants.LANGUAGE_RU
 import space.rodionov.porosenokpetr.core.util.Constants.MODE_LIGHT
+import space.rodionov.porosenokpetr.core.util.Language
 import space.rodionov.porosenokpetr.core.util.UiEffect
 import space.rodionov.porosenokpetr.feature_settings.domain.use_case.use_case.UpdateIsFollowingSystemModeUseCase
+import space.rodionov.porosenokpetr.feature_settings.domain.use_case.use_case.UpdateNativeLanguageUseCase
 
-class SettingsViewModel /*@Inject constructor*/(
+class SettingsViewModel(
     private val updateModeUseCase: UpdateModeUseCase,
     private val updateIsFollowingSystemModeUseCase: UpdateIsFollowingSystemModeUseCase,
     private val collectModeUseCase: CollectModeUseCase,
-    private val collectIsFollowingSystemModeUseCase: CollectIsFollowingSystemModeUseCase
+    private val collectIsFollowingSystemModeUseCase: CollectIsFollowingSystemModeUseCase,
+    private val collectNativeLanguageUseCase: CollectNativeLanguageUseCase,
+    private val updateNativeLanguageUseCase: UpdateNativeLanguageUseCase
 ) : ViewModel() {
 
     var state by mutableStateOf(SettingsState())
@@ -46,7 +50,9 @@ class SettingsViewModel /*@Inject constructor*/(
             }
 
             is SettingsEvent.OnNativeLanguageChanged -> {
-
+                viewModelScope.launch {
+                    updateNativeLanguageUseCase.invoke(event.language)
+                }
             }
         }
     }
@@ -59,18 +65,22 @@ class SettingsViewModel /*@Inject constructor*/(
         collectIsFollowingSystemModeUseCase.invoke().onEach {
             state = state.copy(followSystemMode = it)
         }.launchIn(viewModelScope)
+
+        collectNativeLanguageUseCase.invoke().onEach {
+            //todo update state
+        }.launchIn(viewModelScope)
     }
 }
 
 data class SettingsState(
     val mode: Int = MODE_LIGHT,
     val followSystemMode: Boolean = false,
-    val nativeLanguage: Int = LANGUAGE_RU
+    val nativeLanguage: Language = Language.Russian
 )
 
 sealed class SettingsEvent {
     object OnBackClick : SettingsEvent()
     data class OnModeChanged(val mode: Int) : SettingsEvent()
     data class OnFollowSystemModeChanged(val follow: Boolean) : SettingsEvent()
-    data class OnNativeLanguageChanged(val language: Int) : SettingsEvent()
+    data class OnNativeLanguageChanged(val language: Language) : SettingsEvent()
 }

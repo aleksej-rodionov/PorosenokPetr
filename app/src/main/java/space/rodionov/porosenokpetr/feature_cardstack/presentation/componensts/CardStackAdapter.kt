@@ -6,6 +6,7 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import space.rodionov.porosenokpetr.core.redrawViewGroup
+import space.rodionov.porosenokpetr.core.util.Language
 import space.rodionov.porosenokpetr.databinding.ItemWordBinding
 import space.rodionov.porosenokpetr.feature_cardstack.presentation.model.CardStackItem
 
@@ -62,7 +63,7 @@ class CardStackAdapter(
             }
         }
 
-        private fun updateNativeLang(nativeLang: Int) {
+        private fun updateNativeLang(nativeLang: Language) {
             //todo
         }
 

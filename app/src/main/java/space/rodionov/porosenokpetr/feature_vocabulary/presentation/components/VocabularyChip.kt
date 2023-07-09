@@ -9,11 +9,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.key
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -21,6 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import space.rodionov.porosenokpetr.core.presentation.LocalSpacing
+import space.rodionov.porosenokpetr.core.util.Language
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.model.VocabularyItem
 import space.rodionov.porosenokpetr.ui.theme.Gray600
 import space.rodionov.porosenokpetr.ui.theme.TransparentGray15
@@ -65,13 +61,9 @@ fun VocabularyChip(
     ) {
 
         Text(
-            text = category.getLocalizedName(2), //todo compositionLocal for nativeLanguage
+            text = category.getLocalizedName(Language.English),
             modifier = Modifier,
-            color = if (isSelected) {
-                Color.White //todo this doesn't get repainted =(
-            } else {
-                Gray600
-            },
+            color = if (isSelected) Color.White else Gray600,
             style = textStyle
         )
     }

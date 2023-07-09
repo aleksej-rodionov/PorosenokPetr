@@ -24,7 +24,7 @@ import space.rodionov.porosenokpetr.feature_cardstack.presentation.model.CardSta
 import space.rodionov.porosenokpetr.main.navigation.sub_graphs.VocabularyDestinations
 import javax.inject.Inject
 
-class CardStackViewModel @Inject constructor(
+class CardStackViewModel(
     private val getTenWordsUseCase: GetTenWordsUseCase,
     private val collectModeUseCase: CollectModeUseCase,
     private val updateWordStatusUseCase: UpdateWordStatusUseCase,

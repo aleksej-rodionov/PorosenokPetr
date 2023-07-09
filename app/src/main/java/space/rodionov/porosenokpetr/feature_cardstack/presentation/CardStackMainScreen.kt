@@ -139,6 +139,7 @@ fun CardStack(
 fun CardstackScreenPreview(
     scaffoldState: ScaffoldState = rememberScaffoldState()
 ) {
+
     CardStackMainScreen(
         navigateTo = {},
         scaffoldState = scaffoldState,

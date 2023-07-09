@@ -26,6 +26,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import space.rodionov.porosenokpetr.core.presentation.LocalSpacing
+import space.rodionov.porosenokpetr.core.util.Language
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.model.VocabularyItem
 import space.rodionov.porosenokpetr.ui.theme.Gray600
 
@@ -60,7 +61,7 @@ fun CategoryItem(
                 modifier = Modifier
                     .fillMaxWidth()
                     .weight(1f),
-                text = category.getLocalizedName(2), //todo localization compLocal
+                text = category.getLocalizedName(Language.Ukrainian),
                 color = MaterialTheme.colors.onSurface,
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis

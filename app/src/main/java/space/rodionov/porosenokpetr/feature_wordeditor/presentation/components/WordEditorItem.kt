@@ -12,8 +12,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import space.rodionov.porosenokpetr.core.util.Constants.LANGUAGE_SE
-import space.rodionov.porosenokpetr.feature_vocabulary.presentation.model.VocabularyItem
+import space.rodionov.porosenokpetr.core.util.Language
 import space.rodionov.porosenokpetr.feature_wordeditor.presentation.model.Translation
 
 @Composable
@@ -46,7 +45,7 @@ fun WordEditorItem(
 @Composable
 fun WordEditorItemPreview() {
     WordEditorItem(
-        translation = Translation(LANGUAGE_SE,"Test value"),
+        translation = Translation(Language.Swedish,"Test value"),
         onValueChange = {}
     )
 }

@@ -20,7 +20,6 @@ class RootViewModel @Inject constructor(
     private val collectModeUseCase: CollectModeUseCase,
     private val updateModeUseCase: UpdateModeUseCase,
     private val collectIsFollowingSystemModeUseCase: CollectIsFollowingSystemModeUseCase,
-//    private val splashInteractor: SplashInteractor
 ) : ViewModel() {
 
     var state by mutableStateOf(State())
@@ -42,19 +41,6 @@ class RootViewModel @Inject constructor(
         _mode.onEach { state = state.copy(isDarkTheme = it) }.launchIn(viewModelScope)
         _followSystemMode.onEach { state = state.copy(isFollowSystemMode = it) }.launchIn(viewModelScope)
     }
-
-//    fun onBtnClick() {
-//        viewModelScope.launch {
-//            Log.d("TAG_DB", "clicked")
-//            val number = splashInteractor.getWordQuantity()
-//            Log.d("TAG_DB", "number of words = ${number.toString()}")
-//
-////            val tenWords = repo.getTenWords()
-////            tenWords.forEach {
-////                Log.d("TAG_DB", "${it.swe}")
-////            }
-//        }
-//    }
 
     data class State(
         val isDarkTheme: Int = MODE_LIGHT,

@@ -23,10 +23,10 @@ object Constants {
     const val MILLIS_IN_ONE_HOUR = 3600000L
     const val MILLIS_IN_NINE_HOURS = 75600000L
 
-    const val LANGUAGE_RU = 0
-    const val LANGUAGE_UA = 1
-    const val LANGUAGE_EN = 2
-    const val LANGUAGE_SE = 3
+//    const val LANGUAGE_RU = 0
+//    const val LANGUAGE_UA = 1
+//    const val LANGUAGE_EN = 2
+//    const val LANGUAGE_SE = 3
 
     const val NATIVE_LANGUAGE_CHANGE = 100
     const val FOREIGN_LANGUAGE_CHANGE = 101

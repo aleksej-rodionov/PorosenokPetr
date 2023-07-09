@@ -6,7 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import space.rodionov.porosenokpetr.core.util.daggerComposeViewModel
 import space.rodionov.porosenokpetr.feature_settings.di.DaggerSettingsComponent
-import space.rodionov.porosenokpetr.feature_settings.presentation.SettingsMainScreen
+import space.rodionov.porosenokpetr.feature_settings.presentation.SettingsScreen
 import space.rodionov.porosenokpetr.feature_settings.presentation.SettingsViewModel
 import space.rodionov.porosenokpetr.main.PorosenokPetrApp
 
@@ -26,7 +26,7 @@ fun NavGraphBuilder.addSettingsGraph(
             component.getSettingsViewModel()
         }
 
-        SettingsMainScreen(
+        SettingsScreen(
             onNavigateUp = {
                 navController.navigateUp()
             },

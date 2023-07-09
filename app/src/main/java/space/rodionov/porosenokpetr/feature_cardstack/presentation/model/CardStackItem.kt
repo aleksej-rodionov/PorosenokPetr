@@ -1,8 +1,8 @@
 package space.rodionov.porosenokpetr.feature_cardstack.presentation.model
 
 import space.rodionov.porosenokpetr.core.util.Constants
-import space.rodionov.porosenokpetr.core.util.Constants.LANGUAGE_RU
 import space.rodionov.porosenokpetr.core.util.Constants.MODE_LIGHT
+import space.rodionov.porosenokpetr.core.util.Language
 
 sealed class CardStackItem {
 
@@ -14,7 +14,7 @@ sealed class CardStackItem {
         val categoryName: String,
         val wordStatus: Int = Constants.WORD_ACTIVE,
         val id: Int? = null,
-        val nativeLang: Int = LANGUAGE_RU,
+        val nativeLang: Language = Language.Russian,
         val isNativeToForeign: Boolean = false,
         val mode: Int = MODE_LIGHT
     ): CardStackItem() {

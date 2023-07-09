@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Lazy Swedish</string>
+
+<!--    <string name="top_800_words">Топ 800 слов</string>-->
+<!--    <string name="top_200_verbs">Топ 200 глаголов</string>-->
+<!--    <string name="usual_words">Обычные слова</string>-->
+<!--    <string name="usual_verbs">Обычные глаголы</string>-->
+<!--    <string name="phrasal_verbs">Фразовые глаголы</string>-->
+<!--    <string name="phrases">Речевые связки</string>-->
+
+    <string name="item_count">В колоде %1$d слов</string>
+    <string name="current_position">Текущая позиция: %1$d</string>
+    <string name="on_card_appeared">onCardAppeared(%1$d)</string>
+    <string name="on_card_disappeared">onCardDisappeared(%1$d)</string>
+
+    <string name="active_categories">Изучаемые категории</string>
+    <string name="active_all_categories">Включить все категории</string>
+    <string name="cannot_turn_all_cats_off">Вы не можете выбрать менее 1 категории</string>
+
+    <string name="collection">Коллекция</string>
+    <string name="search_word">Искать слово ..</string>
+    <string name="search_among_all_words">Поиск среди всех слов</string>
+    <string name="search_in">Поиск в: %1$s</string>
+    <string name="percentage">%1$s \%</string>
+    <string name="word_editor">Редактинование слова</string>
+
+    <string name="category">Категория</string>
+    <string name="word_in_dialog">%1$s - %2$s</string>
+    <string name="word_learned">Слово выучено</string>
+    <string name="word_not_learned">Слово не выучено</string>
+    <string name="word_description">%1$s.\nВы можете пометить слово как выученное, и оно больше не будет встречаться в колоде.\nЕсли пометите слово как НЕвыученное, оно будет попадаться в колоде.</string>
+    <string name="translation_direction">Направление перевода</string>
+    <string name="from_en_to_ru">С иностранного на родной</string>
+    <string name="from_ru_to_en">С родного на иностранный</string>
+    <string name="dark_mode">Тёмная тема</string>
+    <string name="follow_system_mode">Использовать тему телефона</string>
+    <string name="appearance">Внешний вид</string>
+
+    <!--    <string name="from_native">С русского</string>-->
+    <!--    <string name="from_russian">С русского</string>-->
+    <!--    <string name="from_swedish">С шведского</string>-->
+    <!--    <string name="from_english">С инглиша</string>-->
+    <!--    <string name="from_ukrainian">С украинского</string>-->
+    <!--    <string name="to_russian"> на русский</string>-->
+    <!--    <string name="to_swedish"> на шведский</string>-->
+    <!--    <string name="to_english"> на инглиш</string>-->
+    <!--    <string name="to_ukrainian">  на украинский</string>-->
+
+    <string name="settings">Настройки</string>
+
+    <string name="choose_time">Выберите время</string>
+    <string name="notification_title">English: напоминалочка</string>
+    <string name="notification_subtitle">Не забыли уделить пару минут языку? =)</string>
+    <string name="remind">Напоминать о занятиях</string>
+    <string name="reminder">Напоминание</string>
+    <string name="notification_schedule_title">Установлено уведомление:\u00a0</string>
+    <string name="notification_schedule_pattern">dd.MM.yy  HH:mm</string>
+    <string name="notification_schedule_error">Schedule notification: Incorrect Date and Time</string>
+    <string name="btn_next_text">Продолжить</string>
+
+    <string name="native_language">Родной язык</string>
+    <string name="learned_language">Изучаемый язык</string>
+    <string name="russian">Русский</string>
+    <string name="ukrainian">Украинский</string>
+    <string name="follow_system_locale">Использовать локализацию устройства</string>
+    <string name="native_language_settings">Родной язык</string>
+    <string name="learned_language_settings">Изучаемый язык</string>
+    <string name="language">Язык</string>
+
+    <string name="rus_word">Русский перевод ..</string>
+    <string name="foreign_word">Шведское слово ..</string>
+    <string name="eng_word">Английский перевод ..</string>
+    <string name="ukr_word">Украинский перевод ..</string>
+</resources>

@@ -8,15 +8,12 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
-import space.rodionov.porosenokpetr.core.util.Constants.LANGUAGE_EN
-import space.rodionov.porosenokpetr.core.util.Constants.LANGUAGE_RU
-import space.rodionov.porosenokpetr.core.util.Constants.LANGUAGE_SE
-import space.rodionov.porosenokpetr.core.util.Constants.LANGUAGE_UA
+import space.rodionov.porosenokpetr.core.util.Language
 import space.rodionov.porosenokpetr.core.util.UiEffect
 import space.rodionov.porosenokpetr.feature_wordeditor.presentation.model.Translation
 import javax.inject.Inject
 
-class WordEditorViewModel @Inject constructor(
+class WordEditorViewModel(
 
 ) : ViewModel() {
 
@@ -44,17 +41,17 @@ class WordEditorViewModel @Inject constructor(
 
 data class WordEditorState(
     val translations: List<Translation> = listOf(
-        Translation(LANGUAGE_RU, "Хуй"),
-        Translation(LANGUAGE_UA, "Хуй"),
-        Translation(LANGUAGE_EN, "Dick"),
-        Translation(LANGUAGE_SE, "Kuk")
+        Translation(Language.Russian, "Хуй"),
+        Translation(Language.Ukrainian, "Хуй"),
+        Translation(Language.English, "Dick"),
+        Translation(Language.Swedish, "Kuk")
     )
 )
 
 sealed class WordEditorEvent {
     object OnBackClick : WordEditorEvent()
     data class OnTranslationChanged(
-        val language: Int,
+        val language: Language,
         val translation: String
     ) : WordEditorEvent()
 }

@@ -5,11 +5,27 @@ import space.rodionov.porosenokpetr.core.domain.model.Word
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.model.VocabularyItem
 
 fun Category.toCategoryUi(): VocabularyItem.CategoryUi {
-    return VocabularyItem.CategoryUi(name, isCategoryActive,learnedFromActivePercentage, id, nameRus, nameUkr, nameEng)
+    return VocabularyItem.CategoryUi(
+        name,
+        isCategoryActive,
+        learnedFromActivePercentage,
+        id,
+        nameRus,
+        nameUkr ?: nameRus,
+        nameEng
+    )
 }
 
 fun VocabularyItem.CategoryUi.toCategory(): Category {
-    return Category(name, isCategoryActive, learnedFromActivePercentage, id, nameRus, nameUkr, nameEng)
+    return Category(
+        name,
+        isCategoryActive,
+        learnedFromActivePercentage,
+        id,
+        nameRus,
+        nameUkr,
+        nameEng
+    )
 }
 
 fun Word.toWordUi(): VocabularyItem.WordUi {

@@ -1,230 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-<!--  RU  -->
-    <string name="app_name">Lazy Swedish</string>
-    <string name="english">English</string>
+    <string name="app_name">EnglishDriller</string>
 
-    <string name="top_800_words">Топ 800 слов</string>
-    <string name="top_200_verbs">Топ 200 глаголов</string>
-    <string name="usual_words">Обычные слова</string>
-    <string name="usual_verbs">Обычные глаголы</string>
-    <string name="phrasal_verbs">Фразовые глаголы</string>
-    <string name="phrases">Речевые связки</string>
+<!--    <string name="top_800_words">Топ 800 слiв</string>-->
+<!--    <string name="top_200_verbs">Топ 200 дієслів</string>-->
+<!--    <string name="usual_words">Звичайні слова</string>-->
+<!--    <string name="usual_verbs">Звичайні дієслова</string>-->
+<!--    <string name="phrasal_verbs">Phrasal verbs</string>-->
+<!--    <string name="phrases">Phrases</string>-->
 
-    <string name="item_count">В колоде %1$d слов</string>
-    <string name="current_position">Текущая позиция: %1$d</string>
+    <string name="item_count">Words in stack: %1$d</string>
+    <string name="current_position">Current position: %1$d</string>
     <string name="on_card_appeared">onCardAppeared(%1$d)</string>
     <string name="on_card_disappeared">onCardDisappeared(%1$d)</string>
 
-    <string name="active_categories">Изучаемые категории</string>
-    <string name="active_all_categories">Включить все категории</string>
-    <string name="cannot_turn_all_cats_off">Вы не можете выбрать менее 1 категории</string>
+    <string name="active_categories">Active categories</string>
+    <string name="active_all_categories">Включити всі категорії</string>
+    <string name="cannot_turn_all_cats_off">Ви не можете вибрати менше 1 категорії</string>
 
-    <string name="collection">Коллекция</string>
-    <string name="search_word">Искать слово ..</string>
-    <string name="search_among_all_words">Поиск среди всех слов</string>
-    <string name="search_in">Поиск в: %1$s</string>
+    <string name="collection">Collection</string>
+    <string name="search_word">Search word ..</string>
+    <string name="search_among_all_words">Search among all words</string>
+    <string name="search_in">Search in: %1$s</string>
     <string name="percentage">%1$s \%</string>
-    <string name="word_editor">Редактинование слова</string>
+    <string name="word_editor">Word editor</string>
 
-    <string name="category">Категория</string>
+    <string name="category">Category</string>
     <string name="word_in_dialog">%1$s - %2$s</string>
-    <string name="word_learned">Слово выучено</string>
-    <string name="word_not_learned">Слово не выучено</string>
-    <string name="word_description">%1$s.\nВы можете пометить слово как выученное, и оно больше не будет встречаться в колоде.\nЕсли пометите слово как НЕвыученное, оно будет попадаться в колоде.</string>
-    <string name="translation_direction">Направление перевода</string>
-    <string name="from_en_to_ru">С иностранного на родной</string>
-    <string name="from_ru_to_en">С родного на иностранный</string>
-    <string name="dark_mode">Тёмная тема</string>
-    <string name="follow_system_mode">Использовать тему телефона</string>
-    <string name="appearance">Внешний вид</string>
+    <string name="word_learned">The word is learned</string>
+    <string name="word_not_learned">The word is not learned</string>
+    <string name="word_description">%1$s.\nYou can mark the word as learned and it\'ll not be met in the stack. \nIf you mark the word as NOT learned, you\'ll meet it in the stack.</string>
+    <string name="translation_direction">Translation direction</string>
+    <string name="from_en_to_ru">From foreign to native</string>
+    <string name="from_ru_to_en">From native to foreign</string>
+    <string name="dark_mode">Dark mode</string>
+    <string name="follow_system_mode">Follow system mode</string>
+    <string name="appearance">Appearance</string>
 
-<!--    <string name="from_native">С русского</string>-->
-<!--    <string name="from_russian">С русского</string>-->
-<!--    <string name="from_swedish">С шведского</string>-->
-<!--    <string name="from_english">С инглиша</string>-->
-<!--    <string name="from_ukrainian">С украинского</string>-->
-<!--    <string name="to_russian"> на русский</string>-->
-<!--    <string name="to_swedish"> на шведский</string>-->
-<!--    <string name="to_english"> на инглиш</string>-->
-<!--    <string name="to_ukrainian">  на украинский</string>-->
+<!--    <string name="from_native">From english</string>-->
+<!--    <string name="from_russian">From russian</string>-->
+<!--    <string name="from_swedish">From swedish</string>-->
+<!--    <string name="fromglish">From english</string>-->
+<!--    <string name="from_ukrainian">From ukrainian</string>-->
+<!--    <string name="to_russian"> to russian</string>-->
+<!--    <string name="to_swedish"> to swedish</string>-->
+<!--    <string name="toglish"> to english</string>-->
+<!--    <string name="to_ukrainian"> to ukrainian</string>-->
 
-    <string name="settings">Настройки</string>
+    <string name="settings">Settings</string>
 
-    <string name="choose_time">Выберите время</string>
-    <string name="notification_title">English: напоминалочка</string>
-    <string name="notification_subtitle">Не забыли уделить пару минут языку? =)</string>
-    <string name="remind">Напоминать о занятиях</string>
-    <string name="reminder">Напоминание</string>
-    <string name="notification_schedule_title">Установлено уведомление:\u00a0</string>
+    <string name="choose_time">Choose time</string>
+    <string name="notification_title">Notification</string>
+    <string name="notification_subtitle">Haven\'t you forgot to do some language lesson? =)</string>
+    <string name="remind">Remind about lesson</string>
+    <string name="reminder">Reminder</string>
+    <string name="notification_schedule_title">Reminder scheduled:\u00a0</string>
     <string name="notification_schedule_pattern">dd.MM.yy  HH:mm</string>
     <string name="notification_schedule_error">Schedule notification: Incorrect Date and Time</string>
-    <string name="btn_next_text">Продолжить</string>
+    <string name="btn_next_text">Proceed</string>
 
-    <string name="native_language">Родной язык</string>
-    <string name="learned_language">Изучаемый язык</string>
-    <string name="russian">Русский</string>
-    <string name="ukrainian">Украинский</string>
-    <string name="follow_system_locale">Использовать локализацию устройства</string>
-    <string name="native_language_settings">Родной язык</string>
-    <string name="learned_language_settings">Изучаемый язык</string>
-    <string name="language">Язык</string>
+    <string name="native_language">Native language</string>
+    <string name="learned_language">Learned language</string>
+    <string name="russian">Russian</string>
+    <string name="ukrainian">Ukrainian</string>
+    <string name="follow_system_locale">Follow system language</string>
+    <string name="native_language_settings">Native language: </string>
+    <string name="learned_language_settings">Learned language: </string>
+    <string name="language">English</string>
 
-    <string name="rus_word_ua">Русский перевод ..</string>
-    <string name="foreign_word_ua">Шведское слово ..</string>
-    <string name="eng_word_ua">Английский перевод ..</string>
-    <string name="ukr_word_ua">Украинский перевод ..</string>
-
-
-
-
-<!--  UA  -->
-    <string name="app_name_ua">EnglishDriller</string>
-
-    <string name="top_800_words_ua">Топ 800 слiв</string>
-    <string name="top_200_verbs_ua">Топ 200 дієслів</string>
-    <string name="usual_words_ua">Звичайні слова</string>
-    <string name="usual_verbs_ua">Звичайні дієслова</string>
-    <string name="phrasal_verbs_ua">Фразові дієслова</string>
-    <string name="phrases_ua">Мовні зв\'язки</string>
-
-    <string name="item_count_ua">У колоді %1$d слшв</string>
-    <string name="current_position_ua">Поточна позиція: %1$d</string>
-    <string name="on_card_appeared_ua">onCardAppeared(%1$d)</string>
-    <string name="on_card_disappeared_ua">onCardDisappeared(%1$d)</string>
-
-    <string name="active_categories_ua">Досліджувані категорії</string>
-    <string name="active_all_categories_ua">Включити всі категорії</string>
-    <string name="cannot_turn_all_cats_off_ua">Ви не можете вибрати менше 1 категорії</string>
-
-    <string name="collection_ua">Колекція</string>
-    <string name="search_word_ua">Шукати слово ..</string>
-    <string name="search_among_all_words_ua">Пошук серед усіх слів</string>
-    <string name="search_in_ua">Пошук у: %1$s</string>
-    <string name="percentage_ua">%1$s \%</string>
-
-    <string name="category_ua">Категорія</string>
-    <string name="word_in_dialog_ua">%1$s - %2$s</string>
-    <string name="word_learned_ua">Слово вивчене</string>
-    <string name="word_not_learned_ua">Слово не вивчене</string>
-    <string name="word_description_ua">%1$s.\nВи можете позначити слово як вивчене, і воно більше не зустрічатиметься у колоді. \nЯкщо помітите слово як НЕвивчене, воно траплятиметься у колоді.</string>
-    <string name="translation_direction_ua">Напрямок перекладу</string>
-    <string name="from_en_to_ru_ua">З іноземної на українську</string>
-    <string name="from_ru_to_en_ua">З української на іноземний</string>
-    <string name="dark_mode_ua">Темна тема</string>
-    <string name="follow_system_mode_ua">Використати тему телефону</string>
-    <string name="appearance_ua">Зовнішній вигляд</string>
-
-<!--    <string name="from_native_ua">З української</string>-->
-<!--    <string name="from_russian_ua">З росiйської</string>-->
-<!--    <string name="from_swedish_ua">З шведської</string>-->
-<!--    <string name="from_english_ua">З iнглiшу</string>-->
-<!--    <string name="from_ukrainian_ua">З української</string>-->
-<!--    <string name="to_russian_ua"> на росiйську</string>-->
-<!--    <string name="to_swedish_ua"> на шведську</string>-->
-<!--    <string name="to_english_ua"> на інглиш</string>-->
-<!--    <string name="to_ukrainian_ua"> на українську</string>-->
-
-    <string name="settings_ua">Налаштування</string>
-
-    <string name="choose_time_ua">Виберіть час</string>
-    <string name="notification_title_ua">English: нагадування</string>
-    <string name="notification_subtitle_ua">Чи не забули приділити пару хвилин мове? =)</string>
-    <string name="remind_ua">Нагадувати про заняття</string>
-    <string name="reminder_ua">Нагадування</string>
-    <string name="notification_schedule_title_ua">Встановлено повідомлення:\u00a0</string>
-    <string name="notification_schedule_pattern_ua">dd.MM.yy  HH:mm</string>
-    <string name="notification_schedule_error_ua">Schedule notification: Incorrect Date and Time</string>
-    <string name="btn_next_text_ua">Продовжити</string>
-
-    <string name="native_language_ua">Рідна мова</string>
-    <string name="learned_language_ua">Вивчаєма мова</string>
-    <string name="russian_ua">Російська</string>
-    <string name="ukrainian_ua">Українська</string>
-    <string name="follow_system_locale_ua">Використати локалізацію телефону</string>
-    <string name="native_language_settings_ua">Рідна мова</string>
-    <string name="learned_language_settings_ua">Вивчаєма мова: </string>
-    <string name="language_ua">Мова</string>
-
-    <string name="rus_word">Російський переклад ..</string>
-    <string name="foreign_word">Шведське слово ..</string>
-    <string name="eng_word">Англійський переклад ..</string>
-    <string name="ukr_word">Український переклад ..</string>
-
-
-
-    <!--  EN  -->
-    <string name="app_name_en">EnglishDriller</string>
-
-    <string name="top_800_words_en">Топ 800 слiв</string>
-    <string name="top_200_verbs_en">Топ 200 дієслів</string>
-    <string name="usual_words_en">Звичайні слова</string>
-    <string name="usual_verbs_en">Звичайні дієслова</string>
-    <string name="phrasal_verbs_en">Phrasal verbs</string>
-    <string name="phrases_en">Phrases</string>
-
-    <string name="item_count_en">Words in stack: %1$d</string>
-    <string name="current_position_en">Current position: %1$d</string>
-    <string name="on_card_appeared_en">onCardAppeared(%1$d)</string>
-    <string name="on_card_disappeared_en">onCardDisappeared(%1$d)</string>
-
-    <string name="active_categories_en">Active categories</string>
-    <string name="active_all_categories_en">Включити всі категорії</string>
-    <string name="cannot_turn_all_cats_off_en">Ви не можете вибрати менше 1 категорії</string>
-
-    <string name="collection_en">Collection</string>
-    <string name="search_word_en">Search word ..</string>
-    <string name="search_among_all_words_en">Search among all words</string>
-    <string name="search_in_en">Search in: %1$s</string>
-    <string name="percentage_en">%1$s \%</string>
-
-    <string name="category_en">Category</string>
-    <string name="word_in_dialog_en">%1$s - %2$s</string>
-    <string name="word_learned_en">The word is learned</string>
-    <string name="word_not_learned_en">The word is not learned</string>
-    <string name="word_description_en">%1$s.\nYou can mark the word as learned and it\'ll not be met in the stack. \nIf you mark the word as NOT learned, you\'ll meet it in the stack.</string>
-    <string name="translation_direction_en">Translation direction</string>
-    <string name="from_en_to_ru_en">From foreign to native</string>
-    <string name="from_ru_to_en_en">From native to foreign</string>
-    <string name="dark_mode_en">Dark mode</string>
-    <string name="follow_system_mode_en">Follow system mode</string>
-    <string name="appearance_en">Appearance</string>
-
-<!--    <string name="from_native_en">From english</string>-->
-<!--    <string name="from_russian_en">From russian</string>-->
-<!--    <string name="from_swedish_en">From swedish</string>-->
-<!--    <string name="from_english_en">From english</string>-->
-<!--    <string name="from_ukrainian_en">From ukrainian</string>-->
-<!--    <string name="to_russian_en"> to russian</string>-->
-<!--    <string name="to_swedish_en"> to swedish</string>-->
-<!--    <string name="to_english_en"> to english</string>-->
-<!--    <string name="to_ukrainian_en"> to ukrainian</string>-->
-
-    <string name="settings_en">Settings</string>
-
-    <string name="choose_time_en">Choose time</string>
-    <string name="notification_title_en">Notification</string>
-    <string name="notification_subtitle_en">Haven\'t you forgot to do some language lesson? =)</string>
-    <string name="remind_en">Remind about lesson</string>
-    <string name="reminder_en">Reminder</string>
-    <string name="notification_schedule_title_en">Reminder scheduled:\u00a0</string>
-    <string name="notification_schedule_pattern_en">dd.MM.yy  HH:mm</string>
-    <string name="notification_schedule_error_en">Schedule notification: Incorrect Date and Time</string>
-    <string name="btn_next_text_en">Proceed</string>
-
-    <string name="native_language_en">Native language</string>
-    <string name="learned_language_en">Learned language</string>
-    <string name="russian_en">Russian</string>
-    <string name="ukrainian_en">Ukrainian</string>
-    <string name="follow_system_locale_en">Follow system language</string>
-    <string name="native_language_settings_en">Native language: </string>
-    <string name="learned_language_settings_en">Learned language: </string>
-    <string name="language_en">English</string>
-
-    <string name="rus_word_en">Russian translation ..</string>
-    <string name="foreign_word_en">Swedish word ..</string>
-    <string name="eng_word_en">English translation ..</string>
-    <string name="ukr_word_en">Ukrainian translation ..</string>
+    <string name="rus_word">Russian translation ..</string>
+    <string name="foreign_word">Swedish word ..</string>
+    <string name="eng_word">English translation ..</string>
+    <string name="ukr_word">Ukrainian translation ..</string>
 
 
 </resources>
