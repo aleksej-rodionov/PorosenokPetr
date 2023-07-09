@@ -10,6 +10,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.ScaffoldState
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -17,18 +18,36 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.emptyFlow
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.presentation.LocalSpacing
+import space.rodionov.porosenokpetr.core.util.UiEffect
 import space.rodionov.porosenokpetr.feature_cardstack.presentation.componensts.CardStackView
+import space.rodionov.porosenokpetr.feature_cardstack.presentation.model.CardStackItem
 
 const val TAG_CARDSTACK = "TAG_CARDSTACK"
 
 @Composable
 fun CardStackMainScreen(
+    navigateTo: (String) -> Unit,
     scaffoldState: ScaffoldState,
     state: CardstackState,
+    uiEffect: Flow<UiEffect>,
     onEvent: (CardstackEvent) -> Unit
 ) {
+
+    LaunchedEffect(key1 = true) {
+        uiEffect.collectLatest { event ->
+            when(event) {
+                is UiEffect.NavigateTo -> {
+                    navigateTo(event.route)
+                }
+                else -> Unit
+            }
+        }
+    }
 
     Box(
         modifier = Modifier
@@ -48,7 +67,10 @@ fun CardStackMainScreen(
                 onEvent(CardstackEvent.UpdateWordStatus(it))
             },
             speakWord = {
-                onEvent(CardstackEvent.SpeakWord(it))
+                onEvent(CardstackEvent.OnSpeakWordClick(it))
+            },
+            editWord = {
+                onEvent(CardstackEvent.OnEditWordClick(it))
             }
         )
 
@@ -72,13 +94,13 @@ fun CardStackMainScreen(
     }
 }
 
-
 @Composable
 fun CardStack(
     state: CardstackState,
     updateCurrentPosition: (Int) -> Unit,
     updateWordStatus: (Int) -> Unit,
-    speakWord: (String) -> Unit
+    speakWord: (String) -> Unit,
+    editWord: (CardStackItem.WordUi) -> Unit
 ) {
 
     val context = LocalContext.current
@@ -100,6 +122,9 @@ fun CardStack(
                 setOnSpeakWordListener {
                     speakWord(it)
                 }
+                setOnEditWordListener {
+                    editWord(it)
+                }
                 initView(state)
             }
         },
@@ -115,8 +140,10 @@ fun CardstackScreenPreview(
     scaffoldState: ScaffoldState = rememberScaffoldState()
 ) {
     CardStackMainScreen(
+        navigateTo = {},
         scaffoldState = scaffoldState,
         state = CardstackState(),
+        uiEffect = emptyFlow(),
         onEvent = {}
     )
 }

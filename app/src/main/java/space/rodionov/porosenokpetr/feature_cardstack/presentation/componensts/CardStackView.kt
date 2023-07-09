@@ -7,10 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.LinearInterpolator
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.graphics.drawable.toDrawable
 import com.yuyakaido.android.cardstackview.*
-import space.rodionov.porosenokpetr.R
-import space.rodionov.porosenokpetr.core.util.Constants.MODE_DARK
 import space.rodionov.porosenokpetr.core.util.Constants.WORD_LEARNED
 import space.rodionov.porosenokpetr.databinding.LayoutCardstackBinding
 import space.rodionov.porosenokpetr.feature_cardstack.presentation.CardstackState
@@ -27,8 +24,11 @@ class CardStackView @JvmOverloads constructor(
     private val binding = LayoutCardstackBinding.inflate(LayoutInflater.from(context), this, true)
 
     private val cardstackAdapter = CardStackAdapter(
-        onSpeakWord = { word ->
-            onSpeakWord?.invoke(word)
+        onSpeakWordClick = { word ->
+            onSpeakWordClick?.invoke(word)
+        },
+        onEditWordClick = { word ->
+            onEditWordClick?.invoke(word)
         }
     )
 
@@ -42,9 +42,14 @@ class CardStackView @JvmOverloads constructor(
         onWordSwiped = callback
     }
 
-    private var onSpeakWord: ((String) -> Unit)? = null
+    private var onSpeakWordClick: ((String) -> Unit)? = null
     fun setOnSpeakWordListener(callback: (String) -> Unit) {
-        onSpeakWord = callback
+        onSpeakWordClick = callback
+    }
+
+    private var onEditWordClick: ((CardStackItem.WordUi) -> Unit)? = null
+    fun setOnEditWordListener(callback: (CardStackItem.WordUi) -> Unit) {
+        onEditWordClick = callback
     }
 
     fun initView(

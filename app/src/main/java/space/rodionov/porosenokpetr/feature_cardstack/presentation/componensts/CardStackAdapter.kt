@@ -10,12 +10,14 @@ import space.rodionov.porosenokpetr.databinding.ItemWordBinding
 import space.rodionov.porosenokpetr.feature_cardstack.presentation.model.CardStackItem
 
 class CardStackAdapter(
-    private val onSpeakWord: (String) -> Unit = {}
+    private val onSpeakWordClick: (String) -> Unit = {},
+    private val onEditWordClick: (CardStackItem.WordUi) -> Unit = {}
 ) : ListAdapter<CardStackItem.WordUi, CardStackAdapter.CardStackViewHolder>(CardStackItemComparator()) {
 
     inner class CardStackViewHolder(
         private val binding: ItemWordBinding,
-        private val onSpeakItem: (Int) -> Unit = {}
+        private val onSpeakItem: (Int) -> Unit = {},
+        private val onClickEdit: (Int) -> Unit = {}
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(word: CardStackItem.WordUi) {
             binding.apply {
@@ -38,6 +40,13 @@ class CardStackAdapter(
                     val position = adapterPosition
                     if (position != RecyclerView.NO_POSITION) {
                         onSpeakItem(position)
+                    }
+                }
+
+                icEdit.setOnClickListener {
+                    val position = absoluteAdapterPosition
+                    if (position != RecyclerView.NO_POSITION) {
+                        onClickEdit(position)
                     }
                 }
             }
@@ -72,7 +81,11 @@ class CardStackAdapter(
             binding,
             onSpeakItem = { pos ->
                 val word = getItem(pos)
-                if (word != null) onSpeakWord(word.getTranslation(3))
+                if (word != null) onSpeakWordClick(word.getTranslation(3))
+            },
+            onClickEdit = {
+                val word = getItem(it)
+                word?.let { onEditWordClick(word) }
             }
         )
     }

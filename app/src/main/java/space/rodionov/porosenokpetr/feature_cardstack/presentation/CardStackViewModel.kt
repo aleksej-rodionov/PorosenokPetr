@@ -5,19 +5,23 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import space.rodionov.porosenokpetr.core.domain.use_case.CollectModeUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.SpeakWordUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.UpdateLearnedPercentInCategoryUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.UpdateWordStatusUseCase
 import space.rodionov.porosenokpetr.core.util.Constants.MAX_STACK_SIZE
+import space.rodionov.porosenokpetr.core.util.UiEffect
 import space.rodionov.porosenokpetr.feature_cardstack.domain.use_case.GetTenWordsUseCase
 import space.rodionov.porosenokpetr.feature_cardstack.presentation.mapper.toWord
 import space.rodionov.porosenokpetr.feature_cardstack.presentation.mapper.toWordUi
 import space.rodionov.porosenokpetr.feature_cardstack.presentation.model.CardStackItem
+import space.rodionov.porosenokpetr.main.navigation.sub_graphs.VocabularyDestinations
 import javax.inject.Inject
 
 class CardStackViewModel @Inject constructor(
@@ -30,6 +34,9 @@ class CardStackViewModel @Inject constructor(
 
     var state by mutableStateOf(CardstackState())
         private set
+
+    private val _uiEffect = Channel<UiEffect>()
+    val uiEffect = _uiEffect.receiveAsFlow()
 
     init {
         viewModelScope.launch {
@@ -72,8 +79,18 @@ class CardStackViewModel @Inject constructor(
                 }
             }
 
-            is CardstackEvent.SpeakWord -> {
+            is CardstackEvent.OnSpeakWordClick -> {
                 speakWordUseCase.invoke(event.word)
+            }
+
+            is CardstackEvent.OnEditWordClick -> {
+                viewModelScope.launch {
+                    _uiEffect.send(
+                        UiEffect.NavigateTo(
+                            "${VocabularyDestinations.WordEditor.route}/${event.word.eng}"
+                        )
+                    )
+                }
             }
         }
     }
@@ -95,5 +112,6 @@ data class CardstackState(
 sealed class CardstackEvent {
     data class UpdateCurrentPosition(val position: Int) : CardstackEvent()
     data class UpdateWordStatus(val status: Int) : CardstackEvent()
-    data class SpeakWord(val word: String) : CardstackEvent()
+    data class OnSpeakWordClick(val word: String) : CardstackEvent()
+    data class OnEditWordClick(val word: CardStackItem.WordUi) : CardstackEvent()
 }

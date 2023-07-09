@@ -29,7 +29,7 @@ fun WordEditorItem(
         modifier = Modifier
             .fillMaxWidth()
             .background(Color.Transparent)
-            .padding(4.dp),
+            .padding(0.dp),
         label = {
             Text(translation.language.toString(), fontSize = 12.sp)
         },

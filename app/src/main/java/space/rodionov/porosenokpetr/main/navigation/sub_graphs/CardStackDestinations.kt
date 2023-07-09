@@ -29,8 +29,10 @@ fun NavGraphBuilder.addCardStackGraph(
         }
 
         CardStackMainScreen(
+            navigateTo = { navController.navigate(it) },
             scaffoldState,
             viewModel.state,
+            viewModel.uiEffect,
             { viewModel.onEvent(it) }
         )
     }
@@ -38,5 +40,5 @@ fun NavGraphBuilder.addCardStackGraph(
 
 sealed class CardStackDestinations(val route: String) {
 
-    object CardStackMain: CardStackDestinations(route = "cardStackMain")
+    object CardStackMain : CardStackDestinations(route = "cardStackMain")
 }
