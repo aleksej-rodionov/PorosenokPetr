@@ -10,8 +10,8 @@ import space.rodionov.porosenokpetr.core.domain.use_case.UpdateWordStatusUseCase
 import space.rodionov.porosenokpetr.core.util.SwedishSpeaker
 import space.rodionov.porosenokpetr.feature_cardstack.domain.use_case.ObserveAllCategoriesUseCase
 import space.rodionov.porosenokpetr.feature_vocabulary.domain.use_case.*
-import space.rodionov.porosenokpetr.feature_vocabulary.presentation.screens.vocabulary.VocabularyViewModel
-import space.rodionov.porosenokpetr.feature_vocabulary.presentation.screens.wordeditor.WordEditorViewModel
+import space.rodionov.porosenokpetr.feature_vocabulary.presentation.VocabularyViewModel
+import space.rodionov.porosenokpetr.feature_wordeditor.presentation.WordEditorViewModel
 
 @Module
 class VocabularyModule {
@@ -58,13 +58,5 @@ class VocabularyModule {
         speakWordUseCase,
         updateWordStatusUseCase,
         updateLearnedPercentInCategoryUseCase
-    )
-
-    @Provides
-    @VocabularyScope
-    fun provideWordEditorViewModel(
-
-    ) = WordEditorViewModel(
-
     )
 }

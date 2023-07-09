@@ -1,4 +1,4 @@
-package space.rodionov.porosenokpetr.feature_vocabulary.presentation.screens.vocabulary
+package space.rodionov.porosenokpetr.feature_vocabulary.presentation
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background

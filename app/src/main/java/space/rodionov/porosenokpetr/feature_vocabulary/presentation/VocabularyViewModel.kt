@@ -1,4 +1,4 @@
-package space.rodionov.porosenokpetr.feature_vocabulary.presentation.screens.vocabulary
+package space.rodionov.porosenokpetr.feature_vocabulary.presentation
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf

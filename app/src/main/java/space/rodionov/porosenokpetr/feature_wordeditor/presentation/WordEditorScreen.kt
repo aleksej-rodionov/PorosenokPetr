@@ -1,4 +1,4 @@
-package space.rodionov.porosenokpetr.feature_vocabulary.presentation.screens.wordeditor
+package space.rodionov.porosenokpetr.feature_wordeditor.presentation
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

@@ -8,10 +8,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import space.rodionov.porosenokpetr.core.util.daggerComposeViewModel
 import space.rodionov.porosenokpetr.feature_vocabulary.di.DaggerVocabularyComponent
-import space.rodionov.porosenokpetr.feature_vocabulary.presentation.screens.vocabulary.VocabularyScreen
-import space.rodionov.porosenokpetr.feature_vocabulary.presentation.screens.vocabulary.VocabularyViewModel
-import space.rodionov.porosenokpetr.feature_vocabulary.presentation.screens.wordeditor.WordEditorScreen
-import space.rodionov.porosenokpetr.feature_vocabulary.presentation.screens.wordeditor.WordEditorViewModel
+import space.rodionov.porosenokpetr.feature_vocabulary.presentation.VocabularyScreen
+import space.rodionov.porosenokpetr.feature_vocabulary.presentation.VocabularyViewModel
+import space.rodionov.porosenokpetr.feature_wordeditor.presentation.WordEditorScreen
+import space.rodionov.porosenokpetr.feature_wordeditor.presentation.WordEditorViewModel
 import space.rodionov.porosenokpetr.main.PorosenokPetrApp
 
 fun NavGraphBuilder.addVocabularyGraph(
@@ -46,7 +46,7 @@ fun NavGraphBuilder.addVocabularyGraph(
         arguments = VocabularyDestinations.VocabularySearch.arguments
     ) {
 
-        val component = DaggerVocabularyComponent
+        val component = DaggerWordEditorComponent
             .builder()
             .appComponent(PorosenokPetrApp.component!!)
             .build()
