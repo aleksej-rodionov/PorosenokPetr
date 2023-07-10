@@ -5,6 +5,8 @@ import dagger.Provides
 import space.rodionov.porosenokpetr.core.domain.preferences.KeyValueStorage
 import space.rodionov.porosenokpetr.core.domain.repository.WordRepo
 import space.rodionov.porosenokpetr.core.domain.use_case.CollectModeUseCase
+import space.rodionov.porosenokpetr.core.domain.use_case.CollectNativeLanguageUseCase
+import space.rodionov.porosenokpetr.core.domain.use_case.CollectTranslationDirectionUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.SpeakWordUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.UpdateLearnedPercentInCategoryUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.UpdateWordStatusUseCase
@@ -21,7 +23,18 @@ class CardStackModule {
 
     @Provides
     @CardStackScope
-    fun provideObserveModeUseCase(keyValueStorage: KeyValueStorage) = CollectModeUseCase(keyValueStorage)
+    fun provideCollectModeUseCase(keyValueStorage: KeyValueStorage) =
+        CollectModeUseCase(keyValueStorage)
+
+    @Provides
+    @CardStackScope
+    fun provideCollectNativeLanguageUseCase(keyValueStorage: KeyValueStorage) =
+        CollectNativeLanguageUseCase(keyValueStorage)
+
+    @Provides
+    @CardStackScope
+    fun provideCollectTranslationDirectionUseCase(keyValueStorage: KeyValueStorage) =
+        CollectTranslationDirectionUseCase(keyValueStorage)
 
     @Provides
     @CardStackScope
@@ -41,14 +54,18 @@ class CardStackModule {
     fun provideCardStackViewModel(
         getTenWordsUseCase: GetTenWordsUseCase,
         collectModeUseCase: CollectModeUseCase,
+        collectNativeLanguageUseCase: CollectNativeLanguageUseCase,
+        collectTranslationDirectionUseCase: CollectTranslationDirectionUseCase,
         updateWordStatusUseCase: UpdateWordStatusUseCase,
         updateLearnedPercentInCategoryUseCase: UpdateLearnedPercentInCategoryUseCase,
         speakWordUseCase: SpeakWordUseCase
     ) = CardStackViewModel(
         getTenWordsUseCase,
         collectModeUseCase,
+        collectNativeLanguageUseCase,
+        collectTranslationDirectionUseCase,
         updateWordStatusUseCase,
         updateLearnedPercentInCategoryUseCase,
-        speakWordUseCase,
+        speakWordUseCase
     )
 }

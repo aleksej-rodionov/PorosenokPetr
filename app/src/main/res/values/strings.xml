@@ -71,6 +71,7 @@
     <string name="learned_language_settings">Learned language: </string>
     <string name="native_to_foreign">Native to foreign</string>
     <string name="language">English</string>
+    <string name="save">Save</string>
 
     <string name="rus_word">Russian translation ..</string>
     <string name="foreign_word">Swedish word ..</string>

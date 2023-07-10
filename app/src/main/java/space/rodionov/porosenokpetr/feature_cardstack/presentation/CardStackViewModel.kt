@@ -12,6 +12,8 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import space.rodionov.porosenokpetr.core.domain.use_case.CollectModeUseCase
+import space.rodionov.porosenokpetr.core.domain.use_case.CollectNativeLanguageUseCase
+import space.rodionov.porosenokpetr.core.domain.use_case.CollectTranslationDirectionUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.SpeakWordUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.UpdateLearnedPercentInCategoryUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.UpdateWordStatusUseCase
@@ -27,6 +29,8 @@ import javax.inject.Inject
 class CardStackViewModel(
     private val getTenWordsUseCase: GetTenWordsUseCase,
     private val collectModeUseCase: CollectModeUseCase,
+    private val collectNativeLanguageUseCase: CollectNativeLanguageUseCase,
+    private val collectTranslationDirectionUseCase: CollectTranslationDirectionUseCase,
     private val updateWordStatusUseCase: UpdateWordStatusUseCase,
     private val updateLearnedPercentInCategoryUseCase: UpdateLearnedPercentInCategoryUseCase,
     private val speakWordUseCase: SpeakWordUseCase
@@ -46,15 +50,23 @@ class CardStackViewModel(
         collectModeUseCase.invoke().onEach { mode ->
             state = state.copy(words = state.words.map { it.copy(mode = mode) })
         }.launchIn(viewModelScope)
+
+        collectNativeLanguageUseCase.invoke().onEach { language ->
+            state = state.copy(words = state.words.map { it.copy(nativeLang = language) })
+        }.launchIn(viewModelScope)
+
+        collectTranslationDirectionUseCase.invoke().onEach { nativeToForeign ->
+            state = state.copy(words = state.words.map {
+                it.copy(isNativeToForeign = nativeToForeign)
+            })
+        }.launchIn(viewModelScope)
     }
 
     fun onEvent(event: CardstackEvent) {
         when (event) {
             is CardstackEvent.UpdateCurrentPosition -> {
                 state = state.copy(currentPosition = event.position)
-                if (event.position == state.words.size - 3 &&
-                    event.position < MAX_STACK_SIZE - 10
-                ) {
+                if (needAddTenMoreWords(event.position)) {
                     viewModelScope.launch {
                         val newList = mutableListOf<CardStackItem.WordUi>().apply {
                             addAll(state.words)
@@ -87,7 +99,7 @@ class CardStackViewModel(
                 viewModelScope.launch {
                     _uiEffect.send(
                         UiEffect.NavigateTo(
-                            "${VocabularyDestinations.WordEditor.route}/${event.word.eng}"
+                            "${VocabularyDestinations.WordEditor.route}/${event.word.id}"
                         )
                     )
                 }
@@ -101,6 +113,10 @@ class CardStackViewModel(
             it.toWordUi().copy(mode = mode)
         }
         return tenWords
+    }
+
+    private fun needAddTenMoreWords(currentPosition: Int): Boolean {
+        return currentPosition == state.words.size - 3 && currentPosition < MAX_STACK_SIZE - 10
     }
 }
 

@@ -6,7 +6,7 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import space.rodionov.porosenokpetr.core.redrawViewGroup
-import space.rodionov.porosenokpetr.core.util.Language
+import space.rodionov.porosenokpetr.core.util.Constants.FOREIGN_LANG
 import space.rodionov.porosenokpetr.databinding.ItemWordBinding
 import space.rodionov.porosenokpetr.feature_cardstack.presentation.model.CardStackItem
 
@@ -25,11 +25,7 @@ class CardStackAdapter(
                 tvDowner.isVisible = false
                 btnSpeak.isVisible = !word.isNativeToForeign
 
-                tvUpper.text = word.getTranslation(3)
-                tvDowner.text = word.getTranslation(0)
-
-                updateNativeLang(word.nativeLang)
-                updateIsNativeToForeign(word.isNativeToForeign)
+                updateTranslations(word)
                 updateMode(word.mode)
 
                 root.setOnClickListener {
@@ -56,19 +52,19 @@ class CardStackAdapter(
         fun bindPayload(word: CardStackItem.WordUi, payloads: List<Any>) {
             payloads.forEach { payload ->
                 when (payload) {
-                    Payloads.NATIVE_LANG -> updateNativeLang(word.nativeLang)
-                    Payloads.IS_NATIVE_TO_FOREIGN -> updateIsNativeToForeign(word.isNativeToForeign)
+                    Payloads.NATIVE_LANG -> updateTranslations(word)
+                    Payloads.IS_NATIVE_TO_FOREIGN -> updateTranslations(word)
                     Payloads.MODE -> updateMode(word.mode)
                 }
             }
         }
 
-        private fun updateNativeLang(nativeLang: Language) {
-            //todo
-        }
+        private fun updateTranslations(word: CardStackItem.WordUi) {
+            binding.tvUpper.text = if (word.isNativeToForeign) word.getTranslation(word.nativeLang)
+            else word.getTranslation(FOREIGN_LANG)
 
-        private fun updateIsNativeToForeign(nativeToForeign: Boolean) {
-            //todo
+            binding.tvDowner.text = if (word.isNativeToForeign) word.getTranslation(FOREIGN_LANG)
+            else word.getTranslation(word.nativeLang)
         }
 
         private fun updateMode(mode: Int) {
@@ -82,7 +78,7 @@ class CardStackAdapter(
             binding,
             onSpeakItem = { pos ->
                 val word = getItem(pos)
-                if (word != null) onSpeakWordClick(word.getTranslation(3))
+                if (word != null) onSpeakWordClick(word.getTranslation(FOREIGN_LANG))
             },
             onClickEdit = {
                 val word = getItem(it)

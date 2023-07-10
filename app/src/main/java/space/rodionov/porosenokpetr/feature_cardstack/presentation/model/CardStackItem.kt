@@ -19,12 +19,12 @@ sealed class CardStackItem {
         val mode: Int = MODE_LIGHT
     ): CardStackItem() {
 
-        fun getTranslation(lang: Int): String {
+        fun getTranslation(lang: Language): String {
             return when (lang) {
-                0 -> rus
-                1 -> ukr ?: Constants.EMPTY_STRING
-                2 -> eng
-                3 -> swe ?: Constants.EMPTY_STRING
+                Language.Russian -> rus
+                Language.Ukrainian -> ukr ?: Constants.EMPTY_STRING
+                Language.English -> eng
+                Language.Swedish -> swe ?: Constants.EMPTY_STRING
                 else -> eng
             }
         }

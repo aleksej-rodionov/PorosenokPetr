@@ -103,7 +103,7 @@ fun SettingsScreen(
 
             Divider(Modifier.padding(bottom = spacing.spaceSmall))
 
-            HeaderItem(text = "Язык")
+            HeaderItem(text = stringResource(id = R.string.language))
             ChoiceItem(
                 textDesc = stringResource(id = R.string.native_language_settings),
                 textChoice = stringResource(id = state.nativeLanguage.languageNameRes),
@@ -125,9 +125,9 @@ fun SettingsScreen(
                 )
             )
 
-            HeaderItem(text = "Внешний вид")
+            HeaderItem(text = stringResource(id = R.string.appearance))
             SwitcherItem(
-                text = "Темная тема",
+                text = stringResource(id = R.string.dark_mode),
                 isChecked = state.mode == MODE_DARK,
                 onCheckedChanged = {
                     onEvent(SettingsEvent.OnModeChanged(if (it) MODE_DARK else MODE_LIGHT))
@@ -135,7 +135,7 @@ fun SettingsScreen(
                 isEnabled = !state.isFollowingSystemMode
             )
             SwitcherItem(
-                text = "Использовать тему телефона",
+                text = stringResource(id = R.string.follow_system_mode),
                 isChecked = state.isFollowingSystemMode,
                 onCheckedChanged = {
                     onEvent(SettingsEvent.OnFollowSystemModeChanged(it))

@@ -33,7 +33,7 @@ fun VocabularySearchHeader(
 
         TopBar(
             text = R.string.collection,
-            hasMenuIcon = true,
+            hasMenuIcon = false,
             onBackClick = onBackClick,
             onMenuClick = onMenuClick
         )

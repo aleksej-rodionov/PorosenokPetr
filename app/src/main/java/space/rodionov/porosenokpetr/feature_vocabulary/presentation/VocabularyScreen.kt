@@ -105,9 +105,7 @@ fun VocabularyScreen(
                     onBackClick = {
                         onEvent(VocabularyEvent.OnBackClick)
                     },
-                    onMenuClick = {
-                        //todo
-                    },
+                    onMenuClick = {},
                     onSearchTextChanged = {
                         onEvent(VocabularyEvent.OnSearchQueryChanged(it))
                     },
@@ -131,6 +129,7 @@ fun VocabularyScreen(
                 VocabularyFrontLayer(
                     modifier = Modifier,
                     categoriesWithWords = state.categoriesWithWords,
+                    nativeLanguage = state.nativeLanguage,
                     wordsQuantity = state.wordsQuantity,
                     onCategoryDisplayedChanged = { category, opened ->
                         onEvent(

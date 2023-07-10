@@ -77,7 +77,10 @@ fun SearchTextField(
                 textStyle = TextStyle(
                     color = MaterialTheme.colors.onBackground
                 ),
-                cursorBrush = SolidColor(Gray600)
+                cursorBrush = SolidColor(Gray600),
+                keyboardOptions = KeyboardOptions(
+                    imeAction = ImeAction.Search
+                )
             )
 
             if (shouldShowHint) {

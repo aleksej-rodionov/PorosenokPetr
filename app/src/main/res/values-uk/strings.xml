@@ -71,6 +71,7 @@
     <string name="learned_language_settings">Вивчаєма мова: </string>
     <string name="native_to_foreign">С родного на иностранный</string>
     <string name="language">Мова</string>
+    <string name="save">Сохранить</string>
 
     <string name="rus_word">Російський переклад ..</string>
     <string name="foreign_word">Шведське слово ..</string>

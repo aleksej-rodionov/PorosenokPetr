@@ -19,4 +19,6 @@ object Constants { //todo move to their places
     const val WORD_EXCLUDED = 0
     const val WORD_ACTIVE = 1
     const val WORD_LEARNED = 100
+
+    val FOREIGN_LANG = Language.Swedish //todo change when engDriller
 }

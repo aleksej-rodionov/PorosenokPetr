@@ -14,6 +14,8 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Divider
+import androidx.compose.material.FloatingActionButton
+import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.ScaffoldState
@@ -27,6 +29,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -122,6 +126,9 @@ fun WordEditorScreen(
                                     it
                                 )
                             )
+                        },
+                        onDone = {
+                            onEvent(WordEditorEvent.OnSaveClick)
                         }
                     )
 
@@ -129,6 +136,19 @@ fun WordEditorScreen(
                         Divider()
                     }
                 }
+            }
+
+            FloatingActionButton(
+                onClick = { onEvent(WordEditorEvent.OnSaveClick) },
+                modifier = Modifier.align(Alignment.BottomEnd),
+                backgroundColor = MaterialTheme.colors.primary
+            ) {
+
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_check),
+                    contentDescription = "Save",
+                    tint = MaterialTheme.colors.onPrimary
+                )
             }
         }
     }

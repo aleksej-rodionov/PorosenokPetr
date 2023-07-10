@@ -11,11 +11,14 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import space.rodionov.porosenokpetr.core.domain.use_case.CollectNativeLanguageUseCase
+import space.rodionov.porosenokpetr.core.domain.use_case.CollectTranslationDirectionUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.MakeCategoryActiveUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.SpeakWordUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.UpdateLearnedPercentInCategoryUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.UpdateWordStatusUseCase
 import space.rodionov.porosenokpetr.core.util.Constants.DEFAULT_INT
+import space.rodionov.porosenokpetr.core.util.Language
 import space.rodionov.porosenokpetr.core.util.UiEffect
 import space.rodionov.porosenokpetr.feature_cardstack.domain.use_case.ObserveAllCategoriesUseCase
 import space.rodionov.porosenokpetr.feature_vocabulary.domain.use_case.ObserveWordsBySearchQueryInCategories
@@ -30,6 +33,7 @@ private const val TAG = "VocabularyViewModel"
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class VocabularyViewModel(
+    private val collectNativeLanguageUseCase: CollectNativeLanguageUseCase,
     private val observeAllCategoriesUseCase: ObserveAllCategoriesUseCase,
     private val observeWordsBySearchQueryInCategories: ObserveWordsBySearchQueryInCategories,
     private val makeCategoryActiveUseCase: MakeCategoryActiveUseCase,
@@ -77,6 +81,10 @@ class VocabularyViewModel(
                 wordsQuantity = totalWords
             )
 
+        }.launchIn(viewModelScope)
+
+        collectNativeLanguageUseCase.invoke().onEach { language ->
+            state = state.copy(nativeLanguage = language)
         }.launchIn(viewModelScope)
     }
 
@@ -197,7 +205,7 @@ data class VocabularyState(
     val searchQuery: String = "",
     val showSearchHint: Boolean = false,
     val showDropWordProgressDialogForWord: VocabularyItem.WordUi? = null,
-//    val isLoading: Boolean = false
+    val nativeLanguage: Language = Language.Russian
 )
 
 sealed class VocabularyEvent {

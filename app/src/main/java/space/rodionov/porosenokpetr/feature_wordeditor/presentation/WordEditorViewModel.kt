@@ -21,6 +21,7 @@ import space.rodionov.porosenokpetr.core.util.Constants.DEFAULT_INT
 import space.rodionov.porosenokpetr.core.util.Constants.DEFAULT_STRING
 import space.rodionov.porosenokpetr.core.util.Language
 import space.rodionov.porosenokpetr.core.util.UiEffect
+import space.rodionov.porosenokpetr.feature_wordeditor.presentation.mapper.toWord
 import space.rodionov.porosenokpetr.feature_wordeditor.presentation.mapper.toWordUi
 import space.rodionov.porosenokpetr.feature_wordeditor.presentation.model.Translation
 import space.rodionov.porosenokpetr.feature_wordeditor.presentation.model.WordUi
@@ -59,15 +60,38 @@ class WordEditorViewModel(
                         ?: _uiEffect.send(UiEffect.ShowSnackbar(UiText.DynamicString("Word not found")))
                 }
             }
+
+            is WordEditorEvent.OnSaveClick -> {
+                viewModelScope.launch {
+                    state.word?.let {
+                        updateWordUseCase.invoke(it.copy(
+                            rus = state.translations.find {
+                                it.language == Language.Russian
+                            }?.translation ?: DEFAULT_STRING,
+                            ukr = state.translations.find {
+                                it.language == Language.Ukrainian
+                            }?.translation ?: DEFAULT_STRING,
+                            eng = state.translations.find {
+                                it.language == Language.English
+                            }?.translation ?: DEFAULT_STRING,
+                            swe = state.translations.find {
+                                it.language == Language.Swedish
+                            }?.translation ?: DEFAULT_STRING,
+                        ).toWord())
+
+                        _uiEffect.send(UiEffect.NavigateUp)
+                    }
+                }
+            }
         }
     }
 
     private fun setWord(word: WordUi) {
         val translations = listOf(
-            Translation(Language.Russian,word.rus),
-            Translation(Language.Ukrainian,word.ukr ?: DEFAULT_STRING),
-            Translation(Language.English,word.eng),
-            Translation(Language.Swedish,word.swe ?: DEFAULT_STRING),
+            Translation(Language.Russian, word.rus),
+            Translation(Language.Ukrainian, word.ukr ?: DEFAULT_STRING),
+            Translation(Language.English, word.eng),
+            Translation(Language.Swedish, word.swe ?: DEFAULT_STRING),
         )
         state = state.copy(
             word = word,
@@ -79,7 +103,7 @@ class WordEditorViewModel(
 data class WordEditorState(
     val wordId: String? = null,
     val word: WordUi? = null,
-    val translations: List<Translation> = listOf( )
+    val translations: List<Translation> = listOf()
 )
 
 sealed class WordEditorEvent {
@@ -90,4 +114,5 @@ sealed class WordEditorEvent {
     ) : WordEditorEvent()
 
     data class OnReceivedWordId(val id: String) : WordEditorEvent()
+    object OnSaveClick : WordEditorEvent()
 }
