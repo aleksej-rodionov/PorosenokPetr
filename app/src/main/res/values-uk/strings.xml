@@ -69,6 +69,7 @@
     <string name="follow_system_locale">Використати локалізацію телефону</string>
     <string name="native_language_settings">Рідна мова</string>
     <string name="learned_language_settings">Вивчаєма мова: </string>
+    <string name="native_to_foreign">С родного на иностранный</string>
     <string name="language">Мова</string>
 
     <string name="rus_word">Російський переклад ..</string>

@@ -1,6 +1,5 @@
 package space.rodionov.porosenokpetr.feature_settings.presentation
 
-import android.util.Log
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -28,9 +27,6 @@ import space.rodionov.porosenokpetr.core.util.UiEffect
 import space.rodionov.porosenokpetr.feature_settings.presentation.components.HeaderItem
 import space.rodionov.porosenokpetr.feature_settings.presentation.components.SettingsBottomDrawer
 import space.rodionov.porosenokpetr.feature_settings.presentation.components.SwitcherItem
-import space.rodionov.porosenokpetr.core.presentation.components.PlainItem
-
-private const val TAG_SWITCHER = "TAG_SWITCHER"
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -109,17 +105,17 @@ fun SettingsScreen(
 
             HeaderItem(text = "Язык")
             ChoiceItem(
-                textDesc = stringResource(id = R.string.native_language),
+                textDesc = stringResource(id = R.string.native_language_settings),
                 textChoice = stringResource(id = state.nativeLanguage.languageNameRes),
                 onClick = {
                     scope.launch { sheetState.show() }
                 }
             )
             SwitcherItem(
-                text = "С родного на иностранный",
-                isChecked = true,
+                text = stringResource(id = R.string.native_to_foreign),
+                isChecked = state.isNativeToForeign,
                 onCheckedChanged = {
-                    Log.d(TAG_SWITCHER, "С родного на иностр = $it")
+                    onEvent(SettingsEvent.OnTranslationDirectionChanged(it))
                 }
             )
             Divider(
@@ -136,11 +132,11 @@ fun SettingsScreen(
                 onCheckedChanged = {
                     onEvent(SettingsEvent.OnModeChanged(if (it) MODE_DARK else MODE_LIGHT))
                 },
-                isEnabled = !state.followSystemMode
+                isEnabled = !state.isFollowingSystemMode
             )
             SwitcherItem(
                 text = "Использовать тему телефона",
-                isChecked = state.followSystemMode,
+                isChecked = state.isFollowingSystemMode,
                 onCheckedChanged = {
                     onEvent(SettingsEvent.OnFollowSystemModeChanged(it))
                 }

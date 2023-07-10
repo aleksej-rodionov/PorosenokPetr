@@ -68,6 +68,7 @@
     <string name="follow_system_locale">Использовать локализацию устройства</string>
     <string name="native_language_settings">Родной язык</string>
     <string name="learned_language_settings">Изучаемый язык</string>
+    <string name="native_to_foreign">С родного на иностранный</string>
     <string name="language">Язык</string>
 
     <string name="rus_word">Русский перевод ..</string>

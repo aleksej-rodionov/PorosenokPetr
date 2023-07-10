@@ -57,7 +57,7 @@ class CardStackAdapter(
             payloads.forEach { payload ->
                 when (payload) {
                     Payloads.NATIVE_LANG -> updateNativeLang(word.nativeLang)
-                    Payloads.IS_NATIVE_TO_FOREIGN_KEY -> updateIsNativeToForeign(word.isNativeToForeign)
+                    Payloads.IS_NATIVE_TO_FOREIGN -> updateIsNativeToForeign(word.isNativeToForeign)
                     Payloads.MODE -> updateMode(word.mode)
                 }
             }

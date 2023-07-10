@@ -1,7 +1,7 @@
 package space.rodionov.porosenokpetr.feature_settings.domain.use_case.use_case
 
 import space.rodionov.porosenokpetr.core.domain.preferences.KeyValueStorage
-import space.rodionov.porosenokpetr.feature_cardstack.presentation.componensts.Payloads.IS_NATIVE_TO_FOREIGN_KEY
+import space.rodionov.porosenokpetr.core.domain.use_case.CollectTranslationDirectionUseCase.Companion.IS_NATIVE_TO_FOREIGN_KEY
 
 class UpdateTranslationDirectionUseCase(
     private val keyValueStorage: KeyValueStorage
