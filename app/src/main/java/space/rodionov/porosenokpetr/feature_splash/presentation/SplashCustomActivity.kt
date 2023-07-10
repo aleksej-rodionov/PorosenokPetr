@@ -1,6 +1,8 @@
 package space.rodionov.porosenokpetr.feature_splash.presentation
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -13,6 +15,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.sp
+import androidx.core.splashscreen.SplashScreen
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.util.ViewModelFactory
@@ -25,7 +29,7 @@ import space.rodionov.porosenokpetr.ui.theme.PorosenokPetrTheme
 import space.rodionov.porosenokpetr.ui.theme.White
 import javax.inject.Inject
 
-class SplashCustomActivity: ComponentActivity() {
+class SplashCustomActivity : ComponentActivity() {
 
     @Inject
     lateinit var factory: ViewModelFactory
@@ -41,6 +45,7 @@ class SplashCustomActivity: ComponentActivity() {
             .build()
         component.inject(this)
         super.onCreate(savedInstanceState)
+
         setContent {
             PorosenokPetrTheme {
 
