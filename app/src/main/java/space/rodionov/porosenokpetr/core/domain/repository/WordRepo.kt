@@ -38,6 +38,10 @@ interface WordRepo {
 
     suspend fun updateWordStatus(word: Word, status: Int)
 
+    suspend fun updateWord(word: Word)
+
+    suspend fun getWordById(id: Int): Word?
+
     suspend fun getRandomWordFromActiveCats(activeCatsNames: List<String>) : Word
 
     fun observeWord(nativ: String, foreign: String, categoryName: String) : Flow<Word>

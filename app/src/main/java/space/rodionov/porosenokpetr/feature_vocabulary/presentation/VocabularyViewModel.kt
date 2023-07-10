@@ -116,7 +116,7 @@ class VocabularyViewModel(
                 viewModelScope.launch {
                     _uiEffect.send(
                         UiEffect.NavigateTo(
-                            "${VocabularyDestinations.WordEditor.route}/${event.word.eng}"
+                            "${VocabularyDestinations.WordEditor.route}/${event.word.id ?: DEFAULT_INT}"
                         )
                     )
                 }

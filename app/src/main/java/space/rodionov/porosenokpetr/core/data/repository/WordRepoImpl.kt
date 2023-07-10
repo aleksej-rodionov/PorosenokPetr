@@ -90,11 +90,19 @@ class WordRepoImpl(
             }
         }
 
-    override suspend fun updateWordStatus(word: Word, status: Int) {
+    override suspend fun updateWordStatus(word: Word, status: Int) { //todo replace with updateWord if that works
         val wordEntity = dao.getWord(word.rus, word.eng, word.categoryName)
         wordEntity.let {
             dao.updateWord(it.copy(wordStatus = status))
         }
+    }
+
+    override suspend fun getWordById(id: Int): Word? {
+        return dao.getWordById(id)?.toWord()
+    }
+
+    override suspend fun updateWord(word: Word) {
+        dao.updateWord(word.toWordEntity())
     }
 
     override fun observeWord(

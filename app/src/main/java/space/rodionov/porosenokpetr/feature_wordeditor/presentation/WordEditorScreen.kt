@@ -1,5 +1,6 @@
 package space.rodionov.porosenokpetr.feature_wordeditor.presentation
 
+import android.os.Bundle
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -36,12 +37,16 @@ import kotlinx.coroutines.flow.emptyFlow
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.presentation.LocalSpacing
 import space.rodionov.porosenokpetr.core.presentation.components.TopBar
+import space.rodionov.porosenokpetr.core.util.Constants.DEFAULT_STRING
+import space.rodionov.porosenokpetr.core.util.Language
 import space.rodionov.porosenokpetr.core.util.UiEffect
 import space.rodionov.porosenokpetr.feature_wordeditor.presentation.components.WordEditorItem
+import space.rodionov.porosenokpetr.feature_wordeditor.presentation.model.Translation
 
 @Composable
 fun WordEditorScreen(
     onNavigateUp: () -> Unit,
+    args: Bundle? = null,
     scaffoldState: ScaffoldState,
     state: WordEditorState,
     uiEffect: Flow<UiEffect>,
@@ -50,6 +55,11 @@ fun WordEditorScreen(
 
     val spacing = LocalSpacing.current
     val context = LocalContext.current
+
+    if (state.wordId == null) {
+        val wordId = args?.getString("name")
+        onEvent(WordEditorEvent.OnReceivedWordId(wordId ?: DEFAULT_STRING))
+    }
 
     LaunchedEffect(key1 = true) {
         uiEffect.collectLatest { effect ->
@@ -133,7 +143,14 @@ fun WordEditorScreenPreview(
     WordEditorScreen(
         onNavigateUp = {},
         scaffoldState = scaffoldState,
-        state = WordEditorState(),
+        state = WordEditorState(
+            translations = listOf(
+                Translation(Language.Russian, "Хуй"),
+                Translation(Language.Ukrainian, "Хуй"),
+                Translation(Language.English, "Dick"),
+                Translation(Language.Swedish, "Kuk")
+            )
+        ),
         uiEffect = emptyFlow(),
         onEvent = {}
     )

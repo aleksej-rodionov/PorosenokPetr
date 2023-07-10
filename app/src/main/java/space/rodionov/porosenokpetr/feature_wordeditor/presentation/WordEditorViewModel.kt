@@ -3,18 +3,32 @@ package space.rodionov.porosenokpetr.feature_wordeditor.presentation
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.lifecycle.AbstractSavedStateViewModelFactory
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.savedstate.SavedStateRegistryOwner
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedFactory
+import dagger.assisted.AssistedInject
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import space.rodionov.porosenokpetr.core.domain.use_case.GetWordByIdUseCase
+import space.rodionov.porosenokpetr.core.domain.use_case.UpdateWordUseCase
+import space.rodionov.porosenokpetr.core.presentation.UiText
+import space.rodionov.porosenokpetr.core.util.Constants.DEFAULT_INT
+import space.rodionov.porosenokpetr.core.util.Constants.DEFAULT_STRING
 import space.rodionov.porosenokpetr.core.util.Language
 import space.rodionov.porosenokpetr.core.util.UiEffect
+import space.rodionov.porosenokpetr.feature_wordeditor.presentation.mapper.toWordUi
 import space.rodionov.porosenokpetr.feature_wordeditor.presentation.model.Translation
+import space.rodionov.porosenokpetr.feature_wordeditor.presentation.model.WordUi
 import javax.inject.Inject
 
 class WordEditorViewModel(
-
+    private val getWordByIdUseCase: GetWordByIdUseCase,
+    private val updateWordUseCase: UpdateWordUseCase
 ) : ViewModel() {
 
     var state by mutableStateOf(WordEditorState())
@@ -35,17 +49,37 @@ class WordEditorViewModel(
                     else it
                 })
             }
+
+            is WordEditorEvent.OnReceivedWordId -> {
+                viewModelScope.launch {
+                    state = state.copy(wordId = event.id)
+                    val word =
+                        getWordByIdUseCase.invoke(event.id.toIntOrNull() ?: DEFAULT_INT)?.toWordUi()
+                    word?.let { setWord(it) }
+                        ?: _uiEffect.send(UiEffect.ShowSnackbar(UiText.DynamicString("Word not found")))
+                }
+            }
         }
+    }
+
+    private fun setWord(word: WordUi) {
+        val translations = listOf(
+            Translation(Language.Russian,word.rus),
+            Translation(Language.Ukrainian,word.ukr ?: DEFAULT_STRING),
+            Translation(Language.English,word.eng),
+            Translation(Language.Swedish,word.swe ?: DEFAULT_STRING),
+        )
+        state = state.copy(
+            word = word,
+            translations = translations
+        )
     }
 }
 
 data class WordEditorState(
-    val translations: List<Translation> = listOf(
-        Translation(Language.Russian, "Хуй"),
-        Translation(Language.Ukrainian, "Хуй"),
-        Translation(Language.English, "Dick"),
-        Translation(Language.Swedish, "Kuk")
-    )
+    val wordId: String? = null,
+    val word: WordUi? = null,
+    val translations: List<Translation> = listOf( )
 )
 
 sealed class WordEditorEvent {
@@ -54,4 +88,6 @@ sealed class WordEditorEvent {
         val language: Language,
         val translation: String
     ) : WordEditorEvent()
+
+    data class OnReceivedWordId(val id: String) : WordEditorEvent()
 }

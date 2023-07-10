@@ -61,6 +61,7 @@ fun NavGraphBuilder.addVocabularyGraph(
 
         WordEditorScreen(
             onNavigateUp = { navController.navigateUp() },
+            navController.currentBackStackEntry?.arguments,
             scaffoldState,
             viewModel.state,
             viewModel.uiEffect,

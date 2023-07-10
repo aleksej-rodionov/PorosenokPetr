@@ -9,6 +9,7 @@ import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -30,7 +31,7 @@ fun WordEditorItem(
             .background(Color.Transparent)
             .padding(0.dp),
         label = {
-            Text(translation.language.toString(), fontSize = 12.sp)
+            Text(stringResource(id = translation.language.languageNameRes), fontSize = 12.sp)
         },
         singleLine = true,
         colors = TextFieldDefaults.textFieldColors(
@@ -45,7 +46,7 @@ fun WordEditorItem(
 @Composable
 fun WordEditorItemPreview() {
     WordEditorItem(
-        translation = Translation(Language.Swedish,"Test value"),
+        translation = Translation(Language.Swedish, "Test value"),
         onValueChange = {}
     )
 }
