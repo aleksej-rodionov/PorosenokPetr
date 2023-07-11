@@ -109,7 +109,6 @@ fun CardStack(
 
     AndroidView(
         modifier = Modifier
-//            .background(color = MaterialTheme.colors.background)
             .fillMaxSize(),
         factory = {
             view.apply {

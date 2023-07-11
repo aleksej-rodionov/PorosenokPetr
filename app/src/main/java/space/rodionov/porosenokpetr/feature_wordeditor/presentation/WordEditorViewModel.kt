@@ -3,14 +3,8 @@ package space.rodionov.porosenokpetr.feature_wordeditor.presentation
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import androidx.lifecycle.AbstractSavedStateViewModelFactory
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.savedstate.SavedStateRegistryOwner
-import dagger.assisted.Assisted
-import dagger.assisted.AssistedFactory
-import dagger.assisted.AssistedInject
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
@@ -25,7 +19,6 @@ import space.rodionov.porosenokpetr.feature_wordeditor.presentation.mapper.toWor
 import space.rodionov.porosenokpetr.feature_wordeditor.presentation.mapper.toWordUi
 import space.rodionov.porosenokpetr.feature_wordeditor.presentation.model.Translation
 import space.rodionov.porosenokpetr.feature_wordeditor.presentation.model.WordUi
-import javax.inject.Inject
 
 class WordEditorViewModel(
     private val getWordByIdUseCase: GetWordByIdUseCase,

@@ -25,8 +25,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import space.rodionov.porosenokpetr.core.presentation.LocalNativeLanguage
 import space.rodionov.porosenokpetr.core.presentation.LocalSpacing
-import space.rodionov.porosenokpetr.core.util.Language
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.model.VocabularyItem
 import space.rodionov.porosenokpetr.ui.theme.Gray600
 
@@ -39,6 +39,7 @@ fun CategoryItem(
 ) {
 
     val spacing = LocalSpacing.current
+    val nativeLanguage = LocalNativeLanguage.current
 
     Box(
         modifier = Modifier
@@ -61,7 +62,7 @@ fun CategoryItem(
                 modifier = Modifier
                     .fillMaxWidth()
                     .weight(1f),
-                text = category.getLocalizedName(Language.Ukrainian),
+                text = category.getLocalizedName(nativeLanguage.current),
                 color = MaterialTheme.colors.onSurface,
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis

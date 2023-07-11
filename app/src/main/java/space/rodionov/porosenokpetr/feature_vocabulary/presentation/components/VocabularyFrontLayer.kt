@@ -3,7 +3,6 @@ package space.rodionov.porosenokpetr.feature_vocabulary.presentation.components
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Divider
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -17,16 +16,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.presentation.LocalSpacing
-import space.rodionov.porosenokpetr.core.util.Language
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.model.VocabularyItem
 import space.rodionov.porosenokpetr.ui.theme.Gray600
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun VocabularyFrontLayer(
-    modifier: Modifier = Modifier,
     categoriesWithWords: List<VocabularyItem.CategoryUi>,
-    nativeLanguage: Language,
     wordsQuantity: Int,
     onCategoryDisplayedChanged: (VocabularyItem.CategoryUi, Boolean) -> Unit,
     onCategoryActiveChanged: (VocabularyItem.CategoryUi, Boolean) -> Unit,
@@ -128,7 +124,6 @@ fun VocabularyFrontLayer(
 
                         WordItem(
                             word = category.words[index],
-                            nativeLanguage = nativeLanguage,
                             onVoiceClick = { onVoiceClick(it) },
                             onWordStatusChanged = { w, status ->
                                 onWordStatusChanged(

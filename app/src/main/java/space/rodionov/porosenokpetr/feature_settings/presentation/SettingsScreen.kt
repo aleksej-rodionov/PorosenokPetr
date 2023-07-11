@@ -17,6 +17,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.launch
 import space.rodionov.porosenokpetr.R
+import space.rodionov.porosenokpetr.core.presentation.LocalNativeLanguage
 import space.rodionov.porosenokpetr.core.presentation.LocalSpacing
 import space.rodionov.porosenokpetr.core.presentation.components.ChoiceItem
 import space.rodionov.porosenokpetr.core.presentation.components.TopBar

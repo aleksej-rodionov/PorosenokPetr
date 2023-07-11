@@ -2,7 +2,6 @@ package space.rodionov.porosenokpetr.main.presentation
 
 import android.content.res.Configuration
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -16,6 +15,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import kotlinx.coroutines.flow.collectLatest
+import space.rodionov.porosenokpetr.core.presentation.LocalNativeLanguage
 import space.rodionov.porosenokpetr.core.util.Constants.MODE_DARK
 import space.rodionov.porosenokpetr.core.util.Constants.MODE_LIGHT
 import space.rodionov.porosenokpetr.core.util.ViewModelFactory
@@ -26,7 +26,6 @@ import space.rodionov.porosenokpetr.main.navigation.MainNavHost
 import space.rodionov.porosenokpetr.ui.theme.Gray200
 import space.rodionov.porosenokpetr.ui.theme.Gray900
 import space.rodionov.porosenokpetr.ui.theme.PorosenokPetrTheme
-import java.util.Locale
 import javax.inject.Inject
 
 class RootActivity : ComponentActivity() {
@@ -46,16 +45,13 @@ class RootActivity : ComponentActivity() {
         component.inject(this)
         super.onCreate(savedInstanceState)
 
-//        val currentLocale: Locale = resources.configuration.locales[0] //todo remove debug code
-//        val currentLanguage: String = currentLocale.language
-//        Log.d("TAG_FATAL", "onCreate: $currentLanguage")
-
         setContent {
 
             val state = vmMain.state
 
             PorosenokPetrTheme(darkTheme = state.isDarkTheme == MODE_DARK) {
 
+                val nativeLanguage = LocalNativeLanguage.current
                 val navController = rememberNavController()
                 val scaffoldState = rememberScaffoldState()
                 val systemUiController = rememberSystemUiController()
@@ -70,6 +66,8 @@ class RootActivity : ComponentActivity() {
                         darkIcons = state.isDarkTheme != MODE_DARK
                     )
                 }
+
+                nativeLanguage.current = state.nativeLanguage
 
                 key(state.isDarkTheme) {
                     Scaffold(
@@ -86,15 +84,6 @@ class RootActivity : ComponentActivity() {
                         )
                     }
                 }
-            }
-        }
-
-
-        this.lifecycleScope.launchWhenStarted {
-            vmMain.mode.collectLatest {
-                val mode = it ?: return@collectLatest
-
-//                setDefaultBarsColors(mode)
             }
         }
 

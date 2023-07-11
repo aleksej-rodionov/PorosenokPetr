@@ -24,7 +24,6 @@ import space.rodionov.porosenokpetr.feature_cardstack.presentation.mapper.toWord
 import space.rodionov.porosenokpetr.feature_cardstack.presentation.mapper.toWordUi
 import space.rodionov.porosenokpetr.feature_cardstack.presentation.model.CardStackItem
 import space.rodionov.porosenokpetr.main.navigation.sub_graphs.VocabularyDestinations
-import javax.inject.Inject
 
 class CardStackViewModel(
     private val getTenWordsUseCase: GetTenWordsUseCase,
@@ -82,10 +81,7 @@ class CardStackViewModel(
                     val word =
                         (state.words[state.currentPosition] as? CardStackItem.WordUi)?.toWord()
                     word?.let {
-                        updateWordStatusUseCase.invoke(
-                            it,
-                            event.status
-                        )
+                        updateWordStatusUseCase.invoke(it, event.status)
                         updateLearnedPercentInCategoryUseCase.invoke(it.categoryName)
                     }
                 }
@@ -109,8 +105,14 @@ class CardStackViewModel(
 
     private suspend fun getTenWords(): List<CardStackItem.WordUi> {
         val mode = collectModeUseCase.invoke().first()
+        val nativeLanguage = collectNativeLanguageUseCase.invoke().first()
+        val isNativeToForeign = collectTranslationDirectionUseCase.invoke().first()
         val tenWords = getTenWordsUseCase.invoke().map {
-            it.toWordUi().copy(mode = mode)
+            it.toWordUi().copy(
+                mode = mode,
+                nativeLang = nativeLanguage,
+                isNativeToForeign = isNativeToForeign
+            )
         }
         return tenWords
     }
@@ -122,7 +124,7 @@ class CardStackViewModel(
 
 data class CardstackState(
     val words: List<CardStackItem.WordUi> = emptyList(),
-    val currentPosition: Int = 0,
+    val currentPosition: Int = 0
 )
 
 sealed class CardstackEvent {

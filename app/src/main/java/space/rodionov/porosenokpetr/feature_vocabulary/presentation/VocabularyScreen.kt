@@ -127,9 +127,7 @@ fun VocabularyScreen(
             },
             frontLayerContent = {
                 VocabularyFrontLayer(
-                    modifier = Modifier,
                     categoriesWithWords = state.categoriesWithWords,
-                    nativeLanguage = state.nativeLanguage,
                     wordsQuantity = state.wordsQuantity,
                     onCategoryDisplayedChanged = { category, opened ->
                         onEvent(

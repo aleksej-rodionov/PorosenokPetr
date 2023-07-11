@@ -14,19 +14,18 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import space.rodionov.porosenokpetr.R
+import space.rodionov.porosenokpetr.core.presentation.LocalNativeLanguage
 import space.rodionov.porosenokpetr.core.presentation.LocalSpacing
 import space.rodionov.porosenokpetr.core.util.Constants.DEFAULT_INT
 import space.rodionov.porosenokpetr.core.util.Constants.WORD_ACTIVE
 import space.rodionov.porosenokpetr.core.util.Constants.WORD_EXCLUDED
 import space.rodionov.porosenokpetr.core.util.Constants.WORD_LEARNED
-import space.rodionov.porosenokpetr.core.util.Language
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.model.VocabularyItem
 import space.rodionov.porosenokpetr.ui.theme.*
 
 @Composable
 fun WordItem(
     word: VocabularyItem.WordUi,
-    nativeLanguage: Language, //todo use ConpositionLocal instead of passing it through the whole tree
     modifier: Modifier = Modifier,
     onVoiceClick: (String) -> Unit,
     onWordStatusChanged: (VocabularyItem.WordUi, Int) -> Unit,
@@ -34,6 +33,7 @@ fun WordItem(
 ) {
 
     val spacing = LocalSpacing.current
+    val nativeLanguage = LocalNativeLanguage.current
 
     Column(
         modifier = modifier
@@ -115,7 +115,7 @@ fun WordItem(
                 modifier = Modifier
                     .fillMaxWidth()
                     .weight(1f),
-                text = word.getTranslation(nativeLanguage),
+                text = word.getTranslation(nativeLanguage.current),
                 color = Gray600,
             )
 
@@ -136,7 +136,6 @@ fun WordItem(
 fun WordItemPreview() {
     WordItem(
         word = VocabularyItem.WordUi("xuj", "xuj", "xuj", "xuj", "xuj"),
-        nativeLanguage = Language.Russian,
         onVoiceClick = {},
         onWordStatusChanged = { _, _ -> },
         onWordClick = {}
