@@ -19,6 +19,12 @@ import javax.inject.Singleton
 @Module
 class AppModule {
 
+    /**
+     * Use this coroutine scope in places where you launch a long-running operation
+     * that can be interrupted by killing the class it were run in.
+     * E.g. you launch a long-running operation with database in a viewModel
+     * and then immediately leave the screen and the viewModel dies
+     */
     @AppCoroutineScopeQualifier
     @Provides
     @Singleton
@@ -28,7 +34,11 @@ class AppModule {
     @Singleton
     fun provideTextToSpeechInitListener(): TextToSpeech.OnInitListener {
         return TextToSpeech.OnInitListener {
-            TODO("Not yet implemented")
+            if (it == TextToSpeech.SUCCESS) {
+                //todo handle the result
+            } else {
+                //todo handle the result
+            }
         }
     }
 

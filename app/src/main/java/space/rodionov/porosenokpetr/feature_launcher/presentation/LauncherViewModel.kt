@@ -1,39 +1,31 @@
 package space.rodionov.porosenokpetr.feature_launcher.presentation
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
-import space.rodionov.porosenokpetr.feature_launcher.domain.use_case.LauncherInteractor
+import space.rodionov.porosenokpetr.R
+import space.rodionov.porosenokpetr.core.presentation.UiText
+import space.rodionov.porosenokpetr.core.util.UiEffect
+import space.rodionov.porosenokpetr.feature_launcher.domain.use_case.CheckVocabularyUseCase
+import space.rodionov.porosenokpetr.main.presentation.RootActivity.Companion.ROOT_ACTIVITY
 import javax.inject.Inject
 
 class LauncherViewModel @Inject constructor(
-    private val launcherInteractor: LauncherInteractor
+    private val checkVocabularyUseCase: CheckVocabularyUseCase
 ) : ViewModel() {
 
-    private val _isDbPopulated = Channel<Boolean>()
-    val isDbPopulated = _isDbPopulated.receiveAsFlow()
+    private val _uiEffect = Channel<UiEffect>()
+    val uiEffect = _uiEffect.receiveAsFlow()
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
-            if (launcherInteractor.getWordQuantity() == 0) {
-
-                if (launcherInteractor.populateDatabase()) {
-                    _isDbPopulated.send(true)
-                } else {
-                    Log.d("TAG_DB", "DB not populated")
-                    _isDbPopulated.send(false)
-                }
-
+            if (checkVocabularyUseCase.invoke()) {
+                _uiEffect.send(UiEffect.NavigateTo(ROOT_ACTIVITY))
             } else {
-                delay(1000L) // crunch to see so beautiful splash
-                _isDbPopulated.send(true)
+                _uiEffect.send(UiEffect.ShowSnackbar(UiText.StringResource(R.string.no_vocabulary)))
             }
         }
     }

@@ -77,5 +77,6 @@
     <string name="foreign_word">Шведське слово ..</string>
     <string name="eng_word">Англійський переклад ..</string>
     <string name="ukr_word">Український переклад ..</string>
+    <string name="no_vocabulary">Couldn\'t parse vocabulary</string>
 
 </resources>

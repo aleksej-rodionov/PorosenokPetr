@@ -110,6 +110,10 @@ class RootActivity : ComponentActivity() {
         }
     }
     //=================NIGHT MODE=====================
+
+    companion object {
+        const val ROOT_ACTIVITY = "rootActivity"
+    }
 }
 
 
