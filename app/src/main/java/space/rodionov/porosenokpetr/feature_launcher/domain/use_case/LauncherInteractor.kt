@@ -7,6 +7,7 @@ import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.launch
 import space.rodionov.porosenokpetr.BuildConfig
 import space.rodionov.porosenokpetr.core.data.local.entity.WordRaw
 import space.rodionov.porosenokpetr.core.data.local.entity.swedishCategories
@@ -24,39 +25,37 @@ class LauncherInteractor( //todo split to useCases
 
     suspend fun getWordQuantity() = repository.getWordsQuantity()
 
-    suspend fun populateDatabase(): Flow<Boolean> = flow {
+    suspend fun populateDatabase(): Boolean {
 
-        emit(false)
+            if (BuildConfig.FLAVOR == "swedishdriller") {
 
-        if (BuildConfig.FLAVOR == "swedishdriller") {
+                Log.d("TAG_DB", "onCreate: started")
+                swedishCategories.forEach {
+                    repository.insertCategory(it)
+                }
 
-            Log.d("TAG_DB", "onCreate: started")
-            swedishCategories.forEach {
-                repository.insertCategory(it)
-            }
+                val rawWordsFromJson = parseVocabulary(context)
+                rawWordsFromJson.forEach {
+                    repository.insertWord(Word(it.rus, it.ukr, it.eng, it.swe, it.catName))
+                }
 
-            val rawWordsFromJson = parseVocabulary(context)
-            rawWordsFromJson.forEach {
-                repository.insertWord(Word(it.rus, it.ukr, it.eng, it.swe, it.catName))
-            }
-
-            setLearnedLanguageUseCase.invoke(Language.Swedish)
-            setAvailableNativeLanguagesUseCase(
-                listOf(
-                    Language.Russian,
-                    Language.Ukrainian,
-                    Language.English
+                setLearnedLanguageUseCase.invoke(Language.Swedish)
+                setAvailableNativeLanguagesUseCase(
+                    listOf(
+                        Language.Russian,
+                        Language.Ukrainian,
+                        Language.English
+                    )
                 )
-            )
-            //todo set default native language
+                //todo set default native language
 
-            Log.d("TAG_DB", "onCreate: finished")
+                Log.d("TAG_DB", "onCreate: finished")
 
-            emit(true)
+                return true
 
-        } else {
-            emit(false)
-        }
+            } else {
+                return false
+            }
     }
 
     private fun parseVocabulary(context: Context): List<WordRaw> {

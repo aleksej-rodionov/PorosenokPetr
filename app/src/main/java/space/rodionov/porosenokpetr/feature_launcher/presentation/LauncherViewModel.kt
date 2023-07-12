@@ -24,14 +24,12 @@ class LauncherViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             if (launcherInteractor.getWordQuantity() == 0) {
 
-                launcherInteractor.populateDatabase().onEach {
-                    if (it) {
-                        _isDbPopulated.send(true)
-                    } else {
-                        Log.d("TAG_DB", "DB not populated")
-                        _isDbPopulated.send(false)
-                    }
-                }.launchIn(viewModelScope)
+                if (launcherInteractor.populateDatabase()) {
+                    _isDbPopulated.send(true)
+                } else {
+                    Log.d("TAG_DB", "DB not populated")
+                    _isDbPopulated.send(false)
+                }
 
             } else {
                 delay(1000L) // crunch to see so beautiful splash
