@@ -16,7 +16,7 @@ import space.rodionov.porosenokpetr.core.domain.use_case.CollectNativeLanguageUs
 import space.rodionov.porosenokpetr.core.domain.use_case.CollectTranslationDirectionUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.SpeakWordUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.UpdateLearnedPercentInCategoryUseCase
-import space.rodionov.porosenokpetr.core.domain.use_case.UpdateWordStatusUseCase
+import space.rodionov.porosenokpetr.core.domain.use_case.UpdateWordUseCase
 import space.rodionov.porosenokpetr.core.util.Constants.MAX_STACK_SIZE
 import space.rodionov.porosenokpetr.core.util.UiEffect
 import space.rodionov.porosenokpetr.feature_cardstack.domain.use_case.GetTenWordsUseCase
@@ -30,7 +30,7 @@ class CardStackViewModel(
     private val collectModeUseCase: CollectModeUseCase,
     private val collectNativeLanguageUseCase: CollectNativeLanguageUseCase,
     private val collectTranslationDirectionUseCase: CollectTranslationDirectionUseCase,
-    private val updateWordStatusUseCase: UpdateWordStatusUseCase,
+    private val updateWordUseCase: UpdateWordUseCase,
     private val updateLearnedPercentInCategoryUseCase: UpdateLearnedPercentInCategoryUseCase,
     private val speakWordUseCase: SpeakWordUseCase
 ) : ViewModel() {
@@ -81,7 +81,7 @@ class CardStackViewModel(
                     val word =
                         (state.words[state.currentPosition] as? CardStackItem.WordUi)?.toWord()
                     word?.let {
-                        updateWordStatusUseCase.invoke(it, event.status)
+                        updateWordUseCase.invoke(it.copy(wordStatus = event.status))
                         updateLearnedPercentInCategoryUseCase.invoke(it.categoryName)
                     }
                 }

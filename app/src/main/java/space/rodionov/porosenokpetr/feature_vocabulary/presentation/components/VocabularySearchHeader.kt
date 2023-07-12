@@ -1,12 +1,12 @@
 package space.rodionov.porosenokpetr.feature_vocabulary.presentation.components
 
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Divider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.presentation.LocalSpacing
 import space.rodionov.porosenokpetr.core.presentation.components.TopBar
@@ -27,8 +27,7 @@ fun VocabularySearchHeader(
     Divider()
 
     Column(
-        modifier = modifier
-            .fillMaxWidth()
+        modifier = modifier.fillMaxWidth()
     ) {
 
         TopBar(
@@ -38,26 +37,34 @@ fun VocabularySearchHeader(
             onMenuClick = onMenuClick
         )
 
-        Box(
+        SearchTextField(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(
                     start = spacing.spaceSmall,
                     end = spacing.spaceSmall,
                     bottom = spacing.spaceSmall
-                )
-        ) {
-
-            SearchTextField(
-                query = query,
-                shouldShowHint = shouldShowHint,
-                onFocusChanged = {
-                    onSearchFocusChanged(it.isFocused)
-                },
-                onValueChange = {
-                    onSearchTextChanged(it)
-                }
-            )
-        }
+                ),
+            query = query,
+            shouldShowHint = shouldShowHint,
+            onFocusChanged = {
+                onSearchFocusChanged(it.isFocused)
+            },
+            onValueChange = {
+                onSearchTextChanged(it)
+            }
+        )
     }
+}
+
+@Preview
+@Composable
+fun VocabularySearchHeaderPreview() {
+    VocabularySearchHeader(
+        query = "",
+        onBackClick = {},
+        onMenuClick = {},
+        onSearchTextChanged = {},
+        onSearchFocusChanged = {}
+    )
 }

@@ -9,9 +9,6 @@ import space.rodionov.porosenokpetr.core.data.local.entity.WordEntity
 @Dao
 interface WordDao {
 
-//    @Query("") // todo renameCategories (внедрить техническое имя (англ) и мутабельное имя на родном языке выбранном в Datastore, потом пройтись по функциям)
-//    suspend fun renameCategories(newNames: List<String>)
-
     @Query("SELECT * FROM wordentity WHERE categoryName IN (SELECT name FROM categoryentity WHERE isCategoryActive = 1) AND wordStatus = 1 ORDER BY RANDOM() LIMIT 10")
     suspend fun getTenWords(): List<WordEntity>
 
@@ -38,9 +35,6 @@ interface WordDao {
 
     @Query("SELECT * FROM wordentity WHERE categoryName = :catName")
     suspend fun getWordsByCat(catName: String): List<WordEntity>
-
-    @Query("SELECT * FROM wordentity WHERE rus = :rus AND `eng` = :eng AND categoryName = :categoryName LIMIT 1")
-    suspend fun getWord(rus: String, eng: String, categoryName: String): WordEntity
 
     @Query("SELECT * FROM wordentity WHERE id = :wordId")
     suspend fun getWordById(wordId: Int): WordEntity?
@@ -92,9 +86,6 @@ interface WordDao {
         eng: String,
         categoryName: String
     ): Flow<WordEntity> // todo ???pass chosen langs (all 4 with nulls) but not rus and eng???
-
-//    @Query("UPDATE wordentity SET isWordActive = :isActive WHERE `foreign` = :foreign AND (nativ = :nativ)")
-//    suspend fun updateIsWordActive(foreign: String, nativ: String, isActive: Boolean)
 
     //===================STANDARD FUNCTIONS==============================
 

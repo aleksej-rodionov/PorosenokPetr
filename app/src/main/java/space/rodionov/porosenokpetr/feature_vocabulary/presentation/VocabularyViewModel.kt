@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 import space.rodionov.porosenokpetr.core.domain.use_case.MakeCategoryActiveUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.SpeakWordUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.UpdateLearnedPercentInCategoryUseCase
-import space.rodionov.porosenokpetr.core.domain.use_case.UpdateWordStatusUseCase
+import space.rodionov.porosenokpetr.core.domain.use_case.UpdateWordUseCase
 import space.rodionov.porosenokpetr.core.util.Constants.DEFAULT_INT
 import space.rodionov.porosenokpetr.core.util.UiEffect
 import space.rodionov.porosenokpetr.feature_cardstack.domain.use_case.ObserveAllCategoriesUseCase
@@ -31,7 +31,7 @@ class VocabularyViewModel(
     private val observeWordsBySearchQueryInCategories: ObserveWordsBySearchQueryInCategories,
     private val makeCategoryActiveUseCase: MakeCategoryActiveUseCase,
     private val speakWordUseCase: SpeakWordUseCase,
-    private val updateWordStatusUseCase: UpdateWordStatusUseCase,
+    private val updateWordUseCase: UpdateWordUseCase,
     private val updateLearnedPercentInCategoryUseCase: UpdateLearnedPercentInCategoryUseCase
 ) : ViewModel() {
 
@@ -128,9 +128,8 @@ class VocabularyViewModel(
                     state = state.copy(showDropWordProgressDialogForWord = event.word)
                 } else {
                     viewModelScope.launch {
-                        updateWordStatusUseCase.invoke(
-                            event.word.toWord(),
-                            event.status
+                        updateWordUseCase.invoke(
+                            event.word.copy(wordStatus = event.status).toWord()
                         )
                         updateLearnedPercentInCategoryUseCase.invoke(event.word.categoryName)
                     }

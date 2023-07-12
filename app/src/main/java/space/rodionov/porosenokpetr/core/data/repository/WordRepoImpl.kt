@@ -3,8 +3,6 @@ package space.rodionov.porosenokpetr.core.data.repository
 import android.util.Log
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import space.rodionov.porosenokpetr.BuildConfig
-import space.rodionov.porosenokpetr.core.util.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.core.data.local.WordDao
 import space.rodionov.porosenokpetr.core.data.local.mapper.toCategory
 import space.rodionov.porosenokpetr.core.data.local.mapper.toCategoryEntity
@@ -90,13 +88,6 @@ class WordRepoImpl(
             }
         }
 
-    override suspend fun updateWordStatus(word: Word, status: Int) { //todo replace with updateWord if that works
-        val wordEntity = dao.getWord(word.rus, word.eng, word.categoryName)
-        wordEntity.let {
-            dao.updateWord(it.copy(wordStatus = status))
-        }
-    }
-
     override suspend fun getWordById(id: Int): Word? {
         return dao.getWordById(id)?.toWord()
     }
@@ -106,15 +97,11 @@ class WordRepoImpl(
     }
 
     override fun observeWord(
-        rus: String,
-        eng: String,
+        nativ: String,
+        foreign: String,
         categoryName: String
     ): Flow<Word> {
-        return dao.observeWord(rus, eng, categoryName).map {
-            it.let { we ->
-                we.toWord()
-            }
-        }
+        return dao.observeWord(nativ, foreign, categoryName).map { it.toWord() }
     }
 
     override suspend fun getRandomWordFromActiveCats(activeCatsNames: List<String>): Word {

@@ -6,7 +6,7 @@ import space.rodionov.porosenokpetr.core.domain.repository.WordRepo
 import space.rodionov.porosenokpetr.core.domain.use_case.MakeCategoryActiveUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.SpeakWordUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.UpdateLearnedPercentInCategoryUseCase
-import space.rodionov.porosenokpetr.core.domain.use_case.UpdateWordStatusUseCase
+import space.rodionov.porosenokpetr.core.domain.use_case.UpdateWordUseCase
 import space.rodionov.porosenokpetr.core.util.SwedishSpeaker
 import space.rodionov.porosenokpetr.feature_cardstack.domain.use_case.ObserveAllCategoriesUseCase
 import space.rodionov.porosenokpetr.feature_vocabulary.domain.use_case.ObserveWordsBySearchQueryInCategories
@@ -34,7 +34,7 @@ class VocabularyModule {
 
     @Provides
     @VocabularyScope
-    fun provideUpdateWordStatusUseCase(repo: WordRepo) = UpdateWordStatusUseCase(repo)
+    fun provideUpdateWordUseCase(repo: WordRepo) = UpdateWordUseCase(repo)
 
     @Provides
     @VocabularyScope
@@ -48,14 +48,14 @@ class VocabularyModule {
         observeWordsBySearchQueryInCategories: ObserveWordsBySearchQueryInCategories,
         makeCategoryActiveUseCase: MakeCategoryActiveUseCase,
         speakWordUseCase: SpeakWordUseCase,
-        updateWordStatusUseCase: UpdateWordStatusUseCase,
+        updateWordUseCase: UpdateWordUseCase,
         updateLearnedPercentInCategoryUseCase: UpdateLearnedPercentInCategoryUseCase
     ) = VocabularyViewModel(
         observeAllCategoriesUseCase,
         observeWordsBySearchQueryInCategories,
         makeCategoryActiveUseCase,
         speakWordUseCase,
-        updateWordStatusUseCase,
+        updateWordUseCase,
         updateLearnedPercentInCategoryUseCase
     )
 }

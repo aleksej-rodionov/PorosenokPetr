@@ -9,7 +9,7 @@ import space.rodionov.porosenokpetr.core.domain.use_case.CollectNativeLanguageUs
 import space.rodionov.porosenokpetr.core.domain.use_case.CollectTranslationDirectionUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.SpeakWordUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.UpdateLearnedPercentInCategoryUseCase
-import space.rodionov.porosenokpetr.core.domain.use_case.UpdateWordStatusUseCase
+import space.rodionov.porosenokpetr.core.domain.use_case.UpdateWordUseCase
 import space.rodionov.porosenokpetr.core.util.SwedishSpeaker
 import space.rodionov.porosenokpetr.feature_cardstack.domain.use_case.GetTenWordsUseCase
 import space.rodionov.porosenokpetr.feature_cardstack.presentation.CardStackViewModel
@@ -38,7 +38,7 @@ class CardStackModule {
 
     @Provides
     @CardStackScope
-    fun provideUpdateWordStatusUseCase(repo: WordRepo) = UpdateWordStatusUseCase(repo)
+    fun provideUpdateWordUseCase(repo: WordRepo) = UpdateWordUseCase(repo)
 
     @Provides
     @CardStackScope
@@ -56,7 +56,7 @@ class CardStackModule {
         collectModeUseCase: CollectModeUseCase,
         collectNativeLanguageUseCase: CollectNativeLanguageUseCase,
         collectTranslationDirectionUseCase: CollectTranslationDirectionUseCase,
-        updateWordStatusUseCase: UpdateWordStatusUseCase,
+        updateWordUseCase: UpdateWordUseCase,
         updateLearnedPercentInCategoryUseCase: UpdateLearnedPercentInCategoryUseCase,
         speakWordUseCase: SpeakWordUseCase
     ) = CardStackViewModel(
@@ -64,7 +64,7 @@ class CardStackModule {
         collectModeUseCase,
         collectNativeLanguageUseCase,
         collectTranslationDirectionUseCase,
-        updateWordStatusUseCase,
+        updateWordUseCase,
         updateLearnedPercentInCategoryUseCase,
         speakWordUseCase
     )

@@ -1,7 +1,6 @@
 package space.rodionov.porosenokpetr.core.domain.repository
 
 import kotlinx.coroutines.flow.Flow
-import space.rodionov.porosenokpetr.core.util.Resource
 import space.rodionov.porosenokpetr.core.domain.model.CatWithWords
 import space.rodionov.porosenokpetr.core.domain.model.Category
 import space.rodionov.porosenokpetr.core.domain.model.Word
@@ -35,8 +34,6 @@ interface WordRepo {
     suspend fun updateLearnedPercentInCategory(catName: String, learnedPercent: Int)
 
     fun wordsBySearchQuery(catName: String, searchQuery: String) : Flow<List<Word>>
-
-    suspend fun updateWordStatus(word: Word, status: Int)
 
     suspend fun updateWord(word: Word)
 
