@@ -1,10 +1,10 @@
-package space.rodionov.porosenokpetr.feature_settings.domain.use_case.use_case
+package space.rodionov.porosenokpetr.feature_launcher.domain.use_case
 
 import space.rodionov.porosenokpetr.core.domain.preferences.KeyValueStorage
 import space.rodionov.porosenokpetr.core.domain.use_case.CollectLearnedLanguageUseCase.Companion.LEARNED_LANGUAGE_KEY
 import space.rodionov.porosenokpetr.core.util.Language
 
-class UpdateLearnedLanguageUseCase(
+class SetLearnedLanguageUseCase(
     private val keyValueStorage: KeyValueStorage
 ) {
 

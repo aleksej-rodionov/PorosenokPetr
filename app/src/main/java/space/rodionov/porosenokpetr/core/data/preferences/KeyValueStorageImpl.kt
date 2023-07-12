@@ -11,6 +11,8 @@ import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
+import com.google.gson.GsonBuilder
+import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.FlowCollector
 import kotlinx.coroutines.flow.catch
@@ -26,6 +28,9 @@ class KeyValueStorageImpl(
 ) : KeyValueStorage {
 
     private val datastore = app.datastore
+
+    private val gson = GsonBuilder().create()
+    private val stringListType = object : TypeToken<List<String?>?>() {}.type
 
     override fun has(key: String): Boolean {
         TODO("Not yet implemented")
@@ -65,7 +70,21 @@ class KeyValueStorageImpl(
         datastore.edit { it[booleanPreferencesKey(key)] = value }
     }
 
+    override fun collectListValue(key: String, defaultValue: List<String>): Flow<List<String>> {
+        return datastore.data
+            .catch { handleReadingPreferencesException(it) }
+            .map {
+                val rawJson = it[stringPreferencesKey(key)]
+                rawJson?.let {
+                    gson.fromJson(rawJson, stringListType)
+                } ?: defaultValue
+            }
+    }
 
+    override suspend fun updateListValue(key: String, value: List<String>) {
+        val rawJson = gson.toJson(value, stringListType)
+        updateValue(key, rawJson)
+    }
 
     private suspend fun FlowCollector<Preferences>.handleReadingPreferencesException(
         exception: Throwable

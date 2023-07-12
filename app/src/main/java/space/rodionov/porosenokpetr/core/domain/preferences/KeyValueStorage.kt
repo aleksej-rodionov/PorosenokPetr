@@ -19,4 +19,8 @@ interface KeyValueStorage {
     fun collectValue(key: String, defaultValue: Boolean): Flow<Boolean>
 
     suspend fun updateValue(key: String, value: Boolean)
+
+    fun collectListValue(key: String, defaultValue: List<String>): Flow<List<String>>
+
+    suspend fun updateListValue(key: String, value: List<String>)
 }

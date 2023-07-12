@@ -6,10 +6,12 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import space.rodionov.porosenokpetr.core.domain.use_case.CollectAvailableNativeLanguagesUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.CollectIsFollowingSystemModeUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.CollectModeUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.CollectNativeLanguageUseCase
@@ -27,6 +29,7 @@ class SettingsViewModel(
     private val collectIsFollowingSystemModeUseCase: CollectIsFollowingSystemModeUseCase,
     private val collectNativeLanguageUseCase: CollectNativeLanguageUseCase,
     private val collectTranslationDirectionUseCase: CollectTranslationDirectionUseCase,
+    private val collectAvailableNativeLanguagesUseCase: CollectAvailableNativeLanguagesUseCase,
     private val updateModeUseCase: UpdateModeUseCase,
     private val updateIsFollowingSystemModeUseCase: UpdateIsFollowingSystemModeUseCase,
     private val updateNativeLanguageUseCase: UpdateNativeLanguageUseCase,
@@ -38,6 +41,30 @@ class SettingsViewModel(
 
     private val _uiEffect = Channel<UiEffect>()
     val uiEffect = _uiEffect.receiveAsFlow()
+
+    init {
+        collectModeUseCase.invoke().onEach {
+            state = state.copy(mode = it)
+        }.launchIn(viewModelScope)
+
+        collectIsFollowingSystemModeUseCase.invoke().onEach {
+            state = state.copy(isFollowingSystemMode = it)
+        }.launchIn(viewModelScope)
+
+        collectNativeLanguageUseCase.invoke().onEach {
+            state = state.copy(nativeLanguage = it)
+        }.launchIn(viewModelScope)
+
+        collectTranslationDirectionUseCase.invoke().onEach {
+            state = state.copy(isNativeToForeign = it)
+        }.launchIn(viewModelScope)
+
+        viewModelScope.launch {
+            state = state.copy(
+                availableNativeLanguages = collectAvailableNativeLanguagesUseCase.invoke().first()
+            )
+        }
+    }
 
     fun onEvent(event: SettingsEvent) {
         when (event) {
@@ -64,31 +91,14 @@ class SettingsViewModel(
             }
         }
     }
-
-    init {
-        collectModeUseCase.invoke().onEach {
-            state = state.copy(mode = it)
-        }.launchIn(viewModelScope)
-
-        collectIsFollowingSystemModeUseCase.invoke().onEach {
-            state = state.copy(isFollowingSystemMode = it)
-        }.launchIn(viewModelScope)
-
-        collectNativeLanguageUseCase.invoke().onEach {
-            state = state.copy(nativeLanguage = it)
-        }.launchIn(viewModelScope)
-
-        collectTranslationDirectionUseCase.invoke().onEach {
-            state = state.copy(isNativeToForeign = it)
-        }.launchIn(viewModelScope)
-    }
 }
 
 data class SettingsState(
     val mode: Int = MODE_LIGHT,
     val isFollowingSystemMode: Boolean = false,
     val nativeLanguage: Language = Language.Russian,
-    val isNativeToForeign: Boolean = false
+    val isNativeToForeign: Boolean = false,
+    val availableNativeLanguages: List<Language> = emptyList()
 )
 
 sealed class SettingsEvent {

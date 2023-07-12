@@ -76,8 +76,7 @@ fun SettingsScreen(
         sheetContent = {
 
             SettingsBottomDrawer(
-                //todo check languages available
-                languages = listOf(Language.Russian, Language.Ukrainian, Language.English),
+                languages = state.availableNativeLanguages,
                 onLanguageClick = {
                     onEvent(SettingsEvent.OnNativeLanguageChanged(it))
                     scope.launch { sheetState.hide() }

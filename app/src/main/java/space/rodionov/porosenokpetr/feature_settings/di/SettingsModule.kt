@@ -3,6 +3,7 @@ package space.rodionov.porosenokpetr.feature_settings.di
 import dagger.Module
 import dagger.Provides
 import space.rodionov.porosenokpetr.core.domain.preferences.KeyValueStorage
+import space.rodionov.porosenokpetr.core.domain.use_case.CollectAvailableNativeLanguagesUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.CollectIsFollowingSystemModeUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.CollectModeUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.CollectNativeLanguageUseCase
@@ -38,11 +39,17 @@ class SettingsModule {
 
     @Provides
     @SettingsScope
-    fun provideSetModeUseCase(keyValueStorage: KeyValueStorage) = UpdateModeUseCase(keyValueStorage)
+    fun provideCollectAvailableNativeLanguagesUseCase(keyValueStorage: KeyValueStorage) =
+        CollectAvailableNativeLanguagesUseCase(keyValueStorage)
 
     @Provides
     @SettingsScope
-    fun provideSetFollowSystemModeUseCase(keyValueStorage: KeyValueStorage) =
+    fun provideUpdateModeUseCase(keyValueStorage: KeyValueStorage) =
+        UpdateModeUseCase(keyValueStorage)
+
+    @Provides
+    @SettingsScope
+    fun provideUpdateFollowSystemModeUseCase(keyValueStorage: KeyValueStorage) =
         UpdateIsFollowingSystemModeUseCase(keyValueStorage)
 
     @Provides
@@ -62,6 +69,7 @@ class SettingsModule {
         collectIsFollowingSystemModeUseCase: CollectIsFollowingSystemModeUseCase,
         collectNativeLanguageUseCase: CollectNativeLanguageUseCase,
         collectTranslationDirectionUseCase: CollectTranslationDirectionUseCase,
+        collectAvailableNativeLanguagesUseCase: CollectAvailableNativeLanguagesUseCase,
         updateModeUseCase: UpdateModeUseCase,
         updateIsFollowingSystemModeUseCase: UpdateIsFollowingSystemModeUseCase,
         updateNativeLanguageUseCase: UpdateNativeLanguageUseCase,
@@ -71,6 +79,7 @@ class SettingsModule {
         collectIsFollowingSystemModeUseCase,
         collectNativeLanguageUseCase,
         collectTranslationDirectionUseCase,
+        collectAvailableNativeLanguagesUseCase,
         updateModeUseCase,
         updateIsFollowingSystemModeUseCase,
         updateNativeLanguageUseCase,

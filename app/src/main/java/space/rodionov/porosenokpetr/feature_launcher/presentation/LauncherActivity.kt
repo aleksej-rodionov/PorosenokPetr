@@ -1,4 +1,4 @@
-package space.rodionov.porosenokpetr.feature_splash.presentation
+package space.rodionov.porosenokpetr.feature_launcher.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -17,7 +17,7 @@ import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.util.ViewModelFactory
 import space.rodionov.porosenokpetr.core.util.startActivity
-import space.rodionov.porosenokpetr.feature_splash.di.DaggerSplashComponent
+import space.rodionov.porosenokpetr.feature_launcher.di.DaggerLauncherComponent
 import space.rodionov.porosenokpetr.main.PorosenokPetrApp
 import space.rodionov.porosenokpetr.main.presentation.RootActivity
 import space.rodionov.porosenokpetr.ui.theme.Blue
@@ -25,17 +25,17 @@ import space.rodionov.porosenokpetr.ui.theme.PorosenokPetrTheme
 import space.rodionov.porosenokpetr.ui.theme.White
 import javax.inject.Inject
 
-class SplashCustomActivity : ComponentActivity() {
+class LauncherActivity : ComponentActivity() {
 
     @Inject
     lateinit var factory: ViewModelFactory
 
-    private val viewModel by viewModels<SplashCustomViewModel>(
+    private val viewModel by viewModels<LauncherViewModel>(
         factoryProducer = { factory }
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        val component = DaggerSplashComponent
+        val component = DaggerLauncherComponent
             .builder()
             .appComponent(PorosenokPetrApp.component!!)
             .build()
@@ -47,7 +47,11 @@ class SplashCustomActivity : ComponentActivity() {
 
                 LaunchedEffect(key1 = true) {
                     viewModel.isDbPopulated.collectLatest {
-                        if (it) startMainActivity()
+                        if (it) {
+                            startMainActivity()
+                        } else {
+                            startMainActivity() //todo remove
+                        }
                     }
                 }
 

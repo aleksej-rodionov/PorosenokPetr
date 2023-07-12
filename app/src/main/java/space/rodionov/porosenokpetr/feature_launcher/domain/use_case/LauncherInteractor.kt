@@ -1,4 +1,4 @@
-package space.rodionov.porosenokpetr.feature_splash.domain.use_case
+package space.rodionov.porosenokpetr.feature_launcher.domain.use_case
 
 import android.content.Context
 import android.util.Log
@@ -12,11 +12,14 @@ import space.rodionov.porosenokpetr.core.data.local.entity.WordRaw
 import space.rodionov.porosenokpetr.core.data.local.entity.swedishCategories
 import space.rodionov.porosenokpetr.core.domain.model.Word
 import space.rodionov.porosenokpetr.core.domain.repository.WordRepo
+import space.rodionov.porosenokpetr.core.util.Language
 
-class SplashInteractor( //todo split to useCases
+class LauncherInteractor( //todo split to useCases
     private val repository: WordRepo,
     private val appScope: CoroutineScope,
-    private val context: Context
+    private val context: Context,
+    private val setLearnedLanguageUseCase: SetLearnedLanguageUseCase,
+    private val setAvailableNativeLanguagesUseCase: SetAvailableNativeLanguagesUseCase
 ) {
 
     suspend fun getWordQuantity() = repository.getWordsQuantity()
@@ -36,6 +39,17 @@ class SplashInteractor( //todo split to useCases
             rawWordsFromJson.forEach {
                 repository.insertWord(Word(it.rus, it.ukr, it.eng, it.swe, it.catName))
             }
+
+            setLearnedLanguageUseCase.invoke(Language.Swedish)
+            setAvailableNativeLanguagesUseCase(
+                listOf(
+                    Language.Russian,
+                    Language.Ukrainian,
+                    Language.English
+                )
+            )
+            //todo set default native language
+
             Log.d("TAG_DB", "onCreate: finished")
 
             emit(true)

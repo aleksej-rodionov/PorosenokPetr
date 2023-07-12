@@ -19,7 +19,7 @@
         tools:targetApi="32">
 
         <activity
-            android:name=".feature_splash.presentation.SplashCustomActivity"
+            android:name=".feature_launcher.presentation.LauncherActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.PorosenokPetr">
