@@ -9,10 +9,12 @@ import androidx.core.os.LocaleListCompat
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import space.rodionov.porosenokpetr.core.domain.use_case.UpdateInterfaceLanguageUseCase
 
 class SetInterfaceLocaleConfigUseCase(
     private val context: Context,
-    private val appCoroutineScope: CoroutineScope
+    private val appCoroutineScope: CoroutineScope,
+    private val updateInterfaceLanguageUseCase: UpdateInterfaceLanguageUseCase
 ) {
 
     operator fun invoke(languageTag: String) {
@@ -25,6 +27,8 @@ class SetInterfaceLocaleConfigUseCase(
                     LocaleListCompat.forLanguageTags(languageTag)
                 )
             }
+
+            updateInterfaceLanguageUseCase.invoke(languageTag) //todo check w debugger if triggered
         }
     }
 }

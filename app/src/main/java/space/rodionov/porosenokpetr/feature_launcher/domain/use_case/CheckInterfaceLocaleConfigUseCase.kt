@@ -23,11 +23,11 @@ class CheckInterfaceLocaleConfigUseCase(
                     val currentAppLocales = context
                         .getSystemService(LocaleManager::class.java)
                         .applicationLocales
-                    currentAppLocales[0]?.toLanguageTag()
+                    currentAppLocales[0]?.language
                 } else {
                     val currentAppLocales = AppCompatDelegate
                         .getApplicationLocales()
-                    currentAppLocales[0]?.toLanguageTag()
+                    currentAppLocales[0]?.language
                 }
 
             updateInterfaceLanguageUseCase.invoke(currentLanguageTag ?: LANGUAGE_RU)

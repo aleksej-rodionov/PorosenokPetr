@@ -1,5 +1,6 @@
 package space.rodionov.porosenokpetr.feature_settings.presentation
 
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -18,8 +19,11 @@ import space.rodionov.porosenokpetr.core.domain.use_case.CollectNativeLanguageUs
 import space.rodionov.porosenokpetr.core.domain.use_case.CollectTranslationDirectionUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.UpdateModeUseCase
 import space.rodionov.porosenokpetr.core.util.Constants.MODE_LIGHT
+import space.rodionov.porosenokpetr.core.util.Constants.TAG_PETR
 import space.rodionov.porosenokpetr.core.util.Language
 import space.rodionov.porosenokpetr.core.util.UiEffect
+import space.rodionov.porosenokpetr.feature_settings.domain.use_case.use_case.CollectInterfaceLanguageUseCase
+import space.rodionov.porosenokpetr.feature_settings.domain.use_case.use_case.SetInterfaceLocaleConfigUseCase
 import space.rodionov.porosenokpetr.feature_settings.domain.use_case.use_case.UpdateIsFollowingSystemModeUseCase
 import space.rodionov.porosenokpetr.feature_settings.domain.use_case.use_case.UpdateNativeLanguageUseCase
 import space.rodionov.porosenokpetr.feature_settings.domain.use_case.use_case.UpdateTranslationDirectionUseCase
@@ -28,11 +32,13 @@ class SettingsViewModel(
     private val collectModeUseCase: CollectModeUseCase,
     private val collectIsFollowingSystemModeUseCase: CollectIsFollowingSystemModeUseCase,
     private val collectNativeLanguageUseCase: CollectNativeLanguageUseCase,
+    private val collectInterfaceLanguageUseCase: CollectInterfaceLanguageUseCase,
     private val collectTranslationDirectionUseCase: CollectTranslationDirectionUseCase,
     private val collectAvailableNativeLanguagesUseCase: CollectAvailableNativeLanguagesUseCase,
     private val updateModeUseCase: UpdateModeUseCase,
     private val updateIsFollowingSystemModeUseCase: UpdateIsFollowingSystemModeUseCase,
     private val updateNativeLanguageUseCase: UpdateNativeLanguageUseCase,
+    private val setInterfaceLocaleConfigUseCase: SetInterfaceLocaleConfigUseCase,
     private val updateTranslationDirectionUseCase: UpdateTranslationDirectionUseCase
 ) : ViewModel() {
 
@@ -53,6 +59,10 @@ class SettingsViewModel(
 
         collectNativeLanguageUseCase.invoke().onEach {
             state = state.copy(nativeLanguage = it)
+        }.launchIn(viewModelScope)
+
+        collectInterfaceLanguageUseCase.invoke().onEach {
+            Log.d(TAG_PETR, "Interface language in keyValueStorage == $it")
         }.launchIn(viewModelScope)
 
         collectTranslationDirectionUseCase.invoke().onEach {
@@ -81,7 +91,10 @@ class SettingsViewModel(
             }
 
             is SettingsEvent.OnNativeLanguageChanged -> {
-                viewModelScope.launch { updateNativeLanguageUseCase.invoke(event.language) }
+                viewModelScope.launch {
+                    updateNativeLanguageUseCase.invoke(event.language)
+                    setInterfaceLocaleConfigUseCase.invoke(event.language.languageTag)
+                }
             }
 
             is SettingsEvent.OnTranslationDirectionChanged -> {
