@@ -4,7 +4,7 @@ import androidx.annotation.StringRes
 import space.rodionov.porosenokpetr.R
 
 sealed class Language(
-    val languageCode: String,
+    val languageTag: String,
     @StringRes val languageNameRes: Int
 ) {
     object Russian : Language(

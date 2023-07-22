@@ -8,7 +8,7 @@ class SetAvailableNativeLanguagesUseCase(
 ) {
 
     suspend operator fun invoke(languages: List<Language>) {
-        val languageCodes = languages.map { it.languageCode }
+        val languageCodes = languages.map { it.languageTag }
         keyValueStorage.updateListValue(AVAILABLE_NATIVE_LANGUAGES_KEY, languageCodes)
     }
 

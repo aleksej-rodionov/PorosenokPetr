@@ -10,6 +10,6 @@ class UpdateNativeLanguageUseCase(
 
     suspend operator fun invoke(language: Language) = keyValueStorage.updateValue(
         NATIVE_LANGUAGE_KEY,
-        language.languageCode
+        language.languageTag
     )
 }

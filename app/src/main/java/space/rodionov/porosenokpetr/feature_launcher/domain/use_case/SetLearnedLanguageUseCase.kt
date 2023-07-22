@@ -10,6 +10,6 @@ class SetLearnedLanguageUseCase(
 
     suspend operator fun invoke(language: Language) = keyValueStorage.updateValue(
         LEARNED_LANGUAGE_KEY,
-        language.languageCode
+        language.languageTag
     )
 }
