@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Lazy Swedish</string>
-
-<!--    <string name="top_800_words">Топ 800 слов</string>-->
-<!--    <string name="top_200_verbs">Топ 200 глаголов</string>-->
-<!--    <string name="usual_words">Обычные слова</string>-->
-<!--    <string name="usual_verbs">Обычные глаголы</string>-->
-<!--    <string name="phrasal_verbs">Фразовые глаголы</string>-->
-<!--    <string name="phrases">Речевые связки</string>-->
 
     <string name="item_count">В колоде %1$d слов</string>
     <string name="current_position">Текущая позиция: %1$d</string>

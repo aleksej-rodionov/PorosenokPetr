@@ -6,7 +6,6 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import space.rodionov.porosenokpetr.core.redrawViewGroup
-import space.rodionov.porosenokpetr.core.util.Constants.FOREIGN_LANG
 import space.rodionov.porosenokpetr.databinding.ItemWordBinding
 import space.rodionov.porosenokpetr.feature_cardstack.presentation.model.CardStackItem
 
@@ -34,7 +33,7 @@ class CardStackAdapter(
                 }
 
                 btnSpeak.setOnClickListener {
-                    val position = adapterPosition
+                    val position = absoluteAdapterPosition
                     if (position != RecyclerView.NO_POSITION) {
                         onSpeakItem(position)
                     }
@@ -61,9 +60,9 @@ class CardStackAdapter(
 
         private fun updateTranslations(word: CardStackItem.WordUi) {
             binding.tvUpper.text = if (word.isNativeToForeign) word.getTranslation(word.nativeLang)
-            else word.getTranslation(FOREIGN_LANG)
+            else word.getTranslation(word.learnedLanguage)
 
-            binding.tvDowner.text = if (word.isNativeToForeign) word.getTranslation(FOREIGN_LANG)
+            binding.tvDowner.text = if (word.isNativeToForeign) word.getTranslation(word.learnedLanguage)
             else word.getTranslation(word.nativeLang)
         }
 
@@ -78,7 +77,7 @@ class CardStackAdapter(
             binding,
             onSpeakItem = { pos ->
                 val word = getItem(pos)
-                if (word != null) onSpeakWordClick(word.getTranslation(FOREIGN_LANG))
+                if (word != null) onSpeakWordClick(word.getTranslation(word.learnedLanguage))
             },
             onClickEdit = {
                 val word = getItem(it)

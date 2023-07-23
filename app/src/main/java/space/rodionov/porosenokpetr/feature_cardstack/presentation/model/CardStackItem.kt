@@ -16,21 +16,21 @@ sealed class CardStackItem {
         val id: Int? = null,
         val nativeLang: Language = Language.Russian,
         val isNativeToForeign: Boolean = false,
+        val learnedLanguage: Language = Language.Swedish,
         val mode: Int = MODE_LIGHT
     ): CardStackItem() {
 
         fun getTranslation(lang: Language): String {
             return when (lang) {
                 Language.Russian -> rus
-                Language.Ukrainian -> ukr ?: Constants.EMPTY_STRING
+                Language.Ukrainian -> ukr ?: "<no ukrainian translation>"
                 Language.English -> eng
-                Language.Swedish -> swe ?: Constants.EMPTY_STRING
-                else -> eng
+                Language.Swedish -> swe ?: "<no swedish translation>"
             }
         }
     }
 
-    data class BannerUi(
+    data class BannerUi( //todo other view type
         val product: Int = 0
     ): CardStackItem()
 }

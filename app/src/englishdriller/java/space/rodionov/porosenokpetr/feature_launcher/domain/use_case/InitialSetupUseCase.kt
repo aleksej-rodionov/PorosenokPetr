@@ -1,7 +1,6 @@
 package space.rodionov.porosenokpetr.feature_launcher.domain.use_case
 
 import android.content.Context
-import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import space.rodionov.porosenokpetr.core.data.local.entity.WordRaw
@@ -25,7 +24,7 @@ class InitialSetupUseCase(
         }
         val rawWordsFromJson = parseVocabulary(context)
         rawWordsFromJson.forEach {
-            repository.insertWord(Word(it.rus, it.eng, it.catName))
+            repository.insertWord(Word(rus = it.rus, eng = it.eng, categoryName = it.catName))
         }
         setLearnedLanguageUseCase.invoke(Language.English)
         setAvailableNativeLanguagesUseCase(
@@ -38,7 +37,7 @@ class InitialSetupUseCase(
     }
 
     private fun parseVocabulary(context: Context): List<WordRaw> {
-        var vocabularyJson = ""
+        val vocabularyJson: String
         try {
             vocabularyJson = context.assets.open("vocabulary/vocabulary_english.json")
                 .bufferedReader()

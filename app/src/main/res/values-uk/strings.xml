@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">EnglishDriller</string>
-
-<!--    <string name="top_800_words">Топ 800 слiв</string>-->
-<!--    <string name="top_200_verbs">Топ 200 дієслів</string>-->
-<!--    <string name="usual_words">Звичайні слова</string>-->
-<!--    <string name="usual_verbs">Звичайні дієслова</string>-->
-<!--    <string name="phrasal_verbs">Фразові дієслова</string>-->
-<!--    <string name="phrases">Мовні зв\'язки</string>-->
-
     <string name="item_count">У колоді %1$d слшв</string>
     <string name="current_position">Поточна позиція: %1$d</string>
     <string name="on_card_appeared">onCardAppeared(%1$d)</string>

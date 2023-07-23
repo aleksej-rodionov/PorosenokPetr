@@ -14,10 +14,12 @@ import kotlinx.coroutines.launch
 import space.rodionov.porosenokpetr.core.domain.use_case.CollectModeUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.CollectNativeLanguageUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.CollectTranslationDirectionUseCase
+import space.rodionov.porosenokpetr.core.domain.use_case.GetLearnedLanguageUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.SpeakWordUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.UpdateLearnedPercentInCategoryUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.UpdateWordUseCase
 import space.rodionov.porosenokpetr.core.util.Constants.MAX_STACK_SIZE
+import space.rodionov.porosenokpetr.core.util.Language
 import space.rodionov.porosenokpetr.core.util.UiEffect
 import space.rodionov.porosenokpetr.feature_cardstack.domain.use_case.GetTenWordsUseCase
 import space.rodionov.porosenokpetr.feature_cardstack.presentation.mapper.toWord
@@ -30,6 +32,7 @@ class CardStackViewModel(
     private val collectModeUseCase: CollectModeUseCase,
     private val collectNativeLanguageUseCase: CollectNativeLanguageUseCase,
     private val collectTranslationDirectionUseCase: CollectTranslationDirectionUseCase,
+    getLearnedLanguageUseCase: GetLearnedLanguageUseCase,
     private val updateWordUseCase: UpdateWordUseCase,
     private val updateLearnedPercentInCategoryUseCase: UpdateLearnedPercentInCategoryUseCase,
     private val speakWordUseCase: SpeakWordUseCase
@@ -42,6 +45,8 @@ class CardStackViewModel(
     val uiEffect = _uiEffect.receiveAsFlow()
 
     init {
+        state = state.copy(learnedLanguage = getLearnedLanguageUseCase.invoke())
+
         viewModelScope.launch {
             state = state.copy(words = getTenWords())
         }
@@ -111,7 +116,8 @@ class CardStackViewModel(
             it.toWordUi().copy(
                 mode = mode,
                 nativeLang = nativeLanguage,
-                isNativeToForeign = isNativeToForeign
+                isNativeToForeign = isNativeToForeign,
+                learnedLanguage = state.learnedLanguage
             )
         }
         return tenWords
@@ -124,7 +130,8 @@ class CardStackViewModel(
 
 data class CardstackState(
     val words: List<CardStackItem.WordUi> = emptyList(),
-    val currentPosition: Int = 0
+    val currentPosition: Int = 0,
+    val learnedLanguage: Language = Language.Swedish
 )
 
 sealed class CardstackEvent {
