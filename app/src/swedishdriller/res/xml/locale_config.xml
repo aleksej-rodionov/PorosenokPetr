@@ -4,5 +4,3 @@
     <locale android:name="uk"/>
     <locale android:name="en"/>
 </locale-config>
-
-<!--//todo separate for english driller-->

@@ -63,6 +63,7 @@ class SettingsViewModel(
 
         collectInterfaceLanguageUseCase.invoke().onEach {
             Log.d(TAG_PETR, "Interface language in keyValueStorage == $it")
+            //todo сделать отдельный свитч?
         }.launchIn(viewModelScope)
 
         collectTranslationDirectionUseCase.invoke().onEach {

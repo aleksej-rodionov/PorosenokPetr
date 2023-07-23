@@ -25,7 +25,11 @@ class LauncherViewModel @Inject constructor(
     init {
         viewModelScope.launch(Dispatchers.IO) {
             if (checkVocabularyUseCase.invoke()) {
-                _uiEffect.send(UiEffect.NavigateTo(ROOT_ACTIVITY))
+                try {
+                    _uiEffect.send(UiEffect.NavigateTo(ROOT_ACTIVITY))
+                } catch (e: Exception) {
+                    _uiEffect.send(UiEffect.ShowSnackbar(UiText.DynamicString(e.message.toString())))
+                }
             } else {
                 _uiEffect.send(UiEffect.ShowSnackbar(UiText.StringResource(R.string.no_vocabulary)))
             }

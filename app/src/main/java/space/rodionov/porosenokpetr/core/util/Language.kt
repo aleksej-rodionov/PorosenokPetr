@@ -36,7 +36,7 @@ sealed class Language(
                 LANGUAGE_UA -> Ukrainian
                 LANGUAGE_EN -> English
                 LANGUAGE_SE -> Swedish
-                else -> throw Exception("Couldn't resolve language")
+                else -> throw Exception("Couldn't resolve language $languageCode")
             }
         }
     }

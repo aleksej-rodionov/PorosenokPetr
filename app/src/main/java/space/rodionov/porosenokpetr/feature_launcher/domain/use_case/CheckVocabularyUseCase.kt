@@ -7,9 +7,13 @@ class CheckVocabularyUseCase(
     private val initialSetupUseCase: InitialSetupUseCase
 ) {
 
-    suspend operator fun invoke(): Boolean {
+    suspend operator fun invoke(): Boolean{
         return if (repository.getWordsQuantity() == 0) {
-            initialSetupUseCase.invoke()
+            try {
+                initialSetupUseCase.invoke()
+            } catch (e: Exception) {
+                throw e
+            }
             true
         } else {
             true
