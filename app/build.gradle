@@ -10,7 +10,7 @@ plugins {
 android {
     signingConfigs {
         release {
-            storeFile file('\\Users\\alexeyrodionov\\Downloads\\Telegram Desktop\\petr_keystore_sd_new.jks')
+            storeFile file('/Users/alexeyrodionov/Documents/appkeys/petr_keystore_sd_new.jks')
             storePassword 'GinNish91'
             keyAlias 'key0'
             keyPassword 'GinNish91'
@@ -36,7 +36,7 @@ android {
 //            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         release {
-            minifyEnabled true
+//            minifyEnabled true //commented this and it doesn't crash
 //            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release //this was missing for 5 hours!
