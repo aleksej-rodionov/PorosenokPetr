@@ -15,7 +15,7 @@ data class WordUi(
     val swe: String?,
     val categoryName: String,
     val wordStatus: Int = Constants.WORD_ACTIVE,
-    val id: Int? = null
+    val id: Int = 0
 ){
 
     fun getTranslation(lang: Int): String {

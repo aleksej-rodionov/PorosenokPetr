@@ -10,7 +10,7 @@ sealed class VocabularyItem {
         val name: String,
         val isCategoryActive: Boolean = true,
         val learnedFromActivePercentage: Int = 0,
-        val id: Int? = null,
+        val id: Int = 0,
         val nameRus: String,
         val nameUkr: String,
         val nameEng: String? = null,
@@ -34,7 +34,7 @@ sealed class VocabularyItem {
         val swe: String?,
         val categoryName: String,
         val wordStatus: Int = WORD_ACTIVE,
-        val id: Int? = null
+        val id: Int = 0
     ) : VocabularyItem() {
 
         fun getTranslation(lang: Language): String {

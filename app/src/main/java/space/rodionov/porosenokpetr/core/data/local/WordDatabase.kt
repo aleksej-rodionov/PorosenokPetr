@@ -10,7 +10,7 @@ import space.rodionov.porosenokpetr.core.data.local.entity.CategoryEntity
 import space.rodionov.porosenokpetr.core.data.local.entity.WordEntity
 import space.rodionov.porosenokpetr.core.data.local.entity.WordRaw
 
-@Database(entities = [CategoryEntity::class, WordEntity::class], version = 1)
+@Database(entities = [CategoryEntity::class, WordEntity::class], version = 1, exportSchema = false)
 abstract class WordDatabase : RoomDatabase() {
 
     abstract val dao: WordDao

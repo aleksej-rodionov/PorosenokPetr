@@ -8,6 +8,7 @@ import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.key
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -120,22 +121,25 @@ fun VocabularyFrontLayer(
 
                     items(
                         count = category.words.size,
-                        itemContent= { index ->
+                        key = {
+                            category.words[it].id
+                        },
+                        itemContent = { index ->
 
-                        WordItem(
-                            word = category.words[index],
-                            onVoiceClick = { onVoiceClick(it) },
-                            onWordStatusChanged = { w, status ->
-                                onWordStatusChanged(
-                                    w,
-                                    status
-                                )
-                            },
-                            onWordClick = { onWordClick(it) }
-                        )
+                            WordItem(
+                                word = category.words[index],
+                                onVoiceClick = { onVoiceClick(it) },
+                                onWordStatusChanged = { w, status ->
+                                    onWordStatusChanged(
+                                        w,
+                                        status
+                                    )
+                                },
+                                onWordClick = { onWordClick(it) }
+                            )
 
-                        Divider()
-                    })
+                            Divider()
+                        })
                 }
             }
 

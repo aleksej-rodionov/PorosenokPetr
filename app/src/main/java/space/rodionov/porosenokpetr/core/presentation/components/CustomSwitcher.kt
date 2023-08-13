@@ -405,7 +405,6 @@ internal fun Modifier.minimumTouchTargetSize(): Modifier = composed {
 }
 
 @Suppress("EXPERIMENTAL_ANNOTATION_ON_WRONG_TARGET")
-@get:ExperimentalMaterialApi
 @ExperimentalMaterialApi
 val LocalMinimumTouchTargetEnforcement: ProvidableCompositionLocal<Boolean> =
     staticCompositionLocalOf { true }

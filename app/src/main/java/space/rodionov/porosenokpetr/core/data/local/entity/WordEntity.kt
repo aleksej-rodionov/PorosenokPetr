@@ -13,5 +13,5 @@ data class WordEntity(
     val swe: String?,
     val categoryName: String,
     val wordStatus: Int = WORD_ACTIVE,
-    @PrimaryKey(autoGenerate = true) val id: Int? = 0
+    @PrimaryKey(autoGenerate = true) val id: Int = 0
 )

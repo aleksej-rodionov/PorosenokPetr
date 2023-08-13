@@ -13,7 +13,7 @@ sealed class CardStackItem {
         val swe: String?,
         val categoryName: String,
         val wordStatus: Int = Constants.WORD_ACTIVE,
-        val id: Int? = null,
+        val id: Int = 0,
         val nativeLang: Language = Language.Russian,
         val isNativeToForeign: Boolean = false,
         val learnedLanguage: Language = Language.Swedish,
