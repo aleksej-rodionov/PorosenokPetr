@@ -11,7 +11,7 @@ import space.rodionov.porosenokpetr.core.domain.use_case.GetLearnedLanguageUseCa
 import space.rodionov.porosenokpetr.core.domain.use_case.SpeakWordUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.UpdateLearnedPercentInCategoryUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.UpdateWordUseCase
-import space.rodionov.porosenokpetr.core.util.SwedishSpeaker
+import space.rodionov.porosenokpetr.core.util.ForeignSpeaker
 import space.rodionov.porosenokpetr.feature_cardstack.domain.use_case.GetTenWordsUseCase
 import space.rodionov.porosenokpetr.feature_cardstack.presentation.CardStackViewModel
 
@@ -52,7 +52,7 @@ class CardStackModule {
 
     @Provides
     @CardStackScope
-    fun provideSpeakWordUseCase(swedishSpeaker: SwedishSpeaker) = SpeakWordUseCase(swedishSpeaker)
+    fun provideSpeakWordUseCase(foreignSpeaker: ForeignSpeaker) = SpeakWordUseCase(foreignSpeaker)
 
     @Provides
     @CardStackScope

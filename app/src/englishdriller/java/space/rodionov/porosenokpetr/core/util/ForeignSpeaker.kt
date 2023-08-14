@@ -3,26 +3,23 @@ package space.rodionov.porosenokpetr.core.util
 import android.content.Context
 import android.speech.tts.TextToSpeech
 import android.util.Log
-import java.util.*
+import java.util.Locale
 
-private const val TAG = "SwedishSpeaker"
+private const val TAG = "ForeignSpeaker"
 
-class SwedishSpeaker(
+class ForeignSpeaker(
     private val context: Context
 ) : TextToSpeech.OnInitListener {
 
-    val googleTtsPackage = "com.google.android.tts"
-
     private val textToSpeech = TextToSpeech(
         context,
-        this,
-        googleTtsPackage
+        this
     )
 
     override fun onInit(status: Int) {
         if (status == TextToSpeech.SUCCESS) {
             try {
-                textToSpeech.language = Locale("sv", "SE")
+                textToSpeech.language = Locale.US
                 Log.d(TAG, "onInit: successful")
             } catch (e: Exception) {
                 Log.d(TAG, "onInit: ${e.message}")

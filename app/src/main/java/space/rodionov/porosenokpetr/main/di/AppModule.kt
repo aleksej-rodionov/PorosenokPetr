@@ -12,8 +12,8 @@ import space.rodionov.porosenokpetr.core.data.preferences.KeyValueStorageImpl
 import space.rodionov.porosenokpetr.core.domain.preferences.KeyValueStorage
 import space.rodionov.porosenokpetr.core.data.repository.WordRepoImpl
 import space.rodionov.porosenokpetr.core.domain.repository.WordRepo
+import space.rodionov.porosenokpetr.core.util.ForeignSpeaker
 import space.rodionov.porosenokpetr.core.util.Constants
-import space.rodionov.porosenokpetr.core.util.SwedishSpeaker
 import javax.inject.Singleton
 
 @Module
@@ -46,8 +46,8 @@ class AppModule {
     @Singleton
     fun provideTextToSpeech(
         context: Application
-    ): SwedishSpeaker {
-        return SwedishSpeaker(context)
+    ): ForeignSpeaker {
+        return ForeignSpeaker(context)
     }
 
     @Provides

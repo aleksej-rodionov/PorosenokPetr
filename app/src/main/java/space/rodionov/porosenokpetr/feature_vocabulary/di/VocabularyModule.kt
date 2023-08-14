@@ -7,7 +7,7 @@ import space.rodionov.porosenokpetr.core.domain.use_case.MakeCategoryActiveUseCa
 import space.rodionov.porosenokpetr.core.domain.use_case.SpeakWordUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.UpdateLearnedPercentInCategoryUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.UpdateWordUseCase
-import space.rodionov.porosenokpetr.core.util.SwedishSpeaker
+import space.rodionov.porosenokpetr.core.util.ForeignSpeaker
 import space.rodionov.porosenokpetr.feature_cardstack.domain.use_case.ObserveAllCategoriesUseCase
 import space.rodionov.porosenokpetr.feature_vocabulary.domain.use_case.ObserveWordsBySearchQueryInCategories
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.VocabularyViewModel
@@ -30,7 +30,7 @@ class VocabularyModule {
 
     @Provides
     @VocabularyScope
-    fun provideSpeakWordUseCase(swedishSpeaker: SwedishSpeaker) = SpeakWordUseCase(swedishSpeaker)
+    fun provideSpeakWordUseCase(foreignSpeaker: ForeignSpeaker) = SpeakWordUseCase(foreignSpeaker)
 
     @Provides
     @VocabularyScope
