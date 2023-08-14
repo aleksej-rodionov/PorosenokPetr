@@ -95,11 +95,11 @@ fun VocabularyScreen(
     ) {
 
         BackdropScaffold(
-            modifier = Modifier.background(color = MaterialTheme.colors.background), //todo was Gray300
+            modifier = Modifier.background(color = MaterialTheme.colors.background),
             scaffoldState = backdropState,
             appBar = {
                 VocabularySearchHeader(
-                    modifier = Modifier.background(color = MaterialTheme.colors.background), //todo was Gray300
+                    modifier = Modifier.background(color = MaterialTheme.colors.background),
                     query = state.searchQuery,
                     shouldShowHint = state.showSearchHint,
                     onBackClick = {
@@ -118,7 +118,7 @@ fun VocabularyScreen(
                 VocabularyChipGroup(
                     modifier = Modifier
                         .padding(horizontal = LocalSpacing.current.spaceMedium)
-                        .background(color = MaterialTheme.colors.background), //todo was Gray300
+                        .background(color = MaterialTheme.colors.background),
                     categories = state.categoriesWithWords,
                     onSelectedChanged = { cat, opened ->
                         onEvent(VocabularyEvent.OnCategoryDisplayedChanged(cat, opened))

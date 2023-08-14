@@ -28,7 +28,7 @@ class SetInterfaceLocaleConfigUseCase(
                 )
             }
 
-            updateInterfaceLanguageUseCase.invoke(languageTag) //todo check w debugger if triggered
+            updateInterfaceLanguageUseCase.invoke(languageTag)
         }
     }
 }

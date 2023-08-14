@@ -41,7 +41,6 @@ android {
 //            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release //this was missing for 5 hours!
-//            debuggable true //todo remove
         }
     }
     compileOptions {
@@ -51,7 +50,6 @@ android {
     kotlinOptions {
         freeCompilerArgs = ['-Xjvm-default=compatibility']
         jvmTarget = '1.8'
-//        useIR = true
     }
     buildFeatures {
         compose true

@@ -96,19 +96,6 @@ class KeyValueStorageImpl(
             throw exception
         }
     }
-
-    //================================
-    private object PrefKeys { //todo move key to UseCases and remove them here
-        val CATEGORY = stringPreferencesKey("catName")
-        val TRANSLATION_DIRECTION = booleanPreferencesKey("transDir")
-        val MODE = intPreferencesKey("mode")
-        val FOLLOW_SYSTEM_MODE = booleanPreferencesKey("followSystemMode")
-        val REMINDER = booleanPreferencesKey("remind")
-        val MILLIS_FROM_DAY_BEGINNING = longPreferencesKey("millis")
-        val NATIVE_LANGUAGE = intPreferencesKey("nativeLanguage")
-        val LEARNED_LANGUAGE = intPreferencesKey("learnedLanguage") //todo default: ?: if (BuildConfig.FLAVOR == "swedishdriller") LANGUAGE_SE else LANGUAGE_EN
-//        val FOLLOW_SYSTEM_LOCALE = booleanPreferencesKey("followSystemLocale")
-    }
 }
 
 
