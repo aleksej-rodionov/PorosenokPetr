@@ -32,7 +32,7 @@ class CardStackViewModel(
     private val collectModeUseCase: CollectModeUseCase,
     private val collectNativeLanguageUseCase: CollectNativeLanguageUseCase,
     private val collectTranslationDirectionUseCase: CollectTranslationDirectionUseCase,
-    getLearnedLanguageUseCase: GetLearnedLanguageUseCase,
+    private val getLearnedLanguageUseCase: GetLearnedLanguageUseCase,
     private val updateWordUseCase: UpdateWordUseCase,
     private val updateLearnedPercentInCategoryUseCase: UpdateLearnedPercentInCategoryUseCase,
     private val speakWordUseCase: SpeakWordUseCase
@@ -131,7 +131,7 @@ class CardStackViewModel(
 data class CardstackState(
     val words: List<CardStackItem.WordUi> = emptyList(),
     val currentPosition: Int = 0,
-    val learnedLanguage: Language = Language.Swedish
+    val learnedLanguage: Language = Language.English
 )
 
 sealed class CardstackEvent {

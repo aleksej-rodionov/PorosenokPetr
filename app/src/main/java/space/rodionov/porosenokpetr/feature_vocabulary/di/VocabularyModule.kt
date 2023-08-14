@@ -3,6 +3,7 @@ package space.rodionov.porosenokpetr.feature_vocabulary.di
 import dagger.Module
 import dagger.Provides
 import space.rodionov.porosenokpetr.core.domain.repository.WordRepo
+import space.rodionov.porosenokpetr.core.domain.use_case.GetLearnedLanguageUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.MakeCategoryActiveUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.SpeakWordUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.UpdateLearnedPercentInCategoryUseCase
@@ -49,13 +50,13 @@ class VocabularyModule {
         makeCategoryActiveUseCase: MakeCategoryActiveUseCase,
         speakWordUseCase: SpeakWordUseCase,
         updateWordUseCase: UpdateWordUseCase,
-        updateLearnedPercentInCategoryUseCase: UpdateLearnedPercentInCategoryUseCase
+        updateLearnedPercentInCategoryUseCase: UpdateLearnedPercentInCategoryUseCase,
     ) = VocabularyViewModel(
         observeAllCategoriesUseCase,
         observeWordsBySearchQueryInCategories,
         makeCategoryActiveUseCase,
         speakWordUseCase,
         updateWordUseCase,
-        updateLearnedPercentInCategoryUseCase
+        updateLearnedPercentInCategoryUseCase,
     )
 }

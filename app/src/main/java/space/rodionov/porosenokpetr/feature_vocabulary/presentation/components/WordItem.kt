@@ -14,6 +14,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import space.rodionov.porosenokpetr.R
+import space.rodionov.porosenokpetr.core.presentation.LocalLearnedLanguage
 import space.rodionov.porosenokpetr.core.presentation.LocalNativeLanguage
 import space.rodionov.porosenokpetr.core.presentation.LocalSpacing
 import space.rodionov.porosenokpetr.core.util.Constants.DEFAULT_INT
@@ -34,6 +35,7 @@ fun WordItem(
 
     val spacing = LocalSpacing.current
     val nativeLanguage = LocalNativeLanguage.current
+    val learnedLanguage = LocalLearnedLanguage.current
 
     Column(
         modifier = modifier
@@ -53,7 +55,7 @@ fun WordItem(
                 modifier = Modifier
                     .fillMaxWidth()
                     .weight(1f),
-                text = word.swe ?: "",
+                text = word.getTranslation(learnedLanguage.learnedLanguage),
                 color = MaterialTheme.colors.onBackground,
             )
 

@@ -8,6 +8,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import space.rodionov.porosenokpetr.core.presentation.Dimensions
+import space.rodionov.porosenokpetr.core.presentation.LearnedLanguage
+import space.rodionov.porosenokpetr.core.presentation.LocalLearnedLanguage
 import space.rodionov.porosenokpetr.core.presentation.LocalNativeLanguage
 import space.rodionov.porosenokpetr.core.presentation.LocalSpacing
 import space.rodionov.porosenokpetr.core.presentation.NativeLanguage
@@ -51,13 +53,15 @@ fun PorosenokPetrTheme(
     }
 
     CompositionLocalProvider(LocalSpacing provides Dimensions()) {
-        CompositionLocalProvider(LocalNativeLanguage provides remember { NativeLanguage() }) {
-            MaterialTheme(
-                colors = colors,
-                typography = Typography,
-                shapes = Shapes,
-                content = content
-            )
+        CompositionLocalProvider(LocalLearnedLanguage provides LearnedLanguage()) {
+            CompositionLocalProvider(LocalNativeLanguage provides remember { NativeLanguage() }) {
+                MaterialTheme(
+                    colors = colors,
+                    typography = Typography,
+                    shapes = Shapes,
+                    content = content
+                )
+            }
         }
     }
 }

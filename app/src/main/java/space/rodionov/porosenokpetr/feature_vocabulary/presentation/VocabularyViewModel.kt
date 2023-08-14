@@ -11,11 +11,13 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import space.rodionov.porosenokpetr.core.domain.use_case.GetLearnedLanguageUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.MakeCategoryActiveUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.SpeakWordUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.UpdateLearnedPercentInCategoryUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.UpdateWordUseCase
 import space.rodionov.porosenokpetr.core.util.Constants.DEFAULT_INT
+import space.rodionov.porosenokpetr.core.util.Language
 import space.rodionov.porosenokpetr.core.util.UiEffect
 import space.rodionov.porosenokpetr.feature_cardstack.domain.use_case.ObserveAllCategoriesUseCase
 import space.rodionov.porosenokpetr.feature_vocabulary.domain.use_case.ObserveWordsBySearchQueryInCategories
@@ -192,7 +194,7 @@ data class VocabularyState(
     val wordsQuantity: Int = 0,
     val searchQuery: String = "",
     val showSearchHint: Boolean = false,
-    val showDropWordProgressDialogForWord: VocabularyItem.WordUi? = null,
+    val showDropWordProgressDialogForWord: VocabularyItem.WordUi? = null
 )
 
 sealed class VocabularyEvent {
