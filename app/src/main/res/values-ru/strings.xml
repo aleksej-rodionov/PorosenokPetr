@@ -16,6 +16,9 @@
     <string name="search_in">Поиск в: %1$s</string>
     <string name="percentage">%1$s \%</string>
     <string name="word_editor">Редактинование слова</string>
+    <string name="collapse_all">Свернуть все категории</string>
+    <string name="expand_all">Развернуть все категории</string>
+    <string name="total_words_displayed">Всего отображается %1$d слов</string>
 
     <string name="category">Категория</string>
     <string name="word_in_dialog">%1$s - %2$s</string>

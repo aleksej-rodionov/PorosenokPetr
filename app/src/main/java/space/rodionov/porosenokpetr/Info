@@ -5,9 +5,13 @@ in process:
 
 Next todo:
 
-- Jetpack Compose
+- менять значения isFocusedInList и isTurnedOn в чипах
+(displaying on/off and collapsed/expanded in chips)
+- fix proguard R8 minifyEnabled = true (works only if already installed and DB populated)
+- show examples on card if any
+- abstract UseCase
+- reminder
 - modularization
-- populate DB from JSON, not XML
 
 
 Features

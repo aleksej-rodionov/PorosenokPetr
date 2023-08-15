@@ -5,14 +5,16 @@ import androidx.compose.material.Divider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import space.rodionov.porosenokpetr.core.presentation.LocalSpacing
 import space.rodionov.porosenokpetr.core.presentation.components.PlainItem
 import space.rodionov.porosenokpetr.ui.theme.Gray600
+import space.rodionov.porosenokpetr.R
 
 @Composable
 fun CategoryFilterBottomDrawer(
-    modifier: Modifier = Modifier,
     onDisplayAllClick: () -> Unit,
     onHideAllClick: () -> Unit
 ) {
@@ -43,7 +45,7 @@ fun CategoryFilterBottomDrawer(
         Divider()
         PlainItem(
             modifier = Modifier.fillMaxWidth(),
-            text = "Display all categories",
+            text = stringResource(id = R.string.expand_all),
             onClick = {
                 onDisplayAllClick()
             }
@@ -51,7 +53,7 @@ fun CategoryFilterBottomDrawer(
         Divider()
         PlainItem(
             modifier = Modifier.fillMaxWidth(),
-            text = "Hide all categories",
+            text = stringResource(id = R.string.collapse_all),
             onClick = {
                 onHideAllClick()
             }

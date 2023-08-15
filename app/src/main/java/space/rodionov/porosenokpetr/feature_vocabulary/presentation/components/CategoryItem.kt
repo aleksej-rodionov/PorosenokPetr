@@ -45,7 +45,7 @@ fun CategoryItem(
         modifier = Modifier
             .fillMaxWidth()
             .clickable {
-                onCategoryDisplayedChanged(category, !category.isDisplayedInCollection)
+                onCategoryDisplayedChanged(category, !category.isExpanded)
             }
             .background(color = MaterialTheme.colors.surface)
     ) {
@@ -86,14 +86,14 @@ fun CategoryItem(
             )
 
             IconToggleButton(
-                checked = category.isDisplayedInCollection,
+                checked = category.isExpanded,
                 onCheckedChange = {
                     onCategoryDisplayedChanged(category, it)
                 }
             ) {
 
                 Icon(
-                    imageVector = if (category.isDisplayedInCollection) Icons.Filled.KeyboardArrowDown
+                    imageVector = if (category.isExpanded) Icons.Filled.KeyboardArrowDown
                     else Icons.Default.KeyboardArrowUp,
                     contentDescription = "Open/close"
                 )

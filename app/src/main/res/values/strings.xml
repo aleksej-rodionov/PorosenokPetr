@@ -16,6 +16,9 @@
     <string name="search_in">Search in: %1$s</string>
     <string name="percentage">%1$s \%</string>
     <string name="word_editor">Word editor</string>
+    <string name="collapse_all">Collapse all categories</string>
+    <string name="expand_all">Expand all categories</string>
+    <string name="total_words_displayed">A total of %1$d words displayed</string>
 
     <string name="category">Category</string>
     <string name="word_in_dialog">%1$s - %2$s</string>

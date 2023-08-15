@@ -46,12 +46,13 @@ fun VocabularyChipGroup(
             categories.forEach {
                 VocabularyChip(
                     category = it,
-                    isSelected = it.isDisplayedInCollection,
+                    isExpanded = it.isExpanded,
                     onSelectionChanged = { cat, opened ->
                         onSelectedChanged(cat, opened)
                     },
-                    selectedColor = MaterialTheme.colors.primary,
-                    selectedTextColor = Color.White
+                    turnedOnColor = MaterialTheme.colors.primary,
+                    turnedOnTextColor = Color.White,
+                    expandedDotColor = Color.Green
                 )
             }
         }

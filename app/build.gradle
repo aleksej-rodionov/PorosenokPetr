@@ -3,7 +3,6 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'androidx.navigation.safeargs'
-//    id 'dagger.hilt.android.plugin'
     id 'kotlin-parcelize'
 }
 
@@ -37,7 +36,7 @@ android {
 //            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         release {
-            minifyEnabled true //commented this and it doesn't crash
+//            minifyEnabled true //commented this and it doesn't crash
 //            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release //this was missing for 5 hours!

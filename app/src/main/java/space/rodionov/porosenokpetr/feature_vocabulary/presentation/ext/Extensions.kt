@@ -12,7 +12,7 @@ fun List<VocabularyItem.CategoryUi>.mapCategoriesOnDisplayedChanged(
     opened: Boolean
 ): List<VocabularyItem.CategoryUi> {
     return this.map {
-        if (it.id == category.id) it.copy(isDisplayedInCollection = opened)
+        if (it.id == category.id) it.copy(isExpanded = opened)
         else it
     }
 }
@@ -42,7 +42,7 @@ fun Pair<List<Category>, List<Word>>.transformData(): List<VocabularyItem.Catego
         }.map { it.toWordUi() }
 
         category.toCategoryUi().copy(
-            isDisplayedInCollection = wordsContained.isNotEmpty(),
+            isExpanded = wordsContained.isNotEmpty(),
             words = wordsContained
         )
     }

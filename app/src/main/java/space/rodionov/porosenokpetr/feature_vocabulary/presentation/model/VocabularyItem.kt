@@ -14,9 +14,10 @@ sealed class VocabularyItem {
         val nameRus: String,
         val nameUkr: String,
         val nameEng: String? = null,
-        val isDisplayedInCollection: Boolean = false,
+        val isExpanded: Boolean = false,
         val words: List<WordUi> = emptyList(),
-        val isFocusedInList: Boolean = false
+        val isFocusedInList: Boolean = false,
+        val isTurnedOn: Boolean = false
     ) : VocabularyItem() {
 
         fun getLocalizedName(lang: Language) = when (lang) {
@@ -43,7 +44,6 @@ sealed class VocabularyItem {
                 Language.Ukrainian -> ukr ?: Constants.EMPTY_STRING
                 Language.English -> eng
                 Language.Swedish -> swe ?: Constants.EMPTY_STRING
-                else -> eng
             }
         }
     }

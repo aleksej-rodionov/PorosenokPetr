@@ -85,12 +85,11 @@ fun VocabularyScreen(
                 onDisplayAllClick = {
                     onEvent(VocabularyEvent.OnShowHideAllCategoriesSwitched(true))
                     scope.launch { sheetState.hide() }
-                },
-                onHideAllClick = {
-                    onEvent(VocabularyEvent.OnShowHideAllCategoriesSwitched(false))
-                    scope.launch { sheetState.hide() }
                 }
-            )
+            ) {
+                onEvent(VocabularyEvent.OnShowHideAllCategoriesSwitched(false))
+                scope.launch { sheetState.hide() }
+            }
         }
     ) {
 

@@ -11,13 +11,11 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import space.rodionov.porosenokpetr.core.domain.use_case.GetLearnedLanguageUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.MakeCategoryActiveUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.SpeakWordUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.UpdateLearnedPercentInCategoryUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.UpdateWordUseCase
 import space.rodionov.porosenokpetr.core.util.Constants.DEFAULT_INT
-import space.rodionov.porosenokpetr.core.util.Language
 import space.rodionov.porosenokpetr.core.util.UiEffect
 import space.rodionov.porosenokpetr.feature_cardstack.domain.use_case.ObserveAllCategoriesUseCase
 import space.rodionov.porosenokpetr.feature_vocabulary.domain.use_case.ObserveWordsBySearchQueryInCategories
@@ -115,7 +113,7 @@ class VocabularyViewModel(
                 viewModelScope.launch {
                     _uiEffect.send(
                         UiEffect.NavigateTo(
-                            "${VocabularyDestinations.WordEditor.route}/${event.word.id ?: DEFAULT_INT}"
+                            "${VocabularyDestinations.WordEditor.route}/${event.word.id}"
                         )
                     )
                 }
@@ -173,17 +171,17 @@ class VocabularyViewModel(
         categoriesDisplayedJob = viewModelScope.launch {
             delay(200L)
             _categoriesDisplayed.value = updatedCategories.filter {
-                it.isDisplayedInCollection
+                it.isExpanded
             }.map { it.name }
         }
     }
 
     private fun onShowHideAllCategoriesClick(show: Boolean) {
         val updatedCategories = state.categoriesWithWords.map {
-            it.copy(isDisplayedInCollection = show)
+            it.copy(isExpanded = show)
         }
         _categoriesDisplayed.value = updatedCategories.filter {
-            it.isDisplayedInCollection
+            it.isExpanded
         }.map { it.name }
     }
 }
