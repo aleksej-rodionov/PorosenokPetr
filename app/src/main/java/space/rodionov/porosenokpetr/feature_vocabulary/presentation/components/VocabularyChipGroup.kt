@@ -47,12 +47,14 @@ fun VocabularyChipGroup(
                 VocabularyChip(
                     category = it,
                     isExpanded = it.isExpanded,
+                    isFocusedInList = it.isFocusedInList,
                     onSelectionChanged = { cat, opened ->
                         onSelectedChanged(cat, opened)
                     },
                     turnedOnColor = MaterialTheme.colors.primary,
                     turnedOnTextColor = Color.White,
-                    expandedDotColor = Color.Green
+                    expandedDotColor = Color.Green,
+                    isTurnedOn = it.isCategoryActive
                 )
             }
         }

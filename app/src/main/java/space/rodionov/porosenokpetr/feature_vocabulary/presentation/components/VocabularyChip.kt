@@ -30,12 +30,12 @@ fun VocabularyChip(
     modifier: Modifier = Modifier,
     category: VocabularyItem.CategoryUi,
     isExpanded: Boolean = false,
-    isFocusedInList: Boolean = false,
+    isFocusedInList: Boolean = false, //todo change
     onSelectionChanged: (VocabularyItem.CategoryUi, Boolean) -> Unit,
     turnedOnColor: Color,
     turnedOnTextColor: Color,
     expandedDotColor: Color,
-    isTurnedOn: Boolean = false,
+    isTurnedOn: Boolean = false, //todo change
     textStyle: TextStyle = MaterialTheme.typography.button
 ) {
 
@@ -44,7 +44,7 @@ fun VocabularyChip(
             .clip(RoundedCornerShape(100.dp))
             .border(
                 width = 2.dp,
-                color = if (isFocusedInList) MaterialTheme.colors.onBackground else {
+                color = if (isFocusedInList) Color.Green else {
                     if (isTurnedOn) turnedOnColor else TransparentGray15
                 },
                 shape = RoundedCornerShape(100.dp)

@@ -7,12 +7,12 @@ import space.rodionov.porosenokpetr.feature_vocabulary.presentation.mapper.toWor
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.model.VocabularyItem
 
 
-fun List<VocabularyItem.CategoryUi>.mapCategoriesOnDisplayedChanged(
+fun List<VocabularyItem.CategoryUi>.mapCategoriesOnExpandedChanged(
     category: VocabularyItem.CategoryUi,
-    opened: Boolean
+    expanded: Boolean
 ): List<VocabularyItem.CategoryUi> {
     return this.map {
-        if (it.id == category.id) it.copy(isExpanded = opened)
+        if (it.id == category.id) it.copy(isExpanded = expanded)
         else it
     }
 }

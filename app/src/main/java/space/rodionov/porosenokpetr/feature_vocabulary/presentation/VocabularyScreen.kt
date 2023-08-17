@@ -120,7 +120,7 @@ fun VocabularyScreen(
                         .background(color = MaterialTheme.colors.background),
                     categories = state.categoriesWithWords,
                     onSelectedChanged = { cat, opened ->
-                        onEvent(VocabularyEvent.OnCategoryDisplayedChanged(cat, opened))
+                        onEvent(VocabularyEvent.OnCategoryActiveChanged(cat, opened)) //todo here change to OnCatActive?
                     }
                 )
             },
@@ -130,7 +130,7 @@ fun VocabularyScreen(
                     wordsQuantity = state.wordsQuantity,
                     onCategoryDisplayedChanged = { category, opened ->
                         onEvent(
-                            VocabularyEvent.OnCategoryDisplayedChanged(
+                            VocabularyEvent.OnCategoryExpandedChanged(
                                 category,
                                 opened
                             )
@@ -146,6 +146,9 @@ fun VocabularyScreen(
                     },
                     onFilterClick = {
                         scope.launch { sheetState.show() }
+                    },
+                    onFocusedCategoryChanged = {
+                        onEvent(VocabularyEvent.OnFocusedCategoryChanged(it))
                     }
                 )
             },

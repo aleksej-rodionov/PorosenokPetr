@@ -1,5 +1,6 @@
 package space.rodionov.porosenokpetr.feature_vocabulary.presentation
 
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -19,7 +20,7 @@ import space.rodionov.porosenokpetr.core.util.Constants.DEFAULT_INT
 import space.rodionov.porosenokpetr.core.util.UiEffect
 import space.rodionov.porosenokpetr.feature_cardstack.domain.use_case.ObserveAllCategoriesUseCase
 import space.rodionov.porosenokpetr.feature_vocabulary.domain.use_case.ObserveWordsBySearchQueryInCategories
-import space.rodionov.porosenokpetr.feature_vocabulary.presentation.ext.mapCategoriesOnDisplayedChanged
+import space.rodionov.porosenokpetr.feature_vocabulary.presentation.ext.mapCategoriesOnExpandedChanged
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.ext.transformData
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.mapper.toWord
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.model.VocabularyItem
@@ -44,14 +45,14 @@ class VocabularyViewModel(
     private val _searchQueries = MutableStateFlow("")
     private val searchQueries: StateFlow<String> = _searchQueries.asStateFlow()
 
-    private val _categoriesDisplayed = MutableStateFlow<List<String>>(emptyList())
-    private val categoriesDisplayed: StateFlow<List<String>> = _categoriesDisplayed.asStateFlow()
+    private val _categoriesExpanded = MutableStateFlow<List<String>>(emptyList())
+    private val categoriesExpanded: StateFlow<List<String>> = _categoriesExpanded.asStateFlow()
 
     private val categoryLists = observeAllCategoriesUseCase.invoke()
 
     private val wordLists = combine(
         searchQueries,
-        categoriesDisplayed
+        categoriesExpanded
     ) { query, categories ->
         Pair(query, categories)
     }.flatMapLatest { (q, c) ->
@@ -93,10 +94,10 @@ class VocabularyViewModel(
                 onSearchQueryChanged(event.query)
             }
 
-            is VocabularyEvent.OnCategoryDisplayedChanged -> {
-                onCategoriesDisplayedChanged(
+            is VocabularyEvent.OnCategoryExpandedChanged -> {
+                onCategoriesExpandedChanged(
                     event.category,
-                    event.display
+                    event.expand
                 )
             }
 
@@ -143,6 +144,17 @@ class VocabularyViewModel(
             is VocabularyEvent.OnShowHideAllCategoriesSwitched -> {
                 onShowHideAllCategoriesClick(event.show)
             }
+
+            is VocabularyEvent.OnFocusedCategoryChanged -> {
+                Log.d("LAZY_SHIT", "onEvent: focused cat = ${event.category.nameRus}")
+                state = state.copy(categoriesWithWords = state.categoriesWithWords.map {
+                    if (it == event.category) {
+                        it.copy(isFocusedInList = true)
+                    } else {
+                        it.copy(isFocusedInList = false)
+                    }
+                })
+            }
         }
     }
 
@@ -152,7 +164,7 @@ class VocabularyViewModel(
         searchJob?.cancel()
         searchJob = viewModelScope.launch {
             delay(700L)
-            if (query.isNotBlank()) _categoriesDisplayed.value = state.categoriesWithWords.map {
+            if (query.isNotBlank()) _categoriesExpanded.value = state.categoriesWithWords.map {
                 it.name
             }
             _searchQueries.value = query
@@ -160,17 +172,17 @@ class VocabularyViewModel(
     }
 
     private var categoriesDisplayedJob: Job? = null
-    private fun onCategoriesDisplayedChanged(
+    private fun onCategoriesExpandedChanged(
         category: VocabularyItem.CategoryUi,
         display: Boolean
     ) {
-        val updatedCategories = state.categoriesWithWords.mapCategoriesOnDisplayedChanged(
+        val updatedCategories = state.categoriesWithWords.mapCategoriesOnExpandedChanged(
             category, display
         )
         categoriesDisplayedJob?.cancel()
         categoriesDisplayedJob = viewModelScope.launch {
             delay(200L)
-            _categoriesDisplayed.value = updatedCategories.filter {
+            _categoriesExpanded.value = updatedCategories.filter {
                 it.isExpanded
             }.map { it.name }
         }
@@ -180,7 +192,7 @@ class VocabularyViewModel(
         val updatedCategories = state.categoriesWithWords.map {
             it.copy(isExpanded = show)
         }
-        _categoriesDisplayed.value = updatedCategories.filter {
+        _categoriesExpanded.value = updatedCategories.filter {
             it.isExpanded
         }.map { it.name }
     }
@@ -200,9 +212,9 @@ sealed class VocabularyEvent {
     object OnBackClick : VocabularyEvent()
     data class OnSearchQueryChanged(val query: String) : VocabularyEvent()
     data class OnSearchFocusChanged(val isFocused: Boolean) : VocabularyEvent()
-    data class OnCategoryDisplayedChanged(
+    data class OnCategoryExpandedChanged(
         val category: VocabularyItem.CategoryUi,
-        val display: Boolean
+        val expand: Boolean
     ) : VocabularyEvent()
 
     data class OnCategoryActiveChanged(
@@ -219,4 +231,5 @@ sealed class VocabularyEvent {
 
     object OnDialogDismissed : VocabularyEvent()
     data class OnShowHideAllCategoriesSwitched(val show: Boolean) : VocabularyEvent()
+    data class OnFocusedCategoryChanged(val category: VocabularyItem.CategoryUi) : VocabularyEvent()
 }
