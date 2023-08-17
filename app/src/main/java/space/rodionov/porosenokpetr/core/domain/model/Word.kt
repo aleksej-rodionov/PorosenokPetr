@@ -9,5 +9,6 @@ data class Word(
     val swe: String? = null,
     val categoryName: String,
     val wordStatus: Int = WORD_ACTIVE,
-    val id: Int = 0
+    val id: Int = 0,
+    val remoteId: String? = null
 )
