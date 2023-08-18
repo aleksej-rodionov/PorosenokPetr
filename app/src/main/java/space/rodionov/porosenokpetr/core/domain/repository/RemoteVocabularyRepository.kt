@@ -4,5 +4,5 @@ import space.rodionov.porosenokpetr.core.domain.model.Word
 
 interface RemoteVocabularyRepository {
 
-    suspend fun fetchAllWords(): List<Word>
+//    suspend fun fetchAllWords(): List<Word>
 }

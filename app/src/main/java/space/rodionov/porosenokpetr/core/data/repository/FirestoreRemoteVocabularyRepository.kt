@@ -8,9 +8,9 @@ class FirestoreRemoteVocabularyRepository(
     private val firestoreRemoteVocabulary: FirestoreRemoteVocabulary
 ): RemoteVocabularyRepository {
 
-    override suspend fun fetchAllWords(): List<Word> {
-        return firestoreRemoteVocabulary.fetchAllWords().map {
-            it.toWord()
-        }
-    }
+//    override suspend fun fetchAllWords(): List<Word> {
+//        return firestoreRemoteVocabulary.fetchAllWords().map {
+//            it.toWord()
+//        }
+//    }
 }

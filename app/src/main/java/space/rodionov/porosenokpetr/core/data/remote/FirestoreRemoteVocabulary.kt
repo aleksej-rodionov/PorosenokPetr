@@ -9,7 +9,7 @@ class FirestoreRemoteVocabulary {
     private val vocabularyCollectionRef =
         Firebase.firestore.collection(Constants.VOCABULARY_COLLECTION_PATH)
 
-    suspend fun fetchAllWords(): List<WordDto> {
-        //todo
-    }
+//    suspend fun fetchAllWords(): List<WordDto> {
+//        //todo
+//    }
 }
