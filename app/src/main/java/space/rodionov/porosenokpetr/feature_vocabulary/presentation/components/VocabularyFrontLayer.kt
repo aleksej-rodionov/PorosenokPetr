@@ -66,33 +66,27 @@ fun VocabularyFrontLayer(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = spacing.spaceMedium)
-                    .padding(bottom = 12.dp)
+                    .padding(bottom = 12.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
             ) {
 
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
+                Text(
+                    text = stringResource(id = R.string.total_words_displayed, wordsQuantity),
+                    fontStyle = FontStyle.Italic,
+                    fontSize = 14.sp
+                )
+
+                IconButton(
+                    onClick = {
+                        onFilterClick()
+                    }
                 ) {
 
-                    Text(
-                        text = stringResource(id = R.string.total_words_displayed, wordsQuantity),
-                        fontStyle = FontStyle.Italic,
-                        fontSize = 14.sp
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_filter_settings),
+                        contentDescription = "Rearrange"
                     )
-
-                    IconButton(
-                        onClick = {
-                            onFilterClick()
-                        }
-                    ) {
-
-                        Icon(
-                            painter = painterResource(id = R.drawable.ic_filter_settings),
-                            contentDescription = "Rearrange"
-                        )
-                    }
                 }
             }
         }
@@ -112,7 +106,7 @@ fun VocabularyFrontLayer(
                         CategoryItem(
                             category = category,
                             modifier = Modifier.onGloballyPositioned {
-                                if (it.positionInParent().y == 0.0F && category.words.isNotEmpty()){
+                                if (it.positionInParent().y == 0.0F && category.words.isNotEmpty()) {
                                     onFocusedCategoryChanged(category)
                                 }
                             },
