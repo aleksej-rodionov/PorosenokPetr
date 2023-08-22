@@ -17,9 +17,7 @@ fun MainNavHost(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
     scaffoldState: ScaffoldState,
-    startDestination: String = ChildGraphs.CardStackGraph.route,
-    viewModelOwner: ComponentActivity,
-    viewModelFactory: ViewModelFactory
+    startDestination: String = ChildGraphs.CardStackGraph.route
 ) {
 
     NavHost(

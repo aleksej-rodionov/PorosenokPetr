@@ -78,9 +78,7 @@ class RootActivity : ComponentActivity() {
                         MainNavHost(
                             modifier = Modifier.padding(it),
                             navController = navController,
-                            scaffoldState = scaffoldState,
-                            viewModelOwner = this,
-                            viewModelFactory = factory
+                            scaffoldState = scaffoldState
                         )
                     }
                 }
