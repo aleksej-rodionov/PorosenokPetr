@@ -9,22 +9,12 @@ data class Translation(
 )
 
 data class WordUi(
-    val rus: String,
-    val ukr: String?,
-    val eng: String,
-    val swe: String?,
     val categoryName: String,
+    val rus: String,
+    val eng: String,
+    val ukr: String?,
+    val swe: String?,
+    val examples: List<String> = emptyList(),
     val wordStatus: Int = Constants.WORD_ACTIVE,
     val id: Int = 0
-){
-
-    fun getTranslation(lang: Int): String {
-        return when (lang) {
-            0 -> rus
-            1 -> ukr ?: Constants.EMPTY_STRING
-            2 -> eng
-            3 -> swe ?: Constants.EMPTY_STRING
-            else -> eng
-        }
-    }
-}
+)

@@ -4,9 +4,27 @@ import space.rodionov.porosenokpetr.core.domain.model.Word
 import space.rodionov.porosenokpetr.feature_wordeditor.presentation.model.WordUi
 
 fun Word.toWordUi(): WordUi {
-    return WordUi(rus, ukr, eng, swe, categoryName, wordStatus, id)
+    return WordUi(
+        categoryName = categoryName,
+        rus = rus,
+        eng = eng,
+        ukr = ukr,
+        swe = swe,
+        examples = examples,
+        wordStatus = wordStatus,
+        id = id
+    )
 }
 
 fun WordUi.toWord(): Word {
-    return Word(rus, ukr, eng, swe, categoryName, wordStatus, id)
+    return Word(
+        categoryName = categoryName,
+        rus = rus,
+        eng = eng,
+        ukr = ukr,
+        swe = swe,
+        examples = examples,
+        wordStatus = wordStatus,
+        id = id
+    )
 }

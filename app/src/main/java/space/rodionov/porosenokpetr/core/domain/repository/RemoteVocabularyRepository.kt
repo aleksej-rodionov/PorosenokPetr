@@ -1,8 +1,8 @@
 package space.rodionov.porosenokpetr.core.domain.repository
 
-import space.rodionov.porosenokpetr.core.domain.model.Word
+import space.rodionov.porosenokpetr.core.data.local.entity.WordRaw
 
 interface RemoteVocabularyRepository {
 
-//    suspend fun fetchAllWords(): List<Word>
+    suspend fun fetchAllWords(): List<WordRaw>
 }

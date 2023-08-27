@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/transparent"
@@ -26,10 +27,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
                 android:padding="8dp"
                 android:src="@drawable/ic_edit"
                 android:tint="@color/gray600"
-                android:background="?attr/selectableItemBackgroundBorderless"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -38,14 +39,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.38" />
+                app:layout_constraintGuide_percent="0.18" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.56" />
+                app:layout_constraintGuide_percent="0.76" />
 
             <TextView
                 android:id="@+id/tv_upper"
@@ -72,10 +73,31 @@
                 android:text="downer text"
                 android:textAlignment="center"
                 android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@id/guideline3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/guideline2" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="8dp"
+                android:background="@color/gray600"
+                app:layout_constraintBottom_toTopOf="@id/tvExamples" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/tvExamples"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:orientation="vertical"
+                android:paddingHorizontal="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_downer">
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/btn_speak"
@@ -105,9 +127,10 @@
                 android:id="@+id/left_overlay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@id/guideline3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_speak">
+                app:layout_constraintTop_toBottomOf="@id/guideline2">
 
 
                 <ImageView
@@ -116,16 +139,18 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:src="@drawable/repeat_practice_ru"
-                    android:tag="dont_redraw" />
+                    android:tag="dont_redraw"
+                    tools:visibility="gone" />
             </FrameLayout>
 
             <FrameLayout
                 android:id="@+id/right_overlay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@id/guideline3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_speak">
+                app:layout_constraintTop_toBottomOf="@id/guideline2">
 
                 <ImageView
                     android:id="@+id/iv_right"
@@ -133,7 +158,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:src="@drawable/repeat_practice_ru"
-                    android:tag="dont_redraw" />
+                    android:tag="dont_redraw"
+                    tools:visibility="gone" />
 
             </FrameLayout>
 
@@ -141,9 +167,10 @@
                 android:id="@+id/top_overlay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@id/guideline3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_speak">
+                app:layout_constraintTop_toBottomOf="@id/guideline2">
 
                 <ImageView
                     android:id="@+id/iv_top"
@@ -151,16 +178,18 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:src="@drawable/repeat_practice_ru"
-                    android:tag="dont_redraw" />
+                    android:tag="dont_redraw"
+                    tools:visibility="visible" />
             </FrameLayout>
 
             <FrameLayout
                 android:id="@+id/bottom_overlay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toTopOf="@+id/tv_upper"
+                app:layout_constraintBottom_toTopOf="@id/guideline3"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/guideline2">
 
                 <ImageView
                     android:id="@+id/iv_bottom"
@@ -168,7 +197,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:src="@drawable/learned_ru"
-                    android:tag="dont_redraw" />
+                    android:tag="dont_redraw"
+                    tools:visibility="visible" />
             </FrameLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

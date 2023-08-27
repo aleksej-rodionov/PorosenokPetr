@@ -21,7 +21,11 @@ class CardStackView @JvmOverloads constructor(
     attrStyle: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr, attrStyle), CardStackListener {
 
-    private val binding = LayoutCardstackBinding.inflate(LayoutInflater.from(context), this, true)
+    private val binding = LayoutCardstackBinding.inflate(
+        LayoutInflater.from(context),
+        this,
+        true
+    )
 
     private val cardstackAdapter = CardStackAdapter(
         onSpeakWordClick = { word ->

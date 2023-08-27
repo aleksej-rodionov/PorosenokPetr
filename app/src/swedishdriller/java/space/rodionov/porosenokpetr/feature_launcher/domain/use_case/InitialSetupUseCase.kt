@@ -24,7 +24,7 @@ class InitialSetupUseCase(
         }
         val rawWordsFromJson = parseVocabulary(context)
         rawWordsFromJson.forEach {
-            repository.insertWord(Word(it.rus, it.ukr, it.eng, it.swe, it.catName))
+            repository.insertWord(Word(it.catName, it.rus, it.eng, it.ukr, it.swe, it.examples))
         }
         setLearnedLanguageUseCase.invoke(Language.Swedish)
         setAvailableNativeLanguagesUseCase(

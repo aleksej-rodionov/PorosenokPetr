@@ -16,22 +16,28 @@ fun Category.toCategoryUi(): VocabularyItem.CategoryUi {
     )
 }
 
-fun VocabularyItem.CategoryUi.toCategory(): Category {
-    return Category(
-        name,
-        isCategoryActive,
-        learnedFromActivePercentage,
-        id,
-        nameRus,
-        nameUkr,
-        nameEng
+fun Word.toWordUi(): VocabularyItem.WordUi {
+    return VocabularyItem.WordUi(
+        categoryName = categoryName,
+        rus = rus,
+        eng = eng,
+        ukr = ukr,
+        swe = swe,
+        examples = examples,
+        wordStatus = wordStatus,
+        id = id
     )
 }
 
-fun Word.toWordUi(): VocabularyItem.WordUi {
-    return VocabularyItem.WordUi(rus, ukr, eng, swe, categoryName, wordStatus, id)
-}
-
 fun VocabularyItem.WordUi.toWord(): Word {
-    return Word(rus, ukr, eng, swe, categoryName, wordStatus, id)
+    return Word(
+        categoryName = categoryName,
+        rus = rus,
+        eng = eng,
+        ukr = ukr,
+        swe = swe,
+        examples = examples,
+        wordStatus = wordStatus,
+        id = id
+    )
 }

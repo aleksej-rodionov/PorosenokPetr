@@ -7,11 +7,12 @@ import space.rodionov.porosenokpetr.core.util.Language
 sealed class CardStackItem {
 
     data class WordUi(
-        val rus: String,
-        val ukr: String?,
-        val eng: String,
-        val swe: String?,
         val categoryName: String,
+        val rus: String,
+        val eng: String,
+        val ukr: String?,
+        val swe: String?,
+        val examples: List<String> = emptyList(),
         val wordStatus: Int = Constants.WORD_ACTIVE,
         val id: Int = 0,
         val nativeLang: Language = Language.Russian,

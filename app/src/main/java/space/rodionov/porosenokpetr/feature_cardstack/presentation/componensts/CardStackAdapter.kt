@@ -1,8 +1,8 @@
 package space.rodionov.porosenokpetr.feature_cardstack.presentation.componensts
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import space.rodionov.porosenokpetr.core.redrawViewGroup
@@ -21,15 +21,15 @@ class CardStackAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(word: CardStackItem.WordUi) {
             binding.apply {
-                tvDowner.isVisible = false
-                btnSpeak.isVisible = !word.isNativeToForeign
+                tvDowner.visibility = View.INVISIBLE
+                btnSpeak.visibility = if (word.isNativeToForeign) View.GONE else View.VISIBLE
 
                 updateTranslations(word)
                 updateMode(word.mode)
 
                 root.setOnClickListener {
-                    tvDowner.isVisible = true
-                    btnSpeak.isVisible = true
+                    tvDowner.visibility = View.VISIBLE
+                    btnSpeak.visibility = View.VISIBLE
                 }
 
                 btnSpeak.setOnClickListener {
