@@ -20,6 +20,7 @@ fun VocabularySearchHeader(
     onMenuClick: () -> Unit,
     onSearchTextChanged: (String) -> Unit,
     onSearchFocusChanged: (Boolean) -> Unit,
+    onClearQueryClick: () -> Unit
 ) {
 
     val spacing = LocalSpacing.current
@@ -52,6 +53,9 @@ fun VocabularySearchHeader(
             },
             onValueChange = {
                 onSearchTextChanged(it)
+            },
+            onClearClick = {
+                onClearQueryClick()
             }
         )
     }
@@ -65,6 +69,7 @@ fun VocabularySearchHeaderPreview() {
         onBackClick = {},
         onMenuClick = {},
         onSearchTextChanged = {},
-        onSearchFocusChanged = {}
+        onSearchFocusChanged = {},
+        onClearQueryClick = {}
     )
 }

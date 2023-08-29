@@ -12,12 +12,16 @@ class FirestoreRemoteVocabulary {
         Firebase.firestore.collection(Constants.VOCABULARY_COLLECTION_PATH)
 
     suspend fun fetchAllWords(): List<WordDto> {
-//        return emptyList()
 
         //todo maybe I need batch here
         return try {
             val words = mutableListOf<WordDto>()
-            val querySnapshot = vocabularyCollectionRef.get().await()
+            val querySnapshot = vocabularyCollectionRef
+                .orderBy("eng")
+                .startAt("to have a")
+                .endAt("to have a" + '\uf8ff')
+                .get()
+                .await()
             for (document in querySnapshot.documents) {
                 val wordDto = document.toObject<WordDto>()
                 wordDto?.let {

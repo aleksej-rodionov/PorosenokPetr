@@ -19,7 +19,9 @@ class ExampleView @JvmOverloads constructor(
         false
     )
 
-    fun initView(example: String) {
+    fun setText(example: String) {
         binding.tvExample.text = example
+        invalidate()
+        requestLayout()
     }
 }

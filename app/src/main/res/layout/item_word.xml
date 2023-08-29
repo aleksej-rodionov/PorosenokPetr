@@ -83,19 +83,25 @@
                 android:layout_height="1dp"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginBottom="8dp"
+                android:visibility="gone"
+                tools:visibility="visible"
                 android:background="@color/gray600"
-                app:layout_constraintBottom_toTopOf="@id/tvExamples" />
+                app:layout_constraintBottom_toTopOf="@id/llExamples" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/tvExamples"
+                android:id="@+id/llExamples"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_marginTop="32dp"
+                android:layout_marginBottom="24dp"
+                android:visibility="gone"
+                tools:visibility="visible"
                 android:orientation="vertical"
-                android:paddingHorizontal="24dp"
+                android:layout_marginHorizontal="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_downer">
+                app:layout_constraintTop_toBottomOf="@id/tv_downer"
+                app:layout_constraintBottom_toBottomOf="parent">
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 

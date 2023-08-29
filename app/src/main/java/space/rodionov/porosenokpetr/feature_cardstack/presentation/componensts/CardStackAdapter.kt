@@ -3,6 +3,7 @@ package space.rodionov.porosenokpetr.feature_cardstack.presentation.componensts
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.children
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import space.rodionov.porosenokpetr.core.redrawViewGroup
@@ -30,6 +31,23 @@ class CardStackAdapter(
                 root.setOnClickListener {
                     tvDowner.visibility = View.VISIBLE
                     btnSpeak.visibility = View.VISIBLE
+                    if (word.examples.isNotEmpty()) {
+                        divider.visibility = View.VISIBLE
+                        llExamples.visibility = View.VISIBLE
+                        val examples: List<View> = word.examples.map {
+                            val exampleView = ExampleView(itemView.context).apply {
+                                setText(it)
+                            }
+                            return@map exampleView
+                        }
+
+                        llExamples.post {
+                            llExamples.bindViews(*examples.toTypedArray())
+                            llExamples.children.forEach { it.invalidate() }
+                            llExamples.invalidate()
+                            llExamples.requestLayout()
+                        }
+                    }
                 }
 
                 btnSpeak.setOnClickListener {
@@ -62,8 +80,9 @@ class CardStackAdapter(
             binding.tvUpper.text = if (word.isNativeToForeign) word.getTranslation(word.nativeLang)
             else word.getTranslation(word.learnedLanguage)
 
-            binding.tvDowner.text = if (word.isNativeToForeign) word.getTranslation(word.learnedLanguage)
-            else word.getTranslation(word.nativeLang)
+            binding.tvDowner.text =
+                if (word.isNativeToForeign) word.getTranslation(word.learnedLanguage)
+                else word.getTranslation(word.nativeLang)
         }
 
         private fun updateMode(mode: Int) {
@@ -101,6 +120,17 @@ class CardStackAdapter(
         } else {
             val word = getItem(position)
             holder.bindPayload(word, payloads)
+        }
+    }
+
+    companion object {
+        private fun ViewGroup.bindViews(
+            vararg views: View
+        ) {
+            this.removeAllViews()
+            views.forEach { view ->
+                this.addView(view)
+            }
         }
     }
 }

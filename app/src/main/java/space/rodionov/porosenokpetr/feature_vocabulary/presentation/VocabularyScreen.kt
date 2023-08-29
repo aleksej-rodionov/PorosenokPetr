@@ -8,6 +8,7 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.flow.Flow
@@ -30,8 +31,10 @@ fun VocabularyScreen(
     onEvent: (VocabularyEvent) -> Unit
 ) {
 
-    val backdropState = rememberBackdropScaffoldState(initialValue = BackdropValue.Concealed)
     val context = LocalContext.current
+    val focusManager = LocalFocusManager.current
+
+    val backdropState = rememberBackdropScaffoldState(initialValue = BackdropValue.Concealed)
 
     val sheetState = rememberModalBottomSheetState(
         initialValue = ModalBottomSheetValue.Hidden,
@@ -110,6 +113,10 @@ fun VocabularyScreen(
                     },
                     onSearchFocusChanged = {
                         onEvent(VocabularyEvent.OnSearchFocusChanged(it))
+                    },
+                    onClearQueryClick = {
+                        focusManager.clearFocus()
+                        onEvent(VocabularyEvent.OnSearchQueryChanged(""))
                     }
                 )
             },
@@ -120,7 +127,13 @@ fun VocabularyScreen(
                         .background(color = MaterialTheme.colors.background),
                     categories = state.categoriesWithWords,
                     onSelectedChanged = { cat, opened ->
-                        onEvent(VocabularyEvent.OnCategoryActiveChanged(cat, opened)) //todo here change to OnCatActive?
+                        focusManager.clearFocus()
+                        onEvent(
+                            VocabularyEvent.OnCategoryActiveChanged(
+                                cat,
+                                opened
+                            )
+                        ) //todo here change to OnCatActive?
                     }
                 )
             },
@@ -129,6 +142,7 @@ fun VocabularyScreen(
                     categoriesWithWords = state.categoriesWithWords,
                     wordsQuantity = state.wordsQuantity,
                     onCategoryDisplayedChanged = { category, opened ->
+                        focusManager.clearFocus()
                         onEvent(
                             VocabularyEvent.OnCategoryExpandedChanged(
                                 category,
@@ -137,14 +151,23 @@ fun VocabularyScreen(
                         )
                     },
                     onCategoryActiveChanged = { category, active ->
+                        focusManager.clearFocus()
                         onEvent(VocabularyEvent.OnCategoryActiveChanged(category, active))
                     },
-                    onWordClick = { onEvent(VocabularyEvent.OnWordClick(it)) },
-                    onVoiceClick = { onEvent(VocabularyEvent.OnVoiceClick(it)) },
+                    onWordClick = {
+                        focusManager.clearFocus()
+                        onEvent(VocabularyEvent.OnWordClick(it))
+                    },
+                    onVoiceClick = {
+                        focusManager.clearFocus()
+                        onEvent(VocabularyEvent.OnVoiceClick(it))
+                    },
                     onWordStatusChanged = { word, status ->
+                        focusManager.clearFocus()
                         onEvent(VocabularyEvent.OnWordStatusChanged(word, status))
                     },
                     onFilterClick = {
+                        focusManager.clearFocus()
                         scope.launch { sheetState.show() }
                     },
                     onFocusedCategoryChanged = {

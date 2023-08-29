@@ -42,7 +42,8 @@ fun SearchTextField(
     shouldShowHint: Boolean = false,
     onValueChange: (String) -> Unit,
     hint: String = stringResource(id = R.string.search_word),
-    onFocusChanged: (FocusState) -> Unit
+    onFocusChanged: (FocusState) -> Unit,
+    onClearClick: () -> Unit
 ) {
     val spacing = LocalSpacing.current
 
@@ -104,7 +105,7 @@ fun SearchTextField(
         IconButton(
             modifier = Modifier
                 .align(Alignment.CenterVertically),
-            onClick = { onValueChange("") }) {
+            onClick = { onClearClick() }) {
             Icon(
                 imageVector = Icons.Default.Clear,
                 contentDescription = "Clear",
@@ -120,6 +121,7 @@ fun SearchTextFieldPreview() {
     SearchTextField(
         query = "",
         onValueChange = {},
-        onFocusChanged = {}
+        onFocusChanged = {},
+        onClearClick = {}
     )
 }
