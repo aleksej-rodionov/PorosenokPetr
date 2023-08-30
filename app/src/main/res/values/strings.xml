@@ -72,6 +72,7 @@
     <string name="eng_word">English translation ..</string>
     <string name="ukr_word">Ukrainian translation ..</string>
     <string name="no_vocabulary">Couldn\'t parse vocabulary</string>
+    <string name="dot_bold" translatable="false">●</string>
 
 
 </resources>

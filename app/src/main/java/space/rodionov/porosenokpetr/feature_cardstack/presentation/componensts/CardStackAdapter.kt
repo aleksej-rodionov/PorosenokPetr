@@ -3,7 +3,6 @@ package space.rodionov.porosenokpetr.feature_cardstack.presentation.componensts
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.children
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import space.rodionov.porosenokpetr.core.redrawViewGroup
@@ -36,17 +35,12 @@ class CardStackAdapter(
                         llExamples.visibility = View.VISIBLE
                         val examples: List<View> = word.examples.map {
                             val exampleView = ExampleView(itemView.context).apply {
-                                setText(it)
+                                setText(it, word.mode)
                             }
                             return@map exampleView
                         }
 
-                        llExamples.post {
-                            llExamples.bindViews(*examples.toTypedArray())
-                            llExamples.children.forEach { it.invalidate() }
-                            llExamples.invalidate()
-                            llExamples.requestLayout()
-                        }
+                        llExamples.bindViews(*examples.toTypedArray())
                     }
                 }
 

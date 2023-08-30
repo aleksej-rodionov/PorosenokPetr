@@ -39,7 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.18" />
+                app:layout_constraintGuide_percent="0.20" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline3"
@@ -52,30 +52,30 @@
                 android:id="@+id/tv_upper"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="8dp"
+                android:layout_marginVertical="16dp"
                 android:paddingHorizontal="12dp"
-                android:text="upper text"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="@+id/guideline2"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="upper text" />
 
             <TextView
                 android:id="@+id/tv_downer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="8dp"
+                android:layout_marginTop="24dp"
                 android:gravity="center"
                 android:paddingHorizontal="12dp"
                 android:tag="tv_beta"
-                android:text="downer text"
                 android:textAlignment="center"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/guideline2" />
+                app:layout_constraintTop_toTopOf="@+id/guideline2"
+                tools:text="downer text" />
 
             <View
                 android:id="@+id/divider"
@@ -83,25 +83,23 @@
                 android:layout_height="1dp"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginBottom="8dp"
-                android:visibility="gone"
-                tools:visibility="visible"
                 android:background="@color/gray600"
-                app:layout_constraintBottom_toTopOf="@id/llExamples" />
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@id/llExamples"
+                tools:visibility="visible" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/llExamples"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginBottom="24dp"
-                android:visibility="gone"
-                tools:visibility="visible"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
                 android:orientation="vertical"
-                android:layout_marginHorizontal="24dp"
+                android:paddingHorizontal="24dp"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_downer"
-                app:layout_constraintBottom_toBottomOf="parent">
+                tools:visibility="visible">
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -123,6 +121,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_margin="8dp"
+                    android:contentDescription="@null"
                     android:src="@drawable/ic_speak"
                     android:tag="dont_redraw"
                     app:tint="@color/white" />
@@ -144,6 +143,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
+                    android:contentDescription="@null"
                     android:src="@drawable/repeat_practice_ru"
                     android:tag="dont_redraw"
                     tools:visibility="gone" />
@@ -163,6 +163,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
+                    android:contentDescription="@null"
                     android:src="@drawable/repeat_practice_ru"
                     android:tag="dont_redraw"
                     tools:visibility="gone" />
@@ -183,6 +184,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
+                    android:contentDescription="@null"
                     android:src="@drawable/repeat_practice_ru"
                     android:tag="dont_redraw"
                     tools:visibility="visible" />
@@ -202,6 +204,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
+                    android:contentDescription="@null"
                     android:src="@drawable/learned_ru"
                     android:tag="dont_redraw"
                     tools:visibility="visible" />

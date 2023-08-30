@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
+import space.rodionov.porosenokpetr.core.redrawViewGroup
 import space.rodionov.porosenokpetr.databinding.ViewExampleBinding
 
 class ExampleView @JvmOverloads constructor(
@@ -16,12 +17,13 @@ class ExampleView @JvmOverloads constructor(
     private val binding = ViewExampleBinding.inflate(
         LayoutInflater.from(context),
         this,
-        false
+        true
     )
 
-    fun setText(example: String) {
-        binding.tvExample.text = example
-        invalidate()
-        requestLayout()
+    fun setText(example: String, mode: Int) {
+        binding.apply {
+            tvExample.text = example
+            root.redrawViewGroup(mode)
+        }
     }
 }
