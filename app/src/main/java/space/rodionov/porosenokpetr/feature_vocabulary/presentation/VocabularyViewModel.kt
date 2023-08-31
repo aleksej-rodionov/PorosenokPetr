@@ -19,6 +19,7 @@ import space.rodionov.porosenokpetr.core.domain.use_case.UpdateWordUseCase
 import space.rodionov.porosenokpetr.core.util.Constants.DEFAULT_INT
 import space.rodionov.porosenokpetr.core.util.UiEffect
 import space.rodionov.porosenokpetr.feature_cardstack.domain.use_case.ObserveAllCategoriesUseCase
+import space.rodionov.porosenokpetr.feature_vocabulary.domain.use_case.GetWordsQuantityUseCase
 import space.rodionov.porosenokpetr.feature_vocabulary.domain.use_case.ObserveWordsBySearchQueryInCategories
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.ext.mapCategoriesOnExpandedChanged
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.ext.transformData
@@ -33,7 +34,8 @@ class VocabularyViewModel(
     private val makeCategoryActiveUseCase: MakeCategoryActiveUseCase,
     private val speakWordUseCase: SpeakWordUseCase,
     private val updateWordUseCase: UpdateWordUseCase,
-    private val updateLearnedPercentInCategoryUseCase: UpdateLearnedPercentInCategoryUseCase
+    private val updateLearnedPercentInCategoryUseCase: UpdateLearnedPercentInCategoryUseCase,
+    private val getWordsQuantityUseCase: GetWordsQuantityUseCase
 ) : ViewModel() {
 
     var state by mutableStateOf(VocabularyState())
@@ -72,10 +74,15 @@ class VocabularyViewModel(
 
             state = state.copy(
                 categoriesWithWords = categoriesWithWords,
-                wordsQuantity = totalWords
+                wordsDisplayed = totalWords
             )
 
         }.launchIn(viewModelScope)
+
+        viewModelScope.launch {
+            val totalWords = getWordsQuantityUseCase.invoke()
+            state = state.copy(wordsTotal = totalWords)
+        }
     }
 
     fun onEvent(event: VocabularyEvent) {
@@ -201,7 +208,8 @@ class VocabularyViewModel(
 
 data class VocabularyState(
     val categoriesWithWords: List<VocabularyItem.CategoryUi> = emptyList(),
-    val wordsQuantity: Int = 0,
+    val wordsDisplayed: Int = 0,
+    val wordsTotal: Int = 0,
     val searchQuery: String = "",
     val showSearchHint: Boolean = false,
     val showDropWordProgressDialogForWord: VocabularyItem.WordUi? = null

@@ -18,7 +18,7 @@
     <string name="word_editor">Редактинование слова</string>
     <string name="collapse_all">Згорнути всі категорії</string>
     <string name="expand_all">Розгорнути всі категорії</string>
-    <string name="total_words_displayed">Всього відображається %1$d слів</string>
+    <string name="total_words_displayed">Всього відображається слів: %1$d, \nВсього слів у словнику: %2$d</string>
 
     <string name="category">Категорія</string>
     <string name="word_in_dialog">%1$s - %2$s</string>

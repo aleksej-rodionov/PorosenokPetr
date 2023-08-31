@@ -26,7 +26,8 @@ import space.rodionov.porosenokpetr.ui.theme.Gray600
 @Composable
 fun VocabularyFrontLayer(
     categoriesWithWords: List<VocabularyItem.CategoryUi>,
-    wordsQuantity: Int,
+    wordsDisplayed: Int,
+    wordsTotal: Int,
     onCategoryDisplayedChanged: (VocabularyItem.CategoryUi, Boolean) -> Unit,
     onCategoryActiveChanged: (VocabularyItem.CategoryUi, Boolean) -> Unit,
     onWordClick: (VocabularyItem.WordUi) -> Unit,
@@ -72,7 +73,10 @@ fun VocabularyFrontLayer(
             ) {
 
                 Text(
-                    text = stringResource(id = R.string.total_words_displayed, wordsQuantity),
+                    text = stringResource(
+                        id = R.string.total_words_displayed,
+                        wordsDisplayed,
+                        wordsTotal),
                     fontStyle = FontStyle.Italic,
                     fontSize = 14.sp
                 )

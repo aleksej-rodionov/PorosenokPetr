@@ -140,7 +140,8 @@ fun VocabularyScreen(
             frontLayerContent = {
                 VocabularyFrontLayer(
                     categoriesWithWords = state.categoriesWithWords,
-                    wordsQuantity = state.wordsQuantity,
+                    wordsDisplayed = state.wordsDisplayed,
+                    wordsTotal = state.wordsTotal,
                     onCategoryDisplayedChanged = { category, opened ->
                         focusManager.clearFocus()
                         onEvent(
