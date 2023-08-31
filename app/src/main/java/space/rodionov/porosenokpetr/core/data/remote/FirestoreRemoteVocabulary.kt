@@ -29,4 +29,24 @@ class FirestoreRemoteVocabulary {
             throw e
         }
     }
+
+    suspend fun fetchAllWordsTest(): List<WordDto> {
+
+        return try {
+            val words = mutableListOf<WordDto>()
+            val querySnapshot = vocabularyCollectionRef
+                .limit(50)
+                .get()
+                .await()
+            for (document in querySnapshot.documents) {
+                val wordDto = document.toObject<WordDto>()
+                wordDto?.let {
+                    words.add(it)
+                }
+            }
+            words
+        } catch (e: Exception) {
+            throw e
+        }
+    }
 }

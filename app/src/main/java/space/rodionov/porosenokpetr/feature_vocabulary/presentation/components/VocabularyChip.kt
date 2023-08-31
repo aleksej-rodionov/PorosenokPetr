@@ -30,12 +30,12 @@ fun VocabularyChip(
     modifier: Modifier = Modifier,
     category: VocabularyItem.CategoryUi,
     isExpanded: Boolean = false,
-    isFocusedInList: Boolean = false, //todo change
+//    isFocusedInList: Boolean = false, //todo change
     onSelectionChanged: (VocabularyItem.CategoryUi, Boolean) -> Unit,
-    turnedOnColor: Color,
+    expandedColor: Color,
     turnedOnTextColor: Color,
-    expandedDotColor: Color,
-    isTurnedOn: Boolean = false, //todo change
+    activeDotColor: Color,
+    isTurnedOn: Boolean = false,
     textStyle: TextStyle = MaterialTheme.typography.button
 ) {
 
@@ -44,17 +44,17 @@ fun VocabularyChip(
             .clip(RoundedCornerShape(100.dp))
             .border(
                 width = 2.dp,
-                color = if (isFocusedInList) Color.Green else {
-                    if (isTurnedOn) turnedOnColor else TransparentGray15
-                },
+//                color = if (isFocusedInList) Color.Green else {
+                    if (isExpanded) expandedColor else TransparentGray15
+                /*}*/,
                 shape = RoundedCornerShape(100.dp)
             )
             .background(
-                color = if (isTurnedOn) turnedOnColor else TransparentGray15,
+                color = if (isExpanded) expandedColor else TransparentGray15,
                 shape = RoundedCornerShape(100.dp)
             )
             .toggleable(
-                value = isTurnedOn,
+                value = isExpanded,
                 onValueChange = {
                     onSelectionChanged(category, it)
                 }
@@ -70,7 +70,7 @@ fun VocabularyChip(
             modifier = Modifier
                 .size(4.dp)
                 .background(
-                    color = if (isExpanded) expandedDotColor else Gray600,
+                    color = if (isTurnedOn) activeDotColor else Gray600,
                     shape = CircleShape
                 )
         )
@@ -95,8 +95,8 @@ fun VocabularyChipPreview() {
             nameUkr = "Гiвно"
         ),
         onSelectionChanged = { _, _ -> },
-        turnedOnColor = MaterialTheme.colors.primary,
+        expandedColor = MaterialTheme.colors.primary,
         turnedOnTextColor = Color.White,
-        expandedDotColor = Color.Green
+        activeDotColor = Color.Green
     )
 }

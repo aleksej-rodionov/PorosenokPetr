@@ -15,6 +15,7 @@ class FirestoreRemoteVocabularyRepository(
 
     override suspend fun fetchAllWords(): List<WordRaw> {
 
+//        return firestoreRemoteVocabulary.fetchAllWordsTest().map { //todo use it for testing
         return firestoreRemoteVocabulary.fetchAllWords().map {
             try {
                 it.toWordRaw()

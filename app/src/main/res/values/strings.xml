@@ -18,7 +18,7 @@
     <string name="word_editor">Word editor</string>
     <string name="collapse_all">Collapse all categories</string>
     <string name="expand_all">Expand all categories</string>
-    <string name="total_words_displayed">A total of words displayed: %1$d \nA total of words in vocabulary: %2$d</string>
+    <string name="total_words_displayed">A total of words displayed: %1$d\nA total of words in vocabulary: %2$d</string>
 
     <string name="category">Category</string>
     <string name="word_in_dialog">%1$s - %2$s</string>

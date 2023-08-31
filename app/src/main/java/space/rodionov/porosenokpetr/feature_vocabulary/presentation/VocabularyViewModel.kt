@@ -50,7 +50,9 @@ class VocabularyViewModel(
     private val _categoriesExpanded = MutableStateFlow<List<String>>(emptyList())
     private val categoriesExpanded: StateFlow<List<String>> = _categoriesExpanded.asStateFlow()
 
-    private val categoryLists = observeAllCategoriesUseCase.invoke()
+    private val categoryLists = observeAllCategoriesUseCase.invoke().map { list ->
+        list.sortedBy { it.name }
+    }
 
     private val wordLists = combine(
         searchQueries,

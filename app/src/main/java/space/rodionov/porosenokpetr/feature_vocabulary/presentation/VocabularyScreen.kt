@@ -129,11 +129,11 @@ fun VocabularyScreen(
                     onSelectedChanged = { cat, opened ->
                         focusManager.clearFocus()
                         onEvent(
-                            VocabularyEvent.OnCategoryActiveChanged(
+                            VocabularyEvent.OnCategoryExpandedChanged(
                                 cat,
                                 opened
                             )
-                        ) //todo here change to OnCatActive?
+                        )
                     }
                 )
             },

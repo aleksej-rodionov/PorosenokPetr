@@ -5,20 +5,20 @@ in process:
 
 Next todo:
 
-- менять значения isFocusedInList и isTurnedOn в чипах
-(displaying on/off and collapsed/expanded in chips)
 - fix proguard R8 minifyEnabled = true (works only if already installed and DB populated)
-- show examples on card if any
 - abstract UseCase
 - reminder
 - modularization
+- sealed class Result to display all the exvceptions in Snackbars
 
 
 Features
 
-- back-end with vocabularies and authorization
+- authorization at backend to save progress?
 
 
 Bugs
+
+- отображение колоды при возврате на экран колоды после отключения категории
 
 

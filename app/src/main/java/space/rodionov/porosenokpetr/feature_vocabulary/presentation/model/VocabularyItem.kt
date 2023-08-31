@@ -16,7 +16,8 @@ sealed class VocabularyItem {
         val nameEng: String? = null,
         val isExpanded: Boolean = false,
         val words: List<WordUi> = emptyList(),
-        val isFocusedInList: Boolean = false,
+        val isFocusedInList: Boolean = false, //todo remove: мы все равно не видим как она сменяется пока листаем,
+        // ибо BackLayer с чипами в этот момент скрыт
         val isTurnedOn: Boolean = false
     ) : VocabularyItem() {
 
