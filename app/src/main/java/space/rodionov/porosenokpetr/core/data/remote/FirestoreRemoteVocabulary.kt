@@ -13,13 +13,9 @@ class FirestoreRemoteVocabulary {
 
     suspend fun fetchAllWords(): List<WordDto> {
 
-        //todo maybe I need batch here
         return try {
             val words = mutableListOf<WordDto>()
             val querySnapshot = vocabularyCollectionRef
-                .orderBy("eng")
-                .startAt("to have a")
-                .endAt("to have a" + '\uf8ff')
                 .get()
                 .await()
             for (document in querySnapshot.documents) {

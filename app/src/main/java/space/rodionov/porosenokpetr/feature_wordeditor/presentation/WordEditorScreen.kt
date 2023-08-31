@@ -17,13 +17,17 @@ import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.ScaffoldState
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.flow.Flow
@@ -35,6 +39,8 @@ import space.rodionov.porosenokpetr.core.presentation.components.TopBar
 import space.rodionov.porosenokpetr.core.util.Constants.DEFAULT_STRING
 import space.rodionov.porosenokpetr.core.util.Language
 import space.rodionov.porosenokpetr.core.util.UiEffect
+import space.rodionov.porosenokpetr.feature_wordeditor.presentation.components.EditorItem
+import space.rodionov.porosenokpetr.feature_wordeditor.presentation.components.SmallHeaderItem
 import space.rodionov.porosenokpetr.feature_wordeditor.presentation.components.WordEditorItem
 import space.rodionov.porosenokpetr.feature_wordeditor.presentation.model.Translation
 
@@ -50,6 +56,7 @@ fun WordEditorScreen(
 
     val spacing = LocalSpacing.current
     val context = LocalContext.current
+    val focusManager = LocalFocusManager.current
 
     if (state.wordId == null) {
         val wordId = args?.getString("name")
@@ -96,35 +103,84 @@ fun WordEditorScreen(
                 .padding(16.dp)
         ) {
 
-            LazyColumn(
-                modifier = Modifier
-                    .background(
-                        color = MaterialTheme.colors.surface,
-                        shape = RoundedCornerShape(spacing.spaceMedium)
-                    )
-                    .wrapContentHeight()
-                    .fillMaxWidth()
-            ) {
+            Column {
+                LazyColumn(
+                    modifier = Modifier
+                        .background(
+                            color = MaterialTheme.colors.surface,
+                            shape = RoundedCornerShape(spacing.spaceMedium)
+                        )
+                        .wrapContentHeight()
+                        .fillMaxWidth()
+                ) {
 
-                itemsIndexed(state.translations) { index, translation ->
+                    itemsIndexed(state.translations) { index, translation ->
 
-                    WordEditorItem(
-                        translation = translation,
-                        onValueChange = {
-                            onEvent(
-                                WordEditorEvent.OnTranslationChanged(
-                                    translation.language,
-                                    it
+                        WordEditorItem(
+                            translation = translation,
+                            onValueChange = {
+                                onEvent(
+                                    WordEditorEvent.OnTranslationChanged(
+                                        translation.language,
+                                        it
+                                    )
                                 )
-                            )
-                        },
-                        onDone = {
-                            onEvent(WordEditorEvent.OnSaveClick)
-                        }
-                    )
+                            },
+                            onDone = {
+                                onEvent(WordEditorEvent.OnSaveClick)
+                            }
+                        )
 
-                    if (index < state.translations.size - 1) {
-                        Divider()
+                        if (index < state.translations.size - 1) {
+                            Divider()
+                        }
+                    }
+                }
+
+
+
+                SmallHeaderItem(
+                    text = stringResource(id = R.string.word_editor_examples),
+//                onIconClick = { onEvent(WordEditorEvent.OnAddExampleClick) },
+//                drawableRes = R.drawable.ic_list_add
+                )
+
+                LazyColumn(
+                    modifier = Modifier
+                        .background(
+                            color = MaterialTheme.colors.surface,
+                            shape = RoundedCornerShape(spacing.spaceMedium)
+                        )
+                        .wrapContentHeight()
+                        .fillMaxWidth()
+                ) {
+
+                    state.word?.let {
+                        itemsIndexed(it.examples) { index, example ->
+
+                            EditorItem(
+                                value = example,
+                                label = stringResource(id = R.string.example, index),
+                                onValueChange = {
+//                                onEvent(
+//                                    WordEditorEvent.OnExampleChanged(index, it)
+//                                )
+                                },
+                                onDone = { focusManager.clearFocus() },
+                                onIconClick = {
+//                                onEvent(
+//                                    WordEditorEvent.OnExampleRemoveClick(index)
+//                                )
+                                },
+                                imageVector = Icons.Default.Clear,
+                                singleLine = false,
+                                capitalize = true
+                            )
+
+                            if (index < it.examples.size - 1) {
+                                Divider()
+                            }
+                        }
                     }
                 }
             }

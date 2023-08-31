@@ -72,4 +72,6 @@
     <string name="eng_word">Английский перевод ..</string>
     <string name="ukr_word">Украинский перевод ..</string>
     <string name="no_vocabulary">Couldn\'t parse vocabulary</string>
+    <string name="word_editor_examples">Примеры</string>
+    <string name="example">Пример %1$d</string>
 </resources>
