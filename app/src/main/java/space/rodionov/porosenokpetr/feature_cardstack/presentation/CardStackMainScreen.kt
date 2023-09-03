@@ -33,6 +33,7 @@ const val TAG_CARDSTACK = "TAG_CARDSTACK"
 @Composable
 fun CardStackMainScreen(
     navigateTo: (String) -> Unit,
+    scaffoldState: ScaffoldState,
     state: CardstackState,
     uiEffect: Flow<UiEffect>,
     onEvent: (CardstackEvent) -> Unit
@@ -158,6 +159,7 @@ fun CardstackScreenPreview(
 
     CardStackMainScreen(
         navigateTo = {},
+        scaffoldState = scaffoldState,
         state = CardstackState(),
         uiEffect = emptyFlow()
     ) {}

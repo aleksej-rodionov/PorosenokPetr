@@ -1,20 +1,11 @@
 package space.rodionov.porosenokpetr.core.util
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
-import android.content.res.Resources
-import android.graphics.Bitmap
-import android.graphics.Canvas
 import android.util.Log
-import android.util.TypedValue
-import android.view.inputmethod.InputMethodManager
-import android.widget.AutoCompleteTextView
-import androidx.core.content.ContextCompat
 import space.rodionov.porosenokpetr.core.domain.model.Word
 import space.rodionov.porosenokpetr.core.util.Constants.WORD_ACTIVE
 import space.rodionov.porosenokpetr.core.util.Constants.WORD_LEARNED
-import java.math.BigDecimal
 import kotlin.math.roundToInt
 
 inline fun <reified T: Activity> Activity.startActivity() {

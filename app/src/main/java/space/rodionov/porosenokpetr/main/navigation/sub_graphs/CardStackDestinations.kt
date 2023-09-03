@@ -1,11 +1,9 @@
 package space.rodionov.porosenokpetr.main.navigation.sub_graphs
 
-import androidx.activity.ComponentActivity
 import androidx.compose.material.ScaffoldState
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
-import space.rodionov.porosenokpetr.core.util.ViewModelFactory
 import space.rodionov.porosenokpetr.core.util.daggerComposeViewModel
 import space.rodionov.porosenokpetr.feature_cardstack.di.DaggerCardStackComponent
 import space.rodionov.porosenokpetr.feature_cardstack.presentation.CardStackMainScreen
@@ -32,9 +30,8 @@ fun NavGraphBuilder.addCardStackGraph(
             navigateTo = { navController.navigate(it) },
             scaffoldState,
             viewModel.state,
-            viewModel.uiEffect,
-            { viewModel.onEvent(it) }
-        )
+            viewModel.uiEffect
+        ) { viewModel.onEvent(it) }
     }
 }
 

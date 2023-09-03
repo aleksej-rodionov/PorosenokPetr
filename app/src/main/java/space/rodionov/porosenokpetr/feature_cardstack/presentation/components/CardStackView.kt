@@ -12,6 +12,7 @@ import space.rodionov.porosenokpetr.core.util.Constants.WORD_LEARNED
 import space.rodionov.porosenokpetr.databinding.LayoutCardstackBinding
 import space.rodionov.porosenokpetr.feature_cardstack.presentation.CardstackState
 import space.rodionov.porosenokpetr.feature_cardstack.presentation.TAG_CARDSTACK
+import space.rodionov.porosenokpetr.feature_cardstack.presentation.adapter.CardStackAdapter
 import space.rodionov.porosenokpetr.feature_cardstack.presentation.model.CardStackItem
 
 class CardStackView @JvmOverloads constructor(
@@ -123,7 +124,7 @@ class CardStackView @JvmOverloads constructor(
     }
 
     override fun onCardDisappeared(view: View?, position: Int) {
-        Log.d(TAG_CARDSTACK, "onCardDisappeared: ${cardstackAdapter.currentList[position].swe}")
+        Log.d(TAG_CARDSTACK, "onCardDisappeared: $position")
         onWordDesappeared?.invoke(position)
     }
 }
