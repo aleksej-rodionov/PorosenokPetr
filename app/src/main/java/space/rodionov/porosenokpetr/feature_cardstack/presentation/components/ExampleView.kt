@@ -1,4 +1,4 @@
-package space.rodionov.porosenokpetr.feature_cardstack.presentation.componensts
+package space.rodionov.porosenokpetr.feature_cardstack.presentation.components
 
 import android.content.Context
 import android.util.AttributeSet

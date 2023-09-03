@@ -1,5 +1,6 @@
 package space.rodionov.porosenokpetr.feature_cardstack.presentation
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -24,7 +25,7 @@ import kotlinx.coroutines.flow.emptyFlow
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.presentation.LocalSpacing
 import space.rodionov.porosenokpetr.core.util.UiEffect
-import space.rodionov.porosenokpetr.feature_cardstack.presentation.componensts.CardStackView
+import space.rodionov.porosenokpetr.feature_cardstack.presentation.components.CardStackView
 import space.rodionov.porosenokpetr.feature_cardstack.presentation.model.CardStackItem
 
 const val TAG_CARDSTACK = "TAG_CARDSTACK"
@@ -32,11 +33,12 @@ const val TAG_CARDSTACK = "TAG_CARDSTACK"
 @Composable
 fun CardStackMainScreen(
     navigateTo: (String) -> Unit,
-    scaffoldState: ScaffoldState,
     state: CardstackState,
     uiEffect: Flow<UiEffect>,
     onEvent: (CardstackEvent) -> Unit
 ) {
+
+    Log.d(TAG_CARDSTACK, "CardStackMainScreen: currentPosition = ${state.currentPosition}")
 
     LaunchedEffect(key1 = true) {
         uiEffect.collectLatest { event ->
@@ -61,11 +63,11 @@ fun CardStackMainScreen(
 
         CardStack(
             state = state,
-            updateCurrentPosition = {
-                onEvent(CardstackEvent.UpdateCurrentPosition(it))
+            updateWordAppearedPosition = {
+                onEvent(CardstackEvent.WordAppearedPosition(it))
             },
-            sendPositionOfDisappeared = {
-                onEvent(CardstackEvent.PositionOfDisappeared(it))
+            updateWordDisappearedPosition = {
+                onEvent(CardstackEvent.WordDisappearedPosition(it))
             },
             updateWordStatus = {
                 onEvent(CardstackEvent.UpdateWordStatus(it))
@@ -104,8 +106,8 @@ fun CardStackMainScreen(
 @Composable
 fun CardStack(
     state: CardstackState,
-    updateCurrentPosition: (Int) -> Unit,
-    sendPositionOfDisappeared: (Int) -> Unit,
+    updateWordAppearedPosition: (Int) -> Unit,
+    updateWordDisappearedPosition: (Int) -> Unit,
     updateWordStatus: (Int) -> Unit,
     speakWord: (String) -> Unit,
     editWord: (CardStackItem.WordUi) -> Unit,
@@ -122,10 +124,10 @@ fun CardStack(
         factory = {
             view.apply {
                 setOnWordAppearedListener {
-                    updateCurrentPosition(it)
+                    updateWordAppearedPosition(it)
                 }
                 setOnWordDisappearedListener {
-                    sendPositionOfDisappeared(it)
+                    updateWordDisappearedPosition(it)
                 }
                 setOnWordSwipedListener {
                     updateWordStatus(it)
@@ -143,7 +145,7 @@ fun CardStack(
             }
         },
         update = {
-            it.submitList(state.words)
+            it.updateView(state)
         }
     )
 }
@@ -156,9 +158,7 @@ fun CardstackScreenPreview(
 
     CardStackMainScreen(
         navigateTo = {},
-        scaffoldState = scaffoldState,
         state = CardstackState(),
-        uiEffect = emptyFlow(),
-        onEvent = {}
-    )
+        uiEffect = emptyFlow()
+    ) {}
 }

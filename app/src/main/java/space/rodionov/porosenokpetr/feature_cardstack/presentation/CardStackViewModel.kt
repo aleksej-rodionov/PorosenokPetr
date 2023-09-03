@@ -35,7 +35,7 @@ class CardStackViewModel(
     private val collectModeUseCase: CollectModeUseCase,
     private val collectNativeLanguageUseCase: CollectNativeLanguageUseCase,
     private val collectTranslationDirectionUseCase: CollectTranslationDirectionUseCase,
-    private val getLearnedLanguageUseCase: GetLearnedLanguageUseCase,
+    getLearnedLanguageUseCase: GetLearnedLanguageUseCase,
     private val updateWordUseCase: UpdateWordUseCase,
     private val updateLearnedPercentInCategoryUseCase: UpdateLearnedPercentInCategoryUseCase,
     private val speakWordUseCase: SpeakWordUseCase
@@ -71,9 +71,7 @@ class CardStackViewModel(
 
     fun onEvent(event: CardstackEvent) {
         when (event) {
-            is CardstackEvent.UpdateCurrentPosition -> {
-                Log.d(TAG, "onEvent: event.position = ${event.position}")
-                Log.d(TAG, "onEvent: words.size = ${state.words.size}")
+            is CardstackEvent.WordAppearedPosition -> {
                 state = state.copy(currentPosition = event.position)
                 if (needAddTenMoreWords(event.position)) {
                     viewModelScope.launch {
@@ -86,11 +84,13 @@ class CardStackViewModel(
                 }
             }
 
-            is CardstackEvent.PositionOfDisappeared -> {
+            is CardstackEvent.WordDisappearedPosition -> {
                 Log.d(TAG, "onEvent: Disappeared position = ${event.position}")
-                //todo if last position was
-                //todo clean words
-                //todo set current position to 0
+                if (event.position == state.words.size - 1) {
+                    state = state.copy(
+                        stackFinished = true
+                    )
+                }
             }
 
             is CardstackEvent.UpdateWordStatus -> {
@@ -119,8 +119,13 @@ class CardStackViewModel(
             }
 
             is CardstackEvent.OnRefillClick -> {
-                Log.d(TAG, "onEvent: OnRefillClick in VM")
-                //todo fillup them again
+                viewModelScope.launch {
+                    state = state.copy(
+                        words = getTenWords(),
+                        currentPosition = 0,
+                        stackFinished = false
+                    )
+                }
             }
         }
     }
@@ -148,12 +153,13 @@ class CardStackViewModel(
 data class CardstackState(
     val words: List<CardStackItem.WordUi> = emptyList(),
     val currentPosition: Int = 0,
-    val learnedLanguage: Language = Language.English
+    val learnedLanguage: Language = Language.English,
+    val stackFinished: Boolean = false
 )
 
 sealed class CardstackEvent {
-    data class UpdateCurrentPosition(val position: Int) : CardstackEvent()
-    data class PositionOfDisappeared(val position: Int) : CardstackEvent()
+    data class WordAppearedPosition(val position: Int) : CardstackEvent()
+    data class WordDisappearedPosition(val position: Int) : CardstackEvent()
     data class UpdateWordStatus(val status: Int) : CardstackEvent()
     data class OnSpeakWordClick(val word: String) : CardstackEvent()
     data class OnEditWordClick(val word: CardStackItem.WordUi) : CardstackEvent()

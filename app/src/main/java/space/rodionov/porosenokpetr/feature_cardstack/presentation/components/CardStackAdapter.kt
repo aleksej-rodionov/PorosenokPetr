@@ -1,9 +1,8 @@
-package space.rodionov.porosenokpetr.feature_cardstack.presentation.componensts
+package space.rodionov.porosenokpetr.feature_cardstack.presentation.components
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.children
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import space.rodionov.porosenokpetr.core.redrawViewGroup

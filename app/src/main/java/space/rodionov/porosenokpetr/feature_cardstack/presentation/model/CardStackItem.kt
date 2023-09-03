@@ -32,6 +32,6 @@ sealed class CardStackItem {
     }
 
     data class BannerUi( //todo other view type
-        val product: Int = 0
+        val text: String = "Иди на хуй чмо"
     ): CardStackItem()
 }

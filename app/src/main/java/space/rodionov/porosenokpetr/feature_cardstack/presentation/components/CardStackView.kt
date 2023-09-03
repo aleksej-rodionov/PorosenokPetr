@@ -1,4 +1,4 @@
-package space.rodionov.porosenokpetr.feature_cardstack.presentation.componensts
+package space.rodionov.porosenokpetr.feature_cardstack.presentation.components
 
 import android.content.Context
 import android.util.AttributeSet
@@ -89,8 +89,19 @@ class CardStackView @JvmOverloads constructor(
         }
     }
 
-    fun submitList(items: List<CardStackItem.WordUi>) {
-        cardstackAdapter.submitList(items)
+    fun updateView(state: CardstackState) {
+        cardstackAdapter.submitList(state.words)
+        binding.apply {
+            if (state.stackFinished) {
+                ivThumb.visibility = View.VISIBLE
+                btnRefill.visibility = View.VISIBLE
+                cardStack.visibility = View.GONE
+            } else {
+                ivThumb.visibility = View.GONE
+                btnRefill.visibility = View.GONE
+                cardStack.visibility = View.VISIBLE
+            }
+        }
     }
 
     override fun onCardDragging(direction: Direction?, ratio: Float) {}
@@ -107,22 +118,13 @@ class CardStackView @JvmOverloads constructor(
     override fun onCardCanceled() {}
 
     override fun onCardAppeared(view: View?, position: Int) {
-        Log.d(TAG_CARDSTACK, "onCardAppeared: ${cardstackAdapter.currentList[position].swe}")
+        Log.d(TAG_CARDSTACK, "onCardAppeared: $position")
         onWordAppeared?.invoke(position)
-//        if (position == cardstackAdapter.itemCount - 3 && position < Constants.MAX_STACK_SIZE - 10) {
-//            vmDriller.addTenWords()
-//        }
-//        if (position == drillerAdapter.itemCount - 1) binding?.tvComplete?.visibility = View.VISIBLE
     }
 
     override fun onCardDisappeared(view: View?, position: Int) {
         Log.d(TAG_CARDSTACK, "onCardDisappeared: ${cardstackAdapter.currentList[position].swe}")
         onWordDesappeared?.invoke(position)
-//        if (position == drillerAdapter.itemCount - 1) {
-//            binding.btnNewRound.visibility = View.VISIBLE
-//        } else {
-//            binding.btnNewRound.visibility = View.GONE // todo bug сделать нормально чтоб было чтоб кнопка исчезала вовремя или вообще не появлялась
-//        }
     }
 }
 
@@ -130,8 +132,8 @@ fun createCardStackLayoutManager(
     context: Context,
     listener: CardStackListener
 ): CardStackLayoutManager {
-    val drillerLayoutManager = CardStackLayoutManager(context, listener) // todo pass this not null
-    drillerLayoutManager.apply {
+    val cardStackLayoutManager = CardStackLayoutManager(context, listener)
+    cardStackLayoutManager.apply {
         setOverlayInterpolator(LinearInterpolator())
         setStackFrom(StackFrom.Top)
         setVisibleCount(3)
@@ -144,7 +146,7 @@ fun createCardStackLayoutManager(
         setCanScrollVertical(true)
         setSwipeableMethod(SwipeableMethod.AutomaticAndManual)
     }
-    return drillerLayoutManager
+    return cardStackLayoutManager
 }
 
 

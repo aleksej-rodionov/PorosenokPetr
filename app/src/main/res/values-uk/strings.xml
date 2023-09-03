@@ -74,5 +74,5 @@
     <string name="no_vocabulary">Couldn\'t parse vocabulary</string>
     <string name="word_editor_examples">Примеры</string>
     <string name="example">Пример %1$d</string>
-
+    <string name="refill">Перезаполнить колоду</string>
 </resources>

@@ -1,4 +1,4 @@
-package space.rodionov.porosenokpetr.feature_cardstack.presentation.componensts
+package space.rodionov.porosenokpetr.feature_cardstack.presentation.components
 
 import androidx.recyclerview.widget.DiffUtil
 import space.rodionov.porosenokpetr.feature_cardstack.presentation.model.CardStackItem

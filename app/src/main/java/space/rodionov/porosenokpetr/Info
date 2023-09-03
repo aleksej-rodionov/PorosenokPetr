@@ -5,7 +5,6 @@ in process:
 
 Next todo:
 
-- fix leave-and-return 1 last card comes back, + add cardstack refilling with button
 - fix proguard R8 minifyEnabled = true (works only if already installed and DB populated)
 - abstract UseCase
 - reminder
@@ -20,6 +19,5 @@ Features
 
 Bugs
 
-- отображение колоды при возврате на экран колоды после отключения категории
 
 
