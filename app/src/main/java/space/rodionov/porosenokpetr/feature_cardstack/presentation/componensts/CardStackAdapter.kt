@@ -3,6 +3,7 @@ package space.rodionov.porosenokpetr.feature_cardstack.presentation.componensts
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.children
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import space.rodionov.porosenokpetr.core.redrawViewGroup
@@ -23,6 +24,8 @@ class CardStackAdapter(
             binding.apply {
                 tvDowner.visibility = View.INVISIBLE
                 btnSpeak.visibility = if (word.isNativeToForeign) View.GONE else View.VISIBLE
+                divider.visibility = View.GONE
+                llExamples.visibility = View.GONE
 
                 updateTranslations(word)
                 updateMode(word.mode)

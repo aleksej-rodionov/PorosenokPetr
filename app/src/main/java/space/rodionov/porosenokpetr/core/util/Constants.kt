@@ -14,7 +14,7 @@ object Constants { //todo move to their places
     const val DEFAULT_INT = -1
     const val DEFAULT_STRING = "¯_(ツ)_/¯"
     const val EMPTY_STRING = ""
-    const val MAX_STACK_SIZE = 50
+    const val MAX_STACK_SIZE = 10
 
     const val WORD_EXCLUDED = 0
     const val WORD_ACTIVE = 1

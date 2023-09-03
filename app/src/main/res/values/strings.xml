@@ -75,6 +75,7 @@
     <string name="dot_bold" translatable="false">●</string>
     <string name="word_editor_examples">Примеры</string>
     <string name="example">Пример %1$d</string>
+    <string name="refill">Refill the stack</string>
 
 
 </resources>

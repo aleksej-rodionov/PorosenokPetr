@@ -1,5 +1,6 @@
 package space.rodionov.porosenokpetr.feature_cardstack.presentation
 
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -26,6 +27,8 @@ import space.rodionov.porosenokpetr.feature_cardstack.presentation.mapper.toWord
 import space.rodionov.porosenokpetr.feature_cardstack.presentation.mapper.toWordUi
 import space.rodionov.porosenokpetr.feature_cardstack.presentation.model.CardStackItem
 import space.rodionov.porosenokpetr.main.navigation.sub_graphs.VocabularyDestinations
+
+private const val TAG = "CardStackVM"
 
 class CardStackViewModel(
     private val getTenWordsUseCase: GetTenWordsUseCase,
@@ -69,6 +72,8 @@ class CardStackViewModel(
     fun onEvent(event: CardstackEvent) {
         when (event) {
             is CardstackEvent.UpdateCurrentPosition -> {
+                Log.d(TAG, "onEvent: event.position = ${event.position}")
+                Log.d(TAG, "onEvent: words.size = ${state.words.size}")
                 state = state.copy(currentPosition = event.position)
                 if (needAddTenMoreWords(event.position)) {
                     viewModelScope.launch {
@@ -79,6 +84,13 @@ class CardStackViewModel(
                         state = state.copy(words = newList)
                     }
                 }
+            }
+
+            is CardstackEvent.PositionOfDisappeared -> {
+                Log.d(TAG, "onEvent: Disappeared position = ${event.position}")
+                //todo if last position was
+                //todo clean words
+                //todo set current position to 0
             }
 
             is CardstackEvent.UpdateWordStatus -> {
@@ -104,6 +116,11 @@ class CardStackViewModel(
                         )
                     )
                 }
+            }
+
+            is CardstackEvent.OnRefillClick -> {
+                Log.d(TAG, "onEvent: OnRefillClick in VM")
+                //todo fillup them again
             }
         }
     }
@@ -136,7 +153,9 @@ data class CardstackState(
 
 sealed class CardstackEvent {
     data class UpdateCurrentPosition(val position: Int) : CardstackEvent()
+    data class PositionOfDisappeared(val position: Int) : CardstackEvent()
     data class UpdateWordStatus(val status: Int) : CardstackEvent()
     data class OnSpeakWordClick(val word: String) : CardstackEvent()
     data class OnEditWordClick(val word: CardStackItem.WordUi) : CardstackEvent()
+    object OnRefillClick : CardstackEvent()
 }

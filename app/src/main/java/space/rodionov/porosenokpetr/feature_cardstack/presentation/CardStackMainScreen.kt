@@ -40,10 +40,11 @@ fun CardStackMainScreen(
 
     LaunchedEffect(key1 = true) {
         uiEffect.collectLatest { event ->
-            when(event) {
+            when (event) {
                 is UiEffect.NavigateTo -> {
                     navigateTo(event.route)
                 }
+
                 else -> Unit
             }
         }
@@ -52,7 +53,7 @@ fun CardStackMainScreen(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = MaterialTheme.colors.background), //todo Gray300 was
+            .background(color = MaterialTheme.colors.background),
         contentAlignment = Alignment.Center
     ) {
 
@@ -63,6 +64,9 @@ fun CardStackMainScreen(
             updateCurrentPosition = {
                 onEvent(CardstackEvent.UpdateCurrentPosition(it))
             },
+            sendPositionOfDisappeared = {
+                onEvent(CardstackEvent.PositionOfDisappeared(it))
+            },
             updateWordStatus = {
                 onEvent(CardstackEvent.UpdateWordStatus(it))
             },
@@ -71,6 +75,9 @@ fun CardStackMainScreen(
             },
             editWord = {
                 onEvent(CardstackEvent.OnEditWordClick(it))
+            },
+            refill = {
+                onEvent(CardstackEvent.OnRefillClick)
             }
         )
 
@@ -98,9 +105,11 @@ fun CardStackMainScreen(
 fun CardStack(
     state: CardstackState,
     updateCurrentPosition: (Int) -> Unit,
+    sendPositionOfDisappeared: (Int) -> Unit,
     updateWordStatus: (Int) -> Unit,
     speakWord: (String) -> Unit,
-    editWord: (CardStackItem.WordUi) -> Unit
+    editWord: (CardStackItem.WordUi) -> Unit,
+    refill: () -> Unit
 ) {
 
     val context = LocalContext.current
@@ -115,6 +124,9 @@ fun CardStack(
                 setOnWordAppearedListener {
                     updateCurrentPosition(it)
                 }
+                setOnWordDisappearedListener {
+                    sendPositionOfDisappeared(it)
+                }
                 setOnWordSwipedListener {
                     updateWordStatus(it)
                 }
@@ -123,6 +135,9 @@ fun CardStack(
                 }
                 setOnEditWordListener {
                     editWord(it)
+                }
+                setOnRefillBtnClick {
+                    refill()
                 }
                 initView(state)
             }

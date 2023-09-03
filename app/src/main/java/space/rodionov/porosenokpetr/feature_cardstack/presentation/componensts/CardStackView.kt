@@ -41,6 +41,11 @@ class CardStackView @JvmOverloads constructor(
         onWordAppeared = callback
     }
 
+    private var onWordDesappeared:  ((Int) -> Unit)? = null
+    fun setOnWordDisappearedListener (callback: (Int) -> Unit) {
+        onWordDesappeared = callback
+    }
+
     private var onWordSwiped: ((Int) -> Unit)? = null
     fun setOnWordSwipedListener(callback: (Int) -> Unit) {
         onWordSwiped = callback
@@ -54,6 +59,11 @@ class CardStackView @JvmOverloads constructor(
     private var onEditWordClick: ((CardStackItem.WordUi) -> Unit)? = null
     fun setOnEditWordListener(callback: (CardStackItem.WordUi) -> Unit) {
         onEditWordClick = callback
+    }
+
+    private var onRefillBtnClick: (() -> Unit)? = null
+    fun setOnRefillBtnClick(callback: () -> Unit) {
+        onRefillBtnClick = callback
     }
 
     fun initView(
@@ -71,6 +81,10 @@ class CardStackView @JvmOverloads constructor(
             if (cardstackAdapter.currentList.size != state.words.size) {
                 cardstackAdapter.submitList(state.words)
                 cardStack.scrollToPosition(state.currentPosition)
+            }
+
+            btnRefill.setOnClickListener {
+                onRefillBtnClick?.invoke()
             }
         }
     }
@@ -103,6 +117,7 @@ class CardStackView @JvmOverloads constructor(
 
     override fun onCardDisappeared(view: View?, position: Int) {
         Log.d(TAG_CARDSTACK, "onCardDisappeared: ${cardstackAdapter.currentList[position].swe}")
+        onWordDesappeared?.invoke(position)
 //        if (position == drillerAdapter.itemCount - 1) {
 //            binding.btnNewRound.visibility = View.VISIBLE
 //        } else {

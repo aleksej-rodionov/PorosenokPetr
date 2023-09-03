@@ -34,4 +34,6 @@
     <color name="transparent">#00000000</color>
     <color name="transparentViolet50">#809876AA</color>
 
+    <color name="blueMain">#FF3B80F4</color>
+
 </resources>
