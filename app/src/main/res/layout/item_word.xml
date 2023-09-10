@@ -34,32 +34,18 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.20" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.76" />
-
             <TextView
                 android:id="@+id/tv_upper"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="16dp"
-                android:paddingHorizontal="12dp"
+                android:layout_marginTop="16dp"
+                android:paddingHorizontal="16dp"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/guideline2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/icEdit"
                 tools:text="upper text" />
 
             <TextView
@@ -68,13 +54,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:gravity="center"
-                android:paddingHorizontal="12dp"
+                android:paddingHorizontal="16dp"
                 android:tag="tv_beta"
                 android:textAlignment="center"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/guideline2"
+                app:layout_constraintTop_toBottomOf="@+id/tv_upper"
                 tools:text="downer text" />
 
             <View
@@ -92,7 +78,7 @@
                 android:id="@+id/llExamples"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="32dp"
                 android:orientation="vertical"
                 android:paddingHorizontal="24dp"
                 android:visibility="gone"
@@ -100,6 +86,10 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_downer"
                 tools:visibility="visible">
+
+                <space.rodionov.porosenokpetr.feature_cardstack.presentation.components.ExampleView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -124,9 +114,15 @@
                     android:contentDescription="@null"
                     android:src="@drawable/ic_speak"
                     android:tag="dont_redraw"
-                    app:tint="@color/white" />
+                    app:tint="@color/gray600" />
             </androidx.cardview.widget.CardView>
 
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.76" />
 
             <FrameLayout
                 android:id="@+id/left_overlay"
@@ -135,7 +131,8 @@
                 app:layout_constraintBottom_toTopOf="@id/guideline3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/guideline2">
+                app:layout_constraintTop_toBottomOf="@id/tv_downer"
+                tools:visibility="gone">
 
 
                 <ImageView
@@ -156,7 +153,8 @@
                 app:layout_constraintBottom_toTopOf="@id/guideline3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/guideline2">
+                app:layout_constraintTop_toBottomOf="@id/tv_downer"
+                tools:visibility="gone">
 
                 <ImageView
                     android:id="@+id/iv_right"
@@ -177,7 +175,8 @@
                 app:layout_constraintBottom_toTopOf="@id/guideline3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/guideline2">
+                app:layout_constraintTop_toBottomOf="@id/tv_downer"
+                tools:visibility="gone">
 
                 <ImageView
                     android:id="@+id/iv_top"
@@ -197,7 +196,8 @@
                 app:layout_constraintBottom_toTopOf="@id/guideline3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/guideline2">
+                app:layout_constraintTop_toBottomOf="@id/tv_downer"
+                tools:visibility="gone">
 
                 <ImageView
                     android:id="@+id/iv_bottom"

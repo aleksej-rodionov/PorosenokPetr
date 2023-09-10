@@ -2,6 +2,7 @@ package space.rodionov.porosenokpetr.feature_cardstack.presentation.adapter
 
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import space.rodionov.porosenokpetr.core.redrawViewGroup
 import space.rodionov.porosenokpetr.databinding.ItemWordBinding
@@ -83,6 +84,9 @@ class WordViewHolder(
         binding.tvDowner.text =
             if (word.isNativeToForeign) word.getTranslation(word.learnedLanguage)
             else word.getTranslation(word.nativeLang)
+
+        binding.tvUpper.alterSize()
+        binding.tvDowner.alterSize()
     }
 
     private fun updateMode(mode: Int) {
@@ -97,6 +101,18 @@ class WordViewHolder(
             views.forEach { view ->
                 this.addView(view)
             }
+        }
+    }
+}
+
+fun TextView.alterSize() {
+    this.post {
+        when (this.layout?.lineCount) {
+            1 -> this.textSize = 20f
+            2 -> this.textSize = 18f
+            3 -> this.textSize = 16f
+            4 -> this.textSize = 14f
+            else -> this.textSize = 12f
         }
     }
 }
