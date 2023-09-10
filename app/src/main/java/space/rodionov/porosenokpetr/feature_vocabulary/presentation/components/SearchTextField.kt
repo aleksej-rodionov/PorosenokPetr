@@ -84,7 +84,7 @@ fun SearchTextField(
                 ),
                 cursorBrush = SolidColor(Gray600),
                 keyboardOptions = KeyboardOptions(
-                    imeAction = ImeAction.Search
+                    imeAction = ImeAction.Done
                 )
             )
 
