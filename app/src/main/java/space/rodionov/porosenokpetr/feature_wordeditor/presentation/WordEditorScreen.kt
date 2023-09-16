@@ -34,11 +34,13 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.emptyFlow
 import space.rodionov.porosenokpetr.R
+import space.rodionov.porosenokpetr.core.presentation.LocalLearnedLanguage
 import space.rodionov.porosenokpetr.core.presentation.LocalSpacing
 import space.rodionov.porosenokpetr.core.presentation.components.TopBar
 import space.rodionov.porosenokpetr.core.util.Constants.DEFAULT_STRING
 import space.rodionov.porosenokpetr.core.util.Language
 import space.rodionov.porosenokpetr.core.util.UiEffect
+import space.rodionov.porosenokpetr.feature_vocabulary.presentation.ext.copyToClipboard
 import space.rodionov.porosenokpetr.feature_wordeditor.presentation.components.EditorItem
 import space.rodionov.porosenokpetr.feature_wordeditor.presentation.components.SmallHeaderItem
 import space.rodionov.porosenokpetr.feature_wordeditor.presentation.components.WordEditorItem
@@ -56,6 +58,7 @@ fun WordEditorScreen(
 
     val spacing = LocalSpacing.current
     val context = LocalContext.current
+    val learnedLanguage = LocalLearnedLanguage.current
     val focusManager = LocalFocusManager.current
 
     if (state.wordId == null) {
@@ -128,6 +131,14 @@ fun WordEditorScreen(
                             },
                             onDone = {
                                 onEvent(WordEditorEvent.OnSaveClick)
+                            },
+                            onIconClick = {
+                                copyToClipboard(context, "fuckingLabel", translation.translation)
+                            },
+                            drawableRes = if (translation.language == learnedLanguage.learnedLanguage) {
+                                R.drawable.ic_copy
+                            }else {
+                                null
                             }
                         )
 
@@ -136,8 +147,6 @@ fun WordEditorScreen(
                         }
                     }
                 }
-
-
 
                 SmallHeaderItem(
                     text = stringResource(id = R.string.word_editor_examples),

@@ -1,5 +1,8 @@
 package space.rodionov.porosenokpetr.feature_vocabulary.presentation.ext
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import space.rodionov.porosenokpetr.core.domain.model.Category
 import space.rodionov.porosenokpetr.core.domain.model.Word
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.mapper.toCategoryUi
@@ -48,4 +51,10 @@ fun Pair<List<Category>, List<Word>>.transformData(): List<VocabularyItem.Catego
     }
 
     return categories
+}
+
+fun copyToClipboard(context: Context, label: String, text: String) {
+    val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+    val clip = ClipData.newPlainText(label, text)
+    clipboard.setPrimaryClip(clip)
 }
