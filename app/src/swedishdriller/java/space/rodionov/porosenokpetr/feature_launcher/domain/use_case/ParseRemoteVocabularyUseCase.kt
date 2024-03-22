@@ -20,7 +20,7 @@ class ParseRemoteVocabularyUseCase(
     suspend operator fun invoke(): Boolean {
         val words = remoteRepository.fetchAllWords()
         words.forEach {
-            localRepository.insertWord(Word( it.catName, it.rus, it.eng, it.ukr, it.swe, it.examples))
+            localRepository.insertWord(Word(it.catName, it.rus, it.eng, it.ukr, it.swe, it.examples))
         }
 
         val categories = getPossibleCategories(words)
@@ -43,8 +43,10 @@ class ParseRemoteVocabularyUseCase(
     private fun getPossibleCategories(words: List<WordRaw>): List<Category> {
         return words.map {
             it.catName
-        }.distinct().map { catName ->
-            swedishCategories.find { it.name == catName }!! //todo shit, I need to parse categories right from wordList
+        }.distinct().mapNotNull { catName ->
+            swedishCategories.find {
+                it.name == catName //todo shit, I need to parse categories right from wordList
+            }
         }
     }
 }

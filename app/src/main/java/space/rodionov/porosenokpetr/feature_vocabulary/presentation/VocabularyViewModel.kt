@@ -27,6 +27,8 @@ import space.rodionov.porosenokpetr.feature_vocabulary.presentation.mapper.toWor
 import space.rodionov.porosenokpetr.feature_vocabulary.presentation.model.VocabularyItem
 import space.rodionov.porosenokpetr.main.navigation.sub_graphs.VocabularyDestinations
 
+private const val TAG = "VocabularyViewModel"
+
 @OptIn(ExperimentalCoroutinesApi::class)
 class VocabularyViewModel(
     observeAllCategoriesUseCase: ObserveAllCategoriesUseCase,
@@ -51,7 +53,9 @@ class VocabularyViewModel(
     private val categoriesExpanded: StateFlow<List<String>> = _categoriesExpanded.asStateFlow()
 
     private val categoryLists = observeAllCategoriesUseCase.invoke().map { list ->
-        list.sortedBy { it.name }
+        list.sortedBy {
+            Log.d(TAG, "catname bla: ${it.name}")
+            it.name }
     }
 
     private val wordLists = combine(

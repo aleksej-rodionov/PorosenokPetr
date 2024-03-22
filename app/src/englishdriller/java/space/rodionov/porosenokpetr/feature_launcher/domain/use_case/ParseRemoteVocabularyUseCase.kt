@@ -48,8 +48,8 @@ class ParseRemoteVocabularyUseCase(
     private fun getPossibleCategories(words: List<WordRaw>): List<Category> {
         return words.map {
             it.catName
-        }.distinct().map { catName ->
-            englishCategories.find { it.name == catName }!! //todo shit, I need to parse categories right from wordList
+        }.distinct().mapNotNull { catName ->
+            englishCategories.find { it.name == catName } //todo shit, I need to parse categories right from wordList
         }
     }
 }
