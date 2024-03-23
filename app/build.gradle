@@ -176,4 +176,15 @@ dependencies {
 
     // Leak Canary
     debugImplementation "com.squareup.leakcanary:leakcanary-android:2.8.1"
+
+    //time
+    implementation 'joda-time:joda-time:2.12.7'
+    implementation 'net.danlew:android.joda:2.12.7'
+    //Gson
+    implementation 'com.google.code.gson:gson:2.10.1'
+
+    //Unit testing
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.2'
+    testImplementation 'org.mockito:mockito-core:4.4.0'
+    testImplementation 'com.google.truth:truth:1.1.3'
 }
