@@ -148,8 +148,21 @@ fun SettingsScreen(
                 )
             )
 
-//            HeaderItem(text = "Напоминание")
-            //todo ExpandableItem
+            HeaderItem(text = stringResource(id = R.string.reminder))
+            SwitcherItem(
+                text = stringResource(id = R.string.remind),
+                isChecked = state.isReminderSet,
+                onCheckedChanged = {
+                    onEvent(SettingsEvent.OnIsReminderOnChanged(it))
+                }
+            )
+            ChoiceItem(
+                textDesc = state.isReminderSet.toString(),
+                textChoice = "99:99",
+                onClick = {
+                    onEvent(SettingsEvent.OnReminderTimeChosen(20, 0))
+                }
+            )
         }
     }
 }

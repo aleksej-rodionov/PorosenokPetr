@@ -5,13 +5,20 @@ import dagger.Module
 import dagger.Provides
 import kotlinx.coroutines.CoroutineScope
 import space.rodionov.porosenokpetr.core.domain.preferences.KeyValueStorage
+import space.rodionov.porosenokpetr.core.domain.repository.ReminderRepository
+import space.rodionov.porosenokpetr.core.domain.use_case.CheckIfAlarmSetUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.CollectAvailableNativeLanguagesUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.CollectIsFollowingSystemModeUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.CollectModeUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.CollectNativeLanguageUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.CollectTranslationDirectionUseCase
+import space.rodionov.porosenokpetr.core.domain.use_case.EnableNextAlarmUseCase
+import space.rodionov.porosenokpetr.core.domain.use_case.GetIsReminderOnUseCase
+import space.rodionov.porosenokpetr.core.domain.use_case.GetReminderTimeUseCase
+import space.rodionov.porosenokpetr.core.domain.use_case.SetIsReminderOnUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.UpdateInterfaceLanguageUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.UpdateModeUseCase
+import space.rodionov.porosenokpetr.feature_reminder.domain.use_case.CancelAlarmUseCase
 import space.rodionov.porosenokpetr.feature_settings.domain.use_case.use_case.CollectInterfaceLanguageUseCase
 import space.rodionov.porosenokpetr.feature_settings.domain.use_case.use_case.SetInterfaceLocaleConfigUseCase
 import space.rodionov.porosenokpetr.feature_settings.domain.use_case.use_case.UpdateIsFollowingSystemModeUseCase
@@ -88,6 +95,43 @@ class SettingsModule {
 
     @Provides
     @SettingsScope
+    fun provideGetReminderTimeUseCase(keyValueStorage: KeyValueStorage) =
+        GetReminderTimeUseCase(keyValueStorage)
+
+    @Provides
+    @SettingsScope
+    fun provideSetAlarmUseCase(
+        getReminderTimeUseCase: GetReminderTimeUseCase,
+        reminderRepository: ReminderRepository,
+    ) = EnableNextAlarmUseCase(
+        getReminderTimeUseCase,
+        reminderRepository,
+    )
+
+    @Provides
+    @SettingsScope
+    fun provideCheckIfAlarmSetUseCasee(reminderRepository: ReminderRepository) =
+        CheckIfAlarmSetUseCase(reminderRepository)
+
+    @Provides
+    @SettingsScope
+    fun provideCancelAlarmUseCase(reminderRepository: ReminderRepository) =
+        CancelAlarmUseCase(reminderRepository)
+
+
+    @Provides
+    @SettingsScope
+    fun provideSetIsReminderOnUseCase(keyValueStorage: KeyValueStorage) =
+        SetIsReminderOnUseCase(keyValueStorage)
+
+    @Provides
+    @SettingsScope
+    fun provideGetIsReminderOnUseCase(keyValueStorage: KeyValueStorage) =
+        GetIsReminderOnUseCase(keyValueStorage)
+
+
+    @Provides
+    @SettingsScope
     fun provideSettingsViewModel(
         collectModeUseCase: CollectModeUseCase,
         collectIsFollowingSystemModeUseCase: CollectIsFollowingSystemModeUseCase,
@@ -99,7 +143,12 @@ class SettingsModule {
         updateIsFollowingSystemModeUseCase: UpdateIsFollowingSystemModeUseCase,
         updateNativeLanguageUseCase: UpdateNativeLanguageUseCase,
         setInterfaceLocaleConfigUseCase: SetInterfaceLocaleConfigUseCase,
-        updateTranslationDirectionUseCase: UpdateTranslationDirectionUseCase
+        updateTranslationDirectionUseCase: UpdateTranslationDirectionUseCase,
+        checkIfAlarmSetUseCase: CheckIfAlarmSetUseCase,
+        enableNextAlarmUseCase: EnableNextAlarmUseCase,
+        cancelAlarmUseCase: CancelAlarmUseCase,
+        setIsReminderOnUseCase: SetIsReminderOnUseCase,
+        getIsReminderOnUseCase: GetIsReminderOnUseCase,
     ) = SettingsViewModel(
         collectModeUseCase,
         collectIsFollowingSystemModeUseCase,
@@ -111,6 +160,11 @@ class SettingsModule {
         updateIsFollowingSystemModeUseCase,
         updateNativeLanguageUseCase,
         setInterfaceLocaleConfigUseCase,
-        updateTranslationDirectionUseCase
+        updateTranslationDirectionUseCase,
+        checkIfAlarmSetUseCase,
+        enableNextAlarmUseCase,
+        cancelAlarmUseCase,
+        setIsReminderOnUseCase,
+        getIsReminderOnUseCase,
     )
 }

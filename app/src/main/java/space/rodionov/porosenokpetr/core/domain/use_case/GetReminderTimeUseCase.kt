@@ -1,24 +1,17 @@
-package space.rodionov.porosenokpetr.feature_reminder.domain.use_case
+package space.rodionov.porosenokpetr.core.domain.use_case
 
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
 import org.joda.time.LocalTime
 import org.joda.time.format.DateTimeFormat
 import space.rodionov.porosenokpetr.core.domain.preferences.KeyValueStorage
 import space.rodionov.porosenokpetr.feature_reminder.domain.use_case.UpdateReminderTimeUseCase.Companion.REMINDER_TIME_KEY
 
-
-class CollectReminderTimeUseCase(
+class GetReminderTimeUseCase(
     private val keyValueStorage: KeyValueStorage
 ) {
 
-    operator fun invoke(): Flow<LocalTime> {
-        return keyValueStorage.collectValue(
-            REMINDER_TIME_KEY,
-            ""
-        ).map {
-            stringToLocalTime(it)
-        }
+    operator fun invoke(): LocalTime {
+//        return stringToLocalTime(keyValueStorage.getValue(REMINDER_TIME_KEY, ""))//todo vernutj
+        return stringToLocalTime(keyValueStorage.getValue(REMINDER_TIME_KEY, "20:00"))
     }
 
     private fun stringToLocalTime(timeString: String): LocalTime {

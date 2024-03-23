@@ -1,6 +1,8 @@
 package space.rodionov.porosenokpetr.feature_reminder.di
 
 import dagger.Component
+import space.rodionov.porosenokpetr.feature_reminder.presentation.AlarmReceiver
+import space.rodionov.porosenokpetr.feature_reminder.presentation.NotificationReceiver
 import space.rodionov.porosenokpetr.main.di.AppComponent
 
 @ReminderScope
@@ -15,4 +17,8 @@ interface ReminderComponent {
         fun appComponent(appComponent: AppComponent): Builder
         fun build(): ReminderComponent
     }
+
+    fun inject(receiver: AlarmReceiver)
+
+    fun inject(receiver: NotificationReceiver)
 }

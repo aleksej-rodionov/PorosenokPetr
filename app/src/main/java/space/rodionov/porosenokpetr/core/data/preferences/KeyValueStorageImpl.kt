@@ -28,6 +28,7 @@ class KeyValueStorageImpl(
 ) : KeyValueStorage {
 
     private val datastore = app.datastore
+    private val sharedPrefs = app.applicationContext.getSharedPreferences("datastore", Context.MODE_PRIVATE)
 
     private val gson = GsonBuilder().create()
     private val stringListType = object : TypeToken<List<String?>?>() {}.type
@@ -40,14 +41,35 @@ class KeyValueStorageImpl(
         TODO("Not yet implemented")
     }
 
+    override fun setValue(key: String, value: String) {
+        sharedPrefs.edit().putString(key, value).apply()
+    }
+
+    override suspend fun updateValue(key: String, value: String) {
+        datastore.edit { it[stringPreferencesKey(key)] = value }
+    }
+
+    override fun getValue(key: String, defaultValue: String): String {
+        return sharedPrefs.getString(key, defaultValue) ?: defaultValue
+    }
+
     override fun collectValue(key: String, defaultValue: String): Flow<String> {
         return datastore.data
             .catch { handleReadingPreferencesException(it) }
             .map { it[stringPreferencesKey(key)] ?: defaultValue }
     }
 
-    override suspend fun updateValue(key: String, value: String) {
-        datastore.edit { it[stringPreferencesKey(key)] = value }
+
+    override fun setValue(key: String, value: Int) {
+        sharedPrefs.edit().putInt(key, value).apply()
+    }
+
+    override suspend fun updateValue(key: String, value: Int) {
+        datastore.edit { it[intPreferencesKey(key)] = value }
+    }
+
+    override fun getValue(key: String, defaultValue: Int): Int {
+        return sharedPrefs.getInt(key, defaultValue)
     }
 
     override fun collectValue(key: String, defaultValue: Int): Flow<Int> {
@@ -56,8 +78,17 @@ class KeyValueStorageImpl(
             .map { it[intPreferencesKey(key)] ?: defaultValue }
     }
 
-    override suspend fun updateValue(key: String, value: Int) {
-        datastore.edit { it[intPreferencesKey(key)] = value }
+
+    override fun setValue(key: String, value: Boolean) {
+        sharedPrefs.edit().putBoolean(key, value).apply()
+    }
+
+    override suspend fun updateValue(key: String, value: Boolean) {
+        datastore.edit { it[booleanPreferencesKey(key)] = value }
+    }
+
+    override fun getValue(key: String, defaultValue: Boolean): Boolean {
+        return sharedPrefs.getBoolean(key, defaultValue)
     }
 
     override fun collectValue(key: String, defaultValue: Boolean): Flow<Boolean> {
@@ -66,9 +97,7 @@ class KeyValueStorageImpl(
             .map { it[booleanPreferencesKey(key)] ?: defaultValue }
     }
 
-    override suspend fun updateValue(key: String, value: Boolean) {
-        datastore.edit { it[booleanPreferencesKey(key)] = value }
-    }
+
 
     override fun collectListValue(key: String, defaultValue: List<String>): Flow<List<String>> {
         return datastore.data
