@@ -179,7 +179,6 @@ dependencies {
 
     //time
     implementation 'joda-time:joda-time:2.12.7'
-    implementation 'net.danlew:android.joda:2.12.7'
     //Gson
     implementation 'com.google.code.gson:gson:2.10.1'
 

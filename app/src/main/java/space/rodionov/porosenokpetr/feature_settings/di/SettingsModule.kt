@@ -25,7 +25,7 @@ class SettingsModule {
 
     @Provides
     @SettingsScope
-    fun provideObserveModeUseCase(keyValueStorage: KeyValueStorage) =
+    fun provideCollectModeUseCase(keyValueStorage: KeyValueStorage) =
         CollectModeUseCase(keyValueStorage)
 
     @Provides
