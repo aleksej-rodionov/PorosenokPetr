@@ -95,7 +95,7 @@ class SettingsViewModel(
 
         checkIfReminderSet()
 
-       refreshInitialTimePickerValue()
+        refreshInitialTimePickerValue()
     }
 
     fun onEvent(event: SettingsEvent) {
@@ -127,12 +127,12 @@ class SettingsViewModel(
 
             is SettingsEvent.OnIsReminderOnChanged -> {
                 if (event.isSwitchedOn) {
-                    enableNextAlarmUseCase.invoke()
                     setIsReminderOnUseCase.invoke(true)
+                    enableNextAlarmUseCase.invoke()
                     state = state.copy(isReminderSet = true)
                 } else {
-                    cancelAlarmUseCase.invoke()
                     setIsReminderOnUseCase.invoke(false)
+                    cancelAlarmUseCase.invoke()
                     state = state.copy(isReminderSet = false)
                 }
             }

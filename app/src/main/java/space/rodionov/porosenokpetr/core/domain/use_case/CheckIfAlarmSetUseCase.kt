@@ -1,6 +1,6 @@
 package space.rodionov.porosenokpetr.core.domain.use_case
 
-import space.rodionov.porosenokpetr.core.domain.repository.ReminderRepository
+import space.rodionov.porosenokpetr.core.domain.repository.ReminderAlarmManager
 
 /**
  * Проверяет есть заведен ли наш аларм в АлармМенеджере
@@ -10,10 +10,10 @@ import space.rodionov.porosenokpetr.core.domain.repository.ReminderRepository
  * - также при каждом запуске в Launcher-е [vmeste s isReminderOn v kvs]
  */
 class CheckIfAlarmSetUseCase(
-    private val reminderRepository: ReminderRepository
+    private val reminderAlarmManager: ReminderAlarmManager
 ) {
 
     operator fun invoke(): Boolean {
-        return reminderRepository.check()
+        return reminderAlarmManager.check()
     }
 }

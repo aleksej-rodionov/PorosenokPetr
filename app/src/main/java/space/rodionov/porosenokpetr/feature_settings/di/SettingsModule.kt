@@ -5,7 +5,7 @@ import dagger.Module
 import dagger.Provides
 import kotlinx.coroutines.CoroutineScope
 import space.rodionov.porosenokpetr.core.domain.preferences.KeyValueStorage
-import space.rodionov.porosenokpetr.core.domain.repository.ReminderRepository
+import space.rodionov.porosenokpetr.core.domain.repository.ReminderAlarmManager
 import space.rodionov.porosenokpetr.core.domain.use_case.CheckIfAlarmSetUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.CollectAvailableNativeLanguagesUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.CollectIsFollowingSystemModeUseCase
@@ -103,21 +103,21 @@ class SettingsModule {
     @SettingsScope
     fun provideSetAlarmUseCase(
         getReminderTimeUseCase: GetReminderTimeUseCase,
-        reminderRepository: ReminderRepository,
+        reminderAlarmManager: ReminderAlarmManager,
     ) = EnableNextAlarmUseCase(
         getReminderTimeUseCase,
-        reminderRepository,
+        reminderAlarmManager,
     )
 
     @Provides
     @SettingsScope
-    fun provideCheckIfAlarmSetUseCasee(reminderRepository: ReminderRepository) =
-        CheckIfAlarmSetUseCase(reminderRepository)
+    fun provideCheckIfAlarmSetUseCasee(reminderAlarmManager: ReminderAlarmManager) =
+        CheckIfAlarmSetUseCase(reminderAlarmManager)
 
     @Provides
     @SettingsScope
-    fun provideCancelAlarmUseCase(reminderRepository: ReminderRepository) =
-        CancelAlarmUseCase(reminderRepository)
+    fun provideCancelAlarmUseCase(reminderAlarmManager: ReminderAlarmManager) =
+        CancelAlarmUseCase(reminderAlarmManager)
 
     @Provides
     @SettingsScope

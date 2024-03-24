@@ -1,10 +1,9 @@
 package space.rodionov.porosenokpetr.feature_reminder.di
 
-import android.content.Context
 import dagger.Module
 import dagger.Provides
 import space.rodionov.porosenokpetr.core.domain.preferences.KeyValueStorage
-import space.rodionov.porosenokpetr.core.domain.repository.ReminderRepository
+import space.rodionov.porosenokpetr.core.domain.repository.ReminderAlarmManager
 import space.rodionov.porosenokpetr.feature_reminder.domain.use_case.CancelAlarmUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.CheckIfAlarmSetUseCase
 import space.rodionov.porosenokpetr.feature_reminder.domain.use_case.CollectReminderTimeUseCase
@@ -34,17 +33,17 @@ class ReminderModule {
     @ReminderScope
     fun provideSetAlarmUseCase(
         getReminderTimeUseCase: GetReminderTimeUseCase,
-        reminderRepository: ReminderRepository
+        reminderAlarmManager: ReminderAlarmManager
     ) = EnableNextAlarmUseCase(
         getReminderTimeUseCase,
-        reminderRepository
+        reminderAlarmManager
     )
 
     @Provides
     @ReminderScope
-    fun provideCheckIfAlarmSetUseCasee(reminderRepository: ReminderRepository) = CheckIfAlarmSetUseCase(reminderRepository)
+    fun provideCheckIfAlarmSetUseCasee(reminderAlarmManager: ReminderAlarmManager) = CheckIfAlarmSetUseCase(reminderAlarmManager)
 
     @Provides
     @ReminderScope
-    fun provideCancelAlarmUseCase(reminderRepository: ReminderRepository) = CancelAlarmUseCase(reminderRepository)
+    fun provideCancelAlarmUseCase(reminderAlarmManager: ReminderAlarmManager) = CancelAlarmUseCase(reminderAlarmManager)
 }

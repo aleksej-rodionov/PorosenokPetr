@@ -9,10 +9,10 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import space.rodionov.porosenokpetr.core.data.local.WordDatabase
 import space.rodionov.porosenokpetr.core.data.preferences.KeyValueStorageImpl
-import space.rodionov.porosenokpetr.core.data.repository.ReminderRepositoryImpl
+import space.rodionov.porosenokpetr.core.data.repository.ReminderAlarmManagerImpl
 import space.rodionov.porosenokpetr.core.domain.preferences.KeyValueStorage
 import space.rodionov.porosenokpetr.core.data.repository.WordRepoImpl
-import space.rodionov.porosenokpetr.core.domain.repository.ReminderRepository
+import space.rodionov.porosenokpetr.core.domain.repository.ReminderAlarmManager
 import space.rodionov.porosenokpetr.core.domain.repository.WordRepo
 import space.rodionov.porosenokpetr.core.util.ForeignSpeaker
 import space.rodionov.porosenokpetr.core.util.Constants
@@ -66,8 +66,8 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideReminderRepository(app: Application): ReminderRepository =
-        ReminderRepositoryImpl(app.applicationContext)
+    fun provideReminderRepository(app: Application): ReminderAlarmManager =
+        ReminderAlarmManagerImpl(app.applicationContext)
 
     @Provides
     @Singleton

@@ -5,7 +5,7 @@ import dagger.BindsInstance
 import dagger.Component
 import kotlinx.coroutines.CoroutineScope
 import space.rodionov.porosenokpetr.core.domain.preferences.KeyValueStorage
-import space.rodionov.porosenokpetr.core.domain.repository.ReminderRepository
+import space.rodionov.porosenokpetr.core.domain.repository.ReminderAlarmManager
 import space.rodionov.porosenokpetr.core.domain.repository.WordRepo
 import space.rodionov.porosenokpetr.core.util.ForeignSpeaker
 import space.rodionov.porosenokpetr.main.PorosenokPetrApp
@@ -28,7 +28,7 @@ interface AppComponent {
 
     fun getApplication(): Application
     fun getPreferences(): KeyValueStorage
-    fun getReminderRepository(): ReminderRepository
+    fun getReminderRepository(): ReminderAlarmManager
     fun getWordRepo(): WordRepo
     fun getSwedishSpeaker(): ForeignSpeaker
     @AppCoroutineScopeQualifier

@@ -9,22 +9,24 @@ import org.joda.time.Duration
 import org.joda.time.LocalDate
 import org.joda.time.LocalDateTime
 import org.joda.time.LocalTime
-import space.rodionov.porosenokpetr.core.domain.repository.ReminderRepository
+import space.rodionov.porosenokpetr.core.domain.repository.ReminderAlarmManager
 import space.rodionov.porosenokpetr.feature_reminder.presentation.AlarmReceiver
 
 private const val TAG = "ReminderRepositoryImplTAGGY"
 
-class ReminderRepositoryImpl(
+class ReminderAlarmManagerImpl(
     private val context: Context
-) : ReminderRepository {
+) : ReminderAlarmManager {
 
     override fun enable(time: LocalTime) {
-//        val gapInMillis = findGapInMillis(time)//todo
-        val gapInMillis = 60000L
+        val closestAlarmTimestamp = findClosestAlarmTime(time)
+        val gapInMillis = findGapInMillis(time)
         val alarmPendingIntent = buildAlarmPendingIntent()
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        Log.d(TAG, "enable: closestAlarmTimestamp = $closestAlarmTimestamp")
         Log.d(TAG, "enable: gapInMillis = $gapInMillis")
-        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, gapInMillis, alarmPendingIntent)
+//        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, gapInMillis, alarmPendingIntent)
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, closestAlarmTimestamp, alarmPendingIntent)
     }
 
     override fun disable() {
@@ -61,6 +63,16 @@ class ReminderRepositoryImpl(
     /**
      * Находит кол-во миллисекудн до момента, когда должен сработать Аларм
      */
+    private fun findClosestAlarmTime(time: LocalTime): Long {
+        val now = LocalDateTime.now()
+        val closestAlarmTime = findClosestAlarmTime(time, now)
+        val dateTime = closestAlarmTime.toDateTime()
+        return dateTime.millis
+    }
+
+    /**
+     * Находит кол-во миллисекудн до момента, когда должен сработать Аларм
+     */
     private fun findGapInMillis(time: LocalTime): Long {
         val now = LocalDateTime.now()
         val closestAlarmTime = findClosestAlarmTime(time, now)
@@ -70,8 +82,8 @@ class ReminderRepositoryImpl(
     /**
      * Находит время, на которое завести Аларм
      */
-    private fun findClosestAlarmTime(time: LocalTime, now: LocalDateTime): LocalDateTime {
-        val time: LocalDateTime = LocalDate.now().toLocalDateTime(time)
+    private fun findClosestAlarmTime(localTime: LocalTime, now: LocalDateTime): LocalDateTime {
+        val time: LocalDateTime = LocalDate.now().toLocalDateTime(localTime)
         return if (now.isBefore(time)) {
             time
         } else {
@@ -92,6 +104,6 @@ class ReminderRepositoryImpl(
 
     companion object {
         const val REMINDER_ALARM_REQUEST_CODE = 1991
-        const val REMINDER_ALARM_ACTION = "reminder_alarm_type"
+        const val REMINDER_ALARM_ACTION = "reminder_alarm_action"
     }
 }

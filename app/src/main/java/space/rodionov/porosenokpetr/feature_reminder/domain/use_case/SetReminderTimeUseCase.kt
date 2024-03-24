@@ -1,7 +1,7 @@
 package space.rodionov.porosenokpetr.feature_reminder.domain.use_case
 
 import org.joda.time.LocalTime
-import org.joda.time.format.DateTimeFormat
+import space.rodionov.porosenokpetr.core.domain.common.LocalTimeFormatter
 import space.rodionov.porosenokpetr.core.domain.preferences.KeyValueStorage
 
 
@@ -12,14 +12,8 @@ class SetReminderTimeUseCase(
     operator fun invoke(hourOfDay: Int, minuteOfHour: Int) {
         keyValueStorage.setValue(
             REMINDER_TIME_KEY,
-            convertTimeToString(hourOfDay, minuteOfHour)
+            LocalTimeFormatter.serializeToString(LocalTime(hourOfDay, minuteOfHour))
         )
-    }
-
-    private fun convertTimeToString(hourOfDay: Int, minuteOfHour: Int): String {
-        val localTime = LocalTime(hourOfDay, minuteOfHour)
-        val formatter = DateTimeFormat.forPattern("HH:mm")
-        return formatter.print(localTime)
     }
 
     companion object {

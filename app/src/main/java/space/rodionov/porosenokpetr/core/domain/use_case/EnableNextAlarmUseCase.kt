@@ -1,7 +1,10 @@
 package space.rodionov.porosenokpetr.core.domain.use_case
 
-import space.rodionov.porosenokpetr.core.domain.repository.ReminderRepository
+import android.util.Log
+import space.rodionov.porosenokpetr.core.domain.common.LocalTimeFormatter
+import space.rodionov.porosenokpetr.core.domain.repository.ReminderAlarmManager
 
+private const val TAG = "EnableNextAlarmUseCaseTAGGY"
 
 /**
  * Вызывается в 2х местах:
@@ -10,11 +13,12 @@ import space.rodionov.porosenokpetr.core.domain.repository.ReminderRepository
  */
 class EnableNextAlarmUseCase(
     private val getReminderTimeUseCase: GetReminderTimeUseCase,
-    private val reminderRepository: ReminderRepository
+    private val reminderAlarmManager: ReminderAlarmManager
 ) {
 
     operator fun invoke() {
         val reminderTime = getReminderTimeUseCase.invoke()
-        reminderRepository.enable(reminderTime)
+        Log.d(TAG, "invoke: enableUseCase kvs.getReminderTime = ${LocalTimeFormatter.serializeToString(reminderTime)}")
+        reminderAlarmManager.enable(reminderTime)
     }
 }

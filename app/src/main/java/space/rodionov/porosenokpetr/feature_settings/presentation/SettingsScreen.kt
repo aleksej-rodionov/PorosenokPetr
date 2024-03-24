@@ -26,6 +26,7 @@ import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.launch
 import org.joda.time.LocalTime
 import space.rodionov.porosenokpetr.R
+import space.rodionov.porosenokpetr.core.domain.common.LocalTimeFormatter
 import space.rodionov.porosenokpetr.core.presentation.LocalSpacing
 import space.rodionov.porosenokpetr.core.presentation.components.ChoiceItem
 import space.rodionov.porosenokpetr.core.presentation.components.TopBar
@@ -165,7 +166,7 @@ fun SettingsScreen(
             )
             ChoiceItem(
                 textDesc = stringResource(id = R.string.choose_time),
-                textChoice = "fake 99:99",
+                textChoice = LocalTimeFormatter.serializeToString(state.initialTimePickerValue),
                 onClick = {
                     onEvent(SettingsEvent.OnOpenTimePickerClick)
                 }

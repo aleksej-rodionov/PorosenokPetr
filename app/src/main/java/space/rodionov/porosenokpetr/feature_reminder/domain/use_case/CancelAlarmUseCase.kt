@@ -1,6 +1,6 @@
 package space.rodionov.porosenokpetr.feature_reminder.domain.use_case
 
-import space.rodionov.porosenokpetr.core.domain.repository.ReminderRepository
+import space.rodionov.porosenokpetr.core.domain.repository.ReminderAlarmManager
 
 /**
  * Вызывается в случаях:
@@ -10,10 +10,10 @@ import space.rodionov.porosenokpetr.core.domain.repository.ReminderRepository
  * - Посылает интент АлармМенеджеру с командой .cancel(alarm) ??
  */
 class CancelAlarmUseCase(
-    private val reminderRepository: ReminderRepository
+    private val reminderAlarmManager: ReminderAlarmManager
 ) {
 
     operator fun invoke() {
-        reminderRepository.disable()
+        reminderAlarmManager.disable()
     }
 }
