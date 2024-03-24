@@ -6,7 +6,6 @@ import dagger.Provides
 import kotlinx.coroutines.CoroutineScope
 import space.rodionov.porosenokpetr.core.domain.preferences.KeyValueStorage
 import space.rodionov.porosenokpetr.core.domain.repository.ReminderAlarmManager
-import space.rodionov.porosenokpetr.core.domain.use_case.CheckIfAlarmSetUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.CollectAvailableNativeLanguagesUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.CollectIsFollowingSystemModeUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.CollectModeUseCase
@@ -111,11 +110,6 @@ class SettingsModule {
 
     @Provides
     @SettingsScope
-    fun provideCheckIfAlarmSetUseCasee(reminderAlarmManager: ReminderAlarmManager) =
-        CheckIfAlarmSetUseCase(reminderAlarmManager)
-
-    @Provides
-    @SettingsScope
     fun provideCancelAlarmUseCase(reminderAlarmManager: ReminderAlarmManager) =
         CancelAlarmUseCase(reminderAlarmManager)
 
@@ -149,7 +143,6 @@ class SettingsModule {
         updateNativeLanguageUseCase: UpdateNativeLanguageUseCase,
         setInterfaceLocaleConfigUseCase: SetInterfaceLocaleConfigUseCase,
         updateTranslationDirectionUseCase: UpdateTranslationDirectionUseCase,
-        checkIfAlarmSetUseCase: CheckIfAlarmSetUseCase,
         enableNextAlarmUseCase: EnableNextAlarmUseCase,
         cancelAlarmUseCase: CancelAlarmUseCase,
         setIsReminderOnUseCase: SetIsReminderOnUseCase,
@@ -168,7 +161,6 @@ class SettingsModule {
         updateNativeLanguageUseCase,
         setInterfaceLocaleConfigUseCase,
         updateTranslationDirectionUseCase,
-        checkIfAlarmSetUseCase,
         enableNextAlarmUseCase,
         cancelAlarmUseCase,
         setIsReminderOnUseCase,

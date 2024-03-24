@@ -5,10 +5,10 @@ import dagger.Provides
 import space.rodionov.porosenokpetr.core.domain.preferences.KeyValueStorage
 import space.rodionov.porosenokpetr.core.domain.repository.ReminderAlarmManager
 import space.rodionov.porosenokpetr.feature_reminder.domain.use_case.CancelAlarmUseCase
-import space.rodionov.porosenokpetr.core.domain.use_case.CheckIfAlarmSetUseCase
 import space.rodionov.porosenokpetr.feature_reminder.domain.use_case.CollectReminderTimeUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.GetReminderTimeUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.EnableNextAlarmUseCase
+import space.rodionov.porosenokpetr.core.domain.use_case.GetIsReminderOnUseCase
 import space.rodionov.porosenokpetr.feature_reminder.domain.use_case.UpdateReminderTimeUseCase
 
 @Module
@@ -41,9 +41,10 @@ class ReminderModule {
 
     @Provides
     @ReminderScope
-    fun provideCheckIfAlarmSetUseCasee(reminderAlarmManager: ReminderAlarmManager) = CheckIfAlarmSetUseCase(reminderAlarmManager)
+    fun provideCancelAlarmUseCase(reminderAlarmManager: ReminderAlarmManager) = CancelAlarmUseCase(reminderAlarmManager)
 
     @Provides
     @ReminderScope
-    fun provideCancelAlarmUseCase(reminderAlarmManager: ReminderAlarmManager) = CancelAlarmUseCase(reminderAlarmManager)
+    fun provideGetIsReminderOnUseCase(keyValueStorage: KeyValueStorage) =
+        GetIsReminderOnUseCase(keyValueStorage)
 }

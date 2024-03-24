@@ -13,7 +13,6 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import org.joda.time.LocalTime
-import space.rodionov.porosenokpetr.core.domain.use_case.CheckIfAlarmSetUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.CollectAvailableNativeLanguagesUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.CollectIsFollowingSystemModeUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.CollectModeUseCase
@@ -50,7 +49,6 @@ class SettingsViewModel(
     private val updateNativeLanguageUseCase: UpdateNativeLanguageUseCase,
     private val setInterfaceLocaleConfigUseCase: SetInterfaceLocaleConfigUseCase,
     private val updateTranslationDirectionUseCase: UpdateTranslationDirectionUseCase,
-    private val checkIfAlarmSetUseCase: CheckIfAlarmSetUseCase,
     private val enableNextAlarmUseCase: EnableNextAlarmUseCase,
     private val cancelAlarmUseCase: CancelAlarmUseCase,
     private val setIsReminderOnUseCase: SetIsReminderOnUseCase,

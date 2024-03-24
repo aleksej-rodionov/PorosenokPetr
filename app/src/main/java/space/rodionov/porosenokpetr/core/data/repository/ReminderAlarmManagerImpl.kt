@@ -5,7 +5,6 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.util.Log
-import org.joda.time.Duration
 import org.joda.time.LocalDate
 import org.joda.time.LocalDateTime
 import org.joda.time.LocalTime
@@ -20,12 +19,8 @@ class ReminderAlarmManagerImpl(
 
     override fun enable(time: LocalTime) {
         val closestAlarmTimestamp = findClosestAlarmTime(time)
-        val gapInMillis = findGapInMillis(time)
         val alarmPendingIntent = buildAlarmPendingIntent()
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        Log.d(TAG, "enable: closestAlarmTimestamp = $closestAlarmTimestamp")
-        Log.d(TAG, "enable: gapInMillis = $gapInMillis")
-//        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, gapInMillis, alarmPendingIntent)
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, closestAlarmTimestamp, alarmPendingIntent)
     }
 
@@ -34,10 +29,6 @@ class ReminderAlarmManagerImpl(
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         Log.d(TAG, "disable: called")
         alarmManager.cancel(alarmPendingIntent)
-    }
-
-    override fun check(): Boolean {
-        return isAlarmSet()
     }
 
     /**
@@ -71,15 +62,6 @@ class ReminderAlarmManagerImpl(
     }
 
     /**
-     * Находит кол-во миллисекудн до момента, когда должен сработать Аларм
-     */
-    private fun findGapInMillis(time: LocalTime): Long {
-        val now = LocalDateTime.now()
-        val closestAlarmTime = findClosestAlarmTime(time, now)
-        return Duration(now.toDateTime(), closestAlarmTime.toDateTime()).millis
-    }
-
-    /**
      * Находит время, на которое завести Аларм
      */
     private fun findClosestAlarmTime(localTime: LocalTime, now: LocalDateTime): LocalDateTime {
@@ -89,17 +71,6 @@ class ReminderAlarmManagerImpl(
         } else {
             time.plusDays(1)
         }
-    }
-
-    /**
-     * Проверяет заведен ли уже Аларм
-     */
-    fun isAlarmSet(): Boolean {
-//        val alarmPendingIntent = buildAlarmPendingIntent(true)
-        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val nextAlarm = alarmManager.nextAlarmClock
-        Log.d(TAG, "isAlarmSet: alarmManager.nextAlarmClock = ${nextAlarm.toString()}")
-        return nextAlarm != null && nextAlarm.triggerTime != 1992L
     }
 
     companion object {

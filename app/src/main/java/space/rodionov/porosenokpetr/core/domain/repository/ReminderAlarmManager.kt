@@ -7,6 +7,4 @@ interface ReminderAlarmManager {
     fun enable(time: LocalTime)
 
     fun disable()
-
-    fun check(): Boolean
 }
