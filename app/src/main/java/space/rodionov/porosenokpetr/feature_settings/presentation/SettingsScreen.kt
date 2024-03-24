@@ -1,13 +1,12 @@
 package space.rodionov.porosenokpetr.feature_settings.presentation
 
-import android.widget.TimePicker
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.TimePicker
+import androidx.compose.material3.TimeInput
 import androidx.compose.material3.TimePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -25,6 +24,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.launch
+import org.joda.time.LocalTime
 import space.rodionov.porosenokpetr.R
 import space.rodionov.porosenokpetr.core.presentation.LocalSpacing
 import space.rodionov.porosenokpetr.core.presentation.components.ChoiceItem
@@ -176,15 +176,14 @@ fun SettingsScreen(
     if (state.isTimePickerOpen) {
         TimePickerDialog(
             title = "Pizda",
+            initialValue = state.initialTimePickerValue,
             onCancel = {
                 onEvent(SettingsEvent.OnCloseTimePickerClick)
-                       },
-            onConfirm = {
-                val hourOfDay = 20
-                val minute = 20
-        onEvent(SettingsEvent.OnTimeChosen(hourOfDay, minute))
+            },
+            onConfirm = { hourOfDay, minute ->
+                onEvent(SettingsEvent.OnTimeChosen(hourOfDay, minute))
                 onEvent(SettingsEvent.OnCloseTimePickerClick)
-                        }
+            }
         )
     }
 }
@@ -193,15 +192,16 @@ fun SettingsScreen(
 @Composable
 fun TimePickerDialog(
     title: String = "Select Time",
+    initialValue: LocalTime = LocalTime(20, 0),
     onCancel: () -> Unit,
-    onConfirm: () -> Unit
+    onConfirm: (hour: Int, minute: Int) -> Unit
 ) {
 
     val timePickerState = remember {
         TimePickerState(
             is24Hour = true,
-            initialHour = 15,
-            initialMinute = 20
+            initialHour = initialValue.hourOfDay,
+            initialMinute = initialValue.minuteOfHour
         )
     }
 
@@ -234,7 +234,7 @@ fun TimePickerDialog(
                     style = MaterialTheme.typography.body1
                 )
 
-                TimePicker(state = timePickerState)
+                TimeInput(state = timePickerState)
 
                 Row(
                     modifier = Modifier
@@ -246,7 +246,7 @@ fun TimePickerDialog(
                         onClick = onCancel
                     ) { Text("Cancel") }
                     TextButton(
-                        onClick = onConfirm
+                        onClick = { onConfirm(timePickerState.hour, timePickerState.minute) }
                     ) { Text("OK") }
                 }
             }

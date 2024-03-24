@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import org.joda.time.LocalTime
 import space.rodionov.porosenokpetr.core.domain.use_case.CheckIfAlarmSetUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.CollectAvailableNativeLanguagesUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.CollectIsFollowingSystemModeUseCase
@@ -93,6 +94,8 @@ class SettingsViewModel(
         }
 
         checkIfReminderSet()
+
+       refreshInitialTimePickerValue()
     }
 
     fun onEvent(event: SettingsEvent) {
@@ -146,6 +149,7 @@ class SettingsViewModel(
 
             is SettingsEvent.OnTimeChosen -> {
                 setReminderTimeUseCase.invoke(event.hourOfDay, event.minuteOfHour)
+                refreshInitialTimePickerValue()
                 val newReminderTime = getReminderTimeUseCase.invoke()
                 Log.d(TAG, "onEvent: newReminderTime = $newReminderTime")
                 if (getIsReminderOnUseCase.invoke()) {
@@ -159,6 +163,10 @@ class SettingsViewModel(
         val isSet = getIsReminderOnUseCase.invoke()
         state = state.copy(isReminderSet = isSet)
     }
+
+    private fun refreshInitialTimePickerValue() {
+        state = state.copy(initialTimePickerValue = getReminderTimeUseCase.invoke())
+    }
 }
 
 data class SettingsState(
@@ -168,7 +176,8 @@ data class SettingsState(
     val isNativeToForeign: Boolean = false,
     val availableNativeLanguages: List<Language> = emptyList(),
     val isReminderSet: Boolean = false,
-    val isTimePickerOpen: Boolean = false
+    val isTimePickerOpen: Boolean = false,
+    val initialTimePickerValue: LocalTime = LocalTime(20, 0)
 )
 
 sealed class SettingsEvent {
