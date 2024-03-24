@@ -1,12 +1,17 @@
 package space.rodionov.porosenokpetr.feature_settings.presentation
 
+import android.widget.TimePicker
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.TimePicker
+import androidx.compose.material3.TimePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -179,19 +184,27 @@ fun SettingsScreen(
                 val minute = 20
         onEvent(SettingsEvent.OnTimeChosen(hourOfDay, minute))
                 onEvent(SettingsEvent.OnCloseTimePickerClick)
-                        },
-            content = { Text(text = "Content") }
+                        }
         )
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TimePickerDialog(
     title: String = "Select Time",
     onCancel: () -> Unit,
-    onConfirm: () -> Unit,
-    content: @Composable () -> Unit,
+    onConfirm: () -> Unit
 ) {
+
+    val timePickerState = remember {
+        TimePickerState(
+            is24Hour = true,
+            initialHour = 15,
+            initialMinute = 20
+        )
+    }
+
     Dialog(
         onDismissRequest = onCancel,
         properties = DialogProperties(
@@ -220,7 +233,9 @@ fun TimePickerDialog(
                     text = title,
                     style = MaterialTheme.typography.body1
                 )
-                content()
+
+                TimePicker(state = timePickerState)
+
                 Row(
                     modifier = Modifier
                         .height(40.dp)
