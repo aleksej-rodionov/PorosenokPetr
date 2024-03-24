@@ -19,6 +19,7 @@ import space.rodionov.porosenokpetr.core.domain.use_case.SetIsReminderOnUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.UpdateInterfaceLanguageUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.UpdateModeUseCase
 import space.rodionov.porosenokpetr.feature_reminder.domain.use_case.CancelAlarmUseCase
+import space.rodionov.porosenokpetr.feature_reminder.domain.use_case.SetReminderTimeUseCase
 import space.rodionov.porosenokpetr.feature_settings.domain.use_case.use_case.CollectInterfaceLanguageUseCase
 import space.rodionov.porosenokpetr.feature_settings.domain.use_case.use_case.SetInterfaceLocaleConfigUseCase
 import space.rodionov.porosenokpetr.feature_settings.domain.use_case.use_case.UpdateIsFollowingSystemModeUseCase
@@ -118,7 +119,6 @@ class SettingsModule {
     fun provideCancelAlarmUseCase(reminderRepository: ReminderRepository) =
         CancelAlarmUseCase(reminderRepository)
 
-
     @Provides
     @SettingsScope
     fun provideSetIsReminderOnUseCase(keyValueStorage: KeyValueStorage) =
@@ -128,6 +128,11 @@ class SettingsModule {
     @SettingsScope
     fun provideGetIsReminderOnUseCase(keyValueStorage: KeyValueStorage) =
         GetIsReminderOnUseCase(keyValueStorage)
+
+    @Provides
+    @SettingsScope
+    fun provideSetReminderTimeUseCase(keyValueStorage: KeyValueStorage) =
+        SetReminderTimeUseCase(keyValueStorage)
 
 
     @Provides
@@ -149,6 +154,8 @@ class SettingsModule {
         cancelAlarmUseCase: CancelAlarmUseCase,
         setIsReminderOnUseCase: SetIsReminderOnUseCase,
         getIsReminderOnUseCase: GetIsReminderOnUseCase,
+        setReminderTimeUseCase: SetReminderTimeUseCase,
+        getReminderTimeUseCase: GetReminderTimeUseCase,
     ) = SettingsViewModel(
         collectModeUseCase,
         collectIsFollowingSystemModeUseCase,
@@ -166,5 +173,7 @@ class SettingsModule {
         cancelAlarmUseCase,
         setIsReminderOnUseCase,
         getIsReminderOnUseCase,
+        setReminderTimeUseCase,
+        getReminderTimeUseCase,
     )
 }

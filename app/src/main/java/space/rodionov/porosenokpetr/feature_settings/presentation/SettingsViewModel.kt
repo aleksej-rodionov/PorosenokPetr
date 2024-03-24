@@ -26,7 +26,9 @@ import space.rodionov.porosenokpetr.core.util.UiEffect
 import space.rodionov.porosenokpetr.feature_reminder.domain.use_case.CancelAlarmUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.EnableNextAlarmUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.GetIsReminderOnUseCase
+import space.rodionov.porosenokpetr.core.domain.use_case.GetReminderTimeUseCase
 import space.rodionov.porosenokpetr.core.domain.use_case.SetIsReminderOnUseCase
+import space.rodionov.porosenokpetr.feature_reminder.domain.use_case.SetReminderTimeUseCase
 import space.rodionov.porosenokpetr.feature_settings.domain.use_case.use_case.CollectInterfaceLanguageUseCase
 import space.rodionov.porosenokpetr.feature_settings.domain.use_case.use_case.SetInterfaceLocaleConfigUseCase
 import space.rodionov.porosenokpetr.feature_settings.domain.use_case.use_case.UpdateIsFollowingSystemModeUseCase
@@ -52,6 +54,8 @@ class SettingsViewModel(
     private val cancelAlarmUseCase: CancelAlarmUseCase,
     private val setIsReminderOnUseCase: SetIsReminderOnUseCase,
     private val getIsReminderOnUseCase: GetIsReminderOnUseCase,
+    private val setReminderTimeUseCase: SetReminderTimeUseCase,
+    private val getReminderTimeUseCase: GetReminderTimeUseCase,
 ) : ViewModel() {
 
     var state by mutableStateOf(SettingsState())
@@ -130,8 +134,23 @@ class SettingsViewModel(
                 }
             }
 
-            is SettingsEvent.OnReminderTimeChosen -> {
-                Log.d(TAG, "onEvent: getIsReminderOnUseCase() = ${getIsReminderOnUseCase.invoke()}")
+            is SettingsEvent.OnOpenTimePickerClick -> {
+                Log.d(TAG, "onEvent: oldReminderTime = ${getReminderTimeUseCase.invoke()}")
+                state = state.copy(isTimePickerOpen = true)
+            }
+
+            is SettingsEvent.OnCloseTimePickerClick -> {
+                Log.d(TAG, "onEvent: OnCloseTimePickerClick")
+                state = state.copy(isTimePickerOpen = false)
+            }
+
+            is SettingsEvent.OnTimeChosen -> {
+                setReminderTimeUseCase.invoke(event.hourOfDay, event.minuteOfHour)
+                val newReminderTime = getReminderTimeUseCase.invoke()
+                Log.d(TAG, "onEvent: newReminderTime = $newReminderTime")
+                if (getIsReminderOnUseCase.invoke()) {
+                    enableNextAlarmUseCase.invoke()
+                }
             }
         }
     }
@@ -148,7 +167,8 @@ data class SettingsState(
     val nativeLanguage: Language = Language.Russian,
     val isNativeToForeign: Boolean = false,
     val availableNativeLanguages: List<Language> = emptyList(),
-    val isReminderSet: Boolean = false
+    val isReminderSet: Boolean = false,
+    val isTimePickerOpen: Boolean = false
 )
 
 sealed class SettingsEvent {
@@ -158,5 +178,7 @@ sealed class SettingsEvent {
     data class OnNativeLanguageChanged(val language: Language) : SettingsEvent()
     data class OnTranslationDirectionChanged(val nativeToForeign: Boolean) : SettingsEvent()
     data class OnIsReminderOnChanged(val isSwitchedOn: Boolean) : SettingsEvent()
-    data class OnReminderTimeChosen(val hourOfDay: Int, val minuteOfHour: Int) : SettingsEvent()
+    object OnOpenTimePickerClick : SettingsEvent()
+    object OnCloseTimePickerClick : SettingsEvent()
+    data class OnTimeChosen(val hourOfDay: Int, val minuteOfHour: Int) : SettingsEvent()
 }
